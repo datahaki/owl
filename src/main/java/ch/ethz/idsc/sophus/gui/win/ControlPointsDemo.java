@@ -16,10 +16,10 @@ import javax.swing.JButton;
 
 import ch.ethz.idsc.owl.gui.RenderInterface;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplayDemo;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.sophus.ref.d1.CurveSubdivision;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
@@ -30,7 +30,7 @@ import ch.ethz.idsc.tensor.alg.Insert;
 import ch.ethz.idsc.tensor.alg.Join;
 import ch.ethz.idsc.tensor.alg.VectorQ;
 import ch.ethz.idsc.tensor.mat.Det;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.sca.Abs;
 import ch.ethz.idsc.tensor.sca.N;
 import ch.ethz.idsc.tensor.sca.Sqrt;
@@ -58,7 +58,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
   private final static Color GREEN = new Color(0, 255, 0, 192);
 
   private class Midpoints {
-    private final GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    private final ManifoldDisplay geodesicDisplay = manifoldDisplay();
     private final Tensor midpoints;
     private final int index;
 
@@ -68,7 +68,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
       Tensor mouse_dist = Tensor.of(midpoints.stream() //
           .map(geodesicDisplay::toPoint) //
           .map(mouse.extract(0, 2)::subtract) //
-          .map(Norm._2::ofVector));
+          .map(Vector2Norm::of));
       ArgMinValue argMinValue = ArgMinValue.of(mouse_dist);
       index = argMinValue.index();
     }
@@ -88,10 +88,13 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
       if (isPositioningOngoing())
         control.set(mouse, min_index);
       else {
-        GeodesicDisplay geodesicDisplay = geodesicDisplay();
+        ManifoldDisplay geodesicDisplay = manifoldDisplay();
         final boolean hold;
         {
-          Tensor mouse_dist = Tensor.of(control.stream().map(mouse::subtract).map(Extract2D.FUNCTION).map(Norm._2::ofVector));
+          Tensor mouse_dist = Tensor.of(control.stream() //
+              .map(mouse::subtract) //
+              .map(Extract2D.FUNCTION) //
+              .map(Vector2Norm::of));
           ArgMinValue argMinValue = ArgMinValue.of(mouse_dist);
           Optional<Scalar> value = argMinValue.value(getPositioningThreshold());
           hold = value.isPresent() && isPositioningEnabled();
@@ -123,7 +126,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
    * 
    * @param addRemoveControlPoints whether the number of control points is variable
    * @param list */
-  public ControlPointsDemo(boolean addRemoveControlPoints, List<GeodesicDisplay> list) {
+  public ControlPointsDemo(boolean addRemoveControlPoints, List<ManifoldDisplay> list) {
     super(list);
     // ---
     if (addRemoveControlPoints) {
@@ -147,7 +150,10 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
             // released();
           } else {
             {
-              Tensor mouse_dist = Tensor.of(control.stream().map(mouse::subtract).map(Extract2D.FUNCTION).map(Norm._2::ofVector));
+              Tensor mouse_dist = Tensor.of(control.stream() //
+                  .map(mouse::subtract) //
+                  .map(Extract2D.FUNCTION) //
+                  .map(Vector2Norm::of));
               ArgMinValue argMinValue = ArgMinValue.of(mouse_dist);
               min_index = argMinValue.index(getPositioningThreshold()).orElse(null);
             }
@@ -167,7 +173,10 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
         case MouseEvent.BUTTON3: // remove point
           if (addRemoveControlPoints) {
             if (!isPositioningOngoing()) {
-              Tensor mouse_dist = Tensor.of(control.stream().map(mouse::subtract).map(Extract2D.FUNCTION).map(Norm._2::ofVector));
+              Tensor mouse_dist = Tensor.of(control.stream() //
+                  .map(mouse::subtract) //
+                  .map(Extract2D.FUNCTION) //
+                  .map(Vector2Norm::of));
               ArgMinValue argMinValue = ArgMinValue.of(mouse_dist);
               min_index = argMinValue.index(getPositioningThreshold()).orElse(null);
             }
@@ -240,7 +249,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
     return control.unmodifiable(); // TODO should return copy!?
   }
 
-  /** @return control points for selected {@link GeodesicDisplay} */
+  /** @return control points for selected {@link ManifoldDisplay} */
   public final Tensor getGeodesicControlPoints() {
     return getGeodesicControlPoints(0, Integer.MAX_VALUE);
   }
@@ -252,16 +261,16 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
     return Tensor.of(control.stream() //
         .skip(skip) //
         .limit(maxSize) //
-        .map(geodesicDisplay()::project) //
+        .map(manifoldDisplay()::project) //
         .map(N.DOUBLE::of));
   }
 
   protected final void renderControlPoints(GeometricLayer geometricLayer, Graphics2D graphics) {
-    POINTS_RENDER_0.show(geodesicDisplay()::matrixLift, getControlPointShape(), getGeodesicControlPoints()).render(geometricLayer, graphics);
+    POINTS_RENDER_0.show(manifoldDisplay()::matrixLift, getControlPointShape(), getGeodesicControlPoints()).render(geometricLayer, graphics);
   }
 
   protected final void renderPoints( //
-      GeodesicDisplay geodesicDisplay, Tensor points, //
+      ManifoldDisplay geodesicDisplay, Tensor points, //
       GeometricLayer geometricLayer, Graphics2D graphics) {
     POINTS_RENDER_1.show(geodesicDisplay::matrixLift, getControlPointShape(), points).render(geometricLayer, graphics);
   }
@@ -270,6 +279,6 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
    * 
    * @return */
   protected Tensor getControlPointShape() {
-    return geodesicDisplay().shape();
+    return manifoldDisplay().shape();
   }
 }

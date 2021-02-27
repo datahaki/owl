@@ -17,7 +17,6 @@ import ch.ethz.idsc.tensor.sca.Ceiling;
 import ch.ethz.idsc.tensor.sca.Sign;
 
 /* package */ class DubinsTransition extends AbstractTransition {
-  private static final long serialVersionUID = -1743309639365084076L;
   // ---
   private final DubinsPath dubinsPath;
 
@@ -29,7 +28,7 @@ import ch.ethz.idsc.tensor.sca.Sign;
   /** @param minResolution strictly positive
    * @return */
   private int steps(Scalar minResolution) {
-    return Scalars.intValueExact(Ceiling.FUNCTION.apply(length().divide(Sign.requirePositive(minResolution))));
+    return Ceiling.intValueExact(length().divide(Sign.requirePositive(minResolution)));
   }
 
   @Override // from Transition

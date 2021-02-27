@@ -1,9 +1,9 @@
 // code by jph
 package ch.ethz.idsc.sophus.app.bdn;
 
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.sophus.ply.Arrowhead;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -27,7 +27,7 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
 
   @Override
   synchronized Tensor shufflePointsSe2(int n) {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Distribution distributionp = UniformDistribution.of(-1, 7);
     Distribution distributiona = UniformDistribution.of(-1, 1);
     return Tensors.vector(i -> geodesicDisplay.project( //
@@ -50,7 +50,7 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
 
   @Override
   BiinvariantMean biinvariantMean() {
-    return geodesicDisplay().biinvariantMean();
+    return manifoldDisplay().biinvariantMean();
   }
 
   public static void main(String[] args) {

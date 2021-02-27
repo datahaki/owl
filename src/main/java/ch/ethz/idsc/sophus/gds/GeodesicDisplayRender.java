@@ -2,7 +2,6 @@
 package ch.ethz.idsc.sophus.gds;
 
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
@@ -37,31 +36,31 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    GeodesicDisplay geodesicDisplay = getGeodesicDisplay();
-    if (geodesicDisplay instanceof S1GeodesicDisplay) {
+    ManifoldDisplay geodesicDisplay = getGeodesicDisplay();
+    if (geodesicDisplay instanceof S1Display) {
       graphics.setColor(BORDER);
       graphics.draw(geometricLayer.toPath2D(CIRCLE, true));
     } else //
-    if (geodesicDisplay instanceof S2GeodesicDisplay || //
-        geodesicDisplay instanceof Rp2GeodesicDisplay) {
+    if (geodesicDisplay instanceof S2Display || //
+        geodesicDisplay instanceof Rp2Display) {
       render_s2(geometricLayer, graphics);
     } else //
-    if (geodesicDisplay instanceof HP2GeodesicDisplay) {
-      Paint paint = new GradientPaint( //
-          geometricLayer.toPoint2D(0, 0), BORDER, //
-          geometricLayer.toPoint2D(0, 5), CENTER);
-      graphics.setPaint(paint);
-      Tensor box = Tensors.fromString("{{-20, 0}, {+20, 0}, {+20, 5}, {-20, 5}}");
-      graphics.fill(geometricLayer.toPath2D(box));
-    } else //
-    if (geodesicDisplay instanceof H1GeodesicDisplay) {
+    // if (geodesicDisplay instanceof HP2GeodesicDisplay) {
+    // Paint paint = new GradientPaint( //
+    // geometricLayer.toPoint2D(0, 0), BORDER, //
+    // geometricLayer.toPoint2D(0, 5), CENTER);
+    // graphics.setPaint(paint);
+    // Tensor box = Tensors.fromString("{{-20, 0}, {+20, 0}, {+20, 5}, {-20, 5}}");
+    // graphics.fill(geometricLayer.toPath2D(box));
+    // } else //
+    if (geodesicDisplay instanceof H1Display) {
       Tensor points = //
           Tensor.of(H1_DOMAIN.map(Tensors::of).stream().map(HnWeierstrassCoordinate::toPoint));
       // ---
       graphics.setColor(BORDER);
       graphics.draw(geometricLayer.toPath2D(points));
     } else //
-    if (geodesicDisplay instanceof H2GeodesicDisplay) {
+    if (geodesicDisplay instanceof H2Display) {
       double modelWidth = 5;
       Point2D center = geometricLayer.toPoint2D(0, 0);
       float fradius = geometricLayer.model2pixelWidth(modelWidth);
@@ -74,7 +73,7 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
       // graphics.setColor(BORDER);
       // graphics.draw(geometricLayer.toPath2D(CIRCLE, true));
     } else //
-    if (geodesicDisplay instanceof Spd2GeodesicDisplay) {
+    if (geodesicDisplay instanceof Spd2Display) {
       Point2D point2d = geometricLayer.toPoint2D(0, 0);
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(new Rectangle( //
@@ -83,5 +82,5 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
     }
   }
 
-  public abstract GeodesicDisplay getGeodesicDisplay();
+  public abstract ManifoldDisplay getGeodesicDisplay();
 }

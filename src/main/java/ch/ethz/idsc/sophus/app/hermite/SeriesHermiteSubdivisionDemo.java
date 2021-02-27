@@ -16,13 +16,13 @@ import org.jfree.chart.JFreeChart;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.Curvature2DRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
 import ch.ethz.idsc.sophus.math.Do;
-import ch.ethz.idsc.sophus.math.Extract2D;
 import ch.ethz.idsc.sophus.math.TensorIteration;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.sophus.opt.HermiteSubdivisions;
 import ch.ethz.idsc.sophus.ref.d1h.HermiteSubdivision;
 import ch.ethz.idsc.tensor.NumberQ;
@@ -30,12 +30,12 @@ import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.alg.ConstantArray;
-import ch.ethz.idsc.tensor.alg.Derive;
 import ch.ethz.idsc.tensor.alg.Range;
-import ch.ethz.idsc.tensor.alg.Series;
 import ch.ethz.idsc.tensor.alg.Transpose;
 import ch.ethz.idsc.tensor.alg.VectorQ;
 import ch.ethz.idsc.tensor.api.ScalarUnaryOperator;
+import ch.ethz.idsc.tensor.num.Derive;
+import ch.ethz.idsc.tensor.num.Series;
 import ch.ethz.idsc.tensor.sca.N;
 
 /* package */ class SeriesHermiteSubdivisionDemo extends ControlPointsDemo implements ActionListener {
@@ -84,10 +84,10 @@ import ch.ethz.idsc.tensor.sca.N;
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     renderControlPoints(geometricLayer, graphics);
     if (1 < _control.length()) {
-      GeodesicDisplay geodesicDisplay = geodesicDisplay();
+      ManifoldDisplay geodesicDisplay = manifoldDisplay();
       HermiteSubdivision hermiteSubdivision = //
           spinnerLabelScheme.getValue().supply( //
-              geodesicDisplay.hsExponential(), //
+              geodesicDisplay.hsManifold(), //
               geodesicDisplay.hsTransport(), //
               geodesicDisplay.biinvariantMean());
       Tensor control = N.DOUBLE.of(_control);

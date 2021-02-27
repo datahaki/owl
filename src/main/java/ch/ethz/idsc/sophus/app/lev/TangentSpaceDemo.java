@@ -14,14 +14,15 @@ import org.jfree.chart.JFreeChart;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.bd2.GenesisDequeProperties;
-import ch.ethz.idsc.sophus.gbc.GenesisDeque;
-import ch.ethz.idsc.sophus.gbc.IterativeAffineCoordinate.Evaluation;
+import ch.ethz.idsc.sophus.gbc.it.GenesisDeque;
+import ch.ethz.idsc.sophus.gbc.it.IterativeAffineCoordinate.Evaluation;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
+import ch.ethz.idsc.sophus.hs.HsDesign;
 import ch.ethz.idsc.sophus.hs.VectorLogManifold;
-import ch.ethz.idsc.sophus.lie.r2.ConvexHull;
 import ch.ethz.idsc.sophus.lie.se2.Se2Matrix;
+import ch.ethz.idsc.sophus.ply.d2.ConvexHull;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -57,9 +58,10 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor origin = optional.get();
-      VectorLogManifold vectorLogManifold = geodesicDisplay().vectorLogManifold();
+      VectorLogManifold vectorLogManifold = manifoldDisplay().hsManifold();
       final Tensor sequence = getSequence();
-      final Tensor levers2 = Tensor.of(sequence.stream().map(vectorLogManifold.logAt(origin)::vectorLog));
+      HsDesign hsDesign = new HsDesign(vectorLogManifold);
+      final Tensor levers2 = hsDesign.matrix(sequence, origin);
       {
         Tensor hull = ConvexHull.of(sequence);
         PathRender pathRender = new PathRender(new Color(0, 0, 255, 128));
@@ -81,7 +83,7 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
           }
           {
             LeversRender leversRender = LeversRender.of( //
-                geodesicDisplay(), leversVirtual, origin.map(Scalar::zero), geometricLayer, graphics);
+                manifoldDisplay(), leversVirtual, origin.map(Scalar::zero), geometricLayer, graphics);
             leversRender.renderSequence(POINTS_RENDER);
             // Tensor weights = iterativeAffineCoordinate.origin(deque, levers2);
             // leversRender.renderWeights(weights);
@@ -117,7 +119,7 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
       }
       {
         LeversRender leversRender = LeversRender.of( //
-            geodesicDisplay(), sequence, origin, geometricLayer, graphics);
+            manifoldDisplay(), sequence, origin, geometricLayer, graphics);
         leversRender.renderSequence();
         leversRender.renderOrigin();
       }

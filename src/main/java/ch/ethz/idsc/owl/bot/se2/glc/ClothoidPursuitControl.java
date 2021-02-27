@@ -20,13 +20,12 @@ import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.api.TensorScalarFunction;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
-import ch.ethz.idsc.tensor.red.Norm2Squared;
+import ch.ethz.idsc.tensor.nrm.Vector2NormSquared;
 import ch.ethz.idsc.tensor.sca.Clip;
 import ch.ethz.idsc.tensor.sca.Clips;
 import ch.ethz.idsc.tensor.sca.Sign;
 
 /* package */ class ClothoidPursuitControl extends StateTrajectoryControl implements TrajectoryTargetRender {
-  private static final long serialVersionUID = -8088615067878305419L;
   private final static int MAX_LEVEL = 20;
   private final static int REFINEMENT = 2;
   // ---
@@ -44,7 +43,7 @@ import ch.ethz.idsc.tensor.sca.Sign;
 
   @Override // from StateTrajectoryControl
   protected Scalar pseudoDistance(Tensor x, Tensor y) {
-    return Norm2Squared.ofVector(Se2Wrap.INSTANCE.difference(x, y));
+    return Vector2NormSquared.of(Se2Wrap.INSTANCE.difference(x, y));
   }
 
   @Override // from AbstractEntity

@@ -2,13 +2,14 @@
 package ch.ethz.idsc.owl.demo.order;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import ch.ethz.idsc.owl.math.order.BinaryRelation;
 import ch.ethz.idsc.owl.math.order.Order;
 import ch.ethz.idsc.owl.math.order.OrderComparator;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.api.TensorScalarFunction;
 
 /** Total preorder for tensor norms.
  * 
@@ -17,17 +18,15 @@ import ch.ethz.idsc.tensor.red.Norm;
  * 
  * binary relation that is reflexive and transitive, but not antisymmetric */
 public class TensorNormTotalPreorder implements BinaryRelation<Tensor>, Serializable {
-  private static final long serialVersionUID = -697613708997610444L;
-  // ---
-  private final Norm norm;
+  private final TensorScalarFunction tensorScalarFunction;
 
-  public TensorNormTotalPreorder(Norm norm) {
-    this.norm = norm;
+  public TensorNormTotalPreorder(TensorScalarFunction tensorScalarFunction) {
+    this.tensorScalarFunction = Objects.requireNonNull(tensorScalarFunction);
   }
 
   @Override // from BinaryRelation
   public boolean test(Tensor x, Tensor y) {
-    return Scalars.lessEquals(norm.of(x), norm.of(y));
+    return Scalars.lessEquals(tensorScalarFunction.apply(x), tensorScalarFunction.apply(y));
   }
 
   /** @return total preorder comparator that never returns INCOMPARABLE */

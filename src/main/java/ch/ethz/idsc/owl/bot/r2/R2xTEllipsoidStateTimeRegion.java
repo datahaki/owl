@@ -12,18 +12,17 @@ import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.math.region.Region;
 import ch.ethz.idsc.owl.math.state.StateTime;
 import ch.ethz.idsc.sophus.math.BijectionFamily;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.sophus.ply.EllipsePoints;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
-import ch.ethz.idsc.tensor.red.Norm2Squared;
+import ch.ethz.idsc.tensor.nrm.Vector2NormSquared;
 
 /** ellipsoid region that is moving with respect to time */
 public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
-  private static final long serialVersionUID = 2935982078034986735L;
   /** number of samples to visualize ellipsoid */
   private static final int RESOLUTION = 22;
   // ---
@@ -47,7 +46,7 @@ public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderIn
     Tensor state = stateTime.state().extract(0, invert.length());
     Scalar time = stateTime.time();
     TensorUnaryOperator rev = bijectionFamily.inverse(time);
-    return Scalars.lessEquals(Norm2Squared.ofVector(rev.apply(state).pmul(invert)), RealScalar.ONE);
+    return Scalars.lessEquals(Vector2NormSquared.of(rev.apply(state).pmul(invert)), RealScalar.ONE);
   }
 
   @Override // from RenderInterface

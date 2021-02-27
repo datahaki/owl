@@ -16,13 +16,13 @@ import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.java.util.DisjointSets;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.lev.LogWeightingDemo;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
-import ch.ethz.idsc.sophus.hs.PrimAlgorithm;
-import ch.ethz.idsc.sophus.hs.PrimAlgorithm.Edge;
-import ch.ethz.idsc.sophus.hs.PrimAlgorithm.EdgeComparator;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
+import ch.ethz.idsc.sophus.math.MinimumSpanningTree;
+import ch.ethz.idsc.sophus.math.MinimumSpanningTree.Edge;
+import ch.ethz.idsc.sophus.math.MinimumSpanningTree.EdgeComparator;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
@@ -52,8 +52,8 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     RenderQuality.setQuality(graphics);
     Tensor sequence = getGeodesicControlPoints();
     Tensor domain = Subdivide.of(0.0, 1.0, 10);
@@ -61,7 +61,7 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
     DisjointSets disjointSets = DisjointSets.allocate(sequence.length());
     if (0 < sequence.length()) {
       Tensor matrix = distanceMatrix(sequence);
-      List<Edge> list = PrimAlgorithm.of(matrix);
+      List<Edge> list = MinimumSpanningTree.of(matrix);
       Collections.sort(list, new EdgeComparator(matrix));
       int count = Math.max(0, list.size() - splits);
       {
@@ -82,13 +82,13 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
       int unique = map.get(disjointSets.key(index));
       Color color = ColorDataLists._097.cyclic().getColor(unique);
       PointsRender pointsRender = new PointsRender(color, color);
-      pointsRender.show(geodesicDisplay()::matrixLift, getControlPointShape(), Tensors.of(sequence.get(index))).render(geometricLayer, graphics);
+      pointsRender.show(manifoldDisplay()::matrixLift, getControlPointShape(), Tensors.of(sequence.get(index))).render(geometricLayer, graphics);
     }
   }
 
   public Tensor distanceMatrix(Tensor sequence) {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    TensorUnaryOperator tuo = biinvariant().distances(geodesicDisplay.vectorLogManifold(), sequence);
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    TensorUnaryOperator tuo = biinvariant().distances(geodesicDisplay.hsManifold(), sequence);
     Tensor matrix = Tensor.of(sequence.stream().map(tuo));
     return SymmetricMatrixQ.of(matrix) //
         ? matrix

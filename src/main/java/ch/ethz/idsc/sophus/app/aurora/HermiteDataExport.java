@@ -5,14 +5,14 @@ import java.io.File;
 import java.io.IOException;
 
 import ch.ethz.idsc.sophus.app.io.GokartPoseDataV2;
-import ch.ethz.idsc.sophus.crv.Curvature2D;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
-import ch.ethz.idsc.sophus.hs.HsExponential;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
+import ch.ethz.idsc.sophus.crv.d2.Curvature2D;
+import ch.ethz.idsc.sophus.hs.HsManifold;
 import ch.ethz.idsc.sophus.hs.HsTransport;
+import ch.ethz.idsc.sophus.lie.LieTransport;
 import ch.ethz.idsc.sophus.lie.rn.RnGeodesic;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringBiinvariantMean;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringManifold;
-import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringTransport;
 import ch.ethz.idsc.sophus.lie.so2.So2Lift;
 import ch.ethz.idsc.sophus.math.Do;
 import ch.ethz.idsc.sophus.math.TensorIteration;
@@ -85,42 +85,42 @@ import ch.ethz.idsc.tensor.red.Nest;
   }
 
   private void processAll() throws IOException {
-    HsExponential hsExponential = Se2CoveringManifold.HS_EXP;
-    HsTransport hsTransport = Se2CoveringTransport.INSTANCE;
+    HsManifold hsManifold = Se2CoveringManifold.INSTANCE;
+    HsTransport hsTransport = LieTransport.INSTANCE;
     BiinvariantMean biinvariantMean = Se2CoveringBiinvariantMean.INSTANCE;
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H1STANDARD.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H1STANDARD.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline1CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h1standard");
     }
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H2STANDARD.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H2STANDARD.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline2CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h2standard");
     }
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H2MANIFOLD.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H2MANIFOLD.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline2CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h2manifold");
     }
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H3STANDARD.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H3STANDARD.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline1CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h3standard");
     }
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H3A1.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H3A1.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline1CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h3a1");
     }
     {
       HermiteSubdivision hermiteSubdivision = //
-          HermiteSubdivisions.H3A2.supply(hsExponential, hsTransport, biinvariantMean);
+          HermiteSubdivisions.H3A2.supply(hsManifold, hsTransport, biinvariantMean);
       CurveSubdivision curveSubdivision = new BSpline1CurveSubdivision(RnGeodesic.INSTANCE);
       process(hermiteSubdivision, curveSubdivision, "h3a2");
     }

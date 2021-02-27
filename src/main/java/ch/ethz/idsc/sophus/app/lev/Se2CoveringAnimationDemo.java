@@ -10,9 +10,8 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.math.noise.SimplexContinuousNoise;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.hs.Biinvariants;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.lie.LieGroup;
 import ch.ethz.idsc.sophus.lie.LieGroupOps;
 import ch.ethz.idsc.sophus.math.TensorMapping;
@@ -40,7 +39,7 @@ import ch.ethz.idsc.tensor.ext.Timing;
           Tensor sequence = getGeodesicControlPoints();
           if (0 < sequence.length()) {
             Tensor origin = sequence.get(0);
-            LieGroup lieGroup = geodesicDisplay().lieGroup();
+            LieGroup lieGroup = manifoldDisplay().lieGroup();
             Tensor shift = lieGroup.element(origin).inverse().toCoordinate();
             snapshot = new LieGroupOps(lieGroup).actionL(shift).slash(sequence);
           }
@@ -64,7 +63,7 @@ import ch.ethz.idsc.tensor.ext.Timing;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     LieGroup lieGroup = geodesicDisplay.lieGroup();
     LieGroupOps lieGroupOps = new LieGroupOps(lieGroup);
     Optional<Tensor> optional = getOrigin();
@@ -75,11 +74,11 @@ import ch.ethz.idsc.tensor.ext.Timing;
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversHud.render( //
-          Biinvariants.METRIC, //
+          Bitype.METRIC1, //
           LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics));
       TensorMapping actionL = lieGroupOps.actionL(Tensors.vector(7, 0, 0));
       LeversHud.render( //
-          biinvariant(), //
+          bitype(), //
           LeversRender.of(geodesicDisplay, actionL.slash(sequence), actionL.apply(origin), geometricLayer, graphics));
     }
   }

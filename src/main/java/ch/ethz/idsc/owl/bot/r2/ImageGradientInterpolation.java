@@ -16,13 +16,12 @@ import ch.ethz.idsc.tensor.alg.Transpose;
 import ch.ethz.idsc.tensor.itp.Interpolation;
 import ch.ethz.idsc.tensor.itp.LinearInterpolation;
 import ch.ethz.idsc.tensor.itp.NearestInterpolation;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.red.Max;
-import ch.ethz.idsc.tensor.red.Norm;
 import ch.ethz.idsc.tensor.sca.N;
 
 /** rotated gradient of potential function */
 public class ImageGradientInterpolation implements Serializable {
-  private static final long serialVersionUID = -7959254689270045123L;
   private static final Tensor ZEROS = Tensors.vectorDouble(0, 0).unmodifiable();
 
   /** @param image
@@ -56,7 +55,7 @@ public class ImageGradientInterpolation implements Serializable {
     scale = Tensors.vector(dims).pmul(range.map(Scalar::reciprocal));
     Tensor field = N.DOUBLE.of(ImageGradient.rotated(image)).multiply(amp);
     interpolation = function.apply(field);
-    maxNormGradient = field.flatten(1).map(Norm._2::ofVector).reduce(Max::of).get();
+    maxNormGradient = field.flatten(1).map(Vector2Norm::of).reduce(Max::of).get();
   }
 
   /** @param vector of length 2

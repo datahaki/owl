@@ -9,14 +9,14 @@ import java.awt.Stroke;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.crv.decim.CurveDecimation;
-import ch.ethz.idsc.sophus.crv.decim.HsCurveDecimation;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.decim.CurveDecimation;
+import ch.ethz.idsc.sophus.decim.LineDistances;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringExponential;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
@@ -52,8 +52,8 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
     int length = sequence.length();
     if (0 == length)
       return;
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
@@ -68,9 +68,8 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
         pathRender.render(geometricLayer, graphics);
       }
     }
-    CurveDecimation curveDecimation = HsCurveDecimation.STANDARD.of( //
-        geodesicDisplay.vectorLogManifold(), //
-        geodesicDisplay.hsExponential(), //
+    CurveDecimation curveDecimation = CurveDecimation.of( //
+        LineDistances.STANDARD.supply(geodesicDisplay.hsManifold()), //
         RealScalar.ONE);
     Tensor decimate = curveDecimation.apply(sequence);
     {

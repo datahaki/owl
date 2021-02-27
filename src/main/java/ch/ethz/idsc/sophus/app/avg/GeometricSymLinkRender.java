@@ -7,11 +7,12 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Path2D;
 
+import ch.ethz.idsc.java.lang.Refactor;
 import ch.ethz.idsc.owl.gui.RenderInterface;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.sym.SymLink;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.alg.Subdivide;
@@ -19,20 +20,21 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
 import ch.ethz.idsc.tensor.sca.Clips;
 
 /** visualization of the geometric geodesic average */
+@Refactor(reason = "implementation is general")
 /* package */ class GeometricSymLinkRender {
   private static final Stroke STROKE = //
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
   private static final int STEPS = 9;
 
-  public static RenderInterface of(GeodesicDisplay geodesicDisplay, SymLink symLink) {
+  public static RenderInterface of(ManifoldDisplay geodesicDisplay, SymLink symLink) {
     return new GeometricSymLinkRender(geodesicDisplay).new Link(symLink);
   }
 
   /***************************************************/
-  private final GeodesicDisplay geodesicDisplay;
-  private final GeodesicInterface geodesicInterface;
+  private final ManifoldDisplay geodesicDisplay;
+  private final Geodesic geodesicInterface;
 
-  private GeometricSymLinkRender(GeodesicDisplay geodesicDisplay) {
+  private GeometricSymLinkRender(ManifoldDisplay geodesicDisplay) {
     this.geodesicDisplay = geodesicDisplay;
     geodesicInterface = geodesicDisplay.geodesicInterface();
   }

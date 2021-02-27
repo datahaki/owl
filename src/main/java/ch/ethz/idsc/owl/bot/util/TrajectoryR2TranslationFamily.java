@@ -8,7 +8,7 @@ import ch.ethz.idsc.owl.math.state.StateIntegrator;
 import ch.ethz.idsc.owl.math.state.StateTime;
 import ch.ethz.idsc.sophus.hs.r2.R2RigidFamily;
 import ch.ethz.idsc.sophus.hs.r2.R2TranslationFamily;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
@@ -16,8 +16,6 @@ import ch.ethz.idsc.tensor.alg.Range;
 import ch.ethz.idsc.tensor.sca.Chop;
 
 public class TrajectoryR2TranslationFamily extends R2TranslationFamily {
-  private static final long serialVersionUID = 8521760396390593808L;
-
   /** @param stateIntegrator
    * @param initial
    * @param flow

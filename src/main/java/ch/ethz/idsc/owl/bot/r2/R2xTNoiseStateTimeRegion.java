@@ -8,7 +8,7 @@ import ch.ethz.idsc.owl.math.noise.ContinuousNoiseUtils;
 import ch.ethz.idsc.owl.math.noise.SimplexContinuousNoise;
 import ch.ethz.idsc.owl.math.region.Region;
 import ch.ethz.idsc.owl.math.state.StateTime;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
@@ -18,7 +18,6 @@ import ch.ethz.idsc.tensor.Tensor;
  * 
  * membership in the region for coordinates (x, y, t) that evaluate the noise function above a given threshold */
 public class R2xTNoiseStateTimeRegion implements Region<StateTime>, Serializable {
-  private static final long serialVersionUID = -4312318581038110544L;
   private static final ContinuousNoise CONTINUOUS_NOISE = //
       ContinuousNoiseUtils.wrap3D(SimplexContinuousNoise.FUNCTION);
   // ---

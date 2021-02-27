@@ -18,8 +18,8 @@ import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.io.GokartPoseDataV2;
 import ch.ethz.idsc.sophus.app.io.GokartPoseDatas;
 import ch.ethz.idsc.sophus.gds.GeodesicDatasetDemo;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.ethz.idsc.sophus.lie.se2.Se2Group;
@@ -39,8 +39,6 @@ import ch.ethz.idsc.tensor.sca.Power;
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
-  // private static final Color COLOR_SHAPE = new Color(160, 160, 160, 160);
-  // private static final Color COLOR_FILTR = new Color(160, 160, 160, 160);
   private static final Color COLOR_RECON = new Color(128, 128, 128, 255);
   // ---
   private final PathRender pathRenderCurve = new PathRender(COLOR_CURVE);
@@ -48,7 +46,6 @@ import ch.ethz.idsc.tensor.sca.Power;
   // ---
   private final GokartPoseDataV2 gokartPoseData;
   private final SpinnerLabel<Integer> spinnerLabelSkips = new SpinnerLabel<>();
-  // private final SpinnerLabel<HermiteSubdivisions> spinnerLabelScheme = new SpinnerLabel<>();
   private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
   private final JToggleButton jToggleAdjoint = new JToggleButton("ad");
   private final JToggleButton jToggleButton = new JToggleButton("derivatives");
@@ -65,16 +62,10 @@ import ch.ethz.idsc.tensor.sca.Power;
       spinnerLabelSkips.addSpinnerListener(type -> updateState());
     }
     timerFrame.jToolBar.addSeparator();
-    // {
-    // spinnerLabelScheme.setArray(HermiteSubdivisions.values());
-    // spinnerLabelScheme.setValue(HermiteSubdivisions.HERMITE1);
-    // spinnerLabelScheme.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "scheme");
-    // }
     {
       spinnerLabelLevel.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
       spinnerLabelLevel.setValue(1);
       spinnerLabelLevel.addToComponentReduced(timerFrame.jToolBar, new Dimension(40, 28), "level");
-      // spinnerLabelLevel.addSpinnerListener(type -> updateState());
     }
     timerFrame.jToolBar.addSeparator();
     {
@@ -104,7 +95,7 @@ import ch.ethz.idsc.tensor.sca.Power;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     {
       final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.3));
       pathRenderCurve.setCurve(_control.get(Tensor.ALL, 0), false).render(geometricLayer, graphics);

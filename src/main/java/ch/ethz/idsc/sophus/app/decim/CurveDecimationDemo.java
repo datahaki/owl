@@ -18,17 +18,16 @@ import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.io.GokartPoseData;
 import ch.ethz.idsc.sophus.app.io.GokartPoseDataV2;
 import ch.ethz.idsc.sophus.app.io.GokartPoseDatas;
-import ch.ethz.idsc.sophus.crv.decim.CurveDecimation;
-import ch.ethz.idsc.sophus.crv.decim.CurveDecimation.Result;
-import ch.ethz.idsc.sophus.crv.decim.HsCurveDecimation;
+import ch.ethz.idsc.sophus.decim.CurveDecimation;
+import ch.ethz.idsc.sophus.decim.CurveDecimation.Result;
+import ch.ethz.idsc.sophus.decim.LineDistances;
 import ch.ethz.idsc.sophus.flt.CenterFilter;
 import ch.ethz.idsc.sophus.flt.ga.GeodesicCenter;
 import ch.ethz.idsc.sophus.gds.GeodesicDatasetDemo;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.lie.se2.Se2Geodesic;
-import ch.ethz.idsc.sophus.opt.SmoothingKernel;
 import ch.ethz.idsc.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -42,6 +41,7 @@ import ch.ethz.idsc.tensor.fig.VisualSet;
 import ch.ethz.idsc.tensor.img.ColorDataLists;
 import ch.ethz.idsc.tensor.red.Nest;
 import ch.ethz.idsc.tensor.sca.Power;
+import ch.ethz.idsc.tensor.sca.win.WindowFunctions;
 
 /* package */ class CurveDecimationDemo extends GeodesicDatasetDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
@@ -56,7 +56,7 @@ import ch.ethz.idsc.tensor.sca.Power;
   private final SpinnerLabel<Integer> spinnerLabelWidth = new SpinnerLabel<>();
   private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
   private final SpinnerLabel<Integer> spinnerLabelDegre = new SpinnerLabel<>();
-  private final SpinnerLabel<HsCurveDecimation> spinnerType = new SpinnerLabel<>();
+  private final SpinnerLabel<LineDistances> spinnerType = new SpinnerLabel<>();
   // private final JSlider jSlider = new JSlider(1, 1000, 500);
   private final JToggleButton jToggleButton = new JToggleButton("error");
   protected Tensor _control = Tensors.empty();
@@ -83,7 +83,7 @@ import ch.ethz.idsc.tensor.sca.Power;
       spinnerLabelDegre.addSpinnerListener(type -> updateState());
     }
     {
-      spinnerType.setArray(HsCurveDecimation.values());
+      spinnerType.setArray(LineDistances.values());
       spinnerType.setIndex(0);
       spinnerType.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "type");
       // spinnerType.addSpinnerListener(type -> updateState());
@@ -103,14 +103,14 @@ import ch.ethz.idsc.tensor.sca.Power;
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
     TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
-        GeodesicCenter.of(Se2Geodesic.INSTANCE, SmoothingKernel.GAUSSIAN), spinnerLabelWidth.getValue());
+        GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), spinnerLabelWidth.getValue());
     _control = tensorUnaryOperator.apply(gokartPoseData.getPose(name, limit));
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     {
       final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.3));
       pathRenderCurve.setCurve(_control, false).render(geometricLayer, graphics);
@@ -128,10 +128,9 @@ import ch.ethz.idsc.tensor.sca.Power;
     }
     Scalar epsilon = Power.of(RationalScalar.HALF, spinnerLabelLevel.getValue());
     // epsilon = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum() * 3);
-    HsCurveDecimation hsCurveDecimation = spinnerType.getValue();
-    CurveDecimation curveDecimation = hsCurveDecimation.of( //
-        geodesicDisplay.vectorLogManifold(), //
-        geodesicDisplay.hsExponential(), epsilon);
+    LineDistances lineDistances = spinnerType.getValue();
+    CurveDecimation curveDecimation = CurveDecimation.of( //
+        lineDistances.supply(geodesicDisplay.hsManifold()), epsilon);
     Tensor control = Tensor.of(_control.stream().map(geodesicDisplay::project));
     Result result = curveDecimation.evaluate(control);
     Tensor simplified = result.result();

@@ -22,15 +22,15 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.java.awt.StandardMenu;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.app.curve.CurvatureDemo;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.app.curve.AbstractCurvatureDemo;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.gds.R2GeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.Se2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.R2Display;
+import ch.ethz.idsc.sophus.gds.Se2Display;
 import ch.ethz.idsc.sophus.gui.ren.Curvature2DRender;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.win.DubinsGenerator;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -43,7 +43,7 @@ import ch.ethz.idsc.tensor.red.Mean;
 import ch.ethz.idsc.tensor.red.Nest;
 
 /** split interface and biinvariant mean based curve subdivision */
-/* package */ class CurveSubdivisionDemo extends CurvatureDemo {
+/* package */ class CurveSubdivisionDemo extends AbstractCurvatureDemo {
   private final PathRender pathRender = new PathRender(new Color(0, 255, 0, 128));
   final SpinnerLabel<CurveSubdivisionSchemes> spinnerLabel = new SpinnerLabel<>();
   final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
@@ -85,7 +85,7 @@ import ch.ethz.idsc.tensor.red.Nest;
                 Tensor center = Mean.of(tensor);
                 center.set(RealScalar.ZERO, 2);
                 tensor = Tensor.of(tensor.stream().map(row -> row.subtract(center)));
-                setGeodesicDisplay(Se2GeodesicDisplay.INSTANCE);
+                setGeodesicDisplay(Se2Display.INSTANCE);
                 jToggleCyclic.setSelected(true);
                 setControlPointsSe2(tensor);
               }
@@ -156,7 +156,7 @@ import ch.ethz.idsc.tensor.red.Nest;
     final CurveSubdivisionSchemes scheme = spinnerLabel.getValue();
     //
     if (scheme.equals(CurveSubdivisionSchemes.DODGSON_SABIN))
-      setGeodesicDisplay(R2GeodesicDisplay.INSTANCE);
+      setGeodesicDisplay(R2Display.INSTANCE);
     // ---
     if (jToggleSymi.isSelected()) {
       Optional<SymMaskImages> optional = SymMaskImages.get(scheme.name());
@@ -173,8 +173,8 @@ import ch.ethz.idsc.tensor.red.Nest;
     Tensor control = getGeodesicControlPoints();
     int levels = spinnerRefine.getValue();
     renderControlPoints(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     Tensor refined = StaticHelper.refine( //
         control, levels, spinnerLabel.getValue().of(geodesicDisplay), //
         CurveSubdivisionHelper.isDual(scheme), cyclic, geodesicInterface);

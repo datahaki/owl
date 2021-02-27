@@ -3,15 +3,13 @@ package ch.ethz.idsc.owl.math.region;
 
 import java.io.Serializable;
 
-import ch.ethz.idsc.sophus.lie.r2.Polygons;
+import ch.ethz.idsc.sophus.ply.d2.Polygons;
 import ch.ethz.idsc.tensor.Tensor;
 
 /** check if input tensor is inside a polygon in R^2
  * 
  * @see Polygons */
 public class PolygonRegion implements Region<Tensor>, Serializable {
-  private static final long serialVersionUID = 2574537172153897964L;
-  // ---
   private final Tensor polygon;
 
   /** @param polygon as matrix with dimensions n x 2 */

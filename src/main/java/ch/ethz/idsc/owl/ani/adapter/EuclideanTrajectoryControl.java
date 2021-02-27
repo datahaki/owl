@@ -8,14 +8,12 @@ import ch.ethz.idsc.owl.math.state.StateTime;
 import ch.ethz.idsc.owl.math.state.TrajectorySample;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
-import ch.ethz.idsc.tensor.red.Norm2Squared;
+import ch.ethz.idsc.tensor.nrm.Vector2NormSquared;
 
 public final class EuclideanTrajectoryControl extends StateTrajectoryControl {
-  private static final long serialVersionUID = 5594462448289134420L;
-
   @Override // from StateTrajectoryControl
   protected Scalar pseudoDistance(Tensor x, Tensor y) {
-    return Norm2Squared.between(x, y);
+    return Vector2NormSquared.between(x, y);
   }
 
   @Override // from StateTrajectoryControl

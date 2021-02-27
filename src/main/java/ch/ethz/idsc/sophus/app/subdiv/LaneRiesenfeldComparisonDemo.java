@@ -16,12 +16,12 @@ import org.jfree.chart.JFreeChart;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.CurveVisualSet;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.MinMax;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -50,7 +50,7 @@ import ch.ethz.idsc.tensor.red.Quantile;
     this(GeodesicDisplays.WITHOUT_Sn_SO3);
   }
 
-  public LaneRiesenfeldComparisonDemo(List<GeodesicDisplay> list) {
+  public LaneRiesenfeldComparisonDemo(List<ManifoldDisplay> list) {
     super(true, list);
     // ---
     jToggleCurvature.setSelected(true);
@@ -74,7 +74,7 @@ import ch.ethz.idsc.tensor.red.Quantile;
   @Override // from RenderInterface
   public synchronized final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     VisualSet visualSet1 = new VisualSet();
     visualSet1.setPlotLabel("Curvature");
     visualSet1.setAxesLabelX("length");
@@ -138,8 +138,8 @@ import ch.ethz.idsc.tensor.red.Quantile;
     Tensor control = getGeodesicControlPoints();
     int levels = spinnerRefine.getValue();
     renderControlPoints(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     Tensor refined = StaticHelper.refine(control, levels, scheme.of(geodesicDisplay), //
         CurveSubdivisionHelper.isDual(scheme), false, geodesicInterface);
     // ---

@@ -8,12 +8,11 @@ import java.util.List;
 
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.gds.GeodesicArrayPlot;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplayRender;
-import ch.ethz.idsc.sophus.gds.S2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.S2Display;
 import ch.ethz.idsc.sophus.gui.ren.ArrayPlotRender;
 import ch.ethz.idsc.sophus.lie.se2.Se2Matrix;
-import ch.ethz.idsc.sophus.math.ClipCover;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
@@ -27,12 +26,12 @@ import ch.ethz.idsc.tensor.sca.Clip;
 
 /* package */ enum StaticHelper {
   ;
-  public static BufferedImage fuseImages(GeodesicDisplay geodesicDisplay, ArrayPlotRender arrayPlotRender, int refinement, int sequence_length) {
+  public static BufferedImage fuseImages(ManifoldDisplay geodesicDisplay, ArrayPlotRender arrayPlotRender, int refinement, int sequence_length) {
     GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
     BufferedImage foreground = arrayPlotRender.export();
     BufferedImage background = new BufferedImage(foreground.getWidth(), foreground.getHeight(), BufferedImage.TYPE_INT_ARGB);
     Graphics2D graphics = background.createGraphics();
-    if (geodesicDisplay instanceof S2GeodesicDisplay) {
+    if (geodesicDisplay instanceof S2Display) {
       Tensor matrix = geodesicArrayPlot.pixel2model(new Dimension(refinement, refinement));
       GeometricLayer geometricLayer = GeometricLayer.of(Inverse.of(matrix));
       for (int count = 0; count < sequence_length; ++count) {
@@ -48,7 +47,7 @@ import ch.ethz.idsc.tensor.sca.Clip;
     List<Integer> dims = Dimensions.of(wgs);
     Tensor wgp = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
     Rescale rescale = new Rescale(wgp);
-    Clip clip = ClipCover.of(rescale.scalarSummaryStatistics());
+    Clip clip = rescale.scalarSummaryStatistics().getClip();
     return new ArrayPlotRender( //
         rescale.result(), //
         coverZero ? ClipCover.of(clip, RealScalar.ZERO) : clip, //

@@ -9,7 +9,7 @@ import ch.ethz.idsc.sophus.gbc.KrigingCoordinate;
 import ch.ethz.idsc.sophus.hs.Biinvariant;
 import ch.ethz.idsc.sophus.hs.VectorLogManifold;
 import ch.ethz.idsc.sophus.itp.CrossAveraging;
-import ch.ethz.idsc.sophus.krg.Kriging;
+import ch.ethz.idsc.sophus.itp.Kriging;
 import ch.ethz.idsc.sophus.lie.rn.RnBiinvariantMean;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -106,7 +106,7 @@ public enum LogWeightings implements LogWeighting {
       Kriging kriging = Kriging.interpolation(tensorUnaryOperator, sequence, values);
       return point -> (Scalar) kriging.estimate(point);
     }
-  }, //
+  },
   /***************************************************/
   KRIGING_COORDINATE {
     @Override // from LogWeighting
@@ -125,7 +125,7 @@ public enum LogWeightings implements LogWeighting {
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);
     }
-  }, //
+  },
   INVERSE_COORDINATE {
     @Override // from LogWeighting
     public TensorUnaryOperator operator( //
@@ -163,6 +163,8 @@ public enum LogWeightings implements LogWeighting {
         WEIGHTING, //
         COORDINATE, //
         LAGRAINATE, //
+        new NdTreeWeighting(4), //
+        new NdTreeWeighting(6), //
         KRIGING, //
         KRIGING_COORDINATE, //
         INVERSE_COORDINATE);

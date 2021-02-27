@@ -26,14 +26,14 @@ import ch.ethz.idsc.owl.math.region.RegionWithDistance;
 import ch.ethz.idsc.owl.math.region.So2Region;
 import ch.ethz.idsc.owl.math.state.StateTime;
 import ch.ethz.idsc.sophus.lie.se2.Se2Matrix;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.alg.Subdivide;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.qty.Degree;
-import ch.ethz.idsc.tensor.red.Norm;
 import ch.ethz.idsc.tensor.red.ScalarSummaryStatistics;
 import ch.ethz.idsc.tensor.sca.Sqrt;
 
@@ -106,7 +106,7 @@ public class CarEntity extends Se2Entity {
   public final Scalar distance(Tensor x, Tensor y) {
     // Se2Wrap.INSTANCE.difference uses the logarithm internally and is proportional
     // to the geodesic connection between x and y that allows side slip
-    return Norm._2.ofVector(Se2Wrap.INSTANCE.difference(x, y)); // non-negative
+    return Vector2Norm.of(Se2Wrap.INSTANCE.difference(x, y)); // non-negative
   }
 
   protected RegionWithDistance<Tensor> goalRegion = null;

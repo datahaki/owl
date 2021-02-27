@@ -14,19 +14,17 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.R2GeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.S2GeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.Se2AbstractGeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.R2Display;
+import ch.ethz.idsc.sophus.gds.S2Display;
+import ch.ethz.idsc.sophus.gds.Se2AbstractDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
 import ch.ethz.idsc.sophus.hs.Biinvariants;
 import ch.ethz.idsc.sophus.hs.HsDesign;
-import ch.ethz.idsc.sophus.hs.HsExponential;
-import ch.ethz.idsc.sophus.hs.Mahalanobis;
-import ch.ethz.idsc.sophus.hs.TangentSpace;
+import ch.ethz.idsc.sophus.hs.HsManifold;
 import ch.ethz.idsc.sophus.hs.VectorLogManifold;
 import ch.ethz.idsc.sophus.math.Exponential;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.TensorMetric;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -50,9 +48,9 @@ import ch.ethz.idsc.tensor.lie.r2.CirclePoints;
 import ch.ethz.idsc.tensor.mat.DiagonalMatrix;
 import ch.ethz.idsc.tensor.mat.Eigensystem;
 import ch.ethz.idsc.tensor.mat.InfluenceMatrix;
-import ch.ethz.idsc.tensor.red.Hypot;
+import ch.ethz.idsc.tensor.mat.Mahalanobis;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.red.Max;
-import ch.ethz.idsc.tensor.red.Norm;
 import ch.ethz.idsc.tensor.sca.Chop;
 import ch.ethz.idsc.tensor.sca.Round;
 
@@ -75,24 +73,24 @@ public class LeversRender {
   // ---
   public static boolean DEBUG_FLAG = false;
 
-  /** @param geodesicDisplay non-null
+  /** @param manifoldDisplay non-null
    * @param sequence
    * @param origin
    * @param geometricLayer non-null
    * @param graphics non-null
    * @return */
   public static LeversRender of( //
-      GeodesicDisplay geodesicDisplay, Tensor sequence, Tensor origin, //
+      ManifoldDisplay manifoldDisplay, Tensor sequence, Tensor origin, //
       GeometricLayer geometricLayer, Graphics2D graphics) {
     return new LeversRender( //
-        geodesicDisplay, //
+        manifoldDisplay, //
         sequence, origin, //
         Objects.requireNonNull(geometricLayer), //
         Objects.requireNonNull(graphics));
   }
 
   /***************************************************/
-  private final GeodesicDisplay geodesicDisplay;
+  private final ManifoldDisplay geodesicDisplay;
   private final Tensor sequence;
   private final Tensor origin;
   private final Tensor shape;
@@ -100,7 +98,7 @@ public class LeversRender {
   private final Graphics2D graphics;
 
   private LeversRender( //
-      GeodesicDisplay geodesicDisplay, Tensor sequence, Tensor origin, //
+      ManifoldDisplay geodesicDisplay, Tensor sequence, Tensor origin, //
       GeometricLayer geometricLayer, Graphics2D graphics) {
     this.geodesicDisplay = geodesicDisplay;
     this.sequence = sequence;
@@ -182,7 +180,7 @@ public class LeversRender {
   }
 
   private void renderLeversRescaled(Tensor rescale) {
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     int index = 0;
     graphics.setStroke(STROKE_GEODESIC);
     for (Tensor p : sequence) {
@@ -200,7 +198,7 @@ public class LeversRender {
   public void renderLeverLength() {
     TensorMetric tensorMetric = geodesicDisplay.parametricDistance();
     if (Objects.nonNull(tensorMetric)) {
-      GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
       graphics.setFont(FONT_MATRIX);
       FontMetrics fontMetrics = graphics.getFontMetrics();
       int fheight = fontMetrics.getAscent();
@@ -232,8 +230,7 @@ public class LeversRender {
 
   public void renderWeightsLeveragesSqrt() {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
-      TangentSpace tangentSpace = vectorLogManifold.logAt(origin);
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       Tensor matrix = new HsDesign(vectorLogManifold).matrix(sequence, origin);
       Tensor w1 = new Mahalanobis(matrix).leverages_sqrt();
       Tensor w2 = InfluenceMatrix.of(matrix).leverages_sqrt();
@@ -244,7 +241,7 @@ public class LeversRender {
 
   public void renderWeightsGarden() {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       Tensor weights = Biinvariants.GARDEN.distances(vectorLogManifold, sequence).apply(origin);
       renderWeights(weights);
     }
@@ -284,19 +281,19 @@ public class LeversRender {
   private static final Tensor CIRCLE = CirclePoints.of(41).unmodifiable();
 
   public void renderTangentsPtoX(boolean tangentPlane) {
-    HsExponential hsExponential = geodesicDisplay.hsExponential();
+    HsManifold hsManifold = geodesicDisplay.hsManifold();
     graphics.setStroke(STROKE_TANGENT);
     for (Tensor p : sequence) { // draw tangent at p
       geometricLayer.pushMatrix(geodesicDisplay.matrixLift(p));
-      Tensor v = hsExponential.exponential(p).log(origin);
+      Tensor v = hsManifold.exponential(p).log(origin);
       graphics.setColor(COLOR_TANGENT);
       TensorUnaryOperator tangentProjection = geodesicDisplay.tangentProjection(p);
       if (Objects.nonNull(tangentProjection))
         graphics.draw(geometricLayer.toLine2D(tangentProjection.apply(v)));
       // ---
       if (tangentPlane) {
-        if (geodesicDisplay.equals(S2GeodesicDisplay.INSTANCE)) {
-          Scalar max = Hypot.ofVector(v);
+        if (geodesicDisplay.equals(S2Display.INSTANCE)) {
+          Scalar max = Vector2Norm.of(v);
           graphics.setColor(COLOR_PLANE);
           graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(max), true));
         }
@@ -307,8 +304,8 @@ public class LeversRender {
   }
 
   public void renderTangentsXtoP(boolean tangentPlane) {
-    HsExponential hsExponential = geodesicDisplay.hsExponential();
-    Tensor vs = Tensor.of(sequence.stream().map(hsExponential.exponential(origin)::log));
+    HsManifold hsManifold = geodesicDisplay.hsManifold();
+    Tensor vs = Tensor.of(sequence.stream().map(hsManifold.exponential(origin)::log));
     geometricLayer.pushMatrix(geodesicDisplay.matrixLift(origin));
     graphics.setStroke(STROKE_TANGENT);
     graphics.setColor(COLOR_TANGENT);
@@ -318,8 +315,8 @@ public class LeversRender {
         graphics.draw(geometricLayer.toLine2D(tangentProjection.apply(v)));
     // ---
     if (tangentPlane) {
-      if (geodesicDisplay.equals(S2GeodesicDisplay.INSTANCE)) {
-        Scalar max = vs.stream().map(Norm._2::ofVector).reduce(Max::of).orElse(RealScalar.ONE);
+      if (geodesicDisplay.equals(S2Display.INSTANCE)) {
+        Scalar max = vs.stream().map(Vector2Norm::of).reduce(Max::of).orElse(RealScalar.ONE);
         graphics.setColor(COLOR_PLANE);
         graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(max), true));
       }
@@ -328,8 +325,8 @@ public class LeversRender {
   }
 
   public void renderPolygonXtoP() {
-    HsExponential hsExponential = geodesicDisplay.hsExponential();
-    Tensor vs = Tensor.of(sequence.stream().map(hsExponential.exponential(origin)::log));
+    HsManifold hsManifold = geodesicDisplay.hsManifold();
+    Tensor vs = Tensor.of(sequence.stream().map(hsManifold.exponential(origin)::log));
     geometricLayer.pushMatrix(geodesicDisplay.matrixLift(origin));
     graphics.setStroke(STROKE_TANGENT);
     TensorUnaryOperator tangentProjection = geodesicDisplay.tangentProjection(origin);
@@ -345,7 +342,7 @@ public class LeversRender {
   }
 
   public void renderLbsS2() {
-    if (geodesicDisplay instanceof S2GeodesicDisplay) {
+    if (geodesicDisplay instanceof S2Display) {
       Tensor poly = Tensors.empty();
       graphics.setStroke(STROKE_TANGENT);
       for (Tensor p : sequence) {
@@ -398,20 +395,20 @@ public class LeversRender {
 
   private void renderEllipse(Tensor p, Tensor sigma_inverse) {
     Tensor vs = null;
-    if (geodesicDisplay.equals(R2GeodesicDisplay.INSTANCE))
+    if (geodesicDisplay.equals(R2Display.INSTANCE))
       vs = CIRCLE;
     else //
-    if (geodesicDisplay.equals(S2GeodesicDisplay.INSTANCE))
-      vs = CIRCLE;
+    if (geodesicDisplay.equals(S2Display.INSTANCE))
+      vs = CIRCLE; // .dot(TSnProjection.of(p));
     else //
-    if (geodesicDisplay instanceof Se2AbstractGeodesicDisplay) {
+    if (geodesicDisplay instanceof Se2AbstractDisplay) {
       vs = Tensor.of(CIRCLE.stream().map(PadRight.zeros(3)));
     }
     // ---
     if (Objects.nonNull(vs)) {
       vs = Tensor.of(vs.stream().map(sigma_inverse::dot));
       if (form_shadow) {
-        Exponential exponential = geodesicDisplay.hsExponential().exponential(p);
+        Exponential exponential = geodesicDisplay.hsManifold().exponential(p);
         Tensor ms = Tensor.of(vs.stream().map(exponential::exp).map(geodesicDisplay::toPoint));
         Path2D path2d = geometricLayer.toPath2D(ms, true);
         graphics.setStroke(new BasicStroke());
@@ -434,7 +431,7 @@ public class LeversRender {
 
   public void renderEllipseMahalanobis() {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       Mahalanobis mahalanobis = new Mahalanobis(new HsDesign(vectorLogManifold).matrix(sequence, origin));
       renderEllipse(origin, mahalanobis.sigma_inverse());
     }
@@ -454,14 +451,14 @@ public class LeversRender {
 
   public void renderMahalanobisFormXEV(ColorDataGradient colorDataGradient) {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       Mahalanobis mahalanobis = new Mahalanobis(new HsDesign(vectorLogManifold).matrix(sequence, origin));
       renderMahalanobisMatrix(origin, mahalanobis, colorDataGradient);
     }
   }
 
   public void renderEllipseMahalanobisP() {
-    VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+    VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
     for (Tensor point : sequence) {
       Mahalanobis mahalanobis = new Mahalanobis(new HsDesign(vectorLogManifold).matrix(sequence, point));
       renderEllipse(point, mahalanobis.sigma_inverse());
@@ -472,7 +469,7 @@ public class LeversRender {
   /** @param colorDataGradient */
   public void renderInfluenceX(ColorDataGradient colorDataGradient) {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       Tensor design = new HsDesign(vectorLogManifold).matrix(sequence, origin);
       Tensor matrix = InfluenceMatrix.of(design).matrix();
       // ---
@@ -485,7 +482,7 @@ public class LeversRender {
 
   public void renderInfluenceP(ColorDataGradient colorDataGradient) {
     if (Tensors.nonEmpty(sequence)) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.vectorLogManifold();
+      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
       // HsProjection hsProjection = ;
       // Tensor matrix = new HsDesign(vectorLogManifold).matrix(sequence, origin);
       Tensor projections = Tensor.of(sequence.stream() //

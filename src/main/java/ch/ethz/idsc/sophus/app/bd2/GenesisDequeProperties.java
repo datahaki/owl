@@ -1,11 +1,11 @@
 // code by jph
 package ch.ethz.idsc.sophus.app.bd2;
 
-import ch.ethz.idsc.sophus.gbc.Amplifiers;
-import ch.ethz.idsc.sophus.gbc.Genesis;
-import ch.ethz.idsc.sophus.gbc.IterativeAffineCoordinate;
-import ch.ethz.idsc.sophus.gbc.IterativeTargetCoordinate;
-import ch.ethz.idsc.sophus.krg.InverseDistanceWeighting;
+import ch.ethz.idsc.sophus.gbc.amp.Amplifiers;
+import ch.ethz.idsc.sophus.gbc.it.IterativeAffineCoordinate;
+import ch.ethz.idsc.sophus.gbc.it.IterativeTargetCoordinate;
+import ch.ethz.idsc.sophus.itp.InverseDistanceWeighting;
+import ch.ethz.idsc.sophus.math.Genesis;
 import ch.ethz.idsc.sophus.math.var.InversePowerVariogram;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;

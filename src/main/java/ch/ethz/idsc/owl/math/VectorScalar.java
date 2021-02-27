@@ -9,21 +9,21 @@ import java.util.stream.Stream;
 
 import ch.ethz.idsc.owl.math.order.VectorLexicographic;
 import ch.ethz.idsc.tensor.AbstractScalar;
-import ch.ethz.idsc.tensor.ExactScalarQInterface;
 import ch.ethz.idsc.tensor.ExactTensorQ;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.TensorRuntimeException;
 import ch.ethz.idsc.tensor.Tensors;
+import ch.ethz.idsc.tensor.api.ChopInterface;
+import ch.ethz.idsc.tensor.api.ComplexEmbedding;
+import ch.ethz.idsc.tensor.api.ConjugateInterface;
+import ch.ethz.idsc.tensor.api.ExactScalarQInterface;
+import ch.ethz.idsc.tensor.api.NInterface;
 import ch.ethz.idsc.tensor.qty.Quantity;
 import ch.ethz.idsc.tensor.sca.Chop;
-import ch.ethz.idsc.tensor.sca.ChopInterface;
-import ch.ethz.idsc.tensor.sca.ComplexEmbedding;
 import ch.ethz.idsc.tensor.sca.Conjugate;
-import ch.ethz.idsc.tensor.sca.ConjugateInterface;
 import ch.ethz.idsc.tensor.sca.Imag;
 import ch.ethz.idsc.tensor.sca.N;
-import ch.ethz.idsc.tensor.sca.NInterface;
 import ch.ethz.idsc.tensor.sca.Real;
 
 /** immutable as required by {@link Scalar} interface
@@ -47,8 +47,6 @@ import ch.ethz.idsc.tensor.sca.Real;
 public class VectorScalar extends AbstractScalar implements //
     ChopInterface, ComplexEmbedding, ConjugateInterface, ExactScalarQInterface, //
     NInterface, Comparable<Scalar>, Serializable {
-  private static final long serialVersionUID = 2326095440575458877L;
-
   /** @param vector
    * @return
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */
@@ -104,13 +102,18 @@ public class VectorScalar extends AbstractScalar implements //
   }
 
   @Override // from Scalar
-  public Number number() {
+  public Scalar zero() {
+    return new VectorScalar(vector.map(Scalar::zero));
+  }
+
+  @Override // from Scalar
+  public Scalar one() {
     throw TensorRuntimeException.of(this);
   }
 
   @Override // from Scalar
-  public Scalar zero() {
-    return new VectorScalar(vector.map(Scalar::zero));
+  public Number number() {
+    throw TensorRuntimeException.of(this);
   }
 
   /***************************************************/

@@ -17,15 +17,10 @@ import java.util.stream.Collectors;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.LogarithmicAxis;
-import org.jfree.graphics2d.svg.SVGGraphics2D;
-import org.jfree.graphics2d.svg.SVGUtils;
 
 import ch.ethz.idsc.owl.bot.r2.R2ImageRegionWrap;
 import ch.ethz.idsc.owl.bot.r2.R2ImageRegions;
-import ch.ethz.idsc.owl.bot.util.RegionRenders;
 import ch.ethz.idsc.owl.data.tree.Nodes;
-import ch.ethz.idsc.owl.gui.ren.LaneRender;
-import ch.ethz.idsc.owl.gui.ren.TransitionRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.lane.LaneConsumer;
 import ch.ethz.idsc.owl.lane.LaneInterface;
@@ -36,9 +31,8 @@ import ch.ethz.idsc.owl.rrts.adapter.SimpleLaneConsumer;
 import ch.ethz.idsc.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.ethz.idsc.owl.rrts.core.RrtsNode;
 import ch.ethz.idsc.owl.rrts.core.TransitionRegionQuery;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gds.Se2ClothoidDisplay;
-import ch.ethz.idsc.sophus.gui.ren.PointsRender;
 import ch.ethz.idsc.sophus.math.MinMax;
 import ch.ethz.idsc.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.ethz.idsc.tensor.RationalScalar;
@@ -77,7 +71,7 @@ import ch.ethz.idsc.tensor.sca.Clips;
   private static final Scalar OVERHEAD = RealScalar.of(0.5);
   private static final Scalar MIN_RESOLUTION = RealScalar.of(0.1);
   // ---
-  private static final GeodesicDisplay GEODESIC_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
+  private static final ManifoldDisplay GEODESIC_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
   private static final int DEGREE = 3;
   private static final int LEVELS = 5;
   private static final Scalar LANE_WIDTH = RealScalar.of(1.1);
@@ -104,8 +98,8 @@ import ch.ethz.idsc.tensor.sca.Clips;
             RealScalar.ONE);
         Tensor matrix = DiagonalMatrix.with(diagonal);
         GeometricLayer geometricLayer = GeometricLayer.of(matrix);
-        SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d.svg", task)),
-            scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);
+        // SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d.svg", task)),
+        // scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);
         // ---
         Tensor ttfs = Tensors.empty();
         VisualSet visualSet = new VisualSet();
@@ -127,8 +121,16 @@ import ch.ethz.idsc.tensor.sca.Clips;
         List<MinMax> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
             .map(points -> MinMax.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
         jFreeChart.getXYPlot().getRangeAxis().setRange( //
-            Math.max(0., 0.9 * minMaxes.stream().map(MinMax::min).map(Scalar.class::cast).reduce(Min::of).get().number().doubleValue()), //
-            1.1 * minMaxes.stream().map(MinMax::max).map(Scalar.class::cast).reduce(Max::of).get().number().doubleValue());
+            Math.max(0., 0.9 * minMaxes.stream() //
+                .map(MinMax::min) //
+                .map(Scalar.class::cast) //
+                .reduce(Min::of) //
+                .get().number().doubleValue()), //
+            1.1 * minMaxes.stream() //
+                .map(MinMax::max) //
+                .map(Scalar.class::cast) //
+                .reduce(Max::of) //
+                .get().number().doubleValue());
         File file = new File(DIRECTORY, String.format("costs_%d.png", task++));
         ChartUtils.saveChartAsPNG(file, jFreeChart, WIDTH, HEIGHT);
       }
@@ -153,18 +155,18 @@ import ch.ethz.idsc.tensor.sca.Clips;
     laneConsumer.accept(lane);
     Thread.sleep((long) (DELAY_HINT.add(OVERHEAD).number().doubleValue() * 1000));
     // ---
-    if (!last.isEmpty()) {
-      SVGGraphics2D graphics = scenario(geometricLayer, lane);
-      // TreeRender treeRender = new TreeRender();
-      // treeRender.setCollection(Nodes.ofSubtree(last.get(0)));
-      // treeRender.render(geometricLayer, graphics);
-      TransitionRender transitionRender = new TransitionRender(ClothoidTransitionSpace.ANALYTIC);
-      transitionRender.setCollection(Nodes.ofSubtree(last.get(0)));
-      transitionRender.render(geometricLayer, graphics);
-      render(first, geometricLayer, graphics, Color.ORANGE);
-      render(last, geometricLayer, graphics, Color.BLUE);
-      SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d_%d.svg", task, rep)), graphics.getSVGElement());
-    }
+    // if (!last.isEmpty()) {
+    // SVGGraphics2D graphics = scenario(geometricLayer, lane);
+    // // TreeRender treeRender = new TreeRender();
+    // // treeRender.setCollection(Nodes.ofSubtree(last.get(0)));
+    // // treeRender.render(geometricLayer, graphics);
+    // TransitionRender transitionRender = new TransitionRender(ClothoidTransitionSpace.ANALYTIC);
+    // transitionRender.setCollection(Nodes.ofSubtree(last.get(0)));
+    // transitionRender.render(geometricLayer, graphics);
+    // render(first, geometricLayer, graphics, Color.ORANGE);
+    // render(last, geometricLayer, graphics, Color.BLUE);
+    // SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d_%d.svg", task, rep)), graphics.getSVGElement());
+    // }
   }
 
   private static void render(Collection<RrtsNode> nodes, GeometricLayer geometricLayer, Graphics2D graphics2D, Color color) {
@@ -179,18 +181,18 @@ import ch.ethz.idsc.tensor.sca.Clips;
     graphics2D.setColor(color);
     graphics2D.draw(geometricLayer.toPath2D(points));
   }
-
-  private static SVGGraphics2D scenario(GeometricLayer geometricLayer, LaneInterface lane) {
-    SVGGraphics2D graphics = new SVGGraphics2D(WIDTH, WIDTH);
-    graphics.setColor(Color.WHITE);
-    graphics.fillRect(0, 0, graphics.getWidth(), graphics.getHeight());
-    graphics.setColor(new Color(0, 0, 0, 16));
-    RegionRenders.create(R2_IMAGE_REGION_WRAP.region()).render(geometricLayer, graphics);
-    LaneRender laneRender = new LaneRender();
-    laneRender.setLane(lane, false);
-    laneRender.render(geometricLayer, graphics);
-    PointsRender pointsRender = new PointsRender(new Color(255, 128, 128, 64), new Color(255, 128, 128, 255));
-    pointsRender.show(GEODESIC_DISPLAY::matrixLift, GEODESIC_DISPLAY.shape(), lane.controlPoints()).render(geometricLayer, graphics);
-    return graphics;
-  }
+  //
+  // private static SVGGraphics2D scenario(GeometricLayer geometricLayer, LaneInterface lane) {
+  // SVGGraphics2D graphics = new SVGGraphics2D(WIDTH, WIDTH);
+  // graphics.setColor(Color.WHITE);
+  // graphics.fillRect(0, 0, graphics.getWidth(), graphics.getHeight());
+  // graphics.setColor(new Color(0, 0, 0, 16));
+  // RegionRenders.create(R2_IMAGE_REGION_WRAP.region()).render(geometricLayer, graphics);
+  // LaneRender laneRender = new LaneRender();
+  // laneRender.setLane(lane, false);
+  // laneRender.render(geometricLayer, graphics);
+  // PointsRender pointsRender = new PointsRender(new Color(255, 128, 128, 64), new Color(255, 128, 128, 255));
+  // pointsRender.show(GEODESIC_DISPLAY::matrixLift, GEODESIC_DISPLAY.shape(), lane.controlPoints()).render(geometricLayer, graphics);
+  // return graphics;
+  // }
 }

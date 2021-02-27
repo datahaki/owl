@@ -14,16 +14,16 @@ import javax.swing.JToggleButton;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplayRender;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.gds.S2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.S2Display;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
 import ch.ethz.idsc.sophus.hs.sn.SnExponential;
 import ch.ethz.idsc.sophus.math.Do;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.TensorIteration;
 import ch.ethz.idsc.sophus.opt.HermiteSubdivisions;
 import ch.ethz.idsc.sophus.ref.d1h.HermiteSubdivision;
@@ -71,8 +71,8 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
     }
     timerFrame.geometricComponent.addRenderInterfaceBackground(new GeodesicDisplayRender() {
       @Override
-      public GeodesicDisplay getGeodesicDisplay() {
-        return geodesicDisplay();
+      public ManifoldDisplay getGeodesicDisplay() {
+        return manifoldDisplay();
       }
     });
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
@@ -91,7 +91,7 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    S2GeodesicDisplay geodesicDisplay = (S2GeodesicDisplay) geodesicDisplay();
+    S2Display geodesicDisplay = (S2Display) manifoldDisplay();
     Scalar vscale = spinnerBeta.getValue();
     Tensor control = Tensor.of(getControlPointsSe2().stream().map(xya -> {
       Tensor xy0 = xya.copy();
@@ -100,8 +100,8 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
           geodesicDisplay.project(xy0), //
           geodesicDisplay.createTangent(xy0, xya.Get(2)).multiply(vscale));
     }));
-    POINTS_RENDER_0.show(geodesicDisplay()::matrixLift, getControlPointShape(), control.get(Tensor.ALL, 0)).render(geometricLayer, graphics);
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    POINTS_RENDER_0.show(manifoldDisplay()::matrixLift, getControlPointShape(), control.get(Tensor.ALL, 0)).render(geometricLayer, graphics);
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     { // render tangents as geodesic on sphere
       for (Tensor ctrl : control) {
         Tensor p = ctrl.get(0); // point
@@ -125,7 +125,7 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
     }
     HermiteSubdivisions hermiteSubdivisions = spinnerLabelScheme.getValue();
     HermiteSubdivision hermiteSubdivision = hermiteSubdivisions.supply( //
-        geodesicDisplay.hsExponential(), //
+        geodesicDisplay.hsManifold(), //
         geodesicDisplay.hsTransport(), //
         geodesicDisplay.biinvariantMean());
     if (1 < control.length()) {

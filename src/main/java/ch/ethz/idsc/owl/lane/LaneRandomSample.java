@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 import ch.ethz.idsc.sophus.lie.se2.Se2GroupElement;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.sophus.math.sample.BallRandomSample;
 import ch.ethz.idsc.sophus.math.sample.RandomSampleInterface;
 import ch.ethz.idsc.tensor.Scalar;
@@ -14,8 +14,6 @@ import ch.ethz.idsc.tensor.pdf.Distribution;
 import ch.ethz.idsc.tensor.pdf.RandomVariate;
 
 public class LaneRandomSample implements RandomSampleInterface, Serializable {
-  private static final long serialVersionUID = 6181785246933522308L;
-
   /** @param laneInterface
    * @param distribution
    * @return */

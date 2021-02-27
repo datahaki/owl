@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>owl</name>
-	<url>http://maven.apache.org</url>
+	<url>http://www.hakenberg.de</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,11 +43,8 @@
 			<artifactId>jfreechart</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jfree</groupId>
-			<artifactId>jfreesvg</artifactId>
-			<version>3.4</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.jfree</groupId> <artifactId>jfreesvg</artifactId> 
+			<version>3.4</version> </dependency> -->
 		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-math3</artifactId> 
 			<version>3.6.1</version> </dependency> -->
 

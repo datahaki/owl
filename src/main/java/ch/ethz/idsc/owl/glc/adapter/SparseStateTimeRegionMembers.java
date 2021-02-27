@@ -9,7 +9,7 @@ import ch.ethz.idsc.owl.data.LinearRasterMap;
 import ch.ethz.idsc.owl.data.RasterMap;
 import ch.ethz.idsc.owl.math.state.StateTime;
 import ch.ethz.idsc.owl.math.state.StateTimeRegionCallback;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
@@ -17,7 +17,6 @@ import ch.ethz.idsc.tensor.alg.Append;
 
 /** distinguishes the first 2 coordinates of StateTime::state */
 class SparseStateTimeRegionMembers implements StateTimeRegionCallback, Serializable {
-  private static final long serialVersionUID = 8430378260925859744L;
   /** magic constants of scale are not universal but are suitable for most examples */
   private final RasterMap<StateTime> rasterMap = new LinearRasterMap<>(Tensors.vector(10, 10));
 

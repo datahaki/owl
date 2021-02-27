@@ -4,7 +4,7 @@ package ch.ethz.idsc.sophus.app.bdn;
 import java.util.List;
 import java.util.Objects;
 
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.Unprotect;
@@ -16,8 +16,7 @@ import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
 /** Reference:
  * "Weighted Averages on Surfaces"
  * by Daniele Panozzo, Ilya Baran, Olga Diamanti, Olga Sorkine-Hornung */
-// TODO move class to different package
-public abstract class MovingDomain2D {
+/* package */ abstract class MovingDomain2D {
   private final Tensor origin;
   final Tensor domain;
   final Tensor[][] weights;

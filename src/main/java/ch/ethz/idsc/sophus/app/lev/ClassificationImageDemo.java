@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Arrays;
@@ -20,11 +22,12 @@ import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.region.ImageRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.gds.GeodesicArrayPlot;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
 import ch.ethz.idsc.sophus.hs.Biinvariant;
 import ch.ethz.idsc.sophus.hs.Biinvariants;
+import ch.ethz.idsc.sophus.hs.MetricBiinvariant;
 import ch.ethz.idsc.sophus.math.sample.RandomSample;
 import ch.ethz.idsc.sophus.math.sample.RandomSampleInterface;
 import ch.ethz.idsc.sophus.opt.LogWeighting;
@@ -42,15 +45,14 @@ import ch.ethz.idsc.tensor.mat.Inverse;
 import ch.ethz.idsc.tensor.pdf.DiscreteUniformDistribution;
 import ch.ethz.idsc.tensor.pdf.RandomVariate;
 
-// FIXME app does not work at all! 
 /* package */ class ClassificationImageDemo extends LogWeightingDemo implements ActionListener {
   private static final int REFINEMENT = 160;
   private static final Random RANDOM = new Random();
 
   private static List<Biinvariant> distinct() {
     return Arrays.asList( //
-        Biinvariants.METRIC, //
-        Biinvariants.TARGET, //
+        MetricBiinvariant.EUCLIDEAN, // FIXME should be retrieved from bitype
+        Biinvariants.LEVERAGES, //
         Biinvariants.GARDEN);
   }
 
@@ -109,7 +111,8 @@ import ch.ethz.idsc.tensor.pdf.RandomVariate;
       timerFrame.jToolBar.add(jButtonShuffle);
     }
     spinnerLabels.addSpinnerListener(v -> recompute());
-    setLogWeighting(LogWeightings.DISTANCES);
+    System.out.println("here");
+    spinnerLogWeighting.setValue(LogWeightings.DISTANCES);
     shuffle(spinnerCount.getValue());
     spinnerLabels.addToComponentReduced(timerFrame.jToolBar, new Dimension(100, 28), "label");
     spinnerImage.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "image");
@@ -118,12 +121,27 @@ import ch.ethz.idsc.tensor.pdf.RandomVariate;
       jButtonExport.addActionListener(this);
       timerFrame.jToolBar.add(jButtonExport);
     }
+    {
+      timerFrame.geometricComponent.jComponent.addMouseMotionListener(new MouseMotionListener() {
+        @Override
+        public void mouseMoved(MouseEvent e) {
+          if (isPositioningOngoing())
+            recompute();
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+          // ---
+        }
+      });
+    }
   }
 
   private BufferedImage bufferedImage;
 
   final void shuffle(int n) {
-    RandomSampleInterface randomSampleInterface = geodesicDisplay().randomSampleInterface();
+    System.out.println("shuffle");
+    RandomSampleInterface randomSampleInterface = manifoldDisplay().randomSampleInterface();
     setControlPointsSe2(RandomSample.of(randomSampleInterface, n));
     // assignment of random labels to points
     vector = RandomVariate.of(DiscreteUniformDistribution.of(0, spinnerLabel.getValue()), RANDOM, n);
@@ -133,29 +151,31 @@ import ch.ethz.idsc.tensor.pdf.RandomVariate;
   @Override
   public void recompute() {
     System.out.println("recomp");
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
-    Classification classification = spinnerLabels.getValue().apply(vector);
+    Labels labels = Objects.requireNonNull(spinnerLabels.getValue());
+    Objects.requireNonNull(vector);
+    Classification classification = labels.apply(vector);
     TensorUnaryOperator operator = operator(getGeodesicControlPoints());
     ColorDataLists colorDataLists = spinnerColor.getValue();
     TensorUnaryOperator tensorUnaryOperator = //
-        spinnerImage.getValue().operator(classification, operator, colorDataLists.strict());
+        spinnerImage.getValue().operator(classification, operator, colorDataLists.cyclic());
     int resolution = spinnerRes.getValue();
     bufferedImage = ImageFormat.of(geodesicArrayPlot.raster(resolution, tensorUnaryOperator, Array.zeros(4)));
   }
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     if (Objects.nonNull(bufferedImage)) {
       Tensor pixel2model = geodesicDisplay.geodesicArrayPlot().pixel2model(new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight()));
       ImageRender.of(bufferedImage, pixel2model).render(geometricLayer, graphics);
     }
     // ---
-    render(geometricLayer, graphics, geodesicDisplay, getGeodesicControlPoints(), vector, spinnerColor.getValue().strict());
+    render(geometricLayer, graphics, geodesicDisplay, getGeodesicControlPoints(), vector, spinnerColor.getValue().cyclic());
   }
 
-  static void render(GeometricLayer geometricLayer, Graphics2D graphics, GeodesicDisplay geodesicDisplay, Tensor sequence, Tensor vector,
+  static void render(GeometricLayer geometricLayer, Graphics2D graphics, ManifoldDisplay geodesicDisplay, Tensor sequence, Tensor vector,
       ColorDataIndexed colorDataIndexedT) {
     Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(1.0));
     int index = 0;
@@ -175,17 +195,17 @@ import ch.ethz.idsc.tensor.pdf.RandomVariate;
     LogWeighting logWeighting = logWeighting();
     File root = HomeDirectory.Pictures( //
         getClass().getSimpleName(), //
-        geodesicDisplay().toString());
+        manifoldDisplay().toString());
     root.mkdirs();
     for (Biinvariant biinvariant : distinct()) {
       Tensor sequence = getGeodesicControlPoints();
       TensorUnaryOperator operator = logWeighting.operator( //
           biinvariant, //
-          geodesicDisplay().vectorLogManifold(), //
+          manifoldDisplay().hsManifold(), //
           variogram(), //
           sequence);
       System.out.print("computing " + biinvariant);
-      GeodesicDisplay geodesicDisplay = geodesicDisplay();
+      ManifoldDisplay geodesicDisplay = manifoldDisplay();
       GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
       Classification classification = spinnerLabels.getValue().apply(vector);
       ColorDataLists colorDataLists = spinnerColor.getValue();

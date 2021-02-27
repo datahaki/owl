@@ -13,12 +13,12 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.crv.spline.GeodesicCatmullRom;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.gds.Se2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.Se2Display;
 import ch.ethz.idsc.sophus.gui.ren.Curvature2DRender;
 import ch.ethz.idsc.sophus.gui.win.DubinsGenerator;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.win.KnotSpacing;
 import ch.ethz.idsc.tensor.DoubleScalar;
 import ch.ethz.idsc.tensor.RationalScalar;
@@ -32,7 +32,7 @@ import ch.ethz.idsc.tensor.itp.LinearInterpolation;
 import ch.ethz.idsc.tensor.sca.Clip;
 import ch.ethz.idsc.tensor.sca.Clips;
 
-public class GeodesicCatmullRomDemo extends CurvatureDemo {
+public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
   private final JSlider jSlider = new JSlider(0, 1000, 500);
   private final JSlider jSliderExponent = new JSlider(0, 1000, 500);
@@ -41,7 +41,7 @@ public class GeodesicCatmullRomDemo extends CurvatureDemo {
     super(GeodesicDisplays.SE2C_SE2_R2);
     addButtonDubins();
     // ---
-    setGeodesicDisplay(Se2GeodesicDisplay.INSTANCE);
+    setGeodesicDisplay(Se2Display.INSTANCE);
     // ---
     spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20));
     spinnerRefine.setValue(5);
@@ -68,8 +68,8 @@ public class GeodesicCatmullRomDemo extends CurvatureDemo {
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     if (4 <= control.length()) {
-      GeodesicDisplay geodesicDisplay = geodesicDisplay();
-      GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+      ManifoldDisplay geodesicDisplay = manifoldDisplay();
+      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
       Scalar exponent = RationalScalar.of(2 * jSliderExponent.getValue(), jSliderExponent.getMaximum());
       TensorUnaryOperator centripetalKnotSpacing = //
           KnotSpacing.centripetal(geodesicDisplay.parametricDistance(), exponent);

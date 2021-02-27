@@ -14,14 +14,13 @@ import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
-import ch.ethz.idsc.tensor.alg.Normalize;
 import ch.ethz.idsc.tensor.alg.Reverse;
 import ch.ethz.idsc.tensor.alg.Subdivide;
 import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
 import ch.ethz.idsc.tensor.lie.r2.AngleVector;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.num.Pi;
-import ch.ethz.idsc.tensor.red.Norm;
 
 /* package */ class S1InterpolationDemo extends LogWeightingDemo {
   public S1InterpolationDemo() {
@@ -40,17 +39,17 @@ import ch.ethz.idsc.tensor.red.Norm;
     final Tensor shape = getControlPointShape(); // .multiply(RealScalar.of(0.3));
     if (0 < control.length()) {
       // TODO check for zero norm below
-      Tensor sequence = Tensor.of(control.stream().map(Normalize.with(Norm._2)));
+      Tensor sequence = Tensor.of(control.stream().map(Vector2Norm.NORMALIZE));
       Tensor target = sequence;
       graphics.setColor(Color.GREEN);
       for (int index = 0; index < target.length(); ++index)
         graphics.draw(geometricLayer.toLine2D(control.get(index), target.get(index)));
       new PointsRender(new Color(64, 128, 64, 64), new Color(64, 128, 64, 255))
           // new PointsRender(new Color(128, 255, 128, 64), new Color(128, 255, 128, 255)) //
-          .show(geodesicDisplay()::matrixLift, shape, target) //
+          .show(manifoldDisplay()::matrixLift, shape, target) //
           .render(geometricLayer, graphics);
       // ---
-      Tensor values = Tensor.of(control.stream().map(Norm._2::ofVector));
+      Tensor values = Tensor.of(control.stream().map(Vector2Norm::of));
       Tensor domain = Subdivide.of(Pi.VALUE.negate(), Pi.VALUE, 511);
       Tensor spherics = domain.map(AngleVector::of);
       // ---

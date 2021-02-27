@@ -8,24 +8,24 @@ import java.util.Objects;
 import java.util.Set;
 
 import ch.ethz.idsc.sophus.gbc.AffineCoordinate;
-import ch.ethz.idsc.sophus.gbc.Amplifiers;
-import ch.ethz.idsc.sophus.gbc.Genesis;
-import ch.ethz.idsc.sophus.gbc.HsCoordinates;
-import ch.ethz.idsc.sophus.gbc.IterativeAffineCoordinate;
-import ch.ethz.idsc.sophus.gbc.IterativeTargetCoordinate;
 import ch.ethz.idsc.sophus.gbc.LagrangeCoordinate;
+import ch.ethz.idsc.sophus.gbc.LeveragesGenesis;
 import ch.ethz.idsc.sophus.gbc.MetricCoordinate;
-import ch.ethz.idsc.sophus.gbc.TargetCoordinate;
+import ch.ethz.idsc.sophus.gbc.amp.Amplifiers;
+import ch.ethz.idsc.sophus.gbc.it.IterativeAffineCoordinate;
+import ch.ethz.idsc.sophus.gbc.it.IterativeTargetCoordinate;
 import ch.ethz.idsc.sophus.hs.Biinvariant;
+import ch.ethz.idsc.sophus.hs.HsGenesis;
 import ch.ethz.idsc.sophus.hs.VectorLogManifold;
-import ch.ethz.idsc.sophus.krg.InverseDistanceWeighting;
-import ch.ethz.idsc.sophus.lie.r2.Barycenter;
-import ch.ethz.idsc.sophus.lie.r2.InsideConvexHullCoordinate;
-import ch.ethz.idsc.sophus.lie.r2.InsidePolygonCoordinate;
-import ch.ethz.idsc.sophus.lie.r2.IterativeCoordinate;
-import ch.ethz.idsc.sophus.lie.r2.IterativeMeanValueCoordinate;
-import ch.ethz.idsc.sophus.lie.r2.ThreePointCoordinate;
+import ch.ethz.idsc.sophus.itp.InverseDistanceWeighting;
+import ch.ethz.idsc.sophus.math.Genesis;
 import ch.ethz.idsc.sophus.math.var.InversePowerVariogram;
+import ch.ethz.idsc.sophus.ply.d2.Barycenter;
+import ch.ethz.idsc.sophus.ply.d2.InsideConvexHullCoordinate;
+import ch.ethz.idsc.sophus.ply.d2.InsidePolygonCoordinate;
+import ch.ethz.idsc.sophus.ply.d2.IterativeCoordinate;
+import ch.ethz.idsc.sophus.ply.d2.IterativeMeanValueCoordinate;
+import ch.ethz.idsc.sophus.ply.d2.ThreePointCoordinate;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -55,12 +55,12 @@ public enum PolygonCoordinates implements LogWeighting {
   ITERATIVE_EX_20(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 20)), //
   ITERATIVE_EX_30(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 30)), //
   ITERATIVE_EX_50(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 50)), //
-  TARGET(TargetCoordinate.of(InversePowerVariogram.of(2))), //
-  ITERATIVE_IL_0(IterativeCoordinate.of(TargetCoordinate.of(InversePowerVariogram.of(2)), 0)), //
-  ITERATIVE_IL_1(IterativeCoordinate.of(TargetCoordinate.of(InversePowerVariogram.of(2)), 1)), //
-  ITERATIVE_IL_2(IterativeCoordinate.of(TargetCoordinate.of(InversePowerVariogram.of(2)), 2)), //
-  ITERATIVE_IL_3(IterativeCoordinate.of(TargetCoordinate.of(InversePowerVariogram.of(2)), 3)), //
-  ITERATIVE_IL_5(IterativeCoordinate.of(TargetCoordinate.of(InversePowerVariogram.of(2)), 5)), //
+  TARGET(LeveragesGenesis.of(InversePowerVariogram.of(2))), //
+  ITERATIVE_IL_0(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 0)), //
+  ITERATIVE_IL_1(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 1)), //
+  ITERATIVE_IL_2(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 2)), //
+  ITERATIVE_IL_3(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 3)), //
+  ITERATIVE_IL_5(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 5)), //
   ;
 
   private static final Set<PolygonCoordinates> CONVEX = //
@@ -78,10 +78,11 @@ public enum PolygonCoordinates implements LogWeighting {
       VectorLogManifold vectorLogManifold, // with 2 dimensional tangent space
       ScalarUnaryOperator variogram, // <- ignored
       Tensor sequence) {
-    return WeightingOperators.wrap( //
-        HsCoordinates.wrap(vectorLogManifold, CONVEX.contains(this) //
+    return HsGenesis.wrap( //
+        vectorLogManifold, //
+        CONVEX.contains(this) //
             ? InsideConvexHullCoordinate.of(genesis)
-            : InsidePolygonCoordinate.of(genesis)), //
+            : InsidePolygonCoordinate.of(genesis), //
         sequence);
   }
 

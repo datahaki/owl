@@ -16,11 +16,11 @@ import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.math.noise.SimplexContinuousNoise;
 import ch.ethz.idsc.sophus.app.lev.LeversRender;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.ArrayPlotRender;
 import ch.ethz.idsc.sophus.gui.ren.ArrayRender;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
 import ch.ethz.idsc.sophus.lie.rn.RnManifold;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.tensor.DoubleScalar;
@@ -40,7 +40,8 @@ import ch.ethz.idsc.tensor.red.Entrywise;
 
 /** transfer weights from barycentric coordinates defined by set of control points
  * in the square domain (subset of R^2) to means in non-linear spaces */
-/* package */ class R2ScatteredSetCoordinateDemo extends ScatteredSetWeightingDemo {
+// TODO possibly only recompute when points have changed
+/* package */ class R2ScatteredSetCoordinateDemo extends AbstractScatteredSetWeightingDemo {
   private static final double RANGE = 5;
   // ---
   private final JToggleButton jToggleButtonAxes = new JToggleButton("axes");
@@ -95,7 +96,7 @@ import ch.ethz.idsc.tensor.red.Entrywise;
       }
       setControlPointsSe2(control);
     }
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Tensor controlPoints = getGeodesicControlPoints();
     BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
     if (2 < controlPoints.length()) {

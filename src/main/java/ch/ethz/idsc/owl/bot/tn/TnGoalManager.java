@@ -16,15 +16,13 @@ import ch.ethz.idsc.sophus.math.TensorMetric;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.sca.Ramp;
 
 /** goal region is spherical
  * 
  * objective is minimum path length */
 /* package */ class TnGoalManager implements Region<Tensor>, CostFunction, Serializable {
-  private static final long serialVersionUID = 3198121268722187408L;
-  // ---
   private final TensorMetric tensorMetric;
   private final Tensor center;
   private final Scalar radius;
@@ -38,7 +36,7 @@ import ch.ethz.idsc.tensor.sca.Ramp;
   @Override // from CostIncrementFunction
   public Scalar costIncrement(GlcNode node, List<StateTime> trajectory, Tensor flow) {
     StateTime from = node.stateTime();
-    return Norm._2.between(from.state(), Lists.getLast(trajectory).state());
+    return Vector2Norm.between(from.state(), Lists.getLast(trajectory).state());
   }
 
   @Override // from HeuristicFunction

@@ -15,16 +15,17 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
+import ch.ethz.idsc.sophus.fit.HsWeiszfeldMethod;
+import ch.ethz.idsc.sophus.fit.SpatialMedian;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.gds.Se2CoveringGeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.Se2CoveringDisplay;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
 import ch.ethz.idsc.sophus.hs.Biinvariant;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
 import ch.ethz.idsc.sophus.hs.Biinvariants;
-import ch.ethz.idsc.sophus.hs.HsWeiszfeldMethod;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringExponential;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.var.InversePowerVariogram;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -36,7 +37,6 @@ import ch.ethz.idsc.tensor.alg.Subdivide;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
 import ch.ethz.idsc.tensor.img.ColorDataIndexed;
 import ch.ethz.idsc.tensor.img.ColorDataLists;
-import ch.ethz.idsc.tensor.opt.rn.SpatialMedian;
 import ch.ethz.idsc.tensor.pdf.Distribution;
 import ch.ethz.idsc.tensor.pdf.NormalDistribution;
 import ch.ethz.idsc.tensor.pdf.RandomVariate;
@@ -68,7 +68,7 @@ import ch.ethz.idsc.tensor.sca.Chop;
         RandomVariate.of(dX), RandomVariate.of(dY), RandomVariate.of(dA)), 10).stream() //
         .map(Se2CoveringExponential.INSTANCE::exp));
     setControlPointsSe2(tensor);
-    setGeodesicDisplay(Se2CoveringGeodesicDisplay.INSTANCE);
+    setGeodesicDisplay(Se2CoveringDisplay.INSTANCE);
   }
 
   @Override
@@ -80,13 +80,13 @@ import ch.ethz.idsc.tensor.sca.Chop;
     if (0 == length)
       return;
     Tensor weights = ConstantArray.of(RationalScalar.of(1, length), length);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
     Tensor mean = biinvariantMean.mean(sequence, weights);
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     for (Tensor point : sequence) {
       Tensor curve = Subdivide.of(0, 1, 20).map(geodesicInterface.curve(point, mean));
       Path2D path2d = geometricLayer.toPath2D(curve);
@@ -107,7 +107,7 @@ import ch.ethz.idsc.tensor.sca.Chop;
     if (median.isSelected()) {
       Biinvariant biinvariant = spinnerDistances.getValue();
       TensorUnaryOperator weightingInterface = //
-          biinvariant.weighting(geodesicDisplay.vectorLogManifold(), InversePowerVariogram.of(1), sequence);
+          biinvariant.weighting(geodesicDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
       SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
       Optional<Tensor> optional = spatialMedian.uniform(sequence);
       if (optional.isPresent()) {

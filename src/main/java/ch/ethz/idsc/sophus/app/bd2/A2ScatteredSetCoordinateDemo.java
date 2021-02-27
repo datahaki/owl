@@ -12,12 +12,12 @@ import ch.ethz.idsc.owl.gui.RenderInterface;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.lev.LeversRender;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.opt.LogWeighting;
 import ch.ethz.idsc.tensor.Tensor;
 
-/* package */ abstract class A2ScatteredSetCoordinateDemo extends ExportWeightingDemo {
+/* package */ abstract class A2ScatteredSetCoordinateDemo extends AbstractExportWeightingDemo {
   private final JToggleButton jToggleAxes = new JToggleButton("axes");
   // ---
   private RenderInterface renderInterface;
@@ -33,7 +33,7 @@ import ch.ethz.idsc.tensor.Tensor;
 
   @Override
   protected final void recompute() {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
     renderInterface = geodesicDisplay.dimensions() < sequence.length() //
         ? arrayPlotRender(sequence, refinement(), operator(sequence), magnification())
@@ -49,7 +49,7 @@ import ch.ethz.idsc.tensor.Tensor;
     {
       final Tensor sequence = getGeodesicControlPoints();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay(), sequence, null, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay(), sequence, null, geometricLayer, graphics);
       leversRender.renderIndexX();
       leversRender.renderIndexP();
     }

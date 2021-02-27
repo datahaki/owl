@@ -4,9 +4,9 @@ package ch.ethz.idsc.sophus.gui.ren;
 import java.awt.BasicStroke;
 import java.awt.Stroke;
 
-import ch.ethz.idsc.sophus.crv.ArcTan2D;
-import ch.ethz.idsc.sophus.crv.Curvature2D;
+import ch.ethz.idsc.sophus.crv.d2.Curvature2D;
 import ch.ethz.idsc.sophus.lie.so2.So2;
+import ch.ethz.idsc.sophus.math.d2.ArcTan2D;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.alg.Accumulate;
@@ -14,7 +14,7 @@ import ch.ethz.idsc.tensor.alg.Differences;
 import ch.ethz.idsc.tensor.alg.FoldList;
 import ch.ethz.idsc.tensor.fig.VisualRow;
 import ch.ethz.idsc.tensor.fig.VisualSet;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 
 public class CurveVisualSet {
   private static final Stroke PLOT_STROKE = new BasicStroke(1.5f);
@@ -28,7 +28,7 @@ public class CurveVisualSet {
   /** @param points {{x1, y1}, {x2, y2}, ..., {xn, yn}} */
   public CurveVisualSet(Tensor points) {
     differences = Differences.of(points);
-    differencesNorm = Tensor.of(differences.stream().map(Norm._2::ofVector));
+    differencesNorm = Tensor.of(differences.stream().map(Vector2Norm::of));
     curvature = Curvature2D.string(points);
     arcLength0 = Accumulate.of(differencesNorm);
     arcLength1 = FoldList.of(Tensor::add, RealScalar.ZERO, differencesNorm);

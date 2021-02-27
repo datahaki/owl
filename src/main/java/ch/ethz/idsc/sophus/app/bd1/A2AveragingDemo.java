@@ -1,15 +1,14 @@
 // code by jph
 package ch.ethz.idsc.sophus.app.bd1;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.swing.JButton;
@@ -21,16 +20,22 @@ import ch.ethz.idsc.owl.gui.region.ImageRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.lev.LeversRender;
 import ch.ethz.idsc.sophus.gds.GeodesicArrayPlot;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.ArrayPlotRender;
 import ch.ethz.idsc.tensor.DoubleScalar;
+import ch.ethz.idsc.tensor.RationalScalar;
+import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
+import ch.ethz.idsc.tensor.Unprotect;
+import ch.ethz.idsc.tensor.api.ScalarUnaryOperator;
 import ch.ethz.idsc.tensor.api.TensorScalarFunction;
+import ch.ethz.idsc.tensor.ext.Cache;
+import ch.ethz.idsc.tensor.ext.Timing;
 import ch.ethz.idsc.tensor.img.ColorDataGradient;
 import ch.ethz.idsc.tensor.img.ColorDataGradients;
-import ch.ethz.idsc.tensor.sca.Clips;
+import ch.ethz.idsc.tensor.sca.N;
 import ch.ethz.idsc.tensor.sca.Round;
 
 /* package */ abstract class A2AveragingDemo extends AnAveragingDemo {
@@ -41,7 +46,7 @@ import ch.ethz.idsc.tensor.sca.Round;
   private final JToggleButton jToggleVarian = new JToggleButton("est/var");
   private final JToggleButton jToggleThresh = new JToggleButton("thresh");
 
-  public A2AveragingDemo(List<GeodesicDisplay> geodesicDisplays) {
+  public A2AveragingDemo(List<ManifoldDisplay> geodesicDisplays) {
     super(geodesicDisplays);
     {
       spinnerCvar.setList(Tensors.fromString("{0, 0.01, 0.1, 0.5, 1}").stream().map(Scalar.class::cast).collect(Collectors.toList()));
@@ -80,39 +85,40 @@ import ch.ethz.idsc.tensor.sca.Round;
     }
     timerFrame.jToolBar.addSeparator();
     addSpinnerListener(v -> recompute());
-    timerFrame.geometricComponent.jComponent.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mousePressed(MouseEvent e) {
-        recompute();
-      }
-    });
-    timerFrame.geometricComponent.jComponent.addMouseWheelListener(v -> recompute());
   }
 
-  private BufferedImage bufferedImage = null;
+  private final Cache<Tensor, BufferedImage> cache = Cache.of(this::computeImage, 1);
+  private double computeTime = 0;
 
   @Override
   protected final void recompute() {
-    Tensor sequence = getGeodesicControlPoints();
-    Tensor values = getControlPointsSe2().get(Tensor.ALL, 2);
+    System.out.println("clear");
+    cache.clear();
+  }
+
+  private final BufferedImage computeImage(Tensor tensor) {
+    Tensor sequence = tensor.get(0).map(N.DOUBLE);
+    Tensor values = tensor.get(1).map(N.DOUBLE);
+    int resolution = spinnerRes.getValue();
     try {
-      int resolution = spinnerRes.getValue();
       TensorScalarFunction tensorScalarFunction = function(sequence, values);
-      GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay().geodesicArrayPlot();
-      Function<Tensor, Scalar> tsf = tensorScalarFunction.andThen(Clips.unit());
-      tsf = tensorScalarFunction;
+      GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
+      ScalarUnaryOperator suo = Round.toMultipleOf(RationalScalar.of(2, 10));
+      TensorScalarFunction tsf = t -> suo.apply(tensorScalarFunction.apply(t));
+      Timing timing = Timing.started();
       Tensor matrix = geodesicArrayPlot.raster(resolution, tsf, DoubleScalar.INDETERMINATE);
+      computeTime = timing.seconds();
       // ---
       if (jToggleThresh.isSelected())
         matrix = matrix.map(Round.FUNCTION); // effectively maps to 0 or 1
       // ---
       ColorDataGradient colorDataGradient = spinnerColorData.getValue();
-      bufferedImage = ArrayPlotRender.rescale(matrix, colorDataGradient, spinnerMagnif.getValue()).export();
+      return ArrayPlotRender.rescale(matrix, colorDataGradient, spinnerMagnif.getValue()).export();
     } catch (Exception exception) {
       System.out.println(exception);
       exception.printStackTrace();
-      bufferedImage = null;
     }
+    return null;
   }
 
   @Override
@@ -120,11 +126,10 @@ import ch.ethz.idsc.tensor.sca.Round;
     RenderQuality.setQuality(graphics);
     prepare();
     // ---
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
     Tensor values = getControlPointsSe2().get(Tensor.ALL, 2);
-    if (Objects.isNull(bufferedImage))
-      recompute();
+    BufferedImage bufferedImage = cache.apply(Unprotect.byRef(sequence, values));
     if (Objects.nonNull(bufferedImage)) {
       RenderQuality.setDefault(graphics); // default so that raster becomes visible
       Tensor pixel2model = geodesicDisplay.geodesicArrayPlot().pixel2model(new Dimension(bufferedImage.getHeight(), bufferedImage.getHeight()));
@@ -135,6 +140,9 @@ import ch.ethz.idsc.tensor.sca.Round;
     LeversRender leversRender = //
         LeversRender.of(geodesicDisplay, sequence, values, geometricLayer, graphics);
     leversRender.renderWeights(values);
+    graphics.setFont(new Font(Font.DIALOG, Font.PLAIN, 12));
+    graphics.setColor(Color.GRAY);
+    graphics.drawString("compute: " + RealScalar.of(computeTime).map(Round._3), 0, 30);
   }
 
   void prepare() {

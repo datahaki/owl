@@ -12,8 +12,8 @@ import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
-import ch.ethz.idsc.sophus.lie.r2.ParametricResample;
-import ch.ethz.idsc.sophus.lie.r2.ResampleResult;
+import ch.ethz.idsc.sophus.ply.d2.ParametricResample;
+import ch.ethz.idsc.sophus.ply.d2.ResampleResult;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -54,7 +54,7 @@ public class R2ParametricResampleDemo extends ControlPointsDemo {
     ParametricResample parametricResample = new ParametricResample(threshold, ds);
     ResampleResult resampleResult = parametricResample.apply(control);
     for (Tensor points : resampleResult.getPoints())
-      POINTS_RENDER.show(geodesicDisplay()::matrixLift, geodesicDisplay().shape(), points) //
+      POINTS_RENDER.show(manifoldDisplay()::matrixLift, manifoldDisplay().shape(), points) //
           .render(geometricLayer, graphics);
   }
 

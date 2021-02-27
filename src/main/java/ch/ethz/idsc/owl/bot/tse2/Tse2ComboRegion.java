@@ -9,7 +9,7 @@ import ch.ethz.idsc.owl.math.region.BallRegion;
 import ch.ethz.idsc.owl.math.region.LinearRegion;
 import ch.ethz.idsc.owl.math.region.RegionWithDistance;
 import ch.ethz.idsc.owl.math.region.So2Region;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.sca.Clip;
@@ -19,8 +19,6 @@ import ch.ethz.idsc.tensor.sca.Clip;
  * 
  * class defines circle region for (x, y) component, periodic intervals in angular component, linear region in v */
 public class Tse2ComboRegion extends Se2ComboRegion {
-  private static final long serialVersionUID = -3772350284490680711L;
-
   /** @param goal {px, py, angle, v}
    * @param radiusVector {dist_radius, dist_radius, dist_angle, dist_v}
    * @throws Exception if first two entries of radiusVector are different */

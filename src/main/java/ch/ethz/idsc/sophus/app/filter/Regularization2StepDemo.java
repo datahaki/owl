@@ -23,7 +23,7 @@ import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
 import ch.ethz.idsc.tensor.sca.N;
 
-/* package */ final class Regularization2StepDemo extends UniformDatasetFilterDemo implements BufferedImageSupplier {
+/* package */ final class Regularization2StepDemo extends AbstractSpectrogramDemo implements BufferedImageSupplier {
   /** regularization parameter in the interval [0, 1] */
   private final JSlider jSlider = new JSlider(0, 1000, 600);
 
@@ -38,7 +38,7 @@ import ch.ethz.idsc.tensor.sca.N;
   @Override // from AbstractDatasetFilterDemo
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
     return Regularization2Step.string( //
-        geodesicDisplay().geodesicInterface(), //
+        manifoldDisplay().geodesicInterface(), //
         N.DOUBLE.apply(sliderRatio())).apply(control());
   }
 

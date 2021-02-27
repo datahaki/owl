@@ -25,14 +25,14 @@ import ch.ethz.idsc.owl.math.model.StateSpaceModel;
 import ch.ethz.idsc.owl.math.state.EpisodeIntegrator;
 import ch.ethz.idsc.owl.math.state.FixedStateIntegrator;
 import ch.ethz.idsc.sophus.lie.se2.Se2Matrix;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.io.ResourceData;
-import ch.ethz.idsc.tensor.red.Norm2Squared;
+import ch.ethz.idsc.tensor.nrm.Vector2NormSquared;
 
 /* package */ class BalloonEntity extends AbstractCircularEntity {
   private static final Tensor PARTITION_SCALE = Tensors.vector(2, 2, 1, 1).unmodifiable();
@@ -58,7 +58,7 @@ import ch.ethz.idsc.tensor.red.Norm2Squared;
 
   @Override // from TensorMetric
   public final Scalar distance(Tensor x, Tensor y) {
-    return Norm2Squared.between(x, y);
+    return Vector2NormSquared.between(x, y);
   }
 
   @Override // from TrajectoryEntity

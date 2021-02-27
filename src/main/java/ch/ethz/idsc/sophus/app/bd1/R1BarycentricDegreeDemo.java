@@ -14,10 +14,10 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.crv.spline.BarycentricRationalInterpolation;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
+import ch.ethz.idsc.sophus.itp.BarycentricRationalInterpolation;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -76,7 +76,7 @@ import ch.ethz.idsc.tensor.sca.N;
       // ---
       Tensor domain = domain(support);
       if (jToggleButton.isSelected()) {
-        ScalarTensorFunction geodesicNeville = InterpolatingPolynomial.of(geodesicDisplay().geodesicInterface(), support).scalarTensorFunction(funceva);
+        ScalarTensorFunction geodesicNeville = InterpolatingPolynomial.of(manifoldDisplay().geodesicInterface(), support).scalarTensorFunction(funceva);
         Tensor basis = domain.map(geodesicNeville);
         {
           Tensor curve = Transpose.of(Tensors.of(domain, basis));
@@ -84,7 +84,8 @@ import ch.ethz.idsc.tensor.sca.N;
         }
       }
       // ---
-      ScalarTensorFunction scalarTensorFunction = BarycentricRationalInterpolation.of(support, spinnerDegree.getValue());
+      ScalarTensorFunction scalarTensorFunction = //
+          BarycentricRationalInterpolation.of(support, spinnerDegree.getValue());
       Tensor basis = domain.map(scalarTensorFunction);
       {
         Tensor curve = Transpose.of(Tensors.of(domain, basis.dot(funceva)));

@@ -6,7 +6,7 @@ import java.util.Random;
 
 import ch.ethz.idsc.owl.bot.se2.Se2ComboRegion;
 import ch.ethz.idsc.sophus.lie.se2.Se2GroupElement;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.sophus.math.sample.BallRandomSample;
 import ch.ethz.idsc.sophus.math.sample.RandomSampleInterface;
 import ch.ethz.idsc.tensor.Scalar;
@@ -18,8 +18,6 @@ import ch.ethz.idsc.tensor.sca.Clips;
 
 /** @see Se2ComboRegion */
 public class Se2SphereRandomSample implements RandomSampleInterface, Serializable {
-  private static final long serialVersionUID = -8030557490594302400L;
-
   /** @param apex
    * @param radius non-negative
    * @param heading non-negative

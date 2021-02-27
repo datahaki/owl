@@ -18,19 +18,19 @@ import javax.swing.JToggleButton;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.gds.R2GeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.S2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
+import ch.ethz.idsc.sophus.gds.R2Display;
+import ch.ethz.idsc.sophus.gds.S2Display;
 import ch.ethz.idsc.sophus.gui.ren.ArrayPlotRender;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
-import ch.ethz.idsc.sophus.lie.r2.ConvexHull;
-import ch.ethz.idsc.sophus.lie.r2.Polygons;
 import ch.ethz.idsc.sophus.lie.rn.RnManifold;
 import ch.ethz.idsc.sophus.opt.LogWeighting;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.sophus.opt.MixedLogWeightings;
 import ch.ethz.idsc.sophus.opt.PolygonCoordinates;
+import ch.ethz.idsc.sophus.ply.d2.ConvexHull;
+import ch.ethz.idsc.sophus.ply.d2.Polygons;
 import ch.ethz.idsc.tensor.DoubleScalar;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -55,7 +55,7 @@ import ch.ethz.idsc.tensor.red.Entrywise;
 import ch.ethz.idsc.tensor.red.VectorAngle;
 import ch.ethz.idsc.tensor.sca.Sign;
 
-/* package */ class R2BarycentricCoordinateDemo extends ScatteredSetWeightingDemo {
+/* package */ class R2BarycentricCoordinateDemo extends AbstractScatteredSetWeightingDemo {
   private static final Stroke STROKE = //
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
 
@@ -75,8 +75,8 @@ import ch.ethz.idsc.tensor.sca.Sign;
     {
       timerFrame.jToolBar.add(jToggleEntire);
     }
-    setGeodesicDisplay(S2GeodesicDisplay.INSTANCE);
-    setGeodesicDisplay(R2GeodesicDisplay.INSTANCE);
+    setGeodesicDisplay(S2Display.INSTANCE);
+    setGeodesicDisplay(R2Display.INSTANCE);
     setControlPointsSe2(Tensors.fromString("{{0, -2, 0}, {3, -2, -1}, {4, 2, 1}, {-1, 3, 2}}"));
   }
 
@@ -84,7 +84,7 @@ import ch.ethz.idsc.tensor.sca.Sign;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ColorDataGradient colorDataGradient = colorDataGradient();
     AxesRender.INSTANCE.render(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Tensor controlPoints = getGeodesicControlPoints();
     renderControlPoints(geometricLayer, graphics);
     BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();

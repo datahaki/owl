@@ -14,11 +14,11 @@ import ch.ethz.idsc.owl.gui.ren.LaneRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.lane.LaneInterface;
 import ch.ethz.idsc.owl.lane.StableLanes;
-import ch.ethz.idsc.sophus.app.curve.BaseCurvatureDemo;
+import ch.ethz.idsc.sophus.app.curve.AbstractCurveDemo;
 import ch.ethz.idsc.sophus.gds.Se2ClothoidDisplay;
 import ch.ethz.idsc.sophus.gds.Se2CoveringClothoidDisplay;
-import ch.ethz.idsc.sophus.gds.Se2CoveringGeodesicDisplay;
-import ch.ethz.idsc.sophus.gds.Se2GeodesicDisplay;
+import ch.ethz.idsc.sophus.gds.Se2CoveringDisplay;
+import ch.ethz.idsc.sophus.gds.Se2Display;
 import ch.ethz.idsc.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -26,7 +26,7 @@ import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.ext.Serialization;
 
-/* package */ class LaneConsumptionDemo extends BaseCurvatureDemo {
+/* package */ class LaneConsumptionDemo extends AbstractCurveDemo {
   private final LaneRender laneRender = new LaneRender();
   private LaneInterface lane = null;
 
@@ -40,8 +40,8 @@ import ch.ethz.idsc.tensor.ext.Serialization;
         Se2ClothoidDisplay.ANALYTIC, //
         Se2ClothoidDisplay.LEGENDRE, //
         Se2CoveringClothoidDisplay.INSTANCE, //
-        Se2CoveringGeodesicDisplay.INSTANCE, //
-        Se2GeodesicDisplay.INSTANCE));
+        Se2CoveringDisplay.INSTANCE, //
+        Se2Display.INSTANCE));
     jToggleCurvature.setSelected(false);
     // ---
     timerFrame.jToolBar.addSeparator();
@@ -58,7 +58,7 @@ import ch.ethz.idsc.tensor.ext.Serialization;
     renderControlPoints(geometricLayer, graphics);
     LaneInterface lane = StableLanes.of( //
         control, //
-        LaneRiesenfeldCurveSubdivision.of(geodesicDisplay().geodesicInterface(), degree)::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesicInterface(), degree)::string, //
         levels, width().multiply(RationalScalar.HALF));
     try {
       this.lane = Serialization.copy(lane);

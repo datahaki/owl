@@ -8,14 +8,14 @@ import java.awt.geom.Path2D;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
-import ch.ethz.idsc.sophus.hs.HsExponential;
+import ch.ethz.idsc.sophus.hs.HsManifold;
 import ch.ethz.idsc.sophus.lie.LieExponential;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringExponential;
 import ch.ethz.idsc.sophus.math.Exponential;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.ply.Arrowhead;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
@@ -26,7 +26,7 @@ import ch.ethz.idsc.tensor.alg.Subdivide;
 import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
 import ch.ethz.idsc.tensor.mat.IdentityMatrix;
 import ch.ethz.idsc.tensor.mat.Orthogonalize;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.sca.Sqrt;
 
 /* package */ class Se2UnprojectDemo extends ControlPointsDemo {
@@ -44,10 +44,10 @@ import ch.ethz.idsc.tensor.sca.Sqrt;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     Tensor sequence = getControlPointsSe2();
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
-    HsExponential hsExponential = LieExponential.of(geodesicDisplay.lieGroup(), Se2CoveringExponential.INSTANCE);
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    HsManifold hsManifold = LieExponential.of(geodesicDisplay.lieGroup(), Se2CoveringExponential.INSTANCE);
     // ---
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     Tensor p = sequence.get(0);
     Tensor q = sequence.get(1);
     {
@@ -57,12 +57,12 @@ import ch.ethz.idsc.tensor.sca.Sqrt;
       graphics.setColor(Color.BLUE);
       graphics.draw(path2d);
     }
-    Exponential exponential = hsExponential.exponential(p);
+    Exponential exponential = hsManifold.exponential(p);
     Tensor log = exponential.log(q);
     Tensor matrix = Join.of(Tensors.of(log), IdentityMatrix.of(3));
     Tensor tensor = Orthogonalize.of(matrix).extract(0, 3);
     graphics.setColor(new Color(192, 192, 192, 64));
-    Scalar nl = Norm._2.ofVector(log);
+    Scalar nl = Vector2Norm.of(log);
     Scalar un = RealScalar.of(0.2).divide(Sqrt.FUNCTION.apply(nl));
     for (Tensor x : Subdivide.of(nl.zero(), nl, 11))
       for (Tensor y : Subdivide.of(un.negate(), un, 5))

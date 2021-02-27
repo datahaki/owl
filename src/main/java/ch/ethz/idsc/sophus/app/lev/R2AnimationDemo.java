@@ -10,9 +10,8 @@ import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.math.noise.SimplexContinuousNoise;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.hs.Biinvariants;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.lie.so3.Rodrigues;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.tensor.RealScalar;
@@ -49,7 +48,7 @@ import ch.ethz.idsc.tensor.lie.r2.RotationMatrix;
       timerFrame.jToolBar.add(jToggleAnimate);
     }
     setControlPointsSe2(R2PointCollection.MISC);
-    setBiinvariant(Biinvariants.GARDEN);
+    setBitype(Bitype.GARDEN);
   }
 
   private static Tensor random(double toc, int index) {
@@ -63,7 +62,7 @@ import ch.ethz.idsc.tensor.lie.r2.RotationMatrix;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       if (jToggleAnimate.isSelected()) {
@@ -82,7 +81,7 @@ import ch.ethz.idsc.tensor.lie.r2.RotationMatrix;
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
-      LeversHud.render(biinvariant(), leversRender);
+      LeversHud.render(bitype(), leversRender);
     }
   }
 

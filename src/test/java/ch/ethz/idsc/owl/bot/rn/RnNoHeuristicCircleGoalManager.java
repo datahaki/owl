@@ -13,7 +13,7 @@ import ch.ethz.idsc.owl.math.state.TimeInvariantRegion;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
-import ch.ethz.idsc.tensor.red.Norm;
+import ch.ethz.idsc.tensor.nrm.Vector2Norm;
 import ch.ethz.idsc.tensor.sca.Sign;
 
 /** objective is minimum path length
@@ -21,8 +21,6 @@ import ch.ethz.idsc.tensor.sca.Sign;
  * 
  * functionality for testing purpose only */
 public class RnNoHeuristicCircleGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
-  private static final long serialVersionUID = 8479453321318301910L;
-
   /** constructor creates a spherical region in R^n with given center and radius.
    * distance measure is Euclidean distance.
    * 
@@ -35,7 +33,7 @@ public class RnNoHeuristicCircleGoalManager extends SimpleTrajectoryRegionQuery 
   @Override
   public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
     StateTime from = glcNode.stateTime();
-    return Norm._2.between(from.state(), Lists.getLast(trajectory).state());
+    return Vector2Norm.between(from.state(), Lists.getLast(trajectory).state());
   }
 
   @Override

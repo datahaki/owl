@@ -2,6 +2,7 @@
 package ch.ethz.idsc.owl.bot.rn;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import ch.ethz.idsc.owl.math.region.Region;
 import ch.ethz.idsc.owl.math.region.Regions;
@@ -12,14 +13,12 @@ import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.opt.nd.EuclideanNdCenter;
 import ch.ethz.idsc.tensor.opt.nd.NdCenterInterface;
-import ch.ethz.idsc.tensor.opt.nd.NdCluster;
 import ch.ethz.idsc.tensor.opt.nd.NdMap;
+import ch.ethz.idsc.tensor.opt.nd.NdMatch;
 import ch.ethz.idsc.tensor.opt.nd.NdTreeMap;
 import ch.ethz.idsc.tensor.sca.Sign;
 
 public class RnPointcloudRegion implements Region<Tensor>, Serializable {
-  private static final long serialVersionUID = -6445665212828747006L;
-
   /** Example:
    * The points of a point cloud in the 2-dimensional plane are encoded as a N x 2 matrix.
    * 
@@ -52,8 +51,8 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   @Override // from Region
   public boolean isMember(Tensor tensor) {
     NdCenterInterface distanceInterface = EuclideanNdCenter.of(tensor);
-    NdCluster<Void> ndCluster = ndMap.buildCluster(distanceInterface, 1);
-    Scalar distance = ndCluster.collection().iterator().next().distance();
+    Collection<NdMatch<Void>> ndCluster = ndMap.cluster(distanceInterface, 1);
+    Scalar distance = ndCluster.iterator().next().distance();
     return Scalars.lessEquals(distance, radius);
   }
 

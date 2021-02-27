@@ -3,12 +3,13 @@ package ch.ethz.idsc.sophus.gds;
 
 import java.io.Serializable;
 
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.sophus.clt.ClothoidBuilder;
-import ch.ethz.idsc.sophus.crv.decim.LineDistance;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
-import ch.ethz.idsc.sophus.hs.HsExponential;
+import ch.ethz.idsc.sophus.decim.LineDistance;
+import ch.ethz.idsc.sophus.hs.Biinvariant;
+import ch.ethz.idsc.sophus.hs.HsManifold;
 import ch.ethz.idsc.sophus.hs.HsTransport;
-import ch.ethz.idsc.sophus.hs.VectorLogManifold;
+import ch.ethz.idsc.sophus.lie.LieExponential;
 import ch.ethz.idsc.sophus.lie.LieGroup;
 import ch.ethz.idsc.sophus.lie.se2.Se2Matrix;
 import ch.ethz.idsc.sophus.math.TensorMetric;
@@ -21,8 +22,7 @@ import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
 
 // TODO probably obsolete: instead use Se2 and Se2Covering with different clothoid builders
-public abstract class AbstractClothoidDisplay implements GeodesicDisplay, Serializable {
-  private static final long serialVersionUID = 8908586069433981904L;
+public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serializable {
   private static final Tensor SPEARHEAD = PolygonNormalize.of( //
       Spearhead.of(Tensors.vector(-0.217, -0.183, 4.189), RealScalar.of(0.1)), RealScalar.of(0.08));
   private static final Tensor ARROWHEAD = Arrowhead.of(0.2).unmodifiable();
@@ -61,7 +61,12 @@ public abstract class AbstractClothoidDisplay implements GeodesicDisplay, Serial
   }
 
   @Override // from GeodesicDisplay
-  public final HsExponential hsExponential() {
+  public final LieExponential lieExponential() {
+    return null;
+  }
+
+  @Override // from GeodesicDisplay
+  public final HsManifold hsManifold() {
     return null;
   }
 
@@ -76,18 +81,13 @@ public abstract class AbstractClothoidDisplay implements GeodesicDisplay, Serial
   }
 
   @Override // from GeodesicDisplay
-  public final VectorLogManifold vectorLogManifold() {
-    return null;
-  }
-
-  @Override // from GeodesicDisplay
   public final TensorMetric parametricDistance() {
     return (p, q) -> geodesicInterface().curve(p, q).length();
   }
 
   @Override // from GeodesicDisplay
-  public final boolean isMetricBiinvariant() {
-    return false;
+  public final Biinvariant metricBiinvariant() {
+    return null;
   }
 
   @Override

@@ -25,13 +25,13 @@ import ch.ethz.idsc.owl.math.region.RegionWithDistance;
 import ch.ethz.idsc.owl.math.state.EpisodeIntegrator;
 import ch.ethz.idsc.owl.math.state.FixedStateIntegrator;
 import ch.ethz.idsc.owl.math.state.TrajectorySample;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
-import ch.ethz.idsc.tensor.red.Norm2Squared;
+import ch.ethz.idsc.tensor.nrm.Vector2NormSquared;
 import ch.ethz.idsc.tensor.sca.Chop;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */
@@ -64,7 +64,7 @@ import ch.ethz.idsc.tensor.sca.Chop;
 
   @Override // from TensorMetric
   public final Scalar distance(Tensor x, Tensor y) {
-    return Norm2Squared.between(x, y);
+    return Vector2NormSquared.between(x, y);
   }
 
   @Override

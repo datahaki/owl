@@ -9,8 +9,8 @@ import javax.swing.JToggleButton;
 
 import ch.ethz.idsc.owl.gui.RenderInterface;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
 import ch.ethz.idsc.sophus.opt.MixedLogWeightings;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -83,7 +83,7 @@ import ch.ethz.idsc.tensor.pdf.UniformDistribution;
 
   @Override
   BiinvariantMean biinvariantMean() {
-    return geodesicDisplay().biinvariantMean();
+    return manifoldDisplay().biinvariantMean();
   }
 
   public static void main(String[] args) {

@@ -11,16 +11,16 @@ import javax.swing.JToggleButton;
 import ch.ethz.idsc.java.awt.RenderQuality;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
-import ch.ethz.idsc.sophus.crv.decim.HsLineDistance;
-import ch.ethz.idsc.sophus.crv.decim.HsLineDistance.NormImpl;
-import ch.ethz.idsc.sophus.crv.decim.HsLineProjection;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.decim.HsLineDistance;
+import ch.ethz.idsc.sophus.decim.HsLineDistance.NormImpl;
+import ch.ethz.idsc.sophus.decim.HsLineProjection;
 import ch.ethz.idsc.sophus.gds.GeodesicDisplays;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.win.ControlPointsDemo;
 import ch.ethz.idsc.sophus.lie.LieGroup;
 import ch.ethz.idsc.sophus.lie.se2c.Se2CoveringExponential;
 import ch.ethz.idsc.sophus.math.Exponential;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.ply.Arrowhead;
 import ch.ethz.idsc.tensor.RationalScalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -51,11 +51,11 @@ import ch.ethz.idsc.tensor.sca.Round;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     Tensor sequence = getControlPointsSe2();
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     LieGroup lieGroup = geodesicDisplay.lieGroup();
     Exponential exponential = Se2CoveringExponential.INSTANCE;
     // ---
-    GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
     Tensor beg = sequence.get(0);
     Tensor end = sequence.get(1);
     ScalarTensorFunction curve = geodesicInterface.curve(beg, end);
@@ -67,7 +67,7 @@ import ch.ethz.idsc.tensor.sca.Round;
     }
     final Tensor mouse = geometricLayer.getMouseSe2State();
     {
-      HsLineDistance hsLineDistance = new HsLineDistance(geodesicDisplay.vectorLogManifold());
+      HsLineDistance hsLineDistance = new HsLineDistance(geodesicDisplay.hsManifold());
       NormImpl normImpl = hsLineDistance.tensorNorm(beg, end);
       {
         Tensor project = normImpl.project(mouse);
@@ -106,7 +106,7 @@ import ch.ethz.idsc.tensor.sca.Round;
       }
     }
     {
-      HsLineProjection hsLineProjection = new HsLineProjection(geodesicDisplay.hsExponential());
+      HsLineProjection hsLineProjection = new HsLineProjection(geodesicDisplay.hsManifold());
       Tensor onto = hsLineProjection.onto(beg, end, mouse);
       {
         geometricLayer.pushMatrix(geodesicDisplay.matrixLift(onto));

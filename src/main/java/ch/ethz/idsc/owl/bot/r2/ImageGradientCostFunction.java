@@ -8,7 +8,7 @@ import ch.ethz.idsc.owl.glc.adapter.StateTimeTrajectories;
 import ch.ethz.idsc.owl.glc.core.CostFunction;
 import ch.ethz.idsc.owl.glc.core.GlcNode;
 import ch.ethz.idsc.owl.math.state.StateTime;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -17,7 +17,6 @@ import ch.ethz.idsc.tensor.red.VectorAngle;
 
 /** class is not used */
 /* package */ class ImageGradientCostFunction implements CostFunction, Serializable {
-  private static final long serialVersionUID = 1487469863171648602L;
   // ---
   private final ImageGradientInterpolation imageGradientInterpolation;
 

@@ -17,12 +17,12 @@ import ch.ethz.idsc.java.awt.SpinnerLabel;
 import ch.ethz.idsc.owl.gui.ren.AxesRender;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.sophus.app.lev.LeversRender;
-import ch.ethz.idsc.sophus.gds.GeodesicDisplay;
+import ch.ethz.idsc.sophus.bm.BiinvariantMean;
+import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gui.ren.ArrayPlotRender;
 import ch.ethz.idsc.sophus.gui.ren.ArrayRender;
 import ch.ethz.idsc.sophus.gui.ren.PointsRender;
-import ch.ethz.idsc.sophus.hs.BiinvariantMean;
-import ch.ethz.idsc.sophus.math.GeodesicInterface;
+import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.opt.LogWeighting;
 import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Tensor;
@@ -31,7 +31,7 @@ import ch.ethz.idsc.tensor.api.ScalarTensorFunction;
 import ch.ethz.idsc.tensor.img.ColorDataGradient;
 import ch.ethz.idsc.tensor.sca.N;
 
-/* package */ abstract class AbstractDeformationDemo extends ScatteredSetWeightingDemo {
+/* package */ abstract class AbstractDeformationDemo extends AbstractScatteredSetWeightingDemo {
   private static final PointsRender POINTS_RENDER_POINTS = //
       new PointsRender(new Color(64, 128, 64, 64), new Color(64, 128, 64, 255));
   private static final Stroke STROKE = //
@@ -48,7 +48,7 @@ import ch.ethz.idsc.tensor.sca.N;
   private Tensor movingOrigin;
   private MovingDomain2D movingDomain2D;
 
-  AbstractDeformationDemo(List<GeodesicDisplay> list, List<LogWeighting> array) {
+  AbstractDeformationDemo(List<ManifoldDisplay> list, List<LogWeighting> array) {
     super(false, list, array);
     spinnerLogWeighting.addSpinnerListener(v -> recompute());
     // ---
@@ -79,7 +79,7 @@ import ch.ethz.idsc.tensor.sca.N;
   }
 
   final void snap() {
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     movingOrigin = Tensor.of(getControlPointsSe2().map(N.DOUBLE).stream().map(geodesicDisplay::project));
     recompute();
   }
@@ -102,7 +102,7 @@ import ch.ethz.idsc.tensor.sca.N;
     RenderQuality.setQuality(graphics);
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    GeodesicDisplay geodesicDisplay = geodesicDisplay();
+    ManifoldDisplay geodesicDisplay = manifoldDisplay();
     Tensor origin = movingDomain2D.origin();
     Tensor target = getGeodesicControlPoints();
     // ---
@@ -113,7 +113,7 @@ import ch.ethz.idsc.tensor.sca.N;
     }
     boolean isTarget = jToggleTarget.isSelected();
     if (isTarget) { // connect origin and target pairs with lines/geodesics
-      GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
+      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
       graphics.setColor(new Color(128, 128, 128, 255));
       graphics.setStroke(STROKE);
       for (int index = 0; index < origin.length(); ++index) {

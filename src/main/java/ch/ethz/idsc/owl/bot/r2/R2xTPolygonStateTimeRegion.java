@@ -11,9 +11,9 @@ import ch.ethz.idsc.owl.gui.RenderInterface;
 import ch.ethz.idsc.owl.gui.win.GeometricLayer;
 import ch.ethz.idsc.owl.math.region.Region;
 import ch.ethz.idsc.owl.math.state.StateTime;
-import ch.ethz.idsc.sophus.lie.r2.Polygons;
 import ch.ethz.idsc.sophus.math.BijectionFamily;
-import ch.ethz.idsc.sophus.math.Extract2D;
+import ch.ethz.idsc.sophus.math.d2.Extract2D;
+import ch.ethz.idsc.sophus.ply.d2.Polygons;
 import ch.ethz.idsc.tensor.Scalar;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.api.TensorUnaryOperator;
@@ -21,7 +21,6 @@ import ch.ethz.idsc.tensor.sca.N;
 
 /** check if input tensor is inside a polygon */
 public class R2xTPolygonStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
-  private static final long serialVersionUID = 4560673945047423675L;
   // ---
   private final Tensor polygon;
   private final BijectionFamily bijectionFamily;
