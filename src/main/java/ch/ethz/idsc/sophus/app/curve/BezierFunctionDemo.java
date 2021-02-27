@@ -19,7 +19,6 @@ import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gds.Se2Display;
 import ch.ethz.idsc.sophus.gui.ren.Curvature2DRender;
 import ch.ethz.idsc.sophus.gui.ren.PathRender;
-import ch.ethz.idsc.sophus.gui.win.DubinsGenerator;
 import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
@@ -43,9 +42,8 @@ import ch.ethz.idsc.tensor.alg.Subdivide;
       timerFrame.jToolBar.add(jToggleButton);
     }
     {
-      Tensor tensor = Tensors.fromString("{{1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}}");
-      setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-          Tensor.of(tensor.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+      Tensor tensor = Tensors.fromString("{{1, 0, 0}, {0, 1, 0}}");
+      setControlPointsSe2(tensor);
     }
     setGeodesicDisplay(Se2Display.INSTANCE);
     timerFrame.geometricComponent.addRenderInterfaceBackground(AxesRender.INSTANCE);
