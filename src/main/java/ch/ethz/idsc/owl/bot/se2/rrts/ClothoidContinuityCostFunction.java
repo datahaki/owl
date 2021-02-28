@@ -31,9 +31,8 @@ public enum ClothoidContinuityCostFunction implements TransitionCostFunction {
         CLOTHOID_BUILDER.curve(p, q).curvature().tail(), //
         CLOTHOID_BUILDER.curve(q, r).curvature().head());
   }
-
-//  @Override // from TransitionCostFunction
-//  public int influence() {
-//    return 1;
-//  }
+  // @Override // from TransitionCostFunction
+  // public int influence() {
+  // return 1;
+  // }
 }

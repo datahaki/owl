@@ -6,7 +6,6 @@ import ch.ethz.idsc.sophus.gds.ManifoldDisplay;
 import ch.ethz.idsc.sophus.gds.R2Display;
 import ch.ethz.idsc.sophus.math.Geodesic;
 import ch.ethz.idsc.sophus.math.MidpointInterface;
-import ch.ethz.idsc.sophus.math.ParametricCurve;
 import ch.ethz.idsc.sophus.math.SplitInterface;
 import ch.ethz.idsc.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.ethz.idsc.sophus.ref.d1.BSpline2CurveSubdivision;
@@ -39,7 +38,7 @@ import ch.ethz.idsc.tensor.itp.BinaryAverage;
   BSPLINE2 {
     @Override
     public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      ParametricCurve parametricCurve = geodesicDisplay.geodesicInterface();
+      Geodesic parametricCurve = geodesicDisplay.geodesicInterface();
       return new BSpline2CurveSubdivision(parametricCurve);
     }
   },
