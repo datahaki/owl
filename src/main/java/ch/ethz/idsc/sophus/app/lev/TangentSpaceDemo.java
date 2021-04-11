@@ -43,7 +43,7 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(iterativeAffineProperties);
-    container.add("West", configPanel.getFields());
+    container.add("West", configPanel.getJScrollPane());
     Tensor sequence = Tensor.of(CirclePoints.of(15).multiply(RealScalar.of(2)).stream().skip(5).map(PadRight.zeros(3)));
     sequence.set(Scalar::zero, 0, Tensor.ALL);
     setControlPointsSe2(sequence);

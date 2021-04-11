@@ -21,12 +21,14 @@ import ch.ethz.idsc.tensor.alg.PadRight;
 import ch.ethz.idsc.tensor.img.ColorDataIndexed;
 import ch.ethz.idsc.tensor.img.ColorDataLists;
 import ch.ethz.idsc.tensor.lie.r2.CirclePoints;
+import ch.ethz.idsc.tensor.ref.FieldClip;
 import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
 
 public class R2ParametricResampleDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict().deriveWithAlpha(128);
   private static final PointsRender POINTS_RENDER = new PointsRender(new Color(0, 128, 128, 64), new Color(0, 128, 128, 255));
   // ---
+  @FieldClip(min = "0", max = "10")
   public Scalar threshold = RealScalar.of(3);
   public Scalar ds = RealScalar.of(0.3);
 
@@ -35,7 +37,7 @@ public class R2ParametricResampleDemo extends ControlPointsDemo {
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(this);
-    container.add("West", configPanel.getFields());
+    container.add("West", configPanel.getJScrollPane());
     // ---
     int n = 20;
     setControlPointsSe2(PadRight.zeros(n, 3).apply(CirclePoints.of(n).multiply(RealScalar.of(3))));

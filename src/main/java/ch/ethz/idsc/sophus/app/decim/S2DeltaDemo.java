@@ -51,11 +51,11 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
     super(GeodesicDisplays.S2_ONLY);
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(s2DeltaParam);
-    configPanel.fieldPanels().addUniversalListener(s -> {
+    configPanel.getFieldPanels().addUniversalListener(s -> {
       System.out.println("compute udpate: " + s);
       compute();
     });
-    container.add("West", configPanel.getFields());
+    container.add("West", configPanel.getJScrollPane());
     compute();
   }
 

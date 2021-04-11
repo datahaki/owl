@@ -172,8 +172,7 @@ import ch.ethz.idsc.tensor.sca.Clips;
   private static void render(Collection<RrtsNode> nodes, GeometricLayer geometricLayer, Graphics2D graphics2D, Color color) {
     Tensor points = Tensors.empty();
     Iterator<RrtsNode> iterator = nodes.iterator();
-    RrtsNode end = iterator.next();
-    while (iterator.hasNext()) {
+    for (RrtsNode end = iterator.next(); iterator.hasNext();) {
       RrtsNode start = end;
       end = iterator.next();
       ClothoidTransitionSpace.ANALYTIC.connect(start.state(), end.state()).linearized(MIN_RESOLUTION).forEach(points::append);

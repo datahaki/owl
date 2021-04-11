@@ -29,12 +29,12 @@ public class TransitionNdDemo extends ControlPointsDemo {
     setMidpointIndicated(false);
     // ---
     ConfigPanel configPanel = ConfigPanel.of(transitionNdParam);
-    configPanel.fieldPanels().addUniversalListener(s -> {
+    configPanel.getFieldPanels().addUniversalListener(s -> {
       System.out.println("compute udpate: " + s);
       transitionNdContainer = transitionNdParam.config();
     });
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", configPanel.getFields());
+    container.add("West", configPanel.getJScrollPane());
     // ---
     transitionNdContainer = transitionNdParam.config();
   }

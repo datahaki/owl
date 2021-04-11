@@ -48,7 +48,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     super(false, GeodesicDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", ConfigPanel.of(this).getFields());
+    container.add("West", ConfigPanel.of(this).getJScrollPane());
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);

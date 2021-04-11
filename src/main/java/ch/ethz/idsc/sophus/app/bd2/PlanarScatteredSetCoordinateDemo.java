@@ -30,8 +30,8 @@ import ch.ethz.idsc.tensor.ref.gui.ConfigPanel;
     spinnerLogWeighting.setVisible(false);
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(dequeGenesisProperties);
-    configPanel.fieldPanels().addUniversalListener(l -> recompute());
-    container.add("West", configPanel.getFields());
+    configPanel.getFieldPanels().addUniversalListener(l -> recompute());
+    container.add("West", configPanel.getJScrollPane());
     // ---
     ManifoldDisplay geodesicDisplay = R2Display.INSTANCE;
     actionPerformed(geodesicDisplay);

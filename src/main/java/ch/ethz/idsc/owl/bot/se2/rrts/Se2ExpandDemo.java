@@ -45,8 +45,7 @@ import ch.ethz.idsc.tensor.io.GifAnimationWriter;
       owlyFrame.geometricComponent.setOffset(42, 456);
       owlyFrame.jFrame.setBounds(100, 100, 500, 500);
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);
-      int frame = 0;
-      while (frame++ < 40 && owlyFrame.jFrame.isVisible()) {
+      for (int frame = 0; frame < 40 && owlyFrame.jFrame.isVisible(); ++frame) {
         for (int count = 0; count < 5; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
         owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
