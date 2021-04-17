@@ -11,7 +11,6 @@ import ch.ethz.idsc.tensor.TensorRuntimeException;
 import ch.ethz.idsc.tensor.alg.Array;
 import ch.ethz.idsc.tensor.io.Primitives;
 import ch.ethz.idsc.tensor.red.Entrywise;
-import ch.ethz.idsc.tensor.sca.Increment;
 
 /* package */ class DQMInspection {
   private final Tensor min;
@@ -21,7 +20,7 @@ import ch.ethz.idsc.tensor.sca.Increment;
   public DQMInspection(Map<Tensor, RLDomainQueue> rlDomainQueueMap) {
     min = rlDomainQueueMap.keySet().stream().reduce(Entrywise.min()).get();
     max = rlDomainQueueMap.keySet().stream().reduce(Entrywise.max()).get();
-    Tensor width = max.subtract(min).map(Increment.ONE);
+    Tensor width = max.subtract(min).map(RealScalar.ONE::add);
     if (!ExactTensorQ.of(width))
       throw TensorRuntimeException.of(min, max, width);
     count = Array.zeros(Primitives.toListInteger(width));

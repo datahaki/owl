@@ -22,7 +22,7 @@ import ch.ethz.idsc.sophus.math.TensorMapping;
 import ch.ethz.idsc.sophus.opt.LogWeightings;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.Tensors;
-import ch.ethz.idsc.tensor.mat.InfluenceMatrix;
+import ch.ethz.idsc.tensor.mat.gr.InfluenceMatrix;
 
 /* package */ class Se2CoveringInvarianceDemo extends LogWeightingDemo {
   private final JToggleButton jToggleAxes = new JToggleButton("axes");

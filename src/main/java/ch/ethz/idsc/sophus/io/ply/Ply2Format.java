@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ch.ethz.idsc.sophus.srf.SurfaceMesh;
+import ch.ethz.idsc.tensor.RealScalar;
 import ch.ethz.idsc.tensor.Scalars;
 import ch.ethz.idsc.tensor.Tensor;
 import ch.ethz.idsc.tensor.ext.HomeDirectory;
 import ch.ethz.idsc.tensor.ext.ReadLine;
 import ch.ethz.idsc.tensor.io.Export;
-import ch.ethz.idsc.tensor.sca.Increment;
 
 public enum Ply2Format {
   ;
@@ -42,7 +42,7 @@ public enum Ply2Format {
     try (InputStream inputStream = new FileInputStream(file)) {
       SurfaceMesh surfaceMesh = Ply2Format.parse(ReadLine.of(inputStream));
       Export.of(HomeDirectory.file("mesh.v.csv"), surfaceMesh.vrt);
-      Export.of(HomeDirectory.file("mesh.i.csv"), surfaceMesh.ind.map(Increment.ONE));
+      Export.of(HomeDirectory.file("mesh.i.csv"), surfaceMesh.ind.map(RealScalar.ONE::add));
     }
   }
 }

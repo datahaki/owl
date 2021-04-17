@@ -13,7 +13,6 @@ import ch.ethz.idsc.tensor.Tensors;
 import ch.ethz.idsc.tensor.alg.Array;
 import ch.ethz.idsc.tensor.alg.Dimensions;
 import ch.ethz.idsc.tensor.ext.Integers;
-import ch.ethz.idsc.tensor.sca.Decrement;
 
 /** computes manhatten distance by flood fill */
 public class FloodFill2D {
@@ -56,7 +55,7 @@ public class FloodFill2D {
       prev = next;
     }
     while (!prev.isEmpty()) {
-      ttl = Decrement.ONE.apply(ttl);
+      ttl = ttl.subtract(RealScalar.ONE);
       if (Scalars.isZero(ttl))
         break;
       next = new HashSet<>();
