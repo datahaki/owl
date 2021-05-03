@@ -1,0 +1,32 @@
+// code by jph, astoll
+package ch.alpine.owl.demo.order;
+
+import java.io.Serializable;
+
+import ch.alpine.owl.math.order.BinaryRelation;
+import ch.alpine.owl.math.order.Order;
+import ch.alpine.owl.math.order.OrderComparator;
+import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.sca.Clip;
+
+/** Implements an interval order for intervals on the real numbers.
+ * 
+ * <p>An interval order is a special kind of strict partial order, thus,
+ * it is transitive, irreflexive and asymmetric.
+ * 
+ * <p>One interval I1, being considered less than another, I2,
+ * if I1 is completely to the left of I2
+ * 
+ * <p>For two intervals <tt>x_i = [l_i, r_i] </tt> and <tt>x_j = [l_j, r_j]</tt>,
+ * <tt>x_i R x_j</tt> is satisfied if and only if <tt>r_i &lt l_j </tt>.
+ * In other words, interval <tt> x_i</tt> has to end before <tt> x_j </tt>.
+ * 
+ * https://en.wikipedia.org/wiki/Interval_order */
+public enum ClipStrictPartialOrder {
+  ;
+  /** binary relation
+   * irreflexive */
+  private static final BinaryRelation<Clip> BINARY_RELATION = (BinaryRelation<Clip> & Serializable) //
+  (x, y) -> Scalars.lessThan(x.max(), y.min());
+  public static final OrderComparator<Clip> INSTANCE = new Order<>(BINARY_RELATION);
+}

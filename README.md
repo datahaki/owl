@@ -1,8 +1,8 @@
-# ch.ethz.idsc.owl <a href="https://travis-ci.org/idsc-frazzoli/owl"><img src="https://travis-ci.org/idsc-frazzoli/owl.svg?branch=master" alt="Build Status"></a>
+![alpine_877](https://user-images.githubusercontent.com/4012178/116814864-1b1a1580-ab5b-11eb-97e6-1441af4ececa.png)
 
-Library for motion planning in Java, version `0.5.9`
+# ch.alpine.owl <a href="https://travis-ci.com/datahaki/owl"><img src="https://travis-ci.com/datahaki/owl.svg?branch=master" alt="Build Status"></a>
 
-![owl](https://user-images.githubusercontent.com/4012178/63221687-dc80d380-c19c-11e9-8aa4-8f7b36f5a4d4.png)
+Library for motion planning in Java, version `0.6.0`
 
 The library was developed with the following objectives in mind
 * suitable for use in safety-critical real-time systems
@@ -175,7 +175,7 @@ Specify `repository` and `dependency` of the owl library in the `pom.xml` file o
 <repositories>
   <repository>
     <id>owl-mvn-repo</id>
-    <url>https://raw.github.com/idsc-frazzoli/owl/mvn-repo/</url>
+    <url>https://raw.github.com/datahaki/owl/mvn-repo/</url>
     <snapshots>
       <enabled>true</enabled>
       <updatePolicy>always</updatePolicy>
@@ -185,9 +185,9 @@ Specify `repository` and `dependency` of the owl library in the `pom.xml` file o
 
 <dependencies>
   <dependency>
-    <groupId>ch.ethz.idsc</groupId>
+    <groupId>ch.alpine</groupId>
     <artifactId>owl</artifactId>
-    <version>0.5.9</version>
+    <version>0.6.0</version>
   </dependency>
 </dependencies>
 ```
@@ -319,7 +319,3 @@ by Jan Hakenberg,
 * *Lie Groups for 2D and 3D Transformations* by Ethan Eade
 * *Manifold-valued subdivision schemes based on geodesic inductive averaging* by Nira Dyn, Nir Sharon
 * *Power Coordinates: A Geometric Construction of Barycentric Coordinates on Convex Polytopes* by Max Budninskiy, Beibei Liu, Yiying Tong, Mathieu Desbrun
-
----
-
-![ethz300](https://user-images.githubusercontent.com/4012178/45925071-bf9d3b00-bf0e-11e8-9d92-e30650fd6bf6.png)

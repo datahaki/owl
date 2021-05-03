@@ -1,0 +1,23 @@
+// code by jph
+package ch.alpine.owl.gui.win;
+
+import java.awt.geom.AffineTransform;
+
+import ch.alpine.tensor.Tensor;
+
+public enum AffineTransforms {
+  ;
+  /** function helps to draw a transformed BufferedImage in a Graphics object
+   * 
+   * @param matrix 3 x 3 in SE2
+   * @return java::AffineTransform */
+  public static AffineTransform toAffineTransform(Tensor matrix) {
+    return new AffineTransform( //
+        matrix.Get(0, 0).number().doubleValue(), //
+        matrix.Get(1, 0).number().doubleValue(), //
+        matrix.Get(0, 1).number().doubleValue(), //
+        matrix.Get(1, 1).number().doubleValue(), //
+        matrix.Get(0, 2).number().doubleValue(), //
+        matrix.Get(1, 2).number().doubleValue());
+  }
+}
