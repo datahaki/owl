@@ -50,11 +50,11 @@ import ch.alpine.tensor.itp.DeBoor;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics); // control points
     // ---
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     ScalarTensorFunction scalarTensorFunction = //
         DeBoor.of(geodesicInterface, knots, control);
-    GeodesicBSplineFunction.of(geodesicDisplay.geodesicInterface(), degree, control);
+    GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, control);
     Scalar center = RationalScalar.of(control.length() - 1, 2);
     Tensor refined = Subdivide.of( //
         center.subtract(RationalScalar.HALF), //
@@ -62,16 +62,16 @@ import ch.alpine.tensor.itp.DeBoor;
         Math.max(1, upper * (1 << levels))).map(scalarTensorFunction);
     {
       Tensor selected = scalarTensorFunction.apply(parameter);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
       geometricLayer.popMatrix();
     }
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

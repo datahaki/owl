@@ -16,8 +16,8 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.ClothoidDistance;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
@@ -82,9 +82,9 @@ import ch.alpine.tensor.red.Mean;
         tensor).render(geometricLayer, graphics);
     // renderControlPoints(geometricLayer, graphics);
     if (1 < tensor.length()) {
-      ManifoldDisplay geodesicDisplay = manifoldDisplay();
+      ManifoldDisplay manifoldDisplay = manifoldDisplay();
       Tensor control;
-      switch (geodesicDisplay.toString()) {
+      switch (manifoldDisplay.toString()) {
       case "SE2C":
       case "SE2":
         // TODO use various options: unit vector, scaled by parametric distance, ...
@@ -114,9 +114,9 @@ import ch.alpine.tensor.red.Mean;
         }
       }
       HermiteSubdivision hermiteSubdivision = spinnerLabelScheme.getValue().supply( //
-          geodesicDisplay.hsManifold(), //
-          geodesicDisplay.hsTransport(), //
-          geodesicDisplay.biinvariantMean());
+          manifoldDisplay.hsManifold(), //
+          manifoldDisplay.hsTransport(), //
+          manifoldDisplay.biinvariantMean());
       TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
       int levels = spinnerRefine.getValue();
       Tensor iterate = Do.of(control, tensorIteration::iterate, levels);
@@ -124,7 +124,7 @@ import ch.alpine.tensor.red.Mean;
       Curvature2DRender.of(curve, false, geometricLayer, graphics);
       {
         Scalar scale = RealScalar.of(0.3);
-        switch (geodesicDisplay.toString()) {
+        switch (manifoldDisplay.toString()) {
         case "SE2C":
         case "SE2":
           new Se2HermitePlot(iterate, scale).render(geometricLayer, graphics);

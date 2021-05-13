@@ -9,8 +9,8 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.so3.Rodrigues;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
@@ -55,7 +55,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       if (jToggleAnimate.isSelected()) {
@@ -63,8 +63,8 @@ import ch.alpine.tensor.sca.Sign;
         Tensor vectorExp = Rodrigues.vectorExp(vector);
         Tensor list = Tensors.empty();
         for (Tensor xya : snapshot) {
-          Tensor project = vectorExp.dot(geodesicDisplay.project(xya));
-          Tensor xya_ = geodesicDisplay.toPoint(project).append(Sign.isNegative(project.Get(2)) //
+          Tensor project = vectorExp.dot(manifoldDisplay.project(xya));
+          Tensor xya_ = manifoldDisplay.toPoint(project).append(Sign.isNegative(project.Get(2)) //
               ? RealScalar.of(-1)
               : RealScalar.ZERO);
           list.append(xya_);
@@ -75,7 +75,7 @@ import ch.alpine.tensor.sca.Sign;
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       LeversHud.render(bitype(), leversRender);
     }
   }

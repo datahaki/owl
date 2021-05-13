@@ -15,8 +15,8 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -68,12 +68,12 @@ public class ClothoidNdDemo extends ControlPointsDemo {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     // ---
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(10 / Math.sqrt(SIZE)));
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(10 / Math.sqrt(SIZE)));
     Color color_fill = new Color(255, 128, 128, 64);
     Color color_draw = new Color(255, 128, 128, 255);
     for (Tensor point : getGeodesicControlPoints()) {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
       Path2D path2d = geometricLayer.toPath2D(shape);
       path2d.closePath();
       graphics.setColor(color_fill);
@@ -84,7 +84,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     }
     Tensor mouse = geometricLayer.getMouseSe2State();
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mouse));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mouse));
       Path2D path2d = geometricLayer.toPath2D(shape);
       path2d.closePath();
       graphics.setColor(Color.CYAN);
@@ -99,7 +99,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
         : rrtsNodeCollection1;
     int _value = Scalars.intValueExact(value);
     graphics.setColor(new Color(255, 0, 0, 128));
-    ClothoidBuilder clothoidBuilder = (ClothoidBuilder) geodesicDisplay.geodesicInterface();
+    ClothoidBuilder clothoidBuilder = (ClothoidBuilder) manifoldDisplay.geodesicInterface();
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));
     for (RrtsNode rrtsNode : rrtsNodeCollection.nearTo(mouse, _value)) {
       Tensor other = rrtsNode.state();

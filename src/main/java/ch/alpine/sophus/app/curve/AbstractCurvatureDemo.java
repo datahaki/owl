@@ -12,8 +12,8 @@ import ch.alpine.java.awt.BufferedImageSupplier;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.CurveVisualSet;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.Tensor;
@@ -48,7 +48,7 @@ public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
 
   @Override
   public synchronized final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor refined = protected_render(geometricLayer, graphics);
     if (this instanceof BufferedImageSupplier && //
         jToggleGraph.isSelected()) {
@@ -57,12 +57,12 @@ public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
     }
     if (jToggleCurvature.isSelected() && //
         1 < refined.length()) {
-      Tensor tensor = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+      Tensor tensor = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
       VisualSet visualSet = new VisualSet(COLOR_DATA_INDEXED);
       CurveVisualSet curveVisualSet = new CurveVisualSet(tensor);
       curveVisualSet.addCurvature(visualSet);
       Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
-      ListPlot.of(visualSet).draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
+      ListPlot.of(visualSet, true).draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
     }
   }
 

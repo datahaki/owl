@@ -33,8 +33,8 @@ import ch.alpine.tensor.Tensors;
     configPanel.getFieldPanels().addUniversalListener(l -> recompute());
     container.add("West", configPanel.getJScrollPane());
     // ---
-    ManifoldDisplay geodesicDisplay = R2Display.INSTANCE;
-    actionPerformed(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
     addSpinnerListener(l -> recompute());
     recompute();
@@ -48,12 +48,12 @@ import ch.alpine.tensor.Tensors;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof R2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof R2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-1.017, -0.953, 0.000}, {-0.991, 0.113, 0.000}, {-0.644, 0.967, 0.000}, {0.509, 0.840, 0.000}, {0.689, 0.513, 0.000}, {0.956, -0.627, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof S2Display) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{0.300, 0.092, 0.000}, {-0.563, -0.658, 0.262}, {-0.854, -0.200, 0.000}, {-0.746, 0.663, -0.262}, {0.467, 0.758, 0.262}, {0.446, -0.554, 0.262}}"));
       setControlPointsSe2(Tensors.fromString( //
@@ -63,7 +63,7 @@ import ch.alpine.tensor.Tensors;
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.363, 0.388, 0.000}, {-0.825, -0.271, 0.000}, {-0.513, 0.804, 0.000}, {0.646, 0.667, 0.000}, {0.704, -0.100, 0.000}, {-0.075, -0.733, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof H2Display) {
+    if (manifoldDisplay instanceof H2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-1.900, 1.783, 0.000}, {-0.083, 2.517, 0.000}, {0.500, 1.400, 0.000}, {2.300, 2.117, 0.000}, {2.833, 0.217, 0.000}, {1.000, -1.550, 0.000}, {-0.283, -0.667, 0.000}, {-1.450, -1.650, 0.000}}"));
     }

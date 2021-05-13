@@ -51,9 +51,9 @@ import ch.alpine.tensor.img.ColorDataLists;
     RenderQuality.setQuality(graphics);
     Tensor mouse = geometricLayer.getMouseSe2State();
     // ---
-    ManifoldDisplay geodesicDisplay = Se2CoveringClothoidDisplay.INSTANCE;
+    ManifoldDisplay manifoldDisplay = Se2CoveringClothoidDisplay.INSTANCE;
     {
-      Tensor shape = geodesicDisplay.shape();
+      Tensor shape = manifoldDisplay.shape();
       geometricLayer.pushMatrix(Se2Matrix.of(Array.zeros(3)));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       graphics.setColor(new Color(255, 0, 0, 64));
@@ -80,7 +80,7 @@ import ch.alpine.tensor.img.ColorDataLists;
       Tensor points = clothoidTransition.linearized(RealScalar.of(geometricLayer.pixel2modelWidth(5)));
       new PathRender(color, 1.5f).setCurve(points, false).render(geometricLayer, graphics);
       // ---
-      Tensor tensor = Tensor.of(points.stream().map(geodesicDisplay::toPoint));
+      Tensor tensor = Tensor.of(points.stream().map(manifoldDisplay::toPoint));
       CurveVisualSet curveVisualSet = new CurveVisualSet(tensor);
       curveVisualSet.addCurvature(visualSet);
       {

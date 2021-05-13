@@ -15,8 +15,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.bd2.AbstractExportWeightingDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.DoubleScalar;
@@ -62,14 +62,14 @@ import ch.alpine.tensor.num.Pi;
     renderControlPoints(geometricLayer, graphics);
     final Tensor controlPoints = getGeodesicControlPoints();
     int index = 0;
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Tensor shape = geodesicDisplay.shape();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Tensor shape = manifoldDisplay.shape();
     graphics.setFont(FONT);
     FontMetrics fontMetrics = graphics.getFontMetrics();
     int fheight = fontMetrics.getAscent();
     graphics.setColor(Color.BLACK);
     for (Tensor q : controlPoints) {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(q));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(q));
       Rectangle rectangle = geometricLayer.toPath2D(shape, true).getBounds();
       graphics.drawString(" " + (index + 1), //
           rectangle.x + rectangle.width, //
@@ -78,7 +78,7 @@ import ch.alpine.tensor.num.Pi;
       ++index;
     }
     // ---
-    if (geodesicDisplay.dimensions() < controlPoints.length()) { // render basis functions
+    if (manifoldDisplay.dimensions() < controlPoints.length()) { // render basis functions
       Tensor origin = getGeodesicControlPoints();
       TensorUnaryOperator tensorUnaryOperator = operator(origin);
       Tensor wgs = compute(tensorUnaryOperator, refinement());

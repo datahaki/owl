@@ -20,8 +20,8 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.app.io.GokartPoseDataV1;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.LieDifferences;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.rn.RnManifold;
@@ -115,10 +115,10 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   }
 
   @Override
-  protected void differences_render(Graphics2D graphics, ManifoldDisplay geodesicDisplay, Tensor refined, boolean spectrogram) {
-    LieGroup lieGroup = geodesicDisplay.lieGroup();
+  protected void differences_render(Graphics2D graphics, ManifoldDisplay manifoldDisplay, Tensor refined, boolean spectrogram) {
+    LieGroup lieGroup = manifoldDisplay.lieGroup();
     if (Objects.nonNull(lieGroup)) {
-      LieDifferences lieDifferences = new LieDifferences(geodesicDisplay.lieExponential());
+      LieDifferences lieDifferences = new LieDifferences(manifoldDisplay.lieExponential());
       LieDifferences lieDifferencesTime = new LieDifferences(RnManifold.INSTANCE);
       Tensor timeDifference = lieDifferencesTime.apply(Tensor.of(navigableMapStateTime().keySet().stream())).map(x -> x.reciprocal());
       Tensor speeds = timeDifference.pmul(lieDifferences.apply(refined));

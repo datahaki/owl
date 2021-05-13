@@ -28,8 +28,8 @@ import ch.alpine.tensor.itp.LinearInterpolation;
     // ---
     Tensor controlPoints = leversRender.getSequence();
     int length = controlPoints.length();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     graphics.setColor(Color.RED);
     for (int index = 0; index < length; ++index) {
       Tensor blend = UnitVector.of(length, index);
@@ -38,7 +38,7 @@ import ch.alpine.tensor.itp.LinearInterpolation;
           .map(Scalar.class::cast) //
           .map(interpolation::at) //
           .map(w -> biinvariantMean.mean(controlPoints, w)) //
-          .map(geodesicDisplay::toPoint));
+          .map(manifoldDisplay::toPoint));
       Path2D path2d = geometricLayer.toPath2D(map);
       graphics.draw(path2d);
       // Tensor tensor = weights.get(index);

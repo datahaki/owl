@@ -16,9 +16,9 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gds.Se2AbstractDisplay;
@@ -56,24 +56,24 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
     }
     timerFrame.jToolBar.add(jToggleCtrl);
     // ---
-    ManifoldDisplay geodesicDisplay = H2Display.INSTANCE;
-    setGeodesicDisplay(geodesicDisplay);
-    actionPerformed(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = H2Display.INSTANCE;
+    setGeodesicDisplay(manifoldDisplay);
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       {
         LeversRender leversRender = //
-            LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+            LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
         leversRender.renderOrigin();
         leversRender.renderIndexX();
         // ---
@@ -91,11 +91,11 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
           refined = curveSubdivision.cyclic(refined);
         // ---
         RenderQuality.setQuality(graphics);
-        if (geodesicDisplay instanceof R2Display)
+        if (manifoldDisplay instanceof R2Display)
           GRID_RENDER.render(geometricLayer, graphics);
         {
           RenderQuality.setQuality(graphics);
-          Path2D path2d = geometricLayer.toPath2D(Tensor.of(refined.stream().map(geodesicDisplay::toPoint)), true);
+          Path2D path2d = geometricLayer.toPath2D(Tensor.of(refined.stream().map(manifoldDisplay::toPoint)), true);
           graphics.setColor(DOMAIN_F);
           graphics.fill(path2d);
           graphics.setColor(DOMAIN_D);
@@ -104,7 +104,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
         final Tensor domain = Drop.tail(Subdivide.of(0.0, 1.0, spinnerLength.getValue()), 1);
         geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(10, 0)));
         GRID_RENDER.render(geometricLayer, graphics);
-        HsDesign hsDesign = new HsDesign(geodesicDisplay.hsManifold());
+        HsDesign hsDesign = new HsDesign(manifoldDisplay.hsManifold());
         Tensor planar = hsDesign.matrix(refined, origin);
         {
           RenderQuality.setQuality(graphics);
@@ -133,7 +133,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
           ScalarTensorFunction scalarTensorFunction = ArcLengthParameterization.of(distances, geodesicInterface, refined);
           Tensor border = domain.map(scalarTensorFunction);
           LeversRender leversRender = LeversRender.of( //
-              geodesicDisplay, //
+              manifoldDisplay, //
               border, origin, //
               geometricLayer, graphics);
           leversRender.renderLevers();
@@ -145,22 +145,22 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof R2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof R2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{0.358, 0.508, 0.000}, {-0.375, -0.567, 0.000}, {0.442, -0.425, 0.000}, {1.142, 0.000, 0.000}, {1.158, 1.108, 0.000}, {0.192, 1.433, 0.000}, {-0.625, 0.342, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof H2Display) {
+    if (manifoldDisplay instanceof H2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{1.033, -1.267, 0.000}, {0.567, -2.433, 0.000}, {1.967, -1.967, 0.000}, {2.067, -0.583, 0.000}, {-0.017, -0.450, 0.000}, {-0.700, -1.017, 0.000}}"));
       setControlPointsSe2(Tensors.fromString( //
           "{{1.350, -0.558, 0.000}, {0.558, -1.175, 0.000}, {2.350, -1.233, 0.000}, {1.975, 0.208, 0.000}, {1.600, 1.175, 0.000}, {0.567, 0.467, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof S2Display) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.325, -0.500, 0.262}, {-0.225, -0.917, 0.262}, {0.556, -0.496, 0.262}, {0.708, 0.417, 0.262}, {-0.177, 0.088, 0.262}, {-0.792, 0.358, 0.262}, {-0.867, -0.258, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof Se2AbstractDisplay) {
+    if (manifoldDisplay instanceof Se2AbstractDisplay) {
       setControlPointsSe2(Tensors.fromString(
           "{{3.150, -2.700, -0.524}, {-1.950, -3.683, 0.000}, {-1.500, -1.167, 2.094}, {4.533, -0.733, -1.047}, {8.567, -3.300, -1.309}, {2.917, -5.050, -1.047}}"));
     }

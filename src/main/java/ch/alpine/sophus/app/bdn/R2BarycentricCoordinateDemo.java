@@ -19,8 +19,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
@@ -84,12 +84,12 @@ import ch.alpine.tensor.sca.Sign;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ColorDataGradient colorDataGradient = colorDataGradient();
     AxesRender.INSTANCE.render(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor controlPoints = getGeodesicControlPoints();
     renderControlPoints(geometricLayer, graphics);
-    BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     if (2 < controlPoints.length()) {
-      Tensor domain = Tensor.of(controlPoints.stream().map(geodesicDisplay::toPoint));
+      Tensor domain = Tensor.of(controlPoints.stream().map(manifoldDisplay::toPoint));
       RenderQuality.setQuality(graphics);
       Tensor hull = ConvexHull.of(domain);
       {
@@ -155,32 +155,32 @@ import ch.alpine.tensor.sca.Sign;
         for (int i1 = 1; i1 < n; ++i1) {
           Tensor ao = array[i0][i1];
           if (Objects.nonNull(ao)) {
-            Tensor po = geodesicDisplay.toPoint(ao);
+            Tensor po = manifoldDisplay.toPoint(ao);
             Tensor a0 = array[i0 - 1][i1];
             Tensor a1 = array[i0][i1 - 1];
             Tensor ac = array[i0 - 1][i1 - 1];
             if (Objects.nonNull(a0) && Objects.nonNull(a1) && Objects.nonNull(ac)) {
-              Tensor p0 = geodesicDisplay.toPoint(a0);
-              Tensor p1 = geodesicDisplay.toPoint(a1);
-              Tensor pc = geodesicDisplay.toPoint(ac);
+              Tensor p0 = manifoldDisplay.toPoint(a0);
+              Tensor p1 = manifoldDisplay.toPoint(a1);
+              Tensor pc = manifoldDisplay.toPoint(ac);
               Scalar scalar = VectorAngle.of(p0.subtract(po), p1.subtract(po)).get();
               Tensor rgba = cdg.apply(scalar.divide(Pi.VALUE));
               graphics.setColor(ColorFormat.toColor(rgba));
               graphics.fill(geometricLayer.toPath2D(Unprotect.byRef(po, p0, pc, p1)));
             }
             if (Objects.nonNull(a0))
-              graphics.draw(geometricLayer.toPath2D(Tensors.of(geodesicDisplay.toPoint(a0), po)));
+              graphics.draw(geometricLayer.toPath2D(Tensors.of(manifoldDisplay.toPoint(a0), po)));
             if (Objects.nonNull(a1))
-              graphics.draw(geometricLayer.toPath2D(Tensors.of(geodesicDisplay.toPoint(a1), po)));
+              graphics.draw(geometricLayer.toPath2D(Tensors.of(manifoldDisplay.toPoint(a1), po)));
           }
         }
       if (jToggleArrows.isSelected()) {
-        Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.5));
+        Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.5));
         for (int i0 = 0; i0 < n; ++i0)
           for (int i1 = 0; i1 < n; ++i1) {
             Tensor mean = array[i0][i1];
             if (Objects.nonNull(mean)) {
-              geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
+              geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
               graphics.setColor(nag[i0][i1] ? new Color(255, 128, 128, 128 + 32) : new Color(128, 128, 128, 64));
               graphics.fill(geometricLayer.toPath2D(shape));
               geometricLayer.popMatrix();

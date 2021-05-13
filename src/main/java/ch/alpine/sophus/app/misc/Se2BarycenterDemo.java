@@ -11,8 +11,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
 import ch.alpine.sophus.math.Geodesic;
@@ -53,18 +53,18 @@ import ch.alpine.tensor.red.Total;
     Tensor sequence = getControlPointsSe2();
     if (sequence.length() == 4)
       try {
-        ManifoldDisplay geodesicDisplay = manifoldDisplay();
+        ManifoldDisplay manifoldDisplay = manifoldDisplay();
         // ---
-        Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+        Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
         final ScalarTensorFunction curve = geodesicInterface.curve(sequence.get(0), sequence.get(1));
         {
           Tensor tensor = Subdivide.of(-0.5, 1.5, 55).map(curve);
-          Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(geodesicDisplay::toPoint)));
+          Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(manifoldDisplay::toPoint)));
           graphics.setColor(Color.BLUE);
           graphics.draw(path2d);
         }
         // ---
-        BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+        BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
         Tensor tX = Subdivide.of(-1, 1, 20);
         Tensor tY = Subdivide.of(-1, 1, 8);
         int n = tY.length();
@@ -97,7 +97,7 @@ import ch.alpine.tensor.red.Total;
         for (int c0 = 0; c0 < array.length; ++c0)
           for (int c1 = 0; c1 < n; ++c1) {
             Tensor mean = array[c0][c1];
-            geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
+            geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
             Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.1));
             path2d.closePath();
             graphics.fill(path2d);
@@ -105,7 +105,7 @@ import ch.alpine.tensor.red.Total;
           }
         // ---
         {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(curve.apply(RationalScalar.HALF)));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(curve.apply(RationalScalar.HALF)));
           Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.5));
           path2d.closePath();
           graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(0));

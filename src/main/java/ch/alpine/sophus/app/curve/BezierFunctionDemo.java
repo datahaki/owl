@@ -51,7 +51,7 @@ import ch.alpine.tensor.alg.Subdivide;
 
   @Override // from RenderInterface
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     // ---
@@ -66,19 +66,19 @@ import ch.alpine.tensor.alg.Subdivide;
             ? n / (double) (n - 1)
             : 1.0, 1 << levels);
     {
-      BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+      BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
       if (Objects.nonNull(biinvariantMean)) {
         Tensor refined = domain.map(BezierFunction.of(biinvariantMean, sequence));
-        Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+        Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
         new PathRender(Color.RED, 1.25f).setCurve(render, false).render(geometricLayer, graphics);
       }
     }
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Tensor refined = domain.map(BezierFunction.of(geodesicInterface, sequence));
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

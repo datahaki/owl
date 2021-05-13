@@ -11,9 +11,9 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.opt.PolygonCoordinates;
@@ -29,9 +29,9 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
     // ---
     timerFrame.jToolBar.add(jToggleNeutral);
     // ---
-    ManifoldDisplay geodesicDisplay = S2Display.INSTANCE;
-    setGeodesicDisplay(geodesicDisplay);
-    actionPerformed(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = S2Display.INSTANCE;
+    setGeodesicDisplay(manifoldDisplay);
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
     jToggleNeutral.setSelected(true);
   }
@@ -39,13 +39,13 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       leversRender.renderSurfaceP();
       leversRender.renderSequence();
       leversRender.renderTangentsXtoP(false);
@@ -57,10 +57,10 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
         TensorUnaryOperator tensorUnaryOperator = operator(sequence);
         Tensor weights = tensorUnaryOperator.apply(origin);
         leversRender.renderWeights(weights);
-        BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+        BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
         Tensor mean = biinvariantMean.mean(sequence, weights);
         LeversRender.ORIGIN_RENDER_0 //
-            .show(geodesicDisplay::matrixLift, geodesicDisplay.shape(), Tensors.of(mean)) //
+            .show(manifoldDisplay::matrixLift, manifoldDisplay.shape(), Tensors.of(mean)) //
             .render(geometricLayer, graphics);
       } catch (Exception e) {
         System.err.println(e);
@@ -71,16 +71,16 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof R2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof R2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.175, 0.358, 0.000}, {-0.991, 0.113, 0.000}, {-0.644, 0.967, 0.000}, {0.509, 0.840, 0.000}, {0.689, 0.513, 0.000}, {0.956, -0.627, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof H2Display) {
+    if (manifoldDisplay instanceof H2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{0.200, 0.233, 0.000}, {-0.867, 2.450, 0.000}, {2.300, 2.117, 0.000}, {2.567, 0.150, 0.000}, {1.600, -2.583, 0.000}, {-2.550, -1.817, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof S2Display) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.363, 0.388, 0.000}, {-0.825, -0.271, 0.000}, {-0.513, 0.804, 0.000}, {0.646, 0.667, 0.000}, {0.704, -0.100, 0.000}, {-0.075, -0.733, 0.000}}"));
     }

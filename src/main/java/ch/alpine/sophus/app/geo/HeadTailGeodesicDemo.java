@@ -11,8 +11,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.Scalar;
@@ -41,20 +41,20 @@ import ch.alpine.tensor.sca.Round;
     RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     // ---
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor controlPoints = getGeodesicControlPoints();
     Tensor p = controlPoints.get(0);
     Tensor q = controlPoints.get(1);
-    ScalarTensorFunction scalarTensorFunction = geodesicDisplay.geodesicInterface().curve(p, q);
+    ScalarTensorFunction scalarTensorFunction = manifoldDisplay.geodesicInterface().curve(p, q);
     graphics.setStroke(new BasicStroke(1.5f));
-    Tensor shape = geodesicDisplay.shape();
+    Tensor shape = manifoldDisplay.shape();
     Tensor domain = Subdivide.of(0, 1, spinnerRefine.getValue());
     Tensor points = domain.map(scalarTensorFunction);
-    Tensor xys = Tensor.of(points.stream().map(geodesicDisplay::toPoint));
+    Tensor xys = Tensor.of(points.stream().map(manifoldDisplay::toPoint));
     graphics.setColor(new Color(128, 255, 0));
     graphics.draw(geometricLayer.toPath2D(xys, false));
     try {
-      Scalar pseudoDistance = geodesicDisplay.parametricDistance().distance(p, q);
+      Scalar pseudoDistance = manifoldDisplay.parametricDistance().distance(p, q);
       {
         graphics.setColor(Color.DARK_GRAY);
         graphics.drawString("" + pseudoDistance.map(Round._4), 10, 20);
@@ -66,14 +66,14 @@ import ch.alpine.tensor.sca.Round;
     graphics.setColor(Color.LIGHT_GRAY);
     for (Tensor _t : domain) {
       Tensor pq = scalarTensorFunction.apply((Scalar) _t);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(pq));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(pq));
       graphics.draw(geometricLayer.toPath2D(shape, true));
       geometricLayer.popMatrix();
     }
     graphics.setColor(Color.BLUE);
     for (Tensor _t : Subdivide.of(0, 1, 1)) {
       Tensor pq = scalarTensorFunction.apply((Scalar) _t);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(pq));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(pq));
       graphics.draw(geometricLayer.toPath2D(shape, true));
       geometricLayer.popMatrix();
     }

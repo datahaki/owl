@@ -22,8 +22,8 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.Biinvariants;
@@ -151,8 +151,8 @@ import ch.alpine.tensor.pdf.RandomVariate;
   @Override
   public void recompute() {
     System.out.println("recomp");
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
     Labels labels = Objects.requireNonNull(spinnerLabels.getValue());
     Objects.requireNonNull(vector);
     Classification classification = labels.apply(vector);
@@ -166,18 +166,18 @@ import ch.alpine.tensor.pdf.RandomVariate;
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     if (Objects.nonNull(bufferedImage)) {
-      Tensor pixel2model = geodesicDisplay.geodesicArrayPlot().pixel2model(new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight()));
+      Tensor pixel2model = manifoldDisplay.geodesicArrayPlot().pixel2model(new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight()));
       ImageRender.of(bufferedImage, pixel2model).render(geometricLayer, graphics);
     }
     // ---
-    render(geometricLayer, graphics, geodesicDisplay, getGeodesicControlPoints(), vector, spinnerColor.getValue().cyclic());
+    render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), vector, spinnerColor.getValue().cyclic());
   }
 
-  static void render(GeometricLayer geometricLayer, Graphics2D graphics, ManifoldDisplay geodesicDisplay, Tensor sequence, Tensor vector,
+  static void render(GeometricLayer geometricLayer, Graphics2D graphics, ManifoldDisplay manifoldDisplay, Tensor sequence, Tensor vector,
       ColorDataIndexed colorDataIndexedT) {
-    Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(1.0));
+    Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(1.0));
     int index = 0;
     ColorDataIndexed colorDataIndexedO = colorDataIndexedT.deriveWithAlpha(128);
     for (Tensor point : sequence) {
@@ -185,7 +185,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
       PointsRender pointsRender = new PointsRender( //
           colorDataIndexedO.getColor(label), //
           colorDataIndexedT.getColor(label));
-      pointsRender.show(geodesicDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
+      pointsRender.show(manifoldDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
       ++index;
     }
   }
@@ -205,8 +205,8 @@ import ch.alpine.tensor.pdf.RandomVariate;
           variogram(), //
           sequence);
       System.out.print("computing " + biinvariant);
-      ManifoldDisplay geodesicDisplay = manifoldDisplay();
-      GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
+      ManifoldDisplay manifoldDisplay = manifoldDisplay();
+      GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
       Classification classification = spinnerLabels.getValue().apply(vector);
       ColorDataLists colorDataLists = spinnerColor.getValue();
       ColorDataIndexed colorDataIndexed = colorDataLists.strict();
@@ -220,7 +220,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
         GeometricLayer geometricLayer = GeometricLayer.of(Inverse.of(matrix));
         Graphics2D graphics = bufferedImage.createGraphics();
         RenderQuality.setQuality(graphics);
-        render(geometricLayer, graphics, geodesicDisplay, sequence, vector, colorDataIndexed);
+        render(geometricLayer, graphics, manifoldDisplay, sequence, vector, colorDataIndexed);
       }
       // ---
       String format = String.format("%s_%s.png", logWeighting, biinvariant);

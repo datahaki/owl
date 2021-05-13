@@ -32,14 +32,14 @@ import ch.alpine.tensor.RealScalar;
     return transitionSpace;
   }
 
-  static TransitionNdTypes fromString(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay.equals(Se2ClothoidDisplay.ANALYTIC))
+  static TransitionNdTypes fromString(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay.equals(Se2ClothoidDisplay.ANALYTIC))
       return CLOTHOID_ANALYTIC;
-    if (geodesicDisplay.equals(Se2ClothoidDisplay.LEGENDRE))
+    if (manifoldDisplay.equals(Se2ClothoidDisplay.LEGENDRE))
       return CLOTHOID_LEGENDRE;
-    if (geodesicDisplay instanceof Se2AbstractDisplay)
+    if (manifoldDisplay instanceof Se2AbstractDisplay)
       return DUBINS;
-    if (geodesicDisplay instanceof RnDisplay)
+    if (manifoldDisplay instanceof RnDisplay)
       return RN;
     throw new IllegalArgumentException();
   }

@@ -78,21 +78,21 @@ import ch.alpine.tensor.sca.N;
     renderControlPoints(geometricLayer, graphics);
     // ---
     int levels = spinnerRefine.getValue();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Interpolation interpolation = LagrangeInterpolation.of(geodesicDisplay.geodesicInterface(), getGeodesicControlPoints());
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Interpolation interpolation = LagrangeInterpolation.of(manifoldDisplay.geodesicInterface(), getGeodesicControlPoints());
     Tensor refined = Subdivide.of(0, sequence.length(), 1 << levels).map(interpolation::at);
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
     {
       Tensor selected = interpolation.at(parameter);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
       geometricLayer.popMatrix();
     }
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

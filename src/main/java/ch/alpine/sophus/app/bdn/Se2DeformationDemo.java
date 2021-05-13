@@ -2,8 +2,8 @@
 package ch.alpine.sophus.app.bdn;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.RealScalar;
@@ -27,10 +27,10 @@ import ch.alpine.tensor.pdf.UniformDistribution;
 
   @Override
   synchronized Tensor shufflePointsSe2(int n) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Distribution distributionp = UniformDistribution.of(-1, 7);
     Distribution distributiona = UniformDistribution.of(-1, 1);
-    return Tensors.vector(i -> geodesicDisplay.project( //
+    return Tensors.vector(i -> manifoldDisplay.project( //
         RandomVariate.of(distributionp, 2).append(RandomVariate.of(distributiona))), n);
   }
 

@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.spline.BSplineLimitMatrix;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
@@ -28,14 +28,14 @@ import ch.alpine.tensor.red.Nest;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     renderControlPoints(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     Tensor sequence = getGeodesicControlPoints();
     if (0 < sequence.length()) {
       Tensor matrix = BSplineLimitMatrix.string(sequence.length(), 3);
       Tensor invers = Inverse.of(matrix);
       Tensor tensor = Tensor.of(invers.stream().map(weights -> biinvariantMean.mean(sequence, weights)));
-      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(geodesicDisplay.geodesicInterface());
+      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(manifoldDisplay.geodesicInterface());
       Tensor refine = Nest.of(curveSubdivision::string, tensor, 5);
       new PathRender(Color.BLUE).setCurve(refine, false).render(geometricLayer, graphics);
     }

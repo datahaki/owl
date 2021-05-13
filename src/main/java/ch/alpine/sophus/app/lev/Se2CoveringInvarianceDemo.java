@@ -10,8 +10,8 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
@@ -50,19 +50,19 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    LieGroup lieGroup = geodesicDisplay.lieGroup();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    LieGroup lieGroup = manifoldDisplay.lieGroup();
     Tensor controlPointsAll = getGeodesicControlPoints();
     LieGroupOps lieGroupOps = new LieGroupOps(lieGroup);
     if (0 < controlPointsAll.length()) {
-      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
+      VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
       {
         Tensor sequence = controlPointsAll.extract(1, controlPointsAll.length());
         Tensor origin = controlPointsAll.get(0);
         Tensor matrix = new HsDesign(vectorLogManifold).matrix(sequence, origin);
         Tensor weights = InfluenceMatrix.of(matrix).leverages_sqrt();
         LeversRender leversRender = //
-            LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+            LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
         leversRender.renderSequence();
         leversRender.renderLevers();
         leversRender.renderWeights(weights);
@@ -82,7 +82,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
         Tensor matrix = new HsDesign(vectorLogManifold).matrix(sequence, origin);
         Tensor weights = InfluenceMatrix.of(matrix).leverages_sqrt();
         LeversRender leversRender = //
-            LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+            LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
         leversRender.renderSequence();
         leversRender.renderLevers();
         leversRender.renderWeights(weights);

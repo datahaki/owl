@@ -8,8 +8,8 @@ import java.awt.geom.Path2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.lie.LieExponential;
@@ -44,16 +44,16 @@ import ch.alpine.tensor.sca.Sqrt;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     Tensor sequence = getControlPointsSe2();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    HsManifold hsManifold = LieExponential.of(geodesicDisplay.lieGroup(), Se2CoveringExponential.INSTANCE);
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    HsManifold hsManifold = LieExponential.of(manifoldDisplay.lieGroup(), Se2CoveringExponential.INSTANCE);
     // ---
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Tensor p = sequence.get(0);
     Tensor q = sequence.get(1);
     {
       ScalarTensorFunction curve = geodesicInterface.curve(p, q);
       Tensor tensor = Subdivide.of(-0.05, 1.05, 25).map(curve);
-      Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(geodesicDisplay::toPoint)));
+      Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(manifoldDisplay::toPoint)));
       graphics.setColor(Color.BLUE);
       graphics.draw(path2d);
     }
@@ -71,7 +71,7 @@ import ch.alpine.tensor.sca.Sqrt;
           Tensor coord = px.dot(tensor);
           Tensor exp = exponential.exp(coord);
           // ---
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(exp));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(exp));
           Path2D path2d = geometricLayer.toPath2D(ARROWHEAD);
           path2d.closePath();
           graphics.draw(path2d);

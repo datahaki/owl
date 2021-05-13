@@ -17,11 +17,11 @@ public enum Bitype {
   CUPOLA, //
   ;
 
-  public Biinvariant from(ManifoldDisplay geodesicDisplay) {
+  public Biinvariant from(ManifoldDisplay manifoldDisplay) {
     switch (this) {
     case METRIC1:
     case METRIC2:
-      Biinvariant biinvariant = geodesicDisplay.metricBiinvariant();
+      Biinvariant biinvariant = manifoldDisplay.metricBiinvariant();
       return Objects.nonNull(biinvariant) //
           ? biinvariant
           : Biinvariants.LEVERAGES;

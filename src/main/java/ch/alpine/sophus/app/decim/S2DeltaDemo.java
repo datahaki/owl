@@ -14,8 +14,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
 import ch.alpine.sophus.hs.sn.SnGeodesic;
@@ -77,10 +77,10 @@ import ch.alpine.tensor.pdf.NormalDistribution;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     // Tensor planar = ;
-    pathRenderCurve.setCurve(Tensor.of(snDeltaRaw.sequence.stream().map(geodesicDisplay::toPoint)), false).render(geometricLayer, graphics);
-    pathRenderShape.setCurve(Tensor.of(snDeltaFil.sequence.stream().map(geodesicDisplay::toPoint)), false).render(geometricLayer, graphics);
+    pathRenderCurve.setCurve(Tensor.of(snDeltaRaw.sequence.stream().map(manifoldDisplay::toPoint)), false).render(geometricLayer, graphics);
+    pathRenderShape.setCurve(Tensor.of(snDeltaFil.sequence.stream().map(manifoldDisplay::toPoint)), false).render(geometricLayer, graphics);
     if (false)
       for (Tensor ctrl : snDeltaRaw.differences) {
         Tensor p = ctrl.get(0); // point
@@ -88,8 +88,8 @@ import ch.alpine.tensor.pdf.NormalDistribution;
         {
           graphics.setStroke(new BasicStroke(1.5f));
           graphics.setColor(Color.GRAY);
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(p));
-          graphics.draw(geometricLayer.toLine2D(geodesicDisplay.tangentProjection(p).apply(v)));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(p));
+          graphics.draw(geometricLayer.toLine2D(manifoldDisplay.tangentProjection(p).apply(v)));
           geometricLayer.popMatrix();
         }
       }
@@ -100,8 +100,8 @@ import ch.alpine.tensor.pdf.NormalDistribution;
         {
           graphics.setStroke(new BasicStroke(1.5f));
           graphics.setColor(Color.RED);
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(p));
-          graphics.draw(geometricLayer.toLine2D(geodesicDisplay.tangentProjection(p).apply(v0)));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(p));
+          graphics.draw(geometricLayer.toLine2D(manifoldDisplay.tangentProjection(p).apply(v0)));
           geometricLayer.popMatrix();
         }
         Tensor q = snDeltaRaw.sequence.get(index - 0);

@@ -15,8 +15,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.Geodesic;
@@ -61,9 +61,9 @@ import ch.alpine.tensor.io.Primitives;
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     surfaceMesh.vrt = getControlPointsSe2();
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     SurfaceMeshRefinement surfaceMeshRefinement = //
-        CatmullClarkRefinement.of(geodesicDisplay.biinvariantMean());
+        CatmullClarkRefinement.of(manifoldDisplay.biinvariantMean());
     // surfaceMeshRefinement = DooSabinRefinement.of(geodesicDisplay.biinvariantMean());
     SurfaceMesh refine = surfaceMesh;
     for (int count = 0; count < spinnerRefine.getValue(); ++count)
@@ -77,14 +77,14 @@ import ch.alpine.tensor.io.Primitives;
       graphics.fill(path2d);
     }
     graphics.setColor(new Color(192, 192, 192, 192));
-    Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.5));
+    Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.5));
     for (Tensor mean : refine.vrt) {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
       graphics.fill(geometricLayer.toPath2D(shape));
       geometricLayer.popMatrix();
     }
     if (ctrl.isSelected()) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       Tensor domain = Subdivide.of(0.0, 1.0, 10);
       Set<Tensor> set = new HashSet<>();
       for (Tensor ind : surfaceMesh.ind) {

@@ -59,7 +59,7 @@ import ch.alpine.tensor.sca.Sqrt;
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics, LeversRender leversRender) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     // GeodesicInterface geodesicInterface = geodesicDisplay.geodesicInterface();
     Tensor controlPoints = leversRender.getSequence();
     Tensor geodesicMouse = leversRender.getOrigin();
@@ -84,20 +84,20 @@ import ch.alpine.tensor.sca.Sqrt;
         ? Sqrt.of(weights).negate()
         : weights);
     // ---
-    Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(1.4));
+    Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(1.4));
     int index = 0;
     for (Tensor point : controlPoints) {
       int label = vector.Get(index).number().intValue();
       PointsRender pointsRender = new PointsRender( //
           COLOR_DATA_INDEXED_T.getColor(label), //
           COLOR_DATA_INDEXED_O.getColor(label));
-      pointsRender.show(geodesicDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
+      pointsRender.show(manifoldDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
       ++index;
     }
     // ---
     Classification classification = spinnerLabels.getValue().apply(vector);
     int bestLabel = classification.result(weights).getLabel();
-    geometricLayer.pushMatrix(geodesicDisplay.matrixLift(geodesicMouse));
+    geometricLayer.pushMatrix(manifoldDisplay.matrixLift(geodesicMouse));
     Path2D path2d = geometricLayer.toPath2D(shape, true);
     graphics.setColor(COLOR_DATA_INDEXED_T.getColor(bestLabel));
     graphics.fill(path2d);

@@ -10,8 +10,8 @@ import java.util.Arrays;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.ply.Arrowhead;
@@ -42,8 +42,8 @@ import ch.alpine.tensor.red.Nest;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     Tensor control = getGeodesicControlPoints();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     GeodesicCatmullClarkSubdivision catmullClarkSubdivision = //
         new GeodesicCatmullClarkSubdivision(geodesicInterface);
     Tensor refined = Nest.of( //
@@ -52,7 +52,7 @@ import ch.alpine.tensor.red.Nest;
         spinnerRefine.getValue());
     for (Tensor points : refined)
       for (Tensor point : points) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(ARROWHEAD_LO);
         geometricLayer.popMatrix();
         int rgb = 128 + 32;

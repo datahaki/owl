@@ -10,12 +10,13 @@ import javax.swing.JCheckBox;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.sophus.app.avg.GeometricSymLinkRender.Link;
 import ch.alpine.sophus.app.sym.SymLink;
 import ch.alpine.sophus.app.sym.SymLinkBuilder;
 import ch.alpine.sophus.app.sym.SymLinkImage;
 import ch.alpine.sophus.app.sym.SymScalar;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -44,7 +45,11 @@ import ch.alpine.tensor.Tensors;
       symLink = SymLinkBuilder.of(control, symScalar);
       // ---
       RenderQuality.setQuality(graphics);
-      GeometricSymLinkRender.of(manifoldDisplay, symLink).render(geometricLayer, graphics);
+      GeometricSymLinkRender geometricSymLinkRender = new GeometricSymLinkRender(manifoldDisplay);
+      geometricSymLinkRender.steps = 1;
+      Link link = geometricSymLinkRender.new Link(symLink);
+      // link.steps=1;
+      link.render(geometricLayer, graphics);
       RenderQuality.setDefault(graphics);
     }
     renderControlPoints(geometricLayer, graphics);

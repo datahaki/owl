@@ -22,9 +22,9 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.app.lev.LogWeightingBase;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
@@ -75,8 +75,8 @@ import ch.alpine.tensor.img.ColorDataLists;
     // ---
     timerFrame.jToolBar.add(jToggleButton);
     // ---
-    ManifoldDisplay geodesicDisplay = R2Display.INSTANCE;
-    actionPerformed(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
     addSpinnerListener(l -> recompute());
     recompute();

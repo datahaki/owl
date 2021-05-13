@@ -10,8 +10,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.LieGroupOps;
 import ch.alpine.sophus.math.TensorMapping;
@@ -63,8 +63,8 @@ import ch.alpine.tensor.ext.Timing;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    LieGroup lieGroup = geodesicDisplay.lieGroup();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    LieGroup lieGroup = manifoldDisplay.lieGroup();
     LieGroupOps lieGroupOps = new LieGroupOps(lieGroup);
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
@@ -75,11 +75,11 @@ import ch.alpine.tensor.ext.Timing;
       Tensor origin = optional.get();
       LeversHud.render( //
           Bitype.METRIC1, //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics));
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics));
       TensorMapping actionL = lieGroupOps.actionL(Tensors.vector(7, 0, 0));
       LeversHud.render( //
           bitype(), //
-          LeversRender.of(geodesicDisplay, actionL.slash(sequence), actionL.apply(origin), geometricLayer, graphics));
+          LeversRender.of(manifoldDisplay, actionL.slash(sequence), actionL.apply(origin), geometricLayer, graphics));
     }
   }
 

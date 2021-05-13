@@ -7,8 +7,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    final ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    final ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
     pathRender.setCurve(sequence, true);
     if (0 < sequence.length()) {
@@ -51,7 +51,7 @@ import ch.alpine.tensor.img.ColorDataLists;
       {
         Tensor origin = weights.dot(polygon).extract(0, 2);
         LeversRender leversRender = //
-            LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+            LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
         leversRender.renderWeights(weights);
         leversRender.renderOrigin();
         leversRender.renderLevers(weights);
@@ -59,7 +59,7 @@ import ch.alpine.tensor.img.ColorDataLists;
       {
         Tensor origin = PolygonCentroid.of(sequence);
         LeversRender leversRender = //
-            LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+            LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
         leversRender.renderOrigin();
       }
     }

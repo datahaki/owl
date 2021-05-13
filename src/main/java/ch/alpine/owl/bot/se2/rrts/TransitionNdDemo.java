@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.ref.gui.ConfigPanel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 
 /** this demo maps the GeodesicDisplays
@@ -41,12 +41,12 @@ public class TransitionNdDemo extends ControlPointsDemo {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     transitionNdContainer.render( //
-        geodesicDisplay, //
+        manifoldDisplay, //
         geometricLayer, //
         graphics, //
-        geodesicDisplay.project(geometricLayer.getMouseSe2State()));
+        manifoldDisplay.project(geometricLayer.getMouseSe2State()));
   }
 
   public static void main(String[] args) {

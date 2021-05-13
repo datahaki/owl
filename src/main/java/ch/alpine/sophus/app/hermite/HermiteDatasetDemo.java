@@ -21,8 +21,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.so2.So2Lift;
 import ch.alpine.sophus.math.Do;
@@ -174,13 +174,13 @@ import ch.alpine.tensor.sca.Power;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     {
-      final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(1));
+      final Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(1));
       pathRenderCurve.setCurve(_control.get(Tensor.ALL, 0), false).render(geometricLayer, graphics);
       if (_control.length() <= 1000)
         for (Tensor point : _control.get(Tensor.ALL, 0)) {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
           Path2D path2d = geometricLayer.toPath2D(shape);
           path2d.closePath();
           graphics.setColor(new Color(255, 128, 128, 64));
@@ -193,9 +193,9 @@ import ch.alpine.tensor.sca.Power;
     graphics.setColor(Color.DARK_GRAY);
     Scalar delta = RationalScalar.of(spinnerLabelSkips.getValue(), 50);
     HermiteSubdivision hermiteSubdivision = spinnerLabelScheme.getValue().supply( //
-        geodesicDisplay.hsManifold(), //
-        geodesicDisplay.hsTransport(), //
-        geodesicDisplay.biinvariantMean());
+        manifoldDisplay.hsManifold(), //
+        manifoldDisplay.hsTransport(), //
+        manifoldDisplay.biinvariantMean());
     TensorIteration tensorIteration = hermiteSubdivision.string(delta, _control);
     int levels = spinnerLabelLevel.getValue();
     Tensor refined = Do.of(_control, tensorIteration::iterate, levels);

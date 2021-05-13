@@ -52,8 +52,8 @@ import ch.alpine.tensor.sca.Clips;
     Distribution distribution = UniformDistribution.of(Clips.absolute(Pi.VALUE));
     Tensor sequence = RandomVariate.of(distribution, spinnerLength.getValue(), 3);
     setControlPointsSe2(sequence);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
     tensorUnaryOperator = //
         logWeighting().operator(biinvariant(), vectorLogManifold, variogram(), getGeodesicControlPoints());
   }
@@ -61,12 +61,12 @@ import ch.alpine.tensor.sca.Clips;
   @Override // from AbstractHoverDemo
   void render(GeometricLayer geometricLayer, Graphics2D graphics, LeversRender leversRender) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = leversRender.getSequence();
     Tensor origin = leversRender.getOrigin();
     Tensor weights = tensorUnaryOperator.apply(origin);
     // ---
-    OrderingHelper.of(geodesicDisplay, origin, sequence, weights, spinnerColorData.getValue(), geometricLayer, graphics);
+    OrderingHelper.of(manifoldDisplay, origin, sequence, weights, spinnerColorData.getValue(), geometricLayer, graphics);
   }
 
   public static void main(String[] args) {

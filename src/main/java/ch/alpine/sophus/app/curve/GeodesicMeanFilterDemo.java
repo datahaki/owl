@@ -9,8 +9,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.flt.ga.GeodesicMeanFilter;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -42,13 +42,13 @@ import ch.alpine.tensor.red.Nest;
     Tensor control = getGeodesicControlPoints();
     int radius = spinnerRadius.getValue();
     renderControlPoints(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    TensorUnaryOperator geodesicMeanFilter = GeodesicMeanFilter.of(geodesicDisplay.geodesicInterface(), radius);
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    TensorUnaryOperator geodesicMeanFilter = GeodesicMeanFilter.of(manifoldDisplay.geodesicInterface(), radius);
     Tensor refined = geodesicMeanFilter.apply(control);
-    Tensor curve = Nest.of(BSpline4CurveSubdivision.split2lo(geodesicDisplay.geodesicInterface())::string, refined, 7);
-    Tensor render = Tensor.of(curve.stream().map(geodesicDisplay::toPoint));
+    Tensor curve = Nest.of(BSpline4CurveSubdivision.split2lo(manifoldDisplay.geodesicInterface())::string, refined, 7);
+    Tensor render = Tensor.of(curve.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
-    renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+    renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
   }
 
   public static void main(String[] args) {

@@ -16,8 +16,8 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.app.io.GokartPoseData;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.LieDifferences;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.tensor.RealScalar;
@@ -91,10 +91,11 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 
   @Override
   protected void differences_render( //
-      Graphics2D graphics, ManifoldDisplay geodesicDisplay, Tensor refined, boolean spectrogram) {
-    LieGroup lieGroup = geodesicDisplay.lieGroup();
+      Graphics2D graphics, ManifoldDisplay manifoldDisplay, Tensor refined, boolean spectrogram) {
+    Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
+    LieGroup lieGroup = manifoldDisplay.lieGroup();
     if (Objects.nonNull(lieGroup)) {
-      LieDifferences lieDifferences = new LieDifferences(geodesicDisplay.lieExponential());
+      LieDifferences lieDifferences = new LieDifferences(manifoldDisplay.lieExponential());
       Scalar sampleRate = MAGNITUDE_PER_SECONDS.apply(gokartPoseData.getSampleRate());
       Tensor speeds = lieDifferences.apply(refined).multiply(sampleRate);
       if (0 < speeds.length()) {
@@ -119,8 +120,12 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
             offset_y += hgt + MAGNIFY;
           }
         }
-        JFreeChart jFreeChart = ListPlot.of(visualSet);
-        jFreeChart.draw(graphics, new Rectangle2D.Double(0, 0, 80 + speeds.length(), 400));
+        JFreeChart jFreeChart = ListPlot.of(visualSet, true);
+        int dwidth = 80 + speeds.length();
+        int height = 400;
+        jFreeChart.draw(graphics, new Rectangle2D.Double( //
+            dimension.getWidth() - dwidth, dimension.getHeight() - height, //
+            80 + speeds.length(), height));
       }
     }
   }

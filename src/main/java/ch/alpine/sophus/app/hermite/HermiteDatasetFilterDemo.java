@@ -18,8 +18,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Group;
@@ -95,13 +95,13 @@ import ch.alpine.tensor.sca.Power;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     {
-      final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.3));
+      final Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.3));
       pathRenderCurve.setCurve(_control.get(Tensor.ALL, 0), false).render(geometricLayer, graphics);
       if (_control.length() <= 1000)
         for (Tensor point : _control.get(Tensor.ALL, 0)) {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
           Path2D path2d = geometricLayer.toPath2D(shape);
           path2d.closePath();
           graphics.setColor(new Color(255, 128, 128, 64));
@@ -120,9 +120,9 @@ import ch.alpine.tensor.sca.Power;
     int levels = 2 * spinnerLabelLevel.getValue();
     Tensor refined = Do.of(_control, tensorIteration::iterate, levels);
     {
-      final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.3));
+      final Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.3));
       for (Tensor point : refined.get(Tensor.ALL, 0)) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
         graphics.setColor(new Color(128, 255, 128, 64));

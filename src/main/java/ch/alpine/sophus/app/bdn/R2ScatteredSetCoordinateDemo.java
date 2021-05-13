@@ -17,8 +17,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
 import ch.alpine.sophus.gui.ren.ArrayRender;
 import ch.alpine.sophus.lie.rn.RnManifold;
@@ -96,11 +96,11 @@ import ch.alpine.tensor.red.Entrywise;
       }
       setControlPointsSe2(control);
     }
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor controlPoints = getGeodesicControlPoints();
-    BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     if (2 < controlPoints.length()) {
-      Tensor domain = Tensor.of(controlPoints.stream().map(geodesicDisplay::toPoint));
+      Tensor domain = Tensor.of(controlPoints.stream().map(manifoldDisplay::toPoint));
       RenderQuality.setQuality(graphics);
       // ---
       TensorUnaryOperator tensorUnaryOperator = operator(RnManifold.INSTANCE, domain);
@@ -129,7 +129,7 @@ import ch.alpine.tensor.red.Entrywise;
           wgs.set(weights, c1, c0);
           Tensor mean = biinvariantMean.mean(controlPoints, weights);
           array[c0][c1] = mean;
-          point[c0][c1] = geodesicDisplay.toPoint(mean);
+          point[c0][c1] = manifoldDisplay.toPoint(mean);
           ++c1;
         }
         ++c0;
@@ -145,11 +145,11 @@ import ch.alpine.tensor.red.Entrywise;
       // render grid lines functions
       if (jToggleArrows.isSelected()) {
         graphics.setColor(Color.LIGHT_GRAY);
-        Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(Math.min(1, 3.0 / Math.sqrt(refinement()))));
+        Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(Math.min(1, 3.0 / Math.sqrt(refinement()))));
         for (int i0 = 0; i0 < array.length; ++i0)
           for (int i1 = 0; i1 < array.length; ++i1) {
             Tensor mean = array[i0][i1];
-            geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
+            geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
             graphics.setColor(new Color(128, 128, 128, 64));
             graphics.fill(geometricLayer.toPath2D(shape, true));
             geometricLayer.popMatrix();
@@ -157,7 +157,7 @@ import ch.alpine.tensor.red.Entrywise;
       }
     }
     LeversRender leversRender = //
-        LeversRender.of(geodesicDisplay, controlPoints, null, geometricLayer, graphics);
+        LeversRender.of(manifoldDisplay, controlPoints, null, geometricLayer, graphics);
     leversRender.renderSequence();
     leversRender.renderIndexP("q");
   }

@@ -18,8 +18,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.fit.HsWeiszfeldMethod;
 import ch.alpine.sophus.fit.SpatialMedian;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -80,13 +80,13 @@ import ch.alpine.tensor.sca.Chop;
     if (0 == length)
       return;
     Tensor weights = ConstantArray.of(RationalScalar.of(1, length), length);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     Tensor mean = biinvariantMean.mean(sequence, weights);
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     for (Tensor point : sequence) {
       Tensor curve = Subdivide.of(0, 1, 20).map(geodesicInterface.curve(point, mean));
       Path2D path2d = geometricLayer.toPath2D(curve);
@@ -95,8 +95,8 @@ import ch.alpine.tensor.sca.Chop;
     graphics.setStroke(new BasicStroke(1));
     renderControlPoints(geometricLayer, graphics);
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       path2d.closePath();
       graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(0));
       graphics.fill(path2d);
@@ -107,13 +107,13 @@ import ch.alpine.tensor.sca.Chop;
     if (median.isSelected()) {
       Biinvariant biinvariant = spinnerDistances.getValue();
       TensorUnaryOperator weightingInterface = //
-          biinvariant.weighting(geodesicDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
+          biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
       SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
       Optional<Tensor> optional = spatialMedian.uniform(sequence);
       if (optional.isPresent()) {
         mean = optional.get();
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mean));
-        Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape().multiply(RealScalar.of(0.7)));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
+        Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape().multiply(RealScalar.of(0.7)));
         path2d.closePath();
         graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(1));
         graphics.fill(path2d);

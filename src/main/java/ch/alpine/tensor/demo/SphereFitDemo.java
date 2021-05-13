@@ -12,8 +12,8 @@ import ch.alpine.sophus.fit.HsWeiszfeldMethod;
 import ch.alpine.sophus.fit.SpatialMedian;
 import ch.alpine.sophus.fit.SphereFit;
 import ch.alpine.sophus.fit.WeiszfeldMethod;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -56,7 +56,7 @@ import ch.alpine.tensor.sca.Chop;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    final ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    final ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor control = getGeodesicControlPoints();
     {
       Optional<SphereFit> optional = SphereFit.of(control);
@@ -86,7 +86,7 @@ import ch.alpine.tensor.sca.Chop;
     {
       Tensor weiszfeld = WeiszfeldMethod.with(Chop._04).uniform(control).get();
       geometricLayer.pushMatrix(Se2Matrix.translation(weiszfeld));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       path2d.closePath();
       graphics.setColor(new Color(128, 128, 255, 64));
       graphics.fill(path2d);
@@ -97,8 +97,8 @@ import ch.alpine.tensor.sca.Chop;
     {
       Biinvariant biinvariant = MetricBiinvariant.EUCLIDEAN;
       TensorUnaryOperator weightingInterface = //
-          biinvariant.weighting(geodesicDisplay.hsManifold(), InversePowerVariogram.of(1), control);
-      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(geodesicDisplay.biinvariantMean(), weightingInterface, Chop._06);
+          biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), control);
+      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(manifoldDisplay.biinvariantMean(), weightingInterface, Chop._06);
       Optional<Tensor> optional = spatialMedian.uniform(control);
       if (optional.isPresent()) {
         Tensor weiszfeld = optional.get();

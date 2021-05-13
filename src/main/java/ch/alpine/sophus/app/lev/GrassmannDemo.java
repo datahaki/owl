@@ -11,8 +11,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gds.Se2AbstractDisplay;
@@ -36,11 +36,11 @@ import ch.alpine.tensor.img.ColorDataGradients;
     // ---
     timerFrame.jToolBar.add(jToggleNeutral);
     // ---
-    ManifoldDisplay geodesicDisplay = Se2CoveringDisplay.INSTANCE;
-    geodesicDisplay = S2Display.INSTANCE;
-    setGeodesicDisplay(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = Se2CoveringDisplay.INSTANCE;
+    manifoldDisplay = S2Display.INSTANCE;
+    setGeodesicDisplay(manifoldDisplay);
     setBitype(Bitype.LEVERAGES1);
-    actionPerformed(geodesicDisplay);
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
     jToggleNeutral.setSelected(true);
   }
@@ -48,13 +48,13 @@ import ch.alpine.tensor.img.ColorDataGradients;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       ColorDataGradient colorDataGradient = spinnerColorData.getValue().deriveWithOpacity(RealScalar.of(0.5));
       LeversHud.render(bitype(), leversRender, colorDataGradient);
     } else {
@@ -63,11 +63,11 @@ import ch.alpine.tensor.img.ColorDataGradients;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof R2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof R2Display) {
       setControlPointsSe2(R2PointCollection.SOME);
     } else //
-    if (geodesicDisplay instanceof S2Display) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{0.300, 0.092, 0.000}, {-0.563, -0.658, 0.262}, {-0.854, -0.200, 0.000}, {-0.746, 0.663, -0.262}, {0.467, 0.758, 0.262}, {0.446, -0.554, 0.262}}"));
       setControlPointsSe2(Tensors.fromString( //
@@ -77,7 +77,7 @@ import ch.alpine.tensor.img.ColorDataGradients;
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.363, 0.388, 0.000}, {-0.825, -0.271, 0.000}, {-0.513, 0.804, 0.000}, {0.646, 0.667, 0.000}, {0.704, -0.100, 0.000}, {-0.075, -0.733, 0.000}}"));
     } else //
-    if (geodesicDisplay instanceof Se2AbstractDisplay) {
+    if (manifoldDisplay instanceof Se2AbstractDisplay) {
       setControlPointsSe2(Tensors.fromString(
           "{{3.150, -2.700, -0.524}, {-1.950, -3.683, 0.000}, {-1.500, -1.167, 2.094}, {4.533, -0.733, -1.047}, {8.567, -3.300, -1.309}, {2.917, -5.050, -1.047}}"));
     }

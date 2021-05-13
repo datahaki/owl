@@ -14,8 +14,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.decim.HsLineDistance;
 import ch.alpine.sophus.decim.HsLineDistance.NormImpl;
 import ch.alpine.sophus.decim.HsLineProjection;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se2c.Se2CoveringExponential;
@@ -51,30 +51,30 @@ import ch.alpine.tensor.sca.Round;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     Tensor sequence = getControlPointsSe2();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    LieGroup lieGroup = geodesicDisplay.lieGroup();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    LieGroup lieGroup = manifoldDisplay.lieGroup();
     Exponential exponential = Se2CoveringExponential.INSTANCE;
     // ---
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Tensor beg = sequence.get(0);
     Tensor end = sequence.get(1);
     ScalarTensorFunction curve = geodesicInterface.curve(beg, end);
     {
       Tensor tensor = Subdivide.of(-0.5, 1.5, 55).map(curve);
-      Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(geodesicDisplay::toPoint)));
+      Path2D path2d = geometricLayer.toPath2D(Tensor.of(tensor.stream().map(manifoldDisplay::toPoint)));
       graphics.setColor(Color.BLUE);
       graphics.draw(path2d);
     }
     final Tensor mouse = geometricLayer.getMouseSe2State();
     {
-      HsLineDistance hsLineDistance = new HsLineDistance(geodesicDisplay.hsManifold());
+      HsLineDistance hsLineDistance = new HsLineDistance(manifoldDisplay.hsManifold());
       NormImpl normImpl = hsLineDistance.tensorNorm(beg, end);
       {
         Tensor project = normImpl.project(mouse);
         Tensor exp = exponential.exp(project);
         Tensor glb = lieGroup.element(beg).combine(exp);
         {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(glb));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(glb));
           Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.4));
           path2d.closePath();
           graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(2));
@@ -94,7 +94,7 @@ import ch.alpine.tensor.sca.Round;
           graphics.drawString("" + orthogonal.map(Round._3), 0, 40);
         }
         {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(glb));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(glb));
           Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.4));
           path2d.closePath();
           graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(3));
@@ -106,10 +106,10 @@ import ch.alpine.tensor.sca.Round;
       }
     }
     {
-      HsLineProjection hsLineProjection = new HsLineProjection(geodesicDisplay.hsManifold());
+      HsLineProjection hsLineProjection = new HsLineProjection(manifoldDisplay.hsManifold());
       Tensor onto = hsLineProjection.onto(beg, end, mouse);
       {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(onto));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(onto));
         Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.4));
         path2d.closePath();
         graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(4));
@@ -121,7 +121,7 @@ import ch.alpine.tensor.sca.Round;
     }
     // ---
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(curve.apply(RationalScalar.HALF)));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(curve.apply(RationalScalar.HALF)));
       Path2D path2d = geometricLayer.toPath2D(Arrowhead.of(0.5));
       path2d.closePath();
       graphics.setColor(COLOR_DATA_INDEXED_FILL.getColor(0));

@@ -12,8 +12,8 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.rn.RnManifold;
 import ch.alpine.sophus.opt.LogWeightings;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
     int length = sequence.length();
     Tensor domain = Range.of(-sequence.length(), 0).map(Tensors::of).unmodifiable();
@@ -45,13 +45,13 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
     for (int index = 0; index < length; ++index) {
       Line2D line2d = geometricLayer.toLine2D( //
           domain.get(index).append(RealScalar.ZERO), //
-          geodesicDisplay.toPoint(sequence.get(index)));
+          manifoldDisplay.toPoint(sequence.get(index)));
       graphics.draw(line2d);
     }
     graphics.setStroke(new BasicStroke());
     if (1 < length) {
       Tensor samples = Subdivide.of(-length, 0, 127).map(Tensors::of);
-      BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+      BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
       TensorUnaryOperator tensorUnaryOperator = operator(RnManifold.INSTANCE, domain);
       Tensor curve = Tensor.of(samples.stream() //
           .map(tensorUnaryOperator) //

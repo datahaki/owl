@@ -13,8 +13,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -68,11 +68,11 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     if (4 <= control.length()) {
-      ManifoldDisplay geodesicDisplay = manifoldDisplay();
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+      ManifoldDisplay manifoldDisplay = manifoldDisplay();
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       Scalar exponent = RationalScalar.of(2 * jSliderExponent.getValue(), jSliderExponent.getMaximum());
       TensorUnaryOperator centripetalKnotSpacing = //
-          KnotSpacing.centripetal(geodesicDisplay.parametricDistance(), exponent);
+          KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), exponent);
       Tensor knots = centripetalKnotSpacing.apply(control);
       Scalar lo = knots.Get(1);
       Scalar hi = knots.Get(knots.length() - 2);
@@ -83,13 +83,13 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
       Tensor refined = Subdivide.increasing(interval, Math.max(1, levels * control.length())).map(scalarTensorFunction);
       {
         Tensor selected = scalarTensorFunction.apply(parameter);
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-        Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+        Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
         graphics.setColor(Color.DARK_GRAY);
         graphics.fill(path2d);
         geometricLayer.popMatrix();
       }
-      Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+      Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
       Curvature2DRender.of(render, false, geometricLayer, graphics);
       return refined;
     }

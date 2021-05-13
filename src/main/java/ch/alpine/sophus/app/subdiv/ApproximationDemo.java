@@ -20,8 +20,8 @@ import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.DoubleScalar;
@@ -48,13 +48,13 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
       CurveSubdivisionSchemes.SIXPOINT);
 
   private static class Container {
-    private final ManifoldDisplay geodesicDisplay;
+    private final ManifoldDisplay manifoldDisplay;
     private final Tensor tracked;
     private final Tensor control;
     private final Tensor refined;
 
-    public Container(ManifoldDisplay geodesicDisplay, Tensor tracked, Tensor control, Tensor refined) {
-      this.geodesicDisplay = geodesicDisplay;
+    public Container(ManifoldDisplay manifoldDisplay, Tensor tracked, Tensor control, Tensor refined) {
+      this.manifoldDisplay = manifoldDisplay;
       this.tracked = tracked;
       this.control = control;
       this.refined = refined;
@@ -115,8 +115,8 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
 
   private void updateState() {
     Tensor rawdata = gokartPoseData.getPose(spinnerLabelString.getValue(), spinnerLabelLimit.getValue());
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(geodesicDisplay.geodesicInterface(), GaussianWindow.FUNCTION);
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(manifoldDisplay.geodesicInterface(), GaussianWindow.FUNCTION);
     TensorUnaryOperator centerFilter = CenterFilter.of(tensorUnaryOperator, spinnerLabelWidth.getValue());
     Tensor tracked = centerFilter.apply(rawdata);
     int level = spinnerLabelLevel.getIndex();
@@ -126,9 +126,9 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
         .map(i -> i * steps) //
         .mapToObj(tracked::get));
     CurveSubdivision curveSubdivision = //
-        spinnerLabelScheme.getValue().of(geodesicDisplay);
+        spinnerLabelScheme.getValue().of(manifoldDisplay);
     Tensor refined = Nest.of(curveSubdivision::string, control, level);
-    _container = new Container(geodesicDisplay, tracked, control, refined);
+    _container = new Container(manifoldDisplay, tracked, control, refined);
   }
 
   @Override
@@ -137,7 +137,7 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
     if (Objects.isNull(container))
       return;
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = container.geodesicDisplay;
+    ManifoldDisplay manifoldDisplay = container.manifoldDisplay;
     {
       Tensor tracked = container.tracked;
       pathRenderCurve.setCurve(tracked, false).render(geometricLayer, graphics);
@@ -145,9 +145,9 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
     {
       Tensor control = container.control;
       int level = spinnerLabelLevel.getIndex();
-      final Tensor shape = geodesicDisplay.shape().multiply(MARKER_SCALE.multiply(RealScalar.of(1 + level)));
+      final Tensor shape = manifoldDisplay.shape().multiply(MARKER_SCALE.multiply(RealScalar.of(1 + level)));
       for (Tensor point : control) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
         graphics.setColor(new Color(255, 128, 128, 64));
@@ -159,10 +159,10 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
     }
     {
       Tensor refined = container.refined;
-      final Tensor shape = geodesicDisplay.shape().multiply(MARKER_SCALE.multiply(RealScalar.of(0.5)));
+      final Tensor shape = manifoldDisplay.shape().multiply(MARKER_SCALE.multiply(RealScalar.of(0.5)));
       pathRenderShape.setCurve(refined, false).render(geometricLayer, graphics);
       for (Tensor point : refined) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
         graphics.setColor(COLOR_SHAPE);

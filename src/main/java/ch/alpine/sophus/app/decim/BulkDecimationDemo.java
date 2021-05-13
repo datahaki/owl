@@ -11,8 +11,8 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.decim.CurveDecimation;
 import ch.alpine.sophus.decim.LineDistances;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.se2c.Se2CoveringExponential;
@@ -52,8 +52,8 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     int length = sequence.length();
     if (0 == length)
       return;
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
@@ -69,7 +69,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
       }
     }
     CurveDecimation curveDecimation = CurveDecimation.of( //
-        LineDistances.STANDARD.supply(geodesicDisplay.hsManifold()), //
+        LineDistances.STANDARD.supply(manifoldDisplay.hsManifold()), //
         RealScalar.ONE);
     Tensor decimate = curveDecimation.apply(sequence);
     {

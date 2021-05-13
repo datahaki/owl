@@ -45,12 +45,12 @@ public enum AbstractDemoHelper {
     boolean success = true;
     if (abstractDemo instanceof GeodesicDisplayDemo) {
       GeodesicDisplayDemo geodesicDisplayDemo = (GeodesicDisplayDemo) abstractDemo;
-      for (ManifoldDisplay geodesicDisplay : geodesicDisplayDemo.getGeodesicDisplays())
+      for (ManifoldDisplay manifoldDisplay : geodesicDisplayDemo.getGeodesicDisplays())
         try {
-          geodesicDisplayDemo.setGeodesicDisplay(geodesicDisplay);
+          geodesicDisplayDemo.setGeodesicDisplay(manifoldDisplay);
           geodesicDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
         } catch (Exception exception) {
-          System.err.println(geodesicDisplay);
+          System.err.println(manifoldDisplay);
           success = false;
         }
     }

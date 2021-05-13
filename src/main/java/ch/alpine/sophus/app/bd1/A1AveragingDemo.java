@@ -20,8 +20,8 @@ import ch.alpine.tensor.sca.N;
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
   private static final Scalar MARGIN = RealScalar.of(2);
 
-  public A1AveragingDemo(ManifoldDisplay geodesicDisplay) {
-    super(Arrays.asList(geodesicDisplay));
+  public A1AveragingDemo(ManifoldDisplay manifoldDisplay) {
+    super(Arrays.asList(manifoldDisplay));
   }
 
   final Tensor domain() {

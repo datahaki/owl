@@ -79,8 +79,8 @@ import ch.alpine.tensor.sca.N;
   }
 
   final void snap() {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    movingOrigin = Tensor.of(getControlPointsSe2().map(N.DOUBLE).stream().map(geodesicDisplay::project));
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    movingOrigin = Tensor.of(getControlPointsSe2().map(N.DOUBLE).stream().map(manifoldDisplay::project));
     recompute();
   }
 
@@ -102,7 +102,7 @@ import ch.alpine.tensor.sca.N;
     RenderQuality.setQuality(graphics);
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor origin = movingDomain2D.origin();
     Tensor target = getGeodesicControlPoints();
     // ---
@@ -113,22 +113,22 @@ import ch.alpine.tensor.sca.N;
     }
     boolean isTarget = jToggleTarget.isSelected();
     if (isTarget) { // connect origin and target pairs with lines/geodesics
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       graphics.setColor(new Color(128, 128, 128, 255));
       graphics.setStroke(STROKE);
       for (int index = 0; index < origin.length(); ++index) {
         ScalarTensorFunction scalarTensorFunction = //
             geodesicInterface.curve(origin.get(index), target.get(index));
         Tensor ms = Tensor.of(DOMAIN.map(scalarTensorFunction).stream() //
-            .map(geodesicDisplay::toPoint));
+            .map(manifoldDisplay::toPoint));
         graphics.draw(geometricLayer.toPath2D(ms));
       }
       graphics.setStroke(new BasicStroke(1));
     }
     POINTS_RENDER_POINTS //
-        .show(geodesicDisplay::matrixLift, shapeOrigin(), origin) //
+        .show(manifoldDisplay::matrixLift, shapeOrigin(), origin) //
         .render(geometricLayer, graphics);
-    LeversRender leversRender = LeversRender.of(geodesicDisplay, isTarget //
+    LeversRender leversRender = LeversRender.of(manifoldDisplay, isTarget //
         ? getGeodesicControlPoints()
         : origin, null, geometricLayer, graphics);
     if (isTarget)

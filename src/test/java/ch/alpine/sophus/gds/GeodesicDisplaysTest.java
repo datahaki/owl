@@ -16,15 +16,15 @@ public class GeodesicDisplaysTest extends TestCase {
   }
 
   public void testToPoint() {
-    for (ManifoldDisplay geodesicDisplay : ManifoldDisplays.ALL)
+    for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.ALL)
       try {
         Tensor xya = Tensors.vector(1, 2, 3);
-        Tensor p = Serialization.copy(geodesicDisplay).project(xya);
-        VectorQ.requireLength(geodesicDisplay.toPoint(p), 2);
-        Tensor matrix = geodesicDisplay.matrixLift(p);
+        Tensor p = Serialization.copy(manifoldDisplay).project(xya);
+        VectorQ.requireLength(manifoldDisplay.toPoint(p), 2);
+        Tensor matrix = manifoldDisplay.matrixLift(p);
         assertEquals(Dimensions.of(matrix), Arrays.asList(3, 3));
       } catch (Exception exception) {
-        System.out.println(geodesicDisplay);
+        System.out.println(manifoldDisplay);
         exception.printStackTrace();
         fail();
       }

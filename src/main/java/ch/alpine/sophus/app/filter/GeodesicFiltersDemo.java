@@ -9,8 +9,8 @@ import java.util.Arrays;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.opt.GeodesicFilters;
@@ -50,14 +50,14 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     renderControlPoints(geometricLayer, graphics);
     Tensor control = getGeodesicControlPoints();
     if (!Integers.isEven(control.length())) {
-      ManifoldDisplay geodesicDisplay = manifoldDisplay();
+      ManifoldDisplay manifoldDisplay = manifoldDisplay();
       ScalarUnaryOperator smoothingKernel = spinnerKernel.getValue().get();
       for (GeodesicFilters geodesicFilters : GeodesicFilters.values()) {
         int ordinal = geodesicFilters.ordinal();
-        Tensor mean = geodesicFilters.from(geodesicDisplay, smoothingKernel).apply(control);
+        Tensor mean = geodesicFilters.from(manifoldDisplay, smoothingKernel).apply(control);
         Color color = COLOR_DRAW.getColor(ordinal);
         PointsRender pointsRender = new PointsRender(COLOR_FILL.getColor(ordinal), color);
-        pointsRender.show(geodesicDisplay::matrixLift, geodesicDisplay.shape(), Tensors.of(mean)).render(geometricLayer, graphics);
+        pointsRender.show(manifoldDisplay::matrixLift, manifoldDisplay.shape(), Tensors.of(mean)).render(geometricLayer, graphics);
         graphics.setColor(color);
         graphics.drawString("" + geodesicFilters, 0, 32 + ordinal * 16);
       }

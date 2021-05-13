@@ -16,8 +16,8 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.util.DisjointSets;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.MinimumSpanningTree;
@@ -52,8 +52,8 @@ import ch.alpine.tensor.pdf.UniformDistribution;
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     RenderQuality.setQuality(graphics);
     Tensor sequence = getGeodesicControlPoints();
     Tensor domain = Subdivide.of(0.0, 1.0, 10);
@@ -87,8 +87,8 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   }
 
   public Tensor distanceMatrix(Tensor sequence) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    TensorUnaryOperator tuo = biinvariant().distances(geodesicDisplay.hsManifold(), sequence);
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    TensorUnaryOperator tuo = biinvariant().distances(manifoldDisplay.hsManifold(), sequence);
     Tensor matrix = Tensor.of(sequence.stream().map(tuo));
     return SymmetricMatrixQ.of(matrix) //
         ? matrix

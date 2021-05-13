@@ -12,8 +12,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -49,8 +49,8 @@ import ch.alpine.tensor.Tensor;
   }
 
   void shuffle(int n) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    RandomSampleInterface randomSampleInterface = geodesicDisplay.randomSampleInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    RandomSampleInterface randomSampleInterface = manifoldDisplay.randomSampleInterface();
     setControlPointsSe2(RandomSample.of(randomSampleInterface, n));
   }
 
@@ -59,11 +59,11 @@ import ch.alpine.tensor.Tensor;
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
-    Tensor origin = geodesicDisplay.project(geometricLayer.getMouseSe2State());
+    Tensor origin = manifoldDisplay.project(geometricLayer.getMouseSe2State());
     LeversRender leversRender = //
-        LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+        LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
     render(geometricLayer, graphics, leversRender);
   }
 

@@ -21,9 +21,9 @@ public class S2GeodesicDisplayTest extends TestCase {
   }
 
   public void testInvariant() {
-    ManifoldDisplay geodesicDisplay = S2Display.INSTANCE;
-    Tensor xyz = geodesicDisplay.project(Tensors.vector(1, 2, 0));
-    Tensor xy = geodesicDisplay.toPoint(xyz);
+    ManifoldDisplay manifoldDisplay = S2Display.INSTANCE;
+    Tensor xyz = manifoldDisplay.project(Tensors.vector(1, 2, 0));
+    Tensor xy = manifoldDisplay.toPoint(xyz);
     Tolerance.CHOP.requireClose(Vector2Norm.of(xy), RealScalar.ONE);
   }
 

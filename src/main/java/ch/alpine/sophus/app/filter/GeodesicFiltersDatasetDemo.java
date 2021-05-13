@@ -12,8 +12,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV1;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.flt.CenterFilter;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.GeodesicFilters;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -38,6 +38,7 @@ import ch.alpine.tensor.red.Nest;
       spinnerConvolution.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "convolution");
       spinnerConvolution.addSpinnerListener(type -> updateState());
     }
+    spinnerLabelString.setIndex(15);
     // ---
     updateState();
   }
@@ -49,10 +50,10 @@ import ch.alpine.tensor.red.Nest;
 
   @Override // from RenderInterface
   protected Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     ScalarUnaryOperator smoothingKernel = spinnerKernel.getValue().get();
     GeodesicFilters geodesicFilters = spinnerFilters.getValue();
-    TensorUnaryOperator tensorUnaryOperator = geodesicFilters.from(geodesicDisplay, smoothingKernel);
+    TensorUnaryOperator tensorUnaryOperator = geodesicFilters.from(manifoldDisplay, smoothingKernel);
     return Nest.of( //
         CenterFilter.of(tensorUnaryOperator, spinnerRadius.getValue()), //
         control(), spinnerConvolution.getValue());

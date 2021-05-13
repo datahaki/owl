@@ -16,8 +16,8 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.Do;
@@ -84,12 +84,12 @@ import ch.alpine.tensor.sca.N;
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     renderControlPoints(geometricLayer, graphics);
     if (1 < _control.length()) {
-      ManifoldDisplay geodesicDisplay = manifoldDisplay();
+      ManifoldDisplay manifoldDisplay = manifoldDisplay();
       HermiteSubdivision hermiteSubdivision = //
           spinnerLabelScheme.getValue().supply( //
-              geodesicDisplay.hsManifold(), //
-              geodesicDisplay.hsTransport(), //
-              geodesicDisplay.biinvariantMean());
+              manifoldDisplay.hsManifold(), //
+              manifoldDisplay.hsTransport(), //
+              manifoldDisplay.biinvariantMean());
       Tensor control = N.DOUBLE.of(_control);
       TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
       int levels = spinnerRefine.getValue();

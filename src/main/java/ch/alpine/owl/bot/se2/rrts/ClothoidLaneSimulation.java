@@ -71,7 +71,7 @@ import ch.alpine.tensor.sca.Clips;
   private static final Scalar OVERHEAD = RealScalar.of(0.5);
   private static final Scalar MIN_RESOLUTION = RealScalar.of(0.1);
   // ---
-  private static final ManifoldDisplay GEODESIC_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
+  private static final ManifoldDisplay MANIFOLD_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
   private static final int DEGREE = 3;
   private static final int LEVELS = 5;
   private static final Scalar LANE_WIDTH = RealScalar.of(1.1);
@@ -89,7 +89,7 @@ import ch.alpine.tensor.sca.Clips;
         // controlPoints.stream().forEach(System.out::println);
         LaneInterface lane = StableLanes.of( //
             controlPoints, //
-            LaneRiesenfeldCurveSubdivision.of(GEODESIC_DISPLAY.geodesicInterface(), DEGREE)::string, //
+            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesicInterface(), DEGREE)::string, //
             LEVELS, LANE_WIDTH.multiply(RationalScalar.HALF));
         // ---
         Tensor diagonal = Tensors.of( //

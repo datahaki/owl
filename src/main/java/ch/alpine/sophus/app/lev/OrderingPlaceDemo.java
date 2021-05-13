@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.opt.LogWeightings;
@@ -62,16 +62,16 @@ import ch.alpine.tensor.sca.Clips;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
-      VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
+      VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
       TensorUnaryOperator tensorUnaryOperator = //
           logWeighting().operator(biinvariant(), vectorLogManifold, variogram(), sequence);
       Tensor weights = tensorUnaryOperator.apply(origin);
-      OrderingHelper.of(geodesicDisplay, origin, sequence, weights, spinnerColorData.getValue(), geometricLayer, graphics);
+      OrderingHelper.of(manifoldDisplay, origin, sequence, weights, spinnerColorData.getValue(), geometricLayer, graphics);
     }
   }
 

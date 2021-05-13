@@ -14,13 +14,13 @@ import ch.alpine.tensor.img.ColorDataGradient;
 
 /* package */ enum HilbertLevelImage {
   ;
-  public static BufferedImage of(ManifoldDisplay geodesicDisplay, Tensor sequence, int res, ColorDataGradient colorDataGradient, int max) {
-    TensorUnaryOperator tuo = IterativeGenesis.counts(geodesicDisplay.hsManifold(), sequence, max);
+  public static BufferedImage of(ManifoldDisplay manifoldDisplay, Tensor sequence, int res, ColorDataGradient colorDataGradient, int max) {
+    TensorUnaryOperator tuo = IterativeGenesis.counts(manifoldDisplay.hsManifold(), sequence, max);
     int sequence_length = IterativeGenesis.values().length;
     Tensor fallback = ConstantArray.of(DoubleScalar.INDETERMINATE, sequence_length);
-    GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
+    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
     Tensor wgs = geodesicArrayPlot.raster(res, tuo, fallback);
     ArrayPlotRender arrayPlotRender = StaticHelper.arrayPlotFromTensor(wgs, 1, false, colorDataGradient);
-    return StaticHelper.fuseImages(geodesicDisplay, arrayPlotRender, res, sequence_length);
+    return StaticHelper.fuseImages(manifoldDisplay, arrayPlotRender, res, sequence_length);
   }
 }

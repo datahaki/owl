@@ -18,8 +18,8 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.itp.BarycentricMetricInterpolation;
@@ -66,13 +66,13 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
     Tensor control = getGeodesicControlPoints();
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     TensorUnaryOperator tensorUnaryOperator = //
-        KnotSpacing.centripetal(geodesicDisplay.parametricDistance(), spinnerBeta.getValue());
+        KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), spinnerBeta.getValue());
     Tensor knots = tensorUnaryOperator.apply(control);
     if (1 < control.length()) {
       Tensor domain = Subdivide.of(knots.get(0), Last.of(knots), 25 * control.length());
-      BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+      BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
       Tensor basis2 = domain.map(jToggleLagra.isSelected() //
           ? BarycentricMetricInterpolation.la(knots, InversePowerVariogram.of(2))
           : BarycentricMetricInterpolation.of(knots, InversePowerVariogram.of(2)));

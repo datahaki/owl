@@ -63,17 +63,24 @@ import ch.alpine.tensor.alg.Subdivide;
   public final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Tensor control = control();
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    final Tensor shape = geodesicDisplay.shape().multiply(markerScale());
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    final Tensor shape = manifoldDisplay.shape().multiply(markerScale());
+    boolean conv = jToggleConv.isSelected();
     if (jToggleData.isSelected()) {
       pathRenderCurve.setCurve(control, false).render(geometricLayer, graphics);
+      Color fill = conv //
+          ? new Color(255, 128, 128, 32)
+          : new Color(255, 128, 128, 64);
+      Color draw = conv //
+          ? new Color(255, 128, 128, 128)
+          : new Color(255, 128, 128, 255);
       for (Tensor point : control) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
-        graphics.setColor(new Color(255, 128, 128, 64));
+        graphics.setColor(fill);
         graphics.fill(path2d);
-        graphics.setColor(COLOR_CURVE);
+        graphics.setColor(draw);
         graphics.draw(path2d);
         geometricLayer.popMatrix();
       }
@@ -87,10 +94,10 @@ import ch.alpine.tensor.alg.Subdivide;
     }
     // ---
     graphics.setStroke(new BasicStroke(1f));
-    if (jToggleConv.isSelected()) {
+    if (conv) {
       pathRenderShape.setCurve(refined, false).render(geometricLayer, graphics);
       for (Tensor point : refined) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
         graphics.setColor(COLOR_SHAPE);
@@ -106,7 +113,7 @@ import ch.alpine.tensor.alg.Subdivide;
   }
 
   public Scalar markerScale() {
-    return RealScalar.of(0.03);
+    return RealScalar.of(0.2);
   }
 
   protected abstract Tensor control();
@@ -114,5 +121,5 @@ import ch.alpine.tensor.alg.Subdivide;
   protected abstract Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics);
 
   protected abstract void differences_render( //
-      Graphics2D graphics, ManifoldDisplay geodesicDisplay, Tensor refined, boolean spectrogram);
+      Graphics2D graphics, ManifoldDisplay manifoldDisplay, Tensor refined, boolean spectrogram);
 }

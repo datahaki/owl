@@ -23,8 +23,8 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.StandardMenu;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.curve.AbstractCurvatureDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
@@ -173,19 +173,19 @@ import ch.alpine.tensor.red.Nest;
     Tensor control = getGeodesicControlPoints();
     int levels = spinnerRefine.getValue();
     renderControlPoints(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Tensor refined = StaticHelper.refine( //
-        control, levels, spinnerLabel.getValue().of(geodesicDisplay), //
+        control, levels, spinnerLabel.getValue().of(manifoldDisplay), //
         CurveSubdivisionHelper.isDual(scheme), cyclic, geodesicInterface);
     if (jToggleLine.isSelected()) {
-      TensorUnaryOperator tensorUnaryOperator = StaticHelper.create(new BSpline1CurveSubdivision(geodesicDisplay.geodesicInterface()), cyclic);
+      TensorUnaryOperator tensorUnaryOperator = StaticHelper.create(new BSpline1CurveSubdivision(manifoldDisplay.geodesicInterface()), cyclic);
       pathRender.setCurve(Nest.of(tensorUnaryOperator, control, 8), cyclic).render(geometricLayer, graphics);
     }
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, cyclic, jToggleComb.isSelected(), geometricLayer, graphics);
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

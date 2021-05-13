@@ -82,15 +82,15 @@ import ch.alpine.tensor.itp.DeBoor;
     final Scalar upper = Last.of(knots);
     final Scalar parameter = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()).multiply(upper);
     // ---
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(geodesicDisplay.geodesicInterface(), degree, knots, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, effective);
     RenderQuality.setQuality(graphics);
     Tensor refined = Subdivide.of(RealScalar.ZERO, upper, Math.max(1, control.length() * (1 << levels))).map(scalarTensorFunction);
     {
       Tensor selected = scalarTensorFunction.apply(parameter);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape().multiply(RealScalar.of(0.02)));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape().multiply(RealScalar.of(0.02)));
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
       geometricLayer.popMatrix();
@@ -114,9 +114,9 @@ import ch.alpine.tensor.itp.DeBoor;
     Tensor knots = centripedalKnotSpacing.apply(control);
     final Scalar upper = Last.of(knots);
     final Scalar parameter = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()).multiply(upper);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(geodesicDisplay.geodesicInterface(), degree, knots, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, effective);
     DeBoor deBoor = scalarTensorFunction.deBoor(parameter);
     SymLinkImage symLinkImage = SymLinkImages.deboor(deBoor.knots(), deBoor.degree() + 1, parameter);
     return symLinkImage.bufferedImage();

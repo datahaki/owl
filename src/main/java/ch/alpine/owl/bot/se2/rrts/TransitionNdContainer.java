@@ -16,8 +16,8 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -49,34 +49,34 @@ public class TransitionNdContainer {
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE));
     tensor = RandomSample.of(randomSampleInterface, n);
-    for (ManifoldDisplay geodesicDisplay : ManifoldDisplays.CL_SE2_R2) {
-      TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(geodesicDisplay);
+    for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.CL_SE2_R2) {
+      TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(manifoldDisplay);
       RrtsNodeCollection rrtsNodeCollection = se2TransitionNdType.equals(TransitionNdTypes.RN) //
           ? new RnRrtsNodeCollection(lbounds, ubounds)
           : Se2RrtsNodeCollections.of( //
               se2TransitionNdType.transitionSpace(), lbounds, ubounds);
       for (Tensor state : tensor)
-        rrtsNodeCollection.insert(RrtsNode.createRoot(geodesicDisplay.project(state), RealScalar.ZERO));
+        rrtsNodeCollection.insert(RrtsNode.createRoot(manifoldDisplay.project(state), RealScalar.ZERO));
       map.put(se2TransitionNdType, rrtsNodeCollection);
     }
     this.value = value;
   }
 
   public void render( //
-      ManifoldDisplay geodesicDisplay, //
+      ManifoldDisplay manifoldDisplay, //
       GeometricLayer geometricLayer, //
       Graphics2D graphics, //
       Tensor mouse) {
     RenderQuality.setQuality(graphics);
-    TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(geodesicDisplay);
+    TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(manifoldDisplay);
     RrtsNodeCollection rrtsNodeCollection = map.get(se2TransitionNdType);
     Scalar sqrt = Sqrt.FUNCTION.apply(RationalScalar.of(10, rrtsNodeCollection.size()));
-    Tensor shape = geodesicDisplay.shape().multiply(sqrt);
-    Tensor _tensor = Tensor.of(tensor.stream().map(geodesicDisplay::project).map(N.DOUBLE::of));
-    pointsRender.show(geodesicDisplay::matrixLift, shape, _tensor).render(geometricLayer, graphics);
+    Tensor shape = manifoldDisplay.shape().multiply(sqrt);
+    Tensor _tensor = Tensor.of(tensor.stream().map(manifoldDisplay::project).map(N.DOUBLE::of));
+    pointsRender.show(manifoldDisplay::matrixLift, shape, _tensor).render(geometricLayer, graphics);
     // ---
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(mouse));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mouse));
       Path2D path2d = geometricLayer.toPath2D(shape);
       path2d.closePath();
       graphics.setColor(new Color(128, 128, 255, 128));

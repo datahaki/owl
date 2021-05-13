@@ -15,8 +15,8 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.sym.SymLinkImage;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
 import ch.alpine.sophus.math.win.KnotSpacing;
@@ -48,14 +48,14 @@ import ch.alpine.tensor.itp.DeBoor;
 
   @Override // from RenderInterface
   protected Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Scalar exponent = RationalScalar.of(jSliderExponent.getValue(), jSliderExponent.getMaximum());
-    Tensor knots = KnotSpacing.centripetal(geodesicDisplay.parametricDistance(), exponent).apply(control);
+    Tensor knots = KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), exponent).apply(control);
     Scalar upper = Last.of(knots);
     Scalar parameter = sliderRatio().multiply(upper);
     // ---
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(geodesicDisplay.geodesicInterface(), degree, knots, control);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, control);
     {
       DeBoor deBoor = scalarTensorFunction.deBoor(parameter);
       SymLinkImage symLinkImage = SymLinkImages.deboor(deBoor.knots(), deBoor.degree() + 1, parameter);
@@ -67,16 +67,16 @@ import ch.alpine.tensor.itp.DeBoor;
     Tensor refined = Subdivide.of(RealScalar.ZERO, upper, Math.max(1, control.length() * (1 << levels))).map(scalarTensorFunction);
     {
       Tensor selected = scalarTensorFunction.apply(parameter);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
       geometricLayer.popMatrix();
     }
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

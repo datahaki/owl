@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.LieGroupOps;
@@ -100,17 +100,17 @@ import ch.alpine.tensor.sca.Clips;
   }
 
   public void render(GeometricLayer geometricLayer, Graphics2D graphics, Tensor sequence, Tensor origin, String p) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
     TensorUnaryOperator tensorUnaryOperator = //
         logWeighting().operator(biinvariant(), vectorLogManifold, variogram(), sequence);
     Tensor weights = tensorUnaryOperator.apply(origin);
     // ---
     int[] integers = Ordering.INCREASING.of(weights);
-    Tensor shape = geodesicDisplay.shape();
+    Tensor shape = manifoldDisplay.shape();
     for (int index = 0; index < sequence.length(); ++index) {
       Tensor point = sequence.get(integers[index]);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       graphics.setColor(index < 3 ? new Color(64, 192, 64, 64) : new Color(192, 64, 64, 64));
       graphics.fill(path2d);
@@ -119,7 +119,7 @@ import ch.alpine.tensor.sca.Clips;
       geometricLayer.popMatrix();
     }
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(origin));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(origin));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
@@ -128,7 +128,7 @@ import ch.alpine.tensor.sca.Clips;
       geometricLayer.popMatrix();
     }
     LeversRender leversRender = //
-        LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+        LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
     leversRender.renderIndexX("x" + p);
     leversRender.renderIndexP("p" + p);
   }

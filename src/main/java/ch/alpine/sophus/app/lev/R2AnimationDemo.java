@@ -10,8 +10,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.so3.Rodrigues;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
@@ -62,7 +62,7 @@ import ch.alpine.tensor.lie.r2.RotationMatrix;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       if (jToggleAnimate.isSelected()) {
@@ -71,8 +71,8 @@ import ch.alpine.tensor.lie.r2.RotationMatrix;
         vectorExp = RotationMatrix.of(timing.seconds() * 0.2);
         Tensor list = Tensors.empty();
         for (Tensor xya : snapshot) {
-          Tensor project = vectorExp.dot(geodesicDisplay.project(xya));
-          Tensor xya_ = geodesicDisplay.toPoint(project).append(RealScalar.ZERO);
+          Tensor project = vectorExp.dot(manifoldDisplay.project(xya));
+          Tensor xya_ = manifoldDisplay.toPoint(project).append(RealScalar.ZERO);
           list.append(xya_);
         }
         setControlPointsSe2(list);
@@ -80,7 +80,7 @@ import ch.alpine.tensor.lie.r2.RotationMatrix;
       RenderQuality.setQuality(graphics);
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
-      LeversRender leversRender = LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+      LeversRender leversRender = LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       LeversHud.render(bitype(), leversRender);
     }
   }

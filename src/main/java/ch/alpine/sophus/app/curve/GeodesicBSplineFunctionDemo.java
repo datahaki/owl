@@ -56,27 +56,27 @@ import ch.alpine.tensor.sca.Chop;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics); // control points
     // ---
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor effective = control;
     if (jToggleItrp.isSelected()) {
-      LieGroup lieGroup = geodesicDisplay.lieGroup();
+      LieGroup lieGroup = manifoldDisplay.lieGroup();
       AbstractBSplineInterpolation abstractBSplineInterpolation = Objects.isNull(lieGroup) //
-          ? new GeodesicBSplineInterpolation(geodesicDisplay.geodesicInterface(), degree, control)
-          : new LieGroupBSplineInterpolation(lieGroup, geodesicDisplay.geodesicInterface(), degree, control);
+          ? new GeodesicBSplineInterpolation(manifoldDisplay.geodesicInterface(), degree, control)
+          : new LieGroupBSplineInterpolation(lieGroup, manifoldDisplay.geodesicInterface(), degree, control);
       {
         Tensor tensor = BSplineInterpolationSequence.of(abstractBSplineInterpolation);
         Tensor shape = CirclePoints.of(9).multiply(RealScalar.of(0.05));
         graphics.setColor(new Color(64, 64, 64, 64));
         for (Tensor ctrls : tensor)
           for (Tensor ctrl : ctrls) {
-            geometricLayer.pushMatrix(geodesicDisplay.matrixLift(ctrl));
+            geometricLayer.pushMatrix(manifoldDisplay.matrixLift(ctrl));
             Path2D path2d = geometricLayer.toPath2D(shape);
             graphics.fill(path2d);
             geometricLayer.popMatrix();
           }
         graphics.setColor(new Color(64, 64, 64, 192));
         for (Tensor ctrls : Transpose.of(tensor))
-          graphics.draw(geometricLayer.toPath2D(Tensor.of(ctrls.stream().map(geodesicDisplay::toPoint))));
+          graphics.draw(geometricLayer.toPath2D(Tensor.of(ctrls.stream().map(manifoldDisplay::toPoint))));
       }
       Iteration iteration = abstractBSplineInterpolation.untilClose(Chop._06, 100);
       {
@@ -86,20 +86,20 @@ import ch.alpine.tensor.sca.Chop;
       effective = iteration.control();
     }
     ScalarTensorFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(geodesicDisplay.geodesicInterface(), degree, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, effective);
     {
       Tensor selected = scalarTensorFunction.apply(parameter);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(selected));
-      Path2D path2d = geometricLayer.toPath2D(geodesicDisplay.shape());
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));
+      Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
       geometricLayer.popMatrix();
     }
     Tensor refined = Subdivide.of(0, upper, Math.max(1, upper * (1 << levels))).map(scalarTensorFunction);
-    Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+    Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);
     if (levels < 5)
-      renderPoints(geodesicDisplay, refined, geometricLayer, graphics);
+      renderPoints(manifoldDisplay, refined, geometricLayer, graphics);
     return refined;
   }
 

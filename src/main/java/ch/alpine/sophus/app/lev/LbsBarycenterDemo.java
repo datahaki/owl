@@ -11,8 +11,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.opt.PolygonCoordinates;
@@ -30,9 +30,9 @@ import ch.alpine.tensor.Tensors;
     // ---
     timerFrame.jToolBar.add(jToggleNeutral);
     // ---
-    ManifoldDisplay geodesicDisplay = S2Display.INSTANCE;
-    setGeodesicDisplay(geodesicDisplay);
-    actionPerformed(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = S2Display.INSTANCE;
+    setGeodesicDisplay(manifoldDisplay);
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
     jToggleNeutral.setSelected(true);
   }
@@ -40,13 +40,13 @@ import ch.alpine.tensor.Tensors;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       // ---
       leversRender.renderSurfaceP();
       leversRender.renderSequence();
@@ -75,8 +75,8 @@ import ch.alpine.tensor.Tensors;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof S2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.314, 0.662, 0.000}, {-0.809, 0.426, 0.000}, {-0.261, 0.927, 0.000}, {0.564, 0.685, 0.000}, {0.694, 0.220, 0.000}}"));
     }

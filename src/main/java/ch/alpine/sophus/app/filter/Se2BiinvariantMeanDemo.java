@@ -55,7 +55,6 @@ import ch.alpine.tensor.red.Nest;
 
   @Override // from RenderInterface
   protected Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    // GeodesicDisplay geodesicDisplay = geodesicDisplay();
     ScalarUnaryOperator smoothingKernel = spinnerKernel.getValue().get();
     Se2BiinvariantMeans se2BiinvariantMean = spinnerFilters.getValue();
     TensorUnaryOperator tensorUnaryOperator = BiinvariantMeanCenter.of(se2BiinvariantMean, smoothingKernel);

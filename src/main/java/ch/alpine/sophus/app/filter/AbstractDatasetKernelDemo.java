@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.sophus.app.io.GokartPoseData;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
 /* package */ abstract class AbstractDatasetKernelDemo extends AbstractSpectrogramDemo {

@@ -26,12 +26,12 @@ import ch.alpine.tensor.sca.Clip;
 
 /* package */ enum StaticHelper {
   ;
-  public static BufferedImage fuseImages(ManifoldDisplay geodesicDisplay, ArrayPlotRender arrayPlotRender, int refinement, int sequence_length) {
-    GeodesicArrayPlot geodesicArrayPlot = geodesicDisplay.geodesicArrayPlot();
+  public static BufferedImage fuseImages(ManifoldDisplay manifoldDisplay, ArrayPlotRender arrayPlotRender, int refinement, int sequence_length) {
+    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
     BufferedImage foreground = arrayPlotRender.export();
     BufferedImage background = new BufferedImage(foreground.getWidth(), foreground.getHeight(), BufferedImage.TYPE_INT_ARGB);
     Graphics2D graphics = background.createGraphics();
-    if (geodesicDisplay instanceof S2Display) {
+    if (manifoldDisplay instanceof S2Display) {
       Tensor matrix = geodesicArrayPlot.pixel2model(new Dimension(refinement, refinement));
       GeometricLayer geometricLayer = GeometricLayer.of(Inverse.of(matrix));
       for (int count = 0; count < sequence_length; ++count) {

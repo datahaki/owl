@@ -12,8 +12,8 @@ import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.LogWeighting;
 import ch.alpine.tensor.Tensor;
 
@@ -33,9 +33,9 @@ import ch.alpine.tensor.Tensor;
 
   @Override
   protected final void recompute() {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
-    renderInterface = geodesicDisplay.dimensions() < sequence.length() //
+    renderInterface = manifoldDisplay.dimensions() < sequence.length() //
         ? arrayPlotRender(sequence, refinement(), operator(sequence), magnification())
         : null;
   }

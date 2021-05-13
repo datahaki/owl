@@ -15,8 +15,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
@@ -91,17 +91,17 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    S2Display geodesicDisplay = (S2Display) manifoldDisplay();
+    S2Display s2Display = (S2Display) manifoldDisplay();
     Scalar vscale = spinnerBeta.getValue();
     Tensor control = Tensor.of(getControlPointsSe2().stream().map(xya -> {
       Tensor xy0 = xya.copy();
       xy0.set(Scalar::zero, 2);
       return Tensors.of( //
-          geodesicDisplay.project(xy0), //
-          geodesicDisplay.createTangent(xy0, xya.Get(2)).multiply(vscale));
+          s2Display.project(xy0), //
+          s2Display.createTangent(xy0, xya.Get(2)).multiply(vscale));
     }));
     POINTS_RENDER_0.show(manifoldDisplay()::matrixLift, getControlPointShape(), control.get(Tensor.ALL, 0)).render(geometricLayer, graphics);
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = s2Display.geodesicInterface();
     { // render tangents as geodesic on sphere
       for (Tensor ctrl : control) {
         Tensor p = ctrl.get(0); // point
@@ -110,24 +110,24 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
           Tensor q = new SnExponential(p).exp(v); // point on sphere
           ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(p, q);
           graphics.setStroke(STROKE);
-          Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(geodesicDisplay::toPoint));
+          Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(s2Display::toPoint));
           graphics.setColor(Color.LIGHT_GRAY);
           graphics.draw(geometricLayer.toPath2D(ms));
         }
         {
           graphics.setStroke(new BasicStroke(1.5f));
           graphics.setColor(Color.GRAY);
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(p));
-          graphics.draw(geometricLayer.toLine2D(geodesicDisplay.tangentProjection(p).apply(v)));
+          geometricLayer.pushMatrix(s2Display.matrixLift(p));
+          graphics.draw(geometricLayer.toLine2D(s2Display.tangentProjection(p).apply(v)));
           geometricLayer.popMatrix();
         }
       }
     }
     HermiteSubdivisions hermiteSubdivisions = spinnerLabelScheme.getValue();
     HermiteSubdivision hermiteSubdivision = hermiteSubdivisions.supply( //
-        geodesicDisplay.hsManifold(), //
-        geodesicDisplay.hsTransport(), //
-        geodesicDisplay.biinvariantMean());
+        s2Display.hsManifold(), //
+        s2Display.hsTransport(), //
+        s2Display.biinvariantMean());
     if (1 < control.length()) {
       TensorIteration tensorIteration = jToggleCyclic.isSelected() //
           ? hermiteSubdivision.cyclic(RealScalar.ONE, control)
@@ -144,7 +144,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
             Tensor q = new SnExponential(p).exp(v); // point on sphere
             ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(p, q);
             graphics.setStroke(STROKE);
-            Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(geodesicDisplay::toPoint));
+            Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(s2Display::toPoint));
             graphics.setColor(Color.LIGHT_GRAY);
             graphics.draw(geometricLayer.toPath2D(ms));
           }

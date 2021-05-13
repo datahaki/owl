@@ -28,17 +28,17 @@ import ch.alpine.tensor.num.Pi;
   static final Scalar FACTOR = RealScalar.of(0.3);
 
   public static void of( //
-      ManifoldDisplay geodesicDisplay, //
+      ManifoldDisplay manifoldDisplay, //
       Tensor origin, Tensor sequence, Tensor weights, //
       ColorDataGradient cdg, //
       GeometricLayer geometricLayer, Graphics2D graphics) {
     int[] integers = Ordering.INCREASING.of(weights);
     ColorDataGradient colorDataGradientF = cdg.deriveWithOpacity(RationalScalar.HALF);
     ColorDataGradient colorDataGradientD = cdg;
-    Tensor shape = geodesicDisplay.shape();
+    Tensor shape = manifoldDisplay.shape();
     for (int index = 0; index < sequence.length(); ++index) {
       Tensor point = sequence.get(integers[index]);
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       Scalar ratio = RationalScalar.of(index, integers.length);
       graphics.setColor(ColorFormat.toColor(colorDataGradientF.apply(ratio)));
@@ -59,7 +59,7 @@ import ch.alpine.tensor.num.Pi;
       ImageRender.of(bufferedImage, pixel2model).render(geometricLayer, graphics);
     }
     {
-      geometricLayer.pushMatrix(geodesicDisplay.matrixLift(origin));
+      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(origin));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       graphics.setColor(Color.DARK_GRAY);
       graphics.fill(path2d);
@@ -68,7 +68,7 @@ import ch.alpine.tensor.num.Pi;
       geometricLayer.popMatrix();
     }
     {
-      LeversRender leversRender = LeversRender.of(geodesicDisplay, //
+      LeversRender leversRender = LeversRender.of(manifoldDisplay, //
           Tensor.of(IntStream.range(0, 8).limit(integers.length) //
               .map(index -> integers[index]) //
               .mapToObj(sequence::get)), //

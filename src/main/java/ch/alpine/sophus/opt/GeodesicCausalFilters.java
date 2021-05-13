@@ -16,8 +16,8 @@ public enum GeodesicCausalFilters {
   GEODESIC_FIR {
     @Override
     public TensorUnaryOperator supply( //
-        ManifoldDisplay geodesicDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+        ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       TensorUnaryOperator geodesicExtrapolation = GeodesicExtrapolation.of(geodesicInterface, smoothingKernel);
       return GeodesicIIRn.of(geodesicExtrapolation, geodesicInterface, radius, alpha);
     }
@@ -25,8 +25,8 @@ public enum GeodesicCausalFilters {
   GEODESIC_IIR {
     @Override
     public TensorUnaryOperator supply( //
-        ManifoldDisplay geodesicDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+        ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       TensorUnaryOperator geodesicExtrapolation = GeodesicExtrapolation.of(geodesicInterface, smoothingKernel);
       return GeodesicFIRn.of(geodesicExtrapolation, geodesicInterface, radius, alpha);
     }
@@ -34,22 +34,22 @@ public enum GeodesicCausalFilters {
   BIINVARIANT_MEAN_FIR {
     @Override
     public TensorUnaryOperator supply( //
-        ManifoldDisplay geodesicDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
+        ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
       TensorUnaryOperator geodesicExtrapolation = BiinvariantMeanExtrapolation.of( //
-          geodesicDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
-      return GeodesicFIRn.of(geodesicExtrapolation, geodesicDisplay.geodesicInterface(), radius, alpha);
+          manifoldDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
+      return GeodesicFIRn.of(geodesicExtrapolation, manifoldDisplay.geodesicInterface(), radius, alpha);
     }
   },
   BIINVARIANT_MEAN_IIR {
     @Override
     public TensorUnaryOperator supply( //
-        ManifoldDisplay geodesicDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
+        ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
       TensorUnaryOperator geodesicExtrapolation = BiinvariantMeanExtrapolation.of( //
-          geodesicDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
-      return GeodesicIIRn.of(geodesicExtrapolation, geodesicDisplay.geodesicInterface(), radius, alpha);
+          manifoldDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
+      return GeodesicIIRn.of(geodesicExtrapolation, manifoldDisplay.geodesicInterface(), radius, alpha);
     }
   };
 
   public abstract TensorUnaryOperator supply( //
-      ManifoldDisplay geodesicDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha);
+      ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha);
 }

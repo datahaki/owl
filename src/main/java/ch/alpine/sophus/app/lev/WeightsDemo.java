@@ -12,8 +12,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gds.Spd2Display;
@@ -37,10 +37,10 @@ import ch.alpine.tensor.red.ArgMin;
       timerFrame.jToolBar.add(jToggleAxes);
     }
     setControlPointsSe2(Tensors.fromString("{{-1, -2, 0}, {3, -2, -1}, {4, 2, 1}, {-1, 3, 2}, {-2, -3, -2}}"));
-    ManifoldDisplay geodesicDisplay = Se2Display.INSTANCE;
-    setGeodesicDisplay(geodesicDisplay);
+    ManifoldDisplay manifoldDisplay = Se2Display.INSTANCE;
+    setGeodesicDisplay(manifoldDisplay);
     setLogWeighting(LogWeightings.DISTANCES);
-    actionPerformed(geodesicDisplay);
+    actionPerformed(manifoldDisplay);
     addSpinnerListener(this);
   }
 
@@ -49,13 +49,13 @@ import ch.alpine.tensor.red.ArgMin;
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
       Tensor origin = optional.get();
       LeversRender leversRender = //
-          LeversRender.of(geodesicDisplay, sequence, origin, geometricLayer, graphics);
+          LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       // ---
       leversRender.renderSequence();
       leversRender.renderOrigin();
@@ -63,14 +63,14 @@ import ch.alpine.tensor.red.ArgMin;
       leversRender.renderIndexX();
       leversRender.renderIndexP();
       // ---
-      if (geodesicDisplay.dimensions() < sequence.length()) {
-        Biinvariant metric = geodesicDisplay.metricBiinvariant();
+      if (manifoldDisplay.dimensions() < sequence.length()) {
+        Biinvariant metric = manifoldDisplay.metricBiinvariant();
         Biinvariant[] biinvariants = Objects.isNull(metric) //
             ? new Biinvariant[] { Biinvariants.LEVERAGES, Biinvariants.HARBOR, Biinvariants.GARDEN }
             : new Biinvariant[] { Biinvariants.LEVERAGES, Biinvariants.HARBOR, Biinvariants.GARDEN, metric };
         Tensor matrix = Tensors.empty();
         int[] minIndex = new int[biinvariants.length];
-        VectorLogManifold vectorLogManifold = geodesicDisplay.hsManifold();
+        VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
         for (int index = 0; index < biinvariants.length; ++index) {
           TensorUnaryOperator tensorUnaryOperator = //
               logWeighting().operator( //
@@ -103,17 +103,17 @@ import ch.alpine.tensor.red.ArgMin;
   }
 
   @Override
-  public void actionPerformed(ManifoldDisplay geodesicDisplay) {
-    if (geodesicDisplay instanceof S2Display) {
+  public void actionPerformed(ManifoldDisplay manifoldDisplay) {
+    if (manifoldDisplay instanceof S2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.346, -0.096, 0.262}, {-0.113, 0.858, 0.000}, {0.721, 0.288, -0.262}, {0.171, -0.038, 0.262}, {0.429, -0.646, -0.262}, {-0.804, -0.446, 0.524}, {-0.829, 0.513, -0.262}}"));
     }
-    if (geodesicDisplay instanceof Spd2Display) {
+    if (manifoldDisplay instanceof Spd2Display) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.325, -0.125, 1.309}, {-0.708, 1.475, -3.927}, {1.942, 1.075, -1.309}, {-0.308, -0.825, 4.974}, {-2.292, -0.608, 0.524}, {2.042, -0.625, -4.189}, {-4.108, 0.325, 1.309}}"));
     }
-    System.out.println(geodesicDisplay.toString());
-    if (geodesicDisplay.toString().startsWith("SE2")) {
+    System.out.println(manifoldDisplay.toString());
+    if (manifoldDisplay.toString().startsWith("SE2")) {
       setControlPointsSe2(Tensors.fromString( //
           "{{-0.563, -0.150, 6.545}, {4.783, 1.017, -0.785}, {-4.696, -0.650, 5.760}, {2.138, 0.600, 0.785}, {4.021, -0.550, 7.592}, {1.113, -1.208, 4.451}, {-0.154, -1.283, -1.309}, {-2.596, 0.933, 8.639}, {-2.429, -1.283, 7.854}, {-3.729, 0.483, 4.451}}"));
     }

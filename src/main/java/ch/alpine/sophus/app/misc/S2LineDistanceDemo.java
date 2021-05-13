@@ -13,8 +13,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
@@ -127,18 +127,18 @@ import ch.alpine.tensor.sca.Sqrt;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     RenderQuality.setDefault(graphics);
-    BufferedImage bufferedImage = bufferedImage(spinnerRes.getValue(), geodesicDisplay.hsManifold());
+    BufferedImage bufferedImage = bufferedImage(spinnerRes.getValue(), manifoldDisplay.hsManifold());
     ImageRender.of(bufferedImage, pixel2model(bufferedImage)) //
         .render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
     // ---
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
     Tensor cp = getGeodesicControlPoints();
     ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(cp.get(0), cp.get(1));
     graphics.setStroke(STROKE);
-    Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(geodesicDisplay::toPoint));
+    Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(manifoldDisplay::toPoint));
     graphics.setColor(new Color(192, 192, 192));
     graphics.draw(geometricLayer.toPath2D(ms));
     graphics.setStroke(new BasicStroke());

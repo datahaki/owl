@@ -30,184 +30,184 @@ import ch.alpine.tensor.itp.BinaryAverage;
 /* package */ enum CurveSubdivisionSchemes {
   BSPLINE1 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return new BSpline1CurveSubdivision(midpointInterface);
     }
   },
   BSPLINE2 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      Geodesic parametricCurve = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      Geodesic parametricCurve = manifoldDisplay.geodesicInterface();
       return new BSpline2CurveSubdivision(parametricCurve);
     }
   },
   BSPLINE3 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return new BSpline3CurveSubdivision(splitInterface);
     }
   },
   BSPLINE3LR {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeld3CurveSubdivision.of(midpointInterface);
     }
   },
   BSPLINE3M {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
       return new MSpline3CurveSubdivision(biinvariantMean);
     }
   },
   /** Dyn/Sharon 2014 that uses 2 binary averages */
   BSPLINE4_S2LO {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return BSpline4CurveSubdivision.split2lo(splitInterface);
     }
   },
   /** Alternative to Dyn/Sharon 2014 that also uses 2 binary averages */
   BSPLINE4_S2HI {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return BSpline4CurveSubdivision.split2hi(splitInterface);
     }
   },
   /** Hakenberg 2018 that uses 3 binary averages */
   BSPLINE4_S3 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return CurveSubdivisionHelper.of(splitInterface);
     }
   },
   /** Hakenberg 2018 that uses 3 binary averages */
   BSPLINE4M {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      BiinvariantMean biinvariantMean = geodesicDisplay.biinvariantMean();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
       return MSpline4CurveSubdivision.of(biinvariantMean);
     }
   },
   BSPLINE5 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return new BSpline5CurveSubdivision(splitInterface);
     }
   },
   BSPLINE6 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       return BSpline6CurveSubdivision.of(geodesicInterface);
     }
   },
   LR1 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 1);
     }
   },
   LR2 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 2);
     }
   },
   LR3 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 3);
     }
   },
   LR4 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 4);
     }
   },
   LR5 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 5);
     }
   },
   LR6 {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      MidpointInterface midpointInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 6);
     }
   },
   DODGSON_SABIN {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
       return DodgsonSabinCurveSubdivision.INSTANCE;
     }
   },
   THREEPOINT {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      BinaryAverage binaryAverage = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      BinaryAverage binaryAverage = manifoldDisplay.geodesicInterface();
       return HormannSabinCurveSubdivision.of(binaryAverage);
     }
   },
   FOURPOINT {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return CurveSubdivisionHelper.fps(splitInterface);
     }
   },
   C2CUBIC {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       return DualC2FourPointCurveSubdivision.cubic(geodesicInterface);
     }
   },
   C2TIGHT {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
       return DualC2FourPointCurveSubdivision.tightest(geodesicInterface);
     }
   },
   SIXPOINT {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return new SixPointCurveSubdivision(splitInterface);
     }
   },
   SIXFAR {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return new FarSixPointCurveSubdivision(splitInterface);
     }
   },
   EIGHTPOINT {
     @Override
-    public CurveSubdivision of(ManifoldDisplay geodesicDisplay) {
-      SplitInterface splitInterface = geodesicDisplay.geodesicInterface();
+    public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
+      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
       return new EightPointCurveSubdivision(splitInterface);
     }
   };
 
-  public abstract CurveSubdivision of(ManifoldDisplay geodesicDisplay);
+  public abstract CurveSubdivision of(ManifoldDisplay manifoldDisplay);
 
   public boolean isStringSupported() {
     try {

@@ -26,8 +26,8 @@ import ch.alpine.sophus.decim.LineDistances;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
@@ -110,13 +110,13 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    ManifoldDisplay geodesicDisplay = manifoldDisplay();
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     {
-      final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.3));
+      final Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.3));
       pathRenderCurve.setCurve(_control, false).render(geometricLayer, graphics);
       if (_control.length() <= 1000)
         for (Tensor point : _control) {
-          geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+          geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
           Path2D path2d = geometricLayer.toPath2D(shape);
           path2d.closePath();
           graphics.setColor(new Color(255, 128, 128, 64));
@@ -130,21 +130,21 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     // epsilon = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum() * 3);
     LineDistances lineDistances = spinnerType.getValue();
     CurveDecimation curveDecimation = CurveDecimation.of( //
-        lineDistances.supply(geodesicDisplay.hsManifold()), epsilon);
-    Tensor control = Tensor.of(_control.stream().map(geodesicDisplay::project));
+        lineDistances.supply(manifoldDisplay.hsManifold()), epsilon);
+    Tensor control = Tensor.of(_control.stream().map(manifoldDisplay::project));
     Result result = curveDecimation.evaluate(control);
     Tensor simplified = result.result();
     graphics.setColor(Color.DARK_GRAY);
     // graphics.drawString("SIMPL=" + control.length(), 0, 20);
     // graphics.drawString("SIMPL=" + , 0, 30);
     Tensor refined = Nest.of( //
-        LaneRiesenfeldCurveSubdivision.of(geodesicDisplay.geodesicInterface(), spinnerLabelDegre.getValue())::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesicInterface(), spinnerLabelDegre.getValue())::string, //
         simplified, 5);
     pathRenderShape.setCurve(refined, false).render(geometricLayer, graphics);
     {
-      final Tensor shape = geodesicDisplay.shape().multiply(RealScalar.of(0.8));
+      final Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(0.8));
       for (Tensor point : simplified) {
-        geometricLayer.pushMatrix(geodesicDisplay.matrixLift(point));
+        geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
         Path2D path2d = geometricLayer.toPath2D(shape);
         path2d.closePath();
         graphics.setColor(COLOR_SHAPE);
