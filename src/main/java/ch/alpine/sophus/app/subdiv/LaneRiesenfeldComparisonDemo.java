@@ -19,7 +19,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.CurveVisualSet;
 import ch.alpine.sophus.gui.ren.PathRender;
@@ -47,7 +47,7 @@ import ch.alpine.tensor.red.Quantile;
   private final List<PathRender> pathRenders = new ArrayList<>();
 
   public LaneRiesenfeldComparisonDemo() {
-    this(GeodesicDisplays.WITHOUT_Sn_SO3);
+    this(ManifoldDisplays.WITHOUT_Sn_SO3);
   }
 
   public LaneRiesenfeldComparisonDemo(List<ManifoldDisplay> list) {

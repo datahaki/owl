@@ -14,7 +14,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.ply.d2.HilbertPolygon;
 import ch.alpine.tensor.RealScalar;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.sca.Power;
   JToggleButton jToggleButton = new JToggleButton("ctrl points");
 
   public HilbertBenchmarkDemo() {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     setPositioningEnabled(false);
     // ---
     timerFrame.jToolBar.add(jToggleButton);

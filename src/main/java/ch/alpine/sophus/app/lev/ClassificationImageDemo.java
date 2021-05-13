@@ -22,7 +22,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -69,7 +69,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
   protected Tensor vector;
 
   public ClassificationImageDemo() {
-    super(false, GeodesicDisplays.R2_H2_S2_RP2, LogWeightings.list());
+    super(false, ManifoldDisplays.R2_H2_S2_RP2, LogWeightings.list());
     setMidpointIndicated(false);
     addSpinnerListener(v -> shuffle(spinnerCount.getValue()));
     {

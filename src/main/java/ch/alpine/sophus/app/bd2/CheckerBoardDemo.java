@@ -22,7 +22,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.app.lev.LogWeightingBase;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
@@ -54,7 +54,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   private Tensor reference;
 
   public CheckerBoardDemo() {
-    super(true, GeodesicDisplays.R2_H2_S2, PolygonCoordinates.list());
+    super(true, ManifoldDisplays.R2_H2_S2, PolygonCoordinates.list());
     spinnerLogWeighting.addSpinnerListener(v -> recompute());
     {
       spinnerPattern.addSpinnerListener(v -> recompute());

@@ -14,7 +14,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.decim.HsLineDistance;
 import ch.alpine.sophus.decim.HsLineDistance.NormImpl;
 import ch.alpine.sophus.decim.HsLineProjection;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.LieGroup;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.sca.Round;
   private final JToggleButton axes = new JToggleButton("axes");
 
   public Se2LineDistanceDemo() {
-    super(false, GeodesicDisplays.SE2_ONLY);
+    super(false, ManifoldDisplays.SE2_ONLY);
     timerFrame.jToolBar.add(axes);
     Tensor tensor = Tensors.fromString("{{0, 0, 0}, {5, 0, 1}}");
     setControlPointsSe2(tensor);

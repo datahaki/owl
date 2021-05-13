@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.ply.Spearhead;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(128);
 
   public SpearheadDemo() {
-    super(false, GeodesicDisplays.SE2_ONLY);
+    super(false, ManifoldDisplays.SE2_ONLY);
     // ---
     timerFrame.geometricComponent.addRenderInterface(AxesRender.INSTANCE);
     // ---

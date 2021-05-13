@@ -18,7 +18,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
@@ -52,7 +52,7 @@ import ch.alpine.tensor.sca.Power;
   protected Tensor _control = Tensors.empty();
 
   public HermiteDatasetFilterDemo(GokartPoseDataV2 gokartPoseData) {
-    super(GeodesicDisplays.SE2_ONLY, gokartPoseData);
+    super(ManifoldDisplays.SE2_ONLY, gokartPoseData);
     this.gokartPoseData = gokartPoseData;
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
     {

@@ -11,7 +11,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
@@ -25,7 +25,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private final JToggleButton jToggleNeutral = new JToggleButton("neutral");
 
   public ThreePointBarycenterDemo() {
-    super(true, GeodesicDisplays.R2_H2_S2, Arrays.asList(PolygonCoordinates.values()));
+    super(true, ManifoldDisplays.R2_H2_S2, Arrays.asList(PolygonCoordinates.values()));
     // ---
     timerFrame.jToolBar.add(jToggleNeutral);
     // ---

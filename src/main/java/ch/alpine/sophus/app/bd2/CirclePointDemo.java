@@ -8,7 +8,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversHud;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gbc.AffineCoordinate;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.Genesis;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 
 /* package */ class CirclePointDemo extends ControlPointsDemo {
   public CirclePointDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     Tensor sequence = Tensor.of(CirclePoints.of(7).multiply(RealScalar.of(2)).stream().map(PadRight.zeros(3)));
     setControlPointsSe2(sequence);
   }

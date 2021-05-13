@@ -15,7 +15,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.sym.SymLinkImage;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.itp.DeBoor;
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 
   public KnotsBSplineFunctionDemo() {
-    super(GeodesicDisplays.CL_SE2_R2);
+    super(ManifoldDisplays.CL_SE2_R2);
     // ---
     jSliderExponent.setPreferredSize(new Dimension(200, 28));
     jSliderExponent.setToolTipText("centripetal exponent");

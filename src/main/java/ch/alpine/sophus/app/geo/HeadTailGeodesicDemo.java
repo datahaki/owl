@@ -11,7 +11,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.sca.Round;
   private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
 
   public HeadTailGeodesicDemo() {
-    super(false, GeodesicDisplays.ALL);
+    super(false, ManifoldDisplays.ALL);
     // ---
     setGeodesicDisplay(S2Display.INSTANCE);
     spinnerRefine.setList(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20));

@@ -11,7 +11,7 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   private final JToggleButton jToggleButton = new JToggleButton("show");
 
   public LaserTagDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     // ---
     timerFrame.geometricComponent.addRenderInterface(pathRenderHull);
     jToggleButton.setSelected(true);

@@ -7,7 +7,7 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.RealScalar;
@@ -21,7 +21,7 @@ import ch.alpine.tensor.opt.hun.BipartiteMatching;
   private static final Tensor CIRCLE = CirclePoints.of(5).multiply(RealScalar.of(3));
 
   public BipartiteMatchingDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     // ---
     setControlPointsSe2(Tensors.fromString("{{1, 0, 0}, {0, 1, 0}, {1, 1, 0}}"));
   }

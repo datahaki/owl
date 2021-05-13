@@ -15,7 +15,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.bd2.AbstractExportWeightingDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
 import ch.alpine.sophus.opt.LogWeightings;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.num.Pi;
   private final JToggleButton jToggleAxes = new JToggleButton("axes");
 
   public Se2ScatteredSetCoordinateDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2, LogWeightings.list());
+    super(true, ManifoldDisplays.SE2C_SE2, LogWeightings.list());
     spinnerRefine.setValueSafe(15);
     {
       jToggleAxes.setSelected(true);

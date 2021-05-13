@@ -25,7 +25,7 @@ import ch.alpine.sophus.clt.ClothoidContext;
 import ch.alpine.sophus.clt.ClothoidSolutions;
 import ch.alpine.sophus.clt.mid.MidpointTangentApproximation;
 import ch.alpine.sophus.clt.mid.MidpointTangentOrder2;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
@@ -57,7 +57,7 @@ import ch.alpine.tensor.sca.Round;
   private ClothoidDefectContainer clothoidDefectContainer = null;
 
   public CustomClothoidDemo() {
-    super(false, GeodesicDisplays.SE2C_ONLY);
+    super(false, ManifoldDisplays.SE2C_ONLY);
     {
       jTextField.setPreferredSize(new Dimension(100, 28));
       timerFrame.jToolBar.add(jTextField);

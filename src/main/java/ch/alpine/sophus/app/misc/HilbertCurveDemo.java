@@ -12,7 +12,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.sca.Power;
   private final Function<Integer, Tensor> cache = Cache.of(HilbertCurveDemo::curve, 10);
 
   public HilbertCurveDemo() {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---

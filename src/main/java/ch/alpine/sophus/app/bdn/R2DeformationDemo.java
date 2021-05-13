@@ -10,7 +10,7 @@ import javax.swing.JToggleButton;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.MixedLogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   };
 
   R2DeformationDemo() {
-    super(GeodesicDisplays.R2_ONLY, MixedLogWeightings.scattered());
+    super(ManifoldDisplays.R2_ONLY, MixedLogWeightings.scattered());
     // ---
     {
       jToggleRigidMotionFit.addActionListener(l -> recompute());

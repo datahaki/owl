@@ -4,7 +4,7 @@ package ch.alpine.sophus.gds;
 import java.util.Arrays;
 import java.util.List;
 
-public enum GeodesicDisplays {
+public enum ManifoldDisplays {
   ;
   public static final List<ManifoldDisplay> ALL = Arrays.asList( //
       Se2ClothoidDisplay.ANALYTIC, //

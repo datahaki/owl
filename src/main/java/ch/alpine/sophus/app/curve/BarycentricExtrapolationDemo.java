@@ -12,7 +12,7 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.rn.RnManifold;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
 
   public BarycentricExtrapolationDemo() {
-    super(true, GeodesicDisplays.SE2C_R2, LogWeightings.list());
+    super(true, ManifoldDisplays.SE2C_R2, LogWeightings.list());
   }
 
   @Override

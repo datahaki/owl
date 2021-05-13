@@ -14,7 +14,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.pdf.NormalDistribution;
   private SnDeltaContainer snDeltaFil;
 
   public S2DeltaDemo() {
-    super(GeodesicDisplays.S2_ONLY);
+    super(ManifoldDisplays.S2_ONLY);
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(s2DeltaParam);
     configPanel.getFieldPanels().addUniversalListener(s -> {

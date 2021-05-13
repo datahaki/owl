@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   private final SpinnerLabel<SnMeans> spinnerSnMeans = SpinnerLabel.of(SnMeans.values());
 
   S2DeformationDemo() {
-    super(GeodesicDisplays.S2_ONLY, LogWeightings.coordinates());
+    super(ManifoldDisplays.S2_ONLY, LogWeightings.coordinates());
     // ---
     spinnerSnMeans.setValue(SnMeans.FAST);
     spinnerSnMeans.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "sn means");

@@ -13,7 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
@@ -38,7 +38,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   private final JSlider jSliderExponent = new JSlider(0, 1000, 500);
 
   public GeodesicCatmullRomDemo() {
-    super(GeodesicDisplays.SE2C_SE2_R2);
+    super(ManifoldDisplays.SE2C_SE2_R2);
     addButtonDubins();
     // ---
     setGeodesicDisplay(Se2Display.INSTANCE);

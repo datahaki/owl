@@ -9,7 +9,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.flt.ga.GeodesicMeanFilter;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.red.Nest;
   private final SpinnerLabel<Integer> spinnerRadius = new SpinnerLabel<>();
 
   GeodesicMeanFilterDemo() {
-    super(true, GeodesicDisplays.ALL);
+    super(true, ManifoldDisplays.ALL);
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //

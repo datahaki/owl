@@ -14,7 +14,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.mat.Inverse;
   private final JToggleButton jToggleItrp = new JToggleButton("interp");
 
   BSplineBasisDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     // ---
     timerFrame.jToolBar.add(jToggleItrp);
     // ---

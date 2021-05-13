@@ -10,7 +10,7 @@ import javax.swing.JSlider;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
@@ -25,7 +25,7 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public AbstractCurveDemo() {
-    this(GeodesicDisplays.ALL);
+    this(ManifoldDisplays.ALL);
   }
 
   public AbstractCurveDemo(List<ManifoldDisplay> list) {

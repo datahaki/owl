@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.opt.LogWeightings;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.num.Pi;
 
 /* package */ class S1InterpolationDemo extends LogWeightingDemo {
   public S1InterpolationDemo() {
-    super(true, GeodesicDisplays.R2_ONLY, LogWeightings.list());
+    super(true, ManifoldDisplays.R2_ONLY, LogWeightings.list());
     setMidpointIndicated(false);
     // ---
     setControlPointsSe2(Tensors.fromString("{{1, 0, 0}, {0, 1.2, 0}, {-1, 0, 0}}"));

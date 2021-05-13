@@ -16,7 +16,7 @@ import ch.alpine.sophus.flt.bm.BiinvariantMeanIIRnFilter;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicFIRnFilter;
 import ch.alpine.sophus.flt.ga.GeodesicIIRnFilter;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.math.Geodesic;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private final JSlider jSlider = new JSlider(1, 999, 500);
 
   public GeodesicCausalFilterDemo() {
-    super(GeodesicDisplays.SE2_ONLY, GokartPoseDataV2.INSTANCE);
+    super(ManifoldDisplays.SE2_ONLY, GokartPoseDataV2.INSTANCE);
     {
       spinnerCausalFilter.setList(Arrays.asList(GeodesicCausalFilters.values()));
       spinnerCausalFilter.setValue(GeodesicCausalFilters.BIINVARIANT_MEAN_IIR);

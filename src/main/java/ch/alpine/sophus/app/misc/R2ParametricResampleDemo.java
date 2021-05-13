@@ -11,7 +11,7 @@ import ch.alpine.java.ref.FieldClip;
 import ch.alpine.java.ref.gui.ConfigPanel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.ply.d2.ParametricResample;
@@ -33,7 +33,7 @@ public class R2ParametricResampleDemo extends ControlPointsDemo {
   public Scalar ds = RealScalar.of(0.3);
 
   public R2ParametricResampleDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     ConfigPanel configPanel = ConfigPanel.of(this);

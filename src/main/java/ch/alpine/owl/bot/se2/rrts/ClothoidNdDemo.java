@@ -15,7 +15,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
@@ -45,7 +45,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
   public Scalar value = RealScalar.of(3);
 
   public ClothoidNdDemo() {
-    super(false, GeodesicDisplays.CL_ONLY);
+    super(false, ManifoldDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     container.add("West", ConfigPanel.of(this).getJScrollPane());

@@ -26,7 +26,7 @@ import ch.alpine.sophus.decim.LineDistances;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
@@ -62,7 +62,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   protected Tensor _control = Tensors.empty();
 
   public CurveDecimationDemo(GokartPoseData gokartPoseData) {
-    super(GeodesicDisplays.SE2_R2, gokartPoseData);
+    super(ManifoldDisplays.SE2_R2, gokartPoseData);
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
     {
       spinnerLabelWidth.setList(Arrays.asList(0, 1, 5, 8, 10, 15, 20, 25, 30, 35));

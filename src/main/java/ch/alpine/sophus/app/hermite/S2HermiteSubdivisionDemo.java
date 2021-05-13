@@ -15,7 +15,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final JToggleButton jToggleButton = new JToggleButton("derivatives");
 
   public S2HermiteSubdivisionDemo() {
-    super(true, GeodesicDisplays.S2_ONLY);
+    super(true, ManifoldDisplays.S2_ONLY);
     // ---
     {
       spinnerLabelScheme.setArray(HermiteSubdivisions.values());

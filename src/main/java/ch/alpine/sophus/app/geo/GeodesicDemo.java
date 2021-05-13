@@ -14,7 +14,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
@@ -37,7 +37,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final JToggleButton jToggleButton = new JToggleButton("line");
 
   public GeodesicDemo() {
-    List<ManifoldDisplay> list = GeodesicDisplays.ALL;
+    List<ManifoldDisplay> list = ManifoldDisplays.ALL;
     geodesicDisplaySpinner.setList(list);
     geodesicDisplaySpinner.setValue(Se2Display.INSTANCE);
     if (1 < list.size()) {

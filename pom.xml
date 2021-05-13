@@ -81,7 +81,7 @@
 		</repository>
 		<repository>
 			<id>ephemeral-mvn-repo</id>
-			<url>https://raw.github.com/datahaki/ephemeral/mvn-repo/</url>
+			<url>https://raw.github.com/idsc-frazzoli/ephemeral/mvn-repo/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>

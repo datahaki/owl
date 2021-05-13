@@ -12,7 +12,7 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.itp.BSplineFunction;
   private final JToggleButton jToggleButton = new JToggleButton("cyclic");
 
   public R2BSplineFunctionDemo() {
-    super(GeodesicDisplays.R2_ONLY);
+    super(ManifoldDisplays.R2_ONLY);
     // ---
     spinnerDegree.setList(DEGREES);
     spinnerDegree.setValue(3);

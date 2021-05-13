@@ -12,7 +12,7 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.AbstractPlaceDemo;
 import ch.alpine.sophus.app.lev.LeversRender;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.red.Mean;
   private final JToggleButton jToggleButton = new JToggleButton("move");
 
   public SutherlandHodgmanAlgorithmDemo() {
-    super(true, GeodesicDisplays.R2_ONLY);
+    super(true, ManifoldDisplays.R2_ONLY);
     timerFrame.jToolBar.add(jToggleButton);
     setControlPointsSe2(Tensor.of(CirclePoints.of(4).stream().map(row -> row.append(RealScalar.ZERO))));
   }

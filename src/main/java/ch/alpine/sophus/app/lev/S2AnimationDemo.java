@@ -9,7 +9,7 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.lie.so3.Rodrigues;
 import ch.alpine.sophus.opt.LogWeightings;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.Sign;
   private Tensor snapshot;
 
   public S2AnimationDemo() {
-    super(true, GeodesicDisplays.S2_ONLY, LogWeightings.list());
+    super(true, ManifoldDisplays.S2_ONLY, LogWeightings.list());
     {
       jToggleAnimate.addActionListener(e -> {
         if (jToggleAnimate.isSelected()) {

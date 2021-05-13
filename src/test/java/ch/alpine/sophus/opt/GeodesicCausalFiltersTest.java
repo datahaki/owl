@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.opt;
 
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 
 public class GeodesicCausalFiltersTest extends TestCase {
   public void testSimple() {
-    for (ManifoldDisplay geodesicDisplay : GeodesicDisplays.LIE_GROUPS)
+    for (ManifoldDisplay geodesicDisplay : ManifoldDisplays.LIE_GROUPS)
       for (WindowFunctions smoothingKernel : WindowFunctions.values())
         for (int radius = 0; radius < 3; ++radius)
           for (GeodesicCausalFilters geodesicCausalFilters : GeodesicCausalFilters.values()) {

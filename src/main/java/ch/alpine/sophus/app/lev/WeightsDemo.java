@@ -12,7 +12,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gds.Se2Display;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.red.ArgMin;
   private final JToggleButton jToggleAxes = new JToggleButton("axes");
 
   public WeightsDemo() {
-    super(true, GeodesicDisplays.MANIFOLDS, LogWeightings.list());
+    super(true, ManifoldDisplays.MANIFOLDS, LogWeightings.list());
     {
       timerFrame.jToolBar.add(jToggleAxes);
     }

@@ -11,7 +11,7 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.decim.CurveDecimation;
 import ch.alpine.sophus.decim.LineDistances;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
 
   public BulkDecimationDemo() {
-    super(true, GeodesicDisplays.SE2_R2);
+    super(true, ManifoldDisplays.SE2_R2);
     Distribution dX = UniformDistribution.of(-3, 3);
     Distribution dY = NormalDistribution.of(0, .3);
     Distribution dA = NormalDistribution.of(1, .5);

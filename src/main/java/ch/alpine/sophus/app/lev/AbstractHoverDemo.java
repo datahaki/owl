@@ -12,7 +12,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensor;
   private final JButton jButtonShuffle = new JButton("shuffle");
 
   public AbstractHoverDemo() {
-    super(false, GeodesicDisplays.SE2C_SE2_S2_H2_R2, LogWeightings.list());
+    super(false, ManifoldDisplays.SE2C_SE2_S2_H2_R2, LogWeightings.list());
     setMidpointIndicated(false);
     setPositioningEnabled(false);
     addSpinnerListener(v -> shuffle(spinnerCount.getValue()));

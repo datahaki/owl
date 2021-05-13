@@ -10,7 +10,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.Clips;
   private Tensor points;
 
   public RigidMotionFitDemo() {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     setMidpointIndicated(false);
     // ---
     spinnerLength.addSpinnerListener(this::shufflePoints);

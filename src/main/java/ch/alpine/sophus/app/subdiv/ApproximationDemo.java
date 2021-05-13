@@ -20,7 +20,7 @@ import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
@@ -74,7 +74,7 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
   private Container _container = null;
 
   public ApproximationDemo(GokartPoseData gokartPoseData) {
-    super(GeodesicDisplays.SE2_R2);
+    super(ManifoldDisplays.SE2_R2);
     this.gokartPoseData = gokartPoseData;
     timerFrame.geometricComponent.addRenderInterfaceBackground(GRID_RENDER);
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);

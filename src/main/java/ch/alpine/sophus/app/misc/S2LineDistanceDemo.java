@@ -13,7 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.VectorLogManifold;
@@ -52,7 +52,7 @@ import ch.alpine.tensor.sca.Sqrt;
   private final SpinnerLabel<Integer> spinnerRes = new SpinnerLabel<>();
 
   public S2LineDistanceDemo() {
-    super(false, GeodesicDisplays.S2_ONLY);
+    super(false, ManifoldDisplays.S2_ONLY);
     spinnerLineDistances.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "line distance");
     {
       spinnerColorData.setValue(ColorDataGradients.PARULA);

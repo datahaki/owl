@@ -16,7 +16,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.util.DisjointSets;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.math.Geodesic;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
 
   public MinimumSpanningTreeDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2_S2_H2_R2, Arrays.asList(LogWeightings.DISTANCES));
+    super(true, ManifoldDisplays.SE2C_SE2_S2_H2_R2, Arrays.asList(LogWeightings.DISTANCES));
     // ---
     spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
     spinnerRefine.setValue(2);

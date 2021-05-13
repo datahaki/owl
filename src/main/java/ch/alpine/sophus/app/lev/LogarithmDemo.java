@@ -16,7 +16,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final JToggleButton jToggleCtrl = new JToggleButton("show ctrl");
 
   public LogarithmDemo() {
-    super(true, GeodesicDisplays.R2_H2_S2);
+    super(true, ManifoldDisplays.R2_H2_S2);
     {
       spinnerLength.setList(Arrays.asList(5, 9, 10, 11, 12, 15, 20));
       spinnerLength.setValueSafe(11);

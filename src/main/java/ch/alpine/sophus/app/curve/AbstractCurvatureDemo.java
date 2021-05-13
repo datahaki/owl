@@ -12,7 +12,7 @@ import ch.alpine.java.awt.BufferedImageSupplier;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.CurveVisualSet;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -30,7 +30,7 @@ public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
   public final JToggleButton jToggleCurvature = new JToggleButton("crvtp");
 
   public AbstractCurvatureDemo() {
-    this(GeodesicDisplays.ALL);
+    this(ManifoldDisplays.ALL);
   }
 
   public AbstractCurvatureDemo(List<ManifoldDisplay> list) {

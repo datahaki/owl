@@ -2,7 +2,7 @@
 package ch.alpine.sophus.app.bdn;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.sophus.ply.Arrowhead;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   private static final Tensor ORIGIN = Arrowhead.of(RealScalar.of(0.2));
 
   Se2DeformationDemo() {
-    super(GeodesicDisplays.SE2C_SE2, LogWeightings.coordinates());
+    super(ManifoldDisplays.SE2C_SE2, LogWeightings.coordinates());
     // ---
     timerFrame.geometricComponent.setOffset(300, 500);
     shuffleSnap();

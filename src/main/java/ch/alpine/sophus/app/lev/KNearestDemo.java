@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.sca.Clips;
   private final JTextField jTextField = new JTextField();
 
   public KNearestDemo() {
-    super(true, GeodesicDisplays.MANIFOLDS, LogWeightings.list());
+    super(true, ManifoldDisplays.MANIFOLDS, LogWeightings.list());
     {
       spinnerLength.addSpinnerListener(v -> shuffleSnap());
       spinnerLength.setList(Arrays.asList(9, 15, 20, 25, 50, 75));

@@ -10,7 +10,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.bm.BiinvariantMeanCenter;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.so2.So2FilterBiinvariantMean;
 import ch.alpine.sophus.lie.so2.So2LinearBiinvariantMean;
@@ -31,7 +31,7 @@ import ch.alpine.tensor.red.Nest;
   private final SpinnerLabel<Integer> spinnerConvolution = new SpinnerLabel<>();
 
   public Se2BiinvariantMeanDemo() {
-    super(GeodesicDisplays.SE2_ONLY, GokartPoseDataV2.INSTANCE);
+    super(ManifoldDisplays.SE2_ONLY, GokartPoseDataV2.INSTANCE);
     {
       spinnerFilters.setArray(Se2BiinvariantMeans.values());
       spinnerFilters.setIndex(0);

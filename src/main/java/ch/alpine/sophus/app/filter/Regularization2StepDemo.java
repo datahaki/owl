@@ -16,7 +16,7 @@ import ch.alpine.sophus.app.sym.SymLinkImage;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.app.sym.SymScalar;
 import ch.alpine.sophus.flt.ga.Regularization2Step;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.N;
   private final JSlider jSlider = new JSlider(0, 1000, 600);
 
   Regularization2StepDemo() {
-    super(GeodesicDisplays.SE2_R2, GokartPoseDataV2.INSTANCE);
+    super(ManifoldDisplays.SE2_R2, GokartPoseDataV2.INSTANCE);
     jSlider.setPreferredSize(new Dimension(500, 28));
     timerFrame.jToolBar.add(jSlider);
     // ---

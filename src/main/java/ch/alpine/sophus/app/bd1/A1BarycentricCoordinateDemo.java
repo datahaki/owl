@@ -9,7 +9,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.opt.LogWeighting;
 import ch.alpine.tensor.Scalar;
@@ -23,7 +23,7 @@ import ch.alpine.tensor.img.ColorDataLists;
 
 /* package */ abstract class A1BarycentricCoordinateDemo extends LogWeightingDemo {
   public A1BarycentricCoordinateDemo(List<LogWeighting> array) {
-    super(true, GeodesicDisplays.R2_ONLY, array);
+    super(true, ManifoldDisplays.R2_ONLY, array);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {1, 1, 0}, {2, 2, 0}}"));
     // ---

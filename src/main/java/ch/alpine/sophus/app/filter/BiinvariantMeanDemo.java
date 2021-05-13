@@ -18,7 +18,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.fit.HsWeiszfeldMethod;
 import ch.alpine.sophus.fit.SpatialMedian;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -54,7 +54,7 @@ import ch.alpine.tensor.sca.Chop;
   private final JToggleButton median = new JToggleButton("median");
 
   public BiinvariantMeanDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2_S2_H2_R2);
+    super(true, ManifoldDisplays.SE2C_SE2_S2_H2_R2);
     spinnerDistances.addToComponentReduced(timerFrame.jToolBar, new Dimension(100, 28), "pseudo distances");
     timerFrame.jToolBar.add(axes);
     {

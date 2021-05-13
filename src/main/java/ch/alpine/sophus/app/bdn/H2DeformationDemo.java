@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
@@ -21,7 +21,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
   private final SpinnerLabel<HnMeans> spinnerMeans = SpinnerLabel.of(HnMeans.values());
 
   H2DeformationDemo() {
-    super(GeodesicDisplays.H2_ONLY, LogWeightings.coordinates());
+    super(ManifoldDisplays.H2_ONLY, LogWeightings.coordinates());
     // ---
     spinnerMeans.setValue(HnMeans.EXACT);
     spinnerMeans.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "hn means");

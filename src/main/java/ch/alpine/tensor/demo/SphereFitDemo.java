@@ -12,7 +12,7 @@ import ch.alpine.sophus.fit.HsWeiszfeldMethod;
 import ch.alpine.sophus.fit.SpatialMedian;
 import ch.alpine.sophus.fit.SphereFit;
 import ch.alpine.sophus.fit.WeiszfeldMethod;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Chop;
   private final PathRender pathRenderHull = new PathRender(COLOR_DATA_INDEXED.getColor(1), 1.5f);
 
   public SphereFitDemo() {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     // ---
     timerFrame.geometricComponent.addRenderInterface(pathRenderHull);
     // ---

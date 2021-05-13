@@ -11,7 +11,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.img.ColorDataGradients;
   private final JToggleButton jToggleNeutral = new JToggleButton("neutral");
 
   public GrassmannDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2_S2_H2_R2, LogWeightings.list());
+    super(true, ManifoldDisplays.SE2C_SE2_S2_H2_R2, LogWeightings.list());
     // ---
     spinnerColorData.setValue(ColorDataGradients.TEMPERATURE);
     spinnerColorData.addToComponentReduced(timerFrame.jToolBar, new Dimension(200, 28), "color scheme");

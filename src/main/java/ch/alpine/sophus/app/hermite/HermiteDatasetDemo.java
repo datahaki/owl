@@ -21,7 +21,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.lie.so2.So2Lift;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.sca.Power;
   protected Tensor _control = Tensors.empty();
 
   public HermiteDatasetDemo(GokartPoseDataV2 gokartPoseData) {
-    super(GeodesicDisplays.SE2C_SE2, gokartPoseData);
+    super(ManifoldDisplays.SE2C_SE2, gokartPoseData);
     this.gokartPoseData = gokartPoseData;
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
     {

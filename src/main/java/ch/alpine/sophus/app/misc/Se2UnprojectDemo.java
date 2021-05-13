@@ -8,7 +8,7 @@ import java.awt.geom.Path2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.HsManifold;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.sca.Sqrt;
   private static final Tensor ARROWHEAD = Arrowhead.of(0.5);
 
   public Se2UnprojectDemo() {
-    super(false, GeodesicDisplays.SE2C_SE2);
+    super(false, ManifoldDisplays.SE2C_SE2);
     Tensor tensor = Tensors.fromString("{{0, 0, 0}, {5, 0, 1}}");
     setControlPointsSe2(tensor);
   }

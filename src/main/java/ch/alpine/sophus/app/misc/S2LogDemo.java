@@ -7,7 +7,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.Tensor;
@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensors;
 
 /* package */ class S2LogDemo extends ControlPointsDemo {
   public S2LogDemo() {
-    super(true, GeodesicDisplays.S2_ONLY);
+    super(true, ManifoldDisplays.S2_ONLY);
     // ---
     timerFrame.geometricComponent.addRenderInterfaceBackground(new GeodesicDisplayRender() {
       @Override

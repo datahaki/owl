@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.app.bd1;
 
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Rp2Display;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -10,7 +10,7 @@ import ch.alpine.tensor.red.Max;
 
 /* package */ class S2AveragingDemo extends A2AveragingDemo {
   public S2AveragingDemo() {
-    super(GeodesicDisplays.S2_RP2);
+    super(ManifoldDisplays.S2_RP2);
     // ---
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
     timerFrame.geometricComponent.setModel2Pixel(Tensors.vector(5, 5, 1).pmul(model2pixel));

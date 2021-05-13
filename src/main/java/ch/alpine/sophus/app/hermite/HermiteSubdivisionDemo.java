@@ -16,7 +16,7 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.ClothoidDistance;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.red.Mean;
   private final JToggleButton jToggleButton = new JToggleButton("derivatives");
 
   public HermiteSubdivisionDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2_R2);
+    super(true, ManifoldDisplays.SE2C_SE2_R2);
     // ---
     {
       spinnerLabelScheme.setArray(HermiteSubdivisions.values());

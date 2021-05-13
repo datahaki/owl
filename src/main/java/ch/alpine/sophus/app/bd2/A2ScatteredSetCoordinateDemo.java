@@ -12,7 +12,7 @@ import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.opt.LogWeighting;
 import ch.alpine.tensor.Tensor;
@@ -23,7 +23,7 @@ import ch.alpine.tensor.Tensor;
   private RenderInterface renderInterface;
 
   public A2ScatteredSetCoordinateDemo(List<LogWeighting> array) {
-    super(true, GeodesicDisplays.R2_H2_S2, array);
+    super(true, ManifoldDisplays.R2_H2_S2, array);
     // ---
     timerFrame.jToolBar.add(jToggleAxes);
     jToggleHeatmap.setVisible(false);

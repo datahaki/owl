@@ -8,7 +8,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2ClothoidDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final RenderInterface renderInterface;
 
   public AbstractSpiralDemo(ScalarTensorFunction scalarTensorFunction) {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     this.scalarTensorFunction = scalarTensorFunction;
     Tensor points = Subdivide.of(-10.0, 10.0, 10000).map(scalarTensorFunction);
     renderInterface = new PathRender(Color.BLUE, 1f).setCurve(points, false);

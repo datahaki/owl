@@ -11,7 +11,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.red.Total;
   private final JToggleButton axes = new JToggleButton("axes");
 
   public Se2BarycenterDemo() {
-    super(false, GeodesicDisplays.SE2C_SE2);
+    super(false, ManifoldDisplays.SE2C_SE2);
     timerFrame.jToolBar.add(axes);
     Tensor tensor = DubinsGenerator.of(Tensors.vector(0, 0, 0), Tensors.fromString("{{5, 0, -1}}")) //
         .append(Tensors.vector(0, -1, 0)) //

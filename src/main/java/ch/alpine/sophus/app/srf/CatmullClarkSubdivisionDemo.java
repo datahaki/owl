@@ -10,7 +10,7 @@ import java.util.Arrays;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.Geodesic;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.red.Nest;
   private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
 
   CatmullClarkSubdivisionDemo() {
-    super(false, GeodesicDisplays.SE2C_SE2);
+    super(false, ManifoldDisplays.SE2C_SE2);
     spinnerRefine.addSpinnerListener(value -> timerFrame.geometricComponent.jComponent.repaint());
     spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5));
     spinnerRefine.setValue(2);

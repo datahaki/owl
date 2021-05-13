@@ -14,7 +14,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.RealScalar;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   private final JToggleButton jToggleCtrl = new JToggleButton("ctrl");
 
   public ClothoidDesign() {
-    super(true, GeodesicDisplays.CL_ONLY);
+    super(true, ManifoldDisplays.CL_ONLY);
     // ---
     jToggleCtrl.setSelected(true);
     timerFrame.jToolBar.add(jToggleCtrl);

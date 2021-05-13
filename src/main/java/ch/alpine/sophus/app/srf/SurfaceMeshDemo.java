@@ -15,7 +15,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.io.Primitives;
   private final SurfaceMesh surfaceMesh = SurfaceMeshExamples.quads6();
 
   public SurfaceMeshDemo() {
-    super(false, GeodesicDisplays.SE2C_R2);
+    super(false, ManifoldDisplays.SE2C_R2);
     ctrl.setSelected(true);
     timerFrame.jToolBar.add(ctrl);
     // ---

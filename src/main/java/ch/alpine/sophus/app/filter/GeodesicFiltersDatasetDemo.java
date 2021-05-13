@@ -12,7 +12,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseDataV1;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.flt.CenterFilter;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.opt.GeodesicFilters;
 import ch.alpine.tensor.Tensor;
@@ -25,7 +25,7 @@ import ch.alpine.tensor.red.Nest;
   private final SpinnerLabel<Integer> spinnerConvolution = new SpinnerLabel<>();
 
   public GeodesicFiltersDatasetDemo() {
-    super(GeodesicDisplays.SE2_R2, GokartPoseDataV1.INSTANCE);
+    super(ManifoldDisplays.SE2_R2, GokartPoseDataV1.INSTANCE);
     {
       spinnerFilters.setArray(GeodesicFilters.values());
       spinnerFilters.setIndex(0);

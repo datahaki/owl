@@ -16,7 +16,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.app.io.GokartPoseData;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.lie.LieDifferences;
 import ch.alpine.sophus.lie.LieGroup;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   // protected final SpinnerLabel<ColorDataGradients> spinnerLabelCDG = new SpinnerLabel<>();
 
   protected AbstractSpectrogramDemo(GokartPoseData gokartPoseData) {
-    this(GeodesicDisplays.CL_SE2_R2, gokartPoseData);
+    this(ManifoldDisplays.CL_SE2_R2, gokartPoseData);
   }
 
   protected AbstractSpectrogramDemo(List<ManifoldDisplay> list, GokartPoseData gokartPoseData) {

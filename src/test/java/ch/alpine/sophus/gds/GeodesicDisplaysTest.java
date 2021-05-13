@@ -12,11 +12,11 @@ import junit.framework.TestCase;
 
 public class GeodesicDisplaysTest extends TestCase {
   public void testSimple() {
-    assertTrue(12 <= GeodesicDisplays.ALL.size());
+    assertTrue(12 <= ManifoldDisplays.ALL.size());
   }
 
   public void testToPoint() {
-    for (ManifoldDisplay geodesicDisplay : GeodesicDisplays.ALL)
+    for (ManifoldDisplay geodesicDisplay : ManifoldDisplays.ALL)
       try {
         Tensor xya = Tensors.vector(1, 2, 3);
         Tensor p = Serialization.copy(geodesicDisplay).project(xya);

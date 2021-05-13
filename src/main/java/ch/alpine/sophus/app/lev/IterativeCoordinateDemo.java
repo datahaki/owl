@@ -11,7 +11,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.Tensors;
   // private final JToggleButton jToggleNeutral = new JToggleButton("neutral");
 
   public IterativeCoordinateDemo() {
-    super(true, GeodesicDisplays.R2_ONLY, LogWeightings.list());
+    super(true, ManifoldDisplays.R2_ONLY, LogWeightings.list());
     // ---
     spinnerTotal.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 100));
     spinnerTotal.setValue(2);

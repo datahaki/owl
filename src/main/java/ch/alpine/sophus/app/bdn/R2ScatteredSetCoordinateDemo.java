@@ -17,7 +17,7 @@ import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
 import ch.alpine.sophus.gui.ren.ArrayRender;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.red.Entrywise;
   private Tensor snapshot;
 
   public R2ScatteredSetCoordinateDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2, LogWeightings.list());
+    super(true, ManifoldDisplays.SE2C_SE2, LogWeightings.list());
     {
       jToggleButtonAxes.setSelected(true);
       timerFrame.jToolBar.add(jToggleButtonAxes);

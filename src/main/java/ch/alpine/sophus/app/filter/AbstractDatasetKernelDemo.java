@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.sophus.app.io.GokartPoseData;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
@@ -26,7 +26,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   }
 
   protected AbstractDatasetKernelDemo(GokartPoseData gokartPoseData) {
-    this(GeodesicDisplays.CL_SE2_R2, gokartPoseData);
+    this(ManifoldDisplays.CL_SE2_R2, gokartPoseData);
   }
 
   @Override // from DatasetFilterDemo

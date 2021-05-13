@@ -13,7 +13,7 @@ import ch.alpine.sophus.app.sym.SymLinkImage;
 import ch.alpine.sophus.app.sym.SymScalar;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolationFilter;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -23,7 +23,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private Tensor refined = Tensors.empty();
 
   public GeodesicExtrapolationDemo() {
-    super(GeodesicDisplays.SE2_R2, GokartPoseDataV2.INSTANCE);
+    super(ManifoldDisplays.SE2_R2, GokartPoseDataV2.INSTANCE);
     updateState();
   }
 

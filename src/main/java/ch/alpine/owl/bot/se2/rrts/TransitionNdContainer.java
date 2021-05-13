@@ -16,7 +16,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
@@ -49,7 +49,7 @@ public class TransitionNdContainer {
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE));
     tensor = RandomSample.of(randomSampleInterface, n);
-    for (ManifoldDisplay geodesicDisplay : GeodesicDisplays.CL_SE2_R2) {
+    for (ManifoldDisplay geodesicDisplay : ManifoldDisplays.CL_SE2_R2) {
       TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(geodesicDisplay);
       RrtsNodeCollection rrtsNodeCollection = se2TransitionNdType.equals(TransitionNdTypes.RN) //
           ? new RnRrtsNodeCollection(lbounds, ubounds)

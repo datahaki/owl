@@ -18,7 +18,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private final JToggleButton jToggleBasis = new JToggleButton("basis");
 
   public BarycentricRationalInterpolationDemo() {
-    super(true, GeodesicDisplays.METRIC);
+    super(true, ManifoldDisplays.METRIC);
     {
       spinnerBeta.setList(Tensors.fromString("{0, 1/4, 1/2, 3/4, 1}").stream().map(Scalar.class::cast).collect(Collectors.toList()));
       spinnerBeta.setIndex(0);

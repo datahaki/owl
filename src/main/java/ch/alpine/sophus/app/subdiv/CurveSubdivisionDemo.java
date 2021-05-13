@@ -23,7 +23,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.StandardMenu;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.curve.AbstractCurvatureDemo;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.Se2Display;
@@ -57,7 +57,7 @@ import ch.alpine.tensor.red.Nest;
   private final SpinnerLabel<Scalar> spinnerBeta = new SpinnerLabel<>();
 
   public CurveSubdivisionDemo() {
-    super(GeodesicDisplays.ALL);
+    super(ManifoldDisplays.ALL);
     Tensor control = null;
     {
       Tensor move = Tensors.fromString( //

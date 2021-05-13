@@ -20,7 +20,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.app.io.GokartPoseDataV1;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.lie.LieDifferences;
 import ch.alpine.sophus.lie.LieGroup;
@@ -64,7 +64,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   }
 
   public AbstractNavigableMapDemo() {
-    super(GeodesicDisplays.CL_SE2_R2);
+    super(ManifoldDisplays.CL_SE2_R2);
     // ---
     jSlider.setPreferredSize(new Dimension(500, 28));
     //

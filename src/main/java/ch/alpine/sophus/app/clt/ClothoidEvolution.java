@@ -20,7 +20,7 @@ import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.sophus.clt.PriorityClothoid;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.ext.Timing;
   private final Timing timing = Timing.started();
 
   public ClothoidEvolution() {
-    super(true, GeodesicDisplays.CLC_ONLY);
+    super(true, ManifoldDisplays.CLC_ONLY);
     // ---
     jToggleAnimate.setSelected(true);
     timerFrame.jToolBar.add(jToggleAnimate);

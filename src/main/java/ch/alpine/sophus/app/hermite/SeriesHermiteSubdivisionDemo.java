@@ -16,7 +16,7 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.N;
   private final JTextField jTextField = new JTextField(30);
 
   public SeriesHermiteSubdivisionDemo() {
-    super(false, GeodesicDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---

@@ -10,7 +10,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.gds.GeodesicDisplays;
+import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.LieGroupOps;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.ext.Timing;
   private Tensor snapshot;
 
   public Se2CoveringAnimationDemo() {
-    super(true, GeodesicDisplays.SE2C_SE2, LogWeightings.list());
+    super(true, ManifoldDisplays.SE2C_SE2, LogWeightings.list());
     timerFrame.jToolBar.add(jToggleAxes);
     {
       jToggleAnimate.addActionListener(e -> {
