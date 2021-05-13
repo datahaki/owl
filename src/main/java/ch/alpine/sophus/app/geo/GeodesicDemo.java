@@ -34,7 +34,9 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final PathRender pathRender = new PathRender(new Color(128, 128, 255), //
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0));
   private final SpinnerLabel<ManifoldDisplay> geodesicDisplaySpinner = new SpinnerLabel<>();
-  private final JToggleButton jToggleButton = new JToggleButton("line");
+  // private final JToggleButton jToggleButton = new JToggleButton("line");
+  private final JToggleButton jToggleButton2 = new JToggleButton("comb");
+  private final JToggleButton jToggleButton3 = new JToggleButton("extra");
 
   public GeodesicDemo() {
     List<ManifoldDisplay> list = ManifoldDisplays.ALL;
@@ -44,8 +46,10 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
       geodesicDisplaySpinner.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "geodesic type");
       timerFrame.jToolBar.addSeparator();
     }
-    jToggleButton.setSelected(true);
-    timerFrame.jToolBar.add(jToggleButton);
+    // jToggleButton.setSelected(true);
+    // timerFrame.jToolBar.add(jToggleButton);
+    timerFrame.jToolBar.add(jToggleButton2);
+    timerFrame.jToolBar.add(jToggleButton3);
   }
 
   @Override // from RenderInterface
@@ -70,12 +74,12 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
       graphics.fill(geometricLayer.toPath2D(geodesicDisplay.shape()));
       geometricLayer.popMatrix();
     }
-    if (jToggleButton.isSelected()) {
-      {
-        Tensor refined = Subdivide.of(0, 1, SPLITS * 6).map(scalarTensorFunction);
-        Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
-        Curvature2DRender.of(render, false, geometricLayer, graphics);
-      }
+    if (jToggleButton2.isSelected()) {
+      Tensor refined = Subdivide.of(0, 1, SPLITS * 6).map(scalarTensorFunction);
+      Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));
+      Curvature2DRender.of(render, false, geometricLayer, graphics);
+    }
+    if (jToggleButton3.isSelected()) {
       {
         Tensor refined = Subdivide.of(1, 1.5, SPLITS * 3).map(scalarTensorFunction);
         Tensor render = Tensor.of(refined.stream().map(geodesicDisplay::toPoint));

@@ -34,7 +34,8 @@ public enum Bitype {
       return Biinvariants.HARBOR;
     case CUPOLA:
       return Biinvariants.CUPOLA;
+    default:
+      throw new IllegalArgumentException();
     }
-    throw new IllegalArgumentException();
   }
 }

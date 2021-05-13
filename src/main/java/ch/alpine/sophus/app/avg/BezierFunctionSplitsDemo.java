@@ -8,6 +8,8 @@ import javax.swing.JSlider;
 import ch.alpine.sophus.app.sym.SymGeodesic;
 import ch.alpine.sophus.app.sym.SymScalar;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
+import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.lie.se2.Se2Manifold;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -24,6 +26,9 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
     timerFrame.jToolBar.add(jSlider);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {2, 2, 1}, {5, 0, 2}}"));
+    // ---
+    setGeodesicDisplay(S2Display.INSTANCE);
+    setControlPointsSe2(Tensors.fromString("{}"));
   }
 
   @Override // from GeodesicAverageDemo

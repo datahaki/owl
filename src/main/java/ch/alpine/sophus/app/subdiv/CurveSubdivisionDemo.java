@@ -26,6 +26,7 @@ import ch.alpine.sophus.app.curve.AbstractCurvatureDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
+import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.ren.PathRender;
@@ -148,6 +149,7 @@ import ch.alpine.tensor.red.Nest;
     // CurveSubdivisionHelper.MAGIC_C = RationalScalar.of(jSlider.getValue(), 1000));
     // timerFrame.jToolBar.add(jSlider);
     // }
+    setGeodesicDisplay(Se2Display.INSTANCE);
     timerFrame.geometricComponent.setOffset(100, 600);
   }
 
