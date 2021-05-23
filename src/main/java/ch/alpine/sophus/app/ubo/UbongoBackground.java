@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.ref.FieldIntegerQ;
+import ch.alpine.java.ref.FieldInteger;
 import ch.alpine.java.ref.gui.ConfigPanel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 
 public class UbongoBackground extends AbstractDemo {
-  @FieldIntegerQ
+  @FieldInteger
   public Scalar resol = RealScalar.of(30);
   public Scalar delta = RealScalar.of(0.1);
   public Scalar amp = RealScalar.of(0.1);

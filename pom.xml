@@ -20,12 +20,12 @@
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>sophus</artifactId>
-			<version>0.0.4</version>
+			<version>0.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>java</artifactId>
-			<version>0.0.7</version>
+			<version>0.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>

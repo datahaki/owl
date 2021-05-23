@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
 import ch.alpine.java.ref.FieldClip;
-import ch.alpine.java.ref.FieldIntegerQ;
+import ch.alpine.java.ref.FieldInteger;
 import ch.alpine.java.ref.gui.ConfigPanel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.GeometricLayer;
@@ -40,7 +40,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
       ClothoidRrtsNodeCollections.of(RealScalar.ONE, LBOUNDS, UBOUNDS);
   // ---
   public Boolean limit = true;
-  @FieldIntegerQ
+  @FieldInteger
   @FieldClip(min = "1", max = "50")
   public Scalar value = RealScalar.of(3);
 

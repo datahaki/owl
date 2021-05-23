@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.app.decim;
 
-import ch.alpine.java.ref.FieldIntegerQ;
+import ch.alpine.java.ref.FieldInteger;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -11,7 +11,7 @@ public class S2DeltaParam {
   public Scalar angle = RealScalar.of(0.1);
   public Scalar delta = RealScalar.of(0.1);
   public Scalar noise = RealScalar.of(0.01);
-  @FieldIntegerQ
+  @FieldInteger
   public Scalar width = RealScalar.of(5);
   public WindowFunctions f_window = WindowFunctions.FLAT_TOP;
   public WindowFunctions s_window = WindowFunctions.HANN;

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.app.bd2;
 
-import ch.alpine.java.ref.FieldIntegerQ;
+import ch.alpine.java.ref.FieldInteger;
 import ch.alpine.sophus.gbc.amp.Amplifiers;
 import ch.alpine.sophus.gbc.it.IterativeAffineCoordinate;
 import ch.alpine.sophus.gbc.it.IterativeTargetCoordinate;
@@ -16,7 +16,7 @@ public class GenesisDequeProperties {
   public Boolean lagrange = false;
   public Amplifiers amplifiers = Amplifiers.EXP;
   public Scalar beta = RealScalar.of(3);
-  @FieldIntegerQ
+  @FieldInteger
   public Scalar refine = RealScalar.of(20);
 
   public Genesis genesis() {
