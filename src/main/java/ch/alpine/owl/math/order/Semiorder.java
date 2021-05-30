@@ -23,7 +23,7 @@ public enum Semiorder {
    * OrderComparison.STRICTLY_SUCCEDES if u(y) + sigma less than f(x),
    * or OrderComparison.INDIFFERENT if neither of the both. */
   public static <T> OrderComparator<T> comparator(Function<T, Scalar> utilityFunction, Scalar slack) {
-    return new OrderComparator<T>() {
+    return new OrderComparator<>() {
       @Override // from OrderComparator
       public OrderComparison compare(T x, T y) {
         Scalar utility_x = utilityFunction.apply(x);

@@ -41,6 +41,7 @@ public abstract class LogWeightingBase extends AbstractPlaceDemo {
           if (!isPositioningOngoing())
             recompute();
           break;
+        default:
         }
       }
 

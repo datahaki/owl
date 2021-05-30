@@ -186,6 +186,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
             }
           }
           break;
+        default:
         }
       }
     };

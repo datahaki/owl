@@ -32,7 +32,7 @@ import ch.alpine.tensor.sca.Sqrt;
 
   public ClassificationDemo() {
     { // code redundant with R2ClassificationDemo
-      SpinnerListener<LogWeighting> spinnerListener = new SpinnerListener<LogWeighting>() {
+      SpinnerListener<LogWeighting> spinnerListener = new SpinnerListener<>() {
         @Override
         public void actionPerformed(LogWeighting logWeighting) {
           if (logWeighting.equals(LogWeightings.DISTANCES))

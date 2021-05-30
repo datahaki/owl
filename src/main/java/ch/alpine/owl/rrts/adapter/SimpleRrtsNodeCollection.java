@@ -41,7 +41,7 @@ public class SimpleRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override
   public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    Comparator<RrtsNode> comparator = new Comparator<RrtsNode>() {
+    Comparator<RrtsNode> comparator = new Comparator<>() {
       final Map<RrtsNode, Scalar> map = new HashMap<>();
 
       @Override
@@ -62,7 +62,7 @@ public class SimpleRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override
   public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
-    Comparator<RrtsNode> comparator = new Comparator<RrtsNode>() {
+    Comparator<RrtsNode> comparator = new Comparator<>() {
       final Map<RrtsNode, Scalar> map = new HashMap<>();
 
       @Override

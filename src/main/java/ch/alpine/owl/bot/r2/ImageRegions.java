@@ -43,7 +43,8 @@ public enum ImageRegions {
       return image.copy();
     case 3:
       return image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
+    default:
+      throw TensorRuntimeException.of(image);
     }
-    throw TensorRuntimeException.of(image);
   }
 }

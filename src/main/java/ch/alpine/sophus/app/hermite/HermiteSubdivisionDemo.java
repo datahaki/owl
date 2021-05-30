@@ -132,6 +132,7 @@ import ch.alpine.tensor.red.Mean;
         case "R2":
           new R2HermitePlot(iterate, scale).render(geometricLayer, graphics);
           break;
+        default:
         }
       }
       // ---

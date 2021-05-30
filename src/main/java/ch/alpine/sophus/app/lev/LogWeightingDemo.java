@@ -28,7 +28,7 @@ public abstract class LogWeightingDemo extends LogWeightingBase {
   private final SpinnerLabel<Bitype> spinnerBiinvariant = new SpinnerLabel<>();
   private final SpinnerLabel<Variograms> spinnerVariogram = SpinnerLabel.of(Variograms.values());
   private final SpinnerLabel<Scalar> spinnerBeta = new SpinnerLabel<>();
-  private final SpinnerListener<LogWeighting> spinnerListener = new SpinnerListener<LogWeighting>() {
+  private final SpinnerListener<LogWeighting> spinnerListener = new SpinnerListener<>() {
     @Override
     public void actionPerformed(LogWeighting logWeighting) {
       {
