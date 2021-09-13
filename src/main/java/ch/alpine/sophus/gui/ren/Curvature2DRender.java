@@ -4,7 +4,7 @@ package ch.alpine.sophus.gui.ren;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.crv.d2.CurvatureComb;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Scalar;

@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 import java.util.List;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
@@ -16,7 +17,6 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.gui.ren.TreeRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;

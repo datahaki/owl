@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.Round;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
-    Tensor mouse = geometricLayer.getMouseSe2State();
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     // ---
     {
       graphics.setColor(new Color(255, 0, 0, 128));

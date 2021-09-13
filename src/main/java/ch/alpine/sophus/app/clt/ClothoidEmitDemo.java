@@ -8,11 +8,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.sophus.clt.ClothoidContext;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Clips;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
-    Tensor mouse = geometricLayer.getMouseSe2State();
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     // ---
     ClothoidContext clothoidContext = new ClothoidContext(START, mouse);
     Search search = CLOTHOID_SOLUTIONS.new Search(clothoidContext.s1(), clothoidContext.s2());

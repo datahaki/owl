@@ -7,9 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Path2D;
 
-import ch.alpine.java.lang.Refactor;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.sym.SymLink;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.math.Geodesic;
@@ -20,7 +19,6 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.sca.Clips;
 
 /** visualization of the geometric geodesic average */
-@Refactor(reason = "implementation is general")
 /* package */ class GeometricSymLinkRender {
   private static final Stroke STROKE = //
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);

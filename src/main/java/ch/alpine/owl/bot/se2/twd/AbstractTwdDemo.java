@@ -7,6 +7,8 @@ import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class AbstractTwdDemo implements DemoInterface {
   @Override
@@ -17,7 +19,17 @@ import ch.alpine.owl.math.state.StateTime;
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           getRegion(), //
-          TwdEntity.SHAPE, () -> twdEntity.getStateTimeNow().time());
+          TwdEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return twdEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
       owlyAnimationFrame.addBackground(renderInterface);
     }
     owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);

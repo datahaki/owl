@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 import javax.swing.JCheckBox;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.avg.GeometricSymLinkRender.Link;
 import ch.alpine.sophus.app.sym.SymLink;
 import ch.alpine.sophus.app.sym.SymLinkBuilder;

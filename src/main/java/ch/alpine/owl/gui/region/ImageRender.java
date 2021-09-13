@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.win.AffineTransforms;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;

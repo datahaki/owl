@@ -6,11 +6,11 @@ import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.java.ref.FieldClip;
-import ch.alpine.java.ref.FieldInteger;
-import ch.alpine.java.ref.gui.ConfigPanel;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
@@ -48,7 +48,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     super(false, ManifoldDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", ConfigPanel.of(this).getJScrollPane());
+    container.add("West", new FieldsEditor(this).getJScrollPane());
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);
@@ -82,7 +82,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
       graphics.draw(path2d);
       geometricLayer.popMatrix();
     }
-    Tensor mouse = geometricLayer.getMouseSe2State();
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     {
       geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mouse));
       Path2D path2d = geometricLayer.toPath2D(shape);

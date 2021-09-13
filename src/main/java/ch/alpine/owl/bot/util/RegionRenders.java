@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
 import ch.alpine.owl.bot.rn.RnPointcloudRegionRender;
 import ch.alpine.owl.gui.RenderInterface;
@@ -15,7 +16,6 @@ import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.region.StateTimeCollectorRender;
 import ch.alpine.owl.gui.ren.BallRegionRender;
 import ch.alpine.owl.gui.ren.ConeRegionRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ConeRegion;

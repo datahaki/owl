@@ -19,8 +19,8 @@ import javax.swing.JButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.region.ImageRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -217,7 +217,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
           ImageFormat.of(geodesicArrayPlot.raster(resolution, tensorUnaryOperator, Array.zeros(4)));
       {
         Tensor matrix = geodesicArrayPlot.pixel2model(new Dimension(resolution, resolution));
-        GeometricLayer geometricLayer = GeometricLayer.of(Inverse.of(matrix));
+        GeometricLayer geometricLayer = new GeometricLayer(Inverse.of(matrix));
         Graphics2D graphics = bufferedImage.createGraphics();
         RenderQuality.setQuality(graphics);
         render(geometricLayer, graphics, manifoldDisplay, sequence, vector, colorDataIndexed);

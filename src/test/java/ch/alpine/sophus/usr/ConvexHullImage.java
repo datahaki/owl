@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.Tensor;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.Clips;
     Random random = new Random(seed);
     Tensor points = RandomVariate.of(NormalDistribution.of(0.5, .28), random, 30, 2).map(Clips.unit());
     Tensor hull = ConvexHull.of(points);
-    GeometricLayer geometricLayer = GeometricLayer.of(StaticHelper.SE2);
+    GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     Graphics2D graphics = bufferedImage.createGraphics();
     RenderQuality.setQuality(graphics);

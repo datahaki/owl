@@ -4,7 +4,7 @@ package ch.alpine.sophus.app.bd2;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversHud;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gbc.AffineCoordinate;

@@ -10,8 +10,8 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
@@ -56,12 +56,13 @@ import ch.alpine.tensor.Tensor;
 
   @Override // from RenderInterface
   public final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     if (jToggleAxes.isSelected())
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
-    Tensor origin = manifoldDisplay.project(geometricLayer.getMouseSe2State());
+    Tensor origin = manifoldDisplay.project(mouse);
     LeversRender leversRender = //
         LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
     render(geometricLayer, graphics, leversRender);

@@ -11,8 +11,8 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;

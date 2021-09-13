@@ -21,6 +21,7 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -59,7 +60,17 @@ import ch.alpine.tensor.sca.Clips;
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region)), //
-          ClothoidRrtsEntity.SHAPE, () -> clothoidRrtsEntity.getStateTimeNow().time());
+          ClothoidRrtsEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return clothoidRrtsEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
       owlyAnimationFrame.addBackground(renderInterface);
     }
     owlyAnimationFrame.geometricComponent.setOffset(50, 700);

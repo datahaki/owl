@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.gfx;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -7,7 +7,6 @@ import java.util.Deque;
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.IdentityMatrix;
 import junit.framework.TestCase;
@@ -29,22 +28,22 @@ public class GeometricLayerTest extends TestCase {
 
   public void testConstruction() {
     Tensor model2pixel = Tensors.fromString("{{1, 2, 3}, {2, -1, 7}, {0, 0, 1}}");
-    Tensor mouseSe2State = Tensors.vector(9, 7, 2);
-    GeometricLayer geometricLayer = new GeometricLayer(model2pixel, mouseSe2State);
+    // Tensor mouseSe2State = Tensors.vector(9, 7, 2);
+    GeometricLayer geometricLayer = new GeometricLayer(model2pixel);
     geometricLayer.toPoint2D(Tensors.vector(1, 2));
     assertEquals(geometricLayer.getMatrix(), model2pixel);
     geometricLayer.pushMatrix(IdentityMatrix.of(3));
     assertEquals(geometricLayer.getMatrix(), model2pixel);
     geometricLayer.popMatrix();
     geometricLayer.popMatrix();
-    assertEquals(mouseSe2State, geometricLayer.getMouseSe2State());
+    // assertEquals(mouseSe2State, geometricLayer.getMouseSe2State());
     AssertFail.of(() -> geometricLayer.popMatrix());
   }
 
   public void testVector() {
     Tensor model2pixel = Tensors.fromString("{{1, 2, 3}, {2, -1, 7}, {0, 0, 1}}");
-    Tensor mouseSe2State = Tensors.vector(9, 7, 2);
-    GeometricLayer geometricLayer = new GeometricLayer(model2pixel, mouseSe2State);
+    // Tensor mouseSe2State = Tensors.vector(9, 7, 2);
+    GeometricLayer geometricLayer = new GeometricLayer(model2pixel);
     Tensor vector = Tensors.vector(9, 20, 1);
     Tensor v1 = geometricLayer.toVector(vector);
     Tensor v2 = geometricLayer.toVector(9, 20);
@@ -54,13 +53,13 @@ public class GeometricLayerTest extends TestCase {
   }
 
   public void testStackFail() {
-    GeometricLayer geometricLayer = new GeometricLayer(IdentityMatrix.of(3), Array.zeros(3));
+    GeometricLayer geometricLayer = new GeometricLayer(IdentityMatrix.of(3));
     geometricLayer.popMatrix();
     AssertFail.of(() -> geometricLayer.popMatrix());
   }
 
   public void testSerializableFail() {
-    GeometricLayer geometricLayer = new GeometricLayer(IdentityMatrix.of(3), Array.zeros(3));
+    GeometricLayer geometricLayer = new GeometricLayer(IdentityMatrix.of(3));
     try {
       Serialization.copy(geometricLayer);
       fail();

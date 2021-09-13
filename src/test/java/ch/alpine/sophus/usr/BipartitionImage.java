@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     // Tensor cost = points1.stream().map(p -> Tensor.of(points2.stream().map(r -> Norm._2.between(p, r))));
     Tensor matrix = Tensors.matrix((i, j) -> Vector2Norm.between(points1.get(i), points2.get(j)), points1.length(), points2.length());
     BipartiteMatching hungarianAlgorithm = BipartiteMatching.of(matrix);
-    GeometricLayer geometricLayer = GeometricLayer.of(StaticHelper.SE2_2);
+    GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2_2);
     RenderQuality.setQuality(graphics);
     graphics.setColor(new Color(128 * 0, 128 * 0, 255));
     if (lines) {

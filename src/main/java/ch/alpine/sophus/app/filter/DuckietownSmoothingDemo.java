@@ -11,10 +11,10 @@ import java.util.List;
 
 import javax.swing.JSlider;
 
-import ch.alpine.java.awt.BufferedImageSupplier;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.PolyDuckietownData;
 import ch.alpine.sophus.app.sym.SymLinkImage;

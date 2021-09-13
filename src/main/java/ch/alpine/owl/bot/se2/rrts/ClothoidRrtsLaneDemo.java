@@ -112,7 +112,17 @@ import ch.alpine.tensor.sca.Clips;
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region)), //
-          ClothoidRrtsEntity.SHAPE, () -> entity.getStateTimeNow().time());
+          ClothoidRrtsEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return entity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return laneConsumptionDemo.timerFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
       laneConsumptionDemo.timerFrame.geometricComponent.addRenderInterfaceBackground(renderInterface);
     }
   }

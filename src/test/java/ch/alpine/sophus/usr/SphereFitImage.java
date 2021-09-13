@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.fit.SphereFit;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     Optional<SphereFit> optional = SphereFit.of(points);
     Tensor center = optional.get().center();
     Scalar radius = optional.get().radius();
-    GeometricLayer geometricLayer = GeometricLayer.of(StaticHelper.SE2);
+    GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     Graphics2D graphics = bufferedImage.createGraphics();
     RenderQuality.setQuality(graphics);

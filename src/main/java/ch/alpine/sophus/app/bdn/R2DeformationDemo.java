@@ -7,8 +7,8 @@ import java.awt.geom.Path2D;
 
 import javax.swing.JToggleButton;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.MixedLogWeightings;

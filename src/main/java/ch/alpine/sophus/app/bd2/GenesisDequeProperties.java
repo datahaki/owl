@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.app.bd2;
 
-import ch.alpine.java.ref.FieldInteger;
+import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.sophus.gbc.amp.Amplifiers;
 import ch.alpine.sophus.gbc.it.IterativeAffineCoordinate;
 import ch.alpine.sophus.gbc.it.IterativeTargetCoordinate;

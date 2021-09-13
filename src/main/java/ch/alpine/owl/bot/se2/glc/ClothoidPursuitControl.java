@@ -5,9 +5,9 @@ import java.awt.Shape;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.pursuit.ArgMinVariable;
 import ch.alpine.owl.math.pursuit.ClothoidPursuit;
 import ch.alpine.owl.math.pursuit.ClothoidPursuits;
@@ -80,7 +80,7 @@ import ch.alpine.tensor.sca.Sign;
     this.ratioClip = ratioClip;
   }
 
-  @Override // fromTrajectoryTargetRender
+  @Override // from TrajectoryTargetRender
   public Optional<Shape> toTarget(GeometricLayer geometricLayer) {
     return Optional.ofNullable(curve).map(geometricLayer::toPath2D);
   }

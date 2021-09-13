@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -34,7 +34,7 @@ public class SymLinkImage {
   private static final Font FONT = new Font(Font.DIALOG, Font.PLAIN, 22);
   // ---
   private final BufferedImage bufferedImage;
-  private final GeometricLayer geometricLayer = GeometricLayer.of(MODEL2PIXEL);
+  private final GeometricLayer geometricLayer = new GeometricLayer(MODEL2PIXEL);
   private int minx = Integer.MAX_VALUE;
   private int maxx = 0;
 

@@ -4,12 +4,12 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.Region;

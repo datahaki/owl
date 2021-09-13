@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
@@ -44,7 +44,7 @@ public class RadiusNdClusterDemo extends AbstractDemo {
       Point2D point2d = geometricLayer.toPoint2D(point);
       graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 2, 2);
     }
-    Tensor xya = geometricLayer.getMouseSe2State();
+    Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
     Timing timing = Timing.started();
     Collection<NdMatch<Object>> collection = //

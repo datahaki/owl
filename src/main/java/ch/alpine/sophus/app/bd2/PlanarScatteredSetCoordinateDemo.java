@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 
 import ch.alpine.java.awt.SpinnerListener;
-import ch.alpine.java.ref.gui.ConfigPanel;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
@@ -29,8 +29,8 @@ import ch.alpine.tensor.Tensors;
     super(Arrays.asList());
     spinnerLogWeighting.setVisible(false);
     Container container = timerFrame.jFrame.getContentPane();
-    ConfigPanel configPanel = ConfigPanel.of(dequeGenesisProperties);
-    configPanel.getFieldPanels().addUniversalListener(l -> recompute());
+    FieldsEditor configPanel = new FieldsEditor(dequeGenesisProperties);
+    configPanel.addUniversalListener(this::recompute);
     container.add("West", configPanel.getJScrollPane());
     // ---
     ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;

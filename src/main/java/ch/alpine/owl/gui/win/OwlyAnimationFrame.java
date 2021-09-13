@@ -15,6 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JToggleButton;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.data.TimeKeeper;
@@ -48,7 +49,7 @@ public class OwlyAnimationFrame extends TimerFrame {
           public void run() {
             BufferedImage offscreen = offscreen();
             StateTime stateTime = abstractEntity.getStateTimeNow();
-            GeometricLayer geometricLayer = GeometricLayer.of(geometricComponent.getModel2Pixel());
+            GeometricLayer geometricLayer = new GeometricLayer(geometricComponent.getModel2Pixel());
             Point2D now = geometricLayer.toPoint2D(stateTime.state());
             // Point now = geometricComponent.toPixel();
             if (Objects.isNull(point) || MARGIN < PointUtil.inftyNorm(point, now))

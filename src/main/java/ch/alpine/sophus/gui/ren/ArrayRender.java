@@ -4,8 +4,8 @@ package ch.alpine.sophus.gui.ren;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;

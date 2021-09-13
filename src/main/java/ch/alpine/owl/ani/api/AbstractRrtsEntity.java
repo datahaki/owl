@@ -8,12 +8,12 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.gui.ren.TransitionRender;
 import ch.alpine.owl.gui.ren.TreeRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;

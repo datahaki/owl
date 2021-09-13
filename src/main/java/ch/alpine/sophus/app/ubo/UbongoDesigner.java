@@ -17,9 +17,9 @@ import javax.swing.JButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.GridRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;

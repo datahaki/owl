@@ -20,6 +20,7 @@ import javax.swing.JComponent;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.data.IntervalClock;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
@@ -238,7 +239,8 @@ public final class GeometricComponent {
     graphics.setColor(Color.WHITE);
     graphics.fillRect(0, 0, dimension.width, dimension.height);
     // ---
-    GeometricLayer geometricLayer = new GeometricLayer(model2pixel, getMouseSe2CState());
+    // , getMouseSe2CState()
+    GeometricLayer geometricLayer = new GeometricLayer(model2pixel);
     renderBackground.forEach(renderInterface -> renderInterface.render(geometricLayer, graphics));
     renderInterfaces.forEach(renderInterface -> renderInterface.render(geometricLayer, graphics));
   }

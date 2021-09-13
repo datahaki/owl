@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 
 import ch.alpine.java.awt.SpinnerListener;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.io.HtmlUtf8;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;

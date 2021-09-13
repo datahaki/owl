@@ -3,7 +3,7 @@ package ch.alpine.sophus.app.lev;
 
 import java.awt.Graphics2D;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.Tensor;
 

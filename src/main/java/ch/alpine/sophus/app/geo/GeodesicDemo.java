@@ -11,9 +11,9 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
     // AxesRender.INSTANCE.render(geometricLayer, graphics);
     ManifoldDisplay geodesicDisplay = geodesicDisplaySpinner.getValue();
     Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
-    Tensor xya = geometricLayer.getMouseSe2State();
+    Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     graphics.setColor(COLOR);
     Tensor q = geodesicDisplay.project(xya);
     ScalarTensorFunction scalarTensorFunction = //

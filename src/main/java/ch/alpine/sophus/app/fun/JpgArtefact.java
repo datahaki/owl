@@ -17,8 +17,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.ref.gui.ConfigPanel;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -36,8 +36,8 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
 
   public JpgArtefact() {
     Container container = timerFrame.jFrame.getContentPane();
-    ConfigPanel configPanel = ConfigPanel.of(this);
-    configPanel.getFieldPanels().addUniversalListener(s -> stateChanged(null));
+    FieldsEditor configPanel = new FieldsEditor(this);
+    configPanel.addUniversalListener(() -> stateChanged(null));
     container.add("West", configPanel.getJScrollPane());
     // ---
     File[] files = ROOT.listFiles();
@@ -63,7 +63,7 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
   public void stateChanged(ChangeEvent e) {
     try {
       File file = new File(ROOT, spinnerLabel.getValue());
-      byte[]   data = Files.readAllBytes(file.toPath());
+      byte[] data = Files.readAllBytes(file.toPath());
       int offset = (int) (data.length * (jSlider.getValue() / (double) jSlider.getMaximum()));
       int len = this.len.number().intValue();
       int step = this.step.number().intValue();

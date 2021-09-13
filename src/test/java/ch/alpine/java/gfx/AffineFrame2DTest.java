@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.gfx;
 
 import java.awt.geom.Point2D;
 

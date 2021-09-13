@@ -8,13 +8,13 @@ import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.gui.win.OwlyFrame;
 import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.region.Region;

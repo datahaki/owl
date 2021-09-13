@@ -13,6 +13,7 @@ import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -30,7 +31,17 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(region)), //
-          Tse2CarEntity.SHAPE, () -> tse2CarEntity.getStateTimeNow().time());
+          Tse2CarEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return tse2CarEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
       owlyAnimationFrame.addBackground(renderInterface);
     }
   }

@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -41,7 +41,7 @@ import ch.alpine.tensor.io.ImageFormat;
         width.multiply(model2pixel).number().floatValue(), //
         BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
     graphics.setStroke(basicStroke);
-    Path2D path = GeometricLayer.of(Tensors.matrix(new Scalar[][] { //
+    Path2D path = new GeometricLayer(Tensors.matrix(new Scalar[][] { //
         { model2pixel, RealScalar.ZERO, RealScalar.ZERO }, //
         { RealScalar.ZERO, model2pixel.negate(), RealScalar.of(dimension.height - 1) }, //
         { RealScalar.ZERO, RealScalar.ZERO, RealScalar.ONE } })).toPath2D(waypoints);

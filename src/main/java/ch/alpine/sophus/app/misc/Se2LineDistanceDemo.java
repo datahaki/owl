@@ -9,8 +9,8 @@ import java.awt.geom.Path2D;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.decim.HsLineDistance;
 import ch.alpine.sophus.decim.HsLineDistance.NormImpl;
 import ch.alpine.sophus.decim.HsLineProjection;
@@ -65,7 +65,7 @@ import ch.alpine.tensor.sca.Round;
       graphics.setColor(Color.BLUE);
       graphics.draw(path2d);
     }
-    final Tensor mouse = geometricLayer.getMouseSe2State();
+    final Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     {
       HsLineDistance hsLineDistance = new HsLineDistance(manifoldDisplay.hsManifold());
       NormImpl normImpl = hsLineDistance.tensorNorm(beg, end);

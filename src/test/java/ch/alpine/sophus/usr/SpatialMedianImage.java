@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.fit.WeiszfeldMethod;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.sca.Chop;
     Random random = new Random(seed);
     Tensor points = RandomVariate.of(UniformDistribution.unit(), random, 15, 2);
     Optional<Tensor> optional = WeiszfeldMethod.with(Chop._10).uniform(points);
-    GeometricLayer geometricLayer = GeometricLayer.of(StaticHelper.SE2);
+    GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     if (optional.isPresent()) {
       Tensor solution = optional.get();

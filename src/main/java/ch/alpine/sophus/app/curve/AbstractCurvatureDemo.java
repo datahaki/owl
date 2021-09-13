@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.swing.JToggleButton;
 
-import ch.alpine.java.awt.BufferedImageSupplier;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.CurveVisualSet;

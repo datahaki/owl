@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.itp.CrossAveraging;

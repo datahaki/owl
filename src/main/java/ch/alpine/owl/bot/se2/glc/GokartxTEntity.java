@@ -7,6 +7,7 @@ import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -14,7 +15,6 @@ import ch.alpine.owl.glc.adapter.StateTimeCoordinateWrap;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.gui.ren.EdgeRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;

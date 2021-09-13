@@ -14,8 +14,8 @@ import java.util.Optional;
 
 import javax.swing.JButton;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
@@ -84,7 +84,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
     public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
       if (!isPositioningEnabled())
         return;
-      mouse = geometricLayer.getMouseSe2State();
+      mouse = timerFrame.geometricComponent.getMouseSe2CState();
       if (isPositioningOngoing())
         control.set(mouse, min_index);
       else {

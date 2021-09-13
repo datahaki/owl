@@ -11,7 +11,7 @@ import java.util.zip.DataFormatException;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.io.Import;
     // KlotskiPlot klotskiPlot = new KlotskiPlot(klotskiProblem, TRAFFIC_JAM);
     for (StateTime stateTime : list) {
       BufferedImage bufferedImage = new BufferedImage(320, 320, BufferedImage.TYPE_INT_ARGB);
-      GeometricLayer geometricLayer = GeometricLayer.of(Tensors.matrix(new Number[][] { //
+      GeometricLayer geometricLayer = new GeometricLayer(Tensors.matrix(new Number[][] { //
           { 0, RES, 0 }, //
           { RES, 0, 0 }, //
           { 0, 0, 1 } }));

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import javax.swing.JCheckBox;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.LogWeightings;

@@ -9,9 +9,9 @@ import java.util.Objects;
 
 import javax.swing.JToggleButton;
 
-import ch.alpine.java.awt.BufferedImageSupplier;
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.crv.spline.AbstractBSplineInterpolation;
 import ch.alpine.sophus.crv.spline.AbstractBSplineInterpolation.Iteration;

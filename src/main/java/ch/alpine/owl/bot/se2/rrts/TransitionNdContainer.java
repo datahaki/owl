@@ -10,8 +10,8 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;

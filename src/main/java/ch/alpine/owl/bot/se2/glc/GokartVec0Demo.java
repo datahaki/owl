@@ -25,6 +25,7 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
@@ -72,7 +73,17 @@ public class GokartVec0Demo extends GokartDemo {
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(polygonRegion), //
-          CarEntity.SHAPE, () -> gokartEntity.getStateTimeNow().time());
+          CarEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return gokartEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
       owlyAnimationFrame.addBackground(renderInterface);
     }
   }

@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.GridRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.io.GokartPoseData;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;

@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.lev.AbstractPlaceDemo;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -52,7 +52,8 @@ import ch.alpine.tensor.red.Mean;
     RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     if (isMoving) {
-      Se2Bijection se2Bijection = new Se2Bijection(geometricLayer.getMouseSe2State().pmul(Tensors.vector(1, 1, 0.3)));
+      Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
+      Se2Bijection se2Bijection = new Se2Bijection(mouse.pmul(Tensors.vector(1, 1, 0.3)));
       Tensor sequence = Tensor.of(getGeodesicControlPoints().stream().map(se2Bijection.forward()));
       new PathRender(COLOR_DATA_INDEXED.getColor(0), 1.5f).setCurve(sequence, true).render(geometricLayer, graphics);
       new PathRender(COLOR_DATA_INDEXED.getColor(3), 1.5f).setCurve(CIRCLE, true).render(geometricLayer, graphics);

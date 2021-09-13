@@ -13,9 +13,9 @@ import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
-import ch.alpine.java.ref.gui.ConfigPanel;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.app.bd2.GenesisDequeProperties;
 import ch.alpine.sophus.gbc.it.Evaluation;
 import ch.alpine.sophus.gbc.it.GenesisDeque;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
     super(true, ManifoldDisplays.R2_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    ConfigPanel configPanel = ConfigPanel.of(iterativeAffineProperties);
+    FieldsEditor configPanel = new FieldsEditor(iterativeAffineProperties);
     container.add("West", configPanel.getJScrollPane());
     Tensor sequence = Tensor.of(CirclePoints.of(15).multiply(RealScalar.of(2)).stream().skip(5).map(PadRight.zeros(3)));
     sequence.set(Scalar::zero, 0, Tensor.ALL);

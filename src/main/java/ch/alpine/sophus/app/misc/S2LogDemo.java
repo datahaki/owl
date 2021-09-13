@@ -4,7 +4,7 @@ package ch.alpine.sophus.app.misc;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;

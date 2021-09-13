@@ -8,9 +8,9 @@ import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.EmptyRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

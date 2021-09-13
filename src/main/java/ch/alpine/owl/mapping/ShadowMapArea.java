@@ -7,18 +7,17 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.data.img.ImageArea;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.win.AffineTransforms;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.mat.IdentityMatrix;
 
 /** implementation uses only java default function and does not depend on 3rd party libraries */
@@ -67,7 +66,7 @@ public class ShadowMapArea implements RenderInterface {
 
   public void updateMap(Area area, StateTime stateTime, float timeDelta) {
     Se2Bijection se2Bijection = new Se2Bijection(stateTime.state());
-    GeometricLayer geom = new GeometricLayer(se2Bijection.forward_se2(), Array.zeros(3));
+    GeometricLayer geom = new GeometricLayer(se2Bijection.forward_se2());
     Path2D lidarPath2D = geom.toPath2D(lidar.getPolygon(stateTime));
     Area lidarArea = new Area(lidarPath2D);
     dilate(lidarArea, rMin);

@@ -12,7 +12,7 @@ import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.opt.LogWeightings;

@@ -21,10 +21,10 @@ import org.jfree.chart.axis.LogarithmicAxis;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.data.tree.Nodes;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
@@ -97,7 +97,7 @@ import ch.alpine.tensor.sca.Clips;
             RealScalar.of(WIDTH /* graphics.getHeight() */).divide(R2_IMAGE_REGION_WRAP.range().Get(1)), //
             RealScalar.ONE);
         Tensor matrix = DiagonalMatrix.with(diagonal);
-        GeometricLayer geometricLayer = GeometricLayer.of(matrix);
+        GeometricLayer geometricLayer = new GeometricLayer(matrix);
         // SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d.svg", task)),
         // scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);
         // ---

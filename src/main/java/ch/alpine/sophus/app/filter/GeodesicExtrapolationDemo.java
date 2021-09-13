@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
-import ch.alpine.java.awt.BufferedImageSupplier;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.sym.SymGeodesic;
 import ch.alpine.sophus.app.sym.SymLinkImage;

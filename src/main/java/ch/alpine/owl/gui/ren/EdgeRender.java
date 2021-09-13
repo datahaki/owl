@@ -11,9 +11,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.math.d2.Extract2D;
 import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.Tensor;

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   ;
   private static Tensor image() {
     Tensor SE2 = Tensors.fromString("{{180, 0, 6+180/2}, {0, -180, 186}, {0, 0, 1}}").unmodifiable();
-    GeometricLayer geometricLayer = GeometricLayer.of(SE2);
+    GeometricLayer geometricLayer = new GeometricLayer(SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     Graphics2D graphics = bufferedImage.createGraphics();
     RenderQuality.setQuality(graphics);

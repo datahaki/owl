@@ -16,10 +16,10 @@ import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.GridRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidContext;
 import ch.alpine.sophus.clt.ClothoidSolutions;
@@ -141,7 +141,7 @@ import ch.alpine.tensor.sca.Round;
       geometricLayer.popMatrix();
     }
     Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
-    GeometricLayer plotLayer = GeometricLayer.of(Tensors.matrix(new Number[][] { //
+    GeometricLayer plotLayer = new GeometricLayer(Tensors.matrix(new Number[][] { //
         { 30, 0, dimension.width / 2 }, //
         { 0, -30, 200 }, //
         { 0, 0, 1 } }));

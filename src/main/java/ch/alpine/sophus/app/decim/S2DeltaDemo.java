@@ -9,8 +9,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.ref.gui.ConfigPanel;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
@@ -50,11 +50,8 @@ import ch.alpine.tensor.pdf.NormalDistribution;
   public S2DeltaDemo() {
     super(ManifoldDisplays.S2_ONLY);
     Container container = timerFrame.jFrame.getContentPane();
-    ConfigPanel configPanel = ConfigPanel.of(s2DeltaParam);
-    configPanel.getFieldPanels().addUniversalListener(s -> {
-      System.out.println("compute udpate: " + s);
-      compute();
-    });
+    FieldsEditor configPanel = new FieldsEditor(s2DeltaParam);
+    configPanel.addUniversalListener(this::compute);
     container.add("West", configPanel.getJScrollPane());
     compute();
   }

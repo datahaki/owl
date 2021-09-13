@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.ref.FieldInteger;
-import ch.alpine.java.ref.gui.ConfigPanel;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.sophus.gui.ren.MeshRender;
 import ch.alpine.sophus.gui.win.AbstractDemo;
@@ -36,7 +36,7 @@ public class UbongoBackground extends AbstractDemo {
 
   public UbongoBackground() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", ConfigPanel.of(this).getJScrollPane());
+    container.add("West", new FieldsEditor(this).getJScrollPane());
   }
 
   public Tensor noise(List<Integer> list) {

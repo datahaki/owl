@@ -10,8 +10,8 @@ import java.util.function.Consumer;
 
 import javax.swing.JButton;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.LaneRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
 import ch.alpine.sophus.app.curve.AbstractCurveDemo;

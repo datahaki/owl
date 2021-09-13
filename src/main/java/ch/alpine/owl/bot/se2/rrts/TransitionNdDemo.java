@@ -4,11 +4,12 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.awt.Container;
 import java.awt.Graphics2D;
 
-import ch.alpine.java.ref.gui.ConfigPanel;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
+import ch.alpine.tensor.Tensor;
 
 /** this demo maps the GeodesicDisplays
  * 
@@ -28,9 +29,9 @@ public class TransitionNdDemo extends ControlPointsDemo {
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---
-    ConfigPanel configPanel = ConfigPanel.of(transitionNdParam);
-    configPanel.getFieldPanels().addUniversalListener(s -> {
-      System.out.println("compute udpate: " + s);
+    FieldsEditor configPanel = new FieldsEditor(transitionNdParam);
+    configPanel.addUniversalListener(() -> {
+      System.out.println("compute udpate");
       transitionNdContainer = transitionNdParam.config();
     });
     Container container = timerFrame.jFrame.getContentPane();
@@ -41,12 +42,13 @@ public class TransitionNdDemo extends ControlPointsDemo {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     transitionNdContainer.render( //
         manifoldDisplay, //
         geometricLayer, //
         graphics, //
-        manifoldDisplay.project(geometricLayer.getMouseSe2State()));
+        manifoldDisplay.project(mouse));
   }
 
   public static void main(String[] args) {

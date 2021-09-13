@@ -13,12 +13,12 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -49,7 +49,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
-    Tensor mouse = geometricLayer.getMouseSe2State();
+    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
     // ---
     ManifoldDisplay manifoldDisplay = Se2CoveringClothoidDisplay.INSTANCE;
     {

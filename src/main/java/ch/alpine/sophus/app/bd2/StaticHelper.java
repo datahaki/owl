@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.sca.Clip;
     Graphics2D graphics = background.createGraphics();
     if (manifoldDisplay instanceof S2Display) {
       Tensor matrix = geodesicArrayPlot.pixel2model(new Dimension(refinement, refinement));
-      GeometricLayer geometricLayer = GeometricLayer.of(Inverse.of(matrix));
+      GeometricLayer geometricLayer = new GeometricLayer(Inverse.of(matrix));
       for (int count = 0; count < sequence_length; ++count) {
         GeodesicDisplayRender.render_s2(geometricLayer, graphics);
         geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(2, 0)));

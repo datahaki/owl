@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
-import ch.alpine.java.ref.FieldInteger;
+import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

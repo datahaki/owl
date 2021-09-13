@@ -13,7 +13,7 @@ import java.awt.geom.Point2D;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gds.S2Display;

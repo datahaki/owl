@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.rice;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -12,7 +13,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta4Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
