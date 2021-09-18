@@ -35,7 +35,7 @@ import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.num.Derive;
-import ch.alpine.tensor.num.Series;
+import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
 /* package */ class SeriesHermiteSubdivisionDemo extends ControlPointsDemo implements ActionListener {
@@ -114,8 +114,8 @@ import ch.alpine.tensor.sca.N;
     Tensor coeffs = Tensors.fromString(string);
     if (VectorQ.of(coeffs) && //
         NumberQ.all(coeffs)) {
-      ScalarUnaryOperator f0 = Series.of(coeffs);
-      ScalarUnaryOperator f1 = Series.of(Derive.of(coeffs));
+      ScalarUnaryOperator f0 = Polynomial.of(coeffs);
+      ScalarUnaryOperator f1 = Polynomial.of(Derive.of(coeffs));
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());

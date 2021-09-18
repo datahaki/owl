@@ -13,7 +13,7 @@ import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;
-import ch.alpine.tensor.num.Series;
+import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.Cos;
 import ch.alpine.tensor.sca.win.DirichletWindow;
 
@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.win.DirichletWindow;
 /* package */ enum SpectrogramDemo {
   ;
   public static void main(String[] args) throws IOException {
-    Tensor tensor = Subdivide.of(0, 100, 2000).map(Series.of(Tensors.vector(0, 5, 1))).map(Cos.FUNCTION);
+    Tensor tensor = Subdivide.of(0, 100, 2000).map(Polynomial.of(Tensors.vector(0, 5, 1))).map(Cos.FUNCTION);
     Tensor spectrogram = Spectrogram.array(tensor, DirichletWindow.FUNCTION);
     File folder = HomeDirectory.Pictures(SpectrogramDemo.class.getSimpleName());
     folder.mkdir();

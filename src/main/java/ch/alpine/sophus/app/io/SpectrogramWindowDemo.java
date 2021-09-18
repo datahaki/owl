@@ -13,7 +13,7 @@ import ch.alpine.tensor.fft.Spectrogram;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;
-import ch.alpine.tensor.num.Series;
+import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.Cos;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 /* package */ enum SpectrogramWindowDemo {
   ;
   public static void main(String[] args) throws IOException {
-    Tensor tensor = Subdivide.of(0, 100, 2000).map(Series.of(Tensors.vector(0, 5, 1))).map(Cos.FUNCTION);
+    Tensor tensor = Subdivide.of(0, 100, 2000).map(Polynomial.of(Tensors.vector(0, 5, 1))).map(Cos.FUNCTION);
     File folder = HomeDirectory.Pictures(SpectrogramWindowDemo.class.getSimpleName());
     folder.mkdir();
     for (WindowFunctions windowFunctions : WindowFunctions.values()) {
