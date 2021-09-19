@@ -11,6 +11,7 @@ import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
+import ch.alpine.tensor.opt.nd.NearestNdCluster;
 
 public final class RnRrtsNodeCollection implements RrtsNodeCollection {
   private final NdMap<RrtsNode> ndMap;
@@ -33,8 +34,9 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    Collection<NdMatch<RrtsNode>> cluster = ndMap.cluster(EuclideanNdCenter.of(end), k_nearest);
-    return cluster.stream() //
+    Collection<NdMatch<RrtsNode>> collection = // 
+        NearestNdCluster.of(ndMap, EuclideanNdCenter.of(end), k_nearest);
+    return collection.stream() //
         .map(NdMatch::value) //
         .collect(Collectors.toList());
   }

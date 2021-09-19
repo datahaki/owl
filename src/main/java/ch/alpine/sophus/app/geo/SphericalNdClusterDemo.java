@@ -24,15 +24,16 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 import ch.alpine.tensor.sca.Abs;
 
-public class RadiusNdClusterDemo extends AbstractDemo {
+public class SphericalNdClusterDemo extends AbstractDemo {
   private final Tensor points = RandomVariate.of(UniformDistribution.of(0, 10), 500, 2);
   private final NdMap<Object> ndMap;
 
-  public RadiusNdClusterDemo() {
+  public SphericalNdClusterDemo() {
     ndMap = new NdTreeMap<>(Tensors.vector(0, 0), Tensors.vector(10, 10), 5, 10);
     for (Tensor point : points) {
       ndMap.add(point, null);
     }
+    timerFrame.geometricComponent.setOffset(100, 600);
   }
 
   @Override
@@ -47,8 +48,7 @@ public class RadiusNdClusterDemo extends AbstractDemo {
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
     Timing timing = Timing.started();
-    Collection<NdMatch<Object>> collection = //
-        ndMap.cluster(new SphericalNdCluster<>(EuclideanNdCenter.of(xya.extract(0, 2)), radius));
+    Collection<NdMatch<Object>> collection = SphericalNdCluster.of(ndMap, EuclideanNdCenter.of(xya.extract(0, 2)), radius);
     double seconds = timing.seconds();
     graphics.drawString(String.format("%d %6.4f", collection.size(), seconds), 0, 40);
     graphics.setColor(new Color(255, 0, 0, 128));
@@ -66,6 +66,6 @@ public class RadiusNdClusterDemo extends AbstractDemo {
   }
 
   public static void main(String[] args) {
-    new RadiusNdClusterDemo().setVisible(1000, 800);
+    new SphericalNdClusterDemo().setVisible(1000, 800);
   }
 }

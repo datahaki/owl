@@ -16,6 +16,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
+import ch.alpine.tensor.opt.nd.NearestNdCluster;
 import ch.alpine.tensor.red.Entrywise;
 
 public class NdTreeWeighting implements LogWeighting, Serializable {
@@ -57,7 +58,7 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
 
     @Override
     public Scalar apply(Tensor center) {
-      Collection<NdMatch<Scalar>> collection = ndTreeMap.cluster(EuclideanNdCenter.of(center), limit);
+      Collection<NdMatch<Scalar>> collection = NearestNdCluster.of(ndTreeMap, EuclideanNdCenter.of(center), limit);
       if (collection.isEmpty())
         return DoubleScalar.INDETERMINATE;
       Tensor weights = NormalizeTotal.FUNCTION.apply( //
