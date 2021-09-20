@@ -1,0 +1,17 @@
+// code by jph
+package ch.alpine.sophus.app.geo;
+
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
+
+public class NdParam {
+  @FieldInteger
+  public Scalar dep = RealScalar.of(5);
+  @FieldInteger
+  public Scalar max = RealScalar.of(10);
+  @FieldInteger
+  public Scalar pCount = RealScalar.of(4);
+  public Boolean nearest = false;
+
+}
