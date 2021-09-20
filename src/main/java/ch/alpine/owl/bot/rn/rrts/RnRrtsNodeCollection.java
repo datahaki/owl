@@ -34,7 +34,7 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    Collection<NdMatch<RrtsNode>> collection = // 
+    Collection<NdMatch<RrtsNode>> collection = //
         NearestNdCluster.of(ndMap, EuclideanNdCenter.of(end), k_nearest);
     return collection.stream() //
         .map(NdMatch::value) //

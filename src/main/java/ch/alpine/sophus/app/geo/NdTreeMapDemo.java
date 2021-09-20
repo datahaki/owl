@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
-import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
@@ -40,8 +39,6 @@ public class NdTreeMapDemo extends AbstractDemo {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    AxesRender.INSTANCE.render(geometricLayer, graphics);
-    // ---
     graphics.setColor(Color.GRAY);
     for (Tensor point : points) {
       Point2D point2d = geometricLayer.toPoint2D(point);
@@ -58,7 +55,7 @@ public class NdTreeMapDemo extends AbstractDemo {
     NdCenterInterface ndCenterInterface = EuclideanNdCenter.of(xya.extract(0, 2));
     int limit = ndParam.pCount.number().intValue();
     final Collection<NdMatch<Object>> collection;
-    graphics.setColor(new Color(128, 128, 128, 128));
+    graphics.setColor(new Color(128, 128, 128, 64));
     if (ndParam.nearest) {
       GraphicNearest<Object> graphicNearest = //
           new GraphicNearest<>(ndCenterInterface, limit, geometricLayer, graphics);

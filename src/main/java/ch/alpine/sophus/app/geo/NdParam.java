@@ -13,5 +13,4 @@ public class NdParam {
   @FieldInteger
   public Scalar pCount = RealScalar.of(4);
   public Boolean nearest = false;
-
 }
