@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.N;
     return new ApFlows(aoa_max, thrusts);
   }
 
-  /***************************************************/
+  // ---
   private final Scalar aoa_max;
   private final Tensor thrusts;
 

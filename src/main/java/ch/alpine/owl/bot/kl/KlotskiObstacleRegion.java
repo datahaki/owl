@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensor;
         Scalars.intValueExact(size.Get(1)));
   }
 
-  /***************************************************/
+  // ---
   private final int sx;
   private final int sy;
 

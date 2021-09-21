@@ -19,7 +19,7 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
   /** @param lbounds vector
    * @param ubounds vector */
   public RnRrtsNodeCollection(Tensor lbounds, Tensor ubounds) {
-    ndMap = new NdTreeMap<>(lbounds, ubounds, 5, 20); // magic const
+    ndMap = NdTreeMap.of(lbounds, ubounds, 5); // magic const
   }
 
   @Override // from RrtsNodeCollection

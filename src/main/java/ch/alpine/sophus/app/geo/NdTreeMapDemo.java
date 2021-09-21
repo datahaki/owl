@@ -28,7 +28,7 @@ import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
 public class NdTreeMapDemo extends AbstractDemo {
-  private final Tensor points = RandomVariate.of(UniformDistribution.of(0, 10), 500, 2);
+  private final Tensor pointsAll = RandomVariate.of(UniformDistribution.of(0, 10), 5000, 2);
   public final NdParam ndParam = new NdParam();
 
   public NdTreeMapDemo() {
@@ -40,22 +40,20 @@ public class NdTreeMapDemo extends AbstractDemo {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     graphics.setColor(Color.GRAY);
+    Tensor points = Tensor.of(pointsAll.stream().limit(ndParam.count.number().intValue()));
     for (Tensor point : points) {
       Point2D point2d = geometricLayer.toPoint2D(point);
       graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 2, 2);
     }
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
-    NdMap<Object> ndMap = new NdTreeMap<>(Tensors.vector(0, 0), Tensors.vector(10, 10), //
-        ndParam.dep.number().intValue(), //
-        ndParam.max.number().intValue());
+    NdMap<Object> ndMap = NdTreeMap.of(Tensors.vector(0, 0), Tensors.vector(10, 10), ndParam.dep.number().intValue());
     for (Tensor point : points)
       ndMap.add(point, null);
     Timing timing = Timing.started();
     NdCenterInterface ndCenterInterface = EuclideanNdCenter.of(xya.extract(0, 2));
     int limit = ndParam.pCount.number().intValue();
     final Collection<NdMatch<Object>> collection;
-    graphics.setColor(new Color(128, 128, 128, 64));
     if (ndParam.nearest) {
       GraphicNearest<Object> graphicNearest = //
           new GraphicNearest<>(ndCenterInterface, limit, geometricLayer, graphics);

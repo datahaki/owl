@@ -24,10 +24,11 @@ public class TemporalTrajectoryControl implements TrajectoryControl, Serializabl
     return new TemporalTrajectoryControl();
   }
 
-  /***************************************************/
+  // ==================================================
   private TrajectoryWrap trajectoryWrap = null;
 
   private TemporalTrajectoryControl() {
+    // ---
   }
 
   @Override

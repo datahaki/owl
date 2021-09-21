@@ -44,7 +44,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
     this.points = points.unmodifiable();
     this.radius = radius;
     MinMax minMax = MinMax.of(points);
-    ndMap = new NdTreeMap<>(minMax.min(), minMax.max(), 5, 20); // magic const
+    ndMap = NdTreeMap.of(minMax.min(), minMax.max(), 5); // magic const
     for (Tensor point : points)
       ndMap.add(point, null);
   }

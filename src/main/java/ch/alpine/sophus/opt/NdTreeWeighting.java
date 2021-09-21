@@ -14,6 +14,7 @@ import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
+import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 import ch.alpine.tensor.opt.nd.NearestNdCluster;
@@ -36,10 +37,10 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
       ScalarUnaryOperator variogram, Tensor sequence, Tensor values) {
     Tensor lbounds = Entrywise.min().of(sequence);
     Tensor ubounds = Entrywise.max().of(sequence);
-    NdTreeMap<Scalar> ndTreeMap = new NdTreeMap<>(lbounds, ubounds, 2, 4);
+    NdMap<Scalar> ndMap = NdTreeMap.of(lbounds, ubounds, 2);
     for (int index = 0; index < values.length(); ++index)
-      ndTreeMap.add(sequence.get(index), values.Get(index));
-    return new Inner(ndTreeMap, variogram);
+      ndMap.add(sequence.get(index), values.Get(index));
+    return new Inner(ndMap, variogram);
   }
 
   @Override
@@ -48,17 +49,17 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
   }
 
   private class Inner implements TensorScalarFunction {
-    private final NdTreeMap<Scalar> ndTreeMap;
+    private final NdMap<Scalar> ndMap;
     private final ScalarUnaryOperator variogram;
 
-    public Inner(NdTreeMap<Scalar> ndTreeMap, ScalarUnaryOperator variogram) {
-      this.ndTreeMap = ndTreeMap;
+    public Inner(NdMap<Scalar> ndMap, ScalarUnaryOperator variogram) {
+      this.ndMap = ndMap;
       this.variogram = variogram;
     }
 
     @Override
     public Scalar apply(Tensor center) {
-      Collection<NdMatch<Scalar>> collection = NearestNdCluster.of(ndTreeMap, EuclideanNdCenter.of(center), limit);
+      Collection<NdMatch<Scalar>> collection = NearestNdCluster.of(ndMap, EuclideanNdCenter.of(center), limit);
       if (collection.isEmpty())
         return DoubleScalar.INDETERMINATE;
       Tensor weights = NormalizeTotal.FUNCTION.apply( //

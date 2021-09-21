@@ -21,7 +21,7 @@ import ch.alpine.tensor.Tensor;
         So2Region.periodic(goal.Get(2), radiusVector.Get(2)));
   }
 
-  /***************************************************/
+  // ---
   private final LinearRegion zRegion;
   private final LinearRegion vRegion;
   private final So2Region gammaRegion;

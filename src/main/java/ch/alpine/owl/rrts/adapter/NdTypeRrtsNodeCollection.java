@@ -32,7 +32,7 @@ public final class NdTypeRrtsNodeCollection implements RrtsNodeCollection {
 
   private NdTypeRrtsNodeCollection(NdType ndType, Tensor lbounds, Tensor ubounds) {
     this.ndType = ndType;
-    ndMap = new NdTreeMap<>(lbounds, ubounds, 5, 20); // magic const
+    ndMap = NdTreeMap.of(lbounds, ubounds, 5); // magic const
   }
 
   @Override // from RrtsNodeCollection

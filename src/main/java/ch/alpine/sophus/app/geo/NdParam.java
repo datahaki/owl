@@ -7,9 +7,10 @@ import ch.alpine.tensor.Scalar;
 
 public class NdParam {
   @FieldInteger
-  public Scalar dep = RealScalar.of(5);
+  public Scalar count = RealScalar.of(1000);
+
   @FieldInteger
-  public Scalar max = RealScalar.of(10);
+  public Scalar dep = RealScalar.of(5);
   @FieldInteger
   public Scalar pCount = RealScalar.of(4);
   public Boolean nearest = false;
