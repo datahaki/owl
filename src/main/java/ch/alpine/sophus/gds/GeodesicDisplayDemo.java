@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
+import ch.alpine.java.ref.FieldPanel;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.sophus.gui.win.AbstractDemo;
@@ -18,6 +19,7 @@ public abstract class GeodesicDisplayDemo extends AbstractDemo implements DemoIn
     if (list.isEmpty())
       throw new RuntimeException();
     this.list = list;
+    geodesicDisplaySpinner.setFont(FieldPanel.FONT);
     geodesicDisplaySpinner.setList(list);
     geodesicDisplaySpinner.setValue(list.get(0));
     if (1 < list.size()) {

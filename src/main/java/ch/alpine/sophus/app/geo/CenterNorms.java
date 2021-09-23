@@ -1,0 +1,49 @@
+// code by jph
+package ch.alpine.sophus.app.geo;
+
+import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.opt.nd.NdCenterBase;
+import ch.alpine.tensor.opt.nd.NdCenterInterface;
+
+public enum CenterNorms {
+  _1 {
+    @Override
+    public NdCenterInterface ndCenterInterface(Tensor center) {
+      return NdCenterBase.of1Norm(center);
+    }
+
+    @Override
+    protected Tensor shape() {
+      return CirclePoints.of(4);
+    }
+  },
+  _2 {
+    @Override
+    public NdCenterInterface ndCenterInterface(Tensor center) {
+      return NdCenterBase.of2Norm(center);
+    }
+
+    @Override
+    protected Tensor shape() {
+      return CirclePoints.of(40);
+    }
+  },
+  _INF {
+    @Override
+    public NdCenterInterface ndCenterInterface(Tensor center) {
+      return NdCenterBase.ofInfinityNorm(center);
+    }
+
+    @Override
+    protected Tensor shape() {
+      return Tensors.fromString("{{1,1}, {-1,1}, {-1,-1}, {1,-1}}");
+    }
+  }, //
+  ;
+
+  public abstract NdCenterInterface ndCenterInterface(Tensor center);
+
+  protected abstract Tensor shape();
+}

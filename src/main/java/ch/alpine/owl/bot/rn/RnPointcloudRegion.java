@@ -11,12 +11,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
+import ch.alpine.tensor.opt.nd.NdCenterBase;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.opt.nd.NearestNdCluster;
+import ch.alpine.tensor.opt.nd.NdClusterNearest;
 import ch.alpine.tensor.sca.Sign;
 
 public class RnPointcloudRegion implements Region<Tensor>, Serializable {
@@ -51,8 +51,8 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
 
   @Override // from Region
   public boolean isMember(Tensor tensor) {
-    NdCenterInterface distanceInterface = EuclideanNdCenter.of(tensor);
-    Collection<NdMatch<Void>> collection = NearestNdCluster.of(ndMap, distanceInterface, 1);
+    NdCenterInterface distanceInterface = NdCenterBase.of2Norm(tensor);
+    Collection<NdMatch<Void>> collection = NdClusterNearest.of(ndMap, distanceInterface, 1);
     Scalar distance = collection.iterator().next().distance();
     return Scalars.lessEquals(distance, radius);
   }

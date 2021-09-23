@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.opt.nd.NearestNdCluster;
+import ch.alpine.tensor.opt.nd.NdClusterNearest;
 
 /** collection of rrts nodes backed by a n-dimensional uniform tree
  * data structure is dependent on NdType */
@@ -47,14 +47,14 @@ public final class NdTypeRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    return NearestNdCluster.of(ndMap, ndType.ndCenterTo(end), k_nearest).stream() //
+    return NdClusterNearest.of(ndMap, ndType.ndCenterTo(end), k_nearest).stream() //
         .map(NdMatch::value) //
         .collect(Collectors.toList());
   }
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
-    return NearestNdCluster.of(ndMap, ndType.ndCenterFrom(start), k_nearest).stream() //
+    return NdClusterNearest.of(ndMap, ndType.ndCenterFrom(start), k_nearest).stream() //
         .map(NdMatch::value) //
         .collect(Collectors.toList());
   }

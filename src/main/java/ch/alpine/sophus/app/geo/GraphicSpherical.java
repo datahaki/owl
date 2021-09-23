@@ -8,9 +8,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.opt.nd.NdBounds;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdPair;
-import ch.alpine.tensor.opt.nd.SphericalNdCluster;
+import ch.alpine.tensor.opt.nd.NdClusterRadius;
 
-public class GraphicSpherical<V> extends SphericalNdCluster<V> {
+public class GraphicSpherical<V> extends NdClusterRadius<V> {
   private final GeometricLayer geometricLayer;
   private final Graphics2D graphics;
 

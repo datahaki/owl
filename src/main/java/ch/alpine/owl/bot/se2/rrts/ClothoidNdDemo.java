@@ -3,8 +3,11 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
+
+import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
@@ -38,17 +41,24 @@ public class ClothoidNdDemo extends ControlPointsDemo {
       Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, LBOUNDS, UBOUNDS);
   private final RrtsNodeCollection rrtsNodeCollection2 = //
       ClothoidRrtsNodeCollections.of(RealScalar.ONE, LBOUNDS, UBOUNDS);
+
   // ---
-  public Boolean limit = true;
-  @FieldInteger
-  @FieldClip(min = "1", max = "50")
-  public Scalar value = RealScalar.of(3);
+  public static class Param {
+    public Boolean limit = true;
+    @FieldInteger
+    @FieldClip(min = "1", max = "50")
+    public Scalar value = RealScalar.of(3);
+  }
+
+  public final Param param = new Param();
 
   public ClothoidNdDemo() {
     super(false, ManifoldDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new FieldsEditor(this).getJScrollPane());
+    JScrollPane jScrollPane = new FieldsEditor(param).getJScrollPane();
+    jScrollPane.setPreferredSize(new Dimension(120, 200));
+    container.add("West", jScrollPane);
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);
@@ -94,10 +104,10 @@ public class ClothoidNdDemo extends ControlPointsDemo {
       geometricLayer.popMatrix();
     }
     // ---
-    RrtsNodeCollection rrtsNodeCollection = limit //
+    RrtsNodeCollection rrtsNodeCollection = param.limit //
         ? rrtsNodeCollection2
         : rrtsNodeCollection1;
-    int _value = Scalars.intValueExact(value);
+    int _value = Scalars.intValueExact(param.value);
     graphics.setColor(new Color(255, 0, 0, 128));
     ClothoidBuilder clothoidBuilder = (ClothoidBuilder) manifoldDisplay.geodesicInterface();
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));

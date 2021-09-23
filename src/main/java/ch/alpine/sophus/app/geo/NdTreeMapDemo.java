@@ -16,8 +16,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
-import ch.alpine.tensor.lie.r2.CirclePoints;
-import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
@@ -51,7 +49,8 @@ public class NdTreeMapDemo extends AbstractDemo {
     for (Tensor point : points)
       ndMap.add(point, null);
     Timing timing = Timing.started();
-    NdCenterInterface ndCenterInterface = EuclideanNdCenter.of(xya.extract(0, 2));
+    CenterNorms centerNorms = ndParam.centerNorms;
+    NdCenterInterface ndCenterInterface = centerNorms.ndCenterInterface(xya.extract(0, 2));
     int limit = ndParam.pCount.number().intValue();
     final Collection<NdMatch<Object>> collection;
     if (ndParam.nearest) {
@@ -77,8 +76,9 @@ public class NdTreeMapDemo extends AbstractDemo {
         radius = optional.get();
     }
     {
-      geometricLayer.pushMatrix(Se2Matrix.of(xya));
-      graphics.draw(geometricLayer.toPath2D(CirclePoints.of(40).multiply(radius), true));
+      graphics.setColor(Color.BLUE);
+      geometricLayer.pushMatrix(Se2Matrix.translation(xya.extract(0, 2)));
+      graphics.draw(geometricLayer.toPath2D(centerNorms.shape().multiply(radius), true));
       geometricLayer.popMatrix();
     }
     graphics.setColor(Color.RED);

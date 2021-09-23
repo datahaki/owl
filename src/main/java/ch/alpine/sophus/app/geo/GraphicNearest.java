@@ -7,9 +7,9 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.tensor.opt.nd.NdBounds;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdPair;
-import ch.alpine.tensor.opt.nd.NearestNdCluster;
+import ch.alpine.tensor.opt.nd.NdClusterNearest;
 
-public class GraphicNearest<V> extends NearestNdCluster<V> {
+public class GraphicNearest<V> extends NdClusterNearest<V> {
   private final GeometricLayer geometricLayer;
   private final Graphics2D graphics;
 
