@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.Abs;
 
 public class NdTreeMapDemo extends AbstractDemo {
   private final Tensor pointsAll = RandomVariate.of(UniformDistribution.of(0, 10), 5000, 2);
-  public final NdParam ndParam = new NdParam();
+  private final NdParam ndParam = new NdParam();
 
   public NdTreeMapDemo() {
     Container container = timerFrame.jFrame.getContentPane();
