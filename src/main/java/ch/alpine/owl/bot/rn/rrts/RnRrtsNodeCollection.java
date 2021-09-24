@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenterBase;
+import ch.alpine.tensor.opt.nd.NdClusterNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.opt.nd.NdClusterNearest;
 
 public final class RnRrtsNodeCollection implements RrtsNodeCollection {
   private final NdMap<RrtsNode> ndMap;
@@ -19,7 +20,7 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
   /** @param lbounds vector
    * @param ubounds vector */
   public RnRrtsNodeCollection(Tensor lbounds, Tensor ubounds) {
-    ndMap = NdTreeMap.of(lbounds, ubounds, 5); // magic const
+    ndMap = NdTreeMap.of(NdBox.of(lbounds, ubounds), 5); // magic const
   }
 
   @Override // from RrtsNodeCollection

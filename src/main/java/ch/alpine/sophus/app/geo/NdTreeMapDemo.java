@@ -12,9 +12,9 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -45,25 +45,24 @@ public class NdTreeMapDemo extends AbstractDemo {
     }
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
-    NdMap<Object> ndMap = NdTreeMap.of(Tensors.vector(0, 0), Tensors.vector(10, 10), ndParam.dep.number().intValue());
+    NdMap<Void> ndMap = NdTreeMap.of(MinMax.ndBox(points), ndParam.dep.number().intValue());
     for (Tensor point : points)
       ndMap.add(point, null);
     Timing timing = Timing.started();
     CenterNorms centerNorms = ndParam.centerNorms;
     NdCenterInterface ndCenterInterface = centerNorms.ndCenterInterface(xya.extract(0, 2));
     int limit = ndParam.pCount.number().intValue();
-    final Collection<NdMatch<Object>> collection;
+    final Collection<NdMatch<Void>> collection;
     if (ndParam.nearest) {
-      GraphicNearest<Object> graphicNearest = //
+      GraphicNearest<Void> graphicNearest = //
           new GraphicNearest<>(ndCenterInterface, limit, geometricLayer, graphics);
       ndMap.visit(graphicNearest);
       collection = graphicNearest.queue();
     } else {
-      GraphicSpherical<Object> graphicSpherical = //
+      GraphicSpherical<Void> graphicSpherical = //
           new GraphicSpherical<>(ndCenterInterface, radius, geometricLayer, graphics);
       ndMap.visit(graphicSpherical);
       collection = graphicSpherical.list();
-      // collection = SphericalNdCluster.of(ndMap, ndCenterInterface, radius);
     }
     double seconds = timing.seconds();
     graphics.drawString(String.format("%d %6.4f", collection.size(), seconds), 0, 40);
@@ -82,7 +81,7 @@ public class NdTreeMapDemo extends AbstractDemo {
       geometricLayer.popMatrix();
     }
     graphics.setColor(Color.RED);
-    for (NdMatch<Object> ndMatch : collection) {
+    for (NdMatch<Void> ndMatch : collection) {
       Tensor point = ndMatch.location();
       Point2D point2d = geometricLayer.toPoint2D(point);
       graphics.fillRect((int) point2d.getX() - 1, (int) point2d.getY() - 1, 4, 4);

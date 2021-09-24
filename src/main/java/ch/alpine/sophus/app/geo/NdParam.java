@@ -1,12 +1,14 @@
 // code by jph
 package ch.alpine.sophus.app.geo;
 
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
 public class NdParam {
   @FieldInteger
+  @FieldClip(min = "1", max = "10000")
   public Scalar count = RealScalar.of(1000);
   @FieldInteger
   public Scalar dep = RealScalar.of(5);

@@ -10,13 +10,13 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.NdBounds;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 enum StaticHelper {
   ;
-  public static void draw(NdBounds ndBounds, GeometricLayer geometricLayer, Graphics2D graphics) {
-    Tensor lc = ndBounds.lBounds();
-    Tensor rc = ndBounds.uBounds();
+  public static void draw(NdBox ndBox, GeometricLayer geometricLayer, Graphics2D graphics) {
+    Tensor lc = ndBox.min();
+    Tensor rc = ndBox.max();
     Tensor l1 = lc.copy();
     l1.set(rc.Get(1), 1);
     Tensor r1 = rc.copy();

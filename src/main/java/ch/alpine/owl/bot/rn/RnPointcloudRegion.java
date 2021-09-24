@@ -2,21 +2,17 @@
 package ch.alpine.owl.bot.rn;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.Regions;
 import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.NdCenterBase;
-import ch.alpine.tensor.opt.nd.NdCenterInterface;
+import ch.alpine.tensor.opt.nd.NdClusterInside;
 import ch.alpine.tensor.opt.nd.NdMap;
-import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.opt.nd.NdClusterNearest;
 import ch.alpine.tensor.sca.Sign;
 
 public class RnPointcloudRegion implements Region<Tensor>, Serializable {
@@ -43,18 +39,14 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   private RnPointcloudRegion(Tensor points, Scalar radius) {
     this.points = points.unmodifiable();
     this.radius = radius;
-    MinMax minMax = MinMax.of(points);
-    ndMap = NdTreeMap.of(minMax.min(), minMax.max(), 5); // magic const
+    ndMap = NdTreeMap.of(MinMax.ndBox(points));
     for (Tensor point : points)
       ndMap.add(point, null);
   }
 
   @Override // from Region
   public boolean isMember(Tensor tensor) {
-    NdCenterInterface distanceInterface = NdCenterBase.of2Norm(tensor);
-    Collection<NdMatch<Void>> collection = NdClusterNearest.of(ndMap, distanceInterface, 1);
-    Scalar distance = collection.iterator().next().distance();
-    return Scalars.lessEquals(distance, radius);
+    return NdClusterInside.anyMatch(ndMap, NdCenterBase.of2Norm(tensor), radius);
   }
 
   public Tensor points() {
