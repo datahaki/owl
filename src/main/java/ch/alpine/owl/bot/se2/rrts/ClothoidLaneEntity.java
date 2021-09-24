@@ -20,6 +20,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /** variant of {@link ClothoidLaneRrtsEntity} intended for simulation
  * TODO GJOEL perhaps create intermediate class with common code to derive from */
@@ -45,7 +46,7 @@ import ch.alpine.tensor.alg.Array;
             greedy) {
           @Override // from DefaultRrtsPlannerServer
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+            return Se2RrtsNodeCollections.of(getTransitionSpace(), NdBox.of(lbounds, ubounds));
           }
 
           @Override // from RrtsPlannerServer

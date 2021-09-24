@@ -21,7 +21,7 @@ public enum Regions {
     return EMPTY_REGION;
   }
 
-  /***************************************************/
+  // ==================================================
   private static class CompleteRegion<T> implements Region<T>, Serializable {
     @Override
     public boolean isMember(T type) {

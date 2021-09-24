@@ -12,6 +12,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
 
@@ -54,7 +55,7 @@ public class ClothoidContinuityCostFunctionTest extends TestCase {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
-        Se2RrtsNodeCollections.of(transitionSpace, Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
         EmptyTransitionRegionQuery.INSTANCE, ClothoidContinuityCostFunction.INSTANCE);
     rrts.insertAsNode(Tensors.vector(0, 0, 0), 0);
     RrtsNode n1 = rrts.insertAsNode(Tensors.vector(1, 1, Math.PI / 2), 0).get();
@@ -65,7 +66,7 @@ public class ClothoidContinuityCostFunctionTest extends TestCase {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
-        Se2RrtsNodeCollections.of(transitionSpace, Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
         EmptyTransitionRegionQuery.INSTANCE, ClothoidContinuityCostFunction.INSTANCE);
     rrts.insertAsNode(Tensors.vector(0, 0, 0), 0);
     rrts.insertAsNode(Tensors.vector(1, 0, 0), 0);

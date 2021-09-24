@@ -25,12 +25,13 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ enum R2InsideCharDemo {
   ;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
     Region<Tensor> region = ImageRegion.of(bufferedImage, range, false);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Tensors.vector(0, 0), range);
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(NdBox.of(Tensors.vector(0, 0), range));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);

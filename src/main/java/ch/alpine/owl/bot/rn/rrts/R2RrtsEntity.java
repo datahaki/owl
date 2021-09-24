@@ -24,6 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 // LONGTERM the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
@@ -34,9 +35,8 @@ import ch.alpine.tensor.alg.Array;
 
   /** @param stateTime initial position of entity
    * @param transitionRegionQuery
-   * @param lbounds
-   * @param ubounds */
-  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds) {
+   * @param ndBox */
+  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, NdBox ndBox) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -51,12 +51,12 @@ import ch.alpine.tensor.alg.Array;
             LengthCostFunction.INSTANCE) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return new RnRrtsNodeCollection(lbounds, ubounds);
+            return new RnRrtsNodeCollection(ndBox);
           }
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
-            return BoxRandomSample.of(lbounds, ubounds);
+            return BoxRandomSample.of(ndBox);
           }
 
           @Override

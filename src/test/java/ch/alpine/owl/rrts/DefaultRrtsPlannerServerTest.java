@@ -32,6 +32,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -43,8 +44,9 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
     Scalar radius = Vector2Norm.between(goal, state).multiply(RationalScalar.HALF).add(RealScalar.ONE);
     Tensor center = Mean.of(Tensors.of(state, goal));
-    Tensor min = center.map(scalar -> scalar.subtract(radius));
-    Tensor max = center.map(scalar -> scalar.add(radius));
+    NdBox ndBox = NdBox.of( //
+        center.map(scalar -> scalar.subtract(radius)), //
+        center.map(scalar -> scalar.add(radius)));
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         RnTransitionSpace.INSTANCE, //
@@ -54,7 +56,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new RnRrtsNodeCollection(min, max);
+        return new RnRrtsNodeCollection(ndBox);
       }
 
       @Override
@@ -82,8 +84,9 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
   }
 
   public void testDubins() {
-    Tensor lbounds = Tensors.vector(0, 0, -Math.PI);
-    Tensor ubounds = Tensors.vector(10, 10, Math.PI);
+    NdBox ndBox = NdBox.of( //
+        Tensors.vector(0, 0, -Math.PI), //
+        Tensors.vector(10, 10, Math.PI));
     Tensor goal = Tensors.vector(10, 10, 0);
     Tensor state = Tensors.vector(0, 0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
@@ -96,12 +99,12 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new RnRrtsNodeCollection(lbounds, ubounds);
+        return new RnRrtsNodeCollection(ndBox);
       }
 
       @Override
       protected RandomSampleInterface spaceSampler(Tensor state) {
-        return BoxRandomSample.of(lbounds, ubounds);
+        return BoxRandomSample.of(ndBox);
       }
 
       @Override
@@ -141,7 +144,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+        return Se2RrtsNodeCollections.of(getTransitionSpace(), NdBox.of(lbounds, ubounds));
       }
 
       @Override

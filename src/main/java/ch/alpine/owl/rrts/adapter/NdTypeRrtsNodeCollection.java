@@ -18,22 +18,19 @@ import ch.alpine.tensor.opt.nd.NdTreeMap;
  * data structure is dependent on NdType */
 public final class NdTypeRrtsNodeCollection implements RrtsNodeCollection {
   /** @param ndType
-   * @param lbounds vector
-   * @param ubounds vector
+   * @param ndBox
    * @return */
-  public static RrtsNodeCollection of(NdType ndType, Tensor lbounds, Tensor ubounds) {
-    return new NdTypeRrtsNodeCollection( //
-        Objects.requireNonNull(ndType), //
-        lbounds, ubounds);
+  public static RrtsNodeCollection of(NdType ndType, NdBox ndBox) {
+    return new NdTypeRrtsNodeCollection(Objects.requireNonNull(ndType), ndBox);
   }
 
   // ---
   private final NdType ndType;
   private final NdMap<RrtsNode> ndMap;
 
-  private NdTypeRrtsNodeCollection(NdType ndType, Tensor lbounds, Tensor ubounds) {
+  private NdTypeRrtsNodeCollection(NdType ndType, NdBox ndBox) {
     this.ndType = ndType;
-    ndMap = NdTreeMap.of(NdBox.of(lbounds, ubounds), 5); // magic const
+    ndMap = NdTreeMap.of(ndBox);
   }
 
   @Override // from RrtsNodeCollection

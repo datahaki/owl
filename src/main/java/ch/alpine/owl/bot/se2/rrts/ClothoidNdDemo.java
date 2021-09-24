@@ -29,18 +29,18 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Append;
-import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 public class ClothoidNdDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
-  private static final Tensor LBOUNDS = Tensors.vector(-5, -5).unmodifiable();
-  private static final Tensor UBOUNDS = Tensors.vector(+5, +5).unmodifiable();
+  private static final NdBox ND_BOX = NdBox.of( //
+      Tensors.vector(-5, -5, -Math.PI), //
+      Tensors.vector(+5, +5, +Math.PI));
   // ---
   private final RrtsNodeCollection rrtsNodeCollection1 = //
-      Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, LBOUNDS, UBOUNDS);
+      Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, ND_BOX);
   private final RrtsNodeCollection rrtsNodeCollection2 = //
-      ClothoidRrtsNodeCollections.of(RealScalar.ONE, LBOUNDS, UBOUNDS);
+      ClothoidRrtsNodeCollections.of(RealScalar.ONE, ND_BOX);
 
   // ---
   public static class Param {
@@ -63,9 +63,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
-        Append.of(LBOUNDS, Pi.VALUE.negate()), //
-        Append.of(UBOUNDS, Pi.VALUE));
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX);
     Tensor tensor = RandomSample.of(randomSampleInterface, SIZE);
     for (Tensor state : tensor) {
       rrtsNodeCollection1.insert(RrtsNode.createRoot(state, RealScalar.ZERO));

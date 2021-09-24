@@ -11,6 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
@@ -34,15 +35,19 @@ public class R2ImageRegionWrap {
     return imageRegion;
   }
 
-  public Tensor range() {
-    return range;
-  }
-
   public CostFunction costFunction() {
     return costFunction;
   }
 
   public Tensor origin() {
     return Array.zeros(2);
+  }
+
+  public Tensor range() {
+    return range;
+  }
+
+  public NdBox ndBox() {
+    return NdBox.of(origin(), range);
   }
 }

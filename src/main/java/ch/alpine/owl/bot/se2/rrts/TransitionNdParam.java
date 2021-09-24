@@ -5,12 +5,11 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 public class TransitionNdParam {
-  private static final Tensor LBOUNDS = Tensors.vector(-5, -5).unmodifiable();
-  private static final Tensor UBOUNDS = Tensors.vector(+5, +5).unmodifiable();
+  private static final NdBox LBOUNDS = NdBox.of(Tensors.vector(-5, -5), Tensors.vector(+5, +5));
   @FieldInteger
   public Scalar points = RealScalar.of(100);
   @FieldInteger
@@ -18,9 +17,6 @@ public class TransitionNdParam {
 
   /** @param not used */
   TransitionNdContainer config() {
-    return new TransitionNdContainer( //
-        LBOUNDS, UBOUNDS, //
-        Scalars.intValueExact(points), //
-        Scalars.intValueExact(connect));
+    return new TransitionNdContainer(LBOUNDS, Scalars.intValueExact(points), Scalars.intValueExact(connect));
   }
 }

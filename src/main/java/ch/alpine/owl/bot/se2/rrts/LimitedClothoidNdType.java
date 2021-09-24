@@ -11,6 +11,8 @@ import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.NdCenterBase;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
@@ -32,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
     return with(RealScalar.of(max));
   }
 
-  /***************************************************/
+  // ==================================================
   private final Clip clip;
 
   /** @param clip non-null */
@@ -67,14 +69,11 @@ import ch.alpine.tensor.sca.Clips;
   /***************************************************/
   /* package */ abstract class LimitedClothoidNdCenter implements NdCenterInterface, Serializable {
     private final Tensor center;
+    private final NdCenterInterface n2;
 
     public LimitedClothoidNdCenter(Tensor center) {
       this.center = center;
-    }
-
-    @Override // from NdCenterInterface
-    public Tensor center() {
-      return center.unmodifiable();
+      n2 = NdCenterBase.of2Norm(center.extract(0, 2));
     }
 
     @Override // from ClothoidNdCenter
@@ -84,6 +83,19 @@ import ch.alpine.tensor.sca.Clips;
       return clip.isInside(clothoid.curvature().absMax()) //
           ? cost
           : infinity(cost);
+    }
+
+    @Override
+    public Scalar distance(NdBox ndBox) {
+      Tensor xy = ndBox.clip(center).extract(0, 2);
+      return n2.distance(xy);
+    }
+
+    @Override
+    public boolean lessThan(int dimension, Scalar median) {
+      return dimension < 2 //
+          ? n2.lessThan(dimension, median)
+          : true;
     }
 
     /** @param other

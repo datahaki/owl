@@ -25,6 +25,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.sca.Clips;
 
 /* package */ enum Se2ImageDemo {
@@ -36,7 +37,7 @@ import ch.alpine.tensor.sca.Clips;
     Tensor lbounds = Array.zeros(2).unmodifiable();
     Tensor ubounds = range.unmodifiable();
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
-    RrtsNodeCollection rrtsNodeCollection = Se2RrtsNodeCollections.of(transitionSpace, lbounds, ubounds);
+    RrtsNodeCollection rrtsNodeCollection = Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(lbounds, ubounds));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery( //
         imageRegion, RealScalar.of(0.05));
     TransitionRegionQuery transitionCurvatureQuery = new ClothoidCurvatureQuery(Clips.absolute(5));

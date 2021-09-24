@@ -6,7 +6,7 @@ import java.util.List;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.BoundedBoxRegion;
+import ch.alpine.owl.math.region.NdBoxRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensor;
 // x == [d v a w]
 /* package */ class IpGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
   public IpGoalManager(Tensor center, Tensor radius) {
-    super(new TimeInvariantRegion(BoundedBoxRegion.fromCenterAndRadius(center, radius)));
+    super(new TimeInvariantRegion(NdBoxRegion.fromCenterAndRadius(center, radius)));
   }
 
   @Override

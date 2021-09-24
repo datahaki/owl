@@ -111,16 +111,22 @@ import ch.alpine.tensor.red.Quantile;
     // ---
     Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
     if (jToggleCurvature.isSelected()) {
-      JFreeChart jFreeChart1 = ListPlot.of(visualSet1);
+      JFreeChart jFreeChart1 = ListPlot.of(visualSet1, true);
       jFreeChart1.draw(graphics, new Rectangle2D.Double(dimension.width * .5, 0, dimension.width * .5, dimension.height * .5));
       // ---
-      JFreeChart jFreeChart2 = ListPlot.of(visualSet2);
+      JFreeChart jFreeChart2 = ListPlot.of(visualSet2, true);
       if (!visualSet2.visualRows().isEmpty()) {
-        Tensor tensorMin = Tensor.of(visualSet2.visualRows().stream().map(VisualRow::points).map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of).map(MinMax::min));
+        Tensor tensorMin = Tensor.of(visualSet2.visualRows().stream() //
+            .map(VisualRow::points) //
+            .map(points -> points.get(Tensor.ALL, 1)) //
+            .map(MinMax::of) //
+            .map(MinMax::min));
         double min = Quantile.of(tensorMin).apply(RationalScalar.of(1, CURVE_SUBDIVISION_SCHEMES.size() - 1)).number().doubleValue();
-        Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream().map(VisualRow::points).map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of).map(MinMax::max));
+        Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream() //
+            .map(VisualRow::points) //
+            .map(points -> points.get(Tensor.ALL, 1)) //
+            .map(MinMax::of) //
+            .map(MinMax::max));
         double max = Quantile.of(tensorMax) //
             .apply(RationalScalar.of(CURVE_SUBDIVISION_SCHEMES.size() - 1, CurveSubdivisionHelper.LANE_RIESENFELD.size() - 1)).number().doubleValue();
         if (min != max)

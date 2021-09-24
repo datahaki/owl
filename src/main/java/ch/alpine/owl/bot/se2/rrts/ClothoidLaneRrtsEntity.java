@@ -24,6 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ class ClothoidLaneRrtsEntity extends AbstractRrtsEntity {
   private static final Scalar DELAY_HINT = RealScalar.of(3);
@@ -38,12 +39,12 @@ import ch.alpine.tensor.alg.Array;
       }).unmodifiable();
 
   // ---
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds) {
-    this(stateTime, transitionRegionQuery, lbounds, ubounds, false);
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, NdBox ndBox) {
+    this(stateTime, transitionRegionQuery, ndBox, false);
   }
 
   /** @param stateTime initial position of entity */
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds, boolean greedy) {
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, NdBox ndBox, boolean greedy) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -59,7 +60,7 @@ import ch.alpine.tensor.alg.Array;
             greedy) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+            return Se2RrtsNodeCollections.of(getTransitionSpace(), ndBox);
           }
 
           @Override

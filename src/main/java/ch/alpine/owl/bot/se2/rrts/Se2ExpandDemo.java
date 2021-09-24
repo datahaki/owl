@@ -25,6 +25,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.AnimationWriter;
 import ch.alpine.tensor.io.GifAnimationWriter;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ enum Se2ExpandDemo {
   ;
@@ -32,7 +33,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
     Tensor min = Tensors.vector(0, 0, -Math.PI);
     Tensor max = Tensors.vector(7, 7, +Math.PI);
     RrtsNodeCollection rrtsNodeCollection = //
-        Se2RrtsNodeCollections.of(transitionSpace, min.extract(0, 2), max.extract(0, 2));
+        Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(min.extract(0, 2), max.extract(0, 2)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);

@@ -16,15 +16,14 @@ import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ enum R2NoiseDemo {
   ;
   public static void main(String[] args) {
-    Tensor min = Tensors.vector(-1, -3);
-    Tensor max = Tensors.vector(-1 + 6, -3 + 6);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(min, max);
+    NdBox ndBox = NdBox.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.noise1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);

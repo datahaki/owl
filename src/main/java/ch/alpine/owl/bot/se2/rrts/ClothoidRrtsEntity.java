@@ -24,6 +24,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ class ClothoidRrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
@@ -40,7 +41,7 @@ import ch.alpine.tensor.num.Pi;
 
   // ---
   /** @param stateTime initial position of entity */
-  public ClothoidRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds) {
+  public ClothoidRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, NdBox ndBox) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -55,14 +56,14 @@ import ch.alpine.tensor.num.Pi;
             LengthCostFunction.INSTANCE) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+            return Se2RrtsNodeCollections.of(getTransitionSpace(), ndBox);
           }
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
             return BoxRandomSample.of( //
-                Append.of(lbounds, Pi.HALF.negate()), //
-                Append.of(ubounds, Pi.HALF));
+                Append.of(ndBox.min(), Pi.HALF.negate()), //
+                Append.of(ndBox.max(), Pi.HALF));
           }
 
           @Override

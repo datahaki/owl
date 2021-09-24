@@ -15,6 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.qty.Quantity;
 import junit.framework.TestCase;
 
@@ -23,7 +24,7 @@ public class Se2RrtsNodeCollectionsTest extends TestCase {
     Tensor lbounds = Tensors.fromString("{-5[m], -7[m]}");
     Tensor ubounds = Tensors.fromString("{10[m], 10[m]}");
     RrtsNodeCollection rrtsNodeCollection = //
-        Se2RrtsNodeCollections.of(transitionSpace, lbounds, ubounds);
+        Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(lbounds, ubounds));
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE));

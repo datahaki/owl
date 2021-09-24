@@ -33,6 +33,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -41,7 +42,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
   public void testRn() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
-        new RnRrtsNodeCollection(Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        new RnRrtsNodeCollection(NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -79,7 +80,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
   public void testDubins() {
     Rrts rrts = new DefaultRrts( //
         DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), //
-        new RnRrtsNodeCollection(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0)), //
+        new RnRrtsNodeCollection(NdBox.of(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0))), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -130,7 +131,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
-        Se2RrtsNodeCollections.of(transitionSpace, Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -182,7 +183,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Rrts rrts = new DefaultRrts( //
         DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), //
         // no specific collection for directional clothoid
-        new RnRrtsNodeCollection(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0)), //
+        new RnRrtsNodeCollection(NdBox.of(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0))), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());

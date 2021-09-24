@@ -10,17 +10,15 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.MatrixQ;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /** only the first two coordinates are tested for membership
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
 public class ImageRegion implements Region<Tensor>, Serializable {
-  private static final Tensor ORIGIN = Array.zeros(2).unmodifiable();
-
   /** @param bufferedImage
    * @param range
    * @param outside
@@ -34,7 +32,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
         outside);
   }
 
-  /***************************************************/
+  // ==================================================
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;
@@ -71,6 +69,10 @@ public class ImageRegion implements Region<Tensor>, Serializable {
   }
 
   public Tensor origin() {
-    return ORIGIN;
+    return range.map(Scalar::zero);
+  }
+
+  public NdBox ndBox() {
+    return NdBox.of(origin(), range());
   }
 }

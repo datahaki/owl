@@ -5,28 +5,18 @@ import ch.alpine.owl.rrts.adapter.NdTypeRrtsNodeCollection;
 import ch.alpine.owl.rrts.adapter.TransitionNdType;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Append;
-import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /** nearest-neighbor query heuristic backed by NdTreeMap */
 public enum Se2RrtsNodeCollections {
   ;
-  private static final Scalar ZERO = RealScalar.of(0.0);
-
   /** Hint:
-   * functionality for {@link Legendre3ClothoidTransitionSpace} and {@link DubinsTransitionSpace}
+   * functionality for {@link ClothoidTransitionSpace} and {@link DubinsTransitionSpace}
    * 
    * @param transitionSpace
-   * @param lbounds vector of length 2
-   * @param ubounds vector of length 2
+   * @param ndBox
    * @return */
-  public static RrtsNodeCollection of(TransitionSpace transitionSpace, Tensor lbounds, Tensor ubounds) {
-    return NdTypeRrtsNodeCollection.of( //
-        new TransitionNdType(transitionSpace), //
-        Append.of(VectorQ.requireLength(lbounds, 2), ZERO), //
-        Append.of(VectorQ.requireLength(ubounds, 2), ZERO));
+  public static RrtsNodeCollection of(TransitionSpace transitionSpace, NdBox ndBox) {
+    return NdTypeRrtsNodeCollection.of(new TransitionNdType(transitionSpace), ndBox);
   }
 }

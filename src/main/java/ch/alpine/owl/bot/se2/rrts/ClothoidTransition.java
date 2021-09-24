@@ -35,15 +35,15 @@ public class ClothoidTransition extends AbstractTransition {
     return new ClothoidTransition(start, end, clothoid);
   }
 
-  /** @param start
-   * @param end
+  /** @param start of the form {px, py, p_angle}
+   * @param end of the form {qx, qy, q_angle}
    * @param clothoid
    * @return */
   public static ClothoidTransition of(Tensor start, Tensor end, Clothoid clothoid) {
     return new ClothoidTransition(start, end, clothoid);
   }
 
-  /***************************************************/
+  // ==================================================
   private final Clothoid clothoid;
 
   private ClothoidTransition(Tensor start, Tensor end, Clothoid clothoid) {

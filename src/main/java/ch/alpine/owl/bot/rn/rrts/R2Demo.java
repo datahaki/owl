@@ -15,21 +15,20 @@ import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.NdBox;
 
 /* package */ enum R2Demo {
   ;
   static OwlyFrame show() {
     int wid = 7;
-    Tensor min = Tensors.vector(0, 0);
-    Tensor max = Tensors.vector(wid, wid);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(min, max);
+    NdBox ndBox = NdBox.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).get();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(min, max);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
     for (int count = 0; count < 1000; ++count)
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());

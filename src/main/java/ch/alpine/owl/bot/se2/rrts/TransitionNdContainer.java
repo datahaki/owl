@@ -30,6 +30,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Round;
@@ -42,19 +43,17 @@ public class TransitionNdContainer {
   private final Tensor tensor;
   private final int value;
 
-  public TransitionNdContainer(Tensor lbounds, Tensor ubounds, int n, int value) {
-    VectorQ.requireLength(lbounds, 2);
-    VectorQ.requireLength(ubounds, 2);
+  public TransitionNdContainer(NdBox ndBox, int n, int value) {
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
-        Append.of(lbounds, Pi.VALUE.negate()), //
-        Append.of(ubounds, Pi.VALUE));
+        Append.of(ndBox.min(), Pi.VALUE.negate()), //
+        Append.of(ndBox.max(), Pi.VALUE));
     tensor = RandomSample.of(randomSampleInterface, n);
     for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.CL_SE2_R2) {
       TransitionNdTypes se2TransitionNdType = TransitionNdTypes.fromString(manifoldDisplay);
       RrtsNodeCollection rrtsNodeCollection = se2TransitionNdType.equals(TransitionNdTypes.RN) //
-          ? new RnRrtsNodeCollection(lbounds, ubounds)
+          ? new RnRrtsNodeCollection(ndBox)
           : Se2RrtsNodeCollections.of( //
-              se2TransitionNdType.transitionSpace(), lbounds, ubounds);
+              se2TransitionNdType.transitionSpace(), ndBox);
       for (Tensor state : tensor)
         rrtsNodeCollection.insert(RrtsNode.createRoot(manifoldDisplay.project(state), RealScalar.ZERO));
       map.put(se2TransitionNdType, rrtsNodeCollection);
