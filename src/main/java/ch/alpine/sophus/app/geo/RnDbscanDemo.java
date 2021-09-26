@@ -8,27 +8,31 @@ import java.awt.geom.Point2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
+import ch.alpine.owl.math.noise.BiasedBoxRandomSample;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnDbscan;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.sophus.math.sample.RandomSample;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.sca.Abs;
 
 public class RnDbscanDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic();
-  private final Tensor pointsAll = RandomVariate.of(UniformDistribution.of(0, 10), 5000, 2);
+  private final Tensor pointsAll;
   private final DbParam dbParam = new DbParam();
 
   public RnDbscanDemo() {
     Container container = timerFrame.jFrame.getContentPane();
     container.add("West", new FieldsEditor(dbParam).getJScrollPane());
     timerFrame.geometricComponent.setOffset(100, 600);
+    pointsAll = RandomSample.of(new BiasedBoxRandomSample(NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10)), 3), 5000);
   }
 
   @Override
@@ -36,13 +40,12 @@ public class RnDbscanDemo extends AbstractDemo {
     graphics.setColor(Color.GRAY);
     Tensor points = Tensor.of(pointsAll.stream().limit(dbParam.count.number().intValue()));
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
-    Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
+    Scalar radius = Abs.FUNCTION.apply(xya.Get(2)).multiply(RealScalar.of(0.2));
     Timing timing = Timing.started();
     CenterNorms centerNorms = dbParam.centerNorms;
     Integer[] labels = RnDbscan.of(points, centerNorms::ndCenterInterface, radius, dbParam.dep.number().intValue());
     double seconds = timing.seconds();
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
-    
     //
     int index = 0;
     for (Tensor point : points) {

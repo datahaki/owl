@@ -41,7 +41,7 @@ public class TrajectoryR2TranslationFamily extends R2TranslationFamily {
     delta = trajectory.get(0).time().subtract(ofs);
     limit = list.size() - 1;
     // ---
-    { // consistency check
+    { // TODO consistency check belongs into test
       Tensor times = Tensor.of(trajectory.stream().map(StateTime::time).map(this::index));
       Chop._10.requireClose(times, Range.of(1, times.length() + 1));
     }

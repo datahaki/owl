@@ -7,10 +7,10 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
-import ch.alpine.tensor.opt.nd.NdClusterRadius;
+import ch.alpine.tensor.opt.nd.NdCollectRadius;
 import ch.alpine.tensor.opt.nd.NdEntry;
 
-public class GraphicSpherical<V> extends NdClusterRadius<V> {
+public class GraphicSpherical<V> extends NdCollectRadius<V> {
   private final GeometricLayer geometricLayer;
   private final Graphics2D graphics;
 

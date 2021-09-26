@@ -1,6 +1,12 @@
 // code by stegu
 package ch.alpine.owl.math.noise;
 
+import ch.alpine.tensor.DoubleScalar;
+import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.api.TensorScalarFunction;
+
 /** A speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
  * 
  * Based on example code by Stefan Gustavson (stegu@itn.liu.se).
@@ -13,7 +19,7 @@ package ch.alpine.owl.math.noise;
  * 
  * This code was placed in the public domain by its original author,
  * Stefan Gustavson. You may use it as you see fit, but attribution is appreciated. */
-public enum SimplexContinuousNoise implements NativeContinuousNoise {
+public enum SimplexContinuousNoise implements NativeContinuousNoise, TensorScalarFunction {
   FUNCTION;
 
   private static final Grad[] GRAD3 = { //
@@ -416,5 +422,31 @@ public enum SimplexContinuousNoise implements NativeContinuousNoise {
       n4 = t4 * t4 * GRAD4[gi4].dot(x4, y4, z4, w4);
     }
     return 27.23 * (n0 + n1 + n2 + n3 + n4); // used to be 27.0
+  }
+
+  @Override
+  public Scalar apply(Tensor vector) {
+    switch (vector.length()) {
+    case 1:
+      return DoubleScalar.of(at( //
+          vector.Get(0).number().doubleValue()));
+    case 2:
+      return DoubleScalar.of(at( //
+          vector.Get(0).number().doubleValue(), //
+          vector.Get(1).number().doubleValue()));
+    case 3:
+      return DoubleScalar.of(at( //
+          vector.Get(0).number().doubleValue(), //
+          vector.Get(1).number().doubleValue(), //
+          vector.Get(2).number().doubleValue()));
+    case 4:
+      return DoubleScalar.of(at( //
+          vector.Get(0).number().doubleValue(), //
+          vector.Get(1).number().doubleValue(), //
+          vector.Get(2).number().doubleValue(), //
+          vector.Get(3).number().doubleValue()));
+    default:
+      throw TensorRuntimeException.of(vector);
+    }
   }
 }

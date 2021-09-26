@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 public class BoundedBoxRegionTest extends TestCase {
   public void testSimple() {
-    Region<Tensor> r = NdBoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));
+    Region<Tensor> r = BoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));
     assertTrue(r.isMember(Tensors.vector(10, 5)));
     assertTrue(r.isMember(Tensors.vector(10, 9)));
     assertTrue(r.isMember(Tensors.vector(11, 9)));

@@ -27,7 +27,6 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Append;
-import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.NdBox;

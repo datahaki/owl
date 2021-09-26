@@ -9,8 +9,8 @@ import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.NdCenterBase;
-import ch.alpine.tensor.opt.nd.NdClusterInside;
+import ch.alpine.tensor.opt.nd.NdCenters;
+import ch.alpine.tensor.opt.nd.NdInsideRadius;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 import ch.alpine.tensor.sca.Sign;
@@ -46,7 +46,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
 
   @Override // from Region
   public boolean isMember(Tensor tensor) {
-    return NdClusterInside.anyMatch(ndMap, NdCenterBase.of2Norm(tensor), radius);
+    return NdInsideRadius.anyMatch(ndMap, NdCenters.VECTOR_2_NORM.apply(tensor), radius);
   }
 
   public Tensor points() {

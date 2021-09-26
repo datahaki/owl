@@ -12,8 +12,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.opt.nd.NdBox;
-import ch.alpine.tensor.opt.nd.NdCenterBase;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
+import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.sca.Clip;
@@ -73,7 +73,7 @@ import ch.alpine.tensor.sca.Clips;
 
     public LimitedClothoidNdCenter(Tensor center) {
       this.center = center;
-      n2 = NdCenterBase.of2Norm(center.extract(0, 2));
+      n2 = NdCenters.VECTOR_2_NORM.apply(center.extract(0, 2));
     }
 
     @Override // from ClothoidNdCenter

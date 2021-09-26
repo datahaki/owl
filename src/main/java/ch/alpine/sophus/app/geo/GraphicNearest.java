@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
-import ch.alpine.tensor.opt.nd.NdClusterNearest;
+import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdEntry;
 
-public class GraphicNearest<V> extends NdClusterNearest<V> {
+public class GraphicNearest<V> extends NdCollectNearest<V> {
   private final GeometricLayer geometricLayer;
   private final Graphics2D graphics;
 

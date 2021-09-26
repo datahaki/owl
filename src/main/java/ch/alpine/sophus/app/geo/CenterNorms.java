@@ -4,14 +4,14 @@ package ch.alpine.sophus.app.geo;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.CirclePoints;
-import ch.alpine.tensor.opt.nd.NdCenterBase;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
+import ch.alpine.tensor.opt.nd.NdCenters;
 
 public enum CenterNorms {
   _1 {
     @Override
     public NdCenterInterface ndCenterInterface(Tensor center) {
-      return NdCenterBase.of1Norm(center);
+      return NdCenters.VECTOR_1_NORM.apply(center);
     }
 
     @Override
@@ -22,7 +22,7 @@ public enum CenterNorms {
   _2 {
     @Override
     public NdCenterInterface ndCenterInterface(Tensor center) {
-      return NdCenterBase.of2Norm(center);
+      return NdCenters.VECTOR_2_NORM.apply(center);
     }
 
     @Override
@@ -33,7 +33,7 @@ public enum CenterNorms {
   _INF {
     @Override
     public NdCenterInterface ndCenterInterface(Tensor center) {
-      return NdCenterBase.ofInfinityNorm(center);
+      return NdCenters.VECTOR_INFINITY_NORM.apply(center);
     }
 
     @Override

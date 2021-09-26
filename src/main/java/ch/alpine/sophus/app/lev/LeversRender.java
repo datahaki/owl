@@ -51,7 +51,6 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
-import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Round;
 
 public class LeversRender {
@@ -232,10 +231,7 @@ public class LeversRender {
     if (Tensors.nonEmpty(sequence)) {
       VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
       Tensor matrix = new HsDesign(vectorLogManifold).matrix(sequence, origin);
-      Tensor w1 = new Mahalanobis(matrix).leverages_sqrt();
-      Tensor w2 = InfluenceMatrix.of(matrix).leverages_sqrt();
-      Chop._05.requireClose(w1, w2);
-      renderWeights(w1);
+      renderWeights(new Mahalanobis(matrix).leverages_sqrt());
     }
   }
 
