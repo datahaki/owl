@@ -30,7 +30,7 @@ public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
     return new NegTransitiveMinTracker<>(orderComparator, new HashSet<>());
   }
 
-  /***************************************************/
+  // ---
   private final OrderComparator<T> orderComparator;
   private final Collection<T> collection;
 

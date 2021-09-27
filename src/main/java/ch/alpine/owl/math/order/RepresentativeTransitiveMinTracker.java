@@ -25,7 +25,7 @@ public class RepresentativeTransitiveMinTracker<T> extends TransitiveMinTracker<
     return new RepresentativeTransitiveMinTracker<>(orderComparator, new HashSet<>());
   }
 
-  /***************************************************/
+  // ---
   private RepresentativeTransitiveMinTracker(OrderComparator<T> orderComparator, Collection<T> collection) {
     super(orderComparator, collection);
   }

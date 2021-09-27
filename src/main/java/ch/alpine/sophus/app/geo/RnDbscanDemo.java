@@ -3,8 +3,15 @@ package ch.alpine.sophus.app.geo;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.IntStream;
+
+import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
@@ -13,6 +20,7 @@ import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnDbscan;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.sample.RandomSample;
+import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -25,12 +33,15 @@ import ch.alpine.tensor.sca.Abs;
 
 public class RnDbscanDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic();
+  private static final ColorDataIndexed COLOR_FILL_INDEXED = COLOR_DATA_INDEXED.deriveWithAlpha(96);
   private final Tensor pointsAll;
   private final DbParam dbParam = new DbParam();
 
   public RnDbscanDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new FieldsEditor(dbParam).getJScrollPane());
+    JScrollPane jScrollPane = new FieldsEditor(dbParam).getJScrollPane();
+    jScrollPane.setPreferredSize(new Dimension(200, 200));
+    container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
     pointsAll = RandomSample.of(new BiasedBoxRandomSample(NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10)), 3), 5000);
   }
@@ -46,16 +57,32 @@ public class RnDbscanDemo extends AbstractDemo {
     Integer[] labels = RnDbscan.of(points, centerNorms::ndCenterInterface, radius, dbParam.dep.number().intValue());
     double seconds = timing.seconds();
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
-    //
-    int index = 0;
-    for (Tensor point : points) {
-      Point2D point2d = geometricLayer.toPoint2D(point);
-      Integer label = labels[index];
-      graphics.setColor(label < 0 //
-          ? Color.BLACK
-          : COLOR_DATA_INDEXED.getColor(label));
-      graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 10, 10);
-      ++index;
+    {
+      Map<Integer, Tensor> map = new HashMap<>();
+      IntStream.range(0, labels.length).forEach(index -> {
+        int lab = labels[index];
+        if (!map.containsKey(lab))
+          map.put(lab, Tensors.empty());
+        map.get(lab).append(points.get(index));
+      });
+      for (Entry<Integer, Tensor> entry : map.entrySet())
+        if (0 <= entry.getKey()) {
+          Tensor tensor = ConvexHull.of(entry.getValue());
+          graphics.setColor(COLOR_FILL_INDEXED.getColor(entry.getKey()));
+          graphics.fill(geometricLayer.toPath2D(tensor, true));
+        }
+    }
+    {
+      int index = 0;
+      for (Tensor point : points) {
+        Point2D point2d = geometricLayer.toPoint2D(point);
+        Integer label = labels[index];
+        graphics.setColor(label < 0 //
+            ? Color.BLACK
+            : COLOR_DATA_INDEXED.getColor(label));
+        graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 5, 5);
+        ++index;
+      }
     }
     {
       graphics.setColor(Color.BLUE);

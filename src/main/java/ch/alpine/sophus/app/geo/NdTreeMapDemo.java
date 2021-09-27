@@ -3,10 +3,13 @@ package ch.alpine.sophus.app.geo;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.Optional;
+
+import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
@@ -31,7 +34,9 @@ public class NdTreeMapDemo extends AbstractDemo {
 
   public NdTreeMapDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new FieldsEditor(ndParam).getJScrollPane());
+    JScrollPane jScrollPane = new FieldsEditor(ndParam).getJScrollPane();
+    jScrollPane.setPreferredSize(new Dimension(200, 200));
+    container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
   }
 

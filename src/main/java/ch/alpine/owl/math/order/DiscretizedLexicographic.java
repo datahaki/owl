@@ -22,7 +22,7 @@ public class DiscretizedLexicographic implements Comparator<Tensor>, Serializabl
     return new DiscretizedLexicographic(slack);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor slack;
 
   private DiscretizedLexicographic(Tensor slack) {

@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import ch.alpine.sophus.ply.d2.Polygons;
 import ch.alpine.tensor.Tensor;
@@ -14,7 +15,7 @@ public class PolygonRegion implements Region<Tensor>, Serializable {
 
   /** @param polygon as matrix with dimensions n x 2 */
   public PolygonRegion(Tensor polygon) {
-    this.polygon = polygon;
+    this.polygon = Objects.requireNonNull(polygon);
   }
 
   @Override // from Region

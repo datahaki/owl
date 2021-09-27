@@ -46,5 +46,5 @@ import ch.alpine.owl.math.order.OrderComparator;
    * </table> */
   public static final OrderComparator<JassCard> INSTANCE = new Order<>( //
       (BinaryRelation<JassCard> & Serializable) //
-      JassCard::isLess);
+      JassCard::lessThan);
 }

@@ -14,6 +14,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.ext.PackageTestAccess;
 
 /** immutable */
 /* package */ class Pair<K> implements Serializable {
@@ -40,7 +41,8 @@ import ch.alpine.tensor.alg.VectorQ;
 }
 
 /** Creates EBO (elimination by objective) tracker for a lexicographic semiorder.
- * The EBO procedure chooses a the "best" element from a given set according to the underlying lexicographic semiorder.
+ * The EBO procedure chooses a the "best" element from a given set according to
+ * the underlying lexicographic semiorder.
  * 
  * For a detailed description of the procedure, see
  * "Multi-Objective Optimization Using Preference Structures", Chapter 6.1 */
@@ -58,10 +60,9 @@ public abstract class AbstractEboTracker<K> implements EboTracker<K>, Serializab
       semiorderComparators.add(new ScalarSlackSemiorder(slacks.Get(index)));
   }
 
-  /** Hint: only for testing
-   * 
-   * @return current candidateSet */
-  /* package */ final Collection<Pair<K>> getCandidateSet() {
+  /** @return current candidateSet */
+  @PackageTestAccess
+  final Collection<Pair<K>> getCandidateSet() {
     return candidateSet;
   }
 
@@ -75,10 +76,9 @@ public abstract class AbstractEboTracker<K> implements EboTracker<K>, Serializab
     return candidateSet.stream().map(Pair::value).collect(Collectors.toList());
   }
 
-  /** Hint: only for testing
-   * 
-   * @return pairs of current minimal elements */
-  /* package */ final Collection<Pair<K>> getMinElements() {
+  /** @return pairs of current minimal elements */
+  @PackageTestAccess
+  final Collection<Pair<K>> getMinElements() {
     if (candidateSet.isEmpty())
       return Collections.emptyList();
     Collection<Pair<K>> minElements = candidateSet;
@@ -113,7 +113,8 @@ public abstract class AbstractEboTracker<K> implements EboTracker<K>, Serializab
    * If there are still two pairs with the same minimum score we will choose randomly.
    * 
    * @return current absolute best pair, may also be null */
-  /* package */ final Pair<K> getBest() {
+  @PackageTestAccess
+  final Pair<K> getBest() {
     if (candidateSet.isEmpty())
       return null;
     List<Pair<K>> bestElements = new ArrayList<>(getMinElements());
