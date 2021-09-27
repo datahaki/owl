@@ -31,7 +31,7 @@ public class CatchyTrajectoryRegionQuery extends SimpleTrajectoryRegionQuery imp
     return new CatchyTrajectoryRegionQuery(region);
   }
 
-  /***************************************************/
+  // ---
   private final StateTimeRegionCallback stateTimeRegionCallback;
 
   /** @param region */

@@ -20,7 +20,7 @@ public class ComboTransitionCostFunction implements TransitionCostFunction, Seri
         .collect(Collectors.toMap(f -> f, f -> RealScalar.ONE)));
   }
 
-  /***************************************************/
+  // ---
   private final Map<TransitionCostFunction, Scalar> map;
   // private final int influence;
 

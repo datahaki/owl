@@ -32,7 +32,7 @@ public enum LegendImage {
     return _of(colorDataGradient, height, smax, smin);
   }
 
-  /***************************************************/
+  // ---
   private static int fontw(String smax, String smin) {
     Graphics2D graphics = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
     graphics.setFont(FONT);

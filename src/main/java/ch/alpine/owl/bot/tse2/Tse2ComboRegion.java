@@ -29,7 +29,7 @@ public class Tse2ComboRegion extends Se2ComboRegion {
         new LinearRegion(goal.Get(3), radiusVector.Get(3)));
   }
 
-  /***************************************************/
+  // ---
   private final LinearRegion linearRegion;
 
   /** @param regionWithDistance for xy

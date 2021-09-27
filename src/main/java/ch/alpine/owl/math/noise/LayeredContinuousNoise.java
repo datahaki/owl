@@ -15,7 +15,7 @@ public class LayeredContinuousNoise implements NativeContinuousNoise, Serializab
     return new LayeredContinuousNoise(nativeContinuousNoise, magnitude, frequency);
   }
 
-  /***************************************************/
+  // ---
   private final NativeContinuousNoise nativeContinuousNoise;
   private final double[] magnitude;
   private final double[] frequency;

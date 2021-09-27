@@ -99,7 +99,7 @@ public abstract class RLTrajectoryPlanner implements TrajectoryPlanner, Serializ
     return openQueue;
   }
 
-  /***************************************************/
+  // ---
   @Override // from ExpandInterface
   public final Optional<GlcNode> pollNext() {
     // Queue#poll() returns the head of queue, or null if queue is empty
@@ -114,7 +114,7 @@ public abstract class RLTrajectoryPlanner implements TrajectoryPlanner, Serializ
         : reachingSet.peek());
   }
 
-  /***************************************************/
+  // ---
   @Override // from TreePlanner
   public final void insertRoot(StateTime stateTime) {
     if (!domainMap.isEmpty())
@@ -133,7 +133,7 @@ public abstract class RLTrajectoryPlanner implements TrajectoryPlanner, Serializ
     return Collections.unmodifiableCollection(queue().collection());
   }
 
-  /***************************************************/
+  // ---
   @Override // from TrajectoryPlanner
   public final HeuristicFunction getHeuristicFunction() {
     return heuristicFunction;

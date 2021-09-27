@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.Chop;
   /** resolution of radial controls */
   private static final int U_SIZE = 15;
   private static final Scalar GOAL_RADIUS = RealScalar.of(0.3);
-  /***************************************************/
+  // ---
   private final TreeRender treeRender = new TreeRender();
   private final ImageGradientInterpolation imageGradientInterpolation;
   private RegionWithDistance<Tensor> goalRegion = null;

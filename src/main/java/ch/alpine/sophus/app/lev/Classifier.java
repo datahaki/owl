@@ -26,7 +26,7 @@ public abstract class Classifier implements Classification, Serializable {
     return new AccMaxClassifier(ExactTensorQ.require(labels));
   }
 
-  /***************************************************/
+  // ---
   protected final int[] labels;
   protected final int size;
 

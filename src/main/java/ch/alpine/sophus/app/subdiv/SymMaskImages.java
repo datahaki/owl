@@ -70,7 +70,7 @@ import ch.alpine.tensor.Tensor;
     return bufferedImage(index1);
   }
 
-  /***************************************************/
+  // ---
   public static Optional<SymMaskImages> get(String string) {
     try {
       return Optional.ofNullable(SymMaskImages.valueOf(string));

@@ -13,7 +13,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 public class S1Display extends SnDisplay {
   public static final ManifoldDisplay INSTANCE = new S1Display();
 
-  /***************************************************/
+  // ---
   private S1Display() {
     super(1);
   }

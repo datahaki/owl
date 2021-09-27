@@ -94,7 +94,7 @@ public class JetScalar extends AbstractScalar implements //
         product(((JetScalar) df.apply(new JetScalar(opF(vector)))).vector, opD(vector))));
   }
 
-  /***************************************************/
+  // ---
   private final Tensor vector;
 
   private JetScalar(Tensor vector) {
@@ -147,7 +147,7 @@ public class JetScalar extends AbstractScalar implements //
     return new JetScalar(vector.add(audiScalar.vector));
   }
 
-  /***************************************************/
+  // ---
   @Override // from ExpInterface
   public Scalar exp() {
     return chain(vector, Exp.FUNCTION, Exp.FUNCTION);
@@ -195,7 +195,7 @@ public class JetScalar extends AbstractScalar implements //
     return chain(vector, Sinh.FUNCTION, Cosh.FUNCTION);
   }
 
-  /***************************************************/
+  // ---
   @Override
   public int hashCode() {
     return vector.hashCode();

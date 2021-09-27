@@ -32,7 +32,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
         outside);
   }
 
-  // ==================================================
+  // ---
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;

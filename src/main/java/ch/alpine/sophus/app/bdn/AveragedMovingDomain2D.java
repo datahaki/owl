@@ -19,7 +19,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
     return new AveragedMovingDomain2D(origin, tensorUnaryOperator, domain);
   }
 
-  /***************************************************/
+  // ---
   private AveragedMovingDomain2D(Tensor origin, TensorUnaryOperator tensorUnaryOperator, Tensor domain) {
     super(origin, tensorUnaryOperator, domain);
   }

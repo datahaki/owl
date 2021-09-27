@@ -66,7 +66,7 @@ public class VectorScalar extends AbstractScalar implements //
     return new VectorScalar(Tensor.of(stream));
   }
 
-  /***************************************************/
+  // ---
   private final Tensor vector;
 
   private VectorScalar(Tensor vector) {
@@ -116,7 +116,7 @@ public class VectorScalar extends AbstractScalar implements //
     throw TensorRuntimeException.of(this);
   }
 
-  /***************************************************/
+  // ---
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
     if (scalar instanceof VectorScalar) {
@@ -126,7 +126,7 @@ public class VectorScalar extends AbstractScalar implements //
     throw TensorRuntimeException.of(this, scalar);
   }
 
-  /***************************************************/
+  // ---
   @Override // from ChopInterface
   public Scalar chop(Chop chop) {
     return new VectorScalar(chop.of(vector));
@@ -162,7 +162,7 @@ public class VectorScalar extends AbstractScalar implements //
     return new VectorScalar(N.in(mathContext.getPrecision()).of(vector));
   }
 
-  /***************************************************/
+  // ---
   @Override // from Comparable
   public int compareTo(Scalar scalar) {
     if (scalar instanceof VectorScalar) {

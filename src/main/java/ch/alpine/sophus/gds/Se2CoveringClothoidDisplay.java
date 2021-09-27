@@ -8,7 +8,7 @@ import ch.alpine.tensor.Tensor;
 public final class Se2CoveringClothoidDisplay extends AbstractClothoidDisplay {
   public static final ManifoldDisplay INSTANCE = new Se2CoveringClothoidDisplay();
 
-  /***************************************************/
+  // ---
   private Se2CoveringClothoidDisplay() {
     // ---
   }

@@ -25,7 +25,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
 public class Se2Display extends Se2AbstractDisplay {
   public static final ManifoldDisplay INSTANCE = new Se2Display();
 
-  /***************************************************/
+  // ---
   private Se2Display() {
     // ---
   }

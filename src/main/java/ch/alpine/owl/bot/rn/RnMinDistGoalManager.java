@@ -35,7 +35,7 @@ public class RnMinDistGoalManager extends SimpleTrajectoryRegionQuery implements
     return new RnMinDistGoalManager(new BallRegion(center, radius));
   }
 
-  /***************************************************/
+  // ---
   private final RegionWithDistance<Tensor> regionWithDistance;
 
   /** @param regionWithDistance */

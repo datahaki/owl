@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensors;
     return new LvStateSpaceModel(RealScalar.of(f0), RealScalar.of(f1));
   }
 
-  /***************************************************/
+  // ---
   private final Scalar f0;
   private final Scalar f1;
 

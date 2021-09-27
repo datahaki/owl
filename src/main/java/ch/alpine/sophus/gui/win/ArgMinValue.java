@@ -21,7 +21,7 @@ import ch.alpine.tensor.red.ArgMin;
         : Optional.empty());
   }
 
-  /***************************************************/
+  // ---
   private final int index;
   private final Optional<Scalar> value;
 

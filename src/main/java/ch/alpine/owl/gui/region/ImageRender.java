@@ -48,7 +48,7 @@ public class ImageRender implements RenderInterface {
             .pmul(Se2Matrix.flipY(bufferedImage.getHeight())));
   }
 
-  /***************************************************/
+  // ---
   private final BufferedImage bufferedImage;
   private final Tensor pixel2model;
   private final Tensor box;

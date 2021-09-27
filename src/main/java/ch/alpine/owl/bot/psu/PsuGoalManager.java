@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.Sign;
         psuGoalManager);
   }
 
-  /***************************************************/
+  // ---
   private final TensorMetric coordinateWrap;
   private final Tensor center;
   private final Tensor radius;

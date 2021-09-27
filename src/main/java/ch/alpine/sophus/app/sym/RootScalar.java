@@ -35,7 +35,7 @@ public class RootScalar extends AbstractScalar implements //
         : new RootScalar(re, im, ba);
   }
 
-  /***************************************************/
+  // ---
   private final Scalar re;
   private final Scalar im;
   private final Scalar ba;
@@ -89,7 +89,7 @@ public class RootScalar extends AbstractScalar implements //
     return n().number();
   }
 
-  /***************************************************/
+  // ---
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
     if (scalar instanceof RealScalar)
@@ -105,7 +105,7 @@ public class RootScalar extends AbstractScalar implements //
     throw new UnsupportedOperationException();
   }
 
-  /***************************************************/
+  // ---
   @Override // from AbsInterface
   public Scalar abs() { // "complex modulus"
     return Abs.FUNCTION.apply(re.add(im.multiply(Sqrt.of(ba))));
@@ -141,7 +141,7 @@ public class RootScalar extends AbstractScalar implements //
     return n.apply(re).add(n.apply(im).multiply(Sqrt.of(n.apply(ba))));
   }
 
-  /***************************************************/
+  // ---
   @Override // from AbstractScalar
   public int hashCode() {
     return Objects.hash(re, im, ba);

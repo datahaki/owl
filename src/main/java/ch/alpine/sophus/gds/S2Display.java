@@ -27,7 +27,7 @@ public class S2Display extends SnDisplay {
   // ---
   public static final ManifoldDisplay INSTANCE = new S2Display();
 
-  /***************************************************/
+  // ---
   private S2Display() {
     super(2);
   }

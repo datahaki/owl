@@ -38,7 +38,7 @@ public class Se2ComboRegion implements Region<Tensor>, Serializable {
         So2Region.periodic(goal.Get(2), heading));
   }
 
-  /***************************************************/
+  // ---
   private final RegionWithDistance<Tensor> regionWithDistance;
   private final So2Region so2Region;
 

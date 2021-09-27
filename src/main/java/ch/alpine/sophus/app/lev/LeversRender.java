@@ -88,7 +88,7 @@ public class LeversRender {
         Objects.requireNonNull(graphics));
   }
 
-  /***************************************************/
+  // ---
   private final ManifoldDisplay manifoldDisplay;
   private final Tensor sequence;
   private final Tensor origin;
@@ -218,7 +218,7 @@ public class LeversRender {
     }
   }
 
-  /***************************************************/
+  // ---
   public void renderWeightsLength() {
     TensorMetric tensorMetric = manifoldDisplay.parametricDistance();
     if (Objects.nonNull(tensorMetric)) {
@@ -268,7 +268,7 @@ public class LeversRender {
     }
   }
 
-  /***************************************************/
+  // ---
   private static final Stroke STROKE_TANGENT = new BasicStroke(1.5f);
   private static final Color COLOR_TANGENT = new Color(0, 0, 255, 192);
   private static final Color COLOR_POLYGON_DRAW = new Color(0, 255, 255, 192);
@@ -379,7 +379,7 @@ public class LeversRender {
     graphics.draw(path2d);
   }
 
-  /***************************************************/
+  // ---
   private void renderMahalanobisMatrix(Tensor p, Mahalanobis mahalanobis, ColorDataGradient colorDataGradient) {
     graphics.setFont(FONT_MATRIX);
     MatrixRender matrixRender = MatrixRender.arcTan(graphics, CONSTANT, colorDataGradient);
@@ -461,7 +461,7 @@ public class LeversRender {
     }
   }
 
-  /***************************************************/
+  // ---
   /** @param colorDataGradient */
   public void renderInfluenceX(ColorDataGradient colorDataGradient) {
     if (Tensors.nonEmpty(sequence)) {
@@ -495,7 +495,7 @@ public class LeversRender {
     }
   }
 
-  /***************************************************/
+  // ---
   public void renderMatrix(Tensor pos, Tensor matrix, ColorDataIndexed colorDataIndexed) {
     graphics.setFont(FONT_MATRIX);
     MatrixRender matrixRender = MatrixRender.of(graphics, colorDataIndexed, new Color(255, 255, 255, 32));
@@ -549,7 +549,7 @@ public class LeversRender {
         .render(geometricLayer, graphics);
   }
 
-  /***************************************************/
+  // ---
   public Tensor getSequence() {
     return sequence.unmodifiable();
   }
@@ -558,7 +558,7 @@ public class LeversRender {
     return origin.unmodifiable();
   }
 
-  /***************************************************/
+  // ---
   private void renderMatrix(Tensor q, MatrixRender matrixRender, Tensor matrix) {
     FontMetrics fontMetrics = graphics.getFontMetrics();
     int fheight = fontMetrics.getAscent();

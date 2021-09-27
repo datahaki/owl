@@ -43,7 +43,7 @@ public class ClothoidTransition extends AbstractTransition {
     return new ClothoidTransition(start, end, clothoid);
   }
 
-  // ==================================================
+  // ---
   private final Clothoid clothoid;
 
   private ClothoidTransition(Tensor start, Tensor end, Clothoid clothoid) {

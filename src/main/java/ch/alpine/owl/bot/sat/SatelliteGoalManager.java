@@ -19,7 +19,7 @@ class SatelliteGoalManager extends SimpleTrajectoryRegionQuery implements GoalIn
     return new SatelliteGoalManager(new EllipsoidRegion(center, radius));
   }
 
-  /***************************************************/
+  // ---
   public SatelliteGoalManager(EllipsoidRegion ellipsoidRegion) {
     super(new TimeInvariantRegion(ellipsoidRegion));
   }

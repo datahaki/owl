@@ -33,7 +33,7 @@ public class MatrixRender {
     return new MatrixRender(graphics, colorDataIndexed, value -> color);
   }
 
-  /***************************************************/
+  // ---
   private final Graphics2D graphics;
   private final ColorDataIndexed colorDataIndexed;
   private final Function<Scalar, Color> function;

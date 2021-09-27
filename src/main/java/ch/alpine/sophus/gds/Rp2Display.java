@@ -29,7 +29,7 @@ public class Rp2Display extends RpnDisplay {
   // ---
   public static final ManifoldDisplay INSTANCE = new Rp2Display();
 
-  /***************************************************/
+  // ---
   private Rp2Display() {
     super(2);
   }

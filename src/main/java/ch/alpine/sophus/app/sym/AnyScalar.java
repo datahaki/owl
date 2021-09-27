@@ -25,7 +25,7 @@ public final class AnyScalar extends AbstractScalar implements //
     TrigonometryInterface, Serializable {
   public static final Scalar INSTANCE = new AnyScalar();
 
-  /***************************************************/
+  // ---
   private AnyScalar() {
     // ---
   }
@@ -67,7 +67,7 @@ public final class AnyScalar extends AbstractScalar implements //
     throw new UnsupportedOperationException();
   }
 
-  /***************************************************/
+  // ---
   @Override // from AbsInterface
   public Scalar abs() {
     return this;
@@ -158,7 +158,7 @@ public final class AnyScalar extends AbstractScalar implements //
     return this;
   }
 
-  /***************************************************/
+  // ---
   @Override
   public int hashCode() {
     throw new UnsupportedOperationException();

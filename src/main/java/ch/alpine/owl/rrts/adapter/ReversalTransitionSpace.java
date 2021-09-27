@@ -22,7 +22,7 @@ public class ReversalTransitionSpace implements TransitionSpace, Serializable {
     return new ReversalTransitionSpace(transitionSpace);
   }
 
-  /***************************************************/
+  // ---
   private final TransitionSpace transitionSpace;
 
   private ReversalTransitionSpace(TransitionSpace transitionSpace) {

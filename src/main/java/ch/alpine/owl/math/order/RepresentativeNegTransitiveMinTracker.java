@@ -24,7 +24,7 @@ public class RepresentativeNegTransitiveMinTracker<T> extends NegTransitiveMinTr
     return new RepresentativeNegTransitiveMinTracker<>(orderComparator, new HashSet<>());
   }
 
-  /***************************************************/
+  // ---
   private RepresentativeNegTransitiveMinTracker(OrderComparator<T> orderComparator, Collection<T> collection) {
     super(orderComparator, collection);
   }

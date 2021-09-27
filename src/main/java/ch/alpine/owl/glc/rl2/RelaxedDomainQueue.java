@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensor;
     return new RelaxedDomainQueue(slacks);
   }
 
-  /***************************************************/
+  // ---
   private final EboTracker<GlcNode> eboTracker;
 
   private RelaxedDomainQueue(Tensor slacks) {

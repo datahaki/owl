@@ -38,7 +38,7 @@ public class FloodFill2D {
     return of(image, ttl, seeds(image));
   }
 
-  /***************************************************/
+  // ---
   private final List<Integer> dimensions;
   private final Tensor array;
   private final Tensor image;

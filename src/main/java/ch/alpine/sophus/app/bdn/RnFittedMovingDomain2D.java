@@ -20,7 +20,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
     return new RnFittedMovingDomain2D(origin, tensorUnaryOperator, domain);
   }
 
-  /***************************************************/
+  // ---
   private RnFittedMovingDomain2D(Tensor origin, TensorUnaryOperator tensorUnaryOperator, Tensor domain) {
     super(origin, tensorUnaryOperator, domain);
   }

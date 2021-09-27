@@ -35,7 +35,7 @@ public class So3Display implements ManifoldDisplay, Serializable {
   private static final Scalar RADIUS = RealScalar.of(7);
   // ---
   public static final ManifoldDisplay INSTANCE = new So3Display(RADIUS);
-  /***************************************************/
+  // ---
   private final Scalar radius;
 
   public So3Display(Scalar radius) {

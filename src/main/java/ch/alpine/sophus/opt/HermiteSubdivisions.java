@@ -24,7 +24,7 @@ public enum HermiteSubdivisions {
       return Hermite1Subdivisions.standard(hsManifold, hsTransport);
     }
   },
-  /***************************************************/
+  // ---
   HERMITE2 {
     @Override
     public HermiteSubdivision supply(HsManifold hsManifold, HsTransport hsTransport, BiinvariantMean biinvariantMean) {
@@ -43,7 +43,7 @@ public enum HermiteSubdivisions {
       return Hermite2Subdivisions.manifold(hsManifold, hsTransport);
     }
   },
-  /***************************************************/
+  // ---
   HERMITE3 {
     @Override
     public HermiteSubdivision supply(HsManifold hsManifold, HsTransport hsTransport, BiinvariantMean biinvariantMean) {
@@ -68,7 +68,7 @@ public enum HermiteSubdivisions {
       return Hermite3Subdivisions.a2(hsManifold, hsTransport);
     }
   },
-  /***************************************************/
+  // ---
   HERMITE3_BM {
     @Override
     public HermiteSubdivision supply(HsManifold hsManifold, HsTransport hsTransport, BiinvariantMean biinvariantMean) {

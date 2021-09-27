@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
     return with(RealScalar.of(max));
   }
 
-  // ==================================================
+  // ---
   private final Clip clip;
 
   /** @param clip non-null */
@@ -66,7 +66,7 @@ import ch.alpine.tensor.sca.Clips;
     return Quantity.of(DoubleScalar.POSITIVE_INFINITY, QuantityUnit.of(cost));
   }
 
-  /***************************************************/
+  // ---
   /* package */ abstract class LimitedClothoidNdCenter implements NdCenterInterface, Serializable {
     private final Tensor center;
     private final NdCenterInterface n2;

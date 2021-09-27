@@ -21,7 +21,7 @@ public class TransitionRegionQueryUnion implements TransitionRegionQuery, Serial
     return new TransitionRegionQueryUnion(collection);
   }
 
-  /***************************************************/
+  // ---
   private final Collection<TransitionRegionQuery> collection;
 
   private TransitionRegionQueryUnion(Collection<TransitionRegionQuery> collection) {

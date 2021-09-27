@@ -11,7 +11,7 @@ public class SymLinkBuilder {
     return new SymLinkBuilder(control).build(symScalar);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor control;
 
   private SymLinkBuilder(Tensor control) {

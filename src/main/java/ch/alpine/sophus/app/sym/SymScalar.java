@@ -31,7 +31,7 @@ public class SymScalar extends ScalarAdapter implements Serializable {
   // return new SymScalar(scalar);
   // }
 
-  /***************************************************/
+  // ---
   private final Tensor tensor;
 
   private SymScalar(Tensor tensor) {

@@ -32,7 +32,7 @@ public class SutherlandHodgmanAlgorithm implements Serializable {
     return new SutherlandHodgmanAlgorithm(clip);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor[] vertex;
 
   private SutherlandHodgmanAlgorithm(Tensor clip) {

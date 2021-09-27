@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.app.geo;
+package ch.alpine.tensor.demo.nd;
 
 import java.awt.Color;
 import java.awt.Container;

@@ -32,7 +32,7 @@ public class DifferentialSpeed implements Serializable {
     return new DifferentialSpeed(y_offset.divide(x_front));
   }
 
-  /***************************************************/
+  // ---
   private final Scalar factor;
 
   /** @param factor unitless */

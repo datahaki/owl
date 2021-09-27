@@ -71,12 +71,12 @@ public enum R2ImageRegions {
     return transpose(charImage.bufferedImage(), Tensors.vector(20, 10), false);
   }
 
-  /***************************************************/
+  // ---
   public static final R2ImageRegionWrap _2180 = //
       new R2ImageRegionWrap(inside_2180(), Tensors.vector(10, 7), 15);
   public static final R2ImageRegionWrap _2181 = //
       new R2ImageRegionWrap(inside_2181(), Tensors.vector(10, 7), 15);
-  /***************************************************/
+  // ---
   public static final R2ImageRegionWrap _0F5C_2182 = //
       new R2ImageRegionWrap(ImageFormat.of(inside_0f5c_2182_charImage()), Tensors.vector(20, 10), 15);
 
@@ -90,7 +90,7 @@ public enum R2ImageRegions {
     return Transpose.of(ImageFormat.from(charImage.bufferedImage()));
   }
 
-  /***************************************************/
+  // ---
   public static final R2ImageRegionWrap _GTOB = //
       new R2ImageRegionWrap(inside_gtob_charImage(), Tensors.vector(12, 12), 15);
 
@@ -105,7 +105,7 @@ public enum R2ImageRegions {
     return ImageFormat.of(Transpose.of(ImageFormat.from(charImage.bufferedImage())));
   }
 
-  /***************************************************/
+  // ---
   public static CharImage inside_roundabout() {
     CharImage charImage = CharImage.fillWhite(new Dimension(236, 180));
     charImage.setFont(new Font(Font.DIALOG, Font.BOLD, 400));

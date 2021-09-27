@@ -15,7 +15,7 @@ import ch.alpine.tensor.sca.Clips;
 public class InterpolationEntryFinder extends TrajectoryEntryFinder implements Serializable {
   public static final TrajectoryEntryFinder INSTANCE = new InterpolationEntryFinder();
 
-  /***************************************************/
+  // ---
   private InterpolationEntryFinder() {
     // ---
   }

@@ -40,7 +40,7 @@ public class ImageGradientInterpolation implements Serializable {
     return new ImageGradientInterpolation(image, range, amp, NearestInterpolation::of);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor scale;
   private final Interpolation interpolation;
   private final Scalar maxNormGradient;

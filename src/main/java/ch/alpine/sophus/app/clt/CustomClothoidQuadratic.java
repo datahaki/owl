@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalar;
     return new CustomClothoidQuadratic((BinaryOperator<Scalar> & Serializable) (s1, s2) -> lambda);
   }
 
-  /***************************************************/
+  // ---
   private final BinaryOperator<Scalar> binaryOperator;
 
   /** @param binaryOperator mapping (s1, s2) -> lambda */

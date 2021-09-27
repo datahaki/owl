@@ -13,7 +13,7 @@ public class DomainQueue extends PriorityQueue<GlcNode> {
     return domainQueue;
   }
 
-  /***************************************************/
+  // ---
   private DomainQueue() {
     super(NodeMeritComparator.INSTANCE);
   }

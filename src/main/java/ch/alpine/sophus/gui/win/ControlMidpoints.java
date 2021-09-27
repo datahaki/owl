@@ -21,7 +21,7 @@ import ch.alpine.tensor.alg.Last;
     return new ControlMidpoints(Objects.requireNonNull(midpointInterface));
   }
 
-  /***************************************************/
+  // ---
   private final MidpointInterface midpointInterface;
 
   private ControlMidpoints(MidpointInterface midpointInterface) {

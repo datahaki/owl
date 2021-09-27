@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 public class H1Display extends HnDisplay {
   public static final ManifoldDisplay INSTANCE = new H1Display();
 
-  /***************************************************/
+  // ---
   private H1Display() {
     super(1);
   }

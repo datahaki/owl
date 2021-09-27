@@ -22,7 +22,7 @@ public class Deadzone implements ScalarUnaryOperator {
     return new Deadzone(Clips.interval(min, max));
   }
 
-  /***************************************************/
+  // ---
   private final Clip clip;
 
   private Deadzone(Clip clip) {

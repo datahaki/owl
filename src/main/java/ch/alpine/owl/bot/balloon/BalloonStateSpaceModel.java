@@ -49,7 +49,7 @@ import ch.alpine.tensor.sca.Floor;
     Scalar y = x.Get(1); // altitude
     Scalar vel = x.Get(2);
     Scalar theta = x.Get(3);
-    // =======
+    // ---
     /** unknown perturbation due to vertical velocity of wind */
     Scalar w = RealScalar.ONE.negate();// of( //
     // 2 * SimplexContinuousNoise.at(x1.number().doubleValue(), y.number().doubleValue(), vel.number().doubleValue(), theta.number().doubleValue()));

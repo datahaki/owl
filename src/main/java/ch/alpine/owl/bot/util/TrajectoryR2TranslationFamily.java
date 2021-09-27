@@ -25,7 +25,7 @@ public class TrajectoryR2TranslationFamily extends R2TranslationFamily {
     return new TrajectoryR2TranslationFamily(trajectory, initial);
   }
 
-  /***************************************************/
+  // ---
   private final List<Tensor> list = new ArrayList<>();
   private final Scalar ofs;
   private final Scalar delta;

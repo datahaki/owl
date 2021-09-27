@@ -27,7 +27,7 @@ public class ArrayPlotRender implements RenderInterface {
         magnify);
   }
 
-  /***************************************************/
+  // ---
   private final BufferedImage bufferedImage;
   private final int width;
   private final int height;

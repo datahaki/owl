@@ -51,7 +51,7 @@ public final class GeometricComponent {
       { 0, -60, 300 }, //
       { 0, 0, 1 }, //
   }).unmodifiable();
-  /***************************************************/
+  // ---
   /** public access to final JComponent: attach mouse listeners, get/set properties, ... */
   public final JComponent jComponent = new JComponent() {
     private final IntervalClock intervalClock = new IntervalClock();
@@ -213,7 +213,7 @@ public final class GeometricComponent {
     renderBackground.add(renderInterface);
   }
 
-  /***************************************************/
+  // ---
   /** @param model2pixel with dimensions 3 x 3
    * @throws Exception if determinant of matrix is positive */
   public void setModel2Pixel(Tensor model2pixel) {
@@ -245,7 +245,7 @@ public final class GeometricComponent {
     renderInterfaces.forEach(renderInterface -> renderInterface.render(geometricLayer, graphics));
   }
 
-  /***************************************************/
+  // ---
   /** transforms point in pixel space to coordinates of model space
    * 
    * @param point
