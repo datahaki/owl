@@ -87,7 +87,8 @@ public abstract class AbstractEboTracker<K> implements EboTracker<K>, Serializab
       Scalar u_min = minElements.stream() //
           .map(Pair::value) //
           .map(vector -> vector.Get(fi)) //
-          .min(Scalars::compare).get();
+          .min(Scalars::compare) //
+          .orElseThrow();
       Scalar threshold = u_min.add(slacks.Get(fi));
       minElements = minElements.stream() //
           .filter(pair -> Scalars.lessEquals(pair.value().Get(fi), threshold)) //
@@ -121,7 +122,8 @@ public abstract class AbstractEboTracker<K> implements EboTracker<K>, Serializab
       Scalar u_min = bestElements.stream() //
           .map(Pair::value) //
           .map(pair -> pair.Get(fi)) //
-          .min(Scalars::compare).get();
+          .min(Scalars::compare) //
+          .orElseThrow();
       bestElements = bestElements.stream() //
           .filter(pair -> pair.value().Get(fi).equals(u_min)) //
           .collect(Collectors.toList());

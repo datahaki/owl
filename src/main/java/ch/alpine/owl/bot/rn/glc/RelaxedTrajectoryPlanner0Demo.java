@@ -110,7 +110,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     owlyAnimationFrame.addBackground(EdgeRenders.of(relaxedTrajectoryPlanner));
     Optional<GlcNode> optional = relaxedTrajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      System.out.println(optional.get().merit());
+      System.out.println(optional.orElseThrow().merit());
       Iterator<GlcNode> bestGoalNodes = relaxedTrajectoryPlanner.getAllNodesInGoal().iterator();
       while (bestGoalNodes.hasNext()) {
         GlcNode goalNode = bestGoalNodes.next();

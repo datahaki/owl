@@ -97,7 +97,7 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
   @Override // from DemoInterface
   public BaseFrame start() {
     Optional<GlcNode> optional = getBest();
-    GlcNode goalNode = optional.get();
+    GlcNode goalNode = optional.orElseThrow();
     // System.out.println(goalNode.merit());
     // System.out.println(goalNode.costFromRoot());
     // @SuppressWarnings("unused")

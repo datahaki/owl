@@ -111,7 +111,7 @@ import ch.alpine.tensor.sca.Chop;
       SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
       Optional<Tensor> optional = spatialMedian.uniform(sequence);
       if (optional.isPresent()) {
-        mean = optional.get();
+        mean = optional.orElseThrow();
         geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mean));
         Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape().multiply(RealScalar.of(0.7)));
         path2d.closePath();

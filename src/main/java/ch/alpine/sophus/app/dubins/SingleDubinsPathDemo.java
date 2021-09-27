@@ -94,7 +94,7 @@ import ch.alpine.tensor.img.ColorDataLists;
     { // draw least curved path
       graphics.setColor(COLOR_DATA_INDEXED.getColor(2));
       graphics.setStroke(new BasicStroke(2f));
-      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.TOTAL_CURVATURE).get();
+      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.TOTAL_CURVATURE).orElseThrow();
       graphics.draw(geometricLayer.toPath2D(sample(dubinsPath)));
     }
   }

@@ -35,7 +35,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
-    RrtsNode root = rrts.insertAsNode(start, 5).get();
+    RrtsNode root = rrts.insertAsNode(start, 5).orElseThrow();
     OwlyFrame owlyFrame = OwlyGui.start();
     owlyFrame.geometricComponent.setOffset(60, 477);
     owlyFrame.jFrame.setBounds(100, 100, 650, 550);

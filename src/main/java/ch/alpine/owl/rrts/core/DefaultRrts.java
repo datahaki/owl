@@ -53,7 +53,7 @@ public class DefaultRrts implements Rrts {
       k_nearest = Math.min(Math.max(1, k_nearest), size);
       Optional<RrtsNode> optional = connectAlongMinimumCost(state, k_nearest);
       if (optional.isPresent()) {
-        RrtsNode rrtsNode = optional.get();
+        RrtsNode rrtsNode = optional.orElseThrow();
         rewireAround(rrtsNode, k_nearest); // first: rewire
         nodeCollection.insert(rrtsNode); // second: insert to collection
         return Optional.of(rrtsNode);

@@ -27,7 +27,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
-    RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).get();
+    RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
     for (int count = 0; count < 1000; ++count)
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);

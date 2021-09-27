@@ -47,7 +47,7 @@ import ch.alpine.tensor.qty.Degree;
     // ---
     if (optional.isPresent()) {
       System.out.println(1);
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
     owlyFrame.setGlc(standardTrajectoryPlanner);

@@ -96,7 +96,7 @@ import ch.alpine.tensor.sca.Ramp;
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      GlcNode goalNode = optional.get(); // <- throws exception if
+      GlcNode goalNode = optional.orElseThrow();
       Scalar cost = goalNode.costFromRoot();
       Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
@@ -108,7 +108,7 @@ import ch.alpine.tensor.sca.Ramp;
   static void demo(TrajectoryPlanner trajectoryPlanner) {
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
     // OwlyGui.glc(trajectoryPlanner);

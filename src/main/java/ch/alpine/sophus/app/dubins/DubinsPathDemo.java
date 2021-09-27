@@ -59,11 +59,11 @@ import ch.alpine.tensor.red.Nest;
     { // draw shortest path
       graphics.setColor(COLOR_DATA_INDEXED.getColor(1));
       graphics.setStroke(new BasicStroke(2f));
-      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.LENGTH).get();
+      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.LENGTH).orElseThrow();
       graphics.draw(geometricLayer.toPath2D(sample(dubinsPath)));
     }
     {
-      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.LENGTH).get();
+      DubinsPath dubinsPath = list.stream().min(DubinsPathComparators.LENGTH).orElseThrow();
       ScalarTensorFunction scalarTensorFunction = dubinsPath.sampler(START);
       Tensor params = PadLeft.zeros(4).apply(dubinsPath.segments());
       graphics.setColor(new Color(128, 128, 128, 128));

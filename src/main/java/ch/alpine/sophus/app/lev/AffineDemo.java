@@ -49,7 +49,7 @@ import ch.alpine.tensor.img.ColorDataGradients;
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
       Tensor sequence = getSequence();
-      Tensor origin = optional.get();
+      Tensor origin = optional.orElseThrow();
       LeversRender leversRender = //
           LeversRender.of(manifoldDisplay, sequence, origin, geometricLayer, graphics);
       leversRender.renderSequence();

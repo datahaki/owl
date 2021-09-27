@@ -28,9 +28,9 @@ public class BidirectionalRrts implements Rrts {
     nodeCollection = rrtsNodeCollection.get();
     forwardRrts = new DefaultRrts(transitionSpace, nodeCollection, obstacleQuery, transitionCostFunction);
     backwardRrts = new DefaultRrts(ReversalTransitionSpace.of(transitionSpace), rrtsNodeCollection.get(), obstacleQuery, transitionCostFunction);
-    this.root = forwardRrts.insertAsNode(root, 0).get();
+    this.root = forwardRrts.insertAsNode(root, 0).orElseThrow();
     forwardRrts.insertAsNode(goal, 1); // trivial solution
-    backwardRrts.insertAsNode(goal, 0).get();
+    backwardRrts.insertAsNode(goal, 0).orElseThrow();
     this.goal = goal;
   }
 
@@ -78,7 +78,7 @@ public class BidirectionalRrts implements Rrts {
   private Optional<RrtsNode> find(Tensor state) {
     Optional<RrtsNode> optional = nodeCollection.nearTo(state, 1).stream().findFirst();
     if (optional.isPresent()) {
-      RrtsNode closest = optional.get();
+      RrtsNode closest = optional.orElseThrow();
       if (closest.state().equals(state))
         return optional;
     }

@@ -56,12 +56,12 @@ public abstract class DefaultRrtsPlannerServer extends RrtsPlannerServer {
     Optional<RrtsNode> optional = rrts.insertAsNode(stateTime.state(), 5);
     if (optional.isPresent()) {
       Collection<Tensor> greeds_ = greeds.stream() //
-          .filter(point -> !optional.get().state().equals(point)) //
+          .filter(point -> !optional.orElseThrow().state().equals(point)) //
           .collect(Collectors.toList());
       RrtsPlanner rrtsPlanner = greeds_.isEmpty() //
           ? new DefaultRrtsPlanner(rrts, spaceSampler(state), goalSampler(goal)) //
           : new GreedyRrtsPlanner(rrts, spaceSampler(state), goalSampler(goal), greeds_).withGoal(goal);
-      return new RrtsPlannerProcess(rrtsPlanner, optional.get());
+      return new RrtsPlannerProcess(rrtsPlanner, optional.orElseThrow());
     }
     return null;
   }

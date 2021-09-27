@@ -34,9 +34,9 @@ public class EntityGlcPlannerCallback implements GlcPlannerCallback {
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
       if (showCost)
-        System.out.println("Cost to Goal: " + optional.get().costFromRoot());
+        System.out.println("Cost to Goal: " + optional.orElseThrow().costFromRoot());
       List<TrajectorySample> tail = //
-          GlcTrajectories.detailedTrajectoryTo(trajectoryPlanner.getStateIntegrator(), optional.get());
+          GlcTrajectories.detailedTrajectoryTo(trajectoryPlanner.getStateIntegrator(), optional.orElseThrow());
       trajectoryEntity.trajectory(Trajectories.glue(head, tail));
     }
   }

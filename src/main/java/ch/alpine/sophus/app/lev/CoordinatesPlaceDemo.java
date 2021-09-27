@@ -27,7 +27,7 @@ import ch.alpine.tensor.Tensor;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Optional<Tensor> optional = getOrigin();
     if (optional.isPresent()) {
-      LeversRender leversRender = LeversRender.of(manifoldDisplay, getSequence(), optional.get(), geometricLayer, graphics);
+      LeversRender leversRender = LeversRender.of(manifoldDisplay, getSequence(), optional.orElseThrow(), geometricLayer, graphics);
       if (jCheckBoxL.isSelected())
         leversRender.renderLevers();
       leversRender.renderSequence();

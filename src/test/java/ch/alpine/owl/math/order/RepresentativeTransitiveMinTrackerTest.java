@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import ch.alpine.owl.demo.order.DigitSumDivisibilityPreorder;
-import ch.alpine.sophus.math.sample.RandomSample;
+import ch.alpine.sophus.math.sample.TensorShuffle;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.DiscreteUniformDistribution;
@@ -115,14 +115,14 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     Collection<Scalar> collection1;
     {
       MinTracker<Scalar> minTracker = supplier.get();
-      RandomSample.stream(tensor).map(Scalar.class::cast).forEach(minTracker::digest);
+      TensorShuffle.stream(tensor).map(Scalar.class::cast).forEach(minTracker::digest);
       collection1 = minTracker.getMinElements();
       assertTrue(0 < collection1.size());
     }
     Collection<Scalar> collection2;
     {
       MinTracker<Scalar> minTracker = supplier.get();
-      RandomSample.stream(tensor).map(Scalar.class::cast).forEach(minTracker::digest);
+      TensorShuffle.stream(tensor).map(Scalar.class::cast).forEach(minTracker::digest);
       collection2 = minTracker.getMinElements();
       assertTrue(0 < collection2.size());
     }

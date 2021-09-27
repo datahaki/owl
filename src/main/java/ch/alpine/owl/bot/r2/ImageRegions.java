@@ -38,7 +38,7 @@ public enum ImageRegions {
    * @throws Exception if input does not represent an image */
   public static Tensor grayscale(Tensor image) {
     Optional<Integer> optional = TensorRank.ofArray(image);
-    switch (optional.get()) {
+    switch (optional.orElseThrow()) {
     case 2:
       return image.copy();
     case 3:

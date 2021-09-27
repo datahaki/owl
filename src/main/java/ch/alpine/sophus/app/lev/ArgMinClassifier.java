@@ -31,7 +31,7 @@ import ch.alpine.tensor.sca.Clips;
         .mapToObj(weights::Get) //
         .reduce(Min::of);
     Scalar confidence = optional.isPresent() //
-        ? Clips.unit().apply(RealScalar.ONE.subtract(weights.Get(index).divide(optional.get())))
+        ? Clips.unit().apply(RealScalar.ONE.subtract(weights.Get(index).divide(optional.orElseThrow())))
         : RealScalar.ONE;
     return new ClassificationResult(label, confidence);
   }

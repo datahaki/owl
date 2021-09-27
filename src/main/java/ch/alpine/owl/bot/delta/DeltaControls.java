@@ -13,6 +13,6 @@ import ch.alpine.tensor.red.Max;
   /** @param controls
    * @return */
   public static Scalar maxSpeed(Collection<Tensor> controls) {
-    return controls.stream().map(Vector2Norm::of).reduce(Max::of).get();
+    return controls.stream().map(Vector2Norm::of).reduce(Max::of).orElseThrow();
   }
 }

@@ -35,7 +35,7 @@ public enum ClothoidPursuits {
       Tensor tensor, TrajectoryEntryFinder trajectoryEntryFinder, Scalar var) {
     Optional<Tensor> lookAhead = trajectoryEntryFinder.on(tensor).apply(var).point();
     return lookAhead.isPresent() //
-        ? ClothoidPursuit.of(lookAhead.get())
+        ? ClothoidPursuit.of(lookAhead.orElseThrow())
         : VoidPursuit.INSTANCE;
   }
 }

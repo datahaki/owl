@@ -51,7 +51,7 @@ import ch.alpine.tensor.io.TableBuilder;
       {
         Optional<GlcNode> optional = standardTrajectoryPlanner.getBest();
         if (optional.isPresent()) {
-          GlcNode glcNode = optional.get();
+          GlcNode glcNode = optional.orElseThrow();
           System.out.println("BEST IN GOAL $=" + glcNode.costFromRoot());
           return new KlotskiSolution( //
               klotskiProblem, //

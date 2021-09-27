@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from AbstractEntity
   protected Optional<Tensor> customControl(StateTime tail, List<TrajectorySample> trailAhead) {
-    Scalar speed = trailAhead.get(0).getFlow().get().Get(0);
+    Scalar speed = trailAhead.get(0).getFlow().orElseThrow().Get(0);
     boolean inReverse = Sign.isNegative(speed);
     Tensor state = tail.state();
     TensorUnaryOperator tensorUnaryOperator = new Se2GroupElement(state).inverse()::combine;
@@ -63,12 +63,12 @@ import ch.alpine.tensor.sca.Sign;
     Scalar var = ArgMinVariable.using(entryFinder, costMapping, MAX_LEVEL).apply(beacons);
     Optional<Tensor> lookAhead = entryFinder.on(beacons).apply(var).point();
     if (lookAhead.isPresent()) {
-      Tensor xya = lookAhead.get();
+      Tensor xya = lookAhead.orElseThrow();
       PursuitInterface pursuitInterface = ClothoidPursuit.of(xya);
       curve = ClothoidPursuits.curve(xya, REFINEMENT);
       if (inReverse)
         ClothoidControlHelper.mirrorAndReverse(curve);
-      return Optional.of(Se2CarFlows.singleton(speed, pursuitInterface.firstRatio().get()));
+      return Optional.of(Se2CarFlows.singleton(speed, pursuitInterface.firstRatio().orElseThrow()));
     }
     curve = null;
     // System.err.println("no compliant strategy found!");

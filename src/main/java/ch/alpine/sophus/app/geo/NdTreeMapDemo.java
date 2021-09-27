@@ -72,7 +72,7 @@ public class NdTreeMapDemo extends AbstractDemo {
           .map(NdMatch::distance) //
           .reduce(Max::of);
       if (optional.isPresent())
-        radius = optional.get();
+        radius = optional.orElseThrow();
     }
     {
       graphics.setColor(Color.BLUE);

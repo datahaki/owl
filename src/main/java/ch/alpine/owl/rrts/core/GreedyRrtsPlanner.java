@@ -47,8 +47,8 @@ public class GreedyRrtsPlanner extends DefaultRrtsPlanner {
       Tensor greed = iterator.next();
       Optional<RrtsNode> optional = rrts.insertAsNode(greed, K_NEAREST);
       if (optional.isPresent()) {
-        if (optional.get().state().equals(goal))
-          queue.add(optional.get());
+        if (optional.orElseThrow().state().equals(goal))
+          queue.add(optional.orElseThrow());
         iterator.remove();
         satisfied = true;
         break;

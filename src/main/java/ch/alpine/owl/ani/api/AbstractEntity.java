@@ -34,7 +34,7 @@ public abstract class AbstractEntity implements RenderInterface, AnimationInterf
     for (EntityControl entityControl : entityControls) {
       Optional<Tensor> u = entityControl.control(getStateTimeNow(), now);
       if (u.isPresent()) {
-        episodeIntegrator.move(u.get(), now);
+        episodeIntegrator.move(u.orElseThrow(), now);
         return;
       }
     }

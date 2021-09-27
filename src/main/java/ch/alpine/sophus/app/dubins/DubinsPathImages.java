@@ -26,14 +26,14 @@ import ch.alpine.tensor.io.Export;
 
   static Scalar type(int y, int x) {
     Tensor xya = Tensors.of(RE.Get(x), IM.Get(y), ALPHA);
-    DubinsPath dubinsPath = FixedRadiusDubins.of(xya, RADIUS).stream().min(DubinsPathComparators.LENGTH).get();
+    DubinsPath dubinsPath = FixedRadiusDubins.of(xya, RADIUS).stream().min(DubinsPathComparators.LENGTH).orElseThrow();
     int ordinal = dubinsPath.type().ordinal();
     return RealScalar.of(ordinal);
   }
 
   static Scalar curvature(int y, int x) {
     Tensor xya = Tensors.of(RE.Get(x), IM.Get(y), ALPHA);
-    DubinsPath dubinsPath = FixedRadiusDubins.of(xya, RADIUS).stream().min(DubinsPathComparators.LENGTH).get();
+    DubinsPath dubinsPath = FixedRadiusDubins.of(xya, RADIUS).stream().min(DubinsPathComparators.LENGTH).orElseThrow();
     int ordinal = dubinsPath.type().ordinal();
     return dubinsPath.totalCurvature().add(RealScalar.of(ordinal));
   }

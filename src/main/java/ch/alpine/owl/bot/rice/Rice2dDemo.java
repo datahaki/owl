@@ -78,7 +78,7 @@ import ch.alpine.tensor.ext.Timing;
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
     if (optional.isPresent()) {
-      GlcNode glcNode = optional.get();
+      GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
@@ -91,7 +91,7 @@ import ch.alpine.tensor.ext.Timing;
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
     optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      GlcNode glcNode = optional.get();
+      GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //

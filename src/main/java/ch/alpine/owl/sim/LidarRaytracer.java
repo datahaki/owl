@@ -26,7 +26,7 @@ public class LidarRaytracer implements Serializable {
    * @param ranges vector with non-negative entries */
   public LidarRaytracer(Tensor angles, Tensor ranges) {
     directions = Tensor.of(angles.stream().map(Scalar.class::cast).map(AngleVector::of));
-    max_range = ranges.stream().map(Scalar.class::cast).reduce(Max::of).get();
+    max_range = ranges.stream().map(Scalar.class::cast).reduce(Max::of).orElseThrow();
     localRays = directions.stream().map(dir -> TensorProduct.of(ranges, dir)).collect(Collectors.toList());
   }
 

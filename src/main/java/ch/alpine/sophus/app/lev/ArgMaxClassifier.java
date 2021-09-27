@@ -33,7 +33,7 @@ import ch.alpine.tensor.sca.Clips;
     // clip shouldn't be necessary but exists for negative
     // weights and to correct numerical imprecision
     Scalar confidence = optional.isPresent() //
-        ? Clips.unit().apply(RealScalar.ONE.subtract(optional.get().divide(weights.Get(index))))
+        ? Clips.unit().apply(RealScalar.ONE.subtract(optional.orElseThrow().divide(weights.Get(index))))
         : RealScalar.ONE;
     return new ClassificationResult(label, confidence);
   }

@@ -163,7 +163,7 @@ import ch.alpine.tensor.sca.Sign;
               Tensor p0 = manifoldDisplay.toPoint(a0);
               Tensor p1 = manifoldDisplay.toPoint(a1);
               Tensor pc = manifoldDisplay.toPoint(ac);
-              Scalar scalar = VectorAngle.of(p0.subtract(po), p1.subtract(po)).get();
+              Scalar scalar = VectorAngle.of(p0.subtract(po), p1.subtract(po)).orElseThrow();
               Tensor rgba = cdg.apply(scalar.divide(Pi.VALUE));
               graphics.setColor(ColorFormat.toColor(rgba));
               graphics.fill(geometricLayer.toPath2D(Unprotect.byRef(po, p0, pc, p1)));

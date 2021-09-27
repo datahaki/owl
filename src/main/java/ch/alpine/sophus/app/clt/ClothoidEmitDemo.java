@@ -58,7 +58,7 @@ import ch.alpine.tensor.sca.Clips;
     // ---
     Optional<Clothoid> optional = list.stream().min(ClothoidComparators.CURVATURE_HEAD);
     if (optional.isPresent()) {
-      Clothoid clothoid = optional.get();
+      Clothoid clothoid = optional.orElseThrow();
       ClothoidTransition clothoidTransition = ClothoidTransition.of(START, mouse, clothoid);
       Tensor points = clothoidTransition.linearized(RealScalar.of(0.1));
       new PathRender(Color.BLACK, 2.5f) //

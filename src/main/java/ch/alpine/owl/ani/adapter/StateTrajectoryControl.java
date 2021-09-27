@@ -43,7 +43,7 @@ public abstract class StateTrajectoryControl implements TrajectoryControl, Seria
         Optional<Tensor> optional = customControl(tail, trajectory.subList(index, trajectory.size()));
         if (optional.isPresent())
           return optional;
-        Tensor flow = trajectory.get(index).getFlow().get();
+        Tensor flow = trajectory.get(index).getFlow().orElseThrow();
         return Optional.of(flow);
       }
       trajectory = resetAction(trajectory);

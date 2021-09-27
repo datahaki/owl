@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import ch.alpine.owl.demo.order.TensorNormTotalPreorder;
 import ch.alpine.sophus.math.sample.RandomSample;
+import ch.alpine.sophus.math.sample.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -87,14 +88,14 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     Collection<Tensor> collection1;
     {
       MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withSet(weakOrderComparator);
-      RandomSample.stream(tensor).forEach(minTracker::digest);
+      TensorShuffle.stream(tensor).forEach(minTracker::digest);
       collection1 = minTracker.getMinElements();
       assertTrue(0 < collection1.size());
     }
     Collection<Tensor> collection2;
     {
       MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withSet(weakOrderComparator);
-      RandomSample.stream(tensor).forEach(minTracker::digest);
+      TensorShuffle.stream(tensor).forEach(minTracker::digest);
       collection2 = minTracker.getMinElements();
       assertTrue(0 < collection2.size());
     }
