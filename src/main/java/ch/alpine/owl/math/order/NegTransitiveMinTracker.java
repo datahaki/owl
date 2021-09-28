@@ -4,8 +4,7 @@ package ch.alpine.owl.math.order;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 
 /** Tracks minimal elements of a negatively transitive ordered set <tt>X</tt>.
@@ -16,18 +15,10 @@ import java.util.Objects;
  * 
  * @param <T> type of elements to compare */
 public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
-  /** @param <T>
-   * @param orderComparator
+  /** @param orderComparator
    * @return */
-  public static <T> MinTracker<T> withList(OrderComparator<T> orderComparator) {
-    return new NegTransitiveMinTracker<>(orderComparator, new LinkedList<>());
-  }
-
-  /** @param <T>
-   * @param orderComparator
-   * @return */
-  public static <T> MinTracker<T> withSet(OrderComparator<T> orderComparator) {
-    return new NegTransitiveMinTracker<>(orderComparator, new HashSet<>());
+  public static <T> MinTracker<T> of(OrderComparator<T> orderComparator) {
+    return new NegTransitiveMinTracker<>(orderComparator, new LinkedHashSet<>());
   }
 
   // ---
@@ -45,7 +36,7 @@ public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
    * the element gets added to the list.
    * 
    * @param x Element next up for comparison */
-  @Override // from MinTrackerInterface
+  @Override // from MinTracker
   public final void digest(T x) {
     if (collection.isEmpty())
       collection.add(x);
@@ -82,7 +73,7 @@ public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
     return false;
   }
 
-  @Override // from MinTrackerInterface
+  @Override // from MinTracker
   public final Collection<T> getMinElements() {
     return Collections.unmodifiableCollection(collection);
   }

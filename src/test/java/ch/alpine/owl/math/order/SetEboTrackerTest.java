@@ -18,7 +18,7 @@ public class SetEboTrackerTest extends TestCase {
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
     AbstractEboTracker<Integer> LSMT2 = //
-        (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withSet(slackVector);
+        (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
     Tensor x = Tensors.fromString("{1, 2, 2}");
     LSMT1.digest(1, x);
     LSMT1.digest(2, x);

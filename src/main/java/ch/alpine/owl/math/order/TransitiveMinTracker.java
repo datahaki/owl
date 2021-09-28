@@ -4,9 +4,8 @@ package ch.alpine.owl.math.order;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 
 /** Tracks minimal elements of a transitive ordered set <tt>X</tt>.
@@ -19,14 +18,8 @@ import java.util.Objects;
 public class TransitiveMinTracker<T> implements MinTracker<T>, Serializable {
   /** @param orderComparator
    * @return */
-  public static <T> MinTracker<T> withList(OrderComparator<T> orderComparator) {
-    return new TransitiveMinTracker<>(orderComparator, new LinkedList<>());
-  }
-
-  /** @param orderComparator
-   * @return */
-  public static <T> MinTracker<T> withSet(OrderComparator<T> orderComparator) {
-    return new TransitiveMinTracker<>(orderComparator, new HashSet<>());
+  public static <T> MinTracker<T> of(OrderComparator<T> orderComparator) {
+    return new TransitiveMinTracker<>(orderComparator, new LinkedHashSet<>());
   }
 
   // ---

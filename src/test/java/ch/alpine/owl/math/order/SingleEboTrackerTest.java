@@ -18,7 +18,6 @@ public class SingleEboTrackerTest extends TestCase {
   public void testDigestSimple() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     _checkSimple((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
-    _checkSimple((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withSet(slacks));
   }
 
   private static void _checkDigest(AbstractEboTracker<Integer> LSMT1) {
@@ -38,7 +37,6 @@ public class SingleEboTrackerTest extends TestCase {
   public void testDigest() {
     Tensor slacks = Tensors.fromString("{2}");
     _checkDigest((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
-    _checkDigest((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withSet(slacks));
   }
 
   private static void _checkCS(AbstractEboTracker<Integer> lexSemiMinTracker) {
@@ -85,11 +83,9 @@ public class SingleEboTrackerTest extends TestCase {
   public void testCandidateSet() {
     Tensor slacks = Tensors.vector(2, 2, 2);
     _checkCS((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
-    _checkCS((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withSet(slacks));
   }
 
   public void testFailNull() {
     AssertFail.of(() -> SingleEboTracker.withList(null));
-    AssertFail.of(() -> SingleEboTracker.withSet(null));
   }
 }

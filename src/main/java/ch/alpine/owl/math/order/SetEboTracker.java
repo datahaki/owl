@@ -2,9 +2,8 @@
 package ch.alpine.owl.math.order;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
 import ch.alpine.tensor.Scalar;
@@ -20,13 +19,7 @@ public class SetEboTracker<K> extends AbstractEboTracker<K> {
   /** @param slacks
    * @return */
   public static <K> EboTracker<K> withList(Tensor slacks) {
-    return new SetEboTracker<>(slacks, new LinkedList<>());
-  }
-
-  /** @param slacks
-   * @return */
-  public static <K> EboTracker<K> withSet(Tensor slacks) {
-    return new SetEboTracker<>(slacks, new HashSet<>());
+    return new SetEboTracker<>(slacks, new LinkedHashSet<>());
   }
 
   // ---

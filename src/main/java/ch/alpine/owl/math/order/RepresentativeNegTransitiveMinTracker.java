@@ -2,8 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 /** Tracks minimal elements of a transitive ordered set <tt>X</tt>.
  * An element x is said to be minimal if there is no other element y such that yRx.
@@ -17,11 +16,7 @@ import java.util.LinkedList;
  * @param <T> type of elements to compare */
 public class RepresentativeNegTransitiveMinTracker<T> extends NegTransitiveMinTracker<T> {
   public static <T> MinTracker<T> withList(OrderComparator<T> orderComparator) {
-    return new RepresentativeNegTransitiveMinTracker<>(orderComparator, new LinkedList<>());
-  }
-
-  public static <T> MinTracker<T> withSet(OrderComparator<T> orderComparator) {
-    return new RepresentativeNegTransitiveMinTracker<>(orderComparator, new HashSet<>());
+    return new RepresentativeNegTransitiveMinTracker<>(orderComparator, new LinkedHashSet<>());
   }
 
   // ---

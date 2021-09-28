@@ -9,6 +9,7 @@ import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.PackageTestAccess;
 
 /* package */ class ApComboRegion implements Region<Tensor>, Serializable {
   /** @param goal = {zCenter, velocityCenter, gammaCenter} defining center of goal region
@@ -26,7 +27,8 @@ import ch.alpine.tensor.Tensor;
   private final LinearRegion vRegion;
   private final So2Region gammaRegion;
 
-  /* package */ ApComboRegion(LinearRegion zRegion, LinearRegion vRegion, So2Region gammaRegion) {
+  @PackageTestAccess
+  ApComboRegion(LinearRegion zRegion, LinearRegion vRegion, So2Region gammaRegion) {
     this.zRegion = Objects.requireNonNull(zRegion);
     this.vRegion = Objects.requireNonNull(vRegion);
     this.gammaRegion = Objects.requireNonNull(gammaRegion);

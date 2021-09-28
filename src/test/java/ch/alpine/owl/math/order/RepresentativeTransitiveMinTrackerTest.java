@@ -23,7 +23,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
 
   public void testDigestNotEmptySet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
-    MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withSet(orderComparator);
+    MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(123);
     assertFalse(minTracker.getMinElements().isEmpty());
   }
@@ -45,7 +45,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
 
   public void testWithSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
-    MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withSet(orderComparator);
+    MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
     digitSumDivisibility.digest(123);
     assertTrue(digitSumDivisibility.getMinElements().contains(123));
     digitSumDivisibility.digest(122);
@@ -69,7 +69,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
 
   public void testDuplicateEntriesSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
-    MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withSet(orderComparator);
+    MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(333);
     minTracker.digest(333);
     assertTrue(minTracker.getMinElements().contains(333));
@@ -94,7 +94,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
 
   public void testOnlyPreoneRepresentativeSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
-    MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withSet(orderComparator);
+    MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
     digitSumDivisibility.digest(123);
     assertTrue(digitSumDivisibility.getMinElements().contains(123));
     digitSumDivisibility.digest(213);
@@ -130,7 +130,6 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
   }
 
   public void testPermutations() {
-    _checkPermutations(() -> RepresentativeTransitiveMinTracker.withSet(DigitSumDivisibilityPreorder.SCALAR));
     _checkPermutations(() -> RepresentativeTransitiveMinTracker.withList(DigitSumDivisibilityPreorder.SCALAR));
   }
 }
