@@ -43,6 +43,10 @@ public class ClothoidTransition extends AbstractTransition {
     return new ClothoidTransition(start, end, clothoid);
   }
 
+  public static ClothoidTransition of(Clothoid clothoid) {
+    return of(clothoid.apply(_0), clothoid.apply(_1), clothoid);
+  }
+
   // ---
   private final Clothoid clothoid;
 

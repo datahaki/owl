@@ -16,6 +16,7 @@ import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.MinMax;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Timing;
@@ -49,10 +50,10 @@ public class NdTreeMapDemo extends AbstractDemo {
       graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 2, 2);
     }
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
-    Scalar radius = Abs.FUNCTION.apply(xya.Get(2));
+    Scalar radius = Abs.FUNCTION.apply(xya.Get(2).multiply(RealScalar.of(0.3)));
     NdMap<Void> ndMap = NdTreeMap.of(MinMax.ndBox(points), ndParam.dep.number().intValue());
     for (Tensor point : points)
-      ndMap.add(point, null);
+      ndMap.insert(point, null);
     Timing timing = Timing.started();
     CenterNorms centerNorms = ndParam.centerNorms;
     NdCenterInterface ndCenterInterface = centerNorms.ndCenterInterface(xya.extract(0, 2));

@@ -25,7 +25,7 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public void insert(RrtsNode rrtsNode) {
-    ndMap.add(rrtsNode.state(), rrtsNode);
+    ndMap.insert(rrtsNode.state(), rrtsNode);
   }
 
   @Override // from RrtsNodeCollection

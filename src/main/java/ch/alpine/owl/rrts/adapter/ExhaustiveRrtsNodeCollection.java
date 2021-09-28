@@ -2,12 +2,13 @@
 package ch.alpine.owl.rrts.adapter;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-import ch.alpine.java.util.BoundedMinQueue;
+import ch.alpine.java.util.BoundedPriorityQueue;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
@@ -26,7 +27,7 @@ public class ExhaustiveRrtsNodeCollection implements RrtsNodeCollection {
     return new ExhaustiveRrtsNodeCollection(Objects.requireNonNull(transitionSpace));
   }
 
-  private static class NodeTransition implements Comparable<NodeTransition> {
+  private static class NodeTransition {
     private final RrtsNode rrtsNode;
     private final Transition transition;
 
@@ -35,16 +36,14 @@ public class ExhaustiveRrtsNodeCollection implements RrtsNodeCollection {
       this.transition = transition;
     }
 
-    @Override // from Comparable
-    public int compareTo(NodeTransition some) {
-      return Scalars.compare(transition.length(), some.transition.length());
-    }
-
     public RrtsNode rrtsNode() {
       return rrtsNode;
     }
   }
 
+  private static final Comparator<NodeTransition> COMPARATOR = (t1, t2) -> Scalars.compare( //
+      t1.transition.length(), //
+      t2.transition.length());
   // ---
   private final Collection<RrtsNode> collection = new LinkedList<>();
   private final TransitionSpace transitionSpace;
@@ -65,7 +64,7 @@ public class ExhaustiveRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    Queue<NodeTransition> queue = BoundedMinQueue.of(k_nearest);
+    Queue<NodeTransition> queue = BoundedPriorityQueue.min(k_nearest, COMPARATOR);
     for (RrtsNode rrtsNode : collection)
       queue.offer(new NodeTransition(rrtsNode, transitionSpace.connect(rrtsNode.state(), end)));
     return queue.stream().map(NodeTransition::rrtsNode).collect(Collectors.toList());
@@ -73,7 +72,7 @@ public class ExhaustiveRrtsNodeCollection implements RrtsNodeCollection {
 
   @Override // from RrtsNodeCollection
   public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
-    Queue<NodeTransition> queue = BoundedMinQueue.of(k_nearest);
+    Queue<NodeTransition> queue = BoundedPriorityQueue.min(k_nearest, COMPARATOR);
     for (RrtsNode rrtsNode : collection)
       queue.offer(new NodeTransition(rrtsNode, transitionSpace.connect(start, rrtsNode.state())));
     return queue.stream().map(NodeTransition::rrtsNode).collect(Collectors.toList());

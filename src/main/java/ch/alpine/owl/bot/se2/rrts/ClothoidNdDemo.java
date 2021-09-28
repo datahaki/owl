@@ -14,10 +14,8 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.Transition;
-import ch.alpine.sophus.clt.ClothoidBuilder;
+import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -33,14 +31,18 @@ import ch.alpine.tensor.opt.nd.NdBox;
 
 public class ClothoidNdDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
-  private static final NdBox ND_BOX = NdBox.of( //
+  private static final NdBox ND_BOX_R2 = NdBox.of( //
+      Tensors.vector(-5, -5), //
+      Tensors.vector(+5, +5));
+  private static final NdBox ND_BOX_SE2 = NdBox.of( //
       Tensors.vector(-5, -5, -Math.PI), //
       Tensors.vector(+5, +5, +Math.PI));
   // ---
-  private final RrtsNodeCollection rrtsNodeCollection1 = //
-      Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, ND_BOX);
-  private final RrtsNodeCollection rrtsNodeCollection2 = //
-      ClothoidRrtsNodeCollections.of(RealScalar.ONE, ND_BOX);
+  private final Se2NdMap<Tensor> se2NdMap = new Se2NdMap<>(ND_BOX_R2, t -> t);
+  // private final RrtsNodeCollection rrtsNodeCollection1 = //
+  // Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, ND_BOX_SE2);
+  // private final RrtsNodeCollection rrtsNodeCollection2 = //
+  // ClothoidRrtsNodeCollections.of(RealScalar.ONE, ND_BOX_SE2);
 
   // ---
   public static class Param {
@@ -63,11 +65,10 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX_SE2);
     Tensor tensor = RandomSample.of(randomSampleInterface, SIZE);
     for (Tensor state : tensor) {
-      rrtsNodeCollection1.insert(RrtsNode.createRoot(state, RealScalar.ZERO));
-      rrtsNodeCollection2.insert(RrtsNode.createRoot(state, RealScalar.ZERO));
+      se2NdMap.insert(state);
     }
     setControlPointsSe2(tensor);
   }
@@ -102,23 +103,20 @@ public class ClothoidNdDemo extends ControlPointsDemo {
       geometricLayer.popMatrix();
     }
     // ---
-    RrtsNodeCollection rrtsNodeCollection = param.limit //
-        ? rrtsNodeCollection2
-        : rrtsNodeCollection1;
+    // RrtsNodeCollection rrtsNodeCollection = param.limit //
+    // ? rrtsNodeCollection2
+    // : rrtsNodeCollection1;
     int _value = Scalars.intValueExact(param.value);
     graphics.setColor(new Color(255, 0, 0, 128));
-    ClothoidBuilder clothoidBuilder = (ClothoidBuilder) manifoldDisplay.geodesicInterface();
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));
-    for (RrtsNode rrtsNode : rrtsNodeCollection.nearTo(mouse, _value)) {
-      Tensor other = rrtsNode.state();
-      Transition transition = ClothoidTransition.of(clothoidBuilder, other, mouse);
+    for (Clothoid clothoid : se2NdMap.nearFrom(mouse, _value)) {
+      Transition transition = ClothoidTransition.of(clothoid);
       graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));
     }
     // ---
     graphics.setColor(new Color(0, 255, 0, 128));
-    for (RrtsNode rrtsNode : rrtsNodeCollection.nearFrom(mouse, _value)) {
-      Tensor other = rrtsNode.state();
-      Transition transition = ClothoidTransition.of(clothoidBuilder, mouse, other);
+    for (Clothoid clothoid : se2NdMap.nearTo(mouse, _value)) {
+      Transition transition = ClothoidTransition.of(clothoid);
       graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));
     }
   }

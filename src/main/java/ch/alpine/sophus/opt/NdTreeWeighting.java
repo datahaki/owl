@@ -40,7 +40,7 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
     Tensor ubounds = Entrywise.max().of(sequence);
     NdMap<Scalar> ndMap = NdTreeMap.of(NdBox.of(lbounds, ubounds), 2);
     for (int index = 0; index < values.length(); ++index)
-      ndMap.add(sequence.get(index), values.Get(index));
+      ndMap.insert(sequence.get(index), values.Get(index));
     return new Inner(ndMap, variogram);
   }
 
