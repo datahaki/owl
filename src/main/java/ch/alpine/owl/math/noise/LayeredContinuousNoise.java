@@ -4,6 +4,8 @@ package ch.alpine.owl.math.noise;
 import java.io.Serializable;
 import java.util.stream.IntStream;
 
+import ch.alpine.tensor.ext.Integers;
+
 public class LayeredContinuousNoise implements NativeContinuousNoise, Serializable {
   /** WARNING: values are not copied but used by reference
    *
@@ -21,8 +23,7 @@ public class LayeredContinuousNoise implements NativeContinuousNoise, Serializab
   private final double[] frequency;
 
   private LayeredContinuousNoise(NativeContinuousNoise nativeContinuousNoise, double[] magnitude, double[] frequency) {
-    if (magnitude.length != frequency.length)
-      throw new IllegalArgumentException();
+    Integers.requireEquals(magnitude.length, frequency.length);
     this.nativeContinuousNoise = nativeContinuousNoise;
     this.magnitude = magnitude;
     this.frequency = frequency;

@@ -4,6 +4,8 @@ package ch.alpine.owl.math.order;
 import java.io.Serializable;
 import java.util.List;
 
+import ch.alpine.tensor.ext.Integers;
+
 /*
  * See Chapter 2.7.5 in "Multi-Objective Optimization Using Preference Structures"
  */
@@ -16,8 +18,7 @@ public class LexicographicOrder<T> implements OrderComparator<List<T>>, Serializ
 
   @Override // from UniversalComparator
   public OrderComparison compare(List<T> x, List<T> y) {
-    if (x.size() != y.size())
-      throw new RuntimeException("Elements of size " + x.size() + "!=" + y.size());
+    Integers.requireEquals(x.size(), y.size());
     OrderComparison orderComparison = OrderComparison.INDIFFERENT;
     for (int index = 0; index < x.size(); ++index) {
       OrderComparison stepComparison = comparatorList.get(index).compare(x.get(index), y.get(index));

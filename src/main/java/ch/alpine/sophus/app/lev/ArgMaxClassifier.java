@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.io.Primitives;
 import ch.alpine.tensor.red.ArgMax;
 import ch.alpine.tensor.red.Max;
@@ -21,12 +21,10 @@ import ch.alpine.tensor.sca.Clips;
 
   @Override // from Classification
   public ClassificationResult result(Tensor weights) {
-    if (weights.length() != labels.length)
-      throw TensorRuntimeException.of(weights);
-    // ---
+    int length = Integers.requireEquals(weights.length(), labels.length);
     int index = ArgMax.of(weights);
     int label = labels[index];
-    Optional<Scalar> optional = IntStream.range(0, labels.length) //
+    Optional<Scalar> optional = IntStream.range(0, length) //
         .filter(i -> label != labels[i]) //
         .mapToObj(weights::Get) //
         .reduce(Max::of);

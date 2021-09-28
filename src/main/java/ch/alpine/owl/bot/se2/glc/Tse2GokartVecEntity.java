@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.qty.Degree;
 
@@ -93,8 +94,7 @@ public class Tse2GokartVecEntity extends Tse2CarEntity {
    * @param costVector
    * @param slackVector */
   public void setCostVector(List<CostFunction> costVector, List<Double> slackVector) {
-    if (costVector.size() != slackVector.size())
-      throw new RuntimeException();
+    Integers.requireEquals(costVector.size(), slackVector.size());
     this.costVector = costVector;
     this.slackVector = slackVector;
   }
