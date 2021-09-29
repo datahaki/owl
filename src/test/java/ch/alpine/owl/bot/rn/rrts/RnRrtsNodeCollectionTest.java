@@ -10,6 +10,7 @@ import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
@@ -50,7 +51,7 @@ public class RnRrtsNodeCollectionTest extends TestCase {
       Tensor tensor = RandomSample.of(randomSampleInterface);
       rrtsNodeCollection.insert(RrtsNode.createRoot(tensor, RealScalar.ONE));
     }
-    Collection<RrtsNode> collection = rrtsNodeCollection.nearTo(Tensors.fromString("{2[m], 3[m]}"), 10);
+    Collection<RrtsNodeTransition> collection = rrtsNodeCollection.nearTo(Tensors.fromString("{2[m], 3[m]}"), 10);
     assertEquals(collection.size(), 10);
   }
 }

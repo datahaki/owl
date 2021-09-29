@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ch.alpine.java.util.RandomElements;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.tensor.Tensor;
 
 /** node collection that implements the nearest-neighbor query to return a random subset */
@@ -25,12 +25,12 @@ public class RandomRrtsNodeCollection implements RrtsNodeCollection {
   }
 
   @Override // from RrtsNodeCollection
-  public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearFrom(Tensor start, int k_nearest) {
     return nearTo(start, k_nearest);
   }
 
   @Override // from RrtsNodeCollection
-  public synchronized Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
-    return RandomElements.of(list, k_nearest);
+  public synchronized Collection<RrtsNodeTransition> nearTo(Tensor end, int k_nearest) {
+    return null; // RandomElements.of(list, k_nearest); // FIXME
   }
 }

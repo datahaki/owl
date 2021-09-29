@@ -8,11 +8,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.tensor.Scalar;
@@ -40,7 +39,7 @@ public class SimpleRrtsNodeCollection implements RrtsNodeCollection {
   }
 
   @Override
-  public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearTo(Tensor end, int k_nearest) {
     Comparator<RrtsNode> comparator = new Comparator<>() {
       final Map<RrtsNode, Scalar> map = new HashMap<>();
 
@@ -55,13 +54,14 @@ public class SimpleRrtsNodeCollection implements RrtsNodeCollection {
     };
     PriorityQueue<RrtsNode> priorityQueue = new PriorityQueue<>(comparator);
     priorityQueue.addAll(set);
-    return Stream.generate(priorityQueue::poll) //
-        .limit(k_nearest) //
-        .collect(Collectors.toList());
+    // return Stream.generate(priorityQueue::poll) //
+    // .limit(k_nearest) //
+    // .collect(Collectors.toList());
+    return null; // FIXME
   }
 
   @Override
-  public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearFrom(Tensor start, int k_nearest) {
     Comparator<RrtsNode> comparator = new Comparator<>() {
       final Map<RrtsNode, Scalar> map = new HashMap<>();
 
@@ -76,8 +76,9 @@ public class SimpleRrtsNodeCollection implements RrtsNodeCollection {
     };
     PriorityQueue<RrtsNode> priorityQueue = new PriorityQueue<>(comparator);
     priorityQueue.addAll(set);
-    return Stream.generate(priorityQueue::poll) //
-        .limit(k_nearest) //
-        .collect(Collectors.toList());
+    // return Stream.generate(priorityQueue::poll) //
+    // .limit(k_nearest) //
+    // .collect(Collectors.toList());
+    return null; // FIXME
   }
 }

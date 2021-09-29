@@ -4,6 +4,7 @@ package ch.alpine.owl.rrts.adapter;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -22,12 +23,12 @@ public class SimpleRrtsNodeCollectionTest extends TestCase {
     for (int index = 0; index < 200; ++index)
       rrtsNodeCollection.insert(RrtsNode.createRoot(RandomVariate.of(distribution, 3), RealScalar.of(10)));
     Tensor center = Tensors.vector(0.5, 0.5, 0.5);
-    for (RrtsNode rrtsNode : rrtsNodeCollection.nearTo(center, 3)) {
-      Scalar scalar = Vector2Norm.between(center, rrtsNode.state());
+    for (RrtsNodeTransition rrtsNode : rrtsNodeCollection.nearTo(center, 3)) {
+      Scalar scalar = Vector2Norm.between(center, rrtsNode.rrtsNode().state());
       assertTrue(Scalars.lessThan(scalar, RealScalar.of(0.3)));
     }
-    for (RrtsNode rrtsNode : rrtsNodeCollection.nearFrom(center, 3)) {
-      Scalar scalar = Vector2Norm.between(center, rrtsNode.state());
+    for (RrtsNodeTransition rrtsNode : rrtsNodeCollection.nearFrom(center, 3)) {
+      Scalar scalar = Vector2Norm.between(center, rrtsNode.rrtsNode().state());
       assertTrue(Scalars.lessThan(scalar, RealScalar.of(0.3)));
     }
   }

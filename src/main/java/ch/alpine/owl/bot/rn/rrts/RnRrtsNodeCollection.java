@@ -4,8 +4,10 @@ package ch.alpine.owl.bot.rn.rrts;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import ch.alpine.owl.bot.rn.RnTransition;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenters;
@@ -34,16 +36,22 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
   }
 
   @Override // from RrtsNodeCollection
-  public Collection<RrtsNode> nearTo(Tensor end, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearTo(Tensor tail, int k_nearest) {
     Collection<NdMatch<RrtsNode>> collection = //
-        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(end), k_nearest);
+        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(tail), k_nearest);
     return collection.stream() //
         .map(NdMatch::value) //
+        .map(rrtsNode -> new RrtsNodeTransition(rrtsNode, new RnTransition(rrtsNode.state(), tail))) //
         .collect(Collectors.toList());
   }
 
   @Override // from RrtsNodeCollection
-  public Collection<RrtsNode> nearFrom(Tensor start, int k_nearest) {
-    return nearTo(start, k_nearest);
+  public Collection<RrtsNodeTransition> nearFrom(Tensor head, int k_nearest) {
+    Collection<NdMatch<RrtsNode>> collection = //
+        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(head), k_nearest);
+    return collection.stream() //
+        .map(NdMatch::value) //
+        .map(rrtsNode -> new RrtsNodeTransition(rrtsNode, new RnTransition(head, rrtsNode.state()))) //
+        .collect(Collectors.toList());
   }
 }

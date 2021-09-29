@@ -76,7 +76,7 @@ public class BidirectionalRrts implements Rrts {
   }
 
   private Optional<RrtsNode> find(Tensor state) {
-    Optional<RrtsNode> optional = nodeCollection.nearTo(state, 1).stream().findFirst();
+    Optional<RrtsNode> optional = nodeCollection.nearTo(state, 1).stream().findFirst().map(RrtsNodeTransition::rrtsNode);
     if (optional.isPresent()) {
       RrtsNode closest = optional.orElseThrow();
       if (closest.state().equals(state))

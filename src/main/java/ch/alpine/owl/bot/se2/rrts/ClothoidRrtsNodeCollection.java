@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import ch.alpine.java.util.BoundedSortedQueue;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.sophus.clt.Clothoid;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.tensor.Scalar;
@@ -39,32 +39,32 @@ public class ClothoidRrtsNodeCollection implements RrtsNodeCollection {
   }
 
   @Override
-  public Collection<RrtsNode> nearTo(Tensor tail, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearTo(Tensor tail, int k_nearest) {
     Collection<NdMatch<RrtsNode>> collection = //
         NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(tail.extract(0, 2)), k_nearest * FACTOR);
-    BoundedSortedQueue<Scalar, RrtsNode> boundedMinQueue = BoundedSortedQueue.min(k_nearest);
+    BoundedSortedQueue<Scalar, RrtsNodeTransition> boundedMinQueue = BoundedSortedQueue.min(k_nearest);
     // ---
     ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
     for (NdMatch<RrtsNode> ndMatch : collection) {
       RrtsNode rrtsNode = ndMatch.value();
-      Clothoid clothoid = clothoidBuilder.curve(rrtsNode.state(), tail);
-      boundedMinQueue.offer(clothoid.length(), rrtsNode);
+      ClothoidTransition clothoidTransition = ClothoidTransition.of(clothoidBuilder, rrtsNode.state(), tail);
+      boundedMinQueue.offer(clothoidTransition.length(), new RrtsNodeTransition(rrtsNode, clothoidTransition));
     }
     // ---
     return boundedMinQueue.values().collect(Collectors.toSet());
   }
 
   @Override
-  public Collection<RrtsNode> nearFrom(Tensor head, int k_nearest) {
+  public Collection<RrtsNodeTransition> nearFrom(Tensor head, int k_nearest) {
     Collection<NdMatch<RrtsNode>> collection = //
         NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(head.extract(0, 2)), k_nearest * FACTOR);
-    BoundedSortedQueue<Scalar, RrtsNode> boundedMinQueue = BoundedSortedQueue.min(k_nearest);
+    BoundedSortedQueue<Scalar, RrtsNodeTransition> boundedMinQueue = BoundedSortedQueue.min(k_nearest);
     // ---
     ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
     for (NdMatch<RrtsNode> ndMatch : collection) {
       RrtsNode rrtsNode = ndMatch.value();
-      Clothoid clothoid = clothoidBuilder.curve(head, rrtsNode.state());
-      boundedMinQueue.offer(clothoid.length(), rrtsNode);
+      ClothoidTransition clothoidTransition = ClothoidTransition.of(clothoidBuilder, head, rrtsNode.state());
+      boundedMinQueue.offer(clothoidTransition.length(), new RrtsNodeTransition(rrtsNode, clothoidTransition));
     }
     // ---
     return boundedMinQueue.values().collect(Collectors.toSet());

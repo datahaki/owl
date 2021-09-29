@@ -15,7 +15,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.Transition;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -112,16 +112,12 @@ public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
     graphics.setColor(new Color(255, 0, 0, 128));
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));
     ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
-    for (RrtsNode rrtsNode : clothoidRrtsNodeCollection.nearFrom(mouse, _value)) {
-      Transition transition = ClothoidTransition.of(clothoidBuilder, mouse, rrtsNode.state());
-      graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));
-    }
+    for (RrtsNodeTransition rrtsNodeTransition : clothoidRrtsNodeCollection.nearFrom(mouse, _value))
+      graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
     // ---
-     graphics.setColor(new Color(0, 255, 0, 128));
-     for (RrtsNode rrtsNode : clothoidRrtsNodeCollection.nearTo(mouse, _value)) {
-       Transition transition = ClothoidTransition.of(clothoidBuilder, rrtsNode.state(), mouse);
-       graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));
-     }
+    graphics.setColor(new Color(0, 255, 0, 128));
+    for (RrtsNodeTransition rrtsNodeTransition : clothoidRrtsNodeCollection.nearTo(mouse, _value))
+      graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
     // for (Clothoid clothoid : se2NdMap.cl_nearTo(mouse, _value)) {
     // Transition transition = ClothoidTransition.of(clothoid);
     // graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));

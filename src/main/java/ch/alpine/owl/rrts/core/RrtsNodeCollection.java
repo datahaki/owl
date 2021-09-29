@@ -25,11 +25,10 @@ public interface RrtsNodeCollection {
    * @param tail
    * @param k_nearest
    * @return k_nearest nodes according to the cost of their transition terminating at end */
-  // TODO this should probably return Transition!
-  Collection<RrtsNode> nearTo(Tensor tail, int k_nearest);
+  Collection<RrtsNodeTransition> nearTo(Tensor tail, int k_nearest);
 
   /** @param head
    * @param k_nearest
    * @return k_nearest nodes according to the cost of their transition from start */
-  Collection<RrtsNode> nearFrom(Tensor head, int k_nearest);
+  Collection<RrtsNodeTransition> nearFrom(Tensor head, int k_nearest);
 }
