@@ -11,6 +11,7 @@ import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
@@ -24,6 +25,7 @@ public class Se2NdMap<T> {
   private final Function<T, Tensor> se2Projection;
 
   public Se2NdMap(NdBox ndBox, Function<T, Tensor> se2Projection) {
+    Integers.requireEquals(ndBox.dimensions(), 2);
     ndMap = NdTreeMap.of(ndBox);
     this.se2Projection = se2Projection;
   }
@@ -32,7 +34,7 @@ public class Se2NdMap<T> {
     ndMap.insert(se2Projection.apply(value).extract(0, 2), value);
   }
 
-  public Collection<Clothoid> nearFrom(T value, int limit) {
+  public Collection<Clothoid> cl_nearFrom(T value, int limit) {
     Tensor origin = se2Projection.apply(value);
     Collection<NdMatch<T>> collection = //
         NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(origin.extract(0, 2)), limit * FACTOR);
@@ -43,7 +45,7 @@ public class Se2NdMap<T> {
     return queue;
   }
 
-  public Collection<Clothoid> nearTo(T value, int limit) {
+  public Collection<Clothoid> cl_nearTo(T value, int limit) {
     Tensor target = se2Projection.apply(value);
     Collection<NdMatch<T>> collection = //
         NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(target.extract(0, 2)), limit * FACTOR);
@@ -51,6 +53,21 @@ public class Se2NdMap<T> {
     Queue<Clothoid> queue = BoundedPriorityQueue.min(limit, ClothoidComparators.LENGTH);
     for (NdMatch<T> ndMatch : collection)
       queue.add(clothoidBuilder.curve(se2Projection.apply(ndMatch.value()), target));
+    return queue;
+  }
+
+  public int size() {
+    return ndMap.size();
+  }
+
+  public Collection<T> nearFrom(T value, int limit) {
+    Tensor origin = se2Projection.apply(value);
+    Collection<NdMatch<T>> collection = //
+        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(origin.extract(0, 2)), limit * FACTOR);
+    // ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
+    Queue<T> queue = BoundedPriorityQueue.min(limit, null); // ClothoidComparators.LENGTH
+    // for (NdMatch<T> ndMatch : collection)
+    // queue.add(clothoidBuilder.curve(origin, se2Projection.apply(ndMatch.value())));
     return queue;
   }
 }

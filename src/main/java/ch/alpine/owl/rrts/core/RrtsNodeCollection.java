@@ -22,13 +22,14 @@ public interface RrtsNodeCollection {
    * Typically, the insert function is called after the rewire step so as not to include
    * the given state end.
    * 
-   * @param end
+   * @param tail
    * @param k_nearest
    * @return k_nearest nodes according to the cost of their transition terminating at end */
-  Collection<RrtsNode> nearTo(Tensor end, int k_nearest);
+  // TODO this should probably return Transition!
+  Collection<RrtsNode> nearTo(Tensor tail, int k_nearest);
 
-  /** @param start
+  /** @param head
    * @param k_nearest
    * @return k_nearest nodes according to the cost of their transition from start */
-  Collection<RrtsNode> nearFrom(Tensor start, int k_nearest);
+  Collection<RrtsNode> nearFrom(Tensor head, int k_nearest);
 }

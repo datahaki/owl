@@ -30,7 +30,7 @@ public class RnTransition extends AbstractTransition {
     return new TransitionWrap(sampled(minResolution), spacing);
   }
 
-  @Override // from RenderTransition
+  @Override // from Transition
   public Tensor linearized(Scalar minResolution) {
     return Tensors.of(start(), end());
   }
