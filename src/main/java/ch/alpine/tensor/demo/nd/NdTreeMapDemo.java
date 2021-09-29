@@ -16,21 +16,24 @@ import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.MinMax;
+import ch.alpine.sophus.math.sample.BoxRandomSample;
+import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
 public class NdTreeMapDemo extends AbstractDemo {
-  private final Tensor pointsAll = RandomVariate.of(UniformDistribution.of(0, 10), 5000, 2);
+  private final NdBox ndBox = NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
+  private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(ndBox), 5000);
   private final NdParam ndParam = new NdParam();
 
   public NdTreeMapDemo() {
