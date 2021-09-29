@@ -36,7 +36,7 @@ enum StaticHelper {
   public static void draw(Tensor location, GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricLayer.pushMatrix(GfxMatrix.translation(location));
     Point2D point2d = geometricLayer.toPoint2D(Tensors.vector(0, 0));
-    graphics.setColor(new Color(0, 255, 0, 128));
+    graphics.setColor(new Color(255, 128, 128, 255));
     graphics.fillRect((int) point2d.getX() - 1, (int) point2d.getY() - 1, 4, 4);
     geometricLayer.popMatrix();
   }

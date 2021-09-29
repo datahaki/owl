@@ -26,19 +26,19 @@ public class RelaxedGlobalQueueTest extends TestCase {
     GlcNode node4 = GlcNode.of(null, null, VectorScalar.of(2, 3, 2), VectorScalar.of(0, 0, 0));
     GlcNode node5 = GlcNode.of(null, null, VectorScalar.of(0, 2, 2), VectorScalar.of(0, 0, 0));
     rlQueue.add(node1);
-    assertTrue(rlQueue.collection().size() == 1);
+    assertEquals(rlQueue.collection().size(), 1);
     assertTrue(rlQueue.collection().contains(node1));
     rlQueue.add(node2);
-    assertTrue(rlQueue.collection().size() == 2);
+    assertEquals(rlQueue.collection().size(), 2);
     assertTrue(rlQueue.collection().contains(node2));
     rlQueue.add(node3);
-    assertTrue(rlQueue.collection().size() == 3);
+    assertEquals(rlQueue.collection().size(), 3);
     assertTrue(rlQueue.collection().contains(node3));
     rlQueue.add(node4);
-    assertTrue(rlQueue.collection().size() == 4);
+    assertEquals(rlQueue.collection().size(), 4);
     assertTrue(rlQueue.collection().contains(node4));
     rlQueue.add(node5);
-    assertTrue(rlQueue.collection().size() == 5);
+    assertEquals(rlQueue.collection().size(), 5);
     assertTrue(rlQueue.collection().contains(node5));
   }
 
@@ -60,7 +60,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
     assertTrue(rlQueue.peekBest() == node3);
     rlQueue.add(node5);
     assertTrue(rlQueue.peekBest() == node5);
-    assertTrue(rlQueue.collection().size() == 5);
+    assertEquals(rlQueue.collection().size(), 5);
   }
 
   public void testPoll() {
@@ -76,15 +76,15 @@ public class RelaxedGlobalQueueTest extends TestCase {
     rlQueue.add(node3);
     rlQueue.add(node4);
     rlQueue.add(node5);
-    assertTrue(rlQueue.collection().size() == 5);
+    assertEquals(rlQueue.collection().size(), 5);
     assertTrue(rlQueue.pollBest() == node5);
-    assertTrue(rlQueue.collection().size() == 4);
+    assertEquals(rlQueue.collection().size(), 4);
     assertTrue(rlQueue.pollBest() == node3);
-    assertTrue(rlQueue.collection().size() == 3);
+    assertEquals(rlQueue.collection().size(), 3);
     assertTrue(rlQueue.pollBest() == node1);
-    assertTrue(rlQueue.collection().size() == 2);
+    assertEquals(rlQueue.collection().size(), 2);
     assertTrue(rlQueue.pollBest() == node2);
-    assertTrue(rlQueue.collection().size() == 1);
+    assertEquals(rlQueue.collection().size(), 1);
     assertTrue(rlQueue.pollBest() == node4);
     assertTrue(rlQueue.collection().isEmpty());
   }
@@ -105,10 +105,10 @@ public class RelaxedGlobalQueueTest extends TestCase {
     relaxedGlobalQueue.add(node5);
     List<GlcNode> removeList = new LinkedList<>();
     removeList.add(node1);
-    assertTrue(relaxedGlobalQueue.collection().size() == 5);
+    assertEquals(relaxedGlobalQueue.collection().size(), 5);
     assertTrue(relaxedGlobalQueue.removeAll(removeList));
     removeList.clear();
-    assertTrue(relaxedGlobalQueue.collection().size() == 4);
+    assertEquals(relaxedGlobalQueue.collection().size(), 4);
     assertFalse(relaxedGlobalQueue.collection().contains(node1));
     removeList.add(node2);
     removeList.add(node3);
@@ -130,7 +130,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
     assertFalse(relaxedGlobalQueue.remove(node2));
     relaxedGlobalQueue.add(node1);
     assertFalse(relaxedGlobalQueue.remove(node2));
-    assertTrue(relaxedGlobalQueue.collection().size() == 1);
+    assertEquals(relaxedGlobalQueue.collection().size(), 1);
     assertTrue(relaxedGlobalQueue.remove(node1));
   }
 }

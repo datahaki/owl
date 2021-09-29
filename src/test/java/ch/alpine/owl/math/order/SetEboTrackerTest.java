@@ -40,7 +40,7 @@ public class SetEboTrackerTest extends TestCase {
     Tensor w = Tensors.fromString("{-1.5}");
     assertTrue(LSMT1.getCandidateSet().isEmpty());
     assertTrue(LSMT1.digest(1, x).isEmpty());
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
     assertTrue(LSMT1.digest(2, y).contains(2));
     assertTrue(LSMT1.digest(3, z).isEmpty());
     List<Integer> list = Arrays.asList(new Integer[] { 1, 3 });
@@ -60,21 +60,21 @@ public class SetEboTrackerTest extends TestCase {
       Collection<Integer> collection = LSMT1.digest(1, x);
       assertTrue(collection.isEmpty());
     }
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
     assertTrue(LSMT1.getCandidateKeys().contains(1));
     assertTrue(LSMT1.getCandidateValues().contains(x));
     {
       Collection<Integer> collection = LSMT1.digest(2, y);
       assertTrue(collection.isEmpty());
     }
-    assertTrue(LSMT1.getCandidateSet().size() == 2);
+    assertEquals(LSMT1.getCandidateSet().size(), 2);
     assertTrue(LSMT1.getCandidateKeys().contains(2));
     assertTrue(LSMT1.getCandidateValues().contains(y));
     {
       Collection<Integer> collection = LSMT1.digest(3, z);
       assertTrue(collection.isEmpty());
     }
-    assertTrue(LSMT1.getCandidateSet().size() == 3);
+    assertEquals(LSMT1.getCandidateSet().size(), 3);
     assertTrue(LSMT1.getCandidateKeys().contains(1) && LSMT1.getCandidateKeys().contains(3));
     assertTrue(LSMT1.getCandidateValues().contains(x) && LSMT1.getCandidateValues().contains(y) && LSMT1.getCandidateValues().contains(z));
     {
@@ -82,7 +82,7 @@ public class SetEboTrackerTest extends TestCase {
       assertTrue(collection.containsAll(Arrays.asList(1, 2, 3)));
       assertEquals(collection.size(), 3);
     }
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
     assertTrue(LSMT1.getCandidateKeys().contains(4));
     assertFalse(LSMT1.getCandidateKeys().contains(1) && LSMT1.getCandidateKeys().contains(1) && LSMT1.getCandidateKeys().contains(3));
   }
@@ -103,18 +103,18 @@ public class SetEboTrackerTest extends TestCase {
     Tensor z = Tensors.fromString("{1.5, 4, 4}");
     assertTrue(LSMT1.getMinElements().isEmpty());
     LSMT1.digest(1, x);
-    assertTrue(LSMT1.getMinElements().size() == 1);
+    assertEquals(LSMT1.getMinElements().size(), 1);
     {
       Collection<Integer> collection = LSMT1.digest(2, y);
       assertTrue(collection.contains(2));
       assertEquals(collection.size(), 1);
     }
-    assertTrue(LSMT1.getMinElements().size() == 1);
+    assertEquals(LSMT1.getMinElements().size(), 1);
     {
       Collection<Integer> collection = LSMT1.digest(3, z);
       assertTrue(collection.isEmpty());
     }
-    assertTrue(LSMT1.getMinElements().size() == 2);
+    assertEquals(LSMT1.getMinElements().size(), 2);
   }
 
   public void testGetMinKeys() {
@@ -233,7 +233,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT1.getBest() != null);
     assertTrue(LSMT1.peekBestKey() == "second");
     // assertTrue(LSMT1.peekBestValue() == y);
-    assertTrue(LSMT1.getMinElements().size() == 3);
+    assertEquals(LSMT1.getMinElements().size(), 3);
     LSMT1.digest("fourth", y);
     // assertTrue(LSMT1.peekBestValue() == y);
   }
@@ -246,22 +246,22 @@ public class SetEboTrackerTest extends TestCase {
     Tensor y = Tensors.fromString("{1, 1, 0}");
     Tensor z = Tensors.fromString("{1, 0, 1}");
     LSMT1.digest(1, x);
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
-    assertTrue(LSMT1.pollBestKey() == 1);
-    assertTrue(LSMT1.getCandidateSet().size() == 0);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
+    assertEquals(LSMT1.pollBestKey().intValue(), 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 0);
     LSMT1.digest(1, x);
     LSMT1.digest(2, y);
-    assertTrue(LSMT1.getCandidateSet().size() == 2);
-    assertTrue(LSMT1.pollBestKey() == 2);
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 2);
+    assertEquals(LSMT1.pollBestKey().intValue(), 2);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
     LSMT1.digest(2, y);
     LSMT1.digest(3, z);
-    assertTrue(LSMT1.getCandidateSet().size() == 3);
-    assertTrue(LSMT1.pollBestKey() == 3);
-    assertTrue(LSMT1.getCandidateSet().size() == 2);
-    assertTrue(LSMT1.pollBestKey() == 2);
-    assertTrue(LSMT1.getCandidateSet().size() == 1);
-    assertTrue(LSMT1.pollBestKey() == 1);
-    assertTrue(LSMT1.getCandidateSet().size() == 0);
+    assertEquals(LSMT1.getCandidateSet().size(), 3);
+    assertEquals(LSMT1.pollBestKey().intValue(), 3);
+    assertEquals(LSMT1.getCandidateSet().size(), 2);
+    assertEquals(LSMT1.pollBestKey().intValue(), 2);
+    assertEquals(LSMT1.getCandidateSet().size(), 1);
+    assertEquals(LSMT1.pollBestKey().intValue(), 1);
+    assertEquals(LSMT1.getCandidateSet().size(), 0);
   }
 }

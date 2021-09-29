@@ -19,6 +19,7 @@ import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 
 public class Se2NdMap<T> {
+  private final int FACTOR = 3;
   private final NdMap<T> ndMap;
   private final Function<T, Tensor> se2Projection;
 
@@ -34,7 +35,7 @@ public class Se2NdMap<T> {
   public Collection<Clothoid> nearFrom(T value, int limit) {
     Tensor origin = se2Projection.apply(value);
     Collection<NdMatch<T>> collection = //
-        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(origin.extract(0, 2)), limit * 3);
+        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(origin.extract(0, 2)), limit * FACTOR);
     ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
     Queue<Clothoid> queue = BoundedPriorityQueue.min(limit, ClothoidComparators.LENGTH);
     for (NdMatch<T> ndMatch : collection)
@@ -45,7 +46,7 @@ public class Se2NdMap<T> {
   public Collection<Clothoid> nearTo(T value, int limit) {
     Tensor target = se2Projection.apply(value);
     Collection<NdMatch<T>> collection = //
-        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(target.extract(0, 2)), limit * 3);
+        NdCollectNearest.of(ndMap, NdCenters.VECTOR_2_NORM.apply(target.extract(0, 2)), limit * FACTOR);
     ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
     Queue<Clothoid> queue = BoundedPriorityQueue.min(limit, ClothoidComparators.LENGTH);
     for (NdMatch<T> ndMatch : collection)

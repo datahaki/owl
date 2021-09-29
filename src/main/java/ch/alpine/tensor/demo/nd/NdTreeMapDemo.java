@@ -86,7 +86,7 @@ public class NdTreeMapDemo extends AbstractDemo {
       graphics.draw(geometricLayer.toPath2D(centerNorms.shape().multiply(radius), true));
       geometricLayer.popMatrix();
     }
-    graphics.setColor(Color.RED);
+    graphics.setColor(new Color(0, 128, 0, 255));
     for (NdMatch<Void> ndMatch : collection) {
       Tensor point = ndMatch.location();
       Point2D point2d = geometricLayer.toPoint2D(point);

@@ -40,7 +40,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(minTracker.getMinElements().contains(426));
     minTracker.digest(1);
     assertTrue(minTracker.getMinElements().contains(1));
-    assertTrue(minTracker.getMinElements().size() == 1);
+    assertEquals(minTracker.getMinElements().size(), 1);
   }
 
   public void testWithSet() {
@@ -55,7 +55,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(digitSumDivisibility.getMinElements().contains(426));
     digitSumDivisibility.digest(1);
     assertTrue(digitSumDivisibility.getMinElements().contains(1));
-    assertTrue(digitSumDivisibility.getMinElements().size() == 1);
+    assertEquals(digitSumDivisibility.getMinElements().size(), 1);
   }
 
   public void testDuplicateEntriesList() {
@@ -64,7 +64,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     minTracker.digest(333);
     minTracker.digest(333);
     assertTrue(minTracker.getMinElements().contains(333));
-    assertTrue(minTracker.getMinElements().size() == 1);
+    assertEquals(minTracker.getMinElements().size(), 1);
   }
 
   public void testDuplicateEntriesSet() {
@@ -73,7 +73,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     minTracker.digest(333);
     minTracker.digest(333);
     assertTrue(minTracker.getMinElements().contains(333));
-    assertTrue(minTracker.getMinElements().size() == 1);
+    assertEquals(minTracker.getMinElements().size(), 1);
   }
 
   public void testOnlyPreoneRepresentativeList() {
@@ -89,7 +89,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(minTracker.getMinElements().contains(1111223));
     minTracker.digest(1);
     assertTrue(minTracker.getMinElements().contains(1));
-    assertTrue(minTracker.getMinElements().size() == 1);
+    assertEquals(minTracker.getMinElements().size(), 1);
   }
 
   public void testOnlyPreoneRepresentativeSet() {
@@ -105,7 +105,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(digitSumDivisibility.getMinElements().contains(1111223));
     digitSumDivisibility.digest(1);
     assertTrue(digitSumDivisibility.getMinElements().contains(1));
-    assertTrue(digitSumDivisibility.getMinElements().size() == 1);
+    assertEquals(digitSumDivisibility.getMinElements().size(), 1);
   }
 
   private static void _checkPermutations(Supplier<MinTracker<Scalar>> supplier) {

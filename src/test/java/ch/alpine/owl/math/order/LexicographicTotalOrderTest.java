@@ -17,10 +17,10 @@ public class LexicographicTotalOrderTest extends TestCase {
     List<Comparable> y = new LinkedList<>();
     y.add(1);
     y.add("zwei");
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, x) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, y) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, y) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, x) == 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, y), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, x), 0);
   }
 
   @SuppressWarnings("rawtypes")
@@ -33,10 +33,10 @@ public class LexicographicTotalOrderTest extends TestCase {
     y.add(true);
     y.add(3.56);
     y.add(3);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, x) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, y) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, y) == -1);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, x) == +1);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, y), -1);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, x), +1);
   }
 
   @SuppressWarnings("rawtypes")
@@ -47,8 +47,8 @@ public class LexicographicTotalOrderTest extends TestCase {
     List<Comparable> y = new LinkedList<>();
     y.add("drei");
     y.add(3);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, x) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, y) == 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
     assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, y) > 0);
     assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, x) < 0);
   }
@@ -60,8 +60,8 @@ public class LexicographicTotalOrderTest extends TestCase {
     x.add(23);
     List<Comparable> y = new LinkedList<>();
     y.add("drei");
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(x, x) == 0);
-    assertTrue(LexicographicTotalOrder.INSTANCE.compare(y, y) == 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
+    assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
     AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(x, y));
     AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(y, x));
   }
