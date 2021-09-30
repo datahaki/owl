@@ -50,7 +50,7 @@ public class DefaultRrts implements Rrts {
       return Optional.of(rrtsNode);
     }
     if (ignoreCheck || isInsertPlausible(state)) { // TODO GJOEL/JPH is this needed?
-      k_nearest = Math.min(Math.max(1, k_nearest), size);
+      k_nearest = Math.min(Math.max(1, k_nearest), size); // TODO not elegant
       Optional<RrtsNode> optional = connectAlongMinimumCost(state, k_nearest);
       if (optional.isPresent()) {
         RrtsNode rrtsNode = optional.orElseThrow();
@@ -85,17 +85,16 @@ public class DefaultRrts implements Rrts {
      * if (Objects.nonNull(parent))
      * return Optional.of(parent.connectTo(state, costFromRoot)); */
     final NavigableMap<Scalar, RrtsNode> updates = new TreeMap<>(Scalars::compare);
-    nodeCollection.nearFrom(state, k_nearest).stream()
-        // .parallel()
+    nodeCollection.nearFrom(state, k_nearest).stream() //
         .forEach(rrtsNodeTransition -> {
-          RrtsNode node = rrtsNodeTransition.rrtsNode();
+          RrtsNode rrtsNode = rrtsNodeTransition.rrtsNode();
           Transition transition = rrtsNodeTransition.transition();
-          Scalar cost = transitionCostFunction.cost(node, transition);
-          Scalar compare = node.costFromRoot().add(cost);
+          Scalar cost = transitionCostFunction.cost(rrtsNode, transition);
+          Scalar compare = rrtsNode.costFromRoot().add(cost);
           synchronized (updates) {
             if (updates.isEmpty() || Scalars.lessThan(compare, updates.firstKey()))
               if (isCollisionFree(transition))
-                updates.put(compare, node);
+                updates.put(compare, rrtsNode);
           }
         });
     if (!updates.isEmpty())

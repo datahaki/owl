@@ -16,8 +16,7 @@ import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
-import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
@@ -31,7 +30,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.NdBox;
 
-public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
+public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
   private static final NdBox ND_BOX_R2 = NdBox.of( //
       Tensors.vector(-5, -5), //
@@ -40,11 +39,10 @@ public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
       Tensors.vector(-5, -5, -Math.PI), //
       Tensors.vector(+5, +5, +Math.PI));
   // ---
-  private final ClothoidRrtsNodeCollection clothoidRrtsNodeCollection = new ClothoidRrtsNodeCollection(ND_BOX_R2);
-  // private final RrtsNodeCollection rrtsNodeCollection1 = //
-  // Se2RrtsNodeCollections.of(ClothoidTransitionSpace.ANALYTIC, ND_BOX_SE2);
-  // private final RrtsNodeCollection rrtsNodeCollection2 = //
-  // ClothoidRrtsNodeCollections.of(RealScalar.ONE, ND_BOX_SE2);
+  private final Se2RrtsNodeCollection se2RrtsNodeCollection = new Se2RrtsNodeCollection( //
+      // ClothoidTransitionSpace.ANALYTIC, //
+      DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH), //
+      ND_BOX_R2, 3);
 
   // ---
   public static class Param {
@@ -56,8 +54,9 @@ public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
 
   public final Param param = new Param();
 
-  public ClothoidRrtsCollectionDemo() {
+  public Se2RrtsNodeCollectionDemo() {
     super(false, ManifoldDisplays.CL_ONLY);
+    // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     JScrollPane jScrollPane = new FieldsEditor(param).getJScrollPane();
@@ -70,7 +69,7 @@ public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX_SE2);
     Tensor tensor = RandomSample.of(randomSampleInterface, SIZE);
     for (Tensor state : tensor) {
-      clothoidRrtsNodeCollection.insert(RrtsNode.createRoot(state, RealScalar.ONE));
+      se2RrtsNodeCollection.insert(RrtsNode.createRoot(state, RealScalar.ONE));
     }
     setControlPointsSe2(tensor);
   }
@@ -105,26 +104,18 @@ public class ClothoidRrtsCollectionDemo extends ControlPointsDemo {
       geometricLayer.popMatrix();
     }
     // ---
-    // RrtsNodeCollection rrtsNodeCollection = param.limit //
-    // ? rrtsNodeCollection2
-    // : rrtsNodeCollection1;
     int _value = Scalars.intValueExact(param.value);
     graphics.setColor(new Color(255, 0, 0, 128));
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));
-    ClothoidBuilder clothoidBuilder = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
-    for (RrtsNodeTransition rrtsNodeTransition : clothoidRrtsNodeCollection.nearFrom(mouse, _value))
+    for (RrtsNodeTransition rrtsNodeTransition : se2RrtsNodeCollection.nearFrom(mouse, _value))
       graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
     // ---
     graphics.setColor(new Color(0, 255, 0, 128));
-    for (RrtsNodeTransition rrtsNodeTransition : clothoidRrtsNodeCollection.nearTo(mouse, _value))
+    for (RrtsNodeTransition rrtsNodeTransition : se2RrtsNodeCollection.nearTo(mouse, _value))
       graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
-    // for (Clothoid clothoid : se2NdMap.cl_nearTo(mouse, _value)) {
-    // Transition transition = ClothoidTransition.of(clothoid);
-    // graphics.draw(geometricLayer.toPath2D(transition.linearized(minResolution)));
-    // }
   }
 
   public static void main(String[] args) {
-    new ClothoidRrtsCollectionDemo().setVisible(1200, 800);
+    new Se2RrtsNodeCollectionDemo().setVisible(1200, 800);
   }
 }

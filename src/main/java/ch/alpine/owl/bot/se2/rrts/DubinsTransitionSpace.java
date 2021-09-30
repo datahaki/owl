@@ -34,8 +34,8 @@ public class DubinsTransitionSpace implements TransitionSpace, Serializable {
   }
 
   @Override // from TransitionSpace
-  public DubinsTransition connect(Tensor start, Tensor end) {
-    return new DubinsTransition(start, end, dubinsPath(start, end));
+  public DubinsTransition connect(Tensor head, Tensor tail) {
+    return new DubinsTransition(head, tail, dubinsPath(head, tail));
   }
 
   private DubinsPath dubinsPath(Tensor start, Tensor end) {
