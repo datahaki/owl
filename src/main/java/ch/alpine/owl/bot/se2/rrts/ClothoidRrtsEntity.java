@@ -56,7 +56,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
             LengthCostFunction.INSTANCE) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), ndBox);
+            return new Se2RrtsNodeCollection(getTransitionSpace(), ndBox, 3);
           }
 
           @Override

@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.Clips;
     Tensor lbounds = Array.zeros(2).unmodifiable();
     Tensor ubounds = range.unmodifiable();
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
-    RrtsNodeCollection rrtsNodeCollection = Se2RrtsNodeCollections.of(transitionSpace, NdBox.of(lbounds, ubounds));
+    RrtsNodeCollection rrtsNodeCollection = new Se2RrtsNodeCollection(transitionSpace, NdBox.of(lbounds, ubounds), 3);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery( //
         imageRegion, RealScalar.of(0.05));
     TransitionRegionQuery transitionCurvatureQuery = new ClothoidCurvatureQuery(Clips.absolute(5));

@@ -22,7 +22,6 @@ import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 
 public class Se2RrtsNodeCollection implements RrtsNodeCollection {
-  // ---
   private final TransitionSpace transitionSpace;
   private final NdMap<RrtsNode> ndMap;
   private final int factor;

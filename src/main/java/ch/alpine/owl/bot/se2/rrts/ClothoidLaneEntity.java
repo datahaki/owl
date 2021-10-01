@@ -29,8 +29,8 @@ import ch.alpine.tensor.opt.nd.NdBox;
   private final Scalar delayHint;
 
   /** @param stateTime initial position of entity */
-  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds, boolean greedy,
-      Scalar delayHint, Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
+  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, NdBox ndBox, boolean greedy, Scalar delayHint,
+      Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -46,7 +46,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
             greedy) {
           @Override // from DefaultRrtsPlannerServer
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), NdBox.of(lbounds, ubounds));
+            return new Se2RrtsNodeCollection(getTransitionSpace(), ndBox, 3);
           }
 
           @Override // from RrtsPlannerServer

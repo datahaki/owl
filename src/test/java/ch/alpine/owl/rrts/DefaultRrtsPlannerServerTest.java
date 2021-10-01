@@ -10,7 +10,7 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollections;
+import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -144,7 +144,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return Se2RrtsNodeCollections.of(getTransitionSpace(), NdBox.of(lbounds, ubounds));
+        return new Se2RrtsNodeCollection(getTransitionSpace(), NdBox.of(lbounds, ubounds), 3);
       }
 
       @Override

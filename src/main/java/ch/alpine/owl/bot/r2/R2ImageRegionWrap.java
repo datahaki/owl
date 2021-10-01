@@ -8,8 +8,8 @@ import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.opt.nd.NdBox;
 
@@ -39,15 +39,11 @@ public class R2ImageRegionWrap {
     return costFunction;
   }
 
-  public Tensor origin() {
-    return Array.zeros(2);
-  }
-
   public Tensor range() {
     return range;
   }
 
   public NdBox ndBox() {
-    return NdBox.of(origin(), range);
+    return NdBox.of(range.map(Scalar::zero), range);
   }
 }
