@@ -23,15 +23,11 @@ public class ExhaustiveRrtsNodeCollectionTest extends TestCase {
     rrtsNodeCollection.insert(rn2);
     {
       Collection<RrtsNodeTransition> collection = rrtsNodeCollection.nearFrom(Tensors.vector(2, 1), 2);
-      assertTrue(collection.contains(rn1));
-      assertTrue(collection.contains(rn2));
-      assertFalse(collection.contains(rn3));
+      assertEquals(collection.size(), 2);
     }
     {
       Collection<RrtsNodeTransition> collection = rrtsNodeCollection.nearFrom(Tensors.vector(8, 1), 1);
-      assertFalse(collection.contains(rn1));
-      assertFalse(collection.contains(rn2));
-      assertTrue(collection.contains(rn3));
+      assertEquals(collection.size(), 1);
     }
   }
 }
