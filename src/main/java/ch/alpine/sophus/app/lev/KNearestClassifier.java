@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.alg.Ordering;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.io.Primitives;
 import ch.alpine.tensor.red.Tally;
 
@@ -24,8 +24,7 @@ import ch.alpine.tensor.red.Tally;
 
   @Override // from Classification
   public ClassificationResult result(Tensor weights) {
-    if (weights.length() != labels.length)
-      throw TensorRuntimeException.of(weights);
+    Integers.requireEquals(weights.length(), labels.length);
     // ---
     // TODO this is not finished yet!
     Map<Tensor, Long> map = Tally.of(Ordering.INCREASING.stream(weights) //

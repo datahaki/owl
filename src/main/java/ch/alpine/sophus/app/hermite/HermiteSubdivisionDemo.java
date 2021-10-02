@@ -22,7 +22,7 @@ import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
-import ch.alpine.sophus.math.Distances;
+import ch.alpine.sophus.math.AdjacentDistances;
 import ch.alpine.sophus.math.Do;
 import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.math.d2.Extract2D;
@@ -98,7 +98,7 @@ import ch.alpine.tensor.red.Mean;
         return;
       }
       {
-        Tensor distances = Distances.of(ClothoidDistance.SE2_ANALYTIC, tensor);
+        Tensor distances = new AdjacentDistances(ClothoidDistance.SE2_ANALYTIC).apply(tensor);
         // Distances.of(geodesicDisplay::parametricDistance, control.get(Tensor.ALL, 0));
         if (0 < distances.length()) {
           Tensor scaling = Array.zeros(control.length());

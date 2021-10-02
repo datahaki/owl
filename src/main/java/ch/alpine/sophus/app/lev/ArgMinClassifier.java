@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.io.Primitives;
 import ch.alpine.tensor.red.ArgMin;
 import ch.alpine.tensor.red.Min;
@@ -21,8 +21,7 @@ import ch.alpine.tensor.sca.Clips;
 
   @Override // from Classification
   public ClassificationResult result(Tensor weights) {
-    if (weights.length() != labels.length)
-      throw TensorRuntimeException.of(weights);
+    Integers.requireEquals(weights.length(), labels.length);
     // ---
     int index = ArgMin.of(weights);
     int label = labels[index];

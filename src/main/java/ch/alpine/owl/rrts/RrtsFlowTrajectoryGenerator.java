@@ -18,7 +18,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.owl.rrts.core.TransitionWrap;
-import ch.alpine.sophus.math.Distances;
+import ch.alpine.sophus.math.AdjacentDistances;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
@@ -123,7 +123,7 @@ import ch.alpine.tensor.sca.Sign;
       if (!direction)
         points = Reverse.of(points);
       Tensor samples = Nest.of(curveSubdivision::string, points, depth);
-      Tensor spacing = Distances.of(tensorMetric, samples);
+      Tensor spacing = new AdjacentDistances(tensorMetric).apply(samples);
       if (!direction) {
         samples = Reverse.of(samples);
         spacing = Reverse.of(spacing);

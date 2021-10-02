@@ -21,7 +21,7 @@ public class FreeBoundedIntervalRegionTest extends TestCase {
   }
 
   public void testTrajectoryMember() {
-    FreeBoundedIntervalRegion bir = new FreeBoundedIntervalRegion(0, Clips.interval(10,20));
+    FreeBoundedIntervalRegion bir = new FreeBoundedIntervalRegion(0, Clips.interval(10, 20));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(bir);
     assertFalse(trq.isMember(new StateTime(Tensors.vector(15), RealScalar.ZERO)));
     assertTrue(trq.isMember(new StateTime(Tensors.vector(5), RealScalar.ZERO)));
