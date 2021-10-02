@@ -6,11 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.itp.Kriging;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.Abs;
       graphics.setColor(new Color(0, 128, 128));
       Scalar IND = RealScalar.of(0.1);
       for (int index = 0; index < support.length(); ++index) {
-        geometricLayer.pushMatrix(Se2Matrix.translation(control.get(index)));
+        geometricLayer.pushMatrix(GfxMatrix.translation(control.get(index)));
         Scalar v = cvarian.Get(index);
         graphics.draw(geometricLayer.toLine2D(Tensors.of(v.zero(), v), Tensors.of(v.zero(), v.negate())));
         graphics.draw(geometricLayer.toLine2D(Tensors.of(IND, v), Tensors.of(IND.negate(), v)));

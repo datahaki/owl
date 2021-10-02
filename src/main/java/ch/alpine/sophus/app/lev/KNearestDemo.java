@@ -14,13 +14,13 @@ import javax.swing.JTextField;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.LieGroupOps;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.TensorMapping;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.Scalar;
@@ -81,14 +81,14 @@ import ch.alpine.tensor.sca.Clips;
       try {
         Tensor shift = Tensors.fromString(jTextField.getText());
         {
-          geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(8, 0)));
+          geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(8, 0)));
           TensorMapping lieGroupOp = lieGroupOps.conjugation(shift);
           render(geometricLayer, graphics, lieGroupOp.slash(sequence), lieGroupOp.apply(origin), "'");
           geometricLayer.popMatrix();
         }
         {
           Tensor invert = lieGroupOps.inversion().apply(shift);
-          geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(16, 0)));
+          geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(16, 0)));
           TensorMapping lieGroupOp = lieGroupOps.conjugation(invert);
           render(geometricLayer, graphics, lieGroupOp.slash(sequence), lieGroupOp.apply(origin), "\"");
           geometricLayer.popMatrix();

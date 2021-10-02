@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.Hsluv;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.Cross;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.lie.Cross;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     for (Tensor point : points) {
-      geometricLayer.pushMatrix(Se2Matrix.of(point.get(0)));
+      geometricLayer.pushMatrix(GfxMatrix.of(point.get(0)));
       Tensor pv = point.get(1);
       Color color = Hsluv.of(pv.Get(2).number().doubleValue() * 0.3, 1, 0.5, 0.5);
       graphics.setColor(color);

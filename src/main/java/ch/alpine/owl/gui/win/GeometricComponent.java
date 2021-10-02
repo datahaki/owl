@@ -21,9 +21,9 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.data.IntervalClock;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -134,8 +134,8 @@ public final class GeometricComponent {
               model2pixel.set(RealScalar.of(dx)::add, 0, 2);
               model2pixel.set(RealScalar.of(dy)::add, 1, 2);
             } else {
-              Tensor t1 = Se2Matrix.translation(center.negate());
-              Tensor t2 = Se2Matrix.of(Append.of(center, a2.subtract(a1)));
+              Tensor t1 = GfxMatrix.translation(center.negate());
+              Tensor t2 = GfxMatrix.of(Append.of(center, a2.subtract(a1)));
               model2pixel = model2pixel.dot(t2).dot(t1);
             }
             jComponent.repaint();

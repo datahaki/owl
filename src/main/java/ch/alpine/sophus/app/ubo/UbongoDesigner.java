@@ -18,10 +18,10 @@ import javax.swing.JButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.sophus.gui.win.AbstractDemo;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -61,7 +61,7 @@ import ch.alpine.tensor.sca.Floor;
     }
     // ---
     Tensor matrix = Tensors.fromString("{{30, 0, 100}, {0, -30, 500}, {0, 0, 1}}");
-    matrix = matrix.dot(Se2Matrix.of(Tensors.vector(0, 0, -Math.PI / 2)));
+    matrix = matrix.dot(GfxMatrix.of(Tensors.vector(0, 0, -Math.PI / 2)));
     timerFrame.geometricComponent.setModel2Pixel(matrix);
     timerFrame.geometricComponent.setOffset(100, 100);
     int row_max = template.length();
@@ -94,7 +94,7 @@ import ch.alpine.tensor.sca.Floor;
       for (int col = 0; col < dimension1; ++col) {
         Scalar scalar = template.Get(row, col);
         if (!scalar.equals(FREE)) {
-          geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(row, col)));
+          geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(row, col)));
           Path2D path2d = geometricLayer.toPath2D(SQUARE, true);
           graphics.fill(path2d);
           geometricLayer.popMatrix();

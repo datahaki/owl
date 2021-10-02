@@ -12,12 +12,12 @@ import java.util.stream.IntStream;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorNorm;
@@ -86,9 +86,9 @@ import ch.alpine.tensor.sca.Sqrt;
     Tensor scale = Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()) //
         .pmul(range.map(Scalar::reciprocal)); // model 2 pixel
     return Dot.of( //
-        Se2Matrix.translation(range.multiply(RationalScalar.HALF.negate())), //
+        GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
         AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            .pmul(Se2Matrix.flipY(bufferedImage.getHeight())));
+            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {

@@ -3,6 +3,7 @@ package ch.alpine.sophus.gds;
 
 import java.io.Serializable;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -11,7 +12,6 @@ import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.hs.MetricBiinvariant;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.lie.so.SoGroup;
 import ch.alpine.sophus.lie.so.SoTransport;
 import ch.alpine.sophus.lie.so3.Rodrigues;
@@ -78,7 +78,7 @@ public class So3Display implements ManifoldDisplay, Serializable {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor xyz) {
-    return Se2Matrix.translation(toPoint(xyz));
+    return GfxMatrix.translation(toPoint(xyz));
   }
 
   @Override // from GeodesicDisplay

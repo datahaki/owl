@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -42,7 +42,7 @@ public class WaypointRender implements RenderInterface {
     private final Tensor se2Matrixs;
 
     public Render(Tensor waypoints) {
-      se2Matrixs = Tensor.of(waypoints.stream().map(Se2Matrix::of));
+      se2Matrixs = Tensor.of(waypoints.stream().map(GfxMatrix::of));
     }
 
     @Override // from RenderInterface

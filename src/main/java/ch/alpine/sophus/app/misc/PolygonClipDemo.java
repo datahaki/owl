@@ -6,12 +6,12 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.app.lev.AbstractPlaceDemo;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.ply.CogPoints;
 import ch.alpine.sophus.ply.PolygonCentroid;
 import ch.alpine.sophus.ply.SutherlandHodgmanAlgorithm;
@@ -77,14 +77,14 @@ import ch.alpine.tensor.red.Mean;
         if (ap == 1 && bp == 1)
           norma = norma.negate();
         nsum = nsum.add(norma);
-        geometricLayer.pushMatrix(Se2Matrix.translation(point));
+        geometricLayer.pushMatrix(GfxMatrix.translation(point));
         graphics.draw(geometricLayer.toLine2D(norma));
         geometricLayer.popMatrix();
       }
     }
     if (0 < result.length()) {
       Tensor centroid = PolygonCentroid.of(result);
-      geometricLayer.pushMatrix(Se2Matrix.translation(centroid));
+      geometricLayer.pushMatrix(GfxMatrix.translation(centroid));
       graphics.draw(geometricLayer.toLine2D(nsum));
       geometricLayer.popMatrix();
     }

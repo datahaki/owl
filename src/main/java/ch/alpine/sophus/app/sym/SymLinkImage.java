@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -83,7 +83,7 @@ public class SymLinkImage {
       graphics.setStroke(new BasicStroke(1f));
     }
     { // circle bottom node
-      geometricLayer.pushMatrix(Se2Matrix.translation(root.getPosition()));
+      geometricLayer.pushMatrix(GfxMatrix.translation(root.getPosition()));
       Path2D path2d = geometricLayer.toPath2D(SymLinkRender.CIRCLE_END);
       path2d.closePath();
       graphics.setColor(Color.BLACK);

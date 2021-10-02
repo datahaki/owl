@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.win.BaseFrame;
@@ -16,7 +17,6 @@ import ch.alpine.sophus.gds.Se2ClothoidDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.gui.win.AbstractDemo;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.d2.ArcTan2D;
 import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.RealScalar;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.sca.Round;
     // ---
     {
       graphics.setColor(new Color(255, 0, 0, 128));
-      geometricLayer.pushMatrix(Se2Matrix.of(mouse));
+      geometricLayer.pushMatrix(GfxMatrix.of(mouse));
       graphics.fill(geometricLayer.toPath2D(Arrowhead.of(0.3)));
       geometricLayer.popMatrix();
     }

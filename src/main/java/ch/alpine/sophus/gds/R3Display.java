@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -27,6 +27,6 @@ public class R3Display extends RnDisplay {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor xya) {
-    return Se2Matrix.of(xya);
+    return GfxMatrix.of(xya);
   }
 }

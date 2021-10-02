@@ -3,7 +3,7 @@ package ch.alpine.sophus.gds;
 
 import java.util.Optional;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -91,7 +91,7 @@ public class Rp2Display extends RpnDisplay {
     skew.set(RealScalar.ONE, 2, 2);
     Scalar r = CLIP_Z.rescale(xyz.Get(2));
     skew = Tensors.of(r, r, RealScalar.ONE).pmul(skew);
-    return Se2Matrix.translation(toPoint(xyz)).dot(skew);
+    return GfxMatrix.translation(toPoint(xyz)).dot(skew);
   }
 
   @Override

@@ -9,6 +9,7 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -17,7 +18,6 @@ import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.LieGroupOps;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.TensorMapping;
 import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.Tensor;
@@ -71,7 +71,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
         leversRender.renderIndexX();
         leversRender.renderIndexP();
       }
-      geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(10, 0)));
+      geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(10, 0)));
       try {
         TensorMapping lieGroupOR = lieGroupOps.actionR(Tensors.fromString(jTextField.getText()));
         Tensor allR = lieGroupOR.slash(controlPointsAll);

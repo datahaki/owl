@@ -9,8 +9,8 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.sca.Round;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Tensor position = symLink.getPosition();
     if (symLink instanceof SymNode) {
-      geometricLayer.pushMatrix(Se2Matrix.translation(position));
+      geometricLayer.pushMatrix(GfxMatrix.translation(position));
       Path2D path2d = geometricLayer.toPath2D(CIRCLE_END);
       path2d.closePath();
       graphics.setColor(Color.BLACK);
@@ -42,7 +42,7 @@ import ch.alpine.tensor.sca.Round;
       geometricLayer.popMatrix();
     } else {
       {
-        geometricLayer.pushMatrix(Se2Matrix.translation(position));
+        geometricLayer.pushMatrix(GfxMatrix.translation(position));
         Path2D path2d = geometricLayer.toPath2D(CIRCLE_MID);
         path2d.closePath();
         graphics.setColor(Color.BLACK);

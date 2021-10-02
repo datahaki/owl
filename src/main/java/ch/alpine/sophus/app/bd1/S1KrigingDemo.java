@@ -7,12 +7,12 @@ import java.awt.geom.Path2D;
 import java.util.Arrays;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.itp.Kriging;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.d2.ArcTan2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -56,7 +56,7 @@ import ch.alpine.tensor.sca.N;
       for (int index = 0; index < sequence.length(); ++index) {
         Tensor xy = control.get(index).copy();
         xy.append(ArcTan2D.of(xy).add(Pi.HALF));
-        geometricLayer.pushMatrix(Se2Matrix.of(xy));
+        geometricLayer.pushMatrix(GfxMatrix.of(xy));
         Scalar v = cvarian.Get(index);
         graphics.draw(geometricLayer.toLine2D(Tensors.of(v.zero(), v), Tensors.of(v.zero(), v.negate())));
         graphics.draw(geometricLayer.toLine2D(Tensors.of(IND, v), Tensors.of(IND.negate(), v)));

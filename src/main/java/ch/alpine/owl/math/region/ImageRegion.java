@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -28,7 +28,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
         Tensors.vector( //
             range.Get(0).number().doubleValue() / bufferedImage.getWidth(), //
             range.Get(1).number().doubleValue() / bufferedImage.getHeight(), 1) //
-            .pmul(Se2Matrix.flipY(bufferedImage.getHeight())),
+            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())),
         outside);
   }
 

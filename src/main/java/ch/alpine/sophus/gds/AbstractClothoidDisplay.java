@@ -3,6 +3,7 @@ package ch.alpine.sophus.gds;
 
 import java.io.Serializable;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.decim.LineDistance;
@@ -11,7 +12,6 @@ import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.sophus.ply.PolygonNormalize;
@@ -52,7 +52,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
 
   @Override // from GeodesicDisplay
   public final Tensor matrixLift(Tensor p) {
-    return Se2Matrix.of(p);
+    return GfxMatrix.of(p);
   }
 
   @Override // from GeodesicDisplay

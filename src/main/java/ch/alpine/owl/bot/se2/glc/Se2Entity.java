@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -27,7 +28,6 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
@@ -67,7 +67,7 @@ public abstract class Se2Entity extends TrajectoryEntity implements GlcPlannerCa
     { // indicate current position
       final StateTime stateTime = getStateTimeNow();
       Color color = new Color(64, 64, 64, 128);
-      geometricLayer.pushMatrix(Se2Matrix.of(stateTime.state()));
+      geometricLayer.pushMatrix(GfxMatrix.of(stateTime.state()));
       graphics.setColor(color);
       graphics.fill(geometricLayer.toPath2D(shape()));
       geometricLayer.popMatrix();

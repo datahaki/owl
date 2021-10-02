@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.win.AffineTransforms;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -45,7 +45,7 @@ public class ImageRender implements RenderInterface {
     VectorQ.requireLength(scale, 2);
     return new ImageRender(bufferedImage, //
         AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) //
-            .pmul(Se2Matrix.flipY(bufferedImage.getHeight())));
+            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 
   // ---

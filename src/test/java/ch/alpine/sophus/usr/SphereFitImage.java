@@ -12,8 +12,8 @@ import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.fit.SphereFit;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.HomeDirectory;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     RenderQuality.setQuality(graphics);
     {
       graphics.setColor(Color.BLUE);
-      geometricLayer.pushMatrix(Se2Matrix.translation(center));
+      geometricLayer.pushMatrix(GfxMatrix.translation(center));
       Path2D path2d = geometricLayer.toPath2D(CirclePoints.of(100).multiply(radius));
       path2d.closePath();
       graphics.draw(path2d);
@@ -46,7 +46,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     }
     graphics.setColor(Color.RED);
     for (Tensor point : points) {
-      geometricLayer.pushMatrix(Se2Matrix.translation(point));
+      geometricLayer.pushMatrix(GfxMatrix.translation(point));
       Path2D path2d = geometricLayer.toPath2D(StaticHelper.POINT);
       graphics.fill(path2d);
       geometricLayer.popMatrix();

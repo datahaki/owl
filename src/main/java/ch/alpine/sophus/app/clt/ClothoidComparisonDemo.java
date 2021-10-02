@@ -14,6 +14,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.util.DemoInterface;
@@ -26,7 +27,6 @@ import ch.alpine.sophus.gds.Se2CoveringClothoidDisplay;
 import ch.alpine.sophus.gui.ren.CurveVisualSet;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.AbstractDemo;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
@@ -54,7 +54,7 @@ import ch.alpine.tensor.img.ColorDataLists;
     ManifoldDisplay manifoldDisplay = Se2CoveringClothoidDisplay.INSTANCE;
     {
       Tensor shape = manifoldDisplay.shape();
-      geometricLayer.pushMatrix(Se2Matrix.of(Array.zeros(3)));
+      geometricLayer.pushMatrix(GfxMatrix.of(Array.zeros(3)));
       Path2D path2d = geometricLayer.toPath2D(shape, true);
       graphics.setColor(new Color(255, 0, 0, 64));
       graphics.fill(path2d);
@@ -62,7 +62,7 @@ import ch.alpine.tensor.img.ColorDataLists;
       graphics.draw(path2d);
       geometricLayer.popMatrix();
       // ---
-      geometricLayer.pushMatrix(Se2Matrix.of(mouse));
+      geometricLayer.pushMatrix(GfxMatrix.of(mouse));
       graphics.draw(geometricLayer.toPath2D(shape, true));
       geometricLayer.popMatrix();
     }

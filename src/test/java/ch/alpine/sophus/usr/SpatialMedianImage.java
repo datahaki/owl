@@ -12,8 +12,8 @@ import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.fit.WeiszfeldMethod;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -72,7 +72,7 @@ import ch.alpine.tensor.sca.Chop;
       }
       {
         graphics.setColor(Color.GREEN);
-        geometricLayer.pushMatrix(Se2Matrix.translation(solution));
+        geometricLayer.pushMatrix(GfxMatrix.translation(solution));
         Path2D path2d = geometricLayer.toPath2D(StaticHelper.POINT);
         path2d.closePath();
         graphics.fill(path2d);
@@ -80,7 +80,7 @@ import ch.alpine.tensor.sca.Chop;
       }
       graphics.setColor(Color.RED);
       for (Tensor point : points) {
-        geometricLayer.pushMatrix(Se2Matrix.translation(point));
+        geometricLayer.pushMatrix(GfxMatrix.translation(point));
         Path2D path2d = geometricLayer.toPath2D(StaticHelper.POINT);
         graphics.fill(path2d);
         geometricLayer.popMatrix();

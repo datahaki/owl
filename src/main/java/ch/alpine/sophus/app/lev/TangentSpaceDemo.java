@@ -14,6 +14,7 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.app.bd2.GenesisDequeProperties;
@@ -24,7 +25,6 @@ import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.ply.d2.Polygons;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -74,7 +74,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
         Deque<Evaluation> deque = dequeGenesis.deque(levers2);
         {
           Tensor leversVirtual = deque.peekLast().factors().pmul(levers2);
-          geometricLayer.pushMatrix(Se2Matrix.translation(origin));
+          geometricLayer.pushMatrix(GfxMatrix.translation(origin));
           {
             graphics.setColor(Color.GRAY);
             for (int index = 0; index < levers2.length(); ++index) {

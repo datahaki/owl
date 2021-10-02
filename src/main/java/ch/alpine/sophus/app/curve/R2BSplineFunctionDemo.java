@@ -19,6 +19,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.itp.BSplineFunction;
+import ch.alpine.tensor.itp.BSplineFunctionCyclic;
+import ch.alpine.tensor.itp.BSplineFunctionString;
 
 /** use of tensor lib {@link BSplineFunction} */
 /* package */ class R2BSplineFunctionDemo extends AbstractCurvatureDemo {
@@ -48,8 +50,8 @@ import ch.alpine.tensor.itp.BSplineFunction;
       int degree = spinnerDegree.getValue();
       boolean cyclic = jToggleButton.isSelected();
       ScalarTensorFunction scalarTensorFunction = cyclic //
-          ? BSplineFunction.cyclic(degree, control)
-          : BSplineFunction.string(degree, control);
+          ? BSplineFunctionCyclic.of(degree, control)
+          : BSplineFunctionString.of(degree, control);
       refined = Subdivide.of(0, cyclic ? control.length() : control.length() - 1, 100) //
           .map(scalarTensorFunction);
       new PathRender(Color.BLUE).setCurve(refined, cyclic).render(geometricLayer, graphics);

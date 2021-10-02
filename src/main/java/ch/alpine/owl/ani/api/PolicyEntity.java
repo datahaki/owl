@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 
 // TODO JPH first API draft, unify with se2entity and abstract entity
@@ -35,7 +35,7 @@ public abstract class PolicyEntity implements AnimationInterface, RenderInterfac
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     { // indicate current position
       final StateTime stateTime = getStateTimeNow();
-      geometricLayer.pushMatrix(Se2Matrix.of(stateTime.state()));
+      geometricLayer.pushMatrix(GfxMatrix.of(stateTime.state()));
       graphics.fill(geometricLayer.toPath2D(shape()));
       geometricLayer.popMatrix();
     }

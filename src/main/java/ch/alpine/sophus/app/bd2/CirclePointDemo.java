@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.app.lev.LeversHud;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gbc.AffineCoordinate;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.sophus.ply.d2.Barycenter;
 import ch.alpine.sophus.ply.d2.ThreePointCoordinate;
@@ -55,7 +55,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
         leversRender.renderWeights(weights);
       }
     }
-    geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(5, 0)));
+    geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(5, 0)));
     {
       graphics.setColor(Color.LIGHT_GRAY);
       graphics.draw(geometricLayer.toPath2D(CirclePoints.of(31), true));

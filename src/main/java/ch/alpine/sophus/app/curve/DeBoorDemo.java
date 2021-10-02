@@ -23,6 +23,7 @@ import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.itp.BSplineFunction;
+import ch.alpine.tensor.itp.BSplineFunctionString;
 import ch.alpine.tensor.itp.DeBoor;
 import ch.alpine.tensor.mat.Inverse;
 
@@ -57,7 +58,7 @@ import ch.alpine.tensor.mat.Inverse;
           {
             for (int k_th = 0; k_th < length; ++k_th) {
               graphics.setColor(COLOR_DATA_INDEXED.getColor(k_th));
-              BSplineFunction bSplineFunction = (BSplineFunction) BSplineFunction.string(degree, UnitVector.of(length, k_th));
+              BSplineFunction bSplineFunction = (BSplineFunction) BSplineFunctionString.of(degree, UnitVector.of(length, k_th));
               DeBoor deBoor = bSplineFunction.deBoor(k_th);
               Tensor knots = deBoor.knots();
               Point2D point2d = geometricLayer.toPoint2D(k_th, 0);

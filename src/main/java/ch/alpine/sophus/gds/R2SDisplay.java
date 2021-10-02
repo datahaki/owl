@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -13,7 +14,6 @@ import ch.alpine.sophus.lie.LieTransport;
 import ch.alpine.sophus.lie.r2s.R2SGeodesic;
 import ch.alpine.sophus.lie.r2s.R2SGroup;
 import ch.alpine.sophus.lie.r2s.R2SManifold;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
@@ -60,7 +60,7 @@ public enum R2SDisplay implements ManifoldDisplay {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor p) {
-    return Se2Matrix.of(p);
+    return GfxMatrix.of(p);
   }
 
   @Override // from GeodesicDisplay

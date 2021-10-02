@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -25,7 +26,6 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.d2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -145,7 +145,7 @@ public class CarEntity extends Se2Entity {
     // ---
     if (trajectoryControl instanceof TrajectoryTargetRender) {
       StateTime stateTime = getStateTimeNow();
-      Tensor matrix = Se2Matrix.of(stateTime.state());
+      Tensor matrix = GfxMatrix.of(stateTime.state());
       geometricLayer.pushMatrix(matrix);
       graphics.setColor(Color.RED);
       ((TrajectoryTargetRender) trajectoryControl).toTarget(geometricLayer).ifPresent(graphics::draw);

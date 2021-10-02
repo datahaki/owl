@@ -4,6 +4,7 @@ package ch.alpine.sophus.gds;
 import java.io.Serializable;
 import java.util.Random;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -18,7 +19,6 @@ import ch.alpine.sophus.hs.hn.HnTransport;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -65,7 +65,7 @@ public abstract class HnDisplay implements ManifoldDisplay, Serializable {
 
   @Override // from GeodesicDisplay
   public final Tensor matrixLift(Tensor p) {
-    return Se2Matrix.translation(p);
+    return GfxMatrix.translation(p);
   }
 
   @Override // from GeodesicDisplay

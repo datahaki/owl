@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.sophus.gui.win.AbstractDemo;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -85,7 +85,7 @@ public class NdTreeMapDemo extends AbstractDemo {
     }
     {
       graphics.setColor(Color.BLUE);
-      geometricLayer.pushMatrix(Se2Matrix.translation(xya.extract(0, 2)));
+      geometricLayer.pushMatrix(GfxMatrix.translation(xya.extract(0, 2)));
       graphics.draw(geometricLayer.toPath2D(centerNorms.shape().multiply(radius), true));
       geometricLayer.popMatrix();
     }

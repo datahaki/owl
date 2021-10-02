@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -15,7 +16,6 @@ import ch.alpine.sophus.hs.spd.SpdMetric;
 import ch.alpine.sophus.hs.spd.SpdTransport;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RealScalar;
@@ -83,7 +83,7 @@ public enum Spd2Display implements ManifoldDisplay {
   public Tensor matrixLift(Tensor sym) {
     Tensor matrix = PAD_RIGHT.apply(sym); // log is possible
     matrix.set(RealScalar.ONE, 2, 2);
-    return Se2Matrix.translation(toPoint(sym)).dot(matrix);
+    return GfxMatrix.translation(toPoint(sym)).dot(matrix);
   }
 
   @Override // from GeodesicDisplay

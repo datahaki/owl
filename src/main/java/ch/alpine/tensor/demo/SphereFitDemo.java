@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.fit.HsWeiszfeldMethod;
 import ch.alpine.sophus.fit.SpatialMedian;
 import ch.alpine.sophus.fit.SphereFit;
@@ -19,7 +20,6 @@ import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.gui.win.DubinsGenerator;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.MetricBiinvariant;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.var.InversePowerVariogram;
 import ch.alpine.sophus.ply.StarPoints;
 import ch.alpine.tensor.RealScalar;
@@ -63,7 +63,7 @@ import ch.alpine.tensor.sca.Chop;
       if (optional.isPresent()) {
         Tensor center = optional.get().center();
         Scalar radius = optional.get().radius();
-        geometricLayer.pushMatrix(Se2Matrix.translation(center));
+        geometricLayer.pushMatrix(GfxMatrix.translation(center));
         pathRenderBall.setCurve(CirclePoints.of(40).multiply(radius), true);
         pathRenderBall.render(geometricLayer, graphics);
         geometricLayer.popMatrix();
@@ -85,7 +85,7 @@ import ch.alpine.tensor.sca.Chop;
     }
     {
       Tensor weiszfeld = WeiszfeldMethod.with(Chop._04).uniform(control).get();
-      geometricLayer.pushMatrix(Se2Matrix.translation(weiszfeld));
+      geometricLayer.pushMatrix(GfxMatrix.translation(weiszfeld));
       Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       path2d.closePath();
       graphics.setColor(new Color(128, 128, 255, 64));
@@ -102,7 +102,7 @@ import ch.alpine.tensor.sca.Chop;
       Optional<Tensor> optional = spatialMedian.uniform(control);
       if (optional.isPresent()) {
         Tensor weiszfeld = optional.get();
-        geometricLayer.pushMatrix(Se2Matrix.translation(weiszfeld));
+        geometricLayer.pushMatrix(GfxMatrix.translation(weiszfeld));
         Path2D path2d = geometricLayer.toPath2D(StarPoints.of(5, 0.2, 0.05));
         path2d.closePath();
         graphics.setColor(new Color(128, 128, 255, 64));
