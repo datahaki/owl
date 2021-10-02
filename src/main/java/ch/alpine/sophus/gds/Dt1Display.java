@@ -33,7 +33,7 @@ public enum Dt1Display implements ManifoldDisplay {
   private static final ScalarUnaryOperator MAX_X = Max.function(RealScalar.of(0.001));
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return DtGeodesic.INSTANCE;
   }
 

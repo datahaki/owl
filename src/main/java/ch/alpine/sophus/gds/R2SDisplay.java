@@ -27,7 +27,7 @@ public enum R2SDisplay implements ManifoldDisplay {
   private static final Tensor ARROWHEAD = Arrowhead.of(0.2).unmodifiable();
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return R2SGeodesic.INSTANCE;
   }
 

@@ -31,7 +31,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     tensor = tensor.add(noise);
     tensor = Tensor.of(tensor.stream().map(Vector2Norm.NORMALIZE));
     Export.of(HomeDirectory.file("loxodrome_noise.csv"), tensor);
-    Geodesic geodesicInterface = S2Display.INSTANCE.geodesicInterface();
+    Geodesic geodesicInterface = S2Display.INSTANCE.geodesic();
     for (WindowFunctions windowFunctions : WindowFunctions.values()) {
       ScalarUnaryOperator smoothingKernel = windowFunctions.get();
       TensorUnaryOperator tensorUnaryOperator = //

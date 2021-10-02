@@ -61,8 +61,8 @@ import ch.alpine.tensor.sca.Chop;
     if (jToggleItrp.isSelected()) {
       LieGroup lieGroup = manifoldDisplay.lieGroup();
       AbstractBSplineInterpolation abstractBSplineInterpolation = Objects.isNull(lieGroup) //
-          ? new GeodesicBSplineInterpolation(manifoldDisplay.geodesicInterface(), degree, control)
-          : new LieGroupBSplineInterpolation(lieGroup, manifoldDisplay.geodesicInterface(), degree, control);
+          ? new GeodesicBSplineInterpolation(manifoldDisplay.geodesic(), degree, control)
+          : new LieGroupBSplineInterpolation(lieGroup, manifoldDisplay.geodesic(), degree, control);
       {
         Tensor tensor = BSplineInterpolationSequence.of(abstractBSplineInterpolation);
         Tensor shape = CirclePoints.of(9).multiply(RealScalar.of(0.05));
@@ -86,7 +86,7 @@ import ch.alpine.tensor.sca.Chop;
       effective = iteration.control();
     }
     ScalarTensorFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, effective);
     {
       Tensor selected = scalarTensorFunction.apply(parameter);
       geometricLayer.pushMatrix(manifoldDisplay.matrixLift(selected));

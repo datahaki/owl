@@ -7,6 +7,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ceiling;
@@ -26,7 +27,7 @@ public class RnTransition extends AbstractTransition {
   public TransitionWrap wrapped(Scalar minResolution) {
     int steps = steps(minResolution);
     Scalar resolution = length().divide(RealScalar.of(steps));
-    Tensor spacing = Tensors.vector(i -> resolution, steps);
+    Tensor spacing = ConstantArray.of(resolution, steps);
     return new TransitionWrap(sampled(minResolution), spacing);
   }
 

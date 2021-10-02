@@ -44,7 +44,7 @@ public class JetScalar extends AbstractScalar implements //
    * @param n
    * @return {value, 1, 0, 0, ...} */
   public static Scalar of(Scalar value, int n) {
-    return new JetScalar(Tensors.vector(i -> i == 0 ? value : (i == 1 ? RealScalar.ONE : value.zero()), n));
+    return new JetScalar(Tensors.vector(i -> i.equals(0) ? value : (i.equals(1) ? value.one() : value.zero()), n));
   }
 
   /** drop function, promote derivatives, and decrease order by 1

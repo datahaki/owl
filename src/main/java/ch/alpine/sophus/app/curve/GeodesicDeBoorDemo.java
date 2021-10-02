@@ -51,10 +51,10 @@ import ch.alpine.tensor.itp.DeBoor;
     renderControlPoints(geometricLayer, graphics); // control points
     // ---
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     ScalarTensorFunction scalarTensorFunction = //
         DeBoor.of(geodesicInterface, knots, control);
-    GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, control);
+    GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, control);
     Scalar center = RationalScalar.of(control.length() - 1, 2);
     Tensor refined = Subdivide.of( //
         center.subtract(RationalScalar.HALF), //

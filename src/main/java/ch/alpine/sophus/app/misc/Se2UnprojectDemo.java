@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.Sqrt;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     HsManifold hsManifold = LieExponential.of(manifoldDisplay.lieGroup(), Se2CoveringExponential.INSTANCE);
     // ---
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     Tensor p = sequence.get(0);
     Tensor q = sequence.get(1);
     {

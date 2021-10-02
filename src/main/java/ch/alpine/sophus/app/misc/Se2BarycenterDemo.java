@@ -55,7 +55,7 @@ import ch.alpine.tensor.red.Total;
       try {
         ManifoldDisplay manifoldDisplay = manifoldDisplay();
         // ---
-        Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+        Geodesic geodesicInterface = manifoldDisplay.geodesic();
         final ScalarTensorFunction curve = geodesicInterface.curve(sequence.get(0), sequence.get(1));
         {
           Tensor tensor = Subdivide.of(-0.5, 1.5, 55).map(curve);

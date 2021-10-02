@@ -84,7 +84,7 @@ import ch.alpine.tensor.io.Primitives;
       geometricLayer.popMatrix();
     }
     if (ctrl.isSelected()) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       Tensor domain = Subdivide.of(0.0, 1.0, 10);
       Set<Tensor> set = new HashSet<>();
       for (Tensor ind : surfaceMesh.ind) {

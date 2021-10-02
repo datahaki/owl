@@ -38,7 +38,7 @@ import ch.alpine.tensor.sca.N;
   @Override // from AbstractDatasetFilterDemo
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
     return Regularization2Step.string( //
-        manifoldDisplay().geodesicInterface(), //
+        manifoldDisplay().geodesic(), //
         N.DOUBLE.apply(sliderRatio())).apply(control());
   }
 

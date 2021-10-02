@@ -50,8 +50,8 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     graphics.setColor(Color.BLUE);
     graphics.setStroke(new BasicStroke(2));
     Scalar value = spinnerBeta.getValue();
-    Geodesic geodesicInterface = manifoldDisplay().geodesicInterface();
-    ClothoidBuilder clothoidBuilder = (ClothoidBuilder) geodesicInterface;
+    Geodesic geodesic = manifoldDisplay().geodesic();
+    ClothoidBuilder clothoidBuilder = (ClothoidBuilder) geodesic;
     for (int index = 0; index < sequence.length() - 2; index += 3) {
       Tensor cr = sequence.get(index + 0);
       Tensor l1 = sequence.get(index + 1);

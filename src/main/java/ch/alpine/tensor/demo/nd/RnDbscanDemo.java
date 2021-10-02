@@ -20,7 +20,6 @@ import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnDbscan;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -28,6 +27,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.opt.nd.NdBox;
 import ch.alpine.tensor.sca.Abs;
 

@@ -25,12 +25,12 @@ import ch.alpine.tensor.sca.Clips;
   private static final int RESOLUTION = 91;
   // ---
   private final ManifoldDisplay manifoldDisplay;
-  private final Geodesic geodesicInterface;
+  private final Geodesic geodesic;
   public int steps = 9;
 
   public GeometricSymLinkRender(ManifoldDisplay manifoldDisplay) {
     this.manifoldDisplay = manifoldDisplay;
-    geodesicInterface = manifoldDisplay.geodesicInterface();
+    geodesic = manifoldDisplay.geodesic();
   }
 
   public class Link implements RenderInterface {
@@ -48,9 +48,9 @@ import ch.alpine.tensor.sca.Clips;
       new Link(symLink.lP).render(geometricLayer, graphics);
       new Link(symLink.lQ).render(geometricLayer, graphics);
       {
-        Tensor posP = symLink.lP.getPosition(geodesicInterface);
-        Tensor posQ = symLink.lQ.getPosition(geodesicInterface);
-        ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(posP, posQ);
+        Tensor posP = symLink.lP.getPosition(geodesic);
+        Tensor posQ = symLink.lQ.getPosition(geodesic);
+        ScalarTensorFunction scalarTensorFunction = geodesic.curve(posP, posQ);
         graphics.setColor(new Color(0, 128 + 64, 0, 255));
         {
           Tensor tensor = Subdivide.of(RealScalar.ZERO, symLink.lambda, RESOLUTION) //
@@ -85,7 +85,7 @@ import ch.alpine.tensor.sca.Clips;
         }
       }
       // ---
-      Tensor p = symLink.getPosition(geodesicInterface);
+      Tensor p = symLink.getPosition(geodesic);
       graphics.setColor(new Color(0, 0, 255, 192));
       geometricLayer.pushMatrix(manifoldDisplay.matrixLift(p));
       Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape().multiply(RealScalar.of(0.7)));

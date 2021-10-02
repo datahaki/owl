@@ -28,7 +28,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
   private static final Tensor ARROWHEAD = Arrowhead.of(0.2).unmodifiable();
 
   @Override
-  public abstract ClothoidBuilder geodesicInterface();
+  public abstract ClothoidBuilder geodesic();
 
   @Override // from GeodesicDisplay
   public final int dimensions() {
@@ -82,7 +82,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
 
   @Override // from GeodesicDisplay
   public final TensorMetric parametricDistance() {
-    return (p, q) -> geodesicInterface().curve(p, q).length();
+    return (p, q) -> geodesic().curve(p, q).length();
   }
 
   @Override // from GeodesicDisplay

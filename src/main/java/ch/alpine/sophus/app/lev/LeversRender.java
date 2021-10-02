@@ -32,6 +32,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.Drop;
 import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.alg.Rescale;
@@ -171,7 +172,7 @@ public class LeversRender {
   }
 
   public void renderLevers() {
-    renderLeversRescaled(Tensors.vector(i -> NEUTRAL_DEFAULT, sequence.length()));
+    renderLeversRescaled(ConstantArray.of(NEUTRAL_DEFAULT, sequence.length()));
   }
 
   public void renderLevers(Tensor weights) {
@@ -179,7 +180,7 @@ public class LeversRender {
   }
 
   private void renderLeversRescaled(Tensor rescale) {
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     int index = 0;
     graphics.setStroke(STROKE_GEODESIC);
     for (Tensor p : sequence) {
@@ -197,7 +198,7 @@ public class LeversRender {
   public void renderLeverLength() {
     TensorMetric tensorMetric = manifoldDisplay.parametricDistance();
     if (Objects.nonNull(tensorMetric)) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       graphics.setFont(FONT_MATRIX);
       FontMetrics fontMetrics = graphics.getFontMetrics();
       int fheight = fontMetrics.getAscent();
@@ -368,7 +369,7 @@ public class LeversRender {
     for (int index = 0; index < sequence.length(); ++index) {
       Tensor prev = sequence.get(Math.floorMod(index - 1, sequence.length()));
       Tensor next = sequence.get(index);
-      DOMAIN.map(manifoldDisplay.geodesicInterface().curve(prev, next)).stream() //
+      DOMAIN.map(manifoldDisplay.geodesic().curve(prev, next)).stream() //
           .map(manifoldDisplay::toPoint) //
           .forEach(all::append);
     }

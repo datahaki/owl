@@ -21,7 +21,7 @@ public final class Se2ClothoidDisplay extends AbstractClothoidDisplay {
   }
 
   @Override // from AbstractClothoidDisplay
-  public ClothoidBuilder geodesicInterface() {
+  public ClothoidBuilder geodesic() {
     return clothoidBuilder;
   }
 

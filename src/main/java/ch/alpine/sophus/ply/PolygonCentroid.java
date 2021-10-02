@@ -3,13 +3,13 @@ package ch.alpine.sophus.ply;
 
 import java.util.Iterator;
 
-import ch.alpine.sophus.math.d2.Det2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.lie.r2.Det2D;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Total;
 

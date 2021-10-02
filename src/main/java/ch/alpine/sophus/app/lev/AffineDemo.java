@@ -60,7 +60,7 @@ import ch.alpine.tensor.img.ColorDataGradients;
       for (int index = 0; index < sequence.length(); ++index) {
         Tensor prev = sequence.get(Math.floorMod(index - 1, sequence.length()));
         Tensor next = sequence.get(index);
-        Tensor curve = doma.map(manifoldDisplay.geodesicInterface().curve(prev, next));
+        Tensor curve = doma.map(manifoldDisplay.geodesic().curve(prev, next));
         Tensor polygon = Tensor.of(curve.stream().map(manifoldDisplay::toPoint));
         Path2D path2d = geometricLayer.toPath2D(polygon);
         graphics.draw(path2d);

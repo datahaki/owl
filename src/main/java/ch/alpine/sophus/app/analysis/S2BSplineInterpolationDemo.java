@@ -27,9 +27,9 @@ import ch.alpine.tensor.sca.Round;
     File folder = HomeDirectory.Documents("s2");
     folder.mkdir();
     Export.of(new File(folder, "target.csv"), target.map(Round._6));
-    Geodesic geodesicInterface = S2Display.INSTANCE.geodesicInterface();
+    Geodesic geodesic = S2Display.INSTANCE.geodesic();
     AbstractBSplineInterpolation abstractBSplineInterpolation = //
-        new GeodesicBSplineInterpolation(geodesicInterface, 2, target);
+        new GeodesicBSplineInterpolation(geodesic, 2, target);
     Iteration iteration = abstractBSplineInterpolation.untilClose(Chop._08, 100);
     Tensor control = iteration.control();
     Tolerance.CHOP.requireClose(control.get(0), target.get(0));
@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.Round;
     MatrixQ.require(control);
     Export.of(new File(folder, "control.csv"), control.map(Round._6));
     GeodesicBSplineFunction geodesicBSplineFunction = //
-        GeodesicBSplineFunction.of(geodesicInterface, 2, control);
+        GeodesicBSplineFunction.of(geodesic, 2, control);
     Tensor curve = Subdivide.of(0, control.length() - 1, 200).map(geodesicBSplineFunction);
     Export.of(new File(folder, "curve.csv"), curve.map(Round._6));
   }

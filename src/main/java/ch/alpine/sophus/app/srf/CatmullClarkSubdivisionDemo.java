@@ -43,7 +43,7 @@ import ch.alpine.tensor.red.Nest;
     renderControlPoints(geometricLayer, graphics);
     Tensor control = getGeodesicControlPoints();
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     GeodesicCatmullClarkSubdivision catmullClarkSubdivision = //
         new GeodesicCatmullClarkSubdivision(geodesicInterface);
     Tensor refined = Nest.of( //

@@ -73,7 +73,7 @@ import ch.alpine.tensor.alg.Subdivide;
         new PathRender(Color.RED, 1.25f).setCurve(render, false).render(geometricLayer, graphics);
       }
     }
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     Tensor refined = domain.map(BezierFunction.of(geodesicInterface, sequence));
     Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);

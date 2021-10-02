@@ -53,7 +53,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     if (0 == length)
       return;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);

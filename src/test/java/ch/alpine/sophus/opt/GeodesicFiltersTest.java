@@ -29,7 +29,7 @@ public class GeodesicFiltersTest extends TestCase {
     List<String> lines = gokartPoseData.list();
     Tensor control = gokartPoseData.getPose(lines.get(0), 250);
     ManifoldDisplay manifoldDisplay = Se2Display.INSTANCE;
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     ScalarUnaryOperator smoothingKernel = WindowFunctions.GAUSSIAN.get();
     BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     int radius = 7;
@@ -57,7 +57,7 @@ public class GeodesicFiltersTest extends TestCase {
     String name = "20190701T170957_06";
     Tensor control = GokartPoseDataV2.RACING_DAY.getPose(name, 1_000_000);
     ManifoldDisplay manifoldDisplay = Se2Display.INSTANCE;
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     ScalarUnaryOperator smoothingKernel = WindowFunctions.GAUSSIAN.get();
     BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     for (int radius : new int[] { 0, 10 }) {

@@ -25,13 +25,14 @@ import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.sophus.ply.d2.ConvexHull;
+import ch.alpine.sophus.ply.d2.Polygons;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.r2.ConvexHull;
 
 /* package */ class TangentSpaceDemo extends AbstractPlaceDemo {
   private static final int WIDTH = 300;
@@ -68,7 +69,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
         pathRender.setCurve(hull, true);
         pathRender.render(geometricLayer, graphics);
       }
-      if (ConvexHull.isInside(levers2)) {
+      if (Polygons.isInside(levers2)) {
         GenesisDeque dequeGenesis = (GenesisDeque) iterativeAffineProperties.genesis();
         Deque<Evaluation> deque = dequeGenesis.deque(levers2);
         {

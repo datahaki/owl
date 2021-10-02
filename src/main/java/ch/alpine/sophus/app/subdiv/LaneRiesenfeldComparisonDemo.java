@@ -145,7 +145,7 @@ import ch.alpine.tensor.red.Quantile;
     int levels = spinnerRefine.getValue();
     renderControlPoints(geometricLayer, graphics);
     ManifoldDisplay geodesicDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesic();
     Tensor refined = StaticHelper.refine(control, levels, scheme.of(geodesicDisplay), //
         CurveSubdivisionHelper.isDual(scheme), false, geodesicInterface);
     // ---

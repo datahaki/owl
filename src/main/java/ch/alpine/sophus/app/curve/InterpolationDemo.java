@@ -35,7 +35,7 @@ import ch.alpine.tensor.red.Nest;
       Tensor matrix = BSplineLimitMatrix.string(sequence.length(), 3);
       Tensor invers = Inverse.of(matrix);
       Tensor tensor = Tensor.of(invers.stream().map(weights -> biinvariantMean.mean(sequence, weights)));
-      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(manifoldDisplay.geodesicInterface());
+      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(manifoldDisplay.geodesic());
       Tensor refine = Nest.of(curveSubdivision::string, tensor, 5);
       new PathRender(Color.BLUE).setCurve(refine, false).render(geometricLayer, graphics);
     }

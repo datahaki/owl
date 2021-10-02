@@ -53,7 +53,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     RenderQuality.setQuality(graphics);
     Tensor sequence = getGeodesicControlPoints();
     Tensor domain = Subdivide.of(0.0, 1.0, 10);

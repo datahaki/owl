@@ -175,12 +175,12 @@ import ch.alpine.tensor.red.Nest;
     int levels = spinnerRefine.getValue();
     renderControlPoints(geometricLayer, graphics);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     Tensor refined = StaticHelper.refine( //
         control, levels, spinnerLabel.getValue().of(manifoldDisplay), //
         CurveSubdivisionHelper.isDual(scheme), cyclic, geodesicInterface);
     if (jToggleLine.isSelected()) {
-      TensorUnaryOperator tensorUnaryOperator = StaticHelper.create(new BSpline1CurveSubdivision(manifoldDisplay.geodesicInterface()), cyclic);
+      TensorUnaryOperator tensorUnaryOperator = StaticHelper.create(new BSpline1CurveSubdivision(manifoldDisplay.geodesic()), cyclic);
       pathRender.setCurve(Nest.of(tensorUnaryOperator, control, 8), cyclic).render(geometricLayer, graphics);
     }
     Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));

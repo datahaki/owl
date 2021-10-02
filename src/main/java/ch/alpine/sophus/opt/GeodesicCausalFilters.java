@@ -17,7 +17,7 @@ public enum GeodesicCausalFilters {
     @Override
     public TensorUnaryOperator supply( //
         ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       TensorUnaryOperator geodesicExtrapolation = GeodesicExtrapolation.of(geodesicInterface, smoothingKernel);
       return GeodesicIIRn.of(geodesicExtrapolation, geodesicInterface, radius, alpha);
     }
@@ -26,7 +26,7 @@ public enum GeodesicCausalFilters {
     @Override
     public TensorUnaryOperator supply( //
         ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       TensorUnaryOperator geodesicExtrapolation = GeodesicExtrapolation.of(geodesicInterface, smoothingKernel);
       return GeodesicFIRn.of(geodesicExtrapolation, geodesicInterface, radius, alpha);
     }
@@ -37,7 +37,7 @@ public enum GeodesicCausalFilters {
         ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
       TensorUnaryOperator geodesicExtrapolation = BiinvariantMeanExtrapolation.of( //
           manifoldDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
-      return GeodesicFIRn.of(geodesicExtrapolation, manifoldDisplay.geodesicInterface(), radius, alpha);
+      return GeodesicFIRn.of(geodesicExtrapolation, manifoldDisplay.geodesic(), radius, alpha);
     }
   },
   BIINVARIANT_MEAN_IIR {
@@ -46,7 +46,7 @@ public enum GeodesicCausalFilters {
         ManifoldDisplay manifoldDisplay, ScalarUnaryOperator smoothingKernel, int radius, Scalar alpha) {
       TensorUnaryOperator geodesicExtrapolation = BiinvariantMeanExtrapolation.of( //
           manifoldDisplay.biinvariantMean(), MonomialExtrapolationMask.INSTANCE);
-      return GeodesicIIRn.of(geodesicExtrapolation, manifoldDisplay.geodesicInterface(), radius, alpha);
+      return GeodesicIIRn.of(geodesicExtrapolation, manifoldDisplay.geodesic(), radius, alpha);
     }
   };
 

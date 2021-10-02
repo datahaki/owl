@@ -84,7 +84,7 @@ import ch.alpine.tensor.itp.DeBoor;
     // ---
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, knots, effective);
     RenderQuality.setQuality(graphics);
     Tensor refined = Subdivide.of(RealScalar.ZERO, upper, Math.max(1, control.length() * (1 << levels))).map(scalarTensorFunction);
     {
@@ -116,7 +116,7 @@ import ch.alpine.tensor.itp.DeBoor;
     final Scalar parameter = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()).multiply(upper);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, effective);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, knots, effective);
     DeBoor deBoor = scalarTensorFunction.deBoor(parameter);
     SymLinkImage symLinkImage = SymLinkImages.deboor(deBoor.knots(), deBoor.degree() + 1, parameter);
     return symLinkImage.bufferedImage();

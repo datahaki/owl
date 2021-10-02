@@ -101,7 +101,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
           s2Display.createTangent(xy0, xya.Get(2)).multiply(vscale));
     }));
     POINTS_RENDER_0.show(manifoldDisplay()::matrixLift, getControlPointShape(), control.get(Tensor.ALL, 0)).render(geometricLayer, graphics);
-    Geodesic geodesicInterface = s2Display.geodesicInterface();
+    Geodesic geodesicInterface = s2Display.geodesic();
     { // render tangents as geodesic on sphere
       for (Tensor ctrl : control) {
         Tensor p = ctrl.get(0); // point

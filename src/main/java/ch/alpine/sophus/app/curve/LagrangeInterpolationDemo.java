@@ -79,7 +79,7 @@ import ch.alpine.tensor.sca.N;
     // ---
     int levels = spinnerRefine.getValue();
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Interpolation interpolation = LagrangeInterpolation.of(manifoldDisplay.geodesicInterface(), getGeodesicControlPoints());
+    Interpolation interpolation = LagrangeInterpolation.of(manifoldDisplay.geodesic(), getGeodesicControlPoints());
     Tensor refined = Subdivide.of(0, sequence.length(), 1 << levels).map(interpolation::at);
     Tensor render = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
     Curvature2DRender.of(render, false, geometricLayer, graphics);

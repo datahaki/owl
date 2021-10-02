@@ -116,7 +116,7 @@ import ch.alpine.tensor.sca.win.GaussianWindow;
   private void updateState() {
     Tensor rawdata = gokartPoseData.getPose(spinnerLabelString.getValue(), spinnerLabelLimit.getValue());
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(manifoldDisplay.geodesicInterface(), GaussianWindow.FUNCTION);
+    TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(manifoldDisplay.geodesic(), GaussianWindow.FUNCTION);
     TensorUnaryOperator centerFilter = CenterFilter.of(tensorUnaryOperator, spinnerLabelWidth.getValue());
     Tensor tracked = centerFilter.apply(rawdata);
     int level = spinnerLabelLevel.getIndex();

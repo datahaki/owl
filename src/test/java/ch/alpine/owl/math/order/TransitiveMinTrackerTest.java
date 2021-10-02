@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 import ch.alpine.owl.demo.order.DigitSumDivisibilityPreorder;
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
-import ch.alpine.sophus.math.sample.TensorShuffle;
+import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

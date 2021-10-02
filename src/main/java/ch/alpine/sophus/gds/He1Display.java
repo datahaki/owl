@@ -29,7 +29,7 @@ public enum He1Display implements ManifoldDisplay {
   private static final Tensor SQUARE = CirclePoints.of(4).multiply(RealScalar.of(0.2)).unmodifiable();
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return HeGeodesic.INSTANCE;
   }
 

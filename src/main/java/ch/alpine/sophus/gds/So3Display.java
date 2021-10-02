@@ -48,7 +48,7 @@ public class So3Display implements ManifoldDisplay, Serializable {
   }
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return So3Geodesic.INSTANCE;
   }
 

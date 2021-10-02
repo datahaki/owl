@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import ch.alpine.owl.demo.order.TensorNormTotalPreorder;
-import ch.alpine.sophus.math.sample.TensorShuffle;
+import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

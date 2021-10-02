@@ -55,7 +55,7 @@ import ch.alpine.tensor.itp.DeBoor;
     Scalar parameter = sliderRatio().multiply(upper);
     // ---
     GeodesicBSplineFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(manifoldDisplay.geodesicInterface(), degree, knots, control);
+        GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, knots, control);
     {
       DeBoor deBoor = scalarTensorFunction.deBoor(parameter);
       SymLinkImage symLinkImage = SymLinkImages.deboor(deBoor.knots(), deBoor.degree() + 1, parameter);

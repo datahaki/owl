@@ -69,7 +69,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
     renderControlPoints(geometricLayer, graphics);
     if (4 <= control.length()) {
       ManifoldDisplay manifoldDisplay = manifoldDisplay();
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       Scalar exponent = RationalScalar.of(2 * jSliderExponent.getValue(), jSliderExponent.getMaximum());
       TensorUnaryOperator centripetalKnotSpacing = //
           KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), exponent);

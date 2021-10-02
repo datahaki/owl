@@ -134,7 +134,7 @@ import ch.alpine.tensor.sca.Sqrt;
         .render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
     // ---
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     Tensor cp = getGeodesicControlPoints();
     ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(cp.get(0), cp.get(1));
     graphics.setStroke(STROKE);

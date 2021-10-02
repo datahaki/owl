@@ -86,7 +86,7 @@ import ch.alpine.tensor.sca.Chop;
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     for (Tensor point : sequence) {
       Tensor curve = Subdivide.of(0, 1, 20).map(geodesicInterface.curve(point, mean));
       Path2D path2d = geometricLayer.toPath2D(curve);

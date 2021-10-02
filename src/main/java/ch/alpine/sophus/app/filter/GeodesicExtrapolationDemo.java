@@ -32,8 +32,8 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
     super.updateState();
     // ---
     TensorUnaryOperator tensorUnaryOperator = //
-        GeodesicExtrapolation.of(manifoldDisplay().geodesicInterface(), spinnerKernel.getValue().get());
-    refined = GeodesicExtrapolationFilter.of(tensorUnaryOperator, manifoldDisplay().geodesicInterface(), spinnerRadius.getValue()).apply(control());
+        GeodesicExtrapolation.of(manifoldDisplay().geodesic(), spinnerKernel.getValue().get());
+    refined = GeodesicExtrapolationFilter.of(tensorUnaryOperator, manifoldDisplay().geodesic(), spinnerRadius.getValue()).apply(control());
   }
 
   @Override // from RenderInterface

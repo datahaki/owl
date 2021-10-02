@@ -63,7 +63,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
     private final int index;
 
     public Midpoints() {
-      CurveSubdivision curveSubdivision = ControlMidpoints.of(geodesicDisplay.geodesicInterface());
+      CurveSubdivision curveSubdivision = ControlMidpoints.of(geodesicDisplay.geodesic());
       midpoints = curveSubdivision.string(getGeodesicControlPoints());
       Tensor mouse_dist = Tensor.of(midpoints.stream() //
           .map(geodesicDisplay::toPoint) //

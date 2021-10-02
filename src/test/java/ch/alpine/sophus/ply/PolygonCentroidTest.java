@@ -4,10 +4,10 @@ package ch.alpine.sophus.ply;
 import java.util.Random;
 
 import ch.alpine.owl.math.AssertFail;
-import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;

@@ -76,7 +76,7 @@ import ch.alpine.tensor.sca.N;
       // ---
       Tensor domain = domain(support);
       if (jToggleButton.isSelected()) {
-        ScalarTensorFunction geodesicNeville = InterpolatingPolynomial.of(manifoldDisplay().geodesicInterface(), support).scalarTensorFunction(funceva);
+        ScalarTensorFunction geodesicNeville = InterpolatingPolynomial.of(manifoldDisplay().geodesic(), support).scalarTensorFunction(funceva);
         Tensor basis = domain.map(geodesicNeville);
         {
           Tensor curve = Transpose.of(Tensors.of(domain, basis));

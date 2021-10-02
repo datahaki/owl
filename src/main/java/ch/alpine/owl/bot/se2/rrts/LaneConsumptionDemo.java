@@ -58,7 +58,7 @@ import ch.alpine.tensor.ext.Serialization;
     renderControlPoints(geometricLayer, graphics);
     LaneInterface lane = StableLanes.of( //
         control, //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesicInterface(), degree)::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesic(), degree)::string, //
         levels, width().multiply(RationalScalar.HALF));
     try {
       this.lane = Serialization.copy(lane);

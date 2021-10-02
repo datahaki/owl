@@ -113,12 +113,12 @@ import ch.alpine.tensor.sca.N;
     }
     boolean isTarget = jToggleTarget.isSelected();
     if (isTarget) { // connect origin and target pairs with lines/geodesics
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesic = manifoldDisplay.geodesic();
       graphics.setColor(new Color(128, 128, 128, 255));
       graphics.setStroke(STROKE);
       for (int index = 0; index < origin.length(); ++index) {
         ScalarTensorFunction scalarTensorFunction = //
-            geodesicInterface.curve(origin.get(index), target.get(index));
+            geodesic.curve(origin.get(index), target.get(index));
         Tensor ms = Tensor.of(DOMAIN.map(scalarTensorFunction).stream() //
             .map(manifoldDisplay::toPoint));
         graphics.draw(geometricLayer.toPath2D(ms));

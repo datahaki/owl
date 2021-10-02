@@ -31,28 +31,28 @@ import ch.alpine.tensor.itp.BinaryAverage;
   BSPLINE1 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return new BSpline1CurveSubdivision(midpointInterface);
     }
   },
   BSPLINE2 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      Geodesic parametricCurve = manifoldDisplay.geodesicInterface();
+      Geodesic parametricCurve = manifoldDisplay.geodesic();
       return new BSpline2CurveSubdivision(parametricCurve);
     }
   },
   BSPLINE3 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return new BSpline3CurveSubdivision(splitInterface);
     }
   },
   BSPLINE3LR {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeld3CurveSubdivision.of(midpointInterface);
     }
   },
@@ -67,7 +67,7 @@ import ch.alpine.tensor.itp.BinaryAverage;
   BSPLINE4_S2LO {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return BSpline4CurveSubdivision.split2lo(splitInterface);
     }
   },
@@ -75,7 +75,7 @@ import ch.alpine.tensor.itp.BinaryAverage;
   BSPLINE4_S2HI {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return BSpline4CurveSubdivision.split2hi(splitInterface);
     }
   },
@@ -83,7 +83,7 @@ import ch.alpine.tensor.itp.BinaryAverage;
   BSPLINE4_S3 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return CurveSubdivisionHelper.of(splitInterface);
     }
   },
@@ -98,56 +98,56 @@ import ch.alpine.tensor.itp.BinaryAverage;
   BSPLINE5 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return new BSpline5CurveSubdivision(splitInterface);
     }
   },
   BSPLINE6 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       return BSpline6CurveSubdivision.of(geodesicInterface);
     }
   },
   LR1 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 1);
     }
   },
   LR2 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 2);
     }
   },
   LR3 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 3);
     }
   },
   LR4 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 4);
     }
   },
   LR5 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 5);
     }
   },
   LR6 {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      MidpointInterface midpointInterface = manifoldDisplay.geodesicInterface();
+      MidpointInterface midpointInterface = manifoldDisplay.geodesic();
       return LaneRiesenfeldCurveSubdivision.of(midpointInterface, 6);
     }
   },
@@ -160,49 +160,49 @@ import ch.alpine.tensor.itp.BinaryAverage;
   THREEPOINT {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      BinaryAverage binaryAverage = manifoldDisplay.geodesicInterface();
+      BinaryAverage binaryAverage = manifoldDisplay.geodesic();
       return HormannSabinCurveSubdivision.of(binaryAverage);
     }
   },
   FOURPOINT {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return CurveSubdivisionHelper.fps(splitInterface);
     }
   },
   C2CUBIC {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       return DualC2FourPointCurveSubdivision.cubic(geodesicInterface);
     }
   },
   C2TIGHT {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+      Geodesic geodesicInterface = manifoldDisplay.geodesic();
       return DualC2FourPointCurveSubdivision.tightest(geodesicInterface);
     }
   },
   SIXPOINT {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return new SixPointCurveSubdivision(splitInterface);
     }
   },
   SIXFAR {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return new FarSixPointCurveSubdivision(splitInterface);
     }
   },
   EIGHTPOINT {
     @Override
     public CurveSubdivision of(ManifoldDisplay manifoldDisplay) {
-      SplitInterface splitInterface = manifoldDisplay.geodesicInterface();
+      SplitInterface splitInterface = manifoldDisplay.geodesic();
       return new EightPointCurveSubdivision(splitInterface);
     }
   };

@@ -138,7 +138,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     // graphics.drawString("SIMPL=" + control.length(), 0, 20);
     // graphics.drawString("SIMPL=" + , 0, 30);
     Tensor refined = Nest.of( //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesicInterface(), spinnerLabelDegre.getValue())::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesic(), spinnerLabelDegre.getValue())::string, //
         simplified, 5);
     pathRenderShape.setCurve(refined, false).render(geometricLayer, graphics);
     {

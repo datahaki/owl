@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Round;
     Tensor controlPoints = getGeodesicControlPoints();
     Tensor p = controlPoints.get(0);
     Tensor q = controlPoints.get(1);
-    ScalarTensorFunction scalarTensorFunction = manifoldDisplay.geodesicInterface().curve(p, q);
+    ScalarTensorFunction scalarTensorFunction = manifoldDisplay.geodesic().curve(p, q);
     graphics.setStroke(new BasicStroke(1.5f));
     Tensor shape = manifoldDisplay.shape();
     Tensor domain = Subdivide.of(0, 1, spinnerRefine.getValue());

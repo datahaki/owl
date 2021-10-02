@@ -57,7 +57,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
     RenderQuality.setQuality(graphics);
     // AxesRender.INSTANCE.render(geometricLayer, graphics);
     ManifoldDisplay geodesicDisplay = geodesicDisplaySpinner.getValue();
-    Geodesic geodesicInterface = geodesicDisplay.geodesicInterface();
+    Geodesic geodesicInterface = geodesicDisplay.geodesic();
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     graphics.setColor(COLOR);
     Tensor q = geodesicDisplay.project(xya);

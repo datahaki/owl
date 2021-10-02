@@ -55,7 +55,7 @@ import ch.alpine.tensor.Tensors;
     renderControlPoints(geometricLayer, graphics);
     // ---
     if (Objects.nonNull(symLink)) {
-      Tensor xya = symLink.getPosition(manifoldDisplay.geodesicInterface());
+      Tensor xya = symLink.getPosition(manifoldDisplay.geodesic());
       renderPoints(manifoldDisplay, Tensors.of(xya), geometricLayer, graphics);
     }
   }

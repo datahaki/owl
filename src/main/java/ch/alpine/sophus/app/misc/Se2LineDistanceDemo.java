@@ -55,7 +55,7 @@ import ch.alpine.tensor.sca.Round;
     LieGroup lieGroup = manifoldDisplay.lieGroup();
     Exponential exponential = Se2CoveringExponential.INSTANCE;
     // ---
-    Geodesic geodesicInterface = manifoldDisplay.geodesicInterface();
+    Geodesic geodesicInterface = manifoldDisplay.geodesic();
     Tensor beg = sequence.get(0);
     Tensor end = sequence.get(1);
     ScalarTensorFunction curve = geodesicInterface.curve(beg, end);

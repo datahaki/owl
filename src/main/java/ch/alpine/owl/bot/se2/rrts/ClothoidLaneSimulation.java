@@ -89,7 +89,7 @@ import ch.alpine.tensor.sca.Clips;
         // controlPoints.stream().forEach(System.out::println);
         LaneInterface lane = StableLanes.of( //
             controlPoints, //
-            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesicInterface(), DEGREE)::string, //
+            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesic(), DEGREE)::string, //
             LEVELS, LANE_WIDTH.multiply(RationalScalar.HALF));
         // ---
         Tensor diagonal = Tensors.of( //

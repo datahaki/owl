@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import ch.alpine.owl.demo.order.DigitSumDivisibilityPreorder;
-import ch.alpine.sophus.math.sample.TensorShuffle;
+import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.DiscreteUniformDistribution;

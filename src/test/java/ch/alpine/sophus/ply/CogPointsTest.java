@@ -3,10 +3,10 @@ package ch.alpine.sophus.ply;
 
 import java.util.Arrays;
 
-import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.sca.Sign;
 import junit.framework.TestCase;
 

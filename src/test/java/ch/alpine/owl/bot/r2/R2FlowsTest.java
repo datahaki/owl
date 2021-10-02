@@ -4,10 +4,10 @@ package ch.alpine.owl.bot.r2;
 import java.util.Collection;
 
 import ch.alpine.owl.math.AssertFail;
-import ch.alpine.sophus.ply.d2.ConvexHull;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.lie.r2.ConvexHull;
 import junit.framework.TestCase;
 
 public class R2FlowsTest extends TestCase {
