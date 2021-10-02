@@ -30,6 +30,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.sca.Clips;
 
 /** inverted pendulum */
 /* package */ enum IpDemo {
@@ -48,8 +49,8 @@ import ch.alpine.tensor.alg.Array;
         Tensors.vector(2, 0, 0, 0), //
         Tensors.vector(0.1, 0.1, 1, 1));
     Region<Tensor> region = RegionUnion.wrap(Arrays.asList( //
-        new FreeBoundedIntervalRegion(0, RealScalar.of(-1), RealScalar.of(+3)), // ,
-        new FreeBoundedIntervalRegion(2, RealScalar.of(-2), RealScalar.of(+2)) // ,
+        new FreeBoundedIntervalRegion(0, Clips.interval(-1, +3)), // ,
+        new FreeBoundedIntervalRegion(2, Clips.interval(-2, +2)) // ,
     ));
     PlannerConstraint plannerConstraint = RegionConstraints.timeDependent(region);
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
