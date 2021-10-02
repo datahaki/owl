@@ -4,7 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.ply.d2.Polygons;
+import ch.alpine.sophus.math.d2.Polygons;
 import ch.alpine.tensor.Tensor;
 
 /** check if input tensor is inside a polygon in R^2

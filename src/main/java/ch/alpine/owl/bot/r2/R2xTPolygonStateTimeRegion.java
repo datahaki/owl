@@ -13,7 +13,7 @@ import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.BijectionFamily;
 import ch.alpine.sophus.math.d2.Extract2D;
-import ch.alpine.sophus.ply.d2.Polygons;
+import ch.alpine.sophus.math.d2.Polygons;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;

@@ -11,6 +11,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.sophus.gbc.d2.IterativeCoordinateMatrix;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
@@ -19,7 +20,6 @@ import ch.alpine.sophus.gds.Se2AbstractDisplay;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.opt.LogWeightings;
-import ch.alpine.sophus.ply.d2.IterativeCoordinateMatrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

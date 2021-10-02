@@ -3,11 +3,11 @@ package ch.alpine.sophus.opt;
 
 import java.util.Objects;
 
+import ch.alpine.sophus.gbc.d2.InsideConvexHullCoordinate;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsGenesis;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.math.Genesis;
-import ch.alpine.sophus.ply.d2.InsideConvexHullCoordinate;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;

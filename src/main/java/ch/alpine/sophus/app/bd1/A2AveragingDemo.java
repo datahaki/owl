@@ -87,7 +87,8 @@ import ch.alpine.tensor.sca.Round;
     addSpinnerListener(v -> recompute());
   }
 
-  private final Cache<Tensor, BufferedImage> cache = Cache.of(this::computeImage, 1);
+  private static final int CACHE_SIZE = 1;
+  private final Cache<Tensor, BufferedImage> cache = Cache.of(this::computeImage, CACHE_SIZE);
   private double computeTime = 0;
 
   @Override

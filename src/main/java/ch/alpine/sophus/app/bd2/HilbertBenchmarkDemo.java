@@ -16,7 +16,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
-import ch.alpine.sophus.ply.d2.HilbertPolygon;
+import ch.alpine.sophus.math.d2.HilbertPolygon;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.PadRight;
