@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.r2;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
+// TODO relocate!
 public enum R2ExamplePolygons {
   ;
   public static final Tensor CORNER_TOP_LEFT = Tensors.matrix(new Number[][] { //

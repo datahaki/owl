@@ -15,7 +15,7 @@ import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.WaypointRender;
 import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.owl.math.region.PolygonRegions;
+import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.RegionWithDistance;
@@ -69,7 +69,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     // ---
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
-    Region<Tensor> polygonRegion = PolygonRegions.numeric(VIRTUAL);
+    Region<Tensor> polygonRegion = PolygonRegion.numeric(VIRTUAL);
     Region<Tensor> union = RegionUnion.wrap(Arrays.asList(hangarMap.region, polygonRegion));
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList( //

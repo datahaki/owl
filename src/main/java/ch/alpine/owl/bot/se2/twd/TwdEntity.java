@@ -24,7 +24,7 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

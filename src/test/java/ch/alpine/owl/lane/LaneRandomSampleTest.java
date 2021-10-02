@@ -4,7 +4,7 @@ package ch.alpine.owl.lane;
 import java.io.IOException;
 
 import ch.alpine.sophus.clt.ClothoidBuilders;
-import ch.alpine.sophus.math.d2.Polygons;
+import ch.alpine.sophus.crv.d2.Polygons;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;

@@ -9,7 +9,7 @@ import ch.alpine.owl.data.LinearRasterMap;
 import ch.alpine.owl.data.RasterMap;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeRegionCallback;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

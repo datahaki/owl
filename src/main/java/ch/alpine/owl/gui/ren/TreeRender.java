@@ -15,7 +15,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.VectorScalar;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.DeterminateScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

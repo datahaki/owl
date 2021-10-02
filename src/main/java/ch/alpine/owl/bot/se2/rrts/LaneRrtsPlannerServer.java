@@ -18,7 +18,7 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;

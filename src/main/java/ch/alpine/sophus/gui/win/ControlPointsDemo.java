@@ -19,7 +19,7 @@ import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

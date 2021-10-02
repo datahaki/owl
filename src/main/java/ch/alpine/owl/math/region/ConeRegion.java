@@ -4,7 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 
 import ch.alpine.sophus.hs.r2.Se2Bijection;
-import ch.alpine.sophus.math.d2.ArcTan2D;
+import ch.alpine.sophus.math.ArcTan2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

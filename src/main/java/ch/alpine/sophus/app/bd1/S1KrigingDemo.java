@@ -13,7 +13,7 @@ import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.itp.Kriging;
-import ch.alpine.sophus.math.d2.ArcTan2D;
+import ch.alpine.sophus.math.ArcTan2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

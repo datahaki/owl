@@ -8,7 +8,7 @@ import ch.alpine.owl.math.noise.ContinuousNoiseUtils;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

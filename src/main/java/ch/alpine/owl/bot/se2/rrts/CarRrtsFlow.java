@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

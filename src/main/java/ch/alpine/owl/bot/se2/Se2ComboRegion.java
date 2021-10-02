@@ -10,7 +10,7 @@ import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

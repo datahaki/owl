@@ -8,7 +8,7 @@ import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.crv.d2.Curvature2D;
 import ch.alpine.sophus.lie.so2.So2;
-import ch.alpine.sophus.math.d2.ArcTan2D;
+import ch.alpine.sophus.math.ArcTan2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Accumulate;

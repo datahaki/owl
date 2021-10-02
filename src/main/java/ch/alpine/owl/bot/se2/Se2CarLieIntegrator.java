@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2;
 
 import ch.alpine.sophus.lie.LieIntegrator;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

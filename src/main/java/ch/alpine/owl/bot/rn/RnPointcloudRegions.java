@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.Region;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
