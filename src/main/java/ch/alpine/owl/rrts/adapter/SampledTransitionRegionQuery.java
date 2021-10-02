@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -25,7 +25,7 @@ public class SampledTransitionRegionQuery implements TransitionRegionQuery, Stat
   @Override
   public boolean isDisjoint(Transition transition) {
     return transition.sampled(dt).stream() //
-        .noneMatch(region::isMember);
+        .noneMatch(region::test);
   }
 
   @Override

@@ -14,7 +14,7 @@ public class RnPointRegion implements RegionWithDistance<Tensor> {
   }
 
   @Override // from RegionWithDistance
-  public boolean isMember(Tensor element) {
+  public boolean test(Tensor element) {
     return element.equals(tensor);
   }
 

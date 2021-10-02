@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.rn;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.Regions;
 import ch.alpine.sophus.math.MinMax;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -45,7 +45,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return NdInsideRadius.anyMatch(ndMap, NdCenters.VECTOR_2_NORM.apply(tensor), radius);
   }
 

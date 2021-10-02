@@ -49,8 +49,8 @@ public class Tse2ComboRegion extends Se2ComboRegion {
   }
 
   @Override // from Region
-  public final boolean isMember(Tensor xyav) {
-    return super.isMember(xyav) && linearRegion.isMember(xyav.get(3));
+  public final boolean test(Tensor xyav) {
+    return super.test(xyav) && linearRegion.test(xyav.get(3));
   }
 
   public Clip v_range() {

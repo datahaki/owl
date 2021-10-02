@@ -4,6 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.util.Objects;
 
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.opt.nd.NdBox;
 
@@ -28,7 +29,7 @@ public class BoxRegion implements Region<Tensor>, Serializable {
   }
 
   @Override
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return ndBox.isInside(tensor);
   }
 }

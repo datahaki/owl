@@ -10,10 +10,10 @@ import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
@@ -40,8 +40,8 @@ import ch.alpine.tensor.sca.Sign;
   }
 
   @Override // from Region
-  public boolean isMember(Tensor element) {
-    return ballRegion.isMember(Extract2D.FUNCTION.apply(element));
+  public boolean test(Tensor element) {
+    return ballRegion.test(Extract2D.FUNCTION.apply(element));
   }
 
   @Override // from CostFunction

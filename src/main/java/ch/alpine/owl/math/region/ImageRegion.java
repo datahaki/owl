@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -52,7 +53,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return flipYXTensorInterp.at(tensor);
   }
 

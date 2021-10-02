@@ -8,9 +8,9 @@ import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.win.MouseGoal;
 import ch.alpine.owl.gui.win.OwlyAnimationFrame;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

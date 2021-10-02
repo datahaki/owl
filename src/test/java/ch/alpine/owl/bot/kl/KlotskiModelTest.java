@@ -31,6 +31,6 @@ public class KlotskiModelTest extends TestCase {
     Tensor s = Tensors.fromString( //
         "{{0, 0, 1}, {1, 0, 0}, {1, 0, 3}, {1, 2, 0}, {2, 2, 1}, {3, 2, 3}, {3, 3, 1}, {3, 4, 2}, {3, 3, 3}, {3, 4, 0}, {3, 4, 3}}");
     assertEquals(next, s);
-    assertFalse(KlotskiObstacleRegion.fromSize(klotskiProblem.size()).isMember(next));
+    assertFalse(KlotskiObstacleRegion.fromSize(klotskiProblem.size()).test(next));
   }
 }

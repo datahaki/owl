@@ -3,12 +3,14 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
+import ch.alpine.sophus.math.Region;
+
 /** class design stolen from java.util.Collections */
 public enum Regions {
   ;
   private static class EmptyRegion<T> implements Region<T>, Serializable {
     @Override // from Region
-    public boolean isMember(T type) {
+    public boolean test(T type) {
       return false;
     }
   }
@@ -24,7 +26,7 @@ public enum Regions {
   // ---
   private static class CompleteRegion<T> implements Region<T>, Serializable {
     @Override
-    public boolean isMember(T type) {
+    public boolean test(T type) {
       return true;
     }
   }

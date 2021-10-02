@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
 
@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.VectorQ;
   }
 
   @Override // from Region
-  public boolean isMember(Tensor x) {
+  public boolean test(Tensor x) {
     return x.get(0).equals(stone);
   }
 }

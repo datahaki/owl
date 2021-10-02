@@ -11,6 +11,6 @@ import junit.framework.TestCase;
 public class R2BubblesTest extends TestCase {
   public void testSerializable() throws ClassNotFoundException, IOException {
     ImplicitFunctionRegion copy = Serialization.copy(R2Bubbles.INSTANCE);
-    assertFalse(copy.isMember(Tensors.vector(1, 2)));
+    assertFalse(copy.test(Tensors.vector(1, 2)));
   }
 }

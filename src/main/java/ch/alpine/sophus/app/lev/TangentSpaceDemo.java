@@ -18,7 +18,7 @@ import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.app.bd2.GenesisDequeProperties;
-import ch.alpine.sophus.crv.d2.Polygons;
+import ch.alpine.sophus.crv.d2.OriginEnclosureQ;
 import ch.alpine.sophus.gbc.it.Evaluation;
 import ch.alpine.sophus.gbc.it.GenesisDeque;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -69,7 +69,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
         pathRender.setCurve(hull, true);
         pathRender.render(geometricLayer, graphics);
       }
-      if (Polygons.isInside(levers2)) {
+      if (OriginEnclosureQ.INSTANCE.test(levers2)) {
         GenesisDeque dequeGenesis = (GenesisDeque) iterativeAffineProperties.genesis();
         Deque<Evaluation> deque = dequeGenesis.deque(levers2);
         {

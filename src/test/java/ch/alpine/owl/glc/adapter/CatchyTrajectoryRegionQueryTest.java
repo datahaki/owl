@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Optional;
 
 import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

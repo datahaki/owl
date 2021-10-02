@@ -36,12 +36,12 @@ public class ImageAreaTest extends TestCase {
   public void testTensorArea() {
     Tensor image = Tensors.fromString("{{1, 0, 0, 1, 0}}");
     ImageRegion imageRegion = new ImageRegion(image, Tensors.vector(5, 1), true);
-    assertTrue(imageRegion.isMember(Tensors.vector(0.5, 0.5)));
-    assertFalse(imageRegion.isMember(Tensors.vector(1.5, 0.5)));
-    assertFalse(imageRegion.isMember(Tensors.vector(2.5, 0.5)));
-    assertTrue(imageRegion.isMember(Tensors.vector(3.5, 0.5)));
-    assertFalse(imageRegion.isMember(Tensors.vector(4.5, 0.5)));
-    assertTrue(imageRegion.isMember(Tensors.vector(5.5, 0.5)));
+    assertTrue(imageRegion.test(Tensors.vector(0.5, 0.5)));
+    assertFalse(imageRegion.test(Tensors.vector(1.5, 0.5)));
+    assertFalse(imageRegion.test(Tensors.vector(2.5, 0.5)));
+    assertTrue(imageRegion.test(Tensors.vector(3.5, 0.5)));
+    assertFalse(imageRegion.test(Tensors.vector(4.5, 0.5)));
+    assertTrue(imageRegion.test(Tensors.vector(5.5, 0.5)));
     Area area = ImageArea.fromTensor(image);
     assertTrue(area.contains(new Point2D.Double(0.5, 0.5)));
     assertFalse(area.contains(new Point2D.Double(1.5, 0.5)));

@@ -30,8 +30,8 @@ public final class GoalAdapter implements GoalInterface, Serializable {
   }
 
   @Override // from TrajectoryRegionQuery
-  public boolean isMember(StateTime stateTime) {
-    return trajectoryRegionQuery.isMember(stateTime);
+  public boolean test(StateTime stateTime) {
+    return trajectoryRegionQuery.test(stateTime);
   }
 
   @Override // from CostFunction

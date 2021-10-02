@@ -37,7 +37,7 @@ public class ConeRegion implements RegionWithDistance<Tensor>, Serializable {
   }
 
   @Override // from Region<Tensor>
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     Tensor local = inverse.apply(tensor);
     local.set(Abs.FUNCTION, 1); // normalize y coordinate
     Scalar angle = ArcTan2D.of(local); // non-negative

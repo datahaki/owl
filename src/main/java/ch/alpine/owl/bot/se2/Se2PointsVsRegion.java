@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 
 /** used in se2 animation demo to check if footprint of vehicle intersects with obstacle region */
@@ -23,8 +23,8 @@ import ch.alpine.tensor.Tensor;
   /** @param tensor of the form (x, y, theta)
    * @return true if any of the points subject to the given transformation are in region */
   @Override
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     Se2Bijection se2Bijection = new Se2Bijection(tensor);
-    return points.stream().map(se2Bijection.forward()).anyMatch(region::isMember);
+    return points.stream().map(se2Bijection.forward()).anyMatch(region::test);
   }
 }

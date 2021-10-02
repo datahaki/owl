@@ -35,7 +35,7 @@ public enum MinTimeEmptyGoal implements GoalInterface {
   }
 
   @Override // from TrajectoryRegionQuery
-  public final boolean isMember(StateTime stateTime) {
+  public final boolean test(StateTime stateTime) {
     return false;
   }
 }

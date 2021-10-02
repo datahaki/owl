@@ -9,6 +9,6 @@ public class R2ImageRegionsTest extends TestCase {
     R2ImageRegionWrap r2irw = R2ImageRegions._0F5C_2182;
     // TODO for some reason this stopped being true (fedora?)
     // assertTrue(r2irw.region().isMember(Tensors.vector(1, 2)));
-    assertFalse(r2irw.region().isMember(Tensors.vector(7, 5)));
+    assertFalse(r2irw.region().test(Tensors.vector(7, 5)));
   }
 }

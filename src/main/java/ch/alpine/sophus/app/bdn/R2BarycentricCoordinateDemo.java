@@ -19,7 +19,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.crv.d2.Polygons;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.R2Display;
@@ -90,6 +90,7 @@ import ch.alpine.tensor.sca.Sign;
     BiinvariantMean biinvariantMean = manifoldDisplay.biinvariantMean();
     if (2 < controlPoints.length()) {
       Tensor domain = Tensor.of(controlPoints.stream().map(manifoldDisplay::toPoint));
+      PolygonRegion polygonRegion = new PolygonRegion(domain);
       RenderQuality.setQuality(graphics);
       Tensor hull = ConvexHull.of(domain);
       {
@@ -115,7 +116,7 @@ import ch.alpine.tensor.sca.Sign;
         int c1 = 0;
         for (Tensor y : sY) {
           Tensor px = Tensors.of(x, y);
-          if (jToggleEntire.isSelected() || Polygons.isInside(domain, px)) {
+          if (jToggleEntire.isSelected() || polygonRegion.test(px)) {
             Tensor weights = tensorUnaryOperator.apply(px);
             wgs.set(weights, c1, c0);
             boolean anyNegative = weights.stream().map(Scalar.class::cast).anyMatch(Sign::isNegative);

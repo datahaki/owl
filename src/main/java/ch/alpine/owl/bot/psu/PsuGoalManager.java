@@ -10,8 +10,8 @@ import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -52,7 +52,7 @@ import ch.alpine.tensor.sca.Sign;
   }
 
   @Override // from Region<Tensor>
-  public boolean isMember(Tensor x) {
+  public boolean test(Tensor x) {
     return Sign.isNegative(coordinateWrap.distance(x, center).subtract(radius));
   }
 }

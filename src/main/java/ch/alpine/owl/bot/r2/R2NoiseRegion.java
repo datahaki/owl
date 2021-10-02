@@ -6,8 +6,8 @@ import java.io.Serializable;
 import ch.alpine.owl.math.noise.ContinuousNoise;
 import ch.alpine.owl.math.noise.ContinuousNoiseUtils;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -30,7 +30,7 @@ public class R2NoiseRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return Scalars.lessThan(threshold, CONTINUOUS_NOISE.apply(Extract2D.FUNCTION.apply(tensor)));
   }
 }

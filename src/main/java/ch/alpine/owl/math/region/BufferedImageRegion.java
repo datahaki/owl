@@ -10,6 +10,7 @@ import java.io.Serializable;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.win.AffineTransforms;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.Inverse;
 
@@ -41,7 +42,7 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
   }
 
   @Override // from Region
-  public final boolean isMember(Tensor vector) {
+  public final boolean test(Tensor vector) {
     return isMember( //
         vector.Get(0).number().doubleValue(), //
         vector.Get(1).number().doubleValue());

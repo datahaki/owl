@@ -3,6 +3,7 @@ package ch.alpine.owl.math.region;
 
 import java.util.Arrays;
 
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -20,7 +21,7 @@ public class ImageRegionTest extends TestCase {
       for (int y = 0; y < 128; ++y) {
         assertEquals( //
             Scalars.nonZero(image.Get(y, x)), //
-            region.isMember(Tensors.vector(x, 127 - y)));
+            region.test(Tensors.vector(x, 127 - y)));
       }
   }
 
@@ -32,7 +33,7 @@ public class ImageRegionTest extends TestCase {
       for (int y = 0; y < 128; ++y) {
         assertEquals( //
             Scalars.nonZero(image.Get(y, x)), //
-            region.isMember(Tensors.vector(x, 127 - y, 7)));
+            region.test(Tensors.vector(x, 127 - y, 7)));
       }
   }
 
@@ -40,7 +41,7 @@ public class ImageRegionTest extends TestCase {
     Tensor image = ResourceData.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
-    assertFalse(region.isMember(Tensors.vector(-100, -2000, 3)));
+    assertFalse(region.test(Tensors.vector(-100, -2000, 3)));
   }
 
   public void testOutsideTrue() {
@@ -49,7 +50,7 @@ public class ImageRegionTest extends TestCase {
     Tensor range = Tensors.vector(179, 128);
     ImageRegion region = new ImageRegion(image, range, true);
     assertEquals(region.range(), range);
-    assertTrue(region.isMember(Tensors.vector(-100, -2000, 3)));
+    assertTrue(region.test(Tensors.vector(-100, -2000, 3)));
     assertEquals(region.origin(), Array.zeros(2));
   }
 }

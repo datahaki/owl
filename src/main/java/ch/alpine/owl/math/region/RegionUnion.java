@@ -6,6 +6,8 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Objects;
 
+import ch.alpine.sophus.math.Region;
+
 /** RegionUnion is a region that defines membership
  * to be member in either of a collection of {@link Region}s
  * 
@@ -33,8 +35,8 @@ public class RegionUnion<T> implements Region<T>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(T element) {
+  public boolean test(T element) {
     return collection.stream() //
-        .anyMatch(region -> region.isMember(element));
+        .anyMatch(region -> region.test(element));
   }
 }

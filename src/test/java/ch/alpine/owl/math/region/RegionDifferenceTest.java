@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.math.region;
 
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -11,8 +12,8 @@ public class RegionDifferenceTest extends TestCase {
     Region<Tensor> region = RegionDifference.of( //
         new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), //
         new BallRegion(Tensors.vector(1, 0), RealScalar.ONE));
-    assertTrue(region.isMember(Tensors.vector(-0.5, 0)));
-    assertFalse(region.isMember(Tensors.vector(0.5, 0)));
-    assertFalse(region.isMember(Tensors.vector(2.5, 0)));
+    assertTrue(region.test(Tensors.vector(-0.5, 0)));
+    assertFalse(region.test(Tensors.vector(0.5, 0)));
+    assertFalse(region.test(Tensors.vector(2.5, 0)));
   }
 }

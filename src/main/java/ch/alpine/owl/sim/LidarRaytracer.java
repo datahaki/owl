@@ -39,7 +39,7 @@ public class LidarRaytracer implements Serializable {
     TensorUnaryOperator forward = se2Bijection.forward();
     return Tensor.of(localRays.stream().parallel() //
         .map(ray -> ray.stream() //
-            .filter(local -> trajectoryRegionQuery.isMember(new StateTime(forward.apply(local), time))) //
+            .filter(local -> trajectoryRegionQuery.test(new StateTime(forward.apply(local), time))) //
             .findFirst() //
             .map(Vector2Norm::of) //
             .orElse(max_range)));

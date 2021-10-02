@@ -9,10 +9,10 @@ import java.util.function.Supplier;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.BijectionFamily;
 import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.ply.EllipsePoints;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -42,7 +42,7 @@ public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderIn
   }
 
   @Override // from Region
-  public boolean isMember(StateTime stateTime) {
+  public boolean test(StateTime stateTime) {
     Tensor state = stateTime.state().extract(0, invert.length());
     Scalar time = stateTime.time();
     TensorUnaryOperator rev = bijectionFamily.inverse(time);

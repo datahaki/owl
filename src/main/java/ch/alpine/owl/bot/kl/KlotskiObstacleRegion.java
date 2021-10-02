@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 
@@ -24,7 +24,7 @@ import ch.alpine.tensor.Tensor;
   }
 
   @Override
-  public boolean isMember(Tensor state) {
+  public boolean test(Tensor state) {
     int[][] array = new int[sx][sy];
     for (Tensor stone : state) {
       int index = Scalars.intValueExact(stone.Get(0));

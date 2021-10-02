@@ -36,11 +36,11 @@ import ch.alpine.tensor.nrm.Vector1Norm;
 
   @Override // from TrajectoryRegionQuery
   public Optional<StateTime> firstMember(List<StateTime> trajectory) {
-    return trajectory.stream().filter(this::isMember).findFirst();
+    return trajectory.stream().filter(this::test).findFirst();
   }
 
   @Override
-  public boolean isMember(StateTime x) {
-    return klotskiGoalRegion.isMember(x.state());
+  public boolean test(StateTime x) {
+    return klotskiGoalRegion.test(x.state());
   }
 }

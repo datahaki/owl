@@ -3,7 +3,6 @@ package ch.alpine.owl.glc.adapter;
 
 import java.util.Collection;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
@@ -11,6 +10,7 @@ import ch.alpine.owl.math.state.StateTimeRegionCallback;
 import ch.alpine.owl.math.state.TimeDependentRegion;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 
 /** wrapper for obstacle and goal queries */
@@ -41,8 +41,8 @@ public class CatchyTrajectoryRegionQuery extends SimpleTrajectoryRegionQuery imp
   }
 
   @Override // from TrajectoryRegionQuery
-  public final boolean isMember(StateTime stateTime) {
-    boolean isMember = region.isMember(stateTime);
+  public final boolean test(StateTime stateTime) {
+    boolean isMember = region.test(stateTime);
     if (isMember)
       stateTimeRegionCallback.notify_isMember(stateTime);
     return isMember;

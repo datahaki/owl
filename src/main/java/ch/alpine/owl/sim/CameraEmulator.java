@@ -63,7 +63,7 @@ public class CameraEmulator implements RenderInterface {
       int x = 0;
       int y = 0;
       for (Tensor probe : localPoints) {
-        if (!raytraceQuery.isMember(new StateTime(forward.apply(probe), stateTime.time())))
+        if (!raytraceQuery.test(new StateTime(forward.apply(probe), stateTime.time())))
           graphics.fillRect(resolution - y - 1, resolution - x - 1, 1, 1);
         ++y;
         if (y == resolution) {

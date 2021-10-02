@@ -10,10 +10,10 @@ import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
 import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -38,11 +38,11 @@ public class R2xTImageStateTimeRegion implements Region<StateTime>, RenderInterf
   }
 
   @Override // from Region
-  public boolean isMember(StateTime stateTime) {
+  public boolean test(StateTime stateTime) {
     Tensor state = Extract2D.FUNCTION.apply(stateTime.state());
     Scalar time = stateTime.time();
     TensorUnaryOperator rev = rigidFamily.inverse(time);
-    return imageRegion.isMember(rev.apply(state));
+    return imageRegion.test(rev.apply(state));
   }
 
   @Override // from RenderInterface

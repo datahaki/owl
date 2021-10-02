@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

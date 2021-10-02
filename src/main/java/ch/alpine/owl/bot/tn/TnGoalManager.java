@@ -10,8 +10,8 @@ import ch.alpine.owl.glc.adapter.GoalAdapter;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Ramp;
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return Scalars.isZero(minCostToGoal(tensor));
   }
 

@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -26,7 +26,7 @@ public abstract class MouseShapeRender implements RenderInterface {
     Tensor xya = getSe2();
     StateTime stateTime = new StateTime(xya, getTime());
     geometricLayer.pushMatrix(GfxMatrix.of(xya));
-    Color color = region.isMember(stateTime) //
+    Color color = region.test(stateTime) //
         ? new Color(255, 96, 96, 128)
         : new Color(0, 128, 255, 192);
     graphics.setColor(color);

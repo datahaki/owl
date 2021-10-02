@@ -7,6 +7,7 @@ import java.util.Set;
 import ch.alpine.java.lang.ClassDiscovery;
 import ch.alpine.java.lang.ClassPaths;
 import ch.alpine.java.lang.ClassVisitor;
+import ch.alpine.sophus.math.Region;
 import junit.framework.TestCase;
 
 public class RegionTest extends TestCase {

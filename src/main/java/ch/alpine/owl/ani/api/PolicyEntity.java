@@ -28,7 +28,7 @@ public abstract class PolicyEntity implements AnimationInterface, RenderInterfac
   protected abstract Tensor shape();
 
   private boolean obstacleQuery_isDisjoint(StateTime stateTime) {
-    return Objects.isNull(obstacleQuery) || !obstacleQuery.isMember(stateTime);
+    return Objects.isNull(obstacleQuery) || !obstacleQuery.test(stateTime);
   }
 
   @Override // from RenderInterface

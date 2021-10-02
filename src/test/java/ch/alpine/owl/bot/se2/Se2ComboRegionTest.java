@@ -16,9 +16,9 @@ public class Se2ComboRegionTest extends TestCase {
 
   public void testIsMember() {
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
-    assertTrue(se2ComboRegion.isMember(Tensors.vector(1, 2, 3)));
-    assertFalse(se2ComboRegion.isMember(Tensors.vector(-1, 2, 3)));
-    assertFalse(se2ComboRegion.isMember(Tensors.vector(1, 2, 3.2)));
+    assertTrue(se2ComboRegion.test(Tensors.vector(1, 2, 3)));
+    assertFalse(se2ComboRegion.test(Tensors.vector(-1, 2, 3)));
+    assertFalse(se2ComboRegion.test(Tensors.vector(1, 2, 3.2)));
   }
 
   public void testCone() {
