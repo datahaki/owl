@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.gui.win.AbstractDemo;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.img.ColorDataGradients;
 

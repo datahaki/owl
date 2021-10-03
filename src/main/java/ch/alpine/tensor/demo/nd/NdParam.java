@@ -8,10 +8,13 @@ import ch.alpine.tensor.Scalar;
 
 public class NdParam {
   @FieldInteger
+  public Scalar leafSizeMax = RealScalar.of(5);
+  @FieldInteger
   @FieldClip(min = "1", max = "10000")
   public Scalar count = RealScalar.of(1000);
   @FieldInteger
-  public Scalar dep = RealScalar.of(5);
+  @FieldClip(min = "1", max = "20")
+  public Scalar multi = RealScalar.of(10);
   @FieldInteger
   public Scalar pCount = RealScalar.of(4);
   public Boolean nearest = false;

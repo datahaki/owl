@@ -13,7 +13,7 @@ import java.util.List;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.gui.win.AbstractDemo;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

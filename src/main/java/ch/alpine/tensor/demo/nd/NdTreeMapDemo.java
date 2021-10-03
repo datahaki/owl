@@ -8,13 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.gui.FieldsEditor;
-import ch.alpine.sophus.gui.win.AbstractDemo;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -55,9 +56,14 @@ public class NdTreeMapDemo extends AbstractDemo {
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2).multiply(RealScalar.of(0.3)));
     Box actual = MinMax.box(points);
-    NdMap<Void> ndMap = NdTreeMap.of(actual, ndParam.dep.number().intValue());
-    for (Tensor point : points)
-      ndMap.insert(point, null);
+    NdMap<Void> ndMap = NdTreeMap.of(actual, ndParam.leafSizeMax.number().intValue());
+    Random random = new Random(1);
+    int multi = ndParam.multi.number().intValue();
+    for (Tensor point : points) {
+      int count = 1 + random.nextInt(multi);
+      for (int index = 0; index < count; ++index)
+        ndMap.insert(point, null);
+    }
     Timing timing = Timing.started();
     CenterNorms centerNorms = ndParam.centerNorms;
     NdCenterInterface ndCenterInterface = centerNorms.ndCenterInterface(xya.extract(0, 2));
@@ -75,7 +81,7 @@ public class NdTreeMapDemo extends AbstractDemo {
       collection = graphicSpherical.list();
     }
     double seconds = timing.seconds();
-    graphics.drawString(String.format("%d %6.4f", collection.size(), seconds), 0, 40);
+    graphics.drawString(String.format("%d %d %6.4f", ndMap.size(), collection.size(), seconds), 0, 40);
     graphics.setColor(new Color(255, 0, 0, 128));
     if (ndParam.nearest) {
       Optional<Scalar> optional = collection.stream() //

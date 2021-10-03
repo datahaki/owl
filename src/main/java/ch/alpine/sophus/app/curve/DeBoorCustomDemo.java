@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.sophus.clt.ClothoidBuilder;
@@ -21,7 +22,6 @@ import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.ren.PointsRender;
-import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

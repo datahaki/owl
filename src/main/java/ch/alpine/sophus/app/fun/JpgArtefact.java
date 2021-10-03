@@ -19,7 +19,7 @@ import javax.swing.event.ChangeListener;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.FieldsEditor;
-import ch.alpine.sophus.gui.win.AbstractDemo;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 

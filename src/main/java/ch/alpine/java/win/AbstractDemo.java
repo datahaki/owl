@@ -1,7 +1,6 @@
 // code by jph
-package ch.alpine.sophus.gui.win;
+package ch.alpine.java.win;
 
-import ch.alpine.java.win.TimerFrame;
 import ch.alpine.owl.gui.RenderInterface;
 
 public abstract class AbstractDemo implements RenderInterface {

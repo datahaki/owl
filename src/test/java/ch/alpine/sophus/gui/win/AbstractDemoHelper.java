@@ -4,6 +4,7 @@ package ch.alpine.sophus.gui.win;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 

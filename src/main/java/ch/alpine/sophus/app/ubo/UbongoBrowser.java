@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.gui.win.AbstractDemo;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.img.ImageRotate;

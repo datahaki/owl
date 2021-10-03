@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.util.DemoInterface;
@@ -21,7 +22,6 @@ import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
 import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
 import ch.alpine.sophus.gui.ren.PathRender;
-import ch.alpine.sophus.gui.win.AbstractDemo;
 import ch.alpine.sophus.lie.se2c.Se2CoveringGeodesic;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
