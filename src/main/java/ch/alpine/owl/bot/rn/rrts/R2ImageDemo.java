@@ -23,16 +23,16 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum R2ImageDemo {
   ;
   public static void main(String[] args) throws Exception {
     Tensor range = Tensors.vector(7, 7);
-    NdBox ndBox = NdBox.of(Array.zeros(2), range);
+    Box box = Box.of(Array.zeros(2), range);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", range, false);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery( //
         imageRegion, RealScalar.of(0.1));
     // ---
@@ -43,7 +43,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
     owlyFrame.geometricComponent.setOffset(60, 477);
     owlyFrame.jFrame.setBounds(100, 100, 550, 550);
     owlyFrame.addBackground(RegionRenders.create(imageRegion));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     int frame = 0;
     while (frame++ < 20 && owlyFrame.jFrame.isVisible()) {
       for (int c = 0; c < 50; ++c)

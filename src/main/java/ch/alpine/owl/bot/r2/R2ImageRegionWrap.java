@@ -11,7 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ImageFormat;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
@@ -43,7 +43,7 @@ public class R2ImageRegionWrap {
     return range;
   }
 
-  public NdBox ndBox() {
-    return NdBox.of(range.map(Scalar::zero), range);
+  public Box box() {
+    return Box.of(range.map(Scalar::zero), range);
   }
 }

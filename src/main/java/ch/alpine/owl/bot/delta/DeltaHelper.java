@@ -12,13 +12,13 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum DeltaHelper {
   ;
   public static VectorFieldRender vectorFieldRender(StateSpaceModel stateSpaceModel, Tensor range, Region<Tensor> region, Scalar factor) {
     VectorFieldRender vectorFieldRender = new VectorFieldRender();
-    RandomSampleInterface sampler = BoxRandomSample.of(NdBox.of(Tensors.vector(0, 0), range));
+    RandomSampleInterface sampler = BoxRandomSample.of(Box.of(Tensors.vector(0, 0), range));
     Tensor points = Tensor.of(RandomSample.of(sampler, 1000).stream().filter(p -> !region.test(p)));
     vectorFieldRender.uv_pairs = //
         VectorFields.of(stateSpaceModel, points, Array.zeros(2), factor);

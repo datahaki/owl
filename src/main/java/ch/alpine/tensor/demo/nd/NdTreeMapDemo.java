@@ -23,7 +23,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
@@ -32,8 +32,8 @@ import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
 public class NdTreeMapDemo extends AbstractDemo {
-  private final NdBox ndBox = NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
-  private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(ndBox), 5000);
+  private final Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
+  private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(box), 5000);
   private final NdParam ndParam = new NdParam();
 
   public NdTreeMapDemo() {
@@ -54,7 +54,8 @@ public class NdTreeMapDemo extends AbstractDemo {
     }
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2).multiply(RealScalar.of(0.3)));
-    NdMap<Void> ndMap = NdTreeMap.of(MinMax.ndBox(points), ndParam.dep.number().intValue());
+    Box actual = MinMax.box(points);
+    NdMap<Void> ndMap = NdTreeMap.of(actual, ndParam.dep.number().intValue());
     for (Tensor point : points)
       ndMap.insert(point, null);
     Timing timing = Timing.started();
@@ -94,6 +95,12 @@ public class NdTreeMapDemo extends AbstractDemo {
       Tensor point = ndMatch.location();
       Point2D point2d = geometricLayer.toPoint2D(point);
       graphics.fillRect((int) point2d.getX() - 1, (int) point2d.getY() - 1, 4, 4);
+    }
+    {
+      Tensor mxy = xya.extract(0, 2);
+      Tensor spc = actual.clip(mxy);
+      graphics.setColor(new Color(0, 128, 255, 255));
+      graphics.draw(geometricLayer.toLine2D(mxy, spc));
     }
   }
 

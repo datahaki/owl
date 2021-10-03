@@ -21,19 +21,19 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.AnimationWriter;
 import ch.alpine.tensor.io.GifAnimationWriter;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum R2ExpandDemo {
   ;
   public static void main(String[] args) throws Exception {
     int wid = 7;
-    NdBox ndBox = NdBox.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
+    Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("r2rrts.gif"), 250, TimeUnit.MILLISECONDS)) {
       OwlyFrame owlyFrame = OwlyGui.start();

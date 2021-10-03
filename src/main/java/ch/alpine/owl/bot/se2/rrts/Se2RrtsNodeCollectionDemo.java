@@ -28,14 +28,14 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
-  private static final NdBox ND_BOX_R2 = NdBox.of( //
+  private static final Box ND_BOX_R2 = Box.of( //
       Tensors.vector(-5, -5), //
       Tensors.vector(+5, +5));
-  private static final NdBox ND_BOX_SE2 = NdBox.of( //
+  private static final Box ND_BOX_SE2 = Box.of( //
       Tensors.vector(-5, -5, -Math.PI), //
       Tensors.vector(+5, +5, +Math.PI));
   // ---

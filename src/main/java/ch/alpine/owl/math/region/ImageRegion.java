@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.MatrixQ;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** only the first two coordinates are tested for membership
  * a location is available if the grayscale value of the pixel equals 0
@@ -73,7 +73,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
     return range.map(Scalar::zero);
   }
 
-  public NdBox ndBox() {
-    return NdBox.of(origin(), range());
+  public Box box() {
+    return Box.of(origin(), range());
   }
 }

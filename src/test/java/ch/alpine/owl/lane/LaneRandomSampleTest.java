@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
@@ -25,7 +26,7 @@ public class LaneRandomSampleTest extends TestCase {
     Distribution rotDist = UniformDistribution.of(Clips.absoluteOne());
     RandomSampleInterface randomSampleInterface = Serialization.copy(LaneRandomSample.of(laneInterface, rotDist));
     Tensor tensor = RandomSample.of(randomSampleInterface);
-    new PolygonRegion(laneInterface.rightBoundary()).test(tensor);
-    new PolygonRegion(laneInterface.leftBoundary()).test(tensor);
+    new PolygonRegion(Tensor.of(laneInterface.rightBoundary().stream().map(Extract2D.FUNCTION))).test(tensor);
+    new PolygonRegion(Tensor.of(laneInterface.leftBoundary().stream().map(Extract2D.FUNCTION))).test(tensor);
   }
 }

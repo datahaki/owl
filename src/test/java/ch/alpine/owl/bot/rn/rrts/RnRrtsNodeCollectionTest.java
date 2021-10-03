@@ -19,14 +19,14 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 import junit.framework.TestCase;
 
 public class RnRrtsNodeCollectionTest extends TestCase {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
 
   public void testSimple() {
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Box.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     Rrts rrts = new DefaultRrts(TRANSITION_SPACE, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 0).get();
@@ -44,9 +44,9 @@ public class RnRrtsNodeCollectionTest extends TestCase {
   }
 
   public void testQuantity() {
-    NdBox ndBox = NdBox.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
+    Box box = Box.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     for (int count = 0; count < 30; ++count) {
       Tensor tensor = RandomSample.of(randomSampleInterface);
       rrtsNodeCollection.insert(RrtsNode.createRoot(tensor, RealScalar.ONE));

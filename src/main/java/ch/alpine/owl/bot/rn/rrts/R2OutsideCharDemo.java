@@ -22,14 +22,14 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum R2OutsideCharDemo {
   ;
   public static void main(String[] args) throws Exception {
-    NdBox ndBox = NdBox.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
-    Region<Tensor> imageRegion = R2ImageRegions.outside_0b36(ndBox.max());
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(ndBox);
+    Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
+    Region<Tensor> imageRegion = R2ImageRegions.outside_0b36(box.max());
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(imageRegion, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
@@ -38,7 +38,7 @@ import ch.alpine.tensor.opt.nd.NdBox;
     owlyFrame.geometricComponent.setOffset(60, 477);
     owlyFrame.jFrame.setBounds(100, 100, 550, 550);
     owlyFrame.addBackground(RegionRenders.create(imageRegion));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ndBox);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     int frame = 0;
     while (frame++ < 20 && owlyFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)

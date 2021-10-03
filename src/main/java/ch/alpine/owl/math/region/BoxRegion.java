@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** region is open
  * coordinates on the boundary are inside */
@@ -15,21 +15,21 @@ public class BoxRegion implements Region<Tensor>, Serializable {
    * @param radius for each coordinate
    * @return */
   public static Region<Tensor> fromCenterAndRadius(Tensor center, Tensor radius) {
-    return new BoxRegion(NdBox.of( //
+    return new BoxRegion(Box.of( //
         center.subtract(radius), //
         center.add(radius)));
   }
 
   // ---
-  private final NdBox ndBox;
+  private final Box box;
 
-  /** @param ndBox non-null */
-  public BoxRegion(NdBox ndBox) {
-    this.ndBox = Objects.requireNonNull(ndBox);
+  /** @param box non-null */
+  public BoxRegion(Box box) {
+    this.box = Objects.requireNonNull(box);
   }
 
   @Override
   public boolean test(Tensor tensor) {
-    return ndBox.isInside(tensor);
+    return box.isInside(tensor);
   }
 }

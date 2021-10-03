@@ -13,7 +13,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -38,7 +38,7 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
       ScalarUnaryOperator variogram, Tensor sequence, Tensor values) {
     Tensor lbounds = Entrywise.min().of(sequence);
     Tensor ubounds = Entrywise.max().of(sequence);
-    NdMap<Scalar> ndMap = NdTreeMap.of(NdBox.of(lbounds, ubounds), 2);
+    NdMap<Scalar> ndMap = NdTreeMap.of(Box.of(lbounds, ubounds), 2);
     for (int index = 0; index < values.length(); ++index)
       ndMap.insert(sequence.get(index), values.Get(index));
     return new Inner(ndMap, variogram);

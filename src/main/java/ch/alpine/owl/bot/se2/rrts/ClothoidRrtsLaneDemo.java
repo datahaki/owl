@@ -53,7 +53,7 @@ import ch.alpine.tensor.sca.Clips;
         new SampledTransitionRegionQuery(region, RealScalar.of(0.05)), //
         new ClothoidCurvatureQuery(Clips.absolute(5.)));
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, Math.PI / 4), RealScalar.ZERO);
-    ClothoidLaneRrtsEntity entity = new ClothoidLaneRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.ndBox(), true);
+    ClothoidLaneRrtsEntity entity = new ClothoidLaneRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box(), true);
     LaneConsumer laneConsumer = new SimpleLaneConsumer(entity, null, Collections.singleton(entity));
     laneConsumptionDemo = new LaneConsumptionDemo(laneConsumer);
     laneConsumptionDemo.setControlPointsSe2(Tensors.of(stateTime.state()));

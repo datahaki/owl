@@ -28,7 +28,7 @@ import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.lie.r2.ConvexHull;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.sca.Abs;
 
 public class RnDbscanDemo extends AbstractDemo {
@@ -43,7 +43,7 @@ public class RnDbscanDemo extends AbstractDemo {
     jScrollPane.setPreferredSize(new Dimension(200, 200));
     container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
-    pointsAll = RandomSample.of(new BiasedBoxRandomSample(NdBox.of(Tensors.vector(0, 0), Tensors.vector(10, 10)), 3), 5000);
+    pointsAll = RandomSample.of(new BiasedBoxRandomSample(Box.of(Tensors.vector(0, 0), Tensors.vector(10, 10)), 3), 5000);
   }
 
   @Override

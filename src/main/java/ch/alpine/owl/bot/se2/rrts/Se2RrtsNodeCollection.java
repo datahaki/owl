@@ -14,7 +14,7 @@ import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.opt.nd.NdBox;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -26,10 +26,10 @@ public class Se2RrtsNodeCollection implements RrtsNodeCollection {
   private final NdMap<RrtsNode> ndMap;
   private final int factor;
 
-  public Se2RrtsNodeCollection(TransitionSpace transitionSpace, NdBox ndBox, int factor) {
+  public Se2RrtsNodeCollection(TransitionSpace transitionSpace, Box box, int factor) {
     this.transitionSpace = Objects.requireNonNull(transitionSpace);
-    Integers.requireEquals(ndBox.dimensions(), 2);
-    ndMap = NdTreeMap.of(ndBox);
+    Integers.requireEquals(box.dimensions(), 2);
+    ndMap = NdTreeMap.of(box);
     this.factor = factor;
   }
 

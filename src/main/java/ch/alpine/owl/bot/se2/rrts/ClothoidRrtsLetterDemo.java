@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Clips;
         new ClothoidCurvatureQuery(Clips.absolute(5.)));
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, Math.PI / 4), RealScalar.ZERO);
     ClothoidRrtsEntity clothoidRrtsEntity = //
-        new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.ndBox());
+        new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box());
     owlyAnimationFrame.addBackground(RegionRenders.create(region));
     MouseGoal.simpleRrts(owlyAnimationFrame, clothoidRrtsEntity, null);
     owlyAnimationFrame.add(clothoidRrtsEntity);

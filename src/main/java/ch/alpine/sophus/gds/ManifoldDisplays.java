@@ -99,6 +99,12 @@ public enum ManifoldDisplays {
       H2Display.INSTANCE, //
       R2Display.INSTANCE);
   // ---
+  public static final List<ManifoldDisplay> SE2C_SE2_S2_R2 = Arrays.asList( //
+      Se2CoveringDisplay.INSTANCE, //
+      Se2Display.INSTANCE, //
+      S2Display.INSTANCE, //
+      R2Display.INSTANCE);
+  // ---
   public static final List<ManifoldDisplay> SE2C_SE2_SPD2_S2_Rn = Arrays.asList( //
       Se2CoveringDisplay.INSTANCE, //
       Se2Display.INSTANCE, //

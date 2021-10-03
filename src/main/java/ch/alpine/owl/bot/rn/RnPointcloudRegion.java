@@ -39,7 +39,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   private RnPointcloudRegion(Tensor points, Scalar radius) {
     this.points = points.unmodifiable();
     this.radius = radius;
-    ndMap = NdTreeMap.of(MinMax.ndBox(points));
+    ndMap = NdTreeMap.of(MinMax.box(points));
     for (Tensor point : points)
       ndMap.insert(point, null);
   }
