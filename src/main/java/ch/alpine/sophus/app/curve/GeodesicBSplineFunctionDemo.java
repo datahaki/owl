@@ -13,7 +13,7 @@ import ch.alpine.sophus.app.sym.SymLinkImages;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
-import ch.alpine.sophus.gui.win.DubinsGenerator;
+import ch.alpine.sophus.opt.DubinsGenerator;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

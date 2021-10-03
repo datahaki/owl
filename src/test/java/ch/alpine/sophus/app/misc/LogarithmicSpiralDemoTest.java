@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.app.spi;
+package ch.alpine.sophus.app.misc;
 
 import ch.alpine.sophus.gui.win.AbstractDemoHelper;
 import junit.framework.TestCase;

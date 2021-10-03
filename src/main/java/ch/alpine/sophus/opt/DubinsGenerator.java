@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.gui.win;
+package ch.alpine.sophus.opt;
 
 import ch.alpine.sophus.lie.se2c.Se2CoveringDifferences;
 import ch.alpine.sophus.lie.se2c.Se2CoveringIntegrator;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.gui.win;
+package ch.alpine.sophus.opt;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
