@@ -9,8 +9,8 @@ import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.EllipsoidRegion;
+import ch.alpine.sophus.crv.d2.EllipsePoints;
 import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.ply.EllipsePoints;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

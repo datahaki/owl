@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.ply;
+package ch.alpine.sophus.opt;
 
 import java.util.stream.IntStream;
 

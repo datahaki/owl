@@ -6,6 +6,7 @@ import java.util.Random;
 
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.crv.d2.StarPoints;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsManifold;
@@ -22,7 +23,6 @@ import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
-import ch.alpine.sophus.ply.StarPoints;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

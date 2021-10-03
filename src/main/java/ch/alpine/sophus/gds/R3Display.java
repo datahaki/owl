@@ -2,7 +2,7 @@
 package ch.alpine.sophus.gds;
 
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.ply.Arrowhead;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 

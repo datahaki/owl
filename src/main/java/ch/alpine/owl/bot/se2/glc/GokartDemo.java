@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Color;
 
-import ch.alpine.sophus.ply.Arrowhead;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.tensor.Tensor;
 
 abstract class GokartDemo extends Se2Demo {

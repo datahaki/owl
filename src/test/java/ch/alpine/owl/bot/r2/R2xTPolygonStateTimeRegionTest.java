@@ -2,10 +2,10 @@
 package ch.alpine.owl.bot.r2;
 
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.So2Family;
 import ch.alpine.sophus.math.BijectionFamily;
 import ch.alpine.sophus.math.Region;
-import ch.alpine.sophus.ply.CogPoints;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -2,10 +2,10 @@
 package ch.alpine.sophus.app.bdn;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.opt.LogWeightings;
-import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

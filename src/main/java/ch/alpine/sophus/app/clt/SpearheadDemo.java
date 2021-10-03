@@ -9,7 +9,7 @@ import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
-import ch.alpine.sophus.ply.Spearhead;
+import ch.alpine.sophus.opt.Spearhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

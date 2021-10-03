@@ -1,6 +1,8 @@
 // code by jph
-package ch.alpine.sophus.ply;
+package ch.alpine.sophus.opt;
 
+import ch.alpine.sophus.crv.d2.PolygonArea;
+import ch.alpine.sophus.opt.Spearhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

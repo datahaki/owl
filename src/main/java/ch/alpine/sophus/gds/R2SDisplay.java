@@ -3,6 +3,7 @@ package ch.alpine.sophus.gds;
 
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsManifold;
@@ -17,7 +18,6 @@ import ch.alpine.sophus.lie.r2s.R2SManifold;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
-import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 

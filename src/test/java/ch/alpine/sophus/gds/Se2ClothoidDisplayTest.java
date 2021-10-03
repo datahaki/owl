@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
+import ch.alpine.sophus.crv.d2.Arrowhead;
+import ch.alpine.sophus.crv.d2.PolygonArea;
 import ch.alpine.sophus.hs.r2.Se2Parametric;
-import ch.alpine.sophus.ply.Arrowhead;
-import ch.alpine.sophus.ply.PolygonArea;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

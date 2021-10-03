@@ -4,11 +4,11 @@ package ch.alpine.sophus.gds;
 import java.io.Serializable;
 
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieTransport;
-import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
