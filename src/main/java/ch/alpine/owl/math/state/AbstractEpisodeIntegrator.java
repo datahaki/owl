@@ -4,7 +4,7 @@ package ch.alpine.owl.math.state;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;

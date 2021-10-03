@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.IntegerLog2;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.StateTime;

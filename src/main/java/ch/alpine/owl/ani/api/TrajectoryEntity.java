@@ -4,7 +4,7 @@ package ch.alpine.owl.ani.api;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.EpisodeIntegrator;

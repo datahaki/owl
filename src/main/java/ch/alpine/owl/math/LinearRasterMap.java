@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.data;
+package ch.alpine.owl.math;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Floor;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.data;
+package ch.alpine.owl.math;
 
 import java.io.Serializable;
 import java.util.Collection;

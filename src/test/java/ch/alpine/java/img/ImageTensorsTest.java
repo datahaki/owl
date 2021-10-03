@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.data.img;
+package ch.alpine.java.img;
 
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

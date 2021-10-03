@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;

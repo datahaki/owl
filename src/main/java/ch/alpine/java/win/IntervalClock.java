@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.data;
+package ch.alpine.java.win;
 
 /** measure length of intervals between invocations of methods
  * {@link #seconds()} and {@link #hertz()} */

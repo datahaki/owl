@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

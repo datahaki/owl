@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.function.BiFunction;
 
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.tse2.Tse2StateSpaceModel;
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.PlannerConstraint;

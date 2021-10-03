@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
-import ch.alpine.owl.data.LinearRasterMap;
-import ch.alpine.owl.data.RasterMap;
+import ch.alpine.owl.math.LinearRasterMap;
+import ch.alpine.owl.math.RasterMap;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeRegionCallback;
 import ch.alpine.sophus.math.Extract2D;

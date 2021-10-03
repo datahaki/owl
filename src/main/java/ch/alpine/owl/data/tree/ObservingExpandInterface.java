@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.tensor.Scalar;
 
 public interface ObservingExpandInterface<T extends StateCostNode> extends ExpandInterface<T> {

@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;

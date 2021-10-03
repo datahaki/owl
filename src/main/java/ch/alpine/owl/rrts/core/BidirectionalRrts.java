@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import ch.alpine.owl.data.Lists;
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.tensor.Tensor;

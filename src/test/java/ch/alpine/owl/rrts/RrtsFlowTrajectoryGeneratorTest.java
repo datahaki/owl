@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
@@ -15,7 +16,6 @@ import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
