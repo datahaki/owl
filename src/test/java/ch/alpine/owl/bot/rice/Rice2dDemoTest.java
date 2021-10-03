@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.List;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.GlcTrajectories;
@@ -11,8 +13,6 @@ import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.HeuristicAssert;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
@@ -33,7 +33,7 @@ public class Rice2dDemoTest extends TestCase {
     glcExpand.findAny(1000); // 153 0.368319228
     assertTrue(timing.seconds() < 1.5);
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
+    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
@@ -57,7 +57,7 @@ public class Rice2dDemoTest extends TestCase {
     glcExpand.untilOptimal(1000); // 220 0.283809941
     assertTrue(timing.seconds() < 1.5);
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
+    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //

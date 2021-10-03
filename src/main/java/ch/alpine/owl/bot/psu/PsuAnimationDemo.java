@@ -1,14 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.VectorFields;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
@@ -25,8 +25,8 @@ import ch.alpine.tensor.alg.Array;
 
 public class PsuAnimationDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //

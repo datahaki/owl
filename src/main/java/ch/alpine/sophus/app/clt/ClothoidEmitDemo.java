@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.sophus.clt.ClothoidContext;

@@ -1,14 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2ExamplePolygons;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
 import ch.alpine.sophus.math.BijectionFamily;
@@ -19,8 +19,8 @@ import ch.alpine.tensor.sca.Sin;
 
 public class Se2xTPolygonDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
     owlyAnimationFrame.add(carxTEntity);
     // ---

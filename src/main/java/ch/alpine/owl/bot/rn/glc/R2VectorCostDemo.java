@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.rn.glc;
 import java.awt.Dimension;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageCostFunction;
 import ch.alpine.owl.bot.r2.WaypointDistanceCost;
@@ -12,10 +13,9 @@ import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.Regions;
@@ -32,8 +32,8 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
  * which gives an incentive to stay clear of obstacles */
 public class R2VectorCostDemo implements DemoInterface {
   @Override // from DemoInterface
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //

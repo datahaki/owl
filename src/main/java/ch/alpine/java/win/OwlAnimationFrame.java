@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.win;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;
 
-public class OwlyAnimationFrame extends TimerFrame {
+public class OwlAnimationFrame extends TimerFrame {
   private static final Dimension RECORDING = new Dimension(400, 400);
   private static final int MARGIN = 100; // 170;
   // ---
@@ -52,7 +52,7 @@ public class OwlyAnimationFrame extends TimerFrame {
             GeometricLayer geometricLayer = new GeometricLayer(geometricComponent.getModel2Pixel());
             Point2D now = geometricLayer.toPoint2D(stateTime.state());
             // Point now = geometricComponent.toPixel();
-            if (Objects.isNull(point) || MARGIN < PointUtil.inftyNorm(point, now))
+            if (Objects.isNull(point) || MARGIN < inftyNorm(point, now))
               point = now;
             Dimension dimension = RECORDING;
             BufferedImage bufferedImage = //
@@ -74,7 +74,7 @@ public class OwlyAnimationFrame extends TimerFrame {
     }
   };
 
-  public OwlyAnimationFrame() {
+  public OwlAnimationFrame() {
     { // periodic task for integration
       TimerTask timerTask = new TimerTask() {
         TimeKeeper timeKeeper = new TimeKeeper();
@@ -104,5 +104,9 @@ public class OwlyAnimationFrame extends TimerFrame {
       RenderInterface renderInterface = (RenderInterface) animationInterface;
       geometricComponent.addRenderInterface(renderInterface);
     }
+  }
+
+  private static double inftyNorm(Point2D p1, Point2D p2) {
+    return Math.max(Math.abs(p1.getX() - p2.getX()), Math.abs(p1.getY() - p2.getY()));
   }
 }

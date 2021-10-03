@@ -1,18 +1,18 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.win;
 
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 
-public enum OwlyGui {
+public enum OwlGui {
   ;
-  public static OwlyFrame start() {
-    OwlyFrame owlyFrame = new OwlyFrame();
+  public static OwlFrame start() {
+    OwlFrame owlyFrame = new OwlFrame();
     owlyFrame.jFrame.setVisible(true);
     return owlyFrame;
   }
 
-  public static OwlyFrame glc(TrajectoryPlanner trajectoryPlanner) {
-    OwlyFrame owlyFrame = new OwlyFrame();
+  public static OwlFrame glc(TrajectoryPlanner trajectoryPlanner) {
+    OwlFrame owlyFrame = new OwlFrame();
     owlyFrame.setGlc(trajectoryPlanner);
     owlyFrame.jFrame.setVisible(true);
     return owlyFrame;

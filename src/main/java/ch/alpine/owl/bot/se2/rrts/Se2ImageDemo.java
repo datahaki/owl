@@ -1,10 +1,10 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Clips;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, unionTransitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 5).get();
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(60, 477);
     owlyFrame.jFrame.setBounds(100, 100, 550, 550);
     owlyFrame.addBackground(RegionRenders.create(imageRegion));

@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import javax.swing.JToggleButton;
 
+import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
@@ -18,7 +19,6 @@ import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.data.TimeKeeper;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;

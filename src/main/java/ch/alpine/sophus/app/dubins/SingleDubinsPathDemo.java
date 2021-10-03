@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.dubins.DubinsPath;

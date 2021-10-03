@@ -3,10 +3,10 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.alg.Array;
@@ -21,7 +21,7 @@ enum Se2rExpandDemo {
     TrajectoryPlanner trajectoryPlanner = Se2rAnimateDemo.trajectoryPlanner();
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(169, 71);
     owlyFrame.jFrame.setBounds(100, 100, 300, 200);
     try (AnimationWriter animationWriter = //

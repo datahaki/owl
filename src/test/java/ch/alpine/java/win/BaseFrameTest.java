@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.win;
 
 import junit.framework.TestCase;
 

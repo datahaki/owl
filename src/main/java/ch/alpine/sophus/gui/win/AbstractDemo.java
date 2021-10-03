@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophus.gui.win;
 
+import ch.alpine.java.win.TimerFrame;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.TimerFrame;
 
 public abstract class AbstractDemo implements RenderInterface {
   public final TimerFrame timerFrame = new TimerFrame();

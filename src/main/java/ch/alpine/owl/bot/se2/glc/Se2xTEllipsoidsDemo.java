@@ -3,15 +3,15 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.Arrays;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.rn.glc.R2xTEllipsoidsAnimationDemo;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
@@ -31,8 +31,8 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 30));
 
   @Override
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(0, 0, 1), RealScalar.ZERO));
     owlyAnimationFrame.add(carxTEntity);
     // ---

@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.delta;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -14,9 +15,8 @@ import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.bot.util.TrajectoryR2TranslationFamily;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
+  public OwlAnimationFrame start() {
     Tensor image = ResourceData.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = RealScalar.of(-.05); // direction and strength of river flow
@@ -68,7 +68,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList(new TimeInvariantRegion(region), region1, region2, region3, region4))));
     // ---
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     owlyAnimationFrame.add(trajectoryEntity);
     MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
     owlyAnimationFrame.addBackground(RegionRenders.create(region));

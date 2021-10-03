@@ -1,14 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTImageStateTimeRegion;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
@@ -44,7 +44,7 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
   }
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlyAnimationFrame owlyAnimationFrame) {
+  TwdEntity configure(OwlAnimationFrame owlyAnimationFrame) {
     owlyAnimationFrame.add(twdxTEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //

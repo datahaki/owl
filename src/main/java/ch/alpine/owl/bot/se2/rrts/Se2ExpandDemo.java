@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.opt.nd.Box;
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures(name), 250, TimeUnit.MILLISECONDS)) {
-      OwlyFrame owlyFrame = OwlyGui.start();
+      OwlFrame owlyFrame = OwlGui.start();
       owlyFrame.geometricComponent.setOffset(42, 456);
       owlyFrame.jFrame.setBounds(100, 100, 500, 500);
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);

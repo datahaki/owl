@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -21,8 +23,6 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.EllipsoidRegion;
@@ -76,7 +76,7 @@ import ch.alpine.tensor.ext.Timing;
     // 555 1.149214356 with parallel integration of trajectories
     System.out.println(glcExpand.getExpandCount() + " " + timing.seconds());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
+    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
     if (optional.isPresent()) {
       GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);

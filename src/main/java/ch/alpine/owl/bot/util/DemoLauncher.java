@@ -19,7 +19,7 @@ import javax.swing.WindowConstants;
 import ch.alpine.java.lang.ClassDiscovery;
 import ch.alpine.java.lang.ClassPaths;
 import ch.alpine.java.lang.ClassVisitor;
-import ch.alpine.owl.gui.win.BaseFrame;
+import ch.alpine.java.win.BaseFrame;
 
 /** scans repository for classes that implement {@link DemoInterface}
  * DemoLauncher creates a gui that allows to start these classes. */

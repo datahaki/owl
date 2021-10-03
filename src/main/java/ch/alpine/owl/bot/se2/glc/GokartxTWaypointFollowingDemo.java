@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.util.RegionRenders;
@@ -13,7 +14,6 @@ import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.WaypointRender;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.RegionWithDistance;
@@ -37,7 +37,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
   private static final Tensor VIRTUAL = Tensors.fromString("{{38, 39}, {42, 47}, {51, 52}, {46, 43}}");
 
   @Override
-  protected void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
     // {50.800, 55.733, -0.314}
     final StateTime initial = new StateTime(Tensors.vector(35.733, 38.267, 1.885), RealScalar.of(0.0));
     GokartxTEntity gokartEntity = new GokartxTEntity(initial) {

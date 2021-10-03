@@ -5,13 +5,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.ren.WaypointRender;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.RegionWithDistance;
@@ -33,7 +33,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
   private static final Tensor VIRTUAL = Tensors.fromString("{{38, 39}, {42, 47}, {51, 52}, {46, 43}}");
 
   @Override
-  protected void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
     GokartEntity gokartEntity = new GokartEntity(initial) {
       @Override

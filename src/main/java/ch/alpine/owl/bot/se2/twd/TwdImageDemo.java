@@ -1,15 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
@@ -29,7 +29,7 @@ public class TwdImageDemo extends AbstractTwdDemo {
   private final TrajectoryRegionQuery trajectoryRegionQuery = SimpleTrajectoryRegionQuery.timeInvariant(region);
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlyAnimationFrame owlyAnimationFrame) {
+  TwdEntity configure(OwlAnimationFrame owlyAnimationFrame) {
     TwdEntity twdEntity = TwdEntity.createJ2B2(new StateTime(Tensors.vector(7, 5, 0), RealScalar.ZERO));
     twdEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
     owlyAnimationFrame.add(twdEntity);

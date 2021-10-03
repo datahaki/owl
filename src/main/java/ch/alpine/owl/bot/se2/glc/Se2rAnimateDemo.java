@@ -4,6 +4,8 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.Arrays;
 import java.util.Collection;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -17,8 +19,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.region.HyperplaneRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
@@ -60,7 +60,7 @@ enum Se2rAnimateDemo {
   public static void main(String[] args) throws Exception {
     TrajectoryPlanner trajectoryPlanner = trajectoryPlanner();
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(169, 71);
     owlyFrame.jFrame.setBounds(100, 100, 300, 200);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);

@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -33,8 +35,6 @@ import ch.alpine.owl.gui.ren.DomainQueueMapRender;
 import ch.alpine.owl.gui.ren.EdgeRenders;
 import ch.alpine.owl.gui.ren.EtaRender;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -102,7 +102,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     // glcExpand.findAny(1000);
     glcExpand.untilOptimal(1000);
     System.out.println("Execution Time: " + timing.seconds());
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     owlyAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
     owlyAnimationFrame.addBackground(new EtaRender(eta));
     owlyAnimationFrame.addBackground(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), eta));

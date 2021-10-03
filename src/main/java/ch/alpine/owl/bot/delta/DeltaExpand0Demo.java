@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.tensor.RealScalar;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta
@@ -21,7 +21,7 @@ import ch.alpine.tensor.RealScalar;
     // mintime w/. heuristic requires 2844 expands
     DeltaExample deltaDemo = new DeltaExample(RealScalar.of(-.25));
     // ---
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(33, 416);
     owlyFrame.addBackground(RegionRenders.create(DeltaExample.REGION));
     owlyFrame.addBackground(RegionRenders.create(DeltaExample.SPHERICAL_REGION));

@@ -7,8 +7,8 @@ import java.util.List;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.ref.FieldPanel;
+import ch.alpine.java.win.BaseFrame;
 import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.gui.win.BaseFrame;
 import ch.alpine.sophus.gui.win.AbstractDemo;
 
 public abstract class GeodesicDisplayDemo extends AbstractDemo implements DemoInterface {

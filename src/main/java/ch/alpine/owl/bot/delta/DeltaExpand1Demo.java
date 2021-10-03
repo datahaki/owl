@@ -3,10 +3,10 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.AnimationWriter;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
   ;
   public static void main(String[] args) throws Exception {
     DeltaExample deltaDemo = new DeltaExample(RealScalar.of(0.5));
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.addBackground(RegionRenders.create(DeltaExample.REGION));
     owlyFrame.addBackground(RegionRenders.create(DeltaExample.SPHERICAL_REGION));
     // owlyFrame.addBackground(RenderElements.create(plannerConstraint));

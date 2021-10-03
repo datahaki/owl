@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -8,8 +9,7 @@ import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -24,9 +24,9 @@ import ch.alpine.tensor.Tensors;
  * which gives an incentive to stay clear of obstacles */
 public class R2ImageAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
-  public OwlyAnimationFrame start() {
+  public OwlAnimationFrame start() {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //

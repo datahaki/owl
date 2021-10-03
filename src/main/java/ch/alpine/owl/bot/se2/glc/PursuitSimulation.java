@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.gui.ren.GridRender;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.qty.Degree;
 
 /* package */ class PursuitSimulation extends Se2Demo {
   @Override
-  protected void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
     List<TrajectorySample> trajectory = new ArrayList<>();
     int t = 0;
     for (Tensor angle : Subdivide.of(Degree.of(0), Degree.of(360), 100)) {

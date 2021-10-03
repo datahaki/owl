@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.win;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,7 +19,7 @@ import javax.swing.WindowConstants;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.ResourceData;
 
-/** base class for {@link OwlyFrame} and {@link OwlyAnimationFrame} */
+/** base class for {@link OwlFrame} and {@link OwlAnimationFrame} */
 public class BaseFrame {
   protected static final String IMAGE_FORMAT = "png";
   // ---

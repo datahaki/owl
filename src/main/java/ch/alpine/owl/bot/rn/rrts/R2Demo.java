@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum R2Demo {
   ;
-  static OwlyFrame show() {
+  static OwlFrame show() {
     int wid = 7;
     Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
@@ -33,7 +33,7 @@ import ch.alpine.tensor.opt.nd.Box;
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(42, 456);
     owlyFrame.jFrame.setBounds(100, 100, 500, 500);
     owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);

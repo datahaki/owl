@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
@@ -82,7 +82,7 @@ import ch.alpine.tensor.opt.nd.Box;
       }
     };
     // ---
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.geometricComponent.setOffset(60, 477);
     owlyFrame.jFrame.setBounds(100, 100, 550, 550);
     owlyFrame.addBackground(RegionRenders.create(imageRegion));

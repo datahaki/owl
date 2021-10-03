@@ -1,5 +1,5 @@
 // code by jph and jl
-package ch.alpine.owl.gui.win;
+package ch.alpine.java.win;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,13 +20,13 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.tensor.ext.Serialization;
 
-public class OwlyFrame extends BaseFrame {
+public class OwlFrame extends BaseFrame {
   private boolean replay = false;
   private int replayIndex = 0;
   private final List<TrajectoryPlanner> backup = new ArrayList<>();
   private final JSlider jSlider = new JSlider();
 
-  public OwlyFrame() {
+  public OwlFrame() {
     {
       JToggleButton jToggleButton = new JToggleButton("Replay");
       jToggleButton.setToolTipText("stops LiveFeed and goes to Replaymode");

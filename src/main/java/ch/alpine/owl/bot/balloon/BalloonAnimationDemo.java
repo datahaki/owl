@@ -1,14 +1,14 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -22,8 +22,8 @@ import ch.alpine.tensor.io.ResourceData;
 
 public class BalloonAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     owlyAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{7.5, 0, 100}, {0, -7.5, 800}, {0, 0, 1}}"));
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(BalloonEntity.SPEED_MAX);
     BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithoutUnits();

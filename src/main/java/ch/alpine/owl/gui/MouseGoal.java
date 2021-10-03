@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.win;
+package ch.alpine.owl.gui;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import ch.alpine.java.win.GeometricComponent;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.RrtsPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -19,12 +21,12 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 public enum MouseGoal {
   ;
   public static void simple( //
-      OwlyAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
+      OwlAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
     simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint, Collections.emptyList());
   }
 
   public static void simple( //
-      OwlyAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
+      OwlAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<GlcPlannerCallback> _callbacks) {
     List<GlcPlannerCallback> callbacks = new ArrayList<>(_callbacks);
     if (trajectoryEntity instanceof GlcPlannerCallback)
@@ -35,12 +37,12 @@ public enum MouseGoal {
   }
 
   public static void simpleRrts( //
-      OwlyAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
+      OwlAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
     simpleRrts(owlyAnimationFrame, trajectoryEntity, plannerConstraint, Collections.emptyList());
   }
 
   public static void simpleRrts( //
-      OwlyAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
+      OwlAnimationFrame owlyAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<RrtsPlannerCallback> _callbacks) {
     List<RrtsPlannerCallback> callbacks = new ArrayList<>(_callbacks);
     if (trajectoryEntity instanceof RrtsPlannerCallback)

@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.opt.nd.Box;
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("r2rrts.gif"), 250, TimeUnit.MILLISECONDS)) {
-      OwlyFrame owlyFrame = OwlyGui.start();
+      OwlFrame owlyFrame = OwlGui.start();
       owlyFrame.geometricComponent.setOffset(42, 456);
       owlyFrame.jFrame.setBounds(100, 100, 500, 500);
       int frame = 0;

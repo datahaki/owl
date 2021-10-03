@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rn.glc;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.rn.RnPointcloudRegions;
@@ -10,8 +11,7 @@ import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -27,12 +27,12 @@ import ch.alpine.tensor.io.ResourceData;
  * which gives an incentive to stay clear of obstacles */
 public class R2NdTreeAnimationDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
+  public OwlAnimationFrame start() {
     String path = "/io/track0_100.png";
     BufferedImage bufferedImage = ResourceData.bufferedImage(path);
     Region<Tensor> imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
     Region<Tensor> region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.3));
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //

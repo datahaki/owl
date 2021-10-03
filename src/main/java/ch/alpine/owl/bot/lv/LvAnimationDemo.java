@@ -3,14 +3,14 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.VectorFields;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
@@ -29,8 +29,8 @@ import ch.alpine.tensor.opt.nd.Box;
 
 public class LvAnimationDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     Collection<Tensor> controls = LvControls.create(2);
     Integrator INTEGRATOR = RungeKutta45Integrator.INSTANCE;

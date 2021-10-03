@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.sat;
 
 import java.util.Collection;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -12,8 +14,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
@@ -46,7 +46,7 @@ import ch.alpine.tensor.Tensors;
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(start, RealScalar.ZERO));
     // ---
-    OwlyFrame owlyFrame = OwlyGui.start();
+    OwlFrame owlyFrame = OwlGui.start();
     owlyFrame.addBackground(RegionRenders.create(obstacleRegion));
     owlyFrame.addBackground(RegionRenders.create(goalRegion));
     // ---

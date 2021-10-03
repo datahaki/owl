@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2CoveringWrap;
@@ -23,7 +24,6 @@ import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.CoordinateWrap;
 import ch.alpine.owl.math.StateTimeTensorFunction;
 import ch.alpine.owl.math.region.BallRegion;
@@ -90,7 +90,7 @@ enum Se2WrapDemo {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlyGui.glc(trajectoryPlanner);
+    OwlGui.glc(trajectoryPlanner);
   }
 
   public static void main(String[] args) {

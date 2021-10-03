@@ -7,11 +7,11 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
+import ch.alpine.java.gfx.AffineTransforms;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.data.img.ImageArea;
 import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.AffineTransforms;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.hs.r2.Se2Bijection;

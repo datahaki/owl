@@ -1,16 +1,16 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
@@ -31,7 +31,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
       new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
 
   @Override // from Se2CarDemo
-  protected final void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected final void configure(OwlAnimationFrame owlyAnimationFrame) {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, 1), RealScalar.ZERO);
     CarEntity carEntity = new CarEntity( //

@@ -1,5 +1,5 @@
 // code by jph, gjoel
-package ch.alpine.owl.gui.win;
+package ch.alpine.owl.thr;
 
 import java.util.Collection;
 

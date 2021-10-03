@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
@@ -12,8 +12,8 @@ import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class AbstractTwdDemo implements DemoInterface {
   @Override
-  public final OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public final OwlAnimationFrame start() {
+    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
     owlyAnimationFrame.geometricComponent.setOffset(50, 700);
     TwdEntity twdEntity = configure(owlyAnimationFrame);
     {
@@ -36,7 +36,7 @@ import ch.alpine.tensor.Tensor;
     return owlyAnimationFrame;
   }
 
-  abstract TwdEntity configure(OwlyAnimationFrame owlyAnimationFrame);
+  abstract TwdEntity configure(OwlAnimationFrame owlyAnimationFrame);
 
   abstract Region<StateTime> getRegion();
 }

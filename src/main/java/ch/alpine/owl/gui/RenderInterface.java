@@ -4,7 +4,7 @@ package ch.alpine.owl.gui;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.win.GeometricComponent;
+import ch.alpine.java.win.GeometricComponent;
 
 /** capability for drawing in {@link GeometricComponent} */
 @FunctionalInterface
