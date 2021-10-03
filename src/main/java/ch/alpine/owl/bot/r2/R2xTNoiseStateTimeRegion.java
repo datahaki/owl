@@ -3,12 +3,12 @@ package ch.alpine.owl.bot.r2;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.noise.ContinuousNoise;
-import ch.alpine.owl.math.noise.ContinuousNoiseUtils;
-import ch.alpine.owl.math.noise.SimplexContinuousNoise;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.math.noise.ContinuousNoise;
+import ch.alpine.sophus.math.noise.ContinuousNoiseUtils;
+import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
