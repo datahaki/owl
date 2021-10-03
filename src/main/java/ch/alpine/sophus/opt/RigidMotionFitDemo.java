@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.tensor.demo;
+package ch.alpine.sophus.opt;
 
 import java.awt.Color;
 import java.awt.Dimension;

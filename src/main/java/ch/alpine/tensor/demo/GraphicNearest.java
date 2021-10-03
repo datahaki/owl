@@ -1,23 +1,22 @@
 // code by jph
-package ch.alpine.tensor.demo.nd;
+package ch.alpine.tensor.demo;
 
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
-import ch.alpine.tensor.opt.nd.NdCollectRadius;
+import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdEntry;
 
-public class GraphicSpherical<V> extends NdCollectRadius<V> {
+public class GraphicNearest<V> extends NdCollectNearest<V> {
   private final GeometricLayer geometricLayer;
   private final Graphics2D graphics;
 
-  protected GraphicSpherical( //
-      NdCenterInterface ndCenterInterface, Scalar radius, //
+  protected GraphicNearest( //
+      NdCenterInterface ndCenterInterface, int limit, //
       GeometricLayer geometricLayer, Graphics2D graphics) {
-    super(ndCenterInterface, radius);
+    super(ndCenterInterface, limit);
     this.geometricLayer = geometricLayer;
     this.graphics = graphics;
   }

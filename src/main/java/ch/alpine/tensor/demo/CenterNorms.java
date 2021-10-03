@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.tensor.demo.nd;
+package ch.alpine.tensor.demo;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
