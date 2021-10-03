@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

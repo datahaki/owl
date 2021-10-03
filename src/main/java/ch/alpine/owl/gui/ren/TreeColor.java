@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.gui.ren;
 
-import ch.alpine.owl.gui.ColorLookup;
+import ch.alpine.java.win.ColorLookup;
 import ch.alpine.tensor.img.ColorDataIndexed;
 
 /** helper class to adapt the node and edge colors of a tree

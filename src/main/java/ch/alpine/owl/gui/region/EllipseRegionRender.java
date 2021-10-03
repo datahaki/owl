@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.sophus.crv.d2.EllipsePoints;

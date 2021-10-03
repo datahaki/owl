@@ -1,12 +1,9 @@
 // code by jph, gjoel
-package ch.alpine.owl.thr;
+package ch.alpine.owl.ani.api;
 
 import java.util.Collection;
 import java.util.List;
 
-import ch.alpine.owl.ani.api.GlcPlannerCallback;
-import ch.alpine.owl.ani.api.PlannerCallback;
-import ch.alpine.owl.ani.api.RrtsPlannerCallback;
 import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.math.state.StateTime;

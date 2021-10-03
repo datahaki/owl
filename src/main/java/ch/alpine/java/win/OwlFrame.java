@@ -12,7 +12,6 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.RenderElements;
 import ch.alpine.owl.gui.ren.TransitionRender;
 import ch.alpine.owl.rrts.core.RrtsNode;

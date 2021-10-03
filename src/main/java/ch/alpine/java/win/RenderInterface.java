@@ -1,10 +1,9 @@
 // code by jph
-package ch.alpine.owl.gui;
+package ch.alpine.java.win;
 
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.GeometricComponent;
 
 /** capability for drawing in {@link GeometricComponent} */
 @FunctionalInterface

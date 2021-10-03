@@ -2,12 +2,12 @@
 package ch.alpine.owl.bot.se2.twd;
 
 import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophus.math.Region;

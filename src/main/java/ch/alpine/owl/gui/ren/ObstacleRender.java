@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
 

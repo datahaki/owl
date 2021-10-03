@@ -9,8 +9,8 @@ import java.awt.geom.Point2D;
 import java.util.Collection;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.tensor.Tensor;
 
 public class QueueRender implements RenderInterface {

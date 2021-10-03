@@ -7,8 +7,8 @@ import java.util.Collection;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.Transition;

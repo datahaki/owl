@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.VectorLogManifold;
+import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -13,13 +14,11 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
-import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
-import ch.alpine.tensor.red.Entrywise;
 
 public class NdTreeWeighting implements LogWeighting, Serializable {
   private final int limit;
@@ -36,9 +35,7 @@ public class NdTreeWeighting implements LogWeighting, Serializable {
   @Override
   public TensorScalarFunction function(Biinvariant biinvariant, VectorLogManifold vectorLogManifold, //
       ScalarUnaryOperator variogram, Tensor sequence, Tensor values) {
-    Tensor lbounds = Entrywise.min().of(sequence);
-    Tensor ubounds = Entrywise.max().of(sequence);
-    NdMap<Scalar> ndMap = NdTreeMap.of(Box.of(lbounds, ubounds), 2);
+    NdMap<Scalar> ndMap = NdTreeMap.of(MinMax.box(sequence), 2);
     for (int index = 0; index < values.length(); ++index)
       ndMap.insert(sequence.get(index), values.Get(index));
     return new Inner(ndMap, variogram);

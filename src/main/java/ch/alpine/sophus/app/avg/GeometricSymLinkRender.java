@@ -8,7 +8,7 @@ import java.awt.Stroke;
 import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.sophus.app.sym.SymLink;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.math.Geodesic;

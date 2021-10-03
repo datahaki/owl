@@ -4,8 +4,8 @@ package ch.alpine.owl.gui.region;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.Tensor;
 

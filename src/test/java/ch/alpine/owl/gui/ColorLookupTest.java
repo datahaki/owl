@@ -3,6 +3,7 @@ package ch.alpine.owl.gui;
 
 import java.awt.Color;
 
+import ch.alpine.java.win.ColorLookup;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import junit.framework.TestCase;

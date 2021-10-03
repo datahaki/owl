@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -23,7 +24,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;

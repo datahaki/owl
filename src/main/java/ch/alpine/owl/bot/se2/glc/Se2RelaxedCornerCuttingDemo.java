@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.util.RegionRenders;
@@ -16,8 +18,6 @@ import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.GoalConsumer;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.MouseGoal;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;

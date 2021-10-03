@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
@@ -14,8 +16,6 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.MouseGoal;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;

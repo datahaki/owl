@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -13,7 +14,6 @@ import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.MouseGoal;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

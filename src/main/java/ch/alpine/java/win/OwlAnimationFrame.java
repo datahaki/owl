@@ -19,7 +19,6 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.data.TimeKeeper;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;

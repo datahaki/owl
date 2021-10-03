@@ -6,13 +6,13 @@ import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.WaypointRender;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionUnion;

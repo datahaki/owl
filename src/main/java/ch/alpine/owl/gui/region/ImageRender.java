@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import ch.alpine.java.gfx.AffineTransforms;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

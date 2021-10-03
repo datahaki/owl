@@ -9,7 +9,7 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.app.lev.LeversRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;

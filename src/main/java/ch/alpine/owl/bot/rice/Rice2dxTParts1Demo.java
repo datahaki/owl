@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
@@ -13,8 +15,6 @@ import ch.alpine.owl.bot.rn.glc.R2xTEllipsoidsAnimationDemo;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.MouseGoal;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;

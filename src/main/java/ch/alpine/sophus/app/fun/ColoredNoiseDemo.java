@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.demo.noise;
+package ch.alpine.sophus.app.fun;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -56,7 +56,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
     Tensor values = RandomVariate.of(coloredNoise, 1000);
     VisualSet visualSet = new VisualSet();
     visualSet.add(Subdivide.of(0, 1, values.length() - 1), values);
-    jFreeChart = ListPlot.of(visualSet);
+    jFreeChart = ListPlot.of(visualSet, true);
   }
 
   @Override

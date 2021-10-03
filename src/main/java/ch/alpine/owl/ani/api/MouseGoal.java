@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui;
+package ch.alpine.owl.ani.api;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
@@ -10,9 +10,6 @@ import java.util.List;
 
 import ch.alpine.java.win.GeometricComponent;
 import ch.alpine.java.win.OwlAnimationFrame;
-import ch.alpine.owl.ani.api.GlcPlannerCallback;
-import ch.alpine.owl.ani.api.RrtsPlannerCallback;
-import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.GoalConsumer;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;

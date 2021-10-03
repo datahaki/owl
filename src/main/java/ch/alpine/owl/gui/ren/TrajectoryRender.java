@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.TrajectoryListener;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.Tensor;

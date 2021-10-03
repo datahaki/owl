@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.function.Supplier;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;

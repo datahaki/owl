@@ -1,11 +1,9 @@
 // code by jph, gjoel
-package ch.alpine.owl.thr;
+package ch.alpine.owl.ani.api;
 
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.owl.ani.api.RrtsPlannerCallback;
-import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionPlanner;

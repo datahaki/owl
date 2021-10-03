@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidContext;
 import ch.alpine.sophus.clt.ClothoidEmit;

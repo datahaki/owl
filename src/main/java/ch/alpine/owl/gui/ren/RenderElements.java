@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcTrajectories;
@@ -14,7 +15,6 @@ import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;

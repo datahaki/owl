@@ -1,9 +1,8 @@
 // code by jph, gjoel
-package ch.alpine.owl.thr;
+package ch.alpine.owl.ani.api;
 
 import java.util.Collection;
 
-import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 

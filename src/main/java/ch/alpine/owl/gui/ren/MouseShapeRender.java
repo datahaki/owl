@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
