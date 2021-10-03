@@ -60,13 +60,13 @@ enum Se2rAnimateDemo {
   public static void main(String[] args) throws Exception {
     TrajectoryPlanner trajectoryPlanner = trajectoryPlanner();
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(169, 71);
-    owlyFrame.jFrame.setBounds(100, 100, 300, 200);
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(169, 71);
+    owlFrame.jFrame.setBounds(100, 100, 300, 200);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!trajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(1);
-      owlyFrame.setGlc(trajectoryPlanner);
+      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(100);
     }
   }

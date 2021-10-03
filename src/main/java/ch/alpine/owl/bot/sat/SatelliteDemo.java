@@ -46,15 +46,15 @@ import ch.alpine.tensor.Tensors;
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(start, RealScalar.ZERO));
     // ---
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.addBackground(RegionRenders.create(obstacleRegion));
-    owlyFrame.addBackground(RegionRenders.create(goalRegion));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.addBackground(RegionRenders.create(obstacleRegion));
+    owlFrame.addBackground(RegionRenders.create(goalRegion));
     // ---
-    owlyFrame.jFrame.setBounds(100, 100, 600, 600);
+    owlFrame.jFrame.setBounds(100, 100, 600, 600);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!glcExpand.isOptimal() && owlyFrame.jFrame.isVisible()) {
+    while (!glcExpand.isOptimal() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(50);
-      owlyFrame.setGlc(trajectoryPlanner);
+      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(1);
     }
     System.out.println("#expand = " + glcExpand.getExpandCount());

@@ -106,14 +106,14 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
     // ---
     List<TrajectorySample> trajectory = GlcTrajectories.detailedTrajectoryTo(STATE_INTEGRATOR, goalNode);
     // ---
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    owlyAnimationFrame.addBackground(new PolygonRegionRender(POLYGON_REGION));
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.addBackground(new PolygonRegionRender(POLYGON_REGION));
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(trajectory);
-    owlyAnimationFrame.addBackground(trajectoryRender);
+    owlAnimationFrame.addBackground(trajectoryRender);
     Tensor eta = Tensors.vector(3, 3);
-    owlyAnimationFrame.addBackground(new EtaRender(eta));
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground(new EtaRender(eta));
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

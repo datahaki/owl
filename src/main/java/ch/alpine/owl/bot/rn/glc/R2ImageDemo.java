@@ -62,10 +62,10 @@ import ch.alpine.tensor.ext.Timing;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.geometricComponent.setZoomable(false);
-    owlyFrame.geometricComponent.setOffset(200, 650);
-    owlyFrame.addBackground(RegionRenders.create(imageRegion));
-    owlyFrame.addBackground(RegionRenders.create(ballRegion));
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.setZoomable(false);
+    owlFrame.geometricComponent.setOffset(200, 650);
+    owlFrame.addBackground(RegionRenders.create(imageRegion));
+    owlFrame.addBackground(RegionRenders.create(ballRegion));
   }
 }

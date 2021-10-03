@@ -19,15 +19,15 @@ import ch.alpine.tensor.Tensors;
 
 public class Tse2Car0Demo extends Tse2CarDemo {
   @Override
-  void configure(OwlAnimationFrame owlyAnimationFrame) {
+  void configure(OwlAnimationFrame owlAnimationFrame) {
     Tse2CarEntity tse2CarEntity = Tse2CarEntity.createDefault(new StateTime(Tensors.vector(6, 5, 1, 0), RealScalar.ZERO));
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     Region<Tensor> region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);
-    owlyAnimationFrame.add(tse2CarEntity);
+    owlAnimationFrame.add(tse2CarEntity);
     // LONGTERM add option to select goal velocity / range
-    MouseGoal.simple(owlyAnimationFrame, tse2CarEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, tse2CarEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(region)), //
@@ -39,10 +39,10 @@ public class Tse2Car0Demo extends Tse2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

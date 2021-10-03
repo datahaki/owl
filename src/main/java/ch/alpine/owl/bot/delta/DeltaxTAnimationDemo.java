@@ -68,17 +68,17 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList(new TimeInvariantRegion(region), region1, region2, region3, region4))));
     // ---
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) region3);
-    owlyAnimationFrame.addBackground((RenderInterface) region4);
-    owlyAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 600);
-    return owlyAnimationFrame;
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
+    owlAnimationFrame.addBackground((RenderInterface) region3);
+    owlAnimationFrame.addBackground((RenderInterface) region4);
+    owlAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    owlAnimationFrame.geometricComponent.setOffset(50, 600);
+    return owlAnimationFrame;
   }
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {

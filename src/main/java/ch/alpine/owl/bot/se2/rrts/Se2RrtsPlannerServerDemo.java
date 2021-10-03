@@ -82,24 +82,24 @@ import ch.alpine.tensor.opt.nd.Box;
       }
     };
     // ---
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(60, 477);
-    owlyFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlyFrame.addBackground(RegionRenders.create(imageRegion));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(60, 477);
+    owlFrame.jFrame.setBounds(100, 100, 550, 550);
+    owlFrame.addBackground(RegionRenders.create(imageRegion));
     StateTime stateTime = new StateTime(Append.of(lbounds, RealScalar.ZERO), RealScalar.ZERO);
     Tensor goal = RandomSample.of(randomSampleInterface);
     Tensor trajectory = Tensors.empty();
     int frame = 0;
-    while (frame++ < 5 && owlyFrame.jFrame.isVisible()) {
+    while (frame++ < 5 && owlFrame.jFrame.isVisible()) {
       server.setGoal(goal);
       server.insertRoot(stateTime);
       server.setState(stateTime);
       new Expand<>(server).steps(200);
-      owlyFrame.setRrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
+      owlFrame.setRrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
       Optional<List<TrajectorySample>> optional = server.getTrajectory();
       if (optional.isPresent()) {
         optional.get().stream().map(TrajectorySample::stateTime).map(StateTime::state).forEach(trajectory::append);
-        owlyFrame.geometricComponent.addRenderInterface(new RenderInterface() {
+        owlFrame.geometricComponent.addRenderInterface(new RenderInterface() {
           @Override
           public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
             Path2D path = geometricLayer.toPath2D(trajectory);
@@ -108,7 +108,7 @@ import ch.alpine.tensor.opt.nd.Box;
             graphics.draw(path);
           }
         });
-        owlyFrame.geometricComponent.jComponent.repaint();
+        owlFrame.geometricComponent.jComponent.repaint();
         // ---
         stateTime = Lists.getLast(optional.get()).stateTime();
         goal = RandomSample.of(randomSampleInterface);

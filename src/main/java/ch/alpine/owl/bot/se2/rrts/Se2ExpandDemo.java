@@ -42,20 +42,20 @@ import ch.alpine.tensor.opt.nd.Box;
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures(name), 250, TimeUnit.MILLISECONDS)) {
-      OwlFrame owlyFrame = OwlGui.start();
-      owlyFrame.geometricComponent.setOffset(42, 456);
-      owlyFrame.jFrame.setBounds(100, 100, 500, 500);
+      OwlFrame owlFrame = OwlGui.start();
+      owlFrame.geometricComponent.setOffset(42, 456);
+      owlFrame.jFrame.setBounds(100, 100, 500, 500);
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);
-      for (int frame = 0; frame < 40 && owlyFrame.jFrame.isVisible(); ++frame) {
+      for (int frame = 0; frame < 40 && owlFrame.jFrame.isVisible(); ++frame) {
         for (int count = 0; count < 5; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
-        owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
-        animationWriter.write(owlyFrame.offscreen());
+        owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+        animationWriter.write(owlFrame.offscreen());
       }
       int repeatLast = 3;
       while (0 < repeatLast--)
-        animationWriter.write(owlyFrame.offscreen());
-      owlyFrame.close();
+        animationWriter.write(owlFrame.offscreen());
+      owlFrame.close();
     }
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);

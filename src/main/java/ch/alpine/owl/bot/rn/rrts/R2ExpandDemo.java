@@ -36,19 +36,19 @@ import ch.alpine.tensor.opt.nd.Box;
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("r2rrts.gif"), 250, TimeUnit.MILLISECONDS)) {
-      OwlFrame owlyFrame = OwlGui.start();
-      owlyFrame.geometricComponent.setOffset(42, 456);
-      owlyFrame.jFrame.setBounds(100, 100, 500, 500);
+      OwlFrame owlFrame = OwlGui.start();
+      owlFrame.geometricComponent.setOffset(42, 456);
+      owlFrame.jFrame.setBounds(100, 100, 500, 500);
       int frame = 0;
-      while (frame++ < 40 && owlyFrame.jFrame.isVisible()) {
+      while (frame++ < 40 && owlFrame.jFrame.isVisible()) {
         for (int count = 0; count < 10; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
-        owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
-        animationWriter.write(owlyFrame.offscreen());
+        owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+        animationWriter.write(owlFrame.offscreen());
       }
       int repeatLast = 3;
       while (0 < repeatLast--)
-        animationWriter.write(owlyFrame.offscreen());
+        animationWriter.write(owlFrame.offscreen());
     }
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);

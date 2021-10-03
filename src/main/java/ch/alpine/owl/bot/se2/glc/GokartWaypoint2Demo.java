@@ -34,7 +34,7 @@ public class GokartWaypoint2Demo extends GokartDemo {
       { 0, 0, 1 } });
 
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
     waypoints = new BSpline2CurveSubdivision(Se2Geodesic.INSTANCE).cyclic(waypoints);
@@ -53,11 +53,11 @@ public class GokartWaypoint2Demo extends GokartDemo {
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/localization/20180603.png", gokartEntity);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(hangarMap.region);
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
+    owlAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
     // ---
-    owlyAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
+    owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
@@ -65,7 +65,7 @@ public class GokartWaypoint2Demo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(7));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlyAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
+    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent windowEvent) {
         glcWaypointFollowing.flagShutdown();

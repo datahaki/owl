@@ -17,7 +17,6 @@ import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.data.TimeKeeper;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
@@ -35,6 +34,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Clips;
 
@@ -82,11 +82,11 @@ import ch.alpine.tensor.sca.Clips;
       });
       { // periodic task for integration
         TimerTask timerTask = new TimerTask() {
-          TimeKeeper timeKeeper = new TimeKeeper();
+          final Timing timing = Timing.started();
 
           @Override
           public void run() {
-            Scalar now = timeKeeper.now();
+            Scalar now = RealScalar.of(timing.seconds());
             entity.integrate(now);
           }
         };

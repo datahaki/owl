@@ -25,20 +25,20 @@ import ch.alpine.tensor.Tensors;
 public class R2NoiseAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(0.2, 0.2), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
-    owlyAnimationFrame.add(r2Entity);
+    owlAnimationFrame.add(r2Entity);
     Region<Tensor> region = new R2NoiseRegion(RealScalar.of(0.2));
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlyAnimationFrame, r2Entity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

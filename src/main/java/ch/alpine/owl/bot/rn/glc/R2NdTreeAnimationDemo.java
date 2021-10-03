@@ -32,19 +32,19 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
     BufferedImage bufferedImage = ResourceData.bufferedImage(path);
     Region<Tensor> imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
     Region<Tensor> region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.3));
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(0, 0), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
-    owlyAnimationFrame.add(r2Entity);
+    owlAnimationFrame.add(r2Entity);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlyAnimationFrame, r2Entity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(imageRegion));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

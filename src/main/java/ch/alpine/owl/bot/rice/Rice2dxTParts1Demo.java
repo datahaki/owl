@@ -34,13 +34,13 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 public class Rice2dxTParts1Demo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     Rice2dEntity abstractEntity = new Rice2dEntity(mu, Tensors.vector(2, 2, 0, 0), trajectoryControl, controls);
     abstractEntity.delayHint = RealScalar.of(1.6);
-    owlyAnimationFrame.add(abstractEntity);
+    owlAnimationFrame.add(abstractEntity);
     ScalarTensorFunction stf1 = R2xTEllipsoidsAnimationDemo.wrap1DTensor(SimplexContinuousNoise.FUNCTION, Tensors.vector(4, 2), 0.03, 2.5);
     BijectionFamily noise1 = new SimpleR2TranslationFamily(stf1);
     Region<StateTime> region1 = new R2xTEllipsoidStateTimeRegion( //
@@ -57,13 +57,13 @@ public class Rice2dxTParts1Demo implements DemoInterface {
         RegionUnion.wrap(Arrays.asList(region1, region2, region3)));
     // abstractEntity.obstacleQuery = trq;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlyAnimationFrame, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     // owlyAnimationFrame.addRegionRender(imageRegion);
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) region3);
-    owlyAnimationFrame.geometricComponent.setOffset(350, 350);
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
+    owlAnimationFrame.addBackground((RenderInterface) region3);
+    owlAnimationFrame.geometricComponent.setOffset(350, 350);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

@@ -26,7 +26,7 @@ public class R2ImageAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
   public OwlAnimationFrame start() {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
@@ -34,13 +34,13 @@ public class R2ImageAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     r2Entity.extraCosts.add(r2ImageRegionWrap.costFunction());
-    owlyAnimationFrame.add(r2Entity);
+    owlAnimationFrame.add(r2Entity);
     Region<Tensor> region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlyAnimationFrame, r2Entity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

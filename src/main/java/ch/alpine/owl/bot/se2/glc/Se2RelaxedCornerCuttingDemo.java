@@ -55,7 +55,7 @@ public class Se2RelaxedCornerCuttingDemo extends Se2CarDemo {
   }
 
   @Override // from Se2CarDemo
-  protected final void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected final void configure(OwlAnimationFrame owlAnimationFrame) {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);
     Tensor slacks = Tensors.vector(1.5, 0);
     CarRelaxedEntity carRelaxedEntity = CarRelaxedEntity.createDefault(stateTime, slacks);
@@ -76,18 +76,18 @@ public class Se2RelaxedCornerCuttingDemo extends Se2CarDemo {
     Tensor goal = Tensors.vector(4.3, 4.2, 1.517);
     goalConsumer.accept(goal);
     // ---
-    owlyAnimationFrame.add(carRelaxedEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    MouseGoal.simple(owlyAnimationFrame, carRelaxedEntity, plannerConstraint);
+    owlAnimationFrame.add(carRelaxedEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, carRelaxedEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carRelaxedEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carRelaxedEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new MouseShapeRender( //
@@ -100,10 +100,10 @@ public class Se2RelaxedCornerCuttingDemo extends Se2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

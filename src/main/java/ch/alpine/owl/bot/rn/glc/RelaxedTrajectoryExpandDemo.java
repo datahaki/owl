@@ -87,12 +87,12 @@ public class RelaxedTrajectoryExpandDemo {
     final Tensor stateRoot = Tensors.vector(0.1, 0.1);
     relaxedTrajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
     RelaxedGlcExpand glcExpand = new RelaxedGlcExpand(relaxedTrajectoryPlanner);
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.addBackground(new PolygonRegionRender(relaxedTrajectoryPlanner1Demo.polygonRegion));
-    owlyFrame.addBackground(new BallRegionRender((BallRegion) relaxedTrajectoryPlanner1Demo.regionWithDistance));
-    while (!relaxedTrajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.addBackground(new PolygonRegionRender(relaxedTrajectoryPlanner1Demo.polygonRegion));
+    owlFrame.addBackground(new BallRegionRender((BallRegion) relaxedTrajectoryPlanner1Demo.regionWithDistance));
+    while (!relaxedTrajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(1);
-      owlyFrame.setGlc(relaxedTrajectoryPlanner);
+      owlFrame.setGlc(relaxedTrajectoryPlanner);
       // animationWriter.append(owlyFrame.offscreen());
       Thread.sleep(1);
     }

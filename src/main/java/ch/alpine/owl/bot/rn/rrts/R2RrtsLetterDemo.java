@@ -25,16 +25,16 @@ import ch.alpine.tensor.Tensors;
 /* package */ class R2RrtsLetterDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     Region<Tensor> region = r2ImageRegionWrap.region();
     StateTime stateTime = new StateTime(Tensors.vector(6, 5), RealScalar.ZERO);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.05));
     R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box());
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    MouseGoal.simpleRrts(owlyAnimationFrame, entity, null);
-    owlyAnimationFrame.add(entity);
-    Supplier<Tensor> supplier = () -> owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simpleRrts(owlAnimationFrame, entity, null);
+    owlAnimationFrame.add(entity);
+    Supplier<Tensor> supplier = () -> owlAnimationFrame.geometricComponent.getMouseSe2CState();
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region)), //
@@ -46,15 +46,15 @@ import ch.alpine.tensor.Tensors;
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

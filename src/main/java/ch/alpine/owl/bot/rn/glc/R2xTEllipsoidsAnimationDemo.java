@@ -43,13 +43,13 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
   @SuppressWarnings("unused")
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(1.2, 2), RealScalar.ZERO));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
-    owlyAnimationFrame.add(abstractEntity);
+    owlAnimationFrame.add(abstractEntity);
     BijectionFamily shiftx = new SimpleR2TranslationFamily( //
         scalar -> Tensors.of(Sin.FUNCTION.apply(scalar.multiply(RealScalar.of(0.2))), RealScalar.ZERO));
     BijectionFamily shifty = new SimpleR2TranslationFamily( //
@@ -69,11 +69,11 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
         Tensors.vector(0.6, 0.6), noise, () -> abstractEntity.getStateTimeNow().time());
     Region<StateTime> union = RegionUnion.wrap(Arrays.asList(region1, region2, region3));
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(union);
-    MouseGoal.simple(owlyAnimationFrame, abstractEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) region3);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
+    owlAnimationFrame.addBackground((RenderInterface) region3);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

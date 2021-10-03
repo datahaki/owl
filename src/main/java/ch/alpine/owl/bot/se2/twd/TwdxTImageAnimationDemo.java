@@ -44,22 +44,22 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
   }
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlAnimationFrame owlyAnimationFrame) {
-    owlyAnimationFrame.add(twdxTEntity);
+  TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
+    owlAnimationFrame.add(twdxTEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), twdxTEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlyAnimationFrame, twdxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region);
+    MouseGoal.simple(owlAnimationFrame, twdxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region);
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, () -> twdxTEntity.getStateTimeNow(), trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
-    owlyAnimationFrame.geometricComponent.setOffset(200, 400);
+    owlAnimationFrame.geometricComponent.setOffset(200, 400);
     return twdxTEntity;
   }
 

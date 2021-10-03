@@ -31,7 +31,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
       new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
 
   @Override // from Se2CarDemo
-  protected final void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected final void configure(OwlAnimationFrame owlAnimationFrame) {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, 1), RealScalar.ZERO);
     CarEntity carEntity = new CarEntity( //
@@ -48,18 +48,18 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
     PlannerConstraint plannerConstraint = createConstraint(region);
     TrajectoryRegionQuery trajectoryRegionQuery = //
         SimpleTrajectoryRegionQuery.timeInvariant(region);
-    owlyAnimationFrame.add(carEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    MouseGoal.simple(owlyAnimationFrame, carEntity, plannerConstraint);
+    owlAnimationFrame.add(carEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, carEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new MouseShapeRender( //
@@ -72,10 +72,10 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

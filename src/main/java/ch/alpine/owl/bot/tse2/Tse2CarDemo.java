@@ -23,12 +23,12 @@ import ch.alpine.tensor.Tensors;
 
   @Override // from DemoInterface
   public final OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    configure(owlyAnimationFrame);
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    configure(owlAnimationFrame);
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
-  abstract void configure(OwlAnimationFrame owlyAnimationFrame);
+  abstract void configure(OwlAnimationFrame owlAnimationFrame);
 }

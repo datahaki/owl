@@ -16,29 +16,29 @@ import ch.alpine.tensor.Tensors;
 public class Se2PolicyImageDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._2181;
     Region<Tensor> region = r2ImageRegionWrap.region();
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground(RegionRenders.create(trq));
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenders.create(trq));
     // ---
     {
       CarPolicyEntity carPolicyEntity = //
           new CarPolicyEntity(Tensors.vector(2.383, 2.567, 1.571), SarsaType.QLEARNING, trq);
-      owlyAnimationFrame.add(carPolicyEntity);
+      owlAnimationFrame.add(carPolicyEntity);
     }
     {
       CarPolicyEntity twdPolicyEntity = //
           new CarPolicyEntity(Tensors.vector(1.3, 2.8, 1.57), SarsaType.EXPECTED, trq);
-      owlyAnimationFrame.add(twdPolicyEntity);
+      owlAnimationFrame.add(twdPolicyEntity);
     }
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

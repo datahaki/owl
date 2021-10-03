@@ -21,20 +21,20 @@ import ch.alpine.tensor.RealScalar;
     // mintime w/. heuristic requires 2844 expands
     DeltaExample deltaDemo = new DeltaExample(RealScalar.of(-.25));
     // ---
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(33, 416);
-    owlyFrame.addBackground(RegionRenders.create(DeltaExample.REGION));
-    owlyFrame.addBackground(RegionRenders.create(DeltaExample.SPHERICAL_REGION));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(33, 416);
+    owlFrame.addBackground(RegionRenders.create(DeltaExample.REGION));
+    owlFrame.addBackground(RegionRenders.create(DeltaExample.SPHERICAL_REGION));
     // owlyFrame.addBackground(RenderElements.create(plannerConstraint));
     // owlyFrame.addBackground(new DomainRender(trajectoryPlanner.getDomainMap(), eta));
     // ---
-    owlyFrame.addBackground(deltaDemo.vf(0.1));
+    owlFrame.addBackground(deltaDemo.vf(0.1));
     // ---
-    owlyFrame.jFrame.setBounds(100, 100, 620, 475);
+    owlFrame.jFrame.setBounds(100, 100, 620, 475);
     GlcExpand glcExpand = new GlcExpand(deltaDemo.trajectoryPlanner);
-    while (!deltaDemo.trajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    while (!deltaDemo.trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(30);
-      owlyFrame.setGlc(deltaDemo.trajectoryPlanner);
+      owlFrame.setGlc(deltaDemo.trajectoryPlanner);
       Thread.sleep(1);
     }
     System.out.println("#expand = " + glcExpand.getExpandCount());

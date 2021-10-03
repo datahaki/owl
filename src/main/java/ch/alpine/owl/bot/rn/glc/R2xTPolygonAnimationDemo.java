@@ -35,13 +35,13 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(1.2, 2.2), RealScalar.ZERO));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
-    owlyAnimationFrame.add(abstractEntity);
+    owlAnimationFrame.add(abstractEntity);
     BijectionFamily rigid1 = new Se2Family( //
         scalar -> Tensors.of( //
             Cos.FUNCTION.apply(scalar.multiply(RealScalar.of(0.1))).multiply(RealScalar.of(2.0)), //
@@ -56,10 +56,10 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = //
         RegionConstraints.stateTime(RegionUnion.wrap(Arrays.asList(region1, region2)));
-    MouseGoal.simple(owlyAnimationFrame, abstractEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

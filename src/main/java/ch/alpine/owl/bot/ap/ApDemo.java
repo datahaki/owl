@@ -26,9 +26,9 @@ import ch.alpine.tensor.qty.Degree;
     // StateTimeRaster stateTimeRaster = ApTrajectoryPlanner.stateTimeRaster();
     StandardTrajectoryPlanner standardTrajectoryPlanner = ApTrajectoryPlanner.apStandardTrajectoryPlanner();
     // ---
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(300, 300);
-    owlyFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(300, 300);
+    owlFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
     // owlyFrame.addBackground(RegionRenders.create(region));
     // owlyFrame.addBackground(RegionRenders.create(sphericalRegion));
     // owlyFrame.addBackground(RenderElements.create(stateTimeRaster));
@@ -50,7 +50,7 @@ import ch.alpine.tensor.qty.Degree;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    owlyFrame.setGlc(standardTrajectoryPlanner);
+    owlFrame.setGlc(standardTrajectoryPlanner);
     // OwlyFrame owlyFrame2 = OwlyGui.glc(standardTrajectoryPlanner);
   }
 }

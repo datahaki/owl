@@ -33,7 +33,7 @@ import ch.alpine.tensor.red.Nest;
  * therefore a virtual obstacle region in the center to prevent corner cutting is not required. */
 public class GokartWaypoint1Demo extends GokartDemo {
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
     // System.out.println(Pretty.of(waypoints));
@@ -53,11 +53,11 @@ public class GokartWaypoint1Demo extends GokartDemo {
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(hangarMap.region);
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
+    owlAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
     // ---
-    owlyAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
+    owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
@@ -65,7 +65,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(8));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlyAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
+    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent windowEvent) {
         glcWaypointFollowing.flagShutdown();

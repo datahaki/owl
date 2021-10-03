@@ -26,15 +26,15 @@ import ch.alpine.tensor.alg.Array;
 public class PsuAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //
         new StateTime(Tensors.vector(0, 0), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new PsuTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new PsuEntity(episodeIntegrator, trajectoryControl);
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(Math.PI, 3);
     VectorFieldRender vectorFieldRender = new VectorFieldRender();
@@ -42,9 +42,9 @@ public class PsuAnimationDemo implements DemoInterface {
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     vectorFieldRender.uv_pairs = //
         VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1));
-    owlyAnimationFrame.addBackground(vectorFieldRender);
-    owlyAnimationFrame.addBackground(AxesRender.INSTANCE);
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground(vectorFieldRender);
+    owlAnimationFrame.addBackground(AxesRender.INSTANCE);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

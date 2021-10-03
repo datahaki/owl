@@ -21,17 +21,17 @@ import ch.alpine.tensor.Tensors;
 public class Rice2dNoiseDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.ZERO;
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = //
         new Rice2dEntity(mu, Tensors.vector(0, 0, 0, 0), trajectoryControl, controls);
-    owlyAnimationFrame.add(trajectoryEntity);
+    owlAnimationFrame.add(trajectoryEntity);
     Region<Tensor> region = new R2NoiseRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

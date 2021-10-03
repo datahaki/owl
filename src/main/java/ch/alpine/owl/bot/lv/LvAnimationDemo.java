@@ -30,7 +30,7 @@ import ch.alpine.tensor.opt.nd.Box;
 public class LvAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     Collection<Tensor> controls = LvControls.create(2);
     Integrator INTEGRATOR = RungeKutta45Integrator.INSTANCE;
@@ -38,8 +38,8 @@ public class LvAnimationDemo implements DemoInterface {
         new StateTime(Tensors.vector(2, 0.3), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new LvEntity(episodeIntegrator, trajectoryControl, stateSpaceModel, controls);
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(6, 5);
     VectorFieldRender vectorFieldRender = new VectorFieldRender();
@@ -47,9 +47,9 @@ public class LvAnimationDemo implements DemoInterface {
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     vectorFieldRender.uv_pairs = //
         VectorFields.of(stateSpaceModel, points, Array.zeros(1), RealScalar.of(0.04));
-    owlyAnimationFrame.addBackground(vectorFieldRender);
+    owlAnimationFrame.addBackground(vectorFieldRender);
     // ---
-    return owlyAnimationFrame;
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

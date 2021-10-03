@@ -33,19 +33,19 @@ public class Rice2dDemoTest extends TestCase {
     glcExpand.findAny(1000); // 153 0.368319228
     assertTrue(timing.seconds() < 1.5);
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlyFrame.addBackground(trajectoryRender);
-    owlyFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.addBackground(trajectoryRender);
+    owlFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
-    owlyFrame.jFrame.setVisible(false);
+    owlFrame.jFrame.setVisible(false);
   }
 
   public void testGlcExpand() throws InterruptedException {
@@ -57,18 +57,18 @@ public class Rice2dDemoTest extends TestCase {
     glcExpand.untilOptimal(1000); // 220 0.283809941
     assertTrue(timing.seconds() < 1.5);
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlyFrame.addBackground(trajectoryRender);
-    owlyFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.addBackground(trajectoryRender);
+    owlFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
-    owlyFrame.jFrame.setVisible(false);
+    owlFrame.jFrame.setVisible(false);
   }
 }

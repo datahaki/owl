@@ -30,13 +30,13 @@ import ch.alpine.tensor.Tensors;
 public class Rice2dxTGearDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     Rice2dEntity abstractEntity = new Rice2dEntity(mu, Tensors.vector(2, 2, 0, 0), trajectoryControl, controls);
     abstractEntity.delayHint = RealScalar.of(1.6);
-    owlyAnimationFrame.add(abstractEntity);
+    owlAnimationFrame.add(abstractEntity);
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));
     BijectionFamily rigid2 = new So2Family(s -> s.multiply(RealScalar.of(0.25)));
     Region<StateTime> cog0 = new R2xTPolygonStateTimeRegion( //
@@ -52,12 +52,12 @@ public class Rice2dxTGearDemo implements DemoInterface {
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList(cog0, cog1, cog2)));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlyAnimationFrame, abstractEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) cog0);
-    owlyAnimationFrame.addBackground((RenderInterface) cog1);
-    owlyAnimationFrame.addBackground((RenderInterface) cog2);
-    owlyAnimationFrame.geometricComponent.setOffset(350, 350);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) cog0);
+    owlAnimationFrame.addBackground((RenderInterface) cog1);
+    owlAnimationFrame.addBackground((RenderInterface) cog2);
+    owlAnimationFrame.geometricComponent.setOffset(350, 350);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

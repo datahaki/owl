@@ -37,7 +37,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
   private static final Tensor VIRTUAL = Tensors.fromString("{{38, 39}, {42, 47}, {51, 52}, {46, 43}}");
 
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     // {50.800, 55.733, -0.314}
     final StateTime initial = new StateTime(Tensors.vector(35.733, 38.267, 1.885), RealScalar.of(0.0));
     GokartxTEntity gokartEntity = new GokartxTEntity(initial) {
@@ -78,14 +78,14 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
         )));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlyAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
-    owlyAnimationFrame.addBackground((RenderInterface) region1d);
-    owlyAnimationFrame.addBackground((RenderInterface) region2d);
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
+    owlAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
+    owlAnimationFrame.addBackground((RenderInterface) region1d);
+    owlAnimationFrame.addBackground((RenderInterface) region2d);
+    owlAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
     // ---
-    owlyAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
+    owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.verbose(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
@@ -93,7 +93,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(5));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlyAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
+    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent windowEvent) {
         glcWaypointFollowing.flagShutdown();

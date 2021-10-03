@@ -29,24 +29,24 @@ public class R2xTImageAnimationDemo implements DemoInterface {
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(1.5, 2), RealScalar.ZERO));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
-    owlyAnimationFrame.add(abstractEntity);
+    owlAnimationFrame.add(abstractEntity);
     R2RigidFamily rigidFamily = Se2Family.rotationAround( //
         Tensors.vectorDouble(1.5, 2), time -> time.multiply(RealScalar.of(0.1)));
     ImageRegion imageRegion = R2ImageRegions.inside_circ();
     Region<StateTime> region = new R2xTImageStateTimeRegion( //
         imageRegion, rigidFamily, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(region);
-    MouseGoal.simple(owlyAnimationFrame, abstractEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region);
+    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region);
     // owlyAnimationFrame.addBackground(new CurveRender());
-    owlyAnimationFrame.geometricComponent.setOffset(200, 400);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(200, 400);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

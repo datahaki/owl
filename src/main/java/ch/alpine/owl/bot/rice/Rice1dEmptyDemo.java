@@ -18,15 +18,15 @@ import ch.alpine.tensor.Tensors;
 public class Rice1dEmptyDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.ZERO;
     Collection<Tensor> controls = Rice2Controls.create1d(15);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = //
         new Rice1dEntity(mu, Tensors.vector(0, 0), trajectoryControl, controls);
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
-    return owlyAnimationFrame;
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

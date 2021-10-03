@@ -34,9 +34,9 @@ import ch.alpine.tensor.opt.nd.Box;
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(122, 226);
-    owlyFrame.jFrame.setBounds(100, 100, 500, 500);
-    owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(122, 226);
+    owlFrame.jFrame.setBounds(100, 100, 500, 500);
+    owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
   }
 }

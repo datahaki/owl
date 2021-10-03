@@ -23,7 +23,7 @@ import ch.alpine.tensor.Tensors;
 public class Rice2dImageDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-0.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
@@ -31,11 +31,11 @@ public class Rice2dImageDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new Rice2dEntity(mu, Tensors.vector(7, 6, 0, 0), trajectoryControl, controls);
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlyAnimationFrame;
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

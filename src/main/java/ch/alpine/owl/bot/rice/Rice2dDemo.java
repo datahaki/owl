@@ -76,7 +76,7 @@ import ch.alpine.tensor.ext.Timing;
     // 555 1.149214356 with parallel integration of trajectories
     System.out.println(glcExpand.getExpandCount() + " " + timing.seconds());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     if (optional.isPresent()) {
       GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
@@ -85,7 +85,7 @@ import ch.alpine.tensor.ext.Timing;
           MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlyFrame.addBackground(trajectoryRender);
+      owlFrame.addBackground(trajectoryRender);
     }
     glcExpand.untilOptimal(1000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
@@ -98,8 +98,8 @@ import ch.alpine.tensor.ext.Timing;
           MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlyFrame.addBackground(trajectoryRender);
+      owlFrame.addBackground(trajectoryRender);
     }
-    owlyFrame.addBackground(RegionRenders.create(ELLIPSOID_REGION));
+    owlFrame.addBackground(RegionRenders.create(ELLIPSOID_REGION));
   }
 }

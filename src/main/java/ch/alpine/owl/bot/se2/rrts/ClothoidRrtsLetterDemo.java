@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     Region<Tensor> region = r2ImageRegionWrap.region();
     TrajectoryRegionQuery trajectoryRegionQuery = SimpleTrajectoryRegionQuery.timeInvariant(region);
@@ -44,18 +44,18 @@ import ch.alpine.tensor.sca.Clips;
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, Math.PI / 4), RealScalar.ZERO);
     ClothoidRrtsEntity clothoidRrtsEntity = //
         new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box());
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    MouseGoal.simpleRrts(owlyAnimationFrame, clothoidRrtsEntity, null);
-    owlyAnimationFrame.add(clothoidRrtsEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simpleRrts(owlAnimationFrame, clothoidRrtsEntity, null);
+    owlAnimationFrame.add(clothoidRrtsEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), clothoidRrtsEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, clothoidRrtsEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new MouseShapeRender( //
@@ -68,15 +68,15 @@ import ch.alpine.tensor.sca.Clips;
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

@@ -19,13 +19,13 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
       CatchyTrajectoryRegionQuery.timeInvariant(new R2NoiseRegion(RealScalar.of(0.1)));
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlAnimationFrame owlyAnimationFrame) {
+  TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
     TwdEntity twdEntity = TwdEntity.createDuckie(new StateTime(Tensors.vector(0, 0, 0), RealScalar.ZERO));
-    owlyAnimationFrame.add(twdEntity);
+    owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlyAnimationFrame, twdEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
-    owlyAnimationFrame.geometricComponent.setOffset(400, 400);
+    MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlAnimationFrame.geometricComponent.setOffset(400, 400);
     return twdEntity;
   }
 

@@ -73,9 +73,9 @@ import ch.alpine.tensor.ext.Timing;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(ballRegion));
-    owlyFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
-    owlyFrame.geometricComponent.setOffset(100, 300);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    owlFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlFrame.geometricComponent.setOffset(100, 300);
   }
 }

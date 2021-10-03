@@ -18,10 +18,11 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
-import ch.alpine.owl.data.TimeKeeper;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;
+import ch.alpine.tensor.ext.Timing;
 
 public class OwlAnimationFrame extends TimerFrame {
   private static final Dimension RECORDING = new Dimension(400, 400);
@@ -61,7 +62,7 @@ public class OwlAnimationFrame extends TimerFrame {
                 (int) (dimension.height / 2 - point.getY()), null);
             try {
               ImageIO.write(bufferedImage, IMAGE_FORMAT, new File(directory, //
-                  String.format("owly_%05d.%s", count++, IMAGE_FORMAT)));
+                  String.format("owl_%05d.%s", count++, IMAGE_FORMAT)));
             } catch (Exception exception) {
               exception.printStackTrace();
             }
@@ -76,11 +77,11 @@ public class OwlAnimationFrame extends TimerFrame {
   public OwlAnimationFrame() {
     { // periodic task for integration
       TimerTask timerTask = new TimerTask() {
-        TimeKeeper timeKeeper = new TimeKeeper();
+        final Timing timing = Timing.started();
 
         @Override
         public void run() {
-          Scalar now = timeKeeper.now();
+          Scalar now = RealScalar.of(timing.seconds());
           animationInterfaces.forEach(animationInterface -> animationInterface.integrate(now));
         }
       };

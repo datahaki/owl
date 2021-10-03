@@ -47,10 +47,10 @@ import ch.alpine.tensor.sca.Log;
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(2, .5), RealScalar.ZERO));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(4000);
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(ellipsoidRegion));
-    owlyFrame.geometricComponent.setOffset(100, 300);
-    owlyFrame.jFrame.setBounds(100, 100, 500, 500);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(ellipsoidRegion));
+    owlFrame.geometricComponent.setOffset(100, 300);
+    owlFrame.jFrame.setBounds(100, 100, 500, 500);
   }
 
   public static void main(String[] args) {

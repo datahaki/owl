@@ -17,22 +17,22 @@ import ch.alpine.tensor.Tensors;
 public class Se2PolicyNoiseDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     final Scalar threshold = RealScalar.of(0.6);
     Region<Tensor> region = new R2NoiseRegion(threshold);
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
-    owlyAnimationFrame.addBackground(RegionRenders.create(trq));
+    owlAnimationFrame.addBackground(RegionRenders.create(trq));
     // ---
     Tensor start = Tensors.vector(2.000, 3.317, 0.942).unmodifiable();
-    owlyAnimationFrame.add(new CarPolicyEntity(start, SarsaType.QLEARNING, trq));
-    owlyAnimationFrame.add(new CarPolicyEntity(start, SarsaType.EXPECTED, trq));
-    owlyAnimationFrame.add(new CarPolicyEntity(start, SarsaType.ORIGINAL, trq));
+    owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.QLEARNING, trq));
+    owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.EXPECTED, trq));
+    owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.ORIGINAL, trq));
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

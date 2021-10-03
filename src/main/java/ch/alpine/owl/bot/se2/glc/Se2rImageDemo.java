@@ -59,14 +59,14 @@ enum Se2rImageDemo {
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(100, 550);
-    owlyFrame.jFrame.setBounds(100, 100, 700, 700);
-    owlyFrame.addBackground(RegionRenders.create(region));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(100, 550);
+    owlFrame.jFrame.setBounds(100, 100, 700, 700);
+    owlFrame.addBackground(RegionRenders.create(region));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!trajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(1000);
-      owlyFrame.setGlc(trajectoryPlanner);
+      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(10);
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

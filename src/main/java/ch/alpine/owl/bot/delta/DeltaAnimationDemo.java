@@ -28,7 +28,7 @@ import ch.alpine.tensor.io.ResourceData;
 public class DeltaAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     Scalar amp = RealScalar.of(-.05);
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
@@ -42,13 +42,13 @@ public class DeltaAnimationDemo implements DemoInterface {
         new DeltaStateSpaceModel(imageGradientInterpolation), EulerIntegrator.INSTANCE, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     DeltaEntity deltaEntity = new DeltaEntity(episodeIntegrator, trajectoryControl, imageGradientInterpolation);
-    MouseGoal.simple(owlyAnimationFrame, deltaEntity, plannerConstraint);
-    owlyAnimationFrame.add(deltaEntity);
+    MouseGoal.simple(owlAnimationFrame, deltaEntity, plannerConstraint);
+    owlAnimationFrame.add(deltaEntity);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 600);
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    owlAnimationFrame.geometricComponent.setOffset(50, 600);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) throws Exception {

@@ -6,8 +6,8 @@ import junit.framework.TestCase;
 
 public class R2DemoTest extends TestCase {
   public void testSimple() throws InterruptedException {
-    OwlFrame owlyFrame = R2Demo.show();
+    OwlFrame owlFrame = R2Demo.show();
     Thread.sleep(200);
-    owlyFrame.jFrame.dispose();
+    owlFrame.jFrame.dispose();
   }
 }

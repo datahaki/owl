@@ -80,19 +80,19 @@ import ch.alpine.tensor.sca.Ramp;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
-      OwlFrame owlyFrame = OwlGui.start();
-      owlyFrame.addBackground(RegionRenders.create(ballRegion));
-      owlyFrame.addBackground(renderInterface); // reference to collection
+      OwlFrame owlFrame = OwlGui.start();
+      owlFrame.addBackground(RegionRenders.create(ballRegion));
+      owlFrame.addBackground(renderInterface); // reference to collection
       for (int i = 0; i < 20; ++i) {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent())
           break;
         glcExpand.findAny(1);
-        owlyFrame.setGlc(trajectoryPlanner);
-        animationWriter.write(owlyFrame.offscreen());
+        owlFrame.setGlc(trajectoryPlanner);
+        animationWriter.write(owlFrame.offscreen());
       }
       for (int i = 0; i < 4; ++i)
-        animationWriter.write(owlyFrame.offscreen());
+        animationWriter.write(owlFrame.offscreen());
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {

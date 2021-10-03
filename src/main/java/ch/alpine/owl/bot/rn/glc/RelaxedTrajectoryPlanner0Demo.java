@@ -102,12 +102,12 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     // glcExpand.findAny(1000);
     glcExpand.untilOptimal(1000);
     System.out.println("Execution Time: " + timing.seconds());
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    owlyAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
-    owlyAnimationFrame.addBackground(new EtaRender(eta));
-    owlyAnimationFrame.addBackground(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), eta));
-    owlyAnimationFrame.addBackground(new BallRegionRender((BallRegion) goalRegion));
-    owlyAnimationFrame.addBackground(EdgeRenders.of(relaxedTrajectoryPlanner));
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
+    owlAnimationFrame.addBackground(new EtaRender(eta));
+    owlAnimationFrame.addBackground(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), eta));
+    owlAnimationFrame.addBackground(new BallRegionRender((BallRegion) goalRegion));
+    owlAnimationFrame.addBackground(EdgeRenders.of(relaxedTrajectoryPlanner));
     Optional<GlcNode> optional = relaxedTrajectoryPlanner.getBest();
     if (optional.isPresent()) {
       System.out.println(optional.orElseThrow().merit());
@@ -119,7 +119,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
         List<TrajectorySample> trajectory = GlcTrajectories.detailedTrajectoryTo(stateIntegrator, goalNode);
         TrajectoryRender trajectoryRender = new TrajectoryRender();
         trajectoryRender.trajectory(trajectory);
-        owlyAnimationFrame.addBackground(trajectoryRender);
+        owlAnimationFrame.addBackground(trajectoryRender);
       }
     }
     // ---
@@ -127,7 +127,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     RelaxedDebugUtils.nodeAmountCompare(relaxedTrajectoryPlanner);
     NodesAssert.allLeaf(relaxedTrajectoryPlanner.getQueue());
     // RelaxedDebugUtils.closeMatchesCheck(rlPlanner);
-    return owlyAnimationFrame;
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

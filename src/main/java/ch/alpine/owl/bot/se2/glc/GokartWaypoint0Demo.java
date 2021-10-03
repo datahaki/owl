@@ -33,7 +33,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
   private static final Tensor VIRTUAL = Tensors.fromString("{{38, 39}, {42, 47}, {51, 52}, {46, 43}}");
 
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
     GokartEntity gokartEntity = new GokartEntity(initial) {
       @Override
@@ -50,12 +50,12 @@ public class GokartWaypoint0Demo extends GokartDemo {
     Region<Tensor> union = RegionUnion.wrap(Arrays.asList(hangarMap.region, polygonRegion));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(union);
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlyAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
+    owlAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
+    owlAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
     // ---
-    owlyAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
+    owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
@@ -63,7 +63,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(7));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlyAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
+    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent windowEvent) {
         glcWaypointFollowing.flagShutdown();

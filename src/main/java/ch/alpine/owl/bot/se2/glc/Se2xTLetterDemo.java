@@ -40,9 +40,9 @@ public class Se2xTLetterDemo implements DemoInterface {
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
-    owlyAnimationFrame.add(carxTEntity);
+    owlAnimationFrame.add(carxTEntity);
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     Region<Tensor> region = r2ImageRegionWrap.region();
@@ -72,11 +72,11 @@ public class Se2xTLetterDemo implements DemoInterface {
     // );
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // abstractEntity.raytraceQuery = SimpleTrajectoryRegionQuery.timeInvariant(imageRegion);
-    MouseGoal.simple(owlyAnimationFrame, carxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
+    MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground((RenderInterface) region1);
     // owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) cog0);
+    owlAnimationFrame.addBackground((RenderInterface) cog0);
     // ---
     final TrajectoryRegionQuery ray = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList( //
@@ -88,22 +88,22 @@ public class Se2xTLetterDemo implements DemoInterface {
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carxTEntity::getStateTimeNow, ray);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carxTEntity::getStateTimeNow, ray);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       CarPolicyEntity twdPolicyEntity = new CarPolicyEntity( //
           Tensors.vector(5.600, 8.667, -1.571), SarsaType.QLEARNING, ray);
-      owlyAnimationFrame.add(twdPolicyEntity);
+      owlAnimationFrame.add(twdPolicyEntity);
     }
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

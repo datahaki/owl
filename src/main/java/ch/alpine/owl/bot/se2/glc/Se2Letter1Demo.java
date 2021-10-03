@@ -18,13 +18,13 @@ import ch.alpine.tensor.Tensors;
 
 public class Se2Letter1Demo extends Se2CarDemo {
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     CarEntity carEntity = CarEntity.createDefault(new StateTime(Tensors.vector(10, 5, 1), RealScalar.ZERO));
     ImageRegion imageRegion = R2ImageRegions.inside_0f5c();
     PlannerConstraint plannerConstraint = createConstraint(imageRegion);
-    owlyAnimationFrame.add(carEntity);
-    MouseGoal.simple(owlyAnimationFrame, carEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.add(carEntity);
+    MouseGoal.simple(owlAnimationFrame, carEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(imageRegion)), //
@@ -36,10 +36,10 @@ public class Se2Letter1Demo extends Se2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

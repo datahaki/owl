@@ -29,22 +29,22 @@ public class TwdImageDemo extends AbstractTwdDemo {
   private final TrajectoryRegionQuery trajectoryRegionQuery = SimpleTrajectoryRegionQuery.timeInvariant(region);
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlAnimationFrame owlyAnimationFrame) {
+  TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
     TwdEntity twdEntity = TwdEntity.createJ2B2(new StateTime(Tensors.vector(7, 5, 0), RealScalar.ZERO));
     twdEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
-    owlyAnimationFrame.add(twdEntity);
+    owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlyAnimationFrame, twdEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), twdEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, twdEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     return twdEntity;
   }

@@ -13,9 +13,9 @@ import ch.alpine.tensor.Tensor;
 /* package */ abstract class AbstractTwdDemo implements DemoInterface {
   @Override
   public final OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    TwdEntity twdEntity = configure(owlyAnimationFrame);
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    TwdEntity twdEntity = configure(owlAnimationFrame);
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           getRegion(), //
@@ -27,16 +27,16 @@ import ch.alpine.tensor.Tensor;
 
         @Override
         public Tensor getSe2() {
-          return owlyAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
         }
       };
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
-  abstract TwdEntity configure(OwlAnimationFrame owlyAnimationFrame);
+  abstract TwdEntity configure(OwlAnimationFrame owlAnimationFrame);
 
   abstract Region<StateTime> getRegion();
 }

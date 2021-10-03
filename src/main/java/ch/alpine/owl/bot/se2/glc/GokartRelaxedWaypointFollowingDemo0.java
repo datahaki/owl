@@ -25,7 +25,7 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
   private static final Tensor MODEL2PIXEL = Tensors.matrixDouble(new double[][] { { 7.5, 0, 0 }, { 0, -7.5, 640 }, { 0, 0, 1 } });
 
   @Override
-  protected void configure(OwlAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(35.733, 38.267, 1.885), RealScalar.ZERO);
     // slacks
     Tensor slacks = Tensors.vector(0.5, 0);
@@ -43,10 +43,10 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
     // set up planner constraints, e.g. region outside track
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
-    owlyAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
+    owlAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
+    owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     // --
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.verbose(gokartEntity);
     // --
@@ -56,7 +56,7 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(5));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlyAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
+    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent windowEvent) {
         glcWaypointFollowing.flagShutdown();

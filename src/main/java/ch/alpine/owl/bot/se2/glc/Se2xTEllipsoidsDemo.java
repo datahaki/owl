@@ -32,9 +32,9 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(0, 0, 1), RealScalar.ZERO));
-    owlyAnimationFrame.add(carxTEntity);
+    owlAnimationFrame.add(carxTEntity);
     // ---
     ScalarTensorFunction stf1 = R2xTEllipsoidsAnimationDemo.wrap1DTensor(SimplexContinuousNoise.FUNCTION, Tensors.vector(0, 2), 0.05, 2.3);
     BijectionFamily noise1 = new SimpleR2TranslationFamily(stf1);
@@ -47,23 +47,23 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList(region1, region2)));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlyAnimationFrame, carxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
+    MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carxTEntity::getStateTimeNow, trq);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carxTEntity::getStateTimeNow, trq);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(350, 350);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(350, 350);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

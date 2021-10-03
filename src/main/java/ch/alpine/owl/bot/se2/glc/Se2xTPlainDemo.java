@@ -20,21 +20,21 @@ public class Se2xTPlainDemo
 {
   // @Override
   public void start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
-    owlyAnimationFrame.add(carxTEntity);
+    owlAnimationFrame.add(carxTEntity);
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     carxTEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
     Region<Tensor> region = r2ImageRegionWrap.region();
     Region<Tensor> se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(se2PointsVsRegion);
-    MouseGoal.simple(owlyAnimationFrame, carxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    owlyAnimationFrame.jFrame.setVisible(true);
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    owlAnimationFrame.jFrame.setVisible(true);
   }
 
   public static void main(String[] args) {

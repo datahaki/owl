@@ -33,7 +33,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
 public class R2VectorCostDemo implements DemoInterface {
   @Override // from DemoInterface
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
@@ -51,14 +51,14 @@ public class R2VectorCostDemo implements DemoInterface {
         return Optional.of(imageCostFunction);
       }
     };
-    owlyAnimationFrame.add(r2Entity);
+    owlAnimationFrame.add(r2Entity);
     Region<Tensor> imageRegion = Regions.emptyRegion();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(imageRegion);
-    MouseGoal.simple(owlyAnimationFrame, r2Entity, plannerConstraint);
-    owlyAnimationFrame.addBackground(AxesRender.INSTANCE);
-    owlyAnimationFrame.addBackground(ImageRender.scale(RegionRenders.image(image), imageCostFunction.scale()));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
+    owlAnimationFrame.addBackground(AxesRender.INSTANCE);
+    owlAnimationFrame.addBackground(ImageRender.scale(RegionRenders.image(image), imageCostFunction.scale()));
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

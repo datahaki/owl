@@ -24,17 +24,17 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
 
   @Override
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(0.2, 0.2), RealScalar.ZERO));
     TrajectoryEntity trajectoryEntity = new R2xTEntity(episodeIntegrator, DELAY);
-    owlyAnimationFrame.add(trajectoryEntity);
+    owlAnimationFrame.add(trajectoryEntity);
     Region<StateTime> region = new R2xTNoiseStateTimeRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(region);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
-    return owlyAnimationFrame;
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

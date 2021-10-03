@@ -20,11 +20,12 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 
+// TODO need to zoom out at the beginning
 public class BalloonAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
   public OwlAnimationFrame start() {
-    OwlAnimationFrame owlyAnimationFrame = new OwlAnimationFrame();
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{7.5, 0, 100}, {0, -7.5, 800}, {0, 0, 1}}"));
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{7.5, 0, 100}, {0, -7.5, 800}, {0, 0, 1}}"));
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(BalloonEntity.SPEED_MAX);
     BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithoutUnits();
     StateTime stateTime = new StateTime(Tensors.vector(0, 150, 10, 10), RealScalar.ZERO);
@@ -32,13 +33,13 @@ public class BalloonAnimationDemo implements DemoInterface {
         balloonStateSpaceModel, EulerIntegrator.INSTANCE, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
-    MouseGoal.simple(owlyAnimationFrame, balloonEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame, balloonEntity, plannerConstraint);
     Tensor range = Tensors.vector(500, 100).unmodifiable();
     Region<Tensor> imageRegion = ImageRegion.of(ResourceData.bufferedImage("/io/mountainChain.png"), range, true);
-    owlyAnimationFrame.addBackground(RegionRenders.create(imageRegion));
-    owlyAnimationFrame.add(balloonEntity);
-    owlyAnimationFrame.addBackground(AxesRender.INSTANCE);
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.add(balloonEntity);
+    owlAnimationFrame.addBackground(AxesRender.INSTANCE);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) throws Exception {

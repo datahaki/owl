@@ -63,10 +63,10 @@ abstract class R2BaseDemo implements DemoInterface {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(region));
-    owlyFrame.addBackground(RegionRenders.create(ballRegion));
-    owlyFrame.geometricComponent.setOffset(250, 500);
-    return owlyFrame;
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(region));
+    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    owlFrame.geometricComponent.setOffset(250, 500);
+    return owlFrame;
   }
 }

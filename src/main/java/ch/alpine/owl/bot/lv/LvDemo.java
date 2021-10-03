@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.Log;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(5000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(ellipsoidRegion));
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(ellipsoidRegion));
   }
 }

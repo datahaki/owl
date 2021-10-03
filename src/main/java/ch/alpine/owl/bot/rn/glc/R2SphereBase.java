@@ -54,10 +54,10 @@ import ch.alpine.tensor.alg.Array;
   }
 
   void show(TrajectoryPlanner trajectoryPlanner) {
-    OwlFrame owlyFrame = OwlGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(region1));
-    owlyFrame.addBackground(RegionRenders.create(region2));
-    owlyFrame.addBackground(RegionRenders.create(ballRegion));
-    owlyFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(region1));
+    owlFrame.addBackground(RegionRenders.create(region2));
+    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    owlFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
   }
 }

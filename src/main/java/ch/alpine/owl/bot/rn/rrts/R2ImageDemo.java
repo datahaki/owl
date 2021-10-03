@@ -39,16 +39,16 @@ import ch.alpine.tensor.opt.nd.Box;
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
-    OwlFrame owlyFrame = OwlGui.start();
-    owlyFrame.geometricComponent.setOffset(60, 477);
-    owlyFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlyFrame.addBackground(RegionRenders.create(imageRegion));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(60, 477);
+    owlFrame.jFrame.setBounds(100, 100, 550, 550);
+    owlFrame.addBackground(RegionRenders.create(imageRegion));
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     int frame = 0;
-    while (frame++ < 20 && owlyFrame.jFrame.isVisible()) {
+    while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int c = 0; c < 50; ++c)
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
-      owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+      owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
       Thread.sleep(10);
     }
     System.out.println(rrts.rewireCount());
