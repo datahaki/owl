@@ -7,9 +7,9 @@ import java.util.Optional;
 import javax.swing.JCheckBox;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.Tensor;
 
 /* package */ class CoordinatesPlaceDemo extends LogWeightingDemo {

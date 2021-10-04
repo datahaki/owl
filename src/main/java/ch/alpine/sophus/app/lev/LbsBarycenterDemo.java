@@ -11,11 +11,11 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.app.opt.PolygonCoordinates;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
-import ch.alpine.sophus.opt.PolygonCoordinates;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

@@ -12,9 +12,9 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.app.lev.LeversRender;
+import ch.alpine.sophus.app.opt.LogWeighting;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.opt.LogWeighting;
 import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class A2ScatteredSetCoordinateDemo extends AbstractExportWeightingDemo {

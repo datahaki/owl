@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
+import ch.alpine.sophus.app.opt.LogWeighting;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.math.var.Variograms;
-import ch.alpine.sophus.opt.LogWeighting;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

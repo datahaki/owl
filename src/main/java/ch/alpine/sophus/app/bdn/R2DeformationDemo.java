@@ -9,9 +9,9 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.RenderInterface;
+import ch.alpine.sophus.app.opt.MixedLogWeightings;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.opt.MixedLogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

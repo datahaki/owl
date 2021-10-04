@@ -9,8 +9,8 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.sophus.app.lev.LogWeightingDemo;
+import ch.alpine.sophus.app.opt.LogWeighting;
 import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.opt.LogWeighting;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataGradients;
 

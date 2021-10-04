@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.app.bd1;
 
-import ch.alpine.sophus.opt.LogWeightings;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;

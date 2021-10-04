@@ -8,11 +8,11 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.so3.Rodrigues;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

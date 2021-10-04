@@ -12,12 +12,12 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class AbstractHoverDemo extends LogWeightingDemo {

@@ -16,11 +16,11 @@ import javax.swing.JButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.RenderInterface;
+import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.PointsRender;
 import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.opt.DubinsGenerator;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

@@ -4,9 +4,9 @@ package ch.alpine.sophus.app.bdn;
 import java.awt.Dimension;
 
 import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

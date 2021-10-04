@@ -12,14 +12,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 import ch.alpine.sophus.app.bdn.AbstractScatteredSetWeightingDemo;
+import ch.alpine.sophus.app.opt.LogWeighting;
+import ch.alpine.sophus.app.opt.LogWeightings;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gui.ren.ArrayPlotRender;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.Biinvariants;
 import ch.alpine.sophus.hs.MetricBiinvariant;
-import ch.alpine.sophus.opt.LogWeighting;
-import ch.alpine.sophus.opt.LogWeightings;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.ConstantArray;

@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.gui.FieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.math.MinMax;
@@ -32,14 +34,29 @@ import ch.alpine.tensor.opt.nd.NdTreeMap;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
-public class NdTreeMapDemo extends AbstractDemo {
+/* package */ class NdTreeMapDemo extends AbstractDemo {
+  public static class Param {
+    @FieldInteger
+    public Scalar leafSizeMax = RealScalar.of(5);
+    @FieldInteger
+    @FieldClip(min = "1", max = "10000")
+    public Scalar count = RealScalar.of(1000);
+    @FieldInteger
+    @FieldClip(min = "1", max = "20")
+    public Scalar multi = RealScalar.of(10);
+    @FieldInteger
+    public Scalar pCount = RealScalar.of(4);
+    public Boolean nearest = false;
+    public CenterNorms centerNorms = CenterNorms._2;
+  }
+
+  private final Param param = new Param();
   private final Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
   private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(box), 5000);
-  private final NdParam ndParam = new NdParam();
 
   public NdTreeMapDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new FieldsEditor(ndParam).getJScrollPane();
+    JScrollPane jScrollPane = new FieldsEditor(param).getJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(200, 200));
     container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
@@ -48,7 +65,7 @@ public class NdTreeMapDemo extends AbstractDemo {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     graphics.setColor(Color.GRAY);
-    Tensor points = Tensor.of(pointsAll.stream().limit(ndParam.count.number().intValue()));
+    Tensor points = Tensor.of(pointsAll.stream().limit(param.count.number().intValue()));
     for (Tensor point : points) {
       Point2D point2d = geometricLayer.toPoint2D(point);
       graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 2, 2);
@@ -56,20 +73,20 @@ public class NdTreeMapDemo extends AbstractDemo {
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2).multiply(RealScalar.of(0.3)));
     Box actual = MinMax.box(points);
-    NdMap<Void> ndMap = NdTreeMap.of(actual, ndParam.leafSizeMax.number().intValue());
+    NdMap<Void> ndMap = NdTreeMap.of(actual, param.leafSizeMax.number().intValue());
     Random random = new Random(1);
-    int multi = ndParam.multi.number().intValue();
+    int multi = param.multi.number().intValue();
     for (Tensor point : points) {
       int count = 1 + random.nextInt(multi);
       for (int index = 0; index < count; ++index)
         ndMap.insert(point, null);
     }
     Timing timing = Timing.started();
-    CenterNorms centerNorms = ndParam.centerNorms;
+    CenterNorms centerNorms = param.centerNorms;
     NdCenterInterface ndCenterInterface = centerNorms.ndCenterInterface(xya.extract(0, 2));
-    int limit = ndParam.pCount.number().intValue();
+    int limit = param.pCount.number().intValue();
     final Collection<NdMatch<Void>> collection;
-    if (ndParam.nearest) {
+    if (param.nearest) {
       GraphicNearest<Void> graphicNearest = //
           new GraphicNearest<>(ndCenterInterface, limit, geometricLayer, graphics);
       ndMap.visit(graphicNearest);
@@ -83,7 +100,7 @@ public class NdTreeMapDemo extends AbstractDemo {
     double seconds = timing.seconds();
     graphics.drawString(String.format("%d %d %6.4f", ndMap.size(), collection.size(), seconds), 0, 40);
     graphics.setColor(new Color(255, 0, 0, 128));
-    if (ndParam.nearest) {
+    if (param.nearest) {
       Optional<Scalar> optional = collection.stream() //
           .map(NdMatch::distance) //
           .reduce(Max::of);
