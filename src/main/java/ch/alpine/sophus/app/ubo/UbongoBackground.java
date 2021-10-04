@@ -11,7 +11,7 @@ import java.util.Random;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.FieldsEditor;
+import ch.alpine.java.ref.gui.FieldsPanel;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gui.ren.MeshRender;
@@ -37,7 +37,7 @@ public class UbongoBackground extends AbstractDemo {
 
   public UbongoBackground() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new FieldsEditor(this).getJScrollPane());
+    container.add("West", new FieldsPanel(this).getJScrollPane());
   }
 
   public Tensor noise(List<Integer> list) {

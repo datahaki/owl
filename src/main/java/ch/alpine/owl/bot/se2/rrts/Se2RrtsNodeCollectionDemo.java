@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.FieldsEditor;
+import ch.alpine.java.ref.gui.FieldsPanel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
@@ -59,7 +59,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new FieldsEditor(param).getJScrollPane();
+    JScrollPane jScrollPane = new FieldsPanel(param).getJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
     container.add("West", jScrollPane);
     // ---

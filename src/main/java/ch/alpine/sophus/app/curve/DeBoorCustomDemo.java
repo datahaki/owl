@@ -3,15 +3,13 @@ package ch.alpine.sophus.app.curve;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import javax.swing.JTextField;
-
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
@@ -27,13 +25,16 @@ import ch.alpine.tensor.itp.DeBoor;
 
 /* package */ class DeBoorCustomDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
+
   // ---
-  private final JTextField jTextField = new JTextField(30);
+  public static class Param {
+    public Tensor knots = Tensors.vector(0, 1);
+  }
+
+  private final Param param = new Param();
 
   public DeBoorCustomDemo() {
-    jTextField.setPreferredSize(new Dimension(200, 28));
-    jTextField.setText("{0, 1}");
-    timerFrame.jToolBar.add(jTextField);
+    FieldsToolbar.add(param, timerFrame.jToolBar);
     // ---
     timerFrame.geometricComponent.addRenderInterface(AxesRender.INSTANCE);
   }
@@ -47,7 +48,7 @@ import ch.alpine.tensor.itp.DeBoor;
       try {
         Tensor domain = Subdivide.of(0, 1, 100);
         Tensor domahi = Subdivide.of(1, 2, 100);
-        Tensor knots = Tensors.fromString(jTextField.getText());
+        Tensor knots = param.knots;
         if (Integers.isEven(knots.length())) {
           int degree = knots.length() >> 1;
           int length = degree + 1;

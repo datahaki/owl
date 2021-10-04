@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.sophus.app.decim;
 
 import java.util.ArrayList;

@@ -6,17 +6,15 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-
-import javax.swing.JToggleButton;
 
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.sophus.app.io.GokartPoseData;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
@@ -52,49 +50,33 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   // ---
   private final PathRender pathRenderCurve = new PathRender(COLOR_CURVE);
   private final PathRender pathRenderShape = new PathRender(COLOR_RECON, 2f);
+
   // ---
-  private final SpinnerLabel<Integer> spinnerLabelWidth = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerLabelDegre = new SpinnerLabel<>();
-  private final SpinnerLabel<LineDistances> spinnerType = new SpinnerLabel<>();
-  // private final JSlider jSlider = new JSlider(1, 1000, 500);
-  private final JToggleButton jToggleButton = new JToggleButton("error");
+  public static class Param {
+    @FieldSelection(array = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
+    public Scalar width = RealScalar.of(0);
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5" })
+    public Scalar level = RealScalar.of(2);
+    @FieldSelection(array = { "1", "2", "3" })
+    public Scalar degre = RealScalar.of(1);
+    public LineDistances type = LineDistances.STANDARD;
+    public Boolean error = false;
+  }
+
+  // private final SpinnerLabel<Integer> spinnerLabelWidth = new SpinnerLabel<>();
+  // private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
+  // private final SpinnerLabel<Integer> spinnerLabelDegre = new SpinnerLabel<>();
+  // private final SpinnerLabel<LineDistances> spinnerType = new SpinnerLabel<>();
+  // // private final JSlider jSlider = new JSlider(1, 1000, 500);
+  // private final JToggleButton jToggleButton = new JToggleButton("error");
   protected Tensor _control = Tensors.empty();
+  private final Param param = new Param();
 
   public CurveDecimationDemo(GokartPoseData gokartPoseData) {
     super(ManifoldDisplays.SE2_R2, gokartPoseData);
+    FieldsToolbar.add(param, timerFrame.jToolBar).addUniversalListener(this::updateState);
+    // ---
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
-    {
-      spinnerLabelWidth.setList(Arrays.asList(0, 1, 5, 8, 10, 15, 20, 25, 30, 35));
-      spinnerLabelWidth.setIndex(0);
-      spinnerLabelWidth.addToComponentReduced(timerFrame.jToolBar, new Dimension(60, 28), "width");
-      spinnerLabelWidth.addSpinnerListener(type -> updateState());
-    }
-    {
-      spinnerLabelLevel.setList(Arrays.asList(0, 1, 2, 3, 4, 5));
-      spinnerLabelLevel.setValue(2);
-      spinnerLabelLevel.addToComponentReduced(timerFrame.jToolBar, new Dimension(60, 28), "eps power");
-      spinnerLabelLevel.addSpinnerListener(type -> updateState());
-    }
-    {
-      spinnerLabelDegre.setList(Arrays.asList(1, 2, 3));
-      spinnerLabelDegre.setIndex(0);
-      spinnerLabelDegre.addToComponentReduced(timerFrame.jToolBar, new Dimension(60, 28), "degree");
-      spinnerLabelDegre.addSpinnerListener(type -> updateState());
-    }
-    {
-      spinnerType.setArray(LineDistances.values());
-      spinnerType.setIndex(0);
-      spinnerType.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "type");
-      // spinnerType.addSpinnerListener(type -> updateState());
-    }
-    // {
-    // jSlider.setPreferredSize(new Dimension(200, 28));
-    // timerFrame.jToolBar.add(jSlider);
-    // }
-    {
-      timerFrame.jToolBar.add(jToggleButton);
-    }
     updateState();
   }
 
@@ -103,7 +85,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
     TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
-        GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), spinnerLabelWidth.getValue());
+        GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), param.width.number().intValue());
     _control = tensorUnaryOperator.apply(gokartPoseData.getPose(name, limit));
   }
 
@@ -126,11 +108,10 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
           geometricLayer.popMatrix();
         }
     }
-    Scalar epsilon = Power.of(RationalScalar.HALF, spinnerLabelLevel.getValue());
+    Scalar epsilon = Power.of(RationalScalar.HALF, param.level.number().intValue());
     // epsilon = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum() * 3);
-    LineDistances lineDistances = spinnerType.getValue();
     CurveDecimation curveDecimation = CurveDecimation.of( //
-        lineDistances.supply(manifoldDisplay.hsManifold()), epsilon);
+        param.type.supply(manifoldDisplay.hsManifold()), epsilon);
     Tensor control = Tensor.of(_control.stream().map(manifoldDisplay::project));
     Result result = curveDecimation.evaluate(control);
     Tensor simplified = result.result();
@@ -138,7 +119,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     // graphics.drawString("SIMPL=" + control.length(), 0, 20);
     // graphics.drawString("SIMPL=" + , 0, 30);
     Tensor refined = Nest.of( //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesic(), spinnerLabelDegre.getValue())::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesic(), param.degre.number().intValue())::string, //
         simplified, 5);
     pathRenderShape.setCurve(refined, false).render(geometricLayer, graphics);
     {
@@ -154,7 +135,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
         geometricLayer.popMatrix();
       }
     }
-    if (jToggleButton.isSelected()) {
+    if (param.error) {
       Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
       VisualSet visualSet = new VisualSet(ColorDataLists._097.cyclic().deriveWithAlpha(192));
       visualSet.setPlotLabel("Reduction from " + control.length() + " to " + simplified.length() + " samples");

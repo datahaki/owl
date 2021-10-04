@@ -2,16 +2,14 @@
 package ch.alpine.sophus.app.curve;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.Objects;
 
-import javax.swing.JToggleButton;
-
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
@@ -20,27 +18,27 @@ import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.ren.PathRender;
 import ch.alpine.sophus.math.Geodesic;
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 
 /** Bezier function with extrapolation */
 /* package */ class BezierFunctionDemo extends AbstractCurvatureDemo {
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
-  private final JToggleButton jToggleButton = new JToggleButton("extrap.");
+  public static class Param {
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+    public Scalar refine = RealScalar.of(6);
+    public Boolean extrap = false;
+  }
+
+  private final Param param = new Param();
 
   public BezierFunctionDemo() {
     addButtonDubins();
     // ---
-    spinnerRefine.addSpinnerListener(value -> timerFrame.geometricComponent.jComponent.repaint());
-    spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-    spinnerRefine.setValue(6);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
-    // ---
-    timerFrame.jToolBar.addSeparator();
-    {
-      timerFrame.jToolBar.add(jToggleButton);
-    }
+    FieldsToolbar.add(param, timerFrame.jToolBar);
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {0, 1, 0}}");
       setControlPointsSe2(tensor);
@@ -59,10 +57,10 @@ import ch.alpine.tensor.alg.Subdivide;
     int n = sequence.length();
     if (0 == n)
       return Tensors.empty();
-    int levels = spinnerRefine.getValue();
+    int levels = param.refine.number().intValue();
     Tensor domain = n <= 1 //
         ? Tensors.vector(0)
-        : Subdivide.of(0.0, jToggleButton.isSelected() //
+        : Subdivide.of(0.0, param.extrap //
             ? n / (double) (n - 1)
             : 1.0, 1 << levels);
     {

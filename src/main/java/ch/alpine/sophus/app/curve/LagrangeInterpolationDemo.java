@@ -5,15 +5,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import javax.swing.JSlider;
-import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.app.sym.SymGeodesic;
 import ch.alpine.sophus.app.sym.SymLinkImage;
@@ -34,20 +34,20 @@ import ch.alpine.tensor.sca.N;
 
 /** LagrangeInterpolation with extrapolation */
 /* package */ class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
-  private final JToggleButton jToggleSymi = new JToggleButton("graph");
+  public static class Param {
+    public Boolean graph = true;
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+    public Scalar refine = RealScalar.of(7);
+  }
+
+  private final Param param = new Param();
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public LagrangeInterpolationDemo() {
     addButtonDubins();
+    FieldsToolbar.add(param, timerFrame.jToolBar);
     // ---
-    jToggleSymi.setSelected(true);
-    timerFrame.jToolBar.add(jToggleSymi);
-    // ---
-    spinnerRefine.addSpinnerListener(value -> timerFrame.geometricComponent.jComponent.repaint());
-    spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
-    spinnerRefine.setValue(7);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {1, 0, 2.1}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
@@ -66,7 +66,7 @@ import ch.alpine.tensor.sca.N;
       return Tensors.empty();
     final Scalar parameter = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()) //
         .multiply(RealScalar.of(sequence.length()));
-    if (jToggleSymi.isSelected()) {
+    if (param.graph) {
       Tensor vector = Tensor.of(IntStream.range(0, sequence.length()).mapToObj(SymScalar::leaf));
       ScalarTensorFunction scalarTensorFunction = LagrangeInterpolation.of(SymGeodesic.INSTANCE, vector)::at;
       Scalar scalar = N.DOUBLE.apply(parameter);
@@ -77,7 +77,7 @@ import ch.alpine.tensor.sca.N;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     // ---
-    int levels = spinnerRefine.getValue();
+    int levels = param.refine.number().intValue();
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Interpolation interpolation = LagrangeInterpolation.of(manifoldDisplay.geodesic(), getGeodesicControlPoints());
     Tensor refined = Subdivide.of(0, sequence.length(), 1 << levels).map(interpolation::at);

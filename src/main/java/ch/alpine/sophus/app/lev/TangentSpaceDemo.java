@@ -15,7 +15,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.ref.gui.FieldsEditor;
+import ch.alpine.java.ref.gui.FieldsPanel;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.app.bd2.GenesisDequeProperties;
 import ch.alpine.sophus.crv.d2.OriginEnclosureQ;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
     super(true, ManifoldDisplays.R2_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    FieldsEditor configPanel = new FieldsEditor(iterativeAffineProperties);
+    FieldsPanel configPanel = new FieldsPanel(iterativeAffineProperties);
     container.add("West", configPanel.getJScrollPane());
     Tensor sequence = Tensor.of(CirclePoints.of(15).multiply(RealScalar.of(2)).stream().skip(5).map(PadRight.zeros(3)));
     sequence.set(Scalar::zero, 0, Tensor.ALL);

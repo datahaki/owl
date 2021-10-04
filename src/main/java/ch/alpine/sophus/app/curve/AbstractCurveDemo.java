@@ -3,25 +3,35 @@ package ch.alpine.sophus.app.curve;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JSlider;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
-  private static final List<Integer> DEGREES = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-  // ---
-  private final SpinnerLabel<Integer> spinnerDegree = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
+  @ReflectionMarker
+  public static class Param {
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+    public Scalar degree = RealScalar.of(3);
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
+    public Scalar refine = RealScalar.of(5);
+  }
+
+  private final Param param = new Param();
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public AbstractCurveDemo() {
@@ -30,14 +40,7 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
 
   public AbstractCurveDemo(List<ManifoldDisplay> list) {
     super(list);
-    // ---
-    spinnerDegree.setList(DEGREES);
-    spinnerDegree.setValue(3);
-    spinnerDegree.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "degree");
-    // ---
-    spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-    spinnerRefine.setValue(5);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
+    FieldsToolbar.add(param, timerFrame.jToolBar);
     // ---
     jSlider.setPreferredSize(new Dimension(500, 28));
     timerFrame.jToolBar.add(jSlider);
@@ -48,7 +51,7 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
     Tensor control = getGeodesicControlPoints();
     if (Tensors.isEmpty(control))
       return Tensors.empty();
-    return protected_render(geometricLayer, graphics, spinnerDegree.getValue(), spinnerRefine.getValue(), control);
+    return protected_render(geometricLayer, graphics, param.degree.number().intValue(), param.refine.number().intValue(), control);
   }
 
   protected abstract Tensor protected_render( //

@@ -3,22 +3,20 @@ package ch.alpine.sophus.app.curve;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -30,26 +28,25 @@ import ch.alpine.tensor.itp.BSplineInterpolation;
 import ch.alpine.tensor.mat.re.Inverse;
 
 /* package */ class BSplineBasisDemo extends ControlPointsDemo {
-  private static final List<Integer> DEGREES = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final Color TICKS_COLOR = new Color(0, 0, 0, 128);
-  // ---
-  private final SpinnerLabel<Integer> spinnerDegree = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
-  private final JToggleButton jToggleItrp = new JToggleButton("interp");
 
-  BSplineBasisDemo() {
+  public static class Param {
+    public Boolean interp = false;
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+    public Scalar degree = RealScalar.of(1);
+    @FieldInteger
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+    public Scalar refine = RealScalar.of(4);
+  }
+
+  private final Param param = new Param();
+
+  public BSplineBasisDemo() {
     super(true, ManifoldDisplays.R2_ONLY);
     // ---
-    timerFrame.jToolBar.add(jToggleItrp);
-    // ---
-    spinnerDegree.setList(DEGREES);
-    spinnerDegree.setValue(1);
-    spinnerDegree.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "degree");
-    // ---
-    spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
-    spinnerRefine.setValue(4);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
+    FieldsToolbar.add(param, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {1, 0, 0}}"));
   }
@@ -57,8 +54,8 @@ import ch.alpine.tensor.mat.re.Inverse;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    int degree = spinnerDegree.getValue();
-    int levels = spinnerRefine.getValue();
+    int degree = param.degree.number().intValue();
+    int levels = param.refine.number().intValue();
     Tensor control = getGeodesicControlPoints();
     {
       graphics.setStroke(new BasicStroke(1.25f));
@@ -87,7 +84,7 @@ import ch.alpine.tensor.mat.re.Inverse;
       graphics.setStroke(new BasicStroke(1f));
     }
     // ---
-    Tensor effective = jToggleItrp.isSelected() //
+    Tensor effective = param.interp //
         ? BSplineInterpolation.solve(degree, control)
         : control;
     GeodesicBSplineFunction bSplineFunction = //

@@ -3,18 +3,18 @@ package ch.alpine.sophus.app.curve;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
-import java.util.Arrays;
-import java.util.List;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.gui.FieldsToolbar;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -28,22 +28,26 @@ import ch.alpine.tensor.itp.DeBoor;
 import ch.alpine.tensor.mat.re.Inverse;
 
 /* package */ class DeBoorDemo extends AbstractDemo {
-  private static final List<Integer> DEGREES = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final Color TICKS_COLOR = new Color(0, 0, 0, 128);
+
   // ---
-  private final SpinnerLabel<Integer> spinnerDegree = new SpinnerLabel<>();
+  @ReflectionMarker
+  public static class Param {
+    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6" })
+    public Scalar degree = RealScalar.of(1);
+  }
+
+  private final Param param = new Param();
 
   public DeBoorDemo() {
-    spinnerDegree.setList(DEGREES);
-    spinnerDegree.setValue(1);
-    spinnerDegree.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "degree");
+    FieldsToolbar.add(param, timerFrame.jToolBar);
   }
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    int degree = spinnerDegree.getValue();
+    int degree = param.degree.number().intValue();
     {
       graphics.setStroke(new BasicStroke(1.25f));
       Tensor matrix = geometricLayer.getMatrix();

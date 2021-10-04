@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.FieldsEditor;
+import ch.alpine.java.ref.gui.FieldsPanel;
 import ch.alpine.sophus.app.opt.InsideConvexHullLogWeighting;
 import ch.alpine.sophus.app.opt.LogWeighting;
 import ch.alpine.sophus.gds.H2Display;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.Tensors;
     super(Arrays.asList());
     spinnerLogWeighting.setVisible(false);
     Container container = timerFrame.jFrame.getContentPane();
-    FieldsEditor configPanel = new FieldsEditor(dequeGenesisProperties);
+    FieldsPanel configPanel = new FieldsPanel(dequeGenesisProperties);
     configPanel.addUniversalListener(this::recompute);
     container.add("West", configPanel.getJScrollPane());
     // ---
