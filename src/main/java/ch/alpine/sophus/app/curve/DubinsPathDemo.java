@@ -52,7 +52,7 @@ import ch.alpine.tensor.red.Nest;
   private final PathRender pathRenderClothoid = new PathRender(Color.CYAN, 2f);
 
   public DubinsPathDemo() {
-    new FieldsToolbar(param, timerFrame.jToolBar);
+    FieldsToolbar.add(param, timerFrame.jToolBar);
   }
 
   @Override // from RenderInterface
