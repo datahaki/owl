@@ -12,7 +12,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.RenderInterface;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.mat.Inverse;
+import ch.alpine.tensor.mat.re.Inverse;
 
 /** region in R2 */
 public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Serializable {

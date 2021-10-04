@@ -5,8 +5,8 @@ import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.alg.UnitVector;
+import ch.alpine.tensor.mat.MatrixQ;
 import junit.framework.TestCase;
 
 public class DubinsGeneratorTest extends TestCase {

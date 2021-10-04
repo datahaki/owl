@@ -14,7 +14,7 @@ import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.mat.Inverse;
+import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.red.Nest;
 
 // TODO functionality/purpose is not clear

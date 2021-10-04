@@ -29,8 +29,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.io.ImageFormat;
+import ch.alpine.tensor.mat.MatrixQ;
 
 public enum RegionRenders {
   ;

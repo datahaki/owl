@@ -13,7 +13,7 @@ import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.math.VectorFields;
+import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;

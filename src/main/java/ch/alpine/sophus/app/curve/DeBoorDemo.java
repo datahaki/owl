@@ -25,7 +25,7 @@ import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.itp.BSplineFunction;
 import ch.alpine.tensor.itp.BSplineFunctionString;
 import ch.alpine.tensor.itp.DeBoor;
-import ch.alpine.tensor.mat.Inverse;
+import ch.alpine.tensor.mat.re.Inverse;
 
 /* package */ class DeBoorDemo extends AbstractDemo {
   private static final List<Integer> DEGREES = Arrays.asList(0, 1, 2, 3, 4, 5, 6);

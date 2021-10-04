@@ -4,6 +4,7 @@ package ch.alpine.owl.math;
 import java.util.function.Function;
 
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

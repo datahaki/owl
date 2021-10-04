@@ -1,7 +1,6 @@
 // code by jph
-package ch.alpine.owl.math;
+package ch.alpine.owl.math.model;
 
-import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

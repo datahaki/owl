@@ -12,8 +12,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.ext.ReadLine;
+import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.red.Max;
 import junit.framework.TestCase;
 

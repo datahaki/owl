@@ -2,11 +2,11 @@
 package ch.alpine.owl.bot.psu;
 
 import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.math.VectorFields;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Reference;
+import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;

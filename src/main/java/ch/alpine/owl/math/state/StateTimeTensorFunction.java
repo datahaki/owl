@@ -1,10 +1,9 @@
 // code by jph
-package ch.alpine.owl.math;
+package ch.alpine.owl.math.state;
 
 import java.io.Serializable;
 import java.util.function.Function;
 
-import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 

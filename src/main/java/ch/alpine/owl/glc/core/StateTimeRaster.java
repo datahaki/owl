@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.glc.core;
 
-import ch.alpine.owl.math.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.tensor.Tensor;
 
 /** @see StateTimeTensorFunction */

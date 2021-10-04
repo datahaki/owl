@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.delta;
 
 import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.math.VectorFields;
 import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;

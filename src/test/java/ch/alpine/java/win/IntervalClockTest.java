@@ -1,7 +1,6 @@
 // code by jph
-package ch.alpine.owl.data;
+package ch.alpine.java.win;
 
-import ch.alpine.java.win.IntervalClock;
 import junit.framework.TestCase;
 
 public class IntervalClockTest extends TestCase {

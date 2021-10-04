@@ -21,7 +21,7 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Rescale;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.img.ColorDataGradient;
-import ch.alpine.tensor.mat.Inverse;
+import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.sca.Clip;
 
 /* package */ enum StaticHelper {

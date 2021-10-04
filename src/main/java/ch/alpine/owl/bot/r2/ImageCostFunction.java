@@ -8,8 +8,8 @@ import ch.alpine.owl.math.region.FlipYXTensorInterp;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.mat.MatrixQ;
 
 public abstract class ImageCostFunction implements CostFunction, Serializable {
   private final Tensor image;

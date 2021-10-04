@@ -21,7 +21,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.lie.r2.CirclePoints;
-import ch.alpine.tensor.mat.LeastSquares;
+import ch.alpine.tensor.mat.pi.LeastSquares;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
 /* package */ class CirclePointDemo extends ControlPointsDemo {

@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.util;
 
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.MatrixQ;
+import ch.alpine.tensor.mat.MatrixQ;
 import junit.framework.TestCase;
 
 public class StreetScenarioDataTest extends TestCase {

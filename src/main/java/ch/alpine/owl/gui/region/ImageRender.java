@@ -13,8 +13,8 @@ import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.sca.N;
 
 /** Hint:
