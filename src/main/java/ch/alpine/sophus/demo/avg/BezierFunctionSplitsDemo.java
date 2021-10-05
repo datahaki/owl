@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JSlider;
 
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.sym.SymGeodesic;
@@ -18,7 +19,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 
 /** visualization of geodesic average along geodesics */
-/* package */ class BezierFunctionSplitsDemo extends AbstractSplitsDemo {
+public class BezierFunctionSplitsDemo extends AbstractSplitsDemo {
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public BezierFunctionSplitsDemo() {
@@ -48,6 +49,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.LIGHT.updateUI();
     new BezierFunctionSplitsDemo().setVisible(1000, 600);
   }
 }

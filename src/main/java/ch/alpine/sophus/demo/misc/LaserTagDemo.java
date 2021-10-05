@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.fun;
+package ch.alpine.sophus.demo.misc;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
   private final JToggleButton jToggleButton = new JToggleButton("show");
 
   public LaserTagDemo() {
-    super(true, ManifoldDisplays.R2_ONLY);
+    super(false, ManifoldDisplays.R2_ONLY);
     // ---
     timerFrame.geometricComponent.addRenderInterface(pathRenderHull);
     jToggleButton.setSelected(true);

@@ -13,9 +13,11 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -38,8 +40,10 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private static final int HEIGHT = 300;
 
   public static class Param {
+    @FieldPreferredWidth(width = 50)
     @FieldSelection(array = { "0", "1/4", "1/2", "3/4", "1" })
     public Scalar beta = RealScalar.ZERO;
+    @FieldPreferredWidth(width = 100)
     @FieldInteger
     @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7" })
     public Scalar degree = RealScalar.ONE;
@@ -111,6 +115,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.INTELLI_J.updateUI();
     new BarycentricRationalInterpolationDemo().setVisible(1200, 600);
   }
 }

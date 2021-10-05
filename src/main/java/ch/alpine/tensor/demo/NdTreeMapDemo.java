@@ -2,22 +2,20 @@
 package ch.alpine.tensor.demo;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Random;
 
-import javax.swing.JScrollPane;
-
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
@@ -36,14 +34,18 @@ import ch.alpine.tensor.sca.Abs;
 
 /* package */ class NdTreeMapDemo extends AbstractDemo {
   public static class Param {
+    @FieldPreferredWidth(width = 40)
     @FieldInteger
     public Scalar leafSizeMax = RealScalar.of(5);
+    @FieldPreferredWidth(width = 40)
     @FieldInteger
     @FieldClip(min = "1", max = "10000")
     public Scalar count = RealScalar.of(1000);
+    @FieldPreferredWidth(width = 40)
     @FieldInteger
     @FieldClip(min = "1", max = "20")
     public Scalar multi = RealScalar.of(10);
+    @FieldPreferredWidth(width = 40)
     @FieldInteger
     public Scalar pCount = RealScalar.of(4);
     public Boolean nearest = false;
@@ -55,11 +57,12 @@ import ch.alpine.tensor.sca.Abs;
   private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(box), 5000);
 
   public NdTreeMapDemo() {
-    Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
-    jScrollPane.setPreferredSize(new Dimension(200, 200));
-    container.add("West", jScrollPane);
-    timerFrame.geometricComponent.setOffset(100, 600);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
+    // Container container = timerFrame.jFrame.getContentPane();
+    // JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
+    // jScrollPane.setPreferredSize(new Dimension(200, 200));
+    // container.add("West", jScrollPane);
+    // timerFrame.geometricComponent.setOffset(100, 600);
   }
 
   @Override
@@ -128,6 +131,7 @@ import ch.alpine.tensor.sca.Abs;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.NIMBUS.updateUI();
     new NdTreeMapDemo().setVisible(1000, 800);
   }
 }

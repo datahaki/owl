@@ -1,59 +1,54 @@
 // code by jph
-package ch.alpine.sophus.demo.fun;
+package ch.alpine.sophus.demo.misc;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import javax.swing.JButton;
 
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldFuse;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.math.noise.ColoredNoise;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.pdf.RandomVariate;
 
-/* package */ class ColoredNoiseDemo extends GeodesicDisplayDemo implements ActionListener {
-  private final SpinnerLabel<Scalar> spinnerAlpha = new SpinnerLabel<>();
+@ReflectionMarker
+public class ColoredNoiseDemo extends GeodesicDisplayDemo {
+  @FieldPreferredWidth(width = 150)
+  public Scalar alpha = RealScalar.of(2);
+  @FieldPreferredWidth(width = 150)
+  @FieldInteger
+  public Scalar length = RealScalar.of(300);
+  @FieldFuse(text = "generate")
+  public Boolean generate = true;
+  // ---
   private JFreeChart jFreeChart;
 
   // private final Tensor vector;
   public ColoredNoiseDemo() {
     super(Arrays.asList(R2Display.INSTANCE));
-    {
-      spinnerAlpha.setList(Subdivide.of(-2, 2, 8 * 2).stream().map(Scalar.class::cast).collect(Collectors.toList()));
-      spinnerAlpha.setIndex(0);
-      spinnerAlpha.addToComponentReduced(timerFrame.jToolBar, new Dimension(60, 28), "alpha");
-      spinnerAlpha.addSpinnerListener(v -> actionPerformed(null));
-    }
-    {
-      JButton jButton = new JButton("generate");
-      jButton.addActionListener(this);
-      timerFrame.jToolBar.add(jButton);
-    }
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar).addUniversalListener(this::compute);
     // ---
     timerFrame.geometricComponent.setRotatable(false);
-    actionPerformed(null);
+    compute();
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    double alpha = spinnerAlpha.getValue().number().doubleValue();
-    ColoredNoise coloredNoise = new ColoredNoise(alpha);
-    Tensor values = RandomVariate.of(coloredNoise, 1000);
+  public void compute() {
+    ColoredNoise coloredNoise = new ColoredNoise(alpha.number().doubleValue());
+    Tensor values = RandomVariate.of(coloredNoise, length.number().intValue());
     VisualSet visualSet = new VisualSet();
     visualSet.add(Subdivide.of(0, 1, values.length() - 1), values);
     jFreeChart = ListPlot.of(visualSet, true);

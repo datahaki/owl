@@ -119,7 +119,7 @@ import ch.alpine.tensor.red.Nest;
   }
 
   public static void main(String[] args) {
-    LookAndFeels.DARK.updateUI();
+    LookAndFeels.INTELLI_J.updateUI();
     new DubinsPathDemo().setVisible(1000, 600);
   }
 }

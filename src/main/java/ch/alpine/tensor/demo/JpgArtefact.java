@@ -1,7 +1,6 @@
 // code by jph
-package ch.alpine.sophus.demo.fun;
+package ch.alpine.tensor.demo;
 
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -18,8 +17,10 @@ import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
@@ -30,15 +31,20 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
   private final SpinnerLabel<String> spinnerLabel = new SpinnerLabel<>();
   private final JSlider jSlider = new JSlider(0, 1231, 0);
   private BufferedImage bufferedImage;
-  public Scalar len = RealScalar.of(50);
-  public Scalar step = RealScalar.of(73);
-  public Scalar val = RealScalar.of(0);
+
+  public static class Param {
+    @FieldPreferredWidth(width = 60)
+    public Scalar len = RealScalar.of(50);
+    @FieldPreferredWidth(width = 60)
+    public Scalar step = RealScalar.of(73);
+    @FieldPreferredWidth(width = 60)
+    public Scalar val = RealScalar.of(0);
+  }
+
+  private final Param param = new Param();
 
   public JpgArtefact() {
-    Container container = timerFrame.jFrame.getContentPane();
-    PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(this);
-    fieldsPanel.addUniversalListener(() -> stateChanged(null));
-    container.add("West", fieldsPanel.getJScrollPane());
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(() -> stateChanged(null));
     // ---
     File[] files = ROOT.listFiles();
     spinnerLabel.setArray(Stream.of(files).map(File::getName).toArray(String[]::new));
@@ -65,9 +71,9 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
       File file = new File(ROOT, spinnerLabel.getValue());
       byte[] data = Files.readAllBytes(file.toPath());
       int offset = (int) (data.length * (jSlider.getValue() / (double) jSlider.getMaximum()));
-      int len = this.len.number().intValue();
-      int step = this.step.number().intValue();
-      byte val = this.val.number().byteValue();
+      int len = param.len.number().intValue();
+      int step = param.step.number().intValue();
+      byte val = param.val.number().byteValue();
       for (int count = 0; count < len; ++count) {
         int index = offset + step * count;
         if (index < data.length)
@@ -80,6 +86,7 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new JpgArtefact().setVisible(1500, 950);
   }
 }
