@@ -1,11 +1,10 @@
 // code by jph
-package ch.alpine.sophus.app.se3;
+package ch.alpine.sophus.app.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import ch.alpine.sophus.app.io.UzhSe3TxtFormat;
 import ch.alpine.sophus.decim.CurveDecimation;
 import ch.alpine.sophus.decim.CurveDecimation.Result;
 import ch.alpine.sophus.lie.se3.Se3CurveDecimation;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.app.se3;
+package ch.alpine.sophus.app.io;
 
 import java.io.IOException;
 

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.app.ubo;
+package ch.alpine.ubongo;
 
 import java.util.List;
 import java.util.stream.Stream;

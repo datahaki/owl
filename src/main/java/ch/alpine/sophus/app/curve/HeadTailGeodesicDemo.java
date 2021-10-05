@@ -1,20 +1,21 @@
 // code by jph
-package ch.alpine.sophus.app.geo;
+package ch.alpine.sophus.app.curve;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.gui.win.ControlPointsDemo;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -22,16 +23,16 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.sca.Round;
 
-/* package */ class HeadTailGeodesicDemo extends ControlPointsDemo {
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
+public class HeadTailGeodesicDemo extends ControlPointsDemo {
+  @FieldInteger
+  @FieldSelection(array = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  public Scalar refine = RealScalar.of(6);
 
   public HeadTailGeodesicDemo() {
     super(false, ManifoldDisplays.ALL);
     // ---
     setGeodesicDisplay(S2Display.INSTANCE);
-    spinnerRefine.setList(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20));
-    spinnerRefine.setValue(6);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {1, 0, 0}}"));
   }
@@ -48,7 +49,7 @@ import ch.alpine.tensor.sca.Round;
     ScalarTensorFunction scalarTensorFunction = manifoldDisplay.geodesic().curve(p, q);
     graphics.setStroke(new BasicStroke(1.5f));
     Tensor shape = manifoldDisplay.shape();
-    Tensor domain = Subdivide.of(0, 1, spinnerRefine.getValue());
+    Tensor domain = Subdivide.of(0, 1, refine.number().intValue());
     Tensor points = domain.map(scalarTensorFunction);
     Tensor xys = Tensor.of(points.stream().map(manifoldDisplay::toPoint));
     graphics.setColor(new Color(128, 255, 0));
