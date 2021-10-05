@@ -9,8 +9,8 @@ import java.awt.geom.Line2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.demo.opt.LogWeightings;

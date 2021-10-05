@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.tensor.Tensor;
 
 /* package */ class EspFrame extends AbstractDemo {

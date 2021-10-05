@@ -15,7 +15,7 @@ import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.io.HtmlUtf8;
 import ch.alpine.java.ren.ArrayPlotRender;
-import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.demo.opt.PolygonCoordinates;

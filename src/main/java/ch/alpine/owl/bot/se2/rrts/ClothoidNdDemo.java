@@ -13,7 +13,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.gui.PanelFieldsEditor;
-import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.demo.ControlPointsDemo;

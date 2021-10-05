@@ -15,7 +15,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.ArrayRender;
-import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.opt.LogWeightings;

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import ch.alpine.owl.gui.ren.VectorFieldRender;
+import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;

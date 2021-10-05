@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.ren;
+package ch.alpine.java.ren;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

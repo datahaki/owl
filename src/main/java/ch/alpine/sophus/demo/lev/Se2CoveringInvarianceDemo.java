@@ -10,7 +10,7 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.owl.gui.ren.AxesRender;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;

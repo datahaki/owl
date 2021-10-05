@@ -7,8 +7,8 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.itp.Kriging;
 import ch.alpine.tensor.RationalScalar;

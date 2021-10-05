@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;

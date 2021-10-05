@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.ren;
+package ch.alpine.java.ren;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;

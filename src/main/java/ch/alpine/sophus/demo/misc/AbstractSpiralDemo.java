@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplays;

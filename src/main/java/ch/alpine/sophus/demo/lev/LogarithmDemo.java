@@ -16,7 +16,7 @@ import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.owl.gui.ren.GridRender;
+import ch.alpine.java.ren.GridRender;
 import ch.alpine.sophus.gds.H2Display;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;

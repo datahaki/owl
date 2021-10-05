@@ -11,8 +11,8 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.owl.gui.ren.GridRender;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;

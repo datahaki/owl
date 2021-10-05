@@ -1,14 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
+import ch.alpine.java.ren.AxesRender;
+import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
-import ch.alpine.owl.gui.ren.AxesRender;
-import ch.alpine.owl.gui.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.VectorFields;
