@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
 import ch.alpine.owl.bot.rn.RnPointcloudRegionRender;
 import ch.alpine.owl.gui.region.EllipseRegionRender;

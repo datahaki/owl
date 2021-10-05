@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophus.hs.r2.Se2Bijection;

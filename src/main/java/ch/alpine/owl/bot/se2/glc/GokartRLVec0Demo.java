@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
-import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;

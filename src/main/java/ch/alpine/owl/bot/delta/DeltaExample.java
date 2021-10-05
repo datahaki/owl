@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
 
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;

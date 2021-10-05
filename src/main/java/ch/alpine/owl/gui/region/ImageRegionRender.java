@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.gui.region;
 
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.math.region.ImageRegion;
 

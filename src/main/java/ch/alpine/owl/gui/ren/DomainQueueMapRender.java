@@ -4,7 +4,7 @@ package ch.alpine.owl.gui.ren;
 import java.awt.Color;
 import java.util.Map;
 
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.glc.rl2.RelaxedPriorityQueue;
 import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Tensor;

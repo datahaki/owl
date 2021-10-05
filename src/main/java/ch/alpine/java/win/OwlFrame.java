@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.gui.ren.RenderElements;

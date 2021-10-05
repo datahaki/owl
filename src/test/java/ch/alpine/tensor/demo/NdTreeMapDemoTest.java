@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.tensor.demo;
 
-import ch.alpine.sophus.gui.win.AbstractDemoHelper;
+import ch.alpine.sophus.demo.AbstractDemoHelper;
 import junit.framework.TestCase;
 
 public class NdTreeMapDemoTest extends TestCase {

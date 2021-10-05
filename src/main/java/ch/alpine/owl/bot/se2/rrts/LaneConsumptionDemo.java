@@ -15,7 +15,7 @@ import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
-import ch.alpine.sophus.app.curve.AbstractCurveDemo;
+import ch.alpine.sophus.demo.curve.AbstractCurveDemo;
 import ch.alpine.sophus.gds.Se2ClothoidDisplay;
 import ch.alpine.sophus.gds.Se2CoveringClothoidDisplay;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;

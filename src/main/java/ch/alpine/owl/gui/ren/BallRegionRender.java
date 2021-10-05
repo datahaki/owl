@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;

@@ -10,7 +10,7 @@ import java.awt.geom.Rectangle2D;
 import ch.alpine.java.gfx.AffineTransforms;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.img.ImageArea;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;

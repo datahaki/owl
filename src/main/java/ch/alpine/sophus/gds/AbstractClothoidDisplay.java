@@ -4,12 +4,12 @@ package ch.alpine.sophus.gds;
 import java.io.Serializable;
 
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.app.opt.Spearhead;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.crv.d2.PolygonNormalize;
 import ch.alpine.sophus.decim.LineDistance;
+import ch.alpine.sophus.demo.opt.Spearhead;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;

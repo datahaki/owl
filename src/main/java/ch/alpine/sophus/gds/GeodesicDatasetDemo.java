@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.sophus.app.io.GokartPoseData;
+import ch.alpine.sophus.demo.io.GokartPoseData;
 
 public abstract class GeodesicDatasetDemo extends GeodesicDisplayDemo {
   protected final GokartPoseData gokartPoseData;

@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.rn.glc;
 
 import java.util.Arrays;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
-import ch.alpine.java.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;

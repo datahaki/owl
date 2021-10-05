@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

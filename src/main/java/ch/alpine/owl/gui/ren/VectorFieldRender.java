@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
