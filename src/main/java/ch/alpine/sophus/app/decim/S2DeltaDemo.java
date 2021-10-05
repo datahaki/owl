@@ -12,7 +12,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.FieldsPanel;
+import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
@@ -70,9 +70,9 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   public S2DeltaDemo() {
     super(ManifoldDisplays.S2_ONLY);
     Container container = timerFrame.jFrame.getContentPane();
-    FieldsPanel fieldsEditor = new FieldsPanel(param);
-    fieldsEditor.addUniversalListener(this::compute);
-    container.add("West", fieldsEditor.getJScrollPane());
+    PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(param);
+    fieldsPanel.addUniversalListener(this::compute);
+    container.add("West", fieldsPanel.getJScrollPane());
     compute();
   }
 

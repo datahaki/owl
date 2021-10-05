@@ -14,7 +14,7 @@ import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 
   public BarycentricRationalInterpolationDemo() {
     super(true, ManifoldDisplays.METRIC);
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {2, 0, 0}, {4, 3, 1}, {5, -1, -2}}"));
   }

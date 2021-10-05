@@ -11,6 +11,7 @@ import javax.swing.JSlider;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.app.sym.SymLinkImage;
@@ -29,13 +30,15 @@ import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.itp.DeBoor;
 
-/* package */ class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
+public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
   private final JSlider jSliderExponent = new JSlider(0, 100, 100);
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 
   public KnotsBSplineFunctionDemo() {
     super(ManifoldDisplays.CL_SE2_R2);
     // ---
+    refine = RealScalar.of(5);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     jSliderExponent.setPreferredSize(new Dimension(200, 28));
     jSliderExponent.setToolTipText("centripetal exponent");
     timerFrame.jToolBar.add(jSliderExponent);

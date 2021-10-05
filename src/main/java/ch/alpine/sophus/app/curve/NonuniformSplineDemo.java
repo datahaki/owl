@@ -8,7 +8,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -27,21 +27,18 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ class NonuniformSplineDemo extends ControlPointsDemo {
-  public static class Param {
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
-    public Scalar degree = RealScalar.of(1);
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
-    public Scalar refine = RealScalar.of(4);
-  }
-
-  private final Param param = new Param();
+public class NonuniformSplineDemo extends ControlPointsDemo {
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  public Scalar degree = RealScalar.of(1);
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+  public Scalar refine = RealScalar.of(4);
 
   NonuniformSplineDemo() {
     super(true, ManifoldDisplays.R2_ONLY);
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    // ---
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {1, 0, 0}}"));
     // ---
@@ -51,8 +48,8 @@ import ch.alpine.tensor.sca.Clips;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    int degree = param.degree.number().intValue();
-    int levels = param.refine.number().intValue();
+    int _degree = degree.number().intValue();
+    int _levels = refine.number().intValue();
     Tensor control = getGeodesicControlPoints();
     // ---
     Tensor _effective = control;
@@ -61,9 +58,9 @@ import ch.alpine.tensor.sca.Clips;
     Tensor x = Tensor.of(Arrays.stream(array).mapToObj(i -> _effective.get(i, 0)));
     Tensor y = Tensor.of(Arrays.stream(array).mapToObj(i -> _effective.get(i, 1)));
     ScalarTensorFunction scalarTensorFunction = //
-        GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, degree, x, y);
+        GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, _degree, x, y);
     Clip clip = Clips.interval(x.Get(0), Last.of(x));
-    Tensor domain = Subdivide.increasing(clip, 4 << levels);
+    Tensor domain = Subdivide.increasing(clip, 4 << _levels);
     Tensor values = domain.map(scalarTensorFunction);
     renderControlPoints(geometricLayer, graphics);
     Curvature2DRender.of(Transpose.of(Tensors.of(domain, values)), false, geometricLayer, graphics);

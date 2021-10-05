@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.BufferedImageSupplier;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.app.sym.SymLinkImages;
@@ -21,11 +22,12 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 
-/* package */ public class GeodesicBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
+public class GeodesicBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 
   public GeodesicBSplineFunctionDemo() {
     addButtonDubins();
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     Tensor dubins = Tensors.fromString(
         "{{1, 0, 0}, {1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}, {4, 0, 3.14159}, {2, 0, 3.14159}, {2, 0, 0}}");

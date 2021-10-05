@@ -13,7 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.app.sym.SymGeodesic;
 import ch.alpine.sophus.app.sym.SymLinkImage;
@@ -33,20 +33,15 @@ import ch.alpine.tensor.itp.Interpolation;
 import ch.alpine.tensor.sca.N;
 
 /** LagrangeInterpolation with extrapolation */
-/* package */ class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
-  public static class Param {
-    public Boolean graph = true;
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
-    public Scalar refine = RealScalar.of(7);
-  }
-
-  private final Param param = new Param();
+public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+  public Scalar refine = RealScalar.of(7);
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public LagrangeInterpolationDemo() {
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     addButtonDubins();
-    FieldsToolbar.add(param, timerFrame.jToolBar);
     // ---
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {1, 0, 2.1}}");
@@ -66,7 +61,7 @@ import ch.alpine.tensor.sca.N;
       return Tensors.empty();
     final Scalar parameter = RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()) //
         .multiply(RealScalar.of(sequence.length()));
-    if (param.graph) {
+    if (graph) {
       Tensor vector = Tensor.of(IntStream.range(0, sequence.length()).mapToObj(SymScalar::leaf));
       ScalarTensorFunction scalarTensorFunction = LagrangeInterpolation.of(SymGeodesic.INSTANCE, vector)::at;
       Scalar scalar = N.DOUBLE.apply(parameter);
@@ -77,7 +72,7 @@ import ch.alpine.tensor.sca.N;
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     // ---
-    int levels = param.refine.number().intValue();
+    int levels = refine.number().intValue();
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Interpolation interpolation = LagrangeInterpolation.of(manifoldDisplay.geodesic(), getGeodesicControlPoints());
     Tensor refined = Subdivide.of(0, sequence.length(), 1 << levels).map(interpolation::at);

@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
-import ch.alpine.java.ref.gui.FieldsPanel;
+import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.crv.d2.ParametricResample;
 import ch.alpine.sophus.crv.d2.ResampleResult;
@@ -36,8 +36,8 @@ public class R2ParametricResampleDemo extends ControlPointsDemo {
     super(true, ManifoldDisplays.R2_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    FieldsPanel configPanel = new FieldsPanel(this);
-    container.add("West", configPanel.getJScrollPane());
+    PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(this);
+    container.add("West", fieldsPanel.getJScrollPane());
     // ---
     int n = 20;
     setControlPointsSe2(PadRight.zeros(n, 3).apply(CirclePoints.of(n).multiply(RealScalar.of(3))));

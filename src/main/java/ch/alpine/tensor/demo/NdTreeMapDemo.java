@@ -16,7 +16,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.FieldsPanel;
+import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
@@ -56,7 +56,7 @@ import ch.alpine.tensor.sca.Abs;
 
   public NdTreeMapDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new FieldsPanel(param).getJScrollPane();
+    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(200, 200));
     container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);

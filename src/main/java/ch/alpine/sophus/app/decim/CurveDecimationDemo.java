@@ -14,7 +14,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.io.GokartPoseData;
 import ch.alpine.sophus.app.io.GokartPoseDataV2;
 import ch.alpine.sophus.app.io.GokartPoseDatas;
@@ -74,7 +74,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 
   public CurveDecimationDemo(GokartPoseData gokartPoseData) {
     super(ManifoldDisplays.SE2_R2, gokartPoseData);
-    FieldsToolbar.add(param, timerFrame.jToolBar).addUniversalListener(this::updateState);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(this::updateState);
     // ---
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
     updateState();

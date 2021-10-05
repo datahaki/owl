@@ -6,8 +6,6 @@ import java.awt.Graphics2D;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import javax.swing.JCheckBox;
-
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.app.avg.GeometricSymLinkRender.Link;
@@ -21,21 +19,19 @@ import ch.alpine.sophus.gui.win.ControlPointsDemo;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ abstract class AbstractSplitsDemo extends ControlPointsDemo {
+public abstract class AbstractSplitsDemo extends ControlPointsDemo {
   private static final Font FONT = new Font(Font.DIALOG, Font.PLAIN, 13);
-  private final JCheckBox jCheckBox = new JCheckBox("closest");
+  public Boolean closest = true;
 
   public AbstractSplitsDemo() {
     super(true, ManifoldDisplays.ALL);
-    jCheckBox.setSelected(true);
-    timerFrame.jToolBar.add(jCheckBox);
   }
 
   @Override // from RenderInterface
   public synchronized final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Tensor control = getGeodesicControlPoints();
     // ---
-    setMidpointIndicated(jCheckBox.isSelected());
+    setMidpointIndicated(closest);
     SymScalar symScalar = symScalar(Tensor.of(IntStream.range(0, control.length()).mapToObj(SymScalar::leaf)));
     SymLink symLink = null;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();

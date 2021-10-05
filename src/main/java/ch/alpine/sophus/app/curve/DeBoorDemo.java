@@ -11,7 +11,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -41,7 +41,7 @@ import ch.alpine.tensor.mat.re.Inverse;
   private final Param param = new Param();
 
   public DeBoorDemo() {
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
   }
 
   @Override // from RenderInterface

@@ -5,13 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
-import java.util.Arrays;
 
 import javax.swing.JSlider;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -22,6 +23,7 @@ import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.win.KnotSpacing;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -33,19 +35,18 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
 public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  public Scalar refine = RealScalar.of(5);
   private final JSlider jSlider = new JSlider(0, 1000, 500);
   private final JSlider jSliderExponent = new JSlider(0, 1000, 500);
 
   public GeodesicCatmullRomDemo() {
     super(ManifoldDisplays.SE2C_SE2_R2);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     addButtonDubins();
     // ---
     setGeodesicDisplay(Se2Display.INSTANCE);
-    // ---
-    spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20));
-    spinnerRefine.setValue(5);
-    spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
     // ---
     jSlider.setPreferredSize(new Dimension(300, 28));
     jSlider.setToolTipText("evaluation parameter");
@@ -63,7 +64,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
 
   @Override // from RenderInterface
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    final int levels = spinnerRefine.getValue();
+    final int levels = refine.number().intValue();
     final Tensor control = getGeodesicControlPoints();
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);

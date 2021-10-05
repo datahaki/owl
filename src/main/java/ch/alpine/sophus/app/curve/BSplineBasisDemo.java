@@ -9,7 +9,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gui.ren.Curvature2DRender;
@@ -27,26 +28,22 @@ import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.itp.BSplineInterpolation;
 import ch.alpine.tensor.mat.re.Inverse;
 
-/* package */ class BSplineBasisDemo extends ControlPointsDemo {
+public class BSplineBasisDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final Color TICKS_COLOR = new Color(0, 0, 0, 128);
-
-  public static class Param {
-    public Boolean interp = false;
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
-    public Scalar degree = RealScalar.of(1);
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
-    public Scalar refine = RealScalar.of(4);
-  }
-
-  private final Param param = new Param();
+  // ---
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  public Scalar degree = RealScalar.of(1);
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  public Scalar refine = RealScalar.of(4);
+  public Boolean interp = false;
 
   public BSplineBasisDemo() {
     super(true, ManifoldDisplays.R2_ONLY);
     // ---
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}, {1, 0, 0}}"));
   }
@@ -54,8 +51,8 @@ import ch.alpine.tensor.mat.re.Inverse;
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    int degree = param.degree.number().intValue();
-    int levels = param.refine.number().intValue();
+    int _degree = degree.number().intValue();
+    int _levels = refine.number().intValue();
     Tensor control = getGeodesicControlPoints();
     {
       graphics.setStroke(new BasicStroke(1.25f));
@@ -68,7 +65,7 @@ import ch.alpine.tensor.mat.re.Inverse;
           geometricLayer.pushMatrix(string);
           for (int k_th = 0; k_th < length; ++k_th) {
             GeodesicBSplineFunction bSplineFunction = //
-                GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, degree, UnitVector.of(length, k_th));
+                GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, _degree, UnitVector.of(length, k_th));
             Tensor domain = Subdivide.of(0, length - 1, 100);
             Tensor values = domain.map(bSplineFunction);
             Tensor tensor = Transpose.of(Tensors.of(domain, values));
@@ -84,17 +81,18 @@ import ch.alpine.tensor.mat.re.Inverse;
       graphics.setStroke(new BasicStroke(1f));
     }
     // ---
-    Tensor effective = param.interp //
-        ? BSplineInterpolation.solve(degree, control)
+    Tensor effective = interp //
+        ? BSplineInterpolation.solve(_degree, control)
         : control;
     GeodesicBSplineFunction bSplineFunction = //
-        GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, degree, effective);
-    Tensor refined = Subdivide.of(0, effective.length() - 1, 4 << levels).map(bSplineFunction);
+        GeodesicBSplineFunction.of(RnGeodesic.INSTANCE, _degree, effective);
+    Tensor refined = Subdivide.of(0, effective.length() - 1, 4 << _levels).map(bSplineFunction);
     renderControlPoints(geometricLayer, graphics);
     Curvature2DRender.of(refined, false, geometricLayer, graphics);
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new BSplineBasisDemo().setVisible(1000, 800);
   }
 }

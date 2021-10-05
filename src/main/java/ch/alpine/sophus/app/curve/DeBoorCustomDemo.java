@@ -9,7 +9,8 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
@@ -23,18 +24,14 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.itp.DeBoor;
 
-/* package */ class DeBoorCustomDemo extends AbstractDemo {
+public class DeBoorCustomDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
-
   // ---
-  public static class Param {
-    public Tensor knots = Tensors.vector(0, 1);
-  }
-
-  private final Param param = new Param();
+  @FieldPreferredWidth(width = 200)
+  public Tensor knots = Tensors.vector(0, 1);
 
   public DeBoorCustomDemo() {
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     timerFrame.geometricComponent.addRenderInterface(AxesRender.INSTANCE);
   }
@@ -48,9 +45,9 @@ import ch.alpine.tensor.itp.DeBoor;
       try {
         Tensor domain = Subdivide.of(0, 1, 100);
         Tensor domahi = Subdivide.of(1, 2, 100);
-        Tensor knots = param.knots;
-        if (Integers.isEven(knots.length())) {
-          int degree = knots.length() >> 1;
+        Tensor _knots = knots;
+        if (Integers.isEven(_knots.length())) {
+          int degree = _knots.length() >> 1;
           int length = degree + 1;
           // ---
           graphics.setColor(Color.LIGHT_GRAY);
@@ -62,7 +59,7 @@ import ch.alpine.tensor.itp.DeBoor;
           }
           for (int k_th = 0; k_th < length; ++k_th) {
             graphics.setColor(COLOR_DATA_INDEXED.getColor(k_th));
-            DeBoor deBoor = DeBoor.of(RnGeodesic.INSTANCE, knots, UnitVector.of(length, k_th));
+            DeBoor deBoor = DeBoor.of(RnGeodesic.INSTANCE, _knots, UnitVector.of(length, k_th));
             {
               graphics.setStroke(new BasicStroke(1.25f));
               Tensor values = domain.map(deBoor);

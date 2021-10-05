@@ -6,8 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import javax.swing.JToggleButton;
-
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
@@ -26,8 +24,8 @@ public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   // ---
-  private final JToggleButton jToggleGraph = new JToggleButton("graph");
-  public final JToggleButton jToggleCurvature = new JToggleButton("crvtp");
+  public Boolean graph = this instanceof BufferedImageSupplier;
+  public Boolean curvt = true;
 
   public AbstractCurvatureDemo() {
     this(ManifoldDisplays.ALL);
@@ -35,28 +33,17 @@ public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
 
   public AbstractCurvatureDemo(List<ManifoldDisplay> list) {
     super(true, list);
-    // ---
-    jToggleCurvature.setSelected(true);
-    jToggleCurvature.setToolTipText("curvature plot");
-    timerFrame.jToolBar.add(jToggleCurvature);
-    // ---
-    if (this instanceof BufferedImageSupplier) {
-      jToggleGraph.setSelected(true);
-      timerFrame.jToolBar.add(jToggleGraph);
-    }
   }
 
   @Override
   public synchronized final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor refined = protected_render(geometricLayer, graphics);
-    if (this instanceof BufferedImageSupplier && //
-        jToggleGraph.isSelected()) {
+    if (this instanceof BufferedImageSupplier && graph) {
       BufferedImageSupplier bufferedImageSupplier = (BufferedImageSupplier) this;
       graphics.drawImage(bufferedImageSupplier.bufferedImage(), 0, 0, null);
     }
-    if (jToggleCurvature.isSelected() && //
-        1 < refined.length()) {
+    if (curvt && 1 < refined.length()) {
       Tensor tensor = Tensor.of(refined.stream().map(manifoldDisplay::toPoint));
       VisualSet visualSet = new VisualSet(COLOR_DATA_INDEXED);
       CurveVisualSet curveVisualSet = new CurveVisualSet(tensor);

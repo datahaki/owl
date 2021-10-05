@@ -12,7 +12,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -52,7 +52,7 @@ import ch.alpine.tensor.io.Primitives;
 
   public SurfaceMeshDemo() {
     super(false, ManifoldDisplays.SE2C_R2);
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(surfaceMesh.vrt);
     // ---

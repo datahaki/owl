@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JSlider;
 
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.app.sym.SymGeodesic;
 import ch.alpine.sophus.app.sym.SymScalar;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
@@ -21,6 +22,8 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
   public BezierFunctionSplitsDemo() {
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
+    // ---
     jSlider.setPreferredSize(new Dimension(500, 28));
     timerFrame.jToolBar.add(jSlider);
     // ---

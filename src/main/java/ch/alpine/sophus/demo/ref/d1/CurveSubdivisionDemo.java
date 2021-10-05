@@ -22,6 +22,8 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.awt.StandardMenu;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.app.curve.AbstractCurvatureDemo;
 import ch.alpine.sophus.app.opt.DubinsGenerator;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -43,7 +45,7 @@ import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Nest;
 
 /** split interface and biinvariant mean based curve subdivision */
-/* package */ class CurveSubdivisionDemo extends AbstractCurvatureDemo {
+public class CurveSubdivisionDemo extends AbstractCurvatureDemo {
   private final PathRender pathRender = new PathRender(new Color(0, 255, 0, 128));
   final SpinnerLabel<CurveSubdivisionSchemes> spinnerLabel = new SpinnerLabel<>();
   final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
@@ -58,6 +60,7 @@ import ch.alpine.tensor.red.Nest;
 
   public CurveSubdivisionDemo() {
     super(ManifoldDisplays.ALL);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     Tensor control = null;
     {
       Tensor move = Tensors.fromString( //
@@ -191,6 +194,7 @@ import ch.alpine.tensor.red.Nest;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new CurveSubdivisionDemo().setVisible(1200, 800);
   }
 }

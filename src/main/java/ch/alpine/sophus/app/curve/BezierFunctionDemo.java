@@ -9,7 +9,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
@@ -25,20 +25,15 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 
 /** Bezier function with extrapolation */
-/* package */ class BezierFunctionDemo extends AbstractCurvatureDemo {
-  public static class Param {
-    @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
-    public Scalar refine = RealScalar.of(6);
-    public Boolean extrap = false;
-  }
-
-  private final Param param = new Param();
+public class BezierFunctionDemo extends AbstractCurvatureDemo {
+  @FieldInteger
+  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  public Scalar refine = RealScalar.of(6);
+  public Boolean extrap = false;
 
   public BezierFunctionDemo() {
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     addButtonDubins();
-    // ---
-    FieldsToolbar.add(param, timerFrame.jToolBar);
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {0, 1, 0}}");
       setControlPointsSe2(tensor);
@@ -57,10 +52,10 @@ import ch.alpine.tensor.alg.Subdivide;
     int n = sequence.length();
     if (0 == n)
       return Tensors.empty();
-    int levels = param.refine.number().intValue();
+    int levels = refine.number().intValue();
     Tensor domain = n <= 1 //
         ? Tensors.vector(0)
-        : Subdivide.of(0.0, param.extrap //
+        : Subdivide.of(0.0, extrap //
             ? n / (double) (n - 1)
             : 1.0, 1 << levels);
     {

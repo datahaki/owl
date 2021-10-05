@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.FieldsPanel;
+import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.owl.gui.ren.AxesRender;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.sophus.clt.Clothoid;
@@ -58,7 +58,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     super(false, ManifoldDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new FieldsPanel(param).getJScrollPane();
+    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
     container.add("West", jScrollPane);
     // ---

@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.FieldsToolbar;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.sophus.clt.ClothoidBuilder;
@@ -52,7 +53,7 @@ import ch.alpine.tensor.red.Nest;
   private final PathRender pathRenderClothoid = new PathRender(Color.CYAN, 2f);
 
   public DubinsPathDemo() {
-    FieldsToolbar.add(param, timerFrame.jToolBar);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
   }
 
   @Override // from RenderInterface
@@ -118,6 +119,7 @@ import ch.alpine.tensor.red.Nest;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new DubinsPathDemo().setVisible(1000, 600);
   }
 }

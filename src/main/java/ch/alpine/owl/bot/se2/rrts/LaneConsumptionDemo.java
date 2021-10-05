@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import javax.swing.JButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
@@ -26,7 +27,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Serialization;
 
-/* package */ class LaneConsumptionDemo extends AbstractCurveDemo {
+public class LaneConsumptionDemo extends AbstractCurveDemo {
   private final LaneRender laneRender = new LaneRender();
   private LaneInterface lane = null;
 
@@ -42,7 +43,8 @@ import ch.alpine.tensor.ext.Serialization;
         Se2CoveringClothoidDisplay.INSTANCE, //
         Se2CoveringDisplay.INSTANCE, //
         Se2Display.INSTANCE));
-    jToggleCurvature.setSelected(false);
+    curvt = false;
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     timerFrame.jToolBar.addSeparator();
     JButton jButtonRun = new JButton("run");

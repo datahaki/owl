@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.FieldsPanel;
+import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -36,9 +36,9 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
 
   public JpgArtefact() {
     Container container = timerFrame.jFrame.getContentPane();
-    FieldsPanel configPanel = new FieldsPanel(this);
-    configPanel.addUniversalListener(() -> stateChanged(null));
-    container.add("West", configPanel.getJScrollPane());
+    PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(this);
+    fieldsPanel.addUniversalListener(() -> stateChanged(null));
+    container.add("West", fieldsPanel.getJScrollPane());
     // ---
     File[] files = ROOT.listFiles();
     spinnerLabel.setArray(Stream.of(files).map(File::getName).toArray(String[]::new));
