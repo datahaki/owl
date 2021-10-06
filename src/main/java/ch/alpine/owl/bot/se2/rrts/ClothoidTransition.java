@@ -44,6 +44,8 @@ public class ClothoidTransition extends AbstractTransition {
     return new ClothoidTransition(start, end, clothoid);
   }
 
+  /** @param clothoid
+   * @return */
   public static ClothoidTransition of(Clothoid clothoid) {
     return of(clothoid.apply(_0), clothoid.apply(_1), clothoid);
   }
@@ -76,18 +78,20 @@ public class ClothoidTransition extends AbstractTransition {
 
   @Override // from Transition
   public Tensor linearized(Scalar minResolution) {
+    return linearized_samples(minResolution).map(clothoid);
+  }
+
+  public Tensor linearized_samples(Scalar minResolution) {
     Sign.requirePositive(minResolution);
     LagrangeQuadraticD lagrangeQuadraticD = clothoid.curvature();
     if (lagrangeQuadraticD.isZero(Tolerance.CHOP))
       return Tensors.of(clothoid.apply(_0), clothoid.apply(_1));
-    // TODO check if units make sense
-    Scalar multiply = Sqrt.FUNCTION.apply(lagrangeQuadraticD.integralAbs()).multiply(clothoid.length());
-    int intervals = Ceiling.intValueExact(multiply.divide(minResolution));
+    Scalar scalar = lagrangeQuadraticD.integralAbs().multiply(clothoid.length());
+    int intervals = Ceiling.intValueExact(scalar.divide(minResolution));
     Tensor uniform = Subdivide.of(_0, _1, Math.min(Math.max(1, intervals), MAX_INTERVALS));
     InverseCDF inverseCDF = (InverseCDF) EqualizingDistribution.fromUnscaledPDF( //
         uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION).map(Sqrt.FUNCTION));
-    Tensor inverse = uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
-    return inverse.map(clothoid);
+    return uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
   }
 
   public Clothoid clothoid() {

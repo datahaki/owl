@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.TransitionWrap;
+import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
@@ -68,8 +69,23 @@ public class ClothoidTransitionTest extends TestCase {
     ClothoidTransition clothoidTransition = ClothoidTransition.of(CLOTHOID_BUILDER, start, end);
     assertEquals(clothoidTransition.sampled(RealScalar.of(0.2)).length(), 25);
     assertEquals(clothoidTransition.sampled(RealScalar.of(0.1)).length(), 50);
-    assertEquals(clothoidTransition.linearized(RealScalar.of(0.2)).length(), 26);
-    assertEquals(clothoidTransition.linearized(RealScalar.of(0.1)).length(), 51);
+    {
+      int val = clothoidTransition.linearized(RealScalar.of(0.2)).length();
+      // System.out.println(val);
+      assertTrue(10 < val && val < 30);
+    }
+    {
+      int val = clothoidTransition.linearized(RealScalar.of(0.1)).length();
+      // System.out.println(val);
+      assertTrue(20 < val && val < 60);
+    }
+  }
+
+  public void testLinearize() {
+    Clothoid clothoid = CLOTHOID_BUILDER.curve( //
+        Tensors.fromString("{0.3[m], 1[m], 0}"), Tensors.fromString("{2[m], 2[m], .3}"));
+    ClothoidTransition clothoidTransition = ClothoidTransition.of(clothoid);
+    clothoidTransition.linearized(RealScalar.of(0.2));
   }
 
   public void testFails() {

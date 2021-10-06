@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.CostFunction;
@@ -17,20 +18,19 @@ import ch.alpine.tensor.red.VectorAngle;
 
 /** class is not used */
 /* package */ class ImageGradientCostFunction implements CostFunction, Serializable {
-  // ---
   private final ImageGradientInterpolation imageGradientInterpolation;
 
   public ImageGradientCostFunction(ImageGradientInterpolation imageGradientInterpolation) {
-    this.imageGradientInterpolation = imageGradientInterpolation;
+    this.imageGradientInterpolation = Objects.requireNonNull(imageGradientInterpolation);
   }
 
   /** @param tensor with entries {px, py, alpha}
-   * @return */
+   * @return unit-less scalar */
   private Scalar pointcost(Tensor tensor) {
     Tensor p = Extract2D.FUNCTION.apply(tensor); // xy
     Tensor v = imageGradientInterpolation.get(p);
     Tensor u = AngleVector.of(tensor.Get(2)); // orientation
-    return VectorAngle.of(u, v).orElse(RealScalar.ZERO); // TODO perhaps this can be simplified
+    return VectorAngle.of(u, v).orElse(RealScalar.ZERO);
   }
 
   @Override // from CostFunction

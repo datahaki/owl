@@ -32,7 +32,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
-import ch.alpine.tensor.sca.Chop;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */
 /* package */ class DeltaEntity extends AbstractCircularEntity implements GlcPlannerCallback {
@@ -83,7 +82,6 @@ import ch.alpine.tensor.sca.Chop;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     Collection<Tensor> controls = new DeltaFlows(U_NORM).getFlows(U_SIZE);
     Scalar u_norm = DeltaControls.maxSpeed(controls);
-    Chop._10.requireClose(u_norm, U_NORM); // TODO check belongs into test
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     Scalar maxMove = maxNormGradient.add(u_norm);
     goalRegion = getGoalRegionWithDistance(goal);

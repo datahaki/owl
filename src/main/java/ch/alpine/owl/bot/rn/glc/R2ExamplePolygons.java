@@ -1,21 +1,11 @@
 // code by jph
-package ch.alpine.owl.bot.r2;
+package ch.alpine.owl.bot.rn.glc;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-// TODO relocate!
-public enum R2ExamplePolygons {
+/* package */ enum R2ExamplePolygons {
   ;
-  public static final Tensor CORNER_TOP_LEFT = Tensors.matrix(new Number[][] { //
-      { 3, 0 }, //
-      { 4, 0 }, //
-      { 4, 4 }, //
-      { 1, 4 }, //
-      { 1, 3 }, //
-      { 3, 3 } //
-  }).unmodifiable();
-  // ---
   public static final Tensor CORNER_POINTY = Tensors.matrix(new Number[][] { //
       { 3, 0 }, //
       { 4, 0 }, //

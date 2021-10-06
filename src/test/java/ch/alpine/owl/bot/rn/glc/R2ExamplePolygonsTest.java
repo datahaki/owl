@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.bot.r2;
+package ch.alpine.owl.bot.rn.glc;
 
 import java.io.IOException;
 

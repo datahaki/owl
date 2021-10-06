@@ -44,7 +44,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
   protected static final PointsRender POINTS_RENDER_0 = //
       new PointsRender(new Color(255, 128, 128, 64), new Color(255, 128, 128, 255));
   /** refined points */
-  private static final PointsRender POINTS_RENDER_1 = //
+  protected static final PointsRender POINTS_RENDER_1 = //
       new PointsRender(new Color(160, 160, 160, 128 + 64), Color.BLACK);
   private static final Stroke STROKE = new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
   // ---

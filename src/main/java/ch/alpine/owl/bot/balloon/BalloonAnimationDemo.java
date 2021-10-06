@@ -20,12 +20,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 
-// TODO need to zoom out at the beginning
 public class BalloonAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
   public OwlAnimationFrame start() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    owlAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{7.5, 0, 100}, {0, -7.5, 800}, {0, 0, 1}}"));
+    owlAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1.5, 0, 100}, {0, -1.5, 600}, {0, 0, 1}}"));
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(BalloonEntity.SPEED_MAX);
     BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithoutUnits();
     StateTime stateTime = new StateTime(Tensors.vector(0, 150, 10, 10), RealScalar.ZERO);

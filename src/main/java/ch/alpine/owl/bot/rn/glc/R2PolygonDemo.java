@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.owl.bot.r2.R2ExamplePolygons;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
