@@ -1,21 +1,20 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d1h;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-
-import javax.swing.JToggleButton;
 
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
-import ch.alpine.java.ren.PointsRender;
 import ch.alpine.sophus.clt.ClothoidDistance;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.Curvature2DRender;
@@ -39,37 +38,23 @@ import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.red.Mean;
 
-/* package */ class HermiteSubdivisionDemo extends ControlPointsDemo {
+public class HermiteSubdivisionDemo extends ControlPointsDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   // ---
-  private final SpinnerLabel<HermiteSubdivisions> spinnerLabelScheme = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
-  private final JToggleButton jToggleButton = new JToggleButton("derivatives");
+  public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
+  @FieldSlider
+  @FieldPreferredWidth(width = 100)
+  @FieldInteger
+  @FieldClip(min = "0", max = "9")
+  public Scalar refine = RealScalar.of(6);
+  public Boolean diff = true;
 
   public HermiteSubdivisionDemo() {
     super(true, ManifoldDisplays.SE2C_SE2_R2);
-    // ---
-    {
-      spinnerLabelScheme.setArray(HermiteSubdivisions.values());
-      spinnerLabelScheme.setValue(HermiteSubdivisions.HERMITE1);
-      spinnerLabelScheme.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "scheme");
-    }
-    {
-      spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-      spinnerRefine.setValue(6);
-      spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
-    }
-    timerFrame.jToolBar.addSeparator();
-    {
-      jToggleButton.setSelected(true);
-      jToggleButton.setToolTipText("show derivatives");
-      timerFrame.jToolBar.add(jToggleButton);
-    }
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
   }
 
-  private static final PointsRender POINTS_RENDER_0 = //
-      new PointsRender(new Color(255, 128, 128, 64), new Color(255, 128, 128, 255));
   private static final GridRender GRID_RENDER = new GridRender(Subdivide.of(0, 10, 10));
 
   @Override
@@ -113,12 +98,13 @@ import ch.alpine.tensor.red.Mean;
           }
         }
       }
-      HermiteSubdivision hermiteSubdivision = spinnerLabelScheme.getValue().supply( //
+      Scalar delta = RealScalar.ONE;
+      HermiteSubdivision hermiteSubdivision = scheme.supply( //
           manifoldDisplay.hsManifold(), //
           manifoldDisplay.hsTransport(), //
           manifoldDisplay.biinvariantMean());
-      TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
-      int levels = spinnerRefine.getValue();
+      TensorIteration tensorIteration = hermiteSubdivision.string(delta, control);
+      int levels = refine.number().intValue();
       Tensor iterate = Do.of(control, tensorIteration::iterate, levels);
       Tensor curve = Tensor.of(iterate.get(Tensor.ALL, 0).stream().map(Extract2D.FUNCTION));
       Curvature2DRender.of(curve, false, geometricLayer, graphics);
@@ -136,10 +122,10 @@ import ch.alpine.tensor.red.Mean;
         }
       }
       // ---
-      if (jToggleButton.isSelected()) {
+      if (diff) {
         Tensor deltas = iterate.get(Tensor.ALL, 1);
         if (0 < deltas.length()) {
-          JFreeChart jFreeChart = StaticHelper.listPlot(deltas);
+          JFreeChart jFreeChart = StaticHelper.listPlot(deltas, delta, levels);
           Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
           jFreeChart.draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
         }

@@ -3,19 +3,18 @@ package ch.alpine.sophus.demo.ref.d1h;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.Curvature2DRender;
 import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
@@ -27,6 +26,7 @@ import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.NumberQ;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.ConstantArray;
@@ -38,43 +38,27 @@ import ch.alpine.tensor.num.Derive;
 import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
-/* package */ class SeriesHermiteSubdivisionDemo extends ControlPointsDemo implements ActionListener {
+public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   // ---
-  private final SpinnerLabel<HermiteSubdivisions> spinnerLabelScheme = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
-  private final JToggleButton jToggleButton = new JToggleButton("derivatives");
-  private final JTextField jTextField = new JTextField(30);
+  public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE1;
+  @FieldSlider
+  @FieldPreferredWidth(width = 100)
+  @FieldInteger
+  @FieldClip(min = "0", max = "8")
+  public Scalar refine = RealScalar.of(4);
+  @FieldPreferredWidth(width = 300)
+  public Tensor coeffs = Tensors.fromString("{2, 1, -1/5, -1/10}");
+  // ---
+  public Boolean derivatives = true;
 
   public SeriesHermiteSubdivisionDemo() {
     super(false, ManifoldDisplays.R2_ONLY);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar).addUniversalListener(this::compute);
     setPositioningEnabled(false);
     setMidpointIndicated(false);
-    // ---
-    {
-      spinnerLabelScheme.setArray(HermiteSubdivisions.values());
-      spinnerLabelScheme.setValue(HermiteSubdivisions.HERMITE1);
-      spinnerLabelScheme.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "scheme");
-    }
-    {
-      spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-      spinnerRefine.setValue(6);
-      spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
-    }
-    timerFrame.jToolBar.addSeparator();
-    {
-      jToggleButton.setSelected(true);
-      jToggleButton.setToolTipText("show derivatives");
-      timerFrame.jToolBar.add(jToggleButton);
-    }
-    {
-      jTextField.setText("{2, 1, -1/5, -1/10}");
-      jTextField.setPreferredSize(new Dimension(200, 27));
-      jTextField.addActionListener(this);
-      timerFrame.jToolBar.add(jTextField);
-      actionPerformed(null);
-    }
+    compute();
   }
 
   Tensor _control = Tensors.empty();
@@ -86,21 +70,22 @@ import ch.alpine.tensor.sca.N;
     if (1 < _control.length()) {
       ManifoldDisplay manifoldDisplay = manifoldDisplay();
       HermiteSubdivision hermiteSubdivision = //
-          spinnerLabelScheme.getValue().supply( //
+          scheme.supply( //
               manifoldDisplay.hsManifold(), //
               manifoldDisplay.hsTransport(), //
               manifoldDisplay.biinvariantMean());
       Tensor control = N.DOUBLE.of(_control);
-      TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
-      int levels = spinnerRefine.getValue();
+      Scalar delta = RealScalar.ONE;
+      TensorIteration tensorIteration = hermiteSubdivision.string(delta, control);
+      int levels = refine.number().intValue();
       Tensor iterate = Do.of(control, tensorIteration::iterate, levels);
       Tensor curve = Tensor.of(iterate.get(Tensor.ALL, 0).stream().map(Extract2D.FUNCTION));
       Curvature2DRender.of(curve, false, geometricLayer, graphics);
       // ---
-      if (jToggleButton.isSelected()) {
+      if (derivatives) {
         Tensor deltas = iterate.get(Tensor.ALL, 1);
         if (0 < deltas.length()) {
-          JFreeChart jFreeChart = StaticHelper.listPlot(deltas);
+          JFreeChart jFreeChart = StaticHelper.listPlot(deltas, delta, levels);
           Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
           jFreeChart.draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
         }
@@ -108,14 +93,12 @@ import ch.alpine.tensor.sca.N;
     }
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    String string = jTextField.getText();
-    Tensor coeffs = Tensors.fromString(string);
-    if (VectorQ.of(coeffs) && //
-        NumberQ.all(coeffs)) {
-      ScalarUnaryOperator f0 = Polynomial.of(coeffs);
-      ScalarUnaryOperator f1 = Polynomial.of(Derive.of(coeffs));
+  private void compute() {
+    Tensor _coeffs = coeffs;
+    if (VectorQ.of(_coeffs) && //
+        NumberQ.all(_coeffs)) {
+      ScalarUnaryOperator f0 = Polynomial.of(_coeffs);
+      ScalarUnaryOperator f1 = Polynomial.of(Derive.of(_coeffs));
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());
@@ -128,6 +111,7 @@ import ch.alpine.tensor.sca.N;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new SeriesHermiteSubdivisionDemo().setVisible(1200, 600);
   }
 }

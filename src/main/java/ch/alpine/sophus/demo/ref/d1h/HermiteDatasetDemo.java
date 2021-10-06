@@ -8,16 +8,19 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
 
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
@@ -36,10 +39,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Range;
-import ch.alpine.tensor.sca.Power;
 
-/* package */ class HermiteDatasetDemo extends GeodesicDatasetDemo {
+public class HermiteDatasetDemo extends GeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
@@ -49,36 +50,26 @@ import ch.alpine.tensor.sca.Power;
   private final PathRender pathRenderCurve = new PathRender(COLOR_CURVE, STROKE);
   private final PathRender pathRenderShape = new PathRender(COLOR_RECON, 2f);
   // ---
-  private final GokartPoseDataV2 gokartPoseData;
-  private final SpinnerLabel<Integer> spinnerLabelSkips = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerLabelShift = new SpinnerLabel<>();
-  private final SpinnerLabel<HermiteSubdivisions> spinnerLabelScheme = new SpinnerLabel<>();
-  private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
-  private final JToggleButton jToggleButton = new JToggleButton("diff");
+  private final GokartPoseDataV2 gokartPoseDataV2;
+  @FieldSelection(array = { "1", "2", "5", "10", "25", "50", "100", "250", "500" })
+  public Scalar skips = RealScalar.of(50);
+  @FieldSelection(array = { "0", "2", "4", "6", "8", "10", "15", "20" })
+  public Scalar shift = RealScalar.of(0);
+  public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
+  @FieldSlider
+  @FieldPreferredWidth(width = 80)
+  @FieldInteger
+  @FieldClip(min = "0", max = "8")
+  public Scalar level = RealScalar.of(3);
+  public Boolean diff = true;
   protected Tensor _control = Tensors.empty();
 
   public HermiteDatasetDemo(GokartPoseDataV2 gokartPoseData) {
     super(ManifoldDisplays.SE2C_SE2, gokartPoseData);
-    this.gokartPoseData = gokartPoseData;
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar).addUniversalListener(this::updateState);
+    this.gokartPoseDataV2 = gokartPoseData;
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
-    {
-      spinnerLabelSkips.setList(Arrays.asList(1, 2, 5, 10, 25, 50, 100, 250, 500));
-      spinnerLabelSkips.setValue(50);
-      spinnerLabelSkips.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "skips");
-      spinnerLabelSkips.addSpinnerListener(type -> updateState());
-    }
-    {
-      spinnerLabelShift.setList(Arrays.asList(0, 2, 4, 6, 8, 10, 15, 20));
-      spinnerLabelShift.setValue(0);
-      spinnerLabelShift.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "shift");
-      spinnerLabelShift.addSpinnerListener(type -> updateState());
-    }
     timerFrame.jToolBar.addSeparator();
-    {
-      spinnerLabelScheme.setArray(HermiteSubdivisions.values());
-      spinnerLabelScheme.setValue(HermiteSubdivisions.HERMITE3);
-      spinnerLabelScheme.addToComponentReduced(timerFrame.jToolBar, new Dimension(140, 28), "scheme");
-    }
     {
       JTextField jTextField = new JTextField(6);
       jTextField.setText(HermiteSubdivisions.LAMBDA.toString());
@@ -139,18 +130,7 @@ import ch.alpine.tensor.sca.Power;
       jTextField.setPreferredSize(new Dimension(40, 28));
       timerFrame.jToolBar.add(jTextField);
     }
-    {
-      spinnerLabelLevel.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
-      spinnerLabelLevel.setValue(3);
-      spinnerLabelLevel.addToComponentReduced(timerFrame.jToolBar, new Dimension(40, 28), "level");
-      // spinnerLabelLevel.addSpinnerListener(type -> updateState());
-    }
     timerFrame.jToolBar.addSeparator();
-    {
-      jToggleButton.setSelected(true);
-      jToggleButton.setToolTipText("show derivatives");
-      timerFrame.jToolBar.add(jToggleButton);
-    }
     updateState();
   }
 
@@ -158,12 +138,12 @@ import ch.alpine.tensor.sca.Power;
   protected void updateState() {
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
-    Tensor control = gokartPoseData.getPoseVel(name, limit);
+    Tensor control = gokartPoseDataV2.getPoseVel(name, limit);
     control.set(new So2Lift(), Tensor.ALL, 0, 2);
     Tensor result = Tensors.empty();
-    int skips = spinnerLabelSkips.getValue();
-    int offset = spinnerLabelShift.getValue();
-    for (int index = offset; index < control.length(); index += skips)
+    int _skips = skips.number().intValue();
+    int offset = shift.number().intValue();
+    for (int index = offset; index < control.length(); index += _skips)
       result.append(control.get(index));
     // TensorUnaryOperator centerFilter = //
     // CenterFilter.of(GeodesicCenter.of(Se2Geodesic.INSTANCE, GaussianWindow.FUNCTION), 4);
@@ -191,22 +171,21 @@ import ch.alpine.tensor.sca.Power;
         }
     }
     graphics.setColor(Color.DARK_GRAY);
-    Scalar delta = RationalScalar.of(spinnerLabelSkips.getValue(), 50);
-    HermiteSubdivision hermiteSubdivision = spinnerLabelScheme.getValue().supply( //
+    Scalar delta = RationalScalar.of(skips.number().intValue(), 50);
+    HermiteSubdivision hermiteSubdivision = scheme.supply( //
         manifoldDisplay.hsManifold(), //
         manifoldDisplay.hsTransport(), //
         manifoldDisplay.biinvariantMean());
     TensorIteration tensorIteration = hermiteSubdivision.string(delta, _control);
-    int levels = spinnerLabelLevel.getValue();
+    int levels = level.number().intValue();
     Tensor refined = Do.of(_control, tensorIteration::iterate, levels);
     pathRenderShape.setCurve(refined.get(Tensor.ALL, 0), false).render(geometricLayer, graphics);
     new Se2HermitePlot(refined, RealScalar.of(0.3)).render(geometricLayer, graphics);
-    if (jToggleButton.isSelected()) {
+    if (diff) {
       Tensor deltas = refined.get(Tensor.ALL, 1);
       int dims = deltas.get(0).length();
       if (0 < deltas.length()) {
-        JFreeChart jFreeChart = StaticHelper.listPlot(deltas, //
-            Range.of(0, deltas.length()).multiply(delta).divide(Power.of(2, levels)));
+        JFreeChart jFreeChart = StaticHelper.listPlot(deltas, delta, levels);
         Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
         jFreeChart.draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
       }

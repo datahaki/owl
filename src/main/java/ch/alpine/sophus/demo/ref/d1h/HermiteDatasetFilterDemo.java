@@ -32,8 +32,6 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Range;
-import ch.alpine.tensor.sca.Power;
 
 /* package */ class HermiteDatasetFilterDemo extends GeodesicDatasetDemo {
   private static final int WIDTH = 640;
@@ -44,7 +42,7 @@ import ch.alpine.tensor.sca.Power;
   private final PathRender pathRenderCurve = new PathRender(COLOR_CURVE);
   private final PathRender pathRenderShape = new PathRender(COLOR_RECON, 2f);
   // ---
-  private final GokartPoseDataV2 gokartPoseData;
+  private final GokartPoseDataV2 gokartPoseDataV2;
   private final SpinnerLabel<Integer> spinnerLabelSkips = new SpinnerLabel<>();
   private final SpinnerLabel<Integer> spinnerLabelLevel = new SpinnerLabel<>();
   private final JToggleButton jToggleAdjoint = new JToggleButton("ad");
@@ -53,7 +51,7 @@ import ch.alpine.tensor.sca.Power;
 
   public HermiteDatasetFilterDemo(GokartPoseDataV2 gokartPoseData) {
     super(ManifoldDisplays.SE2_ONLY, gokartPoseData);
-    this.gokartPoseData = gokartPoseData;
+    this.gokartPoseDataV2 = gokartPoseData;
     timerFrame.geometricComponent.setModel2Pixel(GokartPoseDatas.HANGAR_MODEL2PIXEL);
     {
       spinnerLabelSkips.setList(Arrays.asList(1, 2, 5, 10, 25, 50));
@@ -83,7 +81,7 @@ import ch.alpine.tensor.sca.Power;
   protected void updateState() {
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
-    Tensor control = gokartPoseData.getPoseVel(name, limit);
+    Tensor control = gokartPoseDataV2.getPoseVel(name, limit);
     Tensor result = Tensors.empty();
     int skips = spinnerLabelSkips.getValue();
     for (int index = 0; index < control.length(); index += skips)
@@ -137,8 +135,7 @@ import ch.alpine.tensor.sca.Power;
       Tensor deltas = refined.get(Tensor.ALL, 1);
       int dims = deltas.get(0).length();
       if (0 < deltas.length()) {
-        JFreeChart jFreeChart = StaticHelper.listPlot(deltas, //
-            Range.of(0, deltas.length()).multiply(delta).divide(Power.of(2, levels)));
+        JFreeChart jFreeChart = StaticHelper.listPlot(deltas, delta, levels);
         Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
         jFreeChart.draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
       }

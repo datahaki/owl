@@ -9,12 +9,15 @@ import java.util.Set;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -40,10 +43,12 @@ import ch.alpine.tensor.io.Primitives;
   // ---
   @ReflectionMarker
   public static class Param {
-    public Boolean ctrl = true;
     public Boolean axes = true;
+    public Boolean ctrl = true;
+    @FieldSlider
+    @FieldPreferredWidth(width = 100)
     @FieldInteger
-    @FieldSelection(array = { "0", "1", "2", "3", "4" })
+    @FieldClip(min = "0", max = "4")
     public Scalar refine = RealScalar.of(2);
   }
 
@@ -109,6 +114,7 @@ import ch.alpine.tensor.io.Primitives;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.INTELLI_J.updateUI();
     new SurfaceMeshDemo().setVisible(1200, 800);
   }
 }
