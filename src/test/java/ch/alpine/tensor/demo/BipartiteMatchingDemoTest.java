@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.opt;
+package ch.alpine.tensor.demo;
 
 import ch.alpine.sophus.demo.AbstractDemoHelper;
 import junit.framework.TestCase;

@@ -92,7 +92,7 @@ import ch.alpine.tensor.img.ColorDataLists;
         visualSet.add(domain, Subdivide.of(0.0, 1.0, domain.length() - 1).map(clothoid::addAngle));
       }
     }
-    JFreeChart jFreeChart = ListPlot.of(visualSet);
+    JFreeChart jFreeChart = ListPlot.of(visualSet, true);
     Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
     jFreeChart.draw(graphics, new Rectangle2D.Double(dimension.width - WIDTH, 0, WIDTH, HEIGHT));
   }

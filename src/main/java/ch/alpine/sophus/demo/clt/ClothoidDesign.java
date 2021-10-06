@@ -21,9 +21,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 
 public class ClothoidDesign extends ControlPointsDemo {
-  @FieldSelection(array = { "0.05", "0.1", "0.2", "0.3", "0.4", "0.5", "1", "2" })
-  public Scalar beta = RealScalar.of(0.5);
   public Boolean ctrl = true;
+  @FieldSelection(array = { "0.05", "0.1", "0.2", "0.3", "0.4", "0.5" })
+  public Scalar beta = RealScalar.of(0.5);
 
   public ClothoidDesign() {
     super(true, ManifoldDisplays.CL_ONLY);

@@ -27,7 +27,7 @@ import ch.alpine.tensor.qty.QuantityUnit;
   @Override
   public Scalar apply(Tensor xya) {
     Clothoid clothoid = CLOTHOID_BUILDER.curve(xya.map(Scalar::zero), xya);
-    if (isCompliant.test(clothoid.curvature().absMax()))
+    if (isCompliant.test(clothoid.curvature().maxAbs()))
       return clothoid.length();
     return Quantity.of(DoubleScalar.POSITIVE_INFINITY, QuantityUnit.of(xya.Get(0)));
   }
