@@ -10,10 +10,10 @@ import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.Drop;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.EqualizingDistribution;
 import ch.alpine.tensor.pdf.InverseCDF;
@@ -85,9 +85,9 @@ public class ClothoidTransition extends AbstractTransition {
     Sign.requirePositive(minResolution);
     LagrangeQuadraticD lagrangeQuadraticD = clothoid.curvature();
     if (lagrangeQuadraticD.isZero(Tolerance.CHOP))
-      return Tensors.of(clothoid.apply(_0), clothoid.apply(_1));
-    Scalar scalar = lagrangeQuadraticD.integralAbs().multiply(clothoid.length());
-    int intervals = Ceiling.intValueExact(scalar.divide(minResolution));
+      return UnitVector.of(2, 1);
+    Scalar scalar = Sqrt.FUNCTION.apply(lagrangeQuadraticD.integralAbs().divide(minResolution)).multiply(clothoid.length());
+    int intervals = Ceiling.intValueExact(scalar);
     Tensor uniform = Subdivide.of(_0, _1, Math.min(Math.max(1, intervals), MAX_INTERVALS));
     InverseCDF inverseCDF = (InverseCDF) EqualizingDistribution.fromUnscaledPDF( //
         uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION).map(Sqrt.FUNCTION));

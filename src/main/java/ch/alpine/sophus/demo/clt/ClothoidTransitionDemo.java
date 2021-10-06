@@ -2,7 +2,6 @@
 package ch.alpine.sophus.demo.clt;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
@@ -20,21 +19,28 @@ import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.LagrangeQuadraticD;
-import ch.alpine.sophus.crv.d2.Curvature2D;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
+import ch.alpine.sophus.lie.rn.RnLineDistance;
 import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.Geodesic;
+import ch.alpine.sophus.math.TripleReduceExtrapolation;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 
-public class ClothoidDesign extends ControlPointsDemo {
+public class ClothoidTransitionDemo extends ControlPointsDemo {
   private static final Stroke STROKE = new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
+  private static final TripleReduceExtrapolation TRIPLE_REDUCE_EXTRAPOLATION = new TripleReduceExtrapolation() {
+    @Override
+    protected Scalar reduce(Tensor p, Tensor q, Tensor r) {
+      return RnLineDistance.INSTANCE.tensorNorm(p, r).norm(q);
+    }
+  };
   // ---
   public Boolean ctrl = true;
   @FieldSlider
@@ -43,7 +49,7 @@ public class ClothoidDesign extends ControlPointsDemo {
   public Boolean smpl = true;
   public Boolean plot = true;
 
-  public ClothoidDesign() {
+  public ClothoidTransitionDemo() {
     super(true, ManifoldDisplays.CL_ONLY);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
@@ -55,7 +61,6 @@ public class ClothoidDesign extends ControlPointsDemo {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
     Tensor sequence = getGeodesicControlPoints();
-    Scalar value = beta;
     Geodesic geodesic = manifoldDisplay().geodesic();
     ClothoidBuilder clothoidBuilder = (ClothoidBuilder) geodesic;
     VisualSet visualSet = new VisualSet();
@@ -66,7 +71,7 @@ public class ClothoidDesign extends ControlPointsDemo {
       ClothoidTransition clothoidTransition = ClothoidTransition.of(cr, l1, clothoid);
       Tensor samples = clothoidTransition.linearized_samples(beta);
       Tensor linearized = samples.map(clothoid);
-      graphics.setColor(Color.BLUE);
+      graphics.setColor(ColorDataLists._097.strict().getColor(index / 2));
       graphics.setStroke(new BasicStroke(2));
       graphics.draw(geometricLayer.toPath2D(linearized));
       if (smpl)
@@ -75,16 +80,9 @@ public class ClothoidDesign extends ControlPointsDemo {
             Se2Display.INSTANCE.shape(), //
             linearized).render(geometricLayer, graphics);
       if (plot) {
-        {
-          LagrangeQuadraticD lagrangeQuadraticD = clothoid.curvature();
-          Tensor dang = samples.map(lagrangeQuadraticD);
-          visualSet.add(samples, dang);
-        }
-        {
-          Tensor vector = Curvature2D.string(Tensor.of(linearized.stream().map(Extract2D.FUNCTION)));
-          VisualRow visualRow = visualSet.add(samples, vector);
-          visualRow.setStroke(STROKE);
-        }
+        Tensor vector = TRIPLE_REDUCE_EXTRAPOLATION.apply(Tensor.of(linearized.stream().map(Extract2D.FUNCTION)));
+        VisualRow visualRow = visualSet.add(samples, vector);
+        visualRow.setStroke(STROKE);
       }
     }
     if (plot) {
@@ -96,6 +94,6 @@ public class ClothoidDesign extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
-    new ClothoidDesign().setVisible(1000, 800);
+    new ClothoidTransitionDemo().setVisible(1000, 800);
   }
 }
