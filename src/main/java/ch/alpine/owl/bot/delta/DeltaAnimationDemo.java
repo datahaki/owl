@@ -46,7 +46,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     owlAnimationFrame.add(deltaEntity);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     owlAnimationFrame.addBackground(RegionRenders.create(region));
-    owlAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
     return owlAnimationFrame;
   }

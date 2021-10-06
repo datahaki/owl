@@ -16,7 +16,7 @@ import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
 
-/** LONGTERM implementation can be made more efficient */
+// TODO implementation can be made more efficient
 public class LidarRaytracer implements Serializable {
   private final Tensor directions;
   private final Scalar max_range;

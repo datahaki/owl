@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.psu;
 
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -37,12 +38,11 @@ public class PsuAnimationDemo implements DemoInterface {
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(Math.PI, 3);
-    VectorFieldRender vectorFieldRender = new VectorFieldRender();
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
-    vectorFieldRender.uv_pairs = //
-        VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1));
-    owlAnimationFrame.addBackground(vectorFieldRender);
+    RenderInterface renderInterface = new VectorFieldRender()
+        .setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
+    owlAnimationFrame.addBackground(renderInterface);
     owlAnimationFrame.addBackground(AxesRender.INSTANCE);
     return owlAnimationFrame;
   }

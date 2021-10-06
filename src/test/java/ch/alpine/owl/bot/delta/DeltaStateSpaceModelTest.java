@@ -25,6 +25,6 @@ public class DeltaStateSpaceModelTest extends TestCase {
     // new DeltaEntity(imageGradientInterpolation, new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO));
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     RegionRenders.create(imageRegion);
-    DeltaHelper.vectorFieldRender(stateSpaceModel, range, imageRegion, RealScalar.of(0.5));
+    StaticHelper.vectorFieldRender(stateSpaceModel, range, imageRegion, RealScalar.of(0.5));
   }
 }

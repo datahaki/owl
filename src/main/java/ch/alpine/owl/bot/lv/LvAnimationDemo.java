@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
@@ -42,12 +43,12 @@ public class LvAnimationDemo implements DemoInterface {
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(6, 5);
-    VectorFieldRender vectorFieldRender = new VectorFieldRender();
+    // VectorFieldRender vectorFieldRender = ;
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Box.of(Tensors.vector(0, 0), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
-    vectorFieldRender.uv_pairs = //
-        VectorFields.of(stateSpaceModel, points, Array.zeros(1), RealScalar.of(0.04));
-    owlAnimationFrame.addBackground(vectorFieldRender);
+    RenderInterface renderInterface = new VectorFieldRender().setUV_Pairs( //
+        VectorFields.of(stateSpaceModel, points, Array.zeros(1), RealScalar.of(0.04)));
+    owlAnimationFrame.addBackground(renderInterface);
     // ---
     return owlAnimationFrame;
   }

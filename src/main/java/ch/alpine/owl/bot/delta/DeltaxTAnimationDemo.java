@@ -76,7 +76,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);
     owlAnimationFrame.addBackground((RenderInterface) region4);
-    owlAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
     return owlAnimationFrame;
   }

@@ -61,6 +61,6 @@ import ch.alpine.tensor.io.ResourceData;
   }
 
   public RenderInterface vf(double scale) {
-    return DeltaHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, RealScalar.of(scale));
+    return StaticHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, RealScalar.of(scale));
   }
 }

@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
@@ -37,12 +38,11 @@ public class Rice1dNoiseDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
     Tensor range = Tensors.vector(6, 1);
-    VectorFieldRender vectorFieldRender = new VectorFieldRender();
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
-    vectorFieldRender.uv_pairs = //
-        VectorFields.of(Rice2StateSpaceModel.of(mu), points, Array.zeros(1), RealScalar.of(0.2));
-    owlAnimationFrame.addBackground(vectorFieldRender);
+    RenderInterface renderInterface = new VectorFieldRender()
+        .setUV_Pairs(VectorFields.of(Rice2StateSpaceModel.of(mu), points, Array.zeros(1), RealScalar.of(0.2)));
+    owlAnimationFrame.addBackground(renderInterface);
     return owlAnimationFrame;
   }
 

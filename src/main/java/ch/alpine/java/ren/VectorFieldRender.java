@@ -6,22 +6,40 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.owl.gui.ren.EmptyRender;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 
 /** suitable for time-variant state space models */
 public class VectorFieldRender implements RenderInterface {
   private static final Color COLOR = new Color(192, 192, 192, 128);
   // ---
-  // TODO JPH very bad design, not thread safe, etc.
-  public Tensor uv_pairs = Tensors.empty();
+  private RenderInterface renderInterface = EmptyRender.INSTANCE;
 
-  @Override
+  @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    graphics.setColor(COLOR);
-    for (Tensor pair : uv_pairs)
-      graphics.draw(new Line2D.Double( //
-          geometricLayer.toPoint2D(pair.get(0)), //
-          geometricLayer.toPoint2D(pair.get(1))));
+    renderInterface.render(geometricLayer, graphics);
+  }
+
+  /** @param uv_pairs with dimensions n x 2 x 2
+   * @return */
+  public RenderInterface setUV_Pairs(Tensor uv_pairs) {
+    return renderInterface = new Render(uv_pairs);
+  }
+
+  private class Render implements RenderInterface {
+    private final Tensor uv_pairs;
+
+    public Render(Tensor uv_pairs) {
+      this.uv_pairs = uv_pairs;
+    }
+
+    @Override // from RenderInterface
+    public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+      graphics.setColor(COLOR);
+      for (Tensor pair : uv_pairs)
+        graphics.draw(new Line2D.Double( //
+            geometricLayer.toPoint2D(pair.get(0)), //
+            geometricLayer.toPoint2D(pair.get(1))));
+    }
   }
 }

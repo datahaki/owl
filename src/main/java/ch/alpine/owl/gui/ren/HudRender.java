@@ -8,7 +8,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 
-// LONGTERM decide on purpose of HudRender, for now, do nothing
+// TODO decide on purpose of HudRender, for now, do nothing
 class HudRender implements RenderInterface {
   private static final Color SHADING = new Color(0, 0, 0, 64);
   // ---

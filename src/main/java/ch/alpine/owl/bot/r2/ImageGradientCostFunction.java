@@ -30,7 +30,7 @@ import ch.alpine.tensor.red.VectorAngle;
     Tensor p = Extract2D.FUNCTION.apply(tensor); // xy
     Tensor v = imageGradientInterpolation.get(p);
     Tensor u = AngleVector.of(tensor.Get(2)); // orientation
-    return VectorAngle.of(u, v).orElse(RealScalar.ZERO); // LONGTERM perhaps this can be simplified
+    return VectorAngle.of(u, v).orElse(RealScalar.ZERO); // TODO perhaps this can be simplified
   }
 
   @Override // from CostFunction

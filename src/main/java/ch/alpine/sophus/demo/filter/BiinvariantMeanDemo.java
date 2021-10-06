@@ -3,17 +3,14 @@ package ch.alpine.sophus.demo.filter;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.util.Optional;
 
-import javax.swing.JToggleButton;
-
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.ControlPointsDemo;
@@ -43,24 +40,20 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
-/* package */ class BiinvariantMeanDemo extends ControlPointsDemo {
+public class BiinvariantMeanDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED_DRAW = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final ColorDataIndexed COLOR_DATA_INDEXED_FILL = ColorDataLists._097.cyclic().deriveWithAlpha(182);
   private static final Stroke STROKE = //
       new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
   // ---
-  final SpinnerLabel<Biinvariant> spinnerDistances = SpinnerLabel.of(Biinvariants.values());
-  private final JToggleButton axes = new JToggleButton("axes");
-  private final JToggleButton median = new JToggleButton("median");
+  public Biinvariants biinvariants = Biinvariants.LEVERAGES;
+  public Boolean axes = false;
+  public Boolean median = true;
 
   public BiinvariantMeanDemo() {
     super(true, ManifoldDisplays.SE2C_SE2_S2_H2_R2);
-    spinnerDistances.addToComponentReduced(timerFrame.jToolBar, new Dimension(100, 28), "pseudo distances");
-    timerFrame.jToolBar.add(axes);
-    {
-      median.setSelected(true);
-      timerFrame.jToolBar.add(median);
-    }
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
+    // ---
     Distribution dX = UniformDistribution.of(-3, 3);
     Distribution dY = NormalDistribution.of(0, .3);
     Distribution dA = NormalDistribution.of(1, .5);
@@ -73,7 +66,7 @@ import ch.alpine.tensor.sca.Chop;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    if (axes.isSelected())
+    if (axes)
       AxesRender.INSTANCE.render(geometricLayer, graphics);
     Tensor sequence = getGeodesicControlPoints();
     int length = sequence.length();
@@ -86,9 +79,9 @@ import ch.alpine.tensor.sca.Chop;
     graphics.setColor(Color.LIGHT_GRAY);
     graphics.setStroke(STROKE);
     RenderQuality.setQuality(graphics);
-    Geodesic geodesicInterface = manifoldDisplay.geodesic();
+    Geodesic geodesic = manifoldDisplay.geodesic();
     for (Tensor point : sequence) {
-      Tensor curve = Subdivide.of(0, 1, 20).map(geodesicInterface.curve(point, mean));
+      Tensor curve = Subdivide.of(0, 1, 20).map(geodesic.curve(point, mean));
       Path2D path2d = geometricLayer.toPath2D(curve);
       graphics.draw(path2d);
     }
@@ -104,8 +97,8 @@ import ch.alpine.tensor.sca.Chop;
       graphics.draw(path2d);
       geometricLayer.popMatrix();
     }
-    if (median.isSelected()) {
-      Biinvariant biinvariant = spinnerDistances.getValue();
+    if (median) {
+      Biinvariant biinvariant = biinvariants;
       TensorUnaryOperator weightingInterface = //
           biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
       SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
