@@ -73,7 +73,7 @@ public class LaneConsumptionDemo extends AbstractCurveDemo {
   }
 
   public final Scalar width() {
-    return sliderRatio().multiply(RealScalar.of(2.5));
+    return ratio.multiply(RealScalar.of(2.5));
   }
 
   public final Optional<LaneInterface> lane() {

@@ -38,7 +38,7 @@ public class GeodesicBSplineFunctionDemo extends AbstractCurveDemo implements Bu
   @Override // from RenderInterface
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control) {
     final int upper = control.length() - 1;
-    final Scalar parameter = sliderRatio().multiply(RealScalar.of(upper));
+    final Scalar parameter = ratio.multiply(RealScalar.of(upper));
     bufferedImage = SymLinkImages.symLinkImageGBSF(degree, upper + 1, parameter).bufferedImage();
     // ---
     RenderQuality.setQuality(graphics);

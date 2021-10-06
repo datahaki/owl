@@ -45,7 +45,7 @@ public class GeodesicDeBoorDemo extends AbstractCurveDemo implements BufferedIma
   @Override // from RenderInterface
   public Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control) {
     final int upper = control.length() - 1;
-    final Scalar parameter = sliderRatio().multiply(RealScalar.of(upper));
+    final Scalar parameter = ratio.multiply(RealScalar.of(upper));
     Tensor knots = Range.of(0, 2 * upper);
     bufferedImage = SymLinkImages.deboor(knots, control.length(), parameter).bufferedImage();
     // ---

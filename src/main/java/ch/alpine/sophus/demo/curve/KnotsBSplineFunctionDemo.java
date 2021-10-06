@@ -2,15 +2,15 @@
 package ch.alpine.sophus.demo.curve;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JSlider;
-
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
@@ -21,7 +21,6 @@ import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.math.win.KnotSpacing;
 import ch.alpine.sophus.sym.SymLinkImage;
 import ch.alpine.sophus.sym.SymLinkImages;
-import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -31,7 +30,10 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.itp.DeBoor;
 
 public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
-  private final JSlider jSliderExponent = new JSlider(0, 100, 100);
+  @FieldSlider
+  @FieldPreferredWidth(width = 200)
+  @FieldClip(min = "0", max = "1")
+  public Scalar exponent = RealScalar.ONE;
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 
   public KnotsBSplineFunctionDemo() {
@@ -39,9 +41,6 @@ public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements Buffe
     // ---
     refine = RealScalar.of(5);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
-    jSliderExponent.setPreferredSize(new Dimension(200, 28));
-    jSliderExponent.setToolTipText("centripetal exponent");
-    timerFrame.jToolBar.add(jSliderExponent);
     // ---
     Tensor dubins = Tensors.fromString(
         "{{1, 0, 0}, {1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}, {4, 0, 3.14159}, {2, 0, 3.14159}, {2, 0, 0}}");
@@ -52,10 +51,9 @@ public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements Buffe
   @Override // from RenderInterface
   protected Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control) {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Scalar exponent = RationalScalar.of(jSliderExponent.getValue(), jSliderExponent.getMaximum());
     Tensor knots = KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), exponent).apply(control);
     Scalar upper = Last.of(knots);
-    Scalar parameter = sliderRatio().multiply(upper);
+    Scalar parameter = ratio.multiply(upper);
     // ---
     GeodesicBSplineFunction scalarTensorFunction = //
         GeodesicBSplineFunction.of(manifoldDisplay.geodesic(), degree, knots, control);

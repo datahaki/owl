@@ -1,15 +1,15 @@
 // code by jph
 package ch.alpine.sophus.demo.curve;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import javax.swing.JSlider;
-
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RationalScalar;
@@ -25,7 +25,10 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
   @FieldInteger
   @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
   public Scalar refine = RealScalar.of(4);
-  private final JSlider jSlider = new JSlider(0, 1000, 500);
+  @FieldSlider
+  @FieldPreferredWidth(width = 300)
+  @FieldClip(min = "0", max = "1")
+  public Scalar ratio = RationalScalar.HALF;
 
   public AbstractCurveDemo() {
     this(ManifoldDisplays.ALL);
@@ -33,9 +36,6 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
 
   public AbstractCurveDemo(List<ManifoldDisplay> list) {
     super(list);
-    // ---
-    jSlider.setPreferredSize(new Dimension(500, 28));
-    timerFrame.jToolBar.add(jSlider);
   }
 
   @Override
@@ -48,8 +48,4 @@ public abstract class AbstractCurveDemo extends AbstractCurvatureDemo {
 
   protected abstract Tensor protected_render( //
       GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control);
-
-  public final Scalar sliderRatio() {
-    return RationalScalar.of(jSlider.getValue(), jSlider.getMaximum());
-  }
 }

@@ -2,16 +2,16 @@
 package ch.alpine.sophus.demo.curve;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import javax.swing.JSlider;
-
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
 import ch.alpine.sophus.demo.Curvature2DRender;
@@ -38,8 +38,14 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   @FieldInteger
   @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
   public Scalar refine = RealScalar.of(5);
-  private final JSlider jSlider = new JSlider(0, 1000, 500);
-  private final JSlider jSliderExponent = new JSlider(0, 1000, 500);
+  @FieldSlider
+  @FieldPreferredWidth(width = 300)
+  @FieldClip(min = "0", max = "1")
+  public Scalar evalAt = RationalScalar.HALF;
+  @FieldSlider
+  @FieldPreferredWidth(width = 200)
+  @FieldClip(min = "0", max = "2")
+  public Scalar exponent = RealScalar.ONE;
 
   public GeodesicCatmullRomDemo() {
     super(ManifoldDisplays.SE2C_SE2_R2);
@@ -47,14 +53,6 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
     addButtonDubins();
     // ---
     setGeodesicDisplay(Se2Display.INSTANCE);
-    // ---
-    jSlider.setPreferredSize(new Dimension(300, 28));
-    jSlider.setToolTipText("evaluation parameter");
-    timerFrame.jToolBar.add(jSlider);
-    // ---
-    jSliderExponent.setPreferredSize(new Dimension(200, 28));
-    jSliderExponent.setToolTipText("centripetal exponent");
-    timerFrame.jToolBar.add(jSliderExponent);
     {
       Tensor dubins = Tensors.fromString("{{1, 1, 0}, {1, 2, -1}, {2, 1, 0.5}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 0), //
@@ -71,7 +69,6 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
     if (4 <= control.length()) {
       ManifoldDisplay manifoldDisplay = manifoldDisplay();
       Geodesic geodesicInterface = manifoldDisplay.geodesic();
-      Scalar exponent = RationalScalar.of(2 * jSliderExponent.getValue(), jSliderExponent.getMaximum());
       TensorUnaryOperator centripetalKnotSpacing = //
           KnotSpacing.centripetal(manifoldDisplay.parametricDistance(), exponent);
       Tensor knots = centripetalKnotSpacing.apply(control);
@@ -79,7 +76,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
       Scalar hi = knots.Get(knots.length() - 2);
       hi = DoubleScalar.of(Math.nextDown(hi.number().doubleValue()));
       Clip interval = Clips.interval(lo, hi);
-      Scalar parameter = LinearInterpolation.of(Tensors.of(lo, hi)).At(RationalScalar.of(jSlider.getValue(), jSlider.getMaximum()));
+      Scalar parameter = LinearInterpolation.of(Tensors.of(lo, hi)).At(evalAt);
       ScalarTensorFunction scalarTensorFunction = GeodesicCatmullRom.of(geodesicInterface, knots, control);
       Tensor refined = Subdivide.increasing(interval, Math.max(1, levels * control.length())).map(scalarTensorFunction);
       {
@@ -98,6 +95,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   }
 
   public static void main(String[] args) {
+    // LookAndFeels.INTELLI_J.updateUI();
     new GeodesicCatmullRomDemo().setVisible(1200, 600);
   }
 }
