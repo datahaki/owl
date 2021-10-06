@@ -21,7 +21,7 @@ import ch.alpine.tensor.lie.MatrixExp;
 import ch.alpine.tensor.lie.TensorWedge;
 import ch.alpine.tensor.sca.Mod;
 
-public class SnRotationChunk implements RenderInterface {
+/* package */ class SnRotationChunk implements RenderInterface {
   private final ColorDataGradient colorDataGradient;
   private final BoundedLinkedList<Tensor> boundedLinkedList;
   private final Tensor rotation;

@@ -46,7 +46,7 @@ public class ColoredNoiseDemo extends GeodesicDisplayDemo {
     compute();
   }
 
-  public void compute() {
+  private void compute() {
     ColoredNoise coloredNoise = new ColoredNoise(alpha.number().doubleValue());
     Tensor values = RandomVariate.of(coloredNoise, length.number().intValue());
     VisualSet visualSet = new VisualSet();

@@ -7,11 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 
-import javax.swing.JToggleButton;
-
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplays;
@@ -26,19 +25,18 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 
-/* package */ class LaserTagDemo extends ControlPointsDemo {
+public class LaserTagDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict().deriveWithAlpha(128);
   // ---
   private static final String TEXT = "WILLKOMMEN IN"; // "NIEDERSACHSEN";
   private final PathRender pathRenderHull = new PathRender(COLOR_DATA_INDEXED.getColor(1), 1.5f);
-  private final JToggleButton jToggleButton = new JToggleButton("show");
+  public Boolean show = true;
 
   public LaserTagDemo() {
     super(false, ManifoldDisplays.R2_ONLY);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     timerFrame.geometricComponent.addRenderInterface(pathRenderHull);
-    jToggleButton.setSelected(true);
-    timerFrame.jToolBar.add(jToggleButton);
     // ---
     Distribution distribution = UniformDistribution.of(-4, 4);
     setControlPointsSe2(RandomVariate.of(distribution, TEXT.length() + 2, 3));
@@ -49,7 +47,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     RenderQuality.setQuality(graphics);
     Tensor control = getGeodesicControlPoints();
     graphics.setColor(COLOR_DATA_INDEXED.getColor(0));
-    if (jToggleButton.isSelected()) {
+    if (show) {
       graphics.draw(geometricLayer.toPath2D(control));
       renderControlPoints(geometricLayer, graphics);
     } else {

@@ -2,15 +2,16 @@
 package ch.alpine.sophus.demo.misc;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
-import java.util.Arrays;
 import java.util.function.Function;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
@@ -18,13 +19,15 @@ import ch.alpine.sophus.crv.d2.HilbertPolygon;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Cache;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.sca.Power;
 
-/* package */ class HilbertCurveDemo extends ControlPointsDemo {
+public class HilbertCurveDemo extends ControlPointsDemo {
   private static final int CACHE_SIZE = 10;
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict();
 
@@ -33,24 +36,25 @@ import ch.alpine.tensor.sca.Power;
     return HilbertPolygon.of(n).multiply(Power.of(2.0, -n));
   }
 
-  private final SpinnerLabel<Integer> spinnerTotal = new SpinnerLabel<>();
+  @FieldSlider
+  @FieldInteger
+  @FieldClip(min = "1", max = "7")
+  public Scalar total = RealScalar.of(2);
   private final Function<Integer, Tensor> cache = Cache.of(HilbertCurveDemo::curve, CACHE_SIZE);
 
   public HilbertCurveDemo() {
     super(false, ManifoldDisplays.R2_ONLY);
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     setPositioningEnabled(false);
     setMidpointIndicated(false);
     // ---
-    spinnerTotal.setList(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-    spinnerTotal.setValue(2);
-    spinnerTotal.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "total");
     timerFrame.geometricComponent.addRenderInterfaceBackground(AxesRender.INSTANCE);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    int n = spinnerTotal.getValue();
+    int n = total.number().intValue();
     Tensor tensor = cache.apply(n);
     // ---
     Path2D path2d = geometricLayer.toPath2D(tensor);

@@ -3,13 +3,12 @@ package ch.alpine.sophus.demo.misc;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.sophus.crv.d2.ParametricResample;
@@ -34,10 +33,7 @@ public class R2ParametricResampleDemo extends ControlPointsDemo {
 
   public R2ParametricResampleDemo() {
     super(true, ManifoldDisplays.R2_ONLY);
-    // ---
-    Container container = timerFrame.jFrame.getContentPane();
-    PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(this);
-    container.add("West", fieldsPanel.getJScrollPane());
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     int n = 20;
     setControlPointsSe2(PadRight.zeros(n, 3).apply(CirclePoints.of(n).multiply(RealScalar.of(3))));

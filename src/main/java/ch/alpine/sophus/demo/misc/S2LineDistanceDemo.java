@@ -3,16 +3,19 @@ package ch.alpine.sophus.demo.misc;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.FieldLabel;
+import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.opt.SnLineDistances;
@@ -32,7 +35,6 @@ import ch.alpine.tensor.alg.Dot;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.TensorScalarFunction;
-import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
@@ -41,28 +43,23 @@ import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.Sqrt;
 
-/* package */ class S2LineDistanceDemo extends ControlPointsDemo {
+public class S2LineDistanceDemo extends ControlPointsDemo {
   private static final Stroke STROKE = //
       new BasicStroke(2.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
   private static final Tensor GEODESIC_DOMAIN = Subdivide.of(0.0, 1.0, 11);
   private static final Tensor INITIAL = Tensors.fromString("{{-0.5, 0, 0}, {0.5, 0, 0}}").unmodifiable();
   // ---
-  private final SpinnerLabel<SnLineDistances> spinnerLineDistances = SpinnerLabel.of(SnLineDistances.values());
-  private final SpinnerLabel<ColorDataGradient> spinnerColorData = SpinnerLabel.of(ColorDataGradients.values());
-  private final SpinnerLabel<Integer> spinnerRes = new SpinnerLabel<>();
+  @FieldLabel(text = "S^n line distance method")
+  public SnLineDistances snLineDistances = SnLineDistances.DEFAULT;
+  @FieldInteger
+  @FieldSelection(array = { "20", "30", "50", "75", "100", "150", "200", "250" })
+  public Scalar resolution = RealScalar.of(30);
+  @FieldLabel(text = "color data gradient")
+  public ColorDataGradients colorDataGradients = ColorDataGradients.PARULA;
 
   public S2LineDistanceDemo() {
     super(false, ManifoldDisplays.S2_ONLY);
-    spinnerLineDistances.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "line distance");
-    {
-      spinnerColorData.setValue(ColorDataGradients.PARULA);
-      spinnerColorData.addToComponentReduced(timerFrame.jToolBar, new Dimension(200, 28), "color scheme");
-    }
-    {
-      spinnerRes.setArray(20, 30, 50, 75, 100, 150, 200, 250);
-      spinnerRes.setValue(30);
-      spinnerRes.addToComponentReduced(timerFrame.jToolBar, new Dimension(60, 28), "resolution");
-    }
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(INITIAL);
     // ---
@@ -76,7 +73,7 @@ import ch.alpine.tensor.sca.Sqrt;
   TensorNorm tensorNorm() {
     Tensor cp = getGeodesicControlPoints();
     return 1 < cp.length() //
-        ? spinnerLineDistances.getValue().lineDistance().tensorNorm(cp.get(0), cp.get(1))
+        ? snLineDistances.lineDistance().tensorNorm(cp.get(0), cp.get(1))
         : t -> RealScalar.ZERO;
   }
 
@@ -93,9 +90,7 @@ import ch.alpine.tensor.sca.Sqrt;
 
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {
     Tensor matrix = Tensors.matrix(array(resolution, tensorNorm()::norm));
-    // ---
-    Tensor colorData = matrix.map(spinnerColorData.getValue());
-    return ImageFormat.of(colorData);
+    return ImageFormat.of(matrix.map(colorDataGradients));
   }
 
   Scalar[][] array(int resolution, TensorScalarFunction tensorScalarFunction) {
@@ -129,7 +124,7 @@ import ch.alpine.tensor.sca.Sqrt;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     RenderQuality.setDefault(graphics);
-    BufferedImage bufferedImage = bufferedImage(spinnerRes.getValue(), manifoldDisplay.hsManifold());
+    BufferedImage bufferedImage = bufferedImage(resolution.number().intValue(), manifoldDisplay.hsManifold());
     ImageRender.of(bufferedImage, pixel2model(bufferedImage)) //
         .render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
@@ -147,6 +142,7 @@ import ch.alpine.tensor.sca.Sqrt;
   }
 
   public static void main(String[] args) {
+    LookAndFeels.DARK.updateUI();
     new S2LineDistanceDemo().setVisible(1200, 600);
   }
 }
