@@ -22,6 +22,7 @@ import ch.alpine.sophus.clt.ClothoidEmit;
 import ch.alpine.sophus.clt.ClothoidSolutions;
 import ch.alpine.sophus.clt.ClothoidSolutions.Search;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.img.ColorDataIndexed;
@@ -38,6 +39,7 @@ import ch.alpine.tensor.sca.Clips;
   private static final ColorDataIndexed COLOR_DATA_INDEXED = //
       ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final ClothoidSolutions CLOTHOID_SOLUTIONS = ClothoidSolutions.of(Clips.absolute(15.0), 101);
+  private static final Scalar minResolution = RealScalar.of(0.02);
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
@@ -51,7 +53,7 @@ import ch.alpine.tensor.sca.Clips;
     int index = 0;
     for (Clothoid clothoid : list) {
       ClothoidTransition clothoidTransition = ClothoidTransition.of(START, mouse, clothoid);
-      Tensor points = clothoidTransition.linearized(RealScalar.of(0.1));
+      Tensor points = clothoidTransition.linearized(minResolution);
       new PathRender(COLOR_DATA_INDEXED.getColor(index++), 1.5f) //
           .setCurve(points, false).render(geometricLayer, graphics);
     }
@@ -60,7 +62,7 @@ import ch.alpine.tensor.sca.Clips;
     if (optional.isPresent()) {
       Clothoid clothoid = optional.orElseThrow();
       ClothoidTransition clothoidTransition = ClothoidTransition.of(START, mouse, clothoid);
-      Tensor points = clothoidTransition.linearized(RealScalar.of(0.1));
+      Tensor points = clothoidTransition.linearized(minResolution);
       new PathRender(Color.BLACK, 2.5f) //
           .setCurve(points, false).render(geometricLayer, graphics);
     }

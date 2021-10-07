@@ -3,14 +3,12 @@ package ch.alpine.sophus.demo.clt;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
-import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
@@ -22,10 +20,8 @@ import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.gds.Se2Display;
-import ch.alpine.sophus.lie.rn.RnLineDistance;
 import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.TripleReduceExtrapolation;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -34,14 +30,6 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
 
 public class ClothoidTransitionDemo extends ControlPointsDemo {
-  private static final Stroke STROKE = new BasicStroke(1.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
-  private static final TripleReduceExtrapolation TRIPLE_REDUCE_EXTRAPOLATION = new TripleReduceExtrapolation() {
-    @Override
-    protected Scalar reduce(Tensor p, Tensor q, Tensor r) {
-      return RnLineDistance.INSTANCE.tensorNorm(p, r).norm(q);
-    }
-  };
-  // ---
   public Boolean ctrl = true;
   @FieldSlider
   @FieldClip(min = "0.01", max = "1")
@@ -79,11 +67,9 @@ public class ClothoidTransitionDemo extends ControlPointsDemo {
             Se2Display.INSTANCE::matrixLift, //
             Se2Display.INSTANCE.shape(), //
             linearized).render(geometricLayer, graphics);
-      if (plot) {
-        Tensor vector = TRIPLE_REDUCE_EXTRAPOLATION.apply(Tensor.of(linearized.stream().map(Extract2D.FUNCTION)));
-        VisualRow visualRow = visualSet.add(samples, vector);
-        visualRow.setStroke(STROKE);
-      }
+      if (plot)
+        visualSet.add(samples, StaticHelper.TRIPLE_REDUCE_EXTRAPOLATION.apply( //
+            Tensor.of(linearized.stream().map(Extract2D.FUNCTION))));
     }
     if (plot) {
       JFreeChart jFreeChart = ListPlot.of(visualSet, true);
