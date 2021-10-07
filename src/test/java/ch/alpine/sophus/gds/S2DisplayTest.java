@@ -14,7 +14,7 @@ import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import junit.framework.TestCase;
 
-public class S2GeodesicDisplayTest extends TestCase {
+public class S2DisplayTest extends TestCase {
   public void testSimple() {
     Tensor tensor = S2Display.tangentSpace(Tensors.vector(0, 1, 0));
     assertEquals(Dimensions.of(tensor), Arrays.asList(2, 3));

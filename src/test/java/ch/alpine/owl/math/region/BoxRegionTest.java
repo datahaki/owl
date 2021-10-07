@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import junit.framework.TestCase;
 
-public class BoundedBoxRegionTest extends TestCase {
+public class BoxRegionTest extends TestCase {
   public void testSimple() {
     Region<Tensor> r = BoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));
     assertTrue(r.test(Tensors.vector(10, 5)));

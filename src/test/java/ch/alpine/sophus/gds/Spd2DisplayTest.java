@@ -9,7 +9,7 @@ import ch.alpine.tensor.mat.PositiveDefiniteMatrixQ;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
 
-public class Spd2GeodesicDisplayTest extends TestCase {
+public class Spd2DisplayTest extends TestCase {
   private static final ManifoldDisplay GEODESIC_DISPLAY = Spd2Display.INSTANCE;
 
   public void testSimple() {

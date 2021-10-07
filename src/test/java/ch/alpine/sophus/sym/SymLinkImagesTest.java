@@ -1,11 +1,10 @@
 // code by jph
-package ch.alpine.sophus.demo.filter;
+package ch.alpine.sophus.sym;
 
-import ch.alpine.sophus.sym.SymLinkImages;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 import junit.framework.TestCase;
 
-public class GeodesicCenterSymLinkImageTest extends TestCase {
+public class SymLinkImagesTest extends TestCase {
   public void testSmoothingKernel() {
     for (WindowFunctions smoothingKernel : WindowFunctions.values())
       for (int radius = 0; radius < 5; ++radius)

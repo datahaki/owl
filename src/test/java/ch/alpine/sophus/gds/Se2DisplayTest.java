@@ -7,7 +7,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.Tolerance;
 import junit.framework.TestCase;
 
-public class Se2GeodesicDisplayTest extends TestCase {
+public class Se2DisplayTest extends TestCase {
   public void testSimple() {
     assertEquals(Se2Display.INSTANCE.lieGroup(), Se2Group.INSTANCE);
   }

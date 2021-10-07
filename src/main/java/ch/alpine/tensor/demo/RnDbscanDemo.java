@@ -71,12 +71,8 @@ public class RnDbscanDemo extends AbstractDemo {
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
     {
       Map<Integer, Tensor> map = new HashMap<>();
-      IntStream.range(0, labels.length).forEach(index -> {
-        int lab = labels[index];
-        if (!map.containsKey(lab))
-          map.put(lab, Tensors.empty());
-        map.get(lab).append(points.get(index));
-      });
+      IntStream.range(0, labels.length) //
+          .forEach(index -> map.computeIfAbsent(labels[index], i -> Tensors.empty()).append(points.get(index)));
       for (Entry<Integer, Tensor> entry : map.entrySet())
         if (0 <= entry.getKey()) {
           Tensor tensor = ConvexHull.of(entry.getValue());

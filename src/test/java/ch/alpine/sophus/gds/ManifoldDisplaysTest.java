@@ -10,7 +10,7 @@ import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Serialization;
 import junit.framework.TestCase;
 
-public class GeodesicDisplaysTest extends TestCase {
+public class ManifoldDisplaysTest extends TestCase {
   public void testSimple() {
     assertTrue(12 <= ManifoldDisplays.ALL.size());
   }
