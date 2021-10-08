@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.io;
+package ch.alpine.tensor.demo;
 
 import java.io.File;
 import java.io.IOException;

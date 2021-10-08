@@ -50,7 +50,7 @@ import ch.alpine.tensor.sca.Clip;
     Clip clip = rescale.scalarSummaryStatistics().getClip();
     return new ArrayPlotRender( //
         rescale.result(), //
-        coverZero ? ClipCover.of(clip, RealScalar.ZERO) : clip, //
+        coverZero ? ClipPointCover.of(clip, RealScalar.ZERO) : clip, //
         colorDataGradient, magnification);
   }
 }

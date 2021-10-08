@@ -7,7 +7,7 @@ import ch.alpine.tensor.red.Min;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum ClipCover {
+/* package */ enum ClipPointCover {
   ;
   /** @param clip
    * @param scalar

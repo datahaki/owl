@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.io;
+package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 

@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.MatrixRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;

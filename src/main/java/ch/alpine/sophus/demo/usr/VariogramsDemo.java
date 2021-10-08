@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.io;
+package ch.alpine.sophus.demo.usr;
 
 import java.awt.Color;
 import java.io.File;
@@ -37,7 +37,7 @@ public enum VariogramsDemo {
         } catch (Exception exception) {
           System.out.println(variograms);
         }
-      JFreeChart jFreeChart = ListPlot.of(visualSet);
+      JFreeChart jFreeChart = ListPlot.of(visualSet, true);
       jFreeChart.setBackgroundPaint(Color.WHITE);
       File file = new File(folder, variograms + ".png");
       ChartUtils.saveChartAsPNG(file, jFreeChart, 500, 300);
