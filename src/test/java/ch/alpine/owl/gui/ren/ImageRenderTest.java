@@ -1,8 +1,9 @@
 // code by jph
-package ch.alpine.owl.gui.region;
+package ch.alpine.owl.gui.ren;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.ren.ImageRender;
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensors;
 import junit.framework.TestCase;

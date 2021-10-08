@@ -11,6 +11,7 @@ import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ren.ImageRender;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -19,7 +20,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;

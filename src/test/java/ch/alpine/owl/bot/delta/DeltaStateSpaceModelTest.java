@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.delta;
 
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.tensor.RealScalar;

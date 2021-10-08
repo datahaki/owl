@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.region;
+package ch.alpine.java.ren;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,11 +8,11 @@ import java.awt.image.BufferedImage;
 import ch.alpine.java.gfx.AffineTransforms;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.sophus.math.AppendOne;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.sca.N;
@@ -44,7 +44,7 @@ public class ImageRender implements RenderInterface {
   public static ImageRender scale(BufferedImage bufferedImage, Tensor scale) {
     VectorQ.requireLength(scale, 2);
     return new ImageRender(bufferedImage, //
-        AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) //
+        Append.of(scale.map(Scalar::reciprocal), RealScalar.ONE) //
             .pmul(GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 

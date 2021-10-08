@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.ren.LegendImage;
-import ch.alpine.owl.gui.region.ImageRender;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.RationalScalar;

@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.rrts;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;
-import ch.alpine.owl.bot.util.RegionRenders;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;

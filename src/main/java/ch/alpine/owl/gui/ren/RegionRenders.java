@@ -1,21 +1,15 @@
 // code by jph
-package ch.alpine.owl.bot.util;
+package ch.alpine.owl.gui.ren;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
 import ch.alpine.owl.bot.rn.RnPointcloudRegionRender;
-import ch.alpine.owl.gui.region.EllipseRegionRender;
-import ch.alpine.owl.gui.region.ImageRegionRender;
-import ch.alpine.owl.gui.region.ImageRender;
-import ch.alpine.owl.gui.region.PolygonRegionRender;
-import ch.alpine.owl.gui.region.StateTimeCollectorRender;
-import ch.alpine.owl.gui.ren.BallRegionRender;
-import ch.alpine.owl.gui.ren.ConeRegionRender;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ConeRegion;
@@ -60,7 +54,7 @@ public enum RegionRenders {
    * or null if drawing capability is not available for the region */
   public static RenderInterface create(Region<Tensor> region) {
     if (region instanceof ImageRegion)
-      return ImageRegionRender.create((ImageRegion) region);
+      return RegionRenders.createImageRegionRender((ImageRegion) region);
     if (region instanceof BufferedImageRegion) {
       BufferedImageRegion bufferedImageRegion = (BufferedImageRegion) region;
       Tensor tensor = ImageFormat.from(bufferedImageRegion.bufferedImage());
@@ -88,5 +82,9 @@ public enum RegionRenders {
       ConeRegionRender.draw(geometricLayer, graphics, (ConeRegion) region);
     if (region instanceof BallRegion)
       BallRegionRender.draw(geometricLayer, graphics, (BallRegion) region);
+  }
+
+  public static RenderInterface createImageRegionRender(ImageRegion imageRegion) {
+    return ImageRender.scale(image(imageRegion.image()), imageRegion.scale());
   }
 }

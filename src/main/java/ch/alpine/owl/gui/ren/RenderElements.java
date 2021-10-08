@@ -67,7 +67,6 @@ public enum RenderElements {
         list.add(trajectoryRender);
       }
     }
-    list.add(new HudRender(trajectoryPlanner));
     return list;
   }
 

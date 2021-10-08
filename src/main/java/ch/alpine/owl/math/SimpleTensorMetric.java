@@ -4,7 +4,6 @@ package ch.alpine.owl.math;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.TensorDifference;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

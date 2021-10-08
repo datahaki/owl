@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.EmptyRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.sophus.math.Extract2D;

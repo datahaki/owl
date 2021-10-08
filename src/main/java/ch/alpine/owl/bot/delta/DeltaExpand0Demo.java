@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.delta;
 
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.GlcExpand;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.tensor.RealScalar;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta

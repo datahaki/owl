@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.owl.bot.util.RegionRenders;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.crv.d2.EllipsePoints;
 import ch.alpine.sophus.math.BijectionFamily;

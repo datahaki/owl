@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.gui.region;
+package ch.alpine.owl.gui.ren;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
