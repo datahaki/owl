@@ -32,7 +32,6 @@ public class HilbertCurveDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict();
 
   public static Tensor curve(int n) {
-    System.out.println("compute here");
     return HilbertPolygon.of(n).multiply(Power.of(2.0, -n));
   }
 

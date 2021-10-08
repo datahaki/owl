@@ -153,7 +153,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     List<TrajectorySample> trajectory = //
         generator.createTrajectory(ClothoidTransitionSpace.ANALYTIC, sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
-    assertEquals(44, trajectory.size());
+    assertEquals(71, trajectory.size());
     for (int i = 1; i < 33; i++) {
       // TrajectorySample sample = trajectory.get(i);
       // Tolerance.CHOP.requireClose(RationalScalar.of(i, 16), sample.stateTime().time());
@@ -206,7 +206,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     List<TrajectorySample> trajectory = //
         generator.createTrajectory(DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
-    assertEquals(54, trajectory.size());
+    assertEquals(67, trajectory.size());
     for (int i = 1; i < 17; i++) {
       // TrajectorySample sample = trajectory.get(i);
       // assertEquals(RationalScalar.of(i, 16), sample.stateTime().time());

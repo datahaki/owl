@@ -67,16 +67,6 @@ public class ClothoidTransition extends AbstractTransition {
   }
 
   @Override // from Transition
-  public TransitionWrap wrapped(Scalar minResolution) {
-    Sign.requirePositive(minResolution);
-    int steps = Ceiling.intValueExact(length().divide(minResolution));
-    Tensor samples = linearized(length().divide(RealScalar.of(steps)));
-    return new TransitionWrap( //
-        Drop.head(samples, 1), //
-        ConstantArray.of(length().divide(RealScalar.of(samples.length())), samples.length() - 1));
-  }
-
-  @Override // from Transition
   public Tensor linearized(Scalar minResolution) {
     return linearized_samples(minResolution).map(clothoid);
   }
@@ -92,6 +82,16 @@ public class ClothoidTransition extends AbstractTransition {
     InverseCDF inverseCDF = (InverseCDF) EqualizingDistribution.fromUnscaledPDF( //
         uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION).map(Sqrt.FUNCTION));
     return uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
+  }
+
+  @Override // from Transition
+  public TransitionWrap wrapped(Scalar minResolution) {
+    Sign.requirePositive(minResolution);
+    int steps = Ceiling.intValueExact(length().divide(minResolution));
+    Tensor samples = sampled(length().divide(RealScalar.of(steps)));
+    return new TransitionWrap( //
+        Drop.head(samples, 1), //
+        ConstantArray.of(length().divide(RealScalar.of(samples.length())), samples.length() - 1));
   }
 
   public Clothoid clothoid() {

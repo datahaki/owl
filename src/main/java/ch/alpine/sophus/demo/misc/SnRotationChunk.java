@@ -17,8 +17,8 @@ import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.ext.BoundedLinkedList;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorFormat;
-import ch.alpine.tensor.lie.MatrixExp;
 import ch.alpine.tensor.lie.TensorWedge;
+import ch.alpine.tensor.mat.ex.MatrixExp;
 import ch.alpine.tensor.sca.Mod;
 
 /* package */ class SnRotationChunk implements RenderInterface {

@@ -7,9 +7,10 @@ import java.util.Objects;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
@@ -28,9 +29,10 @@ import ch.alpine.tensor.alg.Subdivide;
 
 /** Bezier function with extrapolation */
 public class BezierFunctionDemo extends AbstractCurvatureDemo {
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(width = 200)
+  @FieldSlider
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  @FieldClip(min = "0", max = "10")
   public Scalar refine = RealScalar.of(6);
   public Boolean extrap = false;
 
