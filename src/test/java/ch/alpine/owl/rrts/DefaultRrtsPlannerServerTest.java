@@ -3,7 +3,6 @@ package ch.alpine.owl.rrts;
 
 import java.util.List;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
@@ -30,6 +29,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.Box;
@@ -80,7 +80,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
   public void testDubins() {
@@ -123,7 +123,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
   public void testClothoid() {
@@ -168,6 +168,6 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 }

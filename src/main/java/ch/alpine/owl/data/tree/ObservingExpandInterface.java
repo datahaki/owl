@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.ext.Lists;
 
 public interface ObservingExpandInterface<T extends StateCostNode> extends ExpandInterface<T> {
   /** @return whether active or not
@@ -24,7 +24,7 @@ public interface ObservingExpandInterface<T extends StateCostNode> extends Expan
       observations.keySet().stream().findFirst().ifPresent(System.out::println);
       // ---
       List<Scalar> values = new ArrayList<>(observations.values());
-      System.out.println("cost gradient:\t" + values.get(0) + " -> " + Lists.getLast(values));
+      System.out.println("cost gradient:\t" + values.get(0) + " -> " + Lists.last(values));
     }
   }
 

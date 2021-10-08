@@ -24,7 +24,6 @@ public class DeltaMinTimeGoalManagerTest extends TestCase {
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     assertTrue(Scalars.lessThan(RealScalar.ZERO, maxNormGradient));
     Scalar amp = RealScalar.of(2);
-    new DeltaStateSpaceModel(imageGradientInterpolation);
     Collection<Tensor> controls = new DeltaFlows(amp).getFlows(20);
     Chop._10.requireClose(DeltaControls.maxSpeed(controls), amp);
     Scalar maxMove = DeltaControls.maxSpeed(controls).add(imageGradientInterpolation.maxNormGradient());

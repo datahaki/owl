@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.lang.Lists;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
@@ -37,6 +36,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.Box;
 
@@ -110,7 +110,7 @@ import ch.alpine.tensor.opt.nd.Box;
         });
         owlFrame.geometricComponent.jComponent.repaint();
         // ---
-        stateTime = Lists.getLast(optional.get()).stateTime();
+        stateTime = Lists.last(optional.get()).stateTime();
         goal = RandomSample.of(randomSampleInterface);
       }
       System.out.println(frame + "/" + 5);

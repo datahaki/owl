@@ -4,10 +4,10 @@ package ch.alpine.owl.ani.api;
 import java.util.Collection;
 import java.util.List;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.ext.Timing;
 
 public abstract class MotionPlanWorker<T extends TreePlanner<?>, P extends PlannerCallback<T>> {
@@ -40,7 +40,7 @@ public abstract class MotionPlanWorker<T extends TreePlanner<?>, P extends Plann
       @Override // from Runnable
       public void run() {
         Timing timing = Timing.started();
-        StateTime root = Lists.getLast(head).stateTime(); // last statetime in head trajectory
+        StateTime root = Lists.last(head).stateTime(); // last statetime in head trajectory
         trajectoryPlanner.insertRoot(root);
         expand(trajectoryPlanner);
         if (isRelevant) {

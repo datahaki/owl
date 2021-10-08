@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.List;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
@@ -17,6 +16,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -46,7 +46,7 @@ public class Duncan1StateSpaceModelTest extends TestCase {
     StateTime stateTime = new StateTime(Tensors.of(Quantity.of(10, "m*s^-1")), Quantity.of(1, "s"));
     Scalar push = Quantity.of(3, "m*s^-2");
     List<StateTime> list = stateIntegrator.trajectory(stateTime, Tensors.of(push));
-    StateTime last = Lists.getLast(list);
+    StateTime last = Lists.last(list);
     assertEquals(last.time(), Quantity.of(100, "s"));
     Chop._12.requireClose(last.state().get(0), push.divide(lambda));
   }

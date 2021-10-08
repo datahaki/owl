@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.tse2.Tse2StateSpaceModel;
 import ch.alpine.owl.data.tree.Nodes;
@@ -18,6 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.lie.r2.AngleVector;
 
@@ -48,7 +48,7 @@ abstract class AbstractShadowConstraint implements PlannerConstraint, Serializab
   @Override
   public final boolean isSatisfied(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
     // TODO_YN there are few different values for vel => precompute
-    StateTime childStateTime = Lists.getLast(trajectory);
+    StateTime childStateTime = Lists.last(trajectory);
     float vel = velSupplier.apply(childStateTime, flow).number().floatValue();
     float tBrake = vel / a;
     float dBrake = tBrake * vel / 2;

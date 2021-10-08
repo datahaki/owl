@@ -20,7 +20,6 @@ public class DeltaControlsTest extends TestCase {
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     assertTrue(Sign.isPositive(maxNormGradient));
     Scalar amp = RealScalar.of(2);
-    new DeltaStateSpaceModel(imageGradientInterpolation);
     Collection<Tensor> controls = new DeltaFlows(amp).getFlows(20);
     Scalar max = DeltaControls.maxSpeed(controls);
     Chop._12.requireClose(max, amp);

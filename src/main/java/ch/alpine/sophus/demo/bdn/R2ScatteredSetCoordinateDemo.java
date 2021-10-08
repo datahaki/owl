@@ -138,6 +138,7 @@ import ch.alpine.tensor.red.Entrywise;
       new ArrayRender(point, colorDataGradient.deriveWithOpacity(RationalScalar.HALF)).render(geometricLayer, graphics);
       // ---
       if (jToggleHeatmap.isSelected()) { // render basis functions
+        // TODO this code "ArrayReshape.of(Transpose..." appears in multiple places
         List<Integer> dims = Dimensions.of(wgs);
         Tensor _wgs = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
         ArrayPlotRender.rescale(_wgs, colorDataGradient, 3).render(geometricLayer, graphics);

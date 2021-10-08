@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
@@ -33,6 +32,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
@@ -74,7 +74,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     Chop._15.requireClose(n1.state(), trajectory.get(10).stateTime().state());
     Chop._15.requireClose(n2.state(), trajectory.get(20).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
   }
 
   public void testDubins() {
@@ -112,7 +112,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     Chop._15.requireClose(n1.state(), trajectory.get(10).stateTime().state());
     Chop._15.requireClose(n2.state(), trajectory.get(20).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 37).stream().map(TrajectorySample::getFlow).allMatch(Optional::isPresent));
@@ -163,7 +163,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     // Chop._15.requireClose(n1.state(), trajectory.get(16).stateTime().state());
     // Chop._15.requireClose(n2.state(), trajectory.get(32).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 44).stream().map(TrajectorySample::getFlow).map(Optional::get) //
@@ -216,7 +216,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     // Chop._15.requireClose(n1.state(), trajectory.get(16).stateTime().state());
     // Chop._15.requireClose(n2.state(), trajectory.get(32).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 49).stream().map(TrajectorySample::getFlow).allMatch(Optional::isPresent));

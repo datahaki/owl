@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.IntegerLog2;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.StateTime;
@@ -24,6 +23,7 @@ import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Reverse;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.red.Nest;
 import ch.alpine.tensor.sca.Ceiling;
@@ -65,7 +65,7 @@ import ch.alpine.tensor.sca.Sign;
     List<TrajectorySample> trajectory = new LinkedList<>();
     RrtsNode prev = sequence.get(0);
     trajectory.add(TrajectorySample.head(new StateTime(prev.state(), t0)));
-    for (RrtsNode node : sequence.subList(1, sequence.size())) {
+    for (RrtsNode node : Lists.rest(sequence)) {
       Transition transition = transitionSpace.connect(prev.state(), node.state());
       TransitionWrap transitionWrap = transition.wrapped(dt);
       Tensor samples = transitionWrap.samples();
@@ -74,7 +74,7 @@ import ch.alpine.tensor.sca.Sign;
       for (int i = 0; i < samples.length(); i++) {
         ti = ti.add(spacing.Get(i));
         StateTime stateTime = new StateTime(samples.get(i), ti);
-        StateTime orig = Lists.getLast(trajectory).stateTime();
+        StateTime orig = Lists.last(trajectory).stateTime();
         // TODO GJOEL this boolean expression appears twice => extract to function
         Tensor u = (transition instanceof DirectedTransition && !((DirectedTransition) transition).isForward) //
             ? uBetween.apply(stateTime, orig) //
@@ -116,9 +116,9 @@ import ch.alpine.tensor.sca.Sign;
       Scalar dt) {
     if (!segment.isEmpty()) {
       Tensor points = Tensor.of(segment.stream().map(RrtsNode::state));
-      Scalar maxLength = //
-          segment.subList(1, segment.size()).stream().map(node -> transitionSpace.connect(node.parent().state(), node.state()).length()).reduce(Max::of).get();
-      Scalar t0 = Lists.getLast(trajectory).stateTime().time();
+      Scalar maxLength = segment.stream().skip(1) //
+          .map(node -> transitionSpace.connect(node.parent().state(), node.state()).length()).reduce(Max::of).get();
+      Scalar t0 = Lists.last(trajectory).stateTime().time();
       int depth = IntegerLog2.ceiling(Ceiling.of(maxLength.divide(Sign.requirePositive(dt))).number().intValue());
       if (!direction)
         points = Reverse.of(points);
@@ -132,7 +132,7 @@ import ch.alpine.tensor.sca.Sign;
       for (int i = 1; i < samples.length(); i++) {
         ti = ti.add(spacing.Get(i - 1));
         StateTime stateTime = new StateTime(samples.get(i), ti);
-        StateTime orig = Lists.getLast(trajectory).stateTime();
+        StateTime orig = Lists.last(trajectory).stateTime();
         Tensor u = direction //
             ? uBetween.apply(orig, stateTime) //
             : uBetween.apply(stateTime, orig);

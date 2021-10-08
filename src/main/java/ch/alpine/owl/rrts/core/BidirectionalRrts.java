@@ -6,11 +6,11 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Lists;
 
 public class BidirectionalRrts implements Rrts {
   private final RrtsNodeCollection nodeCollection;
@@ -48,7 +48,7 @@ public class BidirectionalRrts implements Rrts {
   @Override // from Rrts
   public void rewireAround(RrtsNode parent, int k_nearest) {
     List<RrtsNode> toGoal = Nodes.listToRoot(parent);
-    Tensor backwardRoot = Lists.getLast(toGoal).state();
+    Tensor backwardRoot = Lists.last(toGoal).state();
     if (!backwardRoot.equals(goal))
       throw TensorRuntimeException.of(backwardRoot, goal);
     for (RrtsNode node : toGoal) {

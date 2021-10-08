@@ -58,6 +58,8 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       // ---
       GeodesicCausalFilters geodesicCausalFilters = spinnerCausalFilter.getValue();
       TensorUnaryOperator tensorUnaryOperator = null;
+      // TODO should be able to do with geodesicCausalFilters.supply !!
+      System.out.println("here");
       switch (geodesicCausalFilters) {
       case GEODESIC_FIR:
         tensorUnaryOperator = GeodesicFIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());

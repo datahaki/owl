@@ -18,6 +18,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Subsets;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.red.Total;
@@ -152,7 +153,7 @@ import ch.alpine.tensor.red.Total;
                 ubongoEntry.stamp = stamp;
                 ArrayList<UbongoEntry> arrayList = new ArrayList<>(entries);
                 arrayList.add(ubongoEntry);
-                solve(nubrd, list.subList(1, list.size()), arrayList);
+                solve(nubrd, Lists.rest(list), arrayList);
               }
             }
         }

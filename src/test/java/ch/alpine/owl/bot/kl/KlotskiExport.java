@@ -14,9 +14,9 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.io.HtmlUtf8;
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.io.AnimationWriter;
@@ -72,7 +72,7 @@ import ch.alpine.tensor.pdf.BinCounts;
           }
           {
             String filename = imageFilename("end", klotskiProblem, "png");
-            StateTime stateTime = Lists.getLast(klotskiSolution.list);
+            StateTime stateTime = Lists.last(klotskiSolution.list);
             BufferedImage bufferedImage = new KlotskiPlot(klotskiProblem, RES).plot(stateTime.state());
             ImageIO.write(bufferedImage, "png", new File(ROOT, filename));
             htmlUtf8.appendln("<td><img src='" + filename + "'/><td>");

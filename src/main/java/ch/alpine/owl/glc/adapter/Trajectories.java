@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-import ch.alpine.java.lang.Lists;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.ext.Lists;
 
 public enum Trajectories {
   ;
@@ -19,7 +19,7 @@ public enum Trajectories {
    * @throws Exception if head[end] != tail[0] */
   public static List<TrajectorySample> glue(List<TrajectorySample> head, List<TrajectorySample> tail) {
     List<TrajectorySample> trajectory = new ArrayList<>(head);
-    TrajectorySample tsh = Lists.getLast(head);
+    TrajectorySample tsh = Lists.last(head);
     TrajectorySample tst = tail.get(0);
     boolean contact = tsh.stateTime().equals(tst.stateTime());
     if (!contact) {
@@ -29,7 +29,7 @@ public enum Trajectories {
     }
     if (tst.getFlow().isPresent())
       throw new RuntimeException();
-    trajectory.addAll(tail.subList(1, tail.size()));
+    trajectory.addAll(Lists.rest(tail));
     return Collections.unmodifiableList(trajectory);
   }
 
