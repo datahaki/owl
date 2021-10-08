@@ -1,16 +1,13 @@
 // code by jph
 package ch.alpine.sophus.demo.bdn;
 
-import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
-import ch.alpine.tensor.alg.ArrayReshape;
-import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
 /** Reference:
@@ -51,8 +48,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       int rows = weights.length;
       int cols = weights[0].length;
       Tensor wgs = Tensors.matrix((i, j) -> weights[i][j], rows, cols);
-      List<Integer> dims = Dimensions.of(wgs);
-      _wgs = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
+      _wgs = ImageReshape.of(wgs);
     }
     return _wgs;
   }

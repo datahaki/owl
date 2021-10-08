@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Path2D;
-import java.util.List;
 import java.util.stream.IntStream;
 
 import javax.swing.JToggleButton;
@@ -17,6 +16,7 @@ import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.ArrayRender;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -29,10 +29,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.alg.ArrayReshape;
-import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.img.ColorDataGradient;
@@ -137,12 +134,8 @@ import ch.alpine.tensor.red.Entrywise;
       // ---
       new ArrayRender(point, colorDataGradient.deriveWithOpacity(RationalScalar.HALF)).render(geometricLayer, graphics);
       // ---
-      if (jToggleHeatmap.isSelected()) { // render basis functions
-        // TODO this code "ArrayReshape.of(Transpose..." appears in multiple places
-        List<Integer> dims = Dimensions.of(wgs);
-        Tensor _wgs = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
-        ArrayPlotRender.rescale(_wgs, colorDataGradient, 3).render(geometricLayer, graphics);
-      }
+      if (jToggleHeatmap.isSelected()) // render basis functions
+        ArrayPlotRender.rescale(ImageReshape.of(wgs), colorDataGradient, 3).render(geometricLayer, graphics);
       // render grid lines functions
       if (jToggleArrows.isSelected()) {
         graphics.setColor(Color.LIGHT_GRAY);

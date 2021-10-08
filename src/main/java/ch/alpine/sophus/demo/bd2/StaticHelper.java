@@ -4,11 +4,11 @@ package ch.alpine.sophus.demo.bd2;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ren.ArrayPlotRender;
+import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -16,10 +16,7 @@ import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.ArrayReshape;
-import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Rescale;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.sca.Clip;
@@ -44,13 +41,13 @@ import ch.alpine.tensor.sca.Clip;
   }
 
   public static ArrayPlotRender arrayPlotFromTensor(Tensor wgs, int magnification, boolean coverZero, ColorDataGradient colorDataGradient) {
-    List<Integer> dims = Dimensions.of(wgs);
-    Tensor wgp = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
-    Rescale rescale = new Rescale(wgp);
+    Rescale rescale = new Rescale(ImageReshape.of(wgs));
     Clip clip = rescale.scalarSummaryStatistics().getClip();
     return new ArrayPlotRender( //
         rescale.result(), //
-        coverZero ? ClipPointCover.of(clip, RealScalar.ZERO) : clip, //
+        coverZero //
+            ? ClipPointCover.of(clip, RealScalar.ZERO)
+            : clip, //
         colorDataGradient, magnification);
   }
 }

@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.util.List;
 import java.util.stream.IntStream;
 
 import javax.swing.JToggleButton;
@@ -15,6 +14,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.sophus.demo.bd2.AbstractExportWeightingDemo;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -24,11 +24,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.alg.ArrayReshape;
-import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Drop;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.num.Pi;
@@ -82,10 +79,8 @@ import ch.alpine.tensor.num.Pi;
       Tensor origin = getGeodesicControlPoints();
       TensorUnaryOperator tensorUnaryOperator = operator(origin);
       Tensor wgs = compute(tensorUnaryOperator, refinement());
-      List<Integer> dims = Dimensions.of(wgs);
-      Tensor _wgp = ArrayReshape.of(Transpose.of(wgs, 0, 2, 1), dims.get(0), dims.get(1) * dims.get(2));
       RenderQuality.setQuality(graphics);
-      ArrayPlotRender.rescale(_wgp, colorDataGradient, magnification()).render(geometricLayer, graphics);
+      ArrayPlotRender.rescale(ImageReshape.of(wgs), colorDataGradient, magnification()).render(geometricLayer, graphics);
     }
   }
 
