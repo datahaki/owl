@@ -4,7 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 
 import ch.alpine.sophus.hs.r2.Se2Bijection;
-import ch.alpine.sophus.math.d2.ArcTan2D;
+import ch.alpine.sophus.math.ArcTan2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -37,7 +37,7 @@ public class ConeRegion implements RegionWithDistance<Tensor>, Serializable {
   }
 
   @Override // from Region<Tensor>
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     Tensor local = inverse.apply(tensor);
     local.set(Abs.FUNCTION, 1); // normalize y coordinate
     Scalar angle = ArcTan2D.of(local); // non-negative

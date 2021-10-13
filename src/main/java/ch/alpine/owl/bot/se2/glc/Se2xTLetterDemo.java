@@ -3,6 +3,9 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.Arrays;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
@@ -11,13 +14,9 @@ import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.se2.rl.CarPolicyEntity;
 import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
@@ -25,10 +24,11 @@ import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
+import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
 import ch.alpine.sophus.math.BijectionFamily;
-import ch.alpine.sophus.ply.CogPoints;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.subare.core.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -39,10 +39,10 @@ public class Se2xTLetterDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 20));
 
   @Override
-  public OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
+  public OwlAnimationFrame start() {
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
-    owlyAnimationFrame.add(carxTEntity);
+    owlAnimationFrame.add(carxTEntity);
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     Region<Tensor> region = r2ImageRegionWrap.region();
@@ -72,11 +72,11 @@ public class Se2xTLetterDemo implements DemoInterface {
     // );
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // abstractEntity.raytraceQuery = SimpleTrajectoryRegionQuery.timeInvariant(imageRegion);
-    MouseGoal.simple(owlyAnimationFrame, carxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
+    MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground((RenderInterface) region1);
     // owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) cog0);
+    owlAnimationFrame.addBackground((RenderInterface) cog0);
     // ---
     final TrajectoryRegionQuery ray = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList( //
@@ -88,22 +88,22 @@ public class Se2xTLetterDemo implements DemoInterface {
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carxTEntity::getStateTimeNow, ray);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carxTEntity::getStateTimeNow, ray);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       CarPolicyEntity twdPolicyEntity = new CarPolicyEntity( //
           Tensors.vector(5.600, 8.667, -1.571), SarsaType.QLEARNING, ray);
-      owlyAnimationFrame.add(twdPolicyEntity);
+      owlAnimationFrame.add(twdPolicyEntity);
     }
     // ---
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

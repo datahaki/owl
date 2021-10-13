@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import ch.alpine.owl.data.img.ImageBlackWhiteQ;
+import ch.alpine.java.img.ImageBlackWhiteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

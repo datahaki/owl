@@ -3,12 +3,12 @@ package ch.alpine.sophus.gds;
 
 import java.io.Serializable;
 
+import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieTransport;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.sophus.ply.Arrowhead;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
@@ -37,7 +37,7 @@ public abstract class Se2AbstractDisplay implements ManifoldDisplay, Serializabl
 
   @Override // from GeodesicDisplay
   public final Tensor matrixLift(Tensor p) {
-    return Se2Matrix.of(p);
+    return GfxMatrix.of(p);
   }
 
   @Override // from GeodesicDisplay

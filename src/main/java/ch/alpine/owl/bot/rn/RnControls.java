@@ -22,6 +22,7 @@ import ch.alpine.tensor.red.Max;
   public static Scalar maxSpeed(Collection<Tensor> controls) {
     return controls.stream() //
         .map(Vector2Norm::of) //
-        .reduce(Max::of).get();
+        .reduce(Max::of) //
+        .orElseThrow();
   }
 }

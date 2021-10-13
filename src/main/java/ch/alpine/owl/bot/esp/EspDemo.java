@@ -52,7 +52,7 @@ import ch.alpine.tensor.io.Export;
       {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent()) {
-          GlcNode glcNode = optional.get();
+          GlcNode glcNode = optional.orElseThrow();
           // if (print)
           {
             System.out.println(glcNode.state());
@@ -66,7 +66,7 @@ import ch.alpine.tensor.io.Export;
       if (optional.isPresent()) {
         Collection<GlcNode> queue = trajectoryPlanner.getQueue();
         Map<Tensor, GlcNode> domainMap = trajectoryPlanner.getDomainMap();
-        GlcNode nextNode = optional.get();
+        GlcNode nextNode = optional.orElseThrow();
         espFrame._board = nextNode.state();
         trajectoryPlanner.expand(nextNode);
         System.out.println(String.format("#=%3d   q=%3d   $=%3s", domainMap.size(), queue.size(), nextNode.costFromRoot()));

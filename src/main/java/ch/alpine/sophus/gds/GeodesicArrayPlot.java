@@ -4,7 +4,7 @@ package ch.alpine.sophus.gds;
 import java.awt.Dimension;
 import java.util.function.Function;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,7 +32,7 @@ public interface GeodesicArrayPlot {
     // pixel 2 model
     Tensor scale = range.pmul(Tensors.vector(dimension.width, dimension.height).map(Scalar::reciprocal));
     return Dot.of( //
-        Se2Matrix.translation(xy), //
-        AppendOne.FUNCTION.apply(scale).pmul(Se2Matrix.flipY(dimension.height)));
+        GfxMatrix.translation(xy), //
+        AppendOne.FUNCTION.apply(scale).pmul(GfxMatrix.flipY(dimension.height)));
   }
 }

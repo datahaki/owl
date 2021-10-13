@@ -68,7 +68,7 @@ public class TrajectoryWrap {
    * @return control to reach trajectory sample registered at time strictly greater than given now
    * @throws Exception if {@link #isDefined(Scalar)} returns false for given now */
   public Tensor getControl(Scalar now) {
-    return navigableMap.higherEntry(now).getValue().getFlow().get();
+    return navigableMap.higherEntry(now).getValue().getFlow().orElseThrow();
   }
 
   /** @param now
@@ -83,6 +83,6 @@ public class TrajectoryWrap {
         hi.getValue().stateTime().state()));
     return new TrajectorySample( //
         new StateTime(interpolation.at(index), now), //
-        hi.getValue().getFlow().get());
+        hi.getValue().getFlow().orElseThrow());
   }
 }

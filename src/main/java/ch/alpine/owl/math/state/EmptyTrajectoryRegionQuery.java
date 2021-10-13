@@ -16,7 +16,7 @@ public enum EmptyTrajectoryRegionQuery implements TrajectoryRegionQuery {
   }
 
   @Override // from TrajectoryRegionQuery
-  public boolean isMember(StateTime stateTime) {
+  public boolean test(StateTime stateTime) {
     return false;
   }
 }

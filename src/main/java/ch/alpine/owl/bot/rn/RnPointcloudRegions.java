@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.rn;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
-import ch.alpine.owl.math.region.Region;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -43,7 +43,7 @@ public enum RnPointcloudRegions {
     for (int row = 0; row < rows; ++row)
       for (int col = 0; col < cols; ++col) {
         Tensor vector = pixel2model.dot(Tensors.vector(col, row, 1));
-        if (bufferedImageRegion.isMember(vector))
+        if (bufferedImageRegion.test(vector))
           points.append(Extract2D.FUNCTION.apply(vector));
       }
     return points;

@@ -6,11 +6,11 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Lists;
 
 public class BidirectionalRrts implements Rrts {
   private final RrtsNodeCollection nodeCollection;
@@ -28,9 +28,9 @@ public class BidirectionalRrts implements Rrts {
     nodeCollection = rrtsNodeCollection.get();
     forwardRrts = new DefaultRrts(transitionSpace, nodeCollection, obstacleQuery, transitionCostFunction);
     backwardRrts = new DefaultRrts(ReversalTransitionSpace.of(transitionSpace), rrtsNodeCollection.get(), obstacleQuery, transitionCostFunction);
-    this.root = forwardRrts.insertAsNode(root, 0).get();
+    this.root = forwardRrts.insertAsNode(root, 0).orElseThrow();
     forwardRrts.insertAsNode(goal, 1); // trivial solution
-    backwardRrts.insertAsNode(goal, 0).get();
+    backwardRrts.insertAsNode(goal, 0).orElseThrow();
     this.goal = goal;
   }
 
@@ -48,7 +48,7 @@ public class BidirectionalRrts implements Rrts {
   @Override // from Rrts
   public void rewireAround(RrtsNode parent, int k_nearest) {
     List<RrtsNode> toGoal = Nodes.listToRoot(parent);
-    Tensor backwardRoot = Lists.getLast(toGoal).state();
+    Tensor backwardRoot = Lists.last(toGoal).state();
     if (!backwardRoot.equals(goal))
       throw TensorRuntimeException.of(backwardRoot, goal);
     for (RrtsNode node : toGoal) {
@@ -76,9 +76,9 @@ public class BidirectionalRrts implements Rrts {
   }
 
   private Optional<RrtsNode> find(Tensor state) {
-    Optional<RrtsNode> optional = nodeCollection.nearTo(state, 1).stream().findFirst();
+    Optional<RrtsNode> optional = nodeCollection.nearTo(state, 1).stream().findFirst().map(RrtsNodeTransition::rrtsNode);
     if (optional.isPresent()) {
-      RrtsNode closest = optional.get();
+      RrtsNode closest = optional.orElseThrow();
       if (closest.state().equals(state))
         return optional;
     }

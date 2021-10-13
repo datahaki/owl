@@ -4,18 +4,18 @@ package ch.alpine.owl.bot.tn;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.GoalAdapter;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
@@ -36,7 +36,7 @@ import ch.alpine.tensor.sca.Ramp;
   @Override // from CostIncrementFunction
   public Scalar costIncrement(GlcNode node, List<StateTime> trajectory, Tensor flow) {
     StateTime from = node.stateTime();
-    return Vector2Norm.between(from.state(), Lists.getLast(trajectory).state());
+    return Vector2Norm.between(from.state(), Lists.last(trajectory).state());
   }
 
   @Override // from HeuristicFunction
@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Ramp;
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return Scalars.isZero(minCostToGoal(tensor));
   }
 

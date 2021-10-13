@@ -6,7 +6,8 @@ import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.data.img.ImageArea;
+import ch.alpine.java.img.ImageArea;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import junit.framework.TestCase;

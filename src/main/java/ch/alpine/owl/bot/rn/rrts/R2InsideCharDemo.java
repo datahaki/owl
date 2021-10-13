@@ -3,13 +3,12 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
-import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -19,32 +18,34 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum R2InsideCharDemo {
   ;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
     Region<Tensor> region = ImageRegion.of(bufferedImage, range, false);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Tensors.vector(0, 0), range);
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Box.of(Tensors.vector(0, 0), range));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
-    RrtsNode root = rrts.insertAsNode(start, 5).get();
-    OwlyFrame owlyFrame = OwlyGui.start();
-    owlyFrame.geometricComponent.setOffset(60, 477);
-    owlyFrame.jFrame.setBounds(100, 100, 650, 550);
-    owlyFrame.addBackground(RegionRenders.create(region));
+    RrtsNode root = rrts.insertAsNode(start, 5).orElseThrow();
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(60, 477);
+    owlFrame.jFrame.setBounds(100, 100, 650, 550);
+    owlFrame.addBackground(RegionRenders.create(region));
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Tensors.vector(0, 0), range);
     int frame = 0;
-    while (frame++ < 20 && owlyFrame.jFrame.isVisible()) {
+    while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
-      owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+      owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
       Thread.sleep(10);
     }
     System.out.println(rrts.rewireCount());

@@ -5,13 +5,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.bot.util.FlowsInterface;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.MultiCostGoalAdapter;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -19,14 +20,13 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.owl.math.StateTimeTensorFunction;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -145,7 +145,7 @@ public class CarEntity extends Se2Entity {
     // ---
     if (trajectoryControl instanceof TrajectoryTargetRender) {
       StateTime stateTime = getStateTimeNow();
-      Tensor matrix = Se2Matrix.of(stateTime.state());
+      Tensor matrix = GfxMatrix.of(stateTime.state());
       geometricLayer.pushMatrix(matrix);
       graphics.setColor(Color.RED);
       ((TrajectoryTargetRender) trajectoryControl).toTarget(geometricLayer).ifPresent(graphics::draw);

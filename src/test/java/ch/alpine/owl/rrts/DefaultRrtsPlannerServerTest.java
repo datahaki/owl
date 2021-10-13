@@ -10,8 +10,7 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollections;
-import ch.alpine.owl.data.Lists;
+import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.StateTime;
@@ -30,8 +29,10 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -43,8 +44,9 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
     Scalar radius = Vector2Norm.between(goal, state).multiply(RationalScalar.HALF).add(RealScalar.ONE);
     Tensor center = Mean.of(Tensors.of(state, goal));
-    Tensor min = center.map(scalar -> scalar.subtract(radius));
-    Tensor max = center.map(scalar -> scalar.add(radius));
+    Box box = Box.of( //
+        center.map(scalar -> scalar.subtract(radius)), //
+        center.map(scalar -> scalar.add(radius)));
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         RnTransitionSpace.INSTANCE, //
@@ -54,7 +56,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new RnRrtsNodeCollection(min, max);
+        return new RnRrtsNodeCollection(box);
       }
 
       @Override
@@ -78,12 +80,13 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
   public void testDubins() {
-    Tensor lbounds = Tensors.vector(0, 0, -Math.PI);
-    Tensor ubounds = Tensors.vector(10, 10, Math.PI);
+    Box box = Box.of( //
+        Tensors.vector(0, 0, -Math.PI), //
+        Tensors.vector(10, 10, Math.PI));
     Tensor goal = Tensors.vector(10, 10, 0);
     Tensor state = Tensors.vector(0, 0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
@@ -96,12 +99,12 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new RnRrtsNodeCollection(lbounds, ubounds);
+        return new RnRrtsNodeCollection(box);
       }
 
       @Override
       protected RandomSampleInterface spaceSampler(Tensor state) {
-        return BoxRandomSample.of(lbounds, ubounds);
+        return BoxRandomSample.of(box);
       }
 
       @Override
@@ -120,7 +123,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
   public void testClothoid() {
@@ -141,7 +144,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+        return new Se2RrtsNodeCollection(getTransitionSpace(), Box.of(lbounds, ubounds), 3);
       }
 
       @Override
@@ -165,6 +168,6 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.getLast(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 }

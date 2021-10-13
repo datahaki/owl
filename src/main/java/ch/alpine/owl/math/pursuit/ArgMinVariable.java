@@ -20,7 +20,7 @@ public class ArgMinVariable implements TensorScalarFunction {
     return new ArgMinVariable(trajectoryEntryFinder, mapping, maxLevel);
   }
 
-  /***************************************************/
+  // ---
   private final TrajectoryEntryFinder trajectoryEntryFinder;
   private final TensorScalarFunction mapping;
   private final int maxLevel;
@@ -68,7 +68,7 @@ public class ArgMinVariable implements TensorScalarFunction {
    * @return TrajectoryEntry */
   private TrajectoryEntry update(Function<Scalar, TrajectoryEntry> function, Scalar var) {
     TrajectoryEntry trajectoryEntry = function.apply(var);
-    // LONGTERM structure not optimal: isPresent, insert, isPresent
+    // TODO structure not optimal: isPresent, insert, isPresent
     if (trajectoryEntry.point().isPresent())
       insert(trajectoryEntry);
     return trajectoryEntry;

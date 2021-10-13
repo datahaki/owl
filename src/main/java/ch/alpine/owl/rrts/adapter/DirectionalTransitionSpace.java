@@ -15,7 +15,7 @@ public class DirectionalTransitionSpace implements TransitionSpace, Serializable
     return new DirectionalTransitionSpace(transitionSpace);
   }
 
-  /***************************************************/
+  // ---
   private final TransitionSpace forwardTransitionSpace;
   private final TransitionSpace backwardTransitionSpace;
 

@@ -5,12 +5,13 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
@@ -34,15 +35,15 @@ public class R2ImageRegionWrap {
     return imageRegion;
   }
 
-  public Tensor range() {
-    return range;
-  }
-
   public CostFunction costFunction() {
     return costFunction;
   }
 
-  public Tensor origin() {
-    return Array.zeros(2);
+  public Tensor range() {
+    return range;
+  }
+
+  public Box box() {
+    return Box.of(range.map(Scalar::zero), range);
   }
 }

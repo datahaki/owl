@@ -4,7 +4,6 @@ package ch.alpine.owl.ani.api;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -13,6 +12,7 @@ import ch.alpine.owl.math.state.TrajectoryWrap;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Lists;
 
 /** entity executes flows along a given trajectory */
 public abstract class TrajectoryEntity extends AbstractEntity implements TrajectoryListener, TensorMetric {
@@ -45,7 +45,7 @@ public abstract class TrajectoryEntity extends AbstractEntity implements Traject
     if (Objects.isNull(trajectoryWrap))
       return getStateTimeNow().state();
     List<TrajectorySample> relevant = trajectoryControl.getFutureTrajectoryUntil(getStateTimeNow(), delay);
-    return Lists.getLast(relevant).stateTime().state();
+    return Lists.last(relevant).stateTime().state();
   }
 
   /** @return delay between now and the future point in time from when to divert to a new trajectory */

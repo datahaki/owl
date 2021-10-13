@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensor;
     return new KlotskiAdapter(board, name, stateTimeRaster, size, goal, frame, border);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor board;
   private final String name;
   private final StateTimeRaster stateTimeRaster;

@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.Set;
 
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

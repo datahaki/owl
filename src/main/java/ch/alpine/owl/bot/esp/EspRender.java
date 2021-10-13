@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.Objects;
 
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -47,7 +47,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
           default:
             throw new RuntimeException();
           }
-          geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(px + 0.5, py + 0.5)));
+          geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(px + 0.5, py + 0.5)));
           Path2D path2d = geometricLayer.toPath2D(CIRCLE);
           graphics.fill(path2d);
           geometricLayer.popMatrix();

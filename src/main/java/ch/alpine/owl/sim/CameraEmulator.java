@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
@@ -63,7 +63,7 @@ public class CameraEmulator implements RenderInterface {
       int x = 0;
       int y = 0;
       for (Tensor probe : localPoints) {
-        if (!raytraceQuery.isMember(new StateTime(forward.apply(probe), stateTime.time())))
+        if (!raytraceQuery.test(new StateTime(forward.apply(probe), stateTime.time())))
           graphics.fillRect(resolution - y - 1, resolution - x - 1, 1, 1);
         ++y;
         if (y == resolution) {

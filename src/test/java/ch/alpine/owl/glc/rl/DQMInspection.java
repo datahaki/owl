@@ -27,8 +27,7 @@ import ch.alpine.tensor.red.Entrywise;
     for (Entry<Tensor, RLDomainQueue> entry : rlDomainQueueMap.entrySet()) {
       Tensor key = entry.getKey();
       RLDomainQueue value = entry.getValue();
-      Integer[] array = Primitives.toListInteger(key.subtract(min)).toArray(new Integer[min.length()]);
-      count.set(RealScalar.of(value.size()), array);
+      count.set(RealScalar.of(value.size()), Primitives.toIntArray(key.subtract(min)));
     }
   }
 

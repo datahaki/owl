@@ -3,7 +3,7 @@ package ch.alpine.sophus.gds;
 
 import java.util.Random;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -29,7 +29,7 @@ public class R2Display extends RnDisplay {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor p) {
-    return Se2Matrix.translation(p);
+    return GfxMatrix.translation(p);
   }
 
   @Override // from GeodesicDisplay

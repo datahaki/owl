@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

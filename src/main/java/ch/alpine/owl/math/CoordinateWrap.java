@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.math;
 
-import ch.alpine.sophus.math.TensorDifference;
 import ch.alpine.tensor.Tensor;
 
 /** functionality used in {@code TrajectoryPlanner} to map state coordinates to

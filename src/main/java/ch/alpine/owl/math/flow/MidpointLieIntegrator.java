@@ -21,7 +21,7 @@ public class MidpointLieIntegrator implements Integrator, Serializable {
         Objects.requireNonNull(exponential));
   }
 
-  /***************************************************/
+  // ---
   private final LieGroup lieGroup;
   private final Exponential exponential;
 

@@ -6,7 +6,7 @@ import java.util.Random;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
@@ -26,7 +26,7 @@ public class Se2SphereRandomSample implements RandomSampleInterface, Serializabl
     return new Se2SphereRandomSample(apex, radius, UniformDistribution.of(Clips.absolute(heading)));
   }
 
-  /***************************************************/
+  // ---
   private final Se2GroupElement se2GroupElement;
   private final RandomSampleInterface randomSampleInterface;
   private final Distribution distribution;

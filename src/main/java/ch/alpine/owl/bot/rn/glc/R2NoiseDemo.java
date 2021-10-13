@@ -6,11 +6,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2NoiseCostFunction;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -23,16 +24,15 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -70,12 +70,12 @@ import ch.alpine.tensor.ext.Timing;
     System.out.println(glcExpand.getExpandCount() + " " + timing.seconds());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
-    owlyFrame.addBackground(RegionRenders.create(ballRegion));
-    owlyFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
-    owlyFrame.geometricComponent.setOffset(100, 300);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    owlFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlFrame.geometricComponent.setOffset(100, 300);
   }
 }

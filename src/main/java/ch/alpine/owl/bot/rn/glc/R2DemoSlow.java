@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -21,9 +23,7 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -80,23 +80,23 @@ import ch.alpine.tensor.sca.Ramp;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
-      OwlyFrame owlyFrame = OwlyGui.start();
-      owlyFrame.addBackground(RegionRenders.create(ballRegion));
-      owlyFrame.addBackground(renderInterface); // reference to collection
+      OwlFrame owlFrame = OwlGui.start();
+      owlFrame.addBackground(RegionRenders.create(ballRegion));
+      owlFrame.addBackground(renderInterface); // reference to collection
       for (int i = 0; i < 20; ++i) {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent())
           break;
         glcExpand.findAny(1);
-        owlyFrame.setGlc(trajectoryPlanner);
-        animationWriter.write(owlyFrame.offscreen());
+        owlFrame.setGlc(trajectoryPlanner);
+        animationWriter.write(owlFrame.offscreen());
       }
       for (int i = 0; i < 4; ++i)
-        animationWriter.write(owlyFrame.offscreen());
+        animationWriter.write(owlFrame.offscreen());
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      GlcNode goalNode = optional.get(); // <- throws exception if
+      GlcNode goalNode = optional.orElseThrow();
       Scalar cost = goalNode.costFromRoot();
       Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
@@ -108,7 +108,7 @@ import ch.alpine.tensor.sca.Ramp;
   static void demo(TrajectoryPlanner trajectoryPlanner) {
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
     // OwlyGui.glc(trajectoryPlanner);

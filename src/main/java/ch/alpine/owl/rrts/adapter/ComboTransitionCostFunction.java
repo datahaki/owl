@@ -20,7 +20,7 @@ public class ComboTransitionCostFunction implements TransitionCostFunction, Seri
         .collect(Collectors.toMap(f -> f, f -> RealScalar.ONE)));
   }
 
-  /***************************************************/
+  // ---
   private final Map<TransitionCostFunction, Scalar> map;
   // private final int influence;
 
@@ -37,7 +37,8 @@ public class ComboTransitionCostFunction implements TransitionCostFunction, Seri
   public Scalar cost(RrtsNode rrtsNode, Transition transition) {
     return map.entrySet().stream() //
         .map(entry -> entry.getKey().cost(rrtsNode, transition).multiply(entry.getValue())) //
-        .reduce(Scalar::add).get();
+        .reduce(Scalar::add) //
+        .orElseThrow();
   }
   // @Override // from TransitionCostFunction
   // public int influence() {

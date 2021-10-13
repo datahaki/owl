@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 
 /** simple wrapper for obstacle and goal queries
@@ -19,7 +19,7 @@ public class SimpleTrajectoryRegionQuery implements TrajectoryRegionQuery, Seria
     return new SimpleTrajectoryRegionQuery(new TimeInvariantRegion(region));
   }
 
-  /***************************************************/
+  // ---
   protected final Region<StateTime> region;
 
   /** @param region non-null */
@@ -29,11 +29,11 @@ public class SimpleTrajectoryRegionQuery implements TrajectoryRegionQuery, Seria
 
   @Override // from TrajectoryRegionQuery
   public final Optional<StateTime> firstMember(List<StateTime> trajectory) {
-    return trajectory.stream().filter(this::isMember).findFirst();
+    return trajectory.stream().filter(this::test).findFirst();
   }
 
   @Override // from Region
-  public boolean isMember(StateTime stateTime) {
-    return region.isMember(stateTime);
+  public boolean test(StateTime stateTime) {
+    return region.test(stateTime);
   }
 }

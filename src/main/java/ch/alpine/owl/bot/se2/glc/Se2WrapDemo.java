@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2CoveringWrap;
@@ -23,17 +24,16 @@ import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.CoordinateWrap;
-import ch.alpine.owl.math.StateTimeTensorFunction;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.PolygonRegions;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -50,14 +50,14 @@ enum Se2WrapDemo {
   ;
   static TrajectoryRegionQuery obstacleQuery() {
     return CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap(Arrays.asList( //
-        PolygonRegions.numeric(Tensors.matrixDouble(new double[][] { //
+        new PolygonRegion(Tensors.matrixDouble(new double[][] { //
             { 0.633, -0.333 }, { 1.733, 0.517 }, { 1.617, 2.317 }, { 0.483, 3.317 }, //
             { -1.250, 3.167 }, { -1.383, 4.483 }, { 6.350, 4.400 }, { 6.250, -0.950 } //
         })), //
-        PolygonRegions.numeric(Tensors.matrixDouble(new double[][] { //
+        new PolygonRegion(Tensors.matrixDouble(new double[][] { //
             { -0.717, 3.583 }, { -2.100, 1.517 }, { -3.167, 0.033 }, { -5.750, 0.017 }, { -5.517, 5.117 } //
         })), //
-        PolygonRegions.numeric(Tensors.matrixDouble(new double[][] { //
+        new PolygonRegion(Tensors.matrixDouble(new double[][] { //
             { -6.933, 0.300 }, { -4.700, 0.250 }, { -4.617, -2.950 }, { 0.433, -3.217 }, //
             { 1.050, -0.300 }, { 1.867, -0.417 }, { 2.150, -5.300 }, { -6.900, -4.900 } //
         })) //
@@ -90,7 +90,7 @@ enum Se2WrapDemo {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlyGui.glc(trajectoryPlanner);
+    OwlGui.glc(trajectoryPlanner);
   }
 
   public static void main(String[] args) {

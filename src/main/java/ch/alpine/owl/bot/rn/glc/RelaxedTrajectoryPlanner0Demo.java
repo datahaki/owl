@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -27,23 +29,21 @@ import ch.alpine.owl.glc.rl2.RelaxedDebugUtils;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.StandardRelaxedLexicographicPlanner;
-import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.BallRegionRender;
 import ch.alpine.owl.gui.ren.DomainQueueMapRender;
 import ch.alpine.owl.gui.ren.EdgeRenders;
 import ch.alpine.owl.gui.ren.EtaRender;
+import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -102,15 +102,15 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     // glcExpand.findAny(1000);
     glcExpand.untilOptimal(1000);
     System.out.println("Execution Time: " + timing.seconds());
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
-    owlyAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
-    owlyAnimationFrame.addBackground(new EtaRender(eta));
-    owlyAnimationFrame.addBackground(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), eta));
-    owlyAnimationFrame.addBackground(new BallRegionRender((BallRegion) goalRegion));
-    owlyAnimationFrame.addBackground(EdgeRenders.of(relaxedTrajectoryPlanner));
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
+    owlAnimationFrame.addBackground(new EtaRender(eta));
+    owlAnimationFrame.addBackground(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), eta));
+    owlAnimationFrame.addBackground(new BallRegionRender((BallRegion) goalRegion));
+    owlAnimationFrame.addBackground(EdgeRenders.of(relaxedTrajectoryPlanner));
     Optional<GlcNode> optional = relaxedTrajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      System.out.println(optional.get().merit());
+      System.out.println(optional.orElseThrow().merit());
       Iterator<GlcNode> bestGoalNodes = relaxedTrajectoryPlanner.getAllNodesInGoal().iterator();
       while (bestGoalNodes.hasNext()) {
         GlcNode goalNode = bestGoalNodes.next();
@@ -119,7 +119,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
         List<TrajectorySample> trajectory = GlcTrajectories.detailedTrajectoryTo(stateIntegrator, goalNode);
         TrajectoryRender trajectoryRender = new TrajectoryRender();
         trajectoryRender.trajectory(trajectory);
-        owlyAnimationFrame.addBackground(trajectoryRender);
+        owlAnimationFrame.addBackground(trajectoryRender);
       }
     }
     // ---
@@ -127,7 +127,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     RelaxedDebugUtils.nodeAmountCompare(relaxedTrajectoryPlanner);
     NodesAssert.allLeaf(relaxedTrajectoryPlanner.getQueue());
     // RelaxedDebugUtils.closeMatchesCheck(rlPlanner);
-    return owlyAnimationFrame;
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

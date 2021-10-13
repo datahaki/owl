@@ -3,9 +3,9 @@ package ch.alpine.owl.lane;
 
 import ch.alpine.tensor.Tensor;
 
-// TODO JPH longterm design: lane should not have to provide control points
 public interface LaneInterface {
   /** @return points used to generate/describe lane, may return null */
+  // TODO longterm design: lane should not have to provide control points
   Tensor controlPoints();
 
   /** @return points of center line of lane */

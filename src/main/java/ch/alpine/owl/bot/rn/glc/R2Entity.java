@@ -6,13 +6,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinTimeGoalManager;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.MultiCostGoalAdapter;
 import ch.alpine.owl.glc.core.CostFunction;
@@ -21,8 +21,8 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.gui.ren.TreeRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -30,7 +30,7 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -82,7 +82,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 
   @Override
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
-    Collection<Tensor> controls = createControls(); // LONGTERM design no good
+    Collection<Tensor> controls = createControls(); // TODO design no good
     goalRegion = getGoalRegionWithDistance(goal);
     GoalInterface goalInterface = MultiCostGoalAdapter.of( //
         RnMinTimeGoalManager.create(goalRegion, controls), //

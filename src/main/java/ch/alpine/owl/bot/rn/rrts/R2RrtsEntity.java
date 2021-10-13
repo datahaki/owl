@@ -14,7 +14,7 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -24,8 +24,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.Box;
 
-// LONGTERM the redundancy in R2****Entity shows that re-factoring is needed!
+// TODO the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = RealScalar.of(0.5);
@@ -34,9 +35,8 @@ import ch.alpine.tensor.alg.Array;
 
   /** @param stateTime initial position of entity
    * @param transitionRegionQuery
-   * @param lbounds
-   * @param ubounds */
-  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds) {
+   * @param box */
+  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -51,12 +51,12 @@ import ch.alpine.tensor.alg.Array;
             LengthCostFunction.INSTANCE) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return new RnRrtsNodeCollection(lbounds, ubounds);
+            return new RnRrtsNodeCollection(box);
           }
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
-            return BoxRandomSample.of(lbounds, ubounds);
+            return BoxRandomSample.of(box);
           }
 
           @Override

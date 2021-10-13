@@ -33,11 +33,11 @@ public class Tse2ForwardMinTimeGoalManagerTest extends TestCase {
       Scalar minCostToGoal = tse2ForwardMinTimeGoalManager.minCostToGoal(Tensors.fromString("{0[m], 0[m], 0, 6[m*s^-1]}"));
       Chop._10.requireClose(minCostToGoal, Quantity.of(1.3484692283495345, "s"));
     }
-    assertTrue(tse2ForwardMinTimeGoalManager.isMember(Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}")));
-    assertTrue(tse2ForwardMinTimeGoalManager.isMember(Tensors.fromString("{11[m], 0[m], 0, 4[m*s^-1]}")));
-    assertTrue(tse2ForwardMinTimeGoalManager.isMember(Tensors.fromString("{10[m], 0[m], 0, 0[m*s^-1]}")));
-    assertTrue(tse2ForwardMinTimeGoalManager.isMember(Tensors.fromString("{10[m], 0[m], 0, 8[m*s^-1]}")));
-    assertFalse(tse2ForwardMinTimeGoalManager.isMember(Tensors.fromString("{10[m], 0[m], 0, 9[m*s^-1]}")));
+    assertTrue(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}")));
+    assertTrue(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{11[m], 0[m], 0, 4[m*s^-1]}")));
+    assertTrue(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{10[m], 0[m], 0, 0[m*s^-1]}")));
+    assertTrue(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{10[m], 0[m], 0, 8[m*s^-1]}")));
+    assertFalse(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{10[m], 0[m], 0, 9[m*s^-1]}")));
   }
 
   public void testFail() {

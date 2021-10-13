@@ -3,7 +3,8 @@ package ch.alpine.owl.bot.sat;
 
 import java.util.Collection;
 
-import ch.alpine.owl.bot.util.RegionRenders;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -12,14 +13,13 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -46,15 +46,15 @@ import ch.alpine.tensor.Tensors;
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(start, RealScalar.ZERO));
     // ---
-    OwlyFrame owlyFrame = OwlyGui.start();
-    owlyFrame.addBackground(RegionRenders.create(obstacleRegion));
-    owlyFrame.addBackground(RegionRenders.create(goalRegion));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.addBackground(RegionRenders.create(obstacleRegion));
+    owlFrame.addBackground(RegionRenders.create(goalRegion));
     // ---
-    owlyFrame.jFrame.setBounds(100, 100, 600, 600);
+    owlFrame.jFrame.setBounds(100, 100, 600, 600);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!glcExpand.isOptimal() && owlyFrame.jFrame.isVisible()) {
+    while (!glcExpand.isOptimal() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(50);
-      owlyFrame.setGlc(trajectoryPlanner);
+      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(1);
     }
     System.out.println("#expand = " + glcExpand.getExpandCount());

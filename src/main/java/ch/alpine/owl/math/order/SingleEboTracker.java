@@ -2,16 +2,16 @@
 package ch.alpine.owl.math.order;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
 /** Creates EBO (elimination by objective) tracker for a lexicographic semiorder.
- * The EBO procedure chooses a the "best" element from a given set according to the underlying lexicographic semiorder.
+ * The EBO procedure chooses a the "best" element from a given set according to the
+ * underlying lexicographic semiorder.
  * Only keeps track of necessary elements for a single choice.
  * 
  * <p>For a detailed description of the procedure, see
@@ -21,17 +21,10 @@ public class SingleEboTracker<K> extends AbstractEboTracker<K> {
    * @return
    * @throws Exception if given slacks is null */
   public static <K> EboTracker<K> withList(Tensor slacks) {
-    return new SingleEboTracker<>(slacks, new LinkedList<>());
+    return new SingleEboTracker<>(slacks, new LinkedHashSet<>());
   }
 
-  /** @param slacks
-   * @return
-   * @throws Exception if given slacks is null */
-  public static <K> EboTracker<K> withSet(Tensor slacks) {
-    return new SingleEboTracker<>(slacks, new HashSet<>());
-  }
-
-  /***************************************************/
+  // ---
   private final ProductOrderComparator productOrderComparator;
 
   private SingleEboTracker(Tensor slacks, Collection<Pair<K>> candidateSet) {
@@ -45,15 +38,15 @@ public class SingleEboTracker<K> extends AbstractEboTracker<K> {
     while (iterator.hasNext()) {
       Pair<K> currentPair = iterator.next();
       { // we are only interested in beneficial elements
-        OrderComparison productComparison = productOrderComparator.compare(applicantPair.value(), currentPair.value());
+        OrderComparison orderComparison = productOrderComparator.compare(applicantPair.value(), currentPair.value());
         // if applicantPair is better in all dimensions remove currentPair
-        if (productComparison.equals(OrderComparison.STRICTLY_PRECEDES)) {
+        if (orderComparison.equals(OrderComparison.STRICTLY_PRECEDES)) {
           discardedKeys.add(currentPair.key());
           iterator.remove();
           continue; // continue with while loop
           // if applicantPair is indifferent or worse in all dimension discard applicantPair
         } else //
-        if (!productComparison.equals(OrderComparison.INCOMPARABLE)) {
+        if (!orderComparison.equals(OrderComparison.INCOMPARABLE)) {
           discardedKeys.add(applicantPair.key());
           return;
         }
@@ -73,15 +66,14 @@ public class SingleEboTracker<K> extends AbstractEboTracker<K> {
             iterator.remove();
             break; // leave for loop, continue with while loop
           }
-        } else //
+        } else
         // if x strictly succeeding the current object and it is strictly succeeding
         // in every coordinate until now, then x will be discarded
-        if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
+        if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS))
           if (productorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
             discardedKeys.add(applicantPair.key());
             return;
           }
-        }
       }
     }
     candidateSet.add(applicantPair);

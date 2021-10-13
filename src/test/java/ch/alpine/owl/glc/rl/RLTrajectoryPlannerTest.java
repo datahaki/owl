@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -27,17 +26,18 @@ import ch.alpine.owl.math.VectorScalars;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -63,7 +63,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     CostFunction distanceCost = new CostFunction() {
       @Override // from CostIncrementFunction
       public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
-        return Vector2Norm.between(glcNode.stateTime().state(), Lists.getLast(trajectory).state()); // ||x_prev - x_next||
+        return Vector2Norm.between(glcNode.stateTime().state(), Lists.last(trajectory).state()); // ||x_prev - x_next||
       }
 
       @Override // from HeuristicFunction

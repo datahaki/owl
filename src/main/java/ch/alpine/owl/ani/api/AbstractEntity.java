@@ -5,7 +5,7 @@ import java.util.NavigableSet;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-import ch.alpine.owl.gui.RenderInterface;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
@@ -34,7 +34,7 @@ public abstract class AbstractEntity implements RenderInterface, AnimationInterf
     for (EntityControl entityControl : entityControls) {
       Optional<Tensor> u = entityControl.control(getStateTimeNow(), now);
       if (u.isPresent()) {
-        episodeIntegrator.move(u.get(), now);
+        episodeIntegrator.move(u.orElseThrow(), now);
         return;
       }
     }

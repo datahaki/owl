@@ -10,11 +10,12 @@ import java.util.function.Consumer;
 
 import javax.swing.JButton;
 
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.LaneRender;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
-import ch.alpine.sophus.app.curve.AbstractCurveDemo;
+import ch.alpine.sophus.demo.curve.AbstractCurveDemo;
 import ch.alpine.sophus.gds.Se2ClothoidDisplay;
 import ch.alpine.sophus.gds.Se2CoveringClothoidDisplay;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
@@ -26,7 +27,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Serialization;
 
-/* package */ class LaneConsumptionDemo extends AbstractCurveDemo {
+public class LaneConsumptionDemo extends AbstractCurveDemo {
   private final LaneRender laneRender = new LaneRender();
   private LaneInterface lane = null;
 
@@ -42,7 +43,8 @@ import ch.alpine.tensor.ext.Serialization;
         Se2CoveringClothoidDisplay.INSTANCE, //
         Se2CoveringDisplay.INSTANCE, //
         Se2Display.INSTANCE));
-    jToggleCurvature.setSelected(false);
+    curvt = false;
+    ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     timerFrame.jToolBar.addSeparator();
     JButton jButtonRun = new JButton("run");
@@ -58,7 +60,7 @@ import ch.alpine.tensor.ext.Serialization;
     renderControlPoints(geometricLayer, graphics);
     LaneInterface lane = StableLanes.of( //
         control, //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesicInterface(), degree)::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesic(), degree)::string, //
         levels, width().multiply(RationalScalar.HALF));
     try {
       this.lane = Serialization.copy(lane);
@@ -71,7 +73,7 @@ import ch.alpine.tensor.ext.Serialization;
   }
 
   public final Scalar width() {
-    return sliderRatio().multiply(RealScalar.of(2.5));
+    return ratio.multiply(RealScalar.of(2.5));
   }
 
   public final Optional<LaneInterface> lane() {

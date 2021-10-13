@@ -12,10 +12,10 @@ import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 
   BufferedImage plot(Tensor board) {
     BufferedImage bufferedImage = new BufferedImage(sy * RES + 1, sx * RES + 1, BufferedImage.TYPE_INT_ARGB);
-    GeometricLayer geometricLayer = GeometricLayer.of(Tensors.matrix(new Number[][] { //
+    GeometricLayer geometricLayer = new GeometricLayer(Tensors.matrix(new Number[][] { //
         { 0, RES, 0 }, //
         { RES, 0, 0 }, //
         { 0, 0, 1 } }));
@@ -83,7 +83,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
       graphics.setColor(STONE_GOAL);
       for (Tensor stone : board) {
         int index = Scalars.intValueExact(stone.Get(0));
-        geometricLayer.pushMatrix(Se2Matrix.translation(stone.extract(1, 3)));
+        geometricLayer.pushMatrix(GfxMatrix.translation(stone.extract(1, 3)));
         {
           Tensor polygon = Tensors.empty();
           int limit = BLOCKS.length();

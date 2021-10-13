@@ -59,7 +59,7 @@ public class Expand<T extends StateCostNode> {
   }
 
   private void expand(int limit, Supplier<Boolean> isFinished) {
-    // LONGTERM probably should be implemented in separate Expand
+    // TODO probably should be implemented in separate Expand
     if (expandInterface instanceof ObservingExpandInterface) {
       ObservingExpandInterface<T> observingExpandInterface = (ObservingExpandInterface<T>) expandInterface;
       if (observingExpandInterface.isObserving()) {
@@ -88,7 +88,7 @@ public class Expand<T extends StateCostNode> {
         && isContinued.get()) {
       Optional<T> next = expandInterface.pollNext();
       if (next.isPresent()) {
-        expandInterface.expand(next.get());
+        expandInterface.expand(next.orElseThrow());
         ++expandCount;
       } else { // queue is empty
         System.out.println("*** Queue is empty -- No Goal was found ***");

@@ -4,6 +4,8 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.util.Objects;
 
+import ch.alpine.sophus.math.Region;
+
 public class InvertedRegion<T> implements Region<T>, Serializable {
   private final Region<T> region;
 
@@ -12,7 +14,7 @@ public class InvertedRegion<T> implements Region<T>, Serializable {
   }
 
   @Override // from Region
-  public final boolean isMember(T tensor) {
-    return !region.isMember(tensor);
+  public final boolean test(T tensor) {
+    return !region.test(tensor);
   }
 }

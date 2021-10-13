@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -12,14 +13,13 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -61,6 +61,6 @@ import ch.alpine.tensor.io.ResourceData;
   }
 
   public RenderInterface vf(double scale) {
-    return DeltaHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, RealScalar.of(scale));
+    return StaticHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, RealScalar.of(scale));
   }
 }

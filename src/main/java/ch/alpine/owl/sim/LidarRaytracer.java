@@ -16,7 +16,7 @@ import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
 
-/** LONGTERM implementation can be made more efficient */
+// TODO implementation can be made more efficient
 public class LidarRaytracer implements Serializable {
   private final Tensor directions;
   private final Scalar max_range;
@@ -26,7 +26,7 @@ public class LidarRaytracer implements Serializable {
    * @param ranges vector with non-negative entries */
   public LidarRaytracer(Tensor angles, Tensor ranges) {
     directions = Tensor.of(angles.stream().map(Scalar.class::cast).map(AngleVector::of));
-    max_range = ranges.stream().map(Scalar.class::cast).reduce(Max::of).get();
+    max_range = ranges.stream().map(Scalar.class::cast).reduce(Max::of).orElseThrow();
     localRays = directions.stream().map(dir -> TensorProduct.of(ranges, dir)).collect(Collectors.toList());
   }
 
@@ -39,7 +39,7 @@ public class LidarRaytracer implements Serializable {
     TensorUnaryOperator forward = se2Bijection.forward();
     return Tensor.of(localRays.stream().parallel() //
         .map(ray -> ray.stream() //
-            .filter(local -> trajectoryRegionQuery.isMember(new StateTime(forward.apply(local), time))) //
+            .filter(local -> trajectoryRegionQuery.test(new StateTime(forward.apply(local), time))) //
             .findFirst() //
             .map(Vector2Norm::of) //
             .orElse(max_range)));

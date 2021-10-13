@@ -71,7 +71,7 @@ public abstract class RrtsPlannerServer implements TransitionPlanner, ObservingE
     RrtsPlannerProcess rrtsPlannerProcess = _rrtsPlannerProcess;
     if (Objects.nonNull(rrtsPlannerProcess) && //
         rrtsPlannerProcess.planner().getBest().isPresent()) {
-      RrtsNode best = rrtsPlannerProcess.planner().getBest().get();
+      RrtsNode best = rrtsPlannerProcess.planner().getBest().orElseThrow();
       List<RrtsNode> sequence = Nodes.listFromRoot(best);
       potentialFutureTrajectories.put(best.costFromRoot(), //
           flowTrajectoryGenerator.createTrajectory(transitionSpace, sequence, time, resolution));

@@ -4,26 +4,27 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
-import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ class ClothoidLaneRrtsEntity extends AbstractRrtsEntity {
   private static final Scalar DELAY_HINT = RealScalar.of(3);
@@ -38,12 +39,12 @@ import ch.alpine.tensor.alg.Array;
       }).unmodifiable();
 
   // ---
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds) {
-    this(stateTime, transitionRegionQuery, lbounds, ubounds, false);
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box) {
+    this(stateTime, transitionRegionQuery, box, false);
   }
 
   /** @param stateTime initial position of entity */
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds, boolean greedy) {
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box, boolean greedy) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -59,7 +60,7 @@ import ch.alpine.tensor.alg.Array;
             greedy) {
           @Override
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+            return new Se2RrtsNodeCollection(getTransitionSpace(), box, 3);
           }
 
           @Override

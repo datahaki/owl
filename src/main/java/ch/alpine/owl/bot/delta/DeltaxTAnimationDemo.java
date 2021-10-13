@@ -4,24 +4,23 @@ package ch.alpine.owl.bot.delta;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.bot.util.TrajectoryR2TranslationFamily;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
@@ -30,6 +29,7 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
-  public OwlyAnimationFrame start() {
+  public OwlAnimationFrame start() {
     Tensor image = ResourceData.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = RealScalar.of(-.05); // direction and strength of river flow
@@ -68,17 +68,17 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(Arrays.asList(new TimeInvariantRegion(region), region1, region2, region3, region4))));
     // ---
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
-    owlyAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlyAnimationFrame, trajectoryEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    owlyAnimationFrame.addBackground((RenderInterface) region1);
-    owlyAnimationFrame.addBackground((RenderInterface) region2);
-    owlyAnimationFrame.addBackground((RenderInterface) region3);
-    owlyAnimationFrame.addBackground((RenderInterface) region4);
-    owlyAnimationFrame.addBackground(DeltaHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
-    owlyAnimationFrame.geometricComponent.setOffset(50, 600);
-    return owlyAnimationFrame;
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.add(trajectoryEntity);
+    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground((RenderInterface) region1);
+    owlAnimationFrame.addBackground((RenderInterface) region2);
+    owlAnimationFrame.addBackground((RenderInterface) region3);
+    owlAnimationFrame.addBackground((RenderInterface) region4);
+    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    owlAnimationFrame.geometricComponent.setOffset(50, 600);
+    return owlAnimationFrame;
   }
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {

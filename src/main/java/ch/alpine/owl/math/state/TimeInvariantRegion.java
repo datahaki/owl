@@ -4,7 +4,7 @@ package ch.alpine.owl.math.state;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 
 /** StateTimeRegion, which is independent of time.
@@ -20,7 +20,7 @@ public final class TimeInvariantRegion implements Region<StateTime>, Serializabl
   /** @param StateTime of point to check
    * @return true if stateTime is member/part of/inside region */
   @Override
-  public boolean isMember(StateTime stateTime) {
-    return region.isMember(stateTime.state());
+  public boolean test(StateTime stateTime) {
+    return region.test(stateTime.state());
   }
 }

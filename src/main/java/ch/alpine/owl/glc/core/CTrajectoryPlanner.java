@@ -89,7 +89,7 @@ public abstract class CTrajectoryPlanner implements TrajectoryPlanner, Serializa
     return stateTimeRaster;
   }
 
-  /***************************************************/
+  // ---
   @Override // from ExpandInterface
   public final Optional<GlcNode> getBest() {
     return Optional.ofNullable(best.isEmpty() ? null : best.firstKey());
@@ -104,7 +104,7 @@ public abstract class CTrajectoryPlanner implements TrajectoryPlanner, Serializa
     return Optional.ofNullable(queue.poll());
   }
 
-  /***************************************************/
+  // ---
   @Override // from TreePlanner
   public final void insertRoot(StateTime stateTime) {
     if (!domainMap.isEmpty())
@@ -115,7 +115,7 @@ public abstract class CTrajectoryPlanner implements TrajectoryPlanner, Serializa
   @Override // from TreePlanner
   public final Optional<GlcNode> getBestOrElsePeek() {
     // Queue#peek() returns the head of queue, or null if queue is empty
-    return Optional.ofNullable(getBest().orElse(queue.peek()));
+    return Optional.ofNullable(getBest().orElseGet(() -> queue.peek()));
   }
 
   @Override // from TreePlanner
@@ -123,7 +123,7 @@ public abstract class CTrajectoryPlanner implements TrajectoryPlanner, Serializa
     return Collections.unmodifiableCollection(queue);
   }
 
-  /***************************************************/
+  // ---
   @Override // from TrajectoryPlanner
   public final HeuristicFunction getHeuristicFunction() {
     return heuristicFunction;

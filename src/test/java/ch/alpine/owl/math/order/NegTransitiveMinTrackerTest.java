@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import ch.alpine.owl.demo.order.TensorNormTotalPreorder;
-import ch.alpine.sophus.math.sample.RandomSample;
+import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -20,7 +20,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
   public void testDigestNotEmpty() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
-    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withList(weakOrderComparator);
+    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
     minTracker.digest(RealScalar.of(6));
     assertEquals(minTracker.getMinElements().size(), 1);
   }
@@ -28,7 +28,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
   public void testDigestFunction() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
-    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withList(weakOrderComparator);
+    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
     minTracker.digest(Tensors.vector(2));
     minTracker.digest(Tensors.vector(0, 3, 2));
     assertEquals(minTracker.getMinElements().size(), 1);
@@ -46,7 +46,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
   public void testDuplicateEntries() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
-    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withList(weakOrderComparator);
+    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
     minTracker.digest(Tensors.vector(0, 1, 2));
     minTracker.digest(Tensors.vector(0, 4, 1));
     minTracker.digest(Tensors.vector(0, 1, 2));
@@ -64,7 +64,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
   public void testWithSet() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
-    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withSet(weakOrderComparator);
+    MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
     minTracker.digest(Tensors.vector(0, 1, 2));
     minTracker.digest(Tensors.vector(0, 1, 2));
     assertEquals(minTracker.getMinElements().size(), 1);
@@ -75,7 +75,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
   public void testSerializable() throws ClassNotFoundException, IOException {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
-    MinTracker<Tensor> minTracker = Serialization.copy(NegTransitiveMinTracker.withSet(weakOrderComparator));
+    MinTracker<Tensor> minTracker = Serialization.copy(NegTransitiveMinTracker.of(weakOrderComparator));
     minTracker.digest(Tensors.vector(0, 1, 2));
   }
 
@@ -86,15 +86,15 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     Collection<Tensor> collection1;
     {
-      MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withSet(weakOrderComparator);
-      RandomSample.stream(tensor).forEach(minTracker::digest);
+      MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
+      TensorShuffle.stream(tensor).forEach(minTracker::digest);
       collection1 = minTracker.getMinElements();
       assertTrue(0 < collection1.size());
     }
     Collection<Tensor> collection2;
     {
-      MinTracker<Tensor> minTracker = NegTransitiveMinTracker.withSet(weakOrderComparator);
-      RandomSample.stream(tensor).forEach(minTracker::digest);
+      MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
+      TensorShuffle.stream(tensor).forEach(minTracker::digest);
       collection2 = minTracker.getMinElements();
       assertTrue(0 < collection2.size());
     }

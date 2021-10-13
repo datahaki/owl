@@ -23,7 +23,7 @@ public class FixedStateIntegrator implements StateIntegrator, Serializable {
     return new FixedStateIntegrator(integrator, stateSpaceModel, timeStep, trajectorySize);
   }
 
-  /***************************************************/
+  // ---
   private final Integrator integrator;
   private final StateSpaceModel stateSpaceModel;
   private final Scalar timeStep;

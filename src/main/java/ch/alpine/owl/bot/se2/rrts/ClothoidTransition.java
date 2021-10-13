@@ -10,16 +10,17 @@ import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.Drop;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.EqualizingDistribution;
 import ch.alpine.tensor.pdf.InverseCDF;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Ceiling;
 import ch.alpine.tensor.sca.Sign;
+import ch.alpine.tensor.sca.Sqrt;
 
 public class ClothoidTransition extends AbstractTransition {
   private static final Scalar _0 = RealScalar.of(0.0);
@@ -35,15 +36,21 @@ public class ClothoidTransition extends AbstractTransition {
     return new ClothoidTransition(start, end, clothoid);
   }
 
-  /** @param start
-   * @param end
+  /** @param start of the form {px, py, p_angle}
+   * @param end of the form {qx, qy, q_angle}
    * @param clothoid
    * @return */
   public static ClothoidTransition of(Tensor start, Tensor end, Clothoid clothoid) {
     return new ClothoidTransition(start, end, clothoid);
   }
 
-  /***************************************************/
+  /** @param clothoid
+   * @return */
+  public static ClothoidTransition of(Clothoid clothoid) {
+    return of(clothoid.apply(_0), clothoid.apply(_1), clothoid);
+  }
+
+  // ---
   private final Clothoid clothoid;
 
   private ClothoidTransition(Tensor start, Tensor end, Clothoid clothoid) {
@@ -60,27 +67,31 @@ public class ClothoidTransition extends AbstractTransition {
   }
 
   @Override // from Transition
-  public TransitionWrap wrapped(Scalar minResolution) {
-    Sign.requirePositive(minResolution);
-    int steps = Ceiling.intValueExact(length().divide(minResolution));
-    Tensor samples = linearized(length().divide(RealScalar.of(steps)));
-    return new TransitionWrap( //
-        Drop.head(samples, 1), //
-        ConstantArray.of(length().divide(RealScalar.of(samples.length())), samples.length() - 1));
+  public Tensor linearized(Scalar minResolution) {
+    return linearized_samples(minResolution).map(clothoid);
   }
 
-  @Override // from Transition
-  public Tensor linearized(Scalar minResolution) {
+  public Tensor linearized_samples(Scalar minResolution) {
     Sign.requirePositive(minResolution);
     LagrangeQuadraticD lagrangeQuadraticD = clothoid.curvature();
     if (lagrangeQuadraticD.isZero(Tolerance.CHOP))
-      return Tensors.of(clothoid.apply(_0), clothoid.apply(_1));
-    int intervals = Ceiling.intValueExact(clothoid.length().divide(minResolution));
+      return UnitVector.of(2, 1);
+    Scalar scalar = Sqrt.FUNCTION.apply(lagrangeQuadraticD.integralAbs().divide(minResolution)).multiply(clothoid.length());
+    int intervals = Ceiling.intValueExact(scalar);
     Tensor uniform = Subdivide.of(_0, _1, Math.min(Math.max(1, intervals), MAX_INTERVALS));
-    InverseCDF inverseCDF = //
-        (InverseCDF) EqualizingDistribution.fromUnscaledPDF(uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION));
-    Tensor inverse = uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
-    return inverse.map(clothoid);
+    InverseCDF inverseCDF = (InverseCDF) EqualizingDistribution.fromUnscaledPDF( //
+        uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION).map(Sqrt.FUNCTION));
+    return uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
+  }
+
+  @Override // from Transition
+  public TransitionWrap wrapped(Scalar minResolution) {
+    Sign.requirePositive(minResolution);
+    int steps = Ceiling.intValueExact(length().divide(minResolution));
+    Tensor samples = sampled(length().divide(RealScalar.of(steps)));
+    return new TransitionWrap( //
+        Drop.head(samples, 1), //
+        ConstantArray.of(length().divide(RealScalar.of(samples.length())), samples.length() - 1));
   }
 
   public Clothoid clothoid() {

@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -19,7 +19,7 @@ public class ConstraintViolationCostTest extends TestCase {
     PolygonRegion polygonRegion = new PolygonRegion(polygon);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(polygonRegion);
     CostFunction costFunction = ConstraintViolationCost.of(plannerConstraint, Quantity.of(10, "CHF"));
-    assertTrue(polygonRegion.isMember(Tensors.vector(3, 1)));
+    assertTrue(polygonRegion.test(Tensors.vector(3, 1)));
     boolean isSatisfied = //
         plannerConstraint.isSatisfied(null, Arrays.asList(new StateTime(Tensors.vector(3, 1), RealScalar.ZERO)), null);
     assertFalse(isSatisfied);

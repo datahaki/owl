@@ -10,6 +10,7 @@ import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
@@ -18,13 +19,14 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.Box;
 import junit.framework.TestCase;
 
 public class RnRrtsNodeCollectionTest extends TestCase {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
 
   public void testSimple() {
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Tensors.vector(0, 0), Tensors.vector(10, 10));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(Box.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     Rrts rrts = new DefaultRrts(TRANSITION_SPACE, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 0).get();
@@ -42,15 +44,14 @@ public class RnRrtsNodeCollectionTest extends TestCase {
   }
 
   public void testQuantity() {
-    Tensor lbounds = Tensors.fromString("{-5[m], -7[m]}");
-    Tensor ubounds = Tensors.fromString("{10[m], 10[m]}");
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(lbounds, ubounds);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(lbounds, ubounds);
+    Box box = Box.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
     for (int count = 0; count < 30; ++count) {
       Tensor tensor = RandomSample.of(randomSampleInterface);
       rrtsNodeCollection.insert(RrtsNode.createRoot(tensor, RealScalar.ONE));
     }
-    Collection<RrtsNode> collection = rrtsNodeCollection.nearTo(Tensors.fromString("{2[m], 3[m]}"), 10);
+    Collection<RrtsNodeTransition> collection = rrtsNodeCollection.nearTo(Tensors.fromString("{2[m], 3[m]}"), 10);
     assertEquals(collection.size(), 10);
   }
 }

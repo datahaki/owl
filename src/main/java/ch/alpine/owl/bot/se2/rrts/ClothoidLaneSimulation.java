@@ -21,10 +21,10 @@ import org.jfree.chart.axis.LogarithmicAxis;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.data.tree.Nodes;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
@@ -71,7 +71,7 @@ import ch.alpine.tensor.sca.Clips;
   private static final Scalar OVERHEAD = RealScalar.of(0.5);
   private static final Scalar MIN_RESOLUTION = RealScalar.of(0.1);
   // ---
-  private static final ManifoldDisplay GEODESIC_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
+  private static final ManifoldDisplay MANIFOLD_DISPLAY = Se2ClothoidDisplay.ANALYTIC;
   private static final int DEGREE = 3;
   private static final int LEVELS = 5;
   private static final Scalar LANE_WIDTH = RealScalar.of(1.1);
@@ -89,7 +89,7 @@ import ch.alpine.tensor.sca.Clips;
         // controlPoints.stream().forEach(System.out::println);
         LaneInterface lane = StableLanes.of( //
             controlPoints, //
-            LaneRiesenfeldCurveSubdivision.of(GEODESIC_DISPLAY.geodesicInterface(), DEGREE)::string, //
+            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesic(), DEGREE)::string, //
             LEVELS, LANE_WIDTH.multiply(RationalScalar.HALF));
         // ---
         Tensor diagonal = Tensors.of( //
@@ -97,7 +97,7 @@ import ch.alpine.tensor.sca.Clips;
             RealScalar.of(WIDTH /* graphics.getHeight() */).divide(R2_IMAGE_REGION_WRAP.range().Get(1)), //
             RealScalar.ONE);
         Tensor matrix = DiagonalMatrix.with(diagonal);
-        GeometricLayer geometricLayer = GeometricLayer.of(matrix);
+        GeometricLayer geometricLayer = new GeometricLayer(matrix);
         // SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d.svg", task)),
         // scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);
         // ---
@@ -149,7 +149,7 @@ import ch.alpine.tensor.sca.Clips;
     List<RrtsNode> first = new ArrayList<>();
     List<RrtsNode> last = new ArrayList<>();
     ClothoidLaneEntity entity = //
-        new ClothoidLaneEntity(stateTime, TRANSITION_REGION_QUERY, Tensors.vector(0, 0), R2_IMAGE_REGION_WRAP.range(), true, DELAY_HINT, //
+        new ClothoidLaneEntity(stateTime, TRANSITION_REGION_QUERY, R2_IMAGE_REGION_WRAP.box(), true, DELAY_HINT, //
             process, rrtsNode -> first.addAll(Nodes.listFromRoot(rrtsNode)), rrtsNode -> last.addAll(Nodes.listFromRoot(rrtsNode)));
     LaneConsumer laneConsumer = new SimpleLaneConsumer(entity, null, Collections.singleton(entity));
     laneConsumer.accept(lane);

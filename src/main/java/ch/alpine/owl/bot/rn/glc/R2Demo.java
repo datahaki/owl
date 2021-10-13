@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -19,7 +20,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -66,7 +66,7 @@ import ch.alpine.tensor.sca.Ramp;
     glcExpand.findAny(200);
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      GlcNode goalNode = optional.get(); // <- throws exception if
+      GlcNode goalNode = optional.orElseThrow(); // <- throws exception if
       Scalar cost = goalNode.costFromRoot();
       Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
@@ -78,10 +78,10 @@ import ch.alpine.tensor.sca.Ramp;
   private static void demo(TrajectoryPlanner trajectoryPlanner) {
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlyGui.glc(trajectoryPlanner);
+    OwlGui.glc(trajectoryPlanner);
   }
 
   public static void main(String[] args) {

@@ -15,24 +15,15 @@ public interface Transition {
    * is an abstract measure, which is a concept used in relation with minResolution */
   Scalar length();
 
-  /***************************************************/
-  /** FUNCTIONALITY BELOW IS ONLY FOR
-   * COLLISION CHECKING AND RENDERING */
-  /***************************************************/
+  // ---
   /** sequence of samples along transition that are not further than given
    * minResolution apart.
+   * 
+   * A typical application is to use the samples for collision checking.
    * 
    * @param minResolution strictly positive
    * @return sequence of points (start, ..., end] */
   Tensor sampled(Scalar minResolution);
-
-  /** create {@link TransitionWrap} containing samples from {@link #sampled(Scalar)} and spacing
-   * i.e. distance between current and previous sample (resp. {@link #start()} for the first sample),
-   * hence samples and spacing have the same length
-   * 
-   * @param minResolution strictly positive
-   * @return */
-  TransitionWrap wrapped(Scalar minResolution);
 
   /** sequence of samples along transition that are not further than given
    * minResolution apart, except if they can be joined with a straight line.
@@ -42,4 +33,12 @@ public interface Transition {
    * @param minResolution strictly positive
    * @return sequence of points [start, ..., end] on transition that can be connected with straight lines */
   Tensor linearized(Scalar minResolution);
+
+  /** create {@link TransitionWrap} containing samples from {@link #sampled(Scalar)} and spacing
+   * i.e. distance between current and previous sample (resp. {@link #start()} for the first sample),
+   * hence samples and spacing have the same length
+   * 
+   * @param minResolution strictly positive
+   * @return */
+  TransitionWrap wrapped(Scalar minResolution);
 }

@@ -1,12 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -22,13 +22,13 @@ import ch.alpine.tensor.Tensors;
   }
 
   @Override // from DemoInterface
-  public final OwlyAnimationFrame start() {
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
-    configure(owlyAnimationFrame);
-    owlyAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlyAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlyAnimationFrame;
+  public final OwlAnimationFrame start() {
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    configure(owlAnimationFrame);
+    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame;
   }
 
-  abstract void configure(OwlyAnimationFrame owlyAnimationFrame);
+  abstract void configure(OwlAnimationFrame owlAnimationFrame);
 }

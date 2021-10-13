@@ -3,12 +3,12 @@ package ch.alpine.owl.glc.adapter;
 
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.sca.Sign;
 
 /** utility functions that operate on List<StateTime> */
@@ -24,7 +24,7 @@ public enum StateTimeTrajectories {
 
   // helper function
   private static Scalar timeIncrement(StateTime stateTime, List<StateTime> trajectory) {
-    Scalar dt = Lists.getLast(trajectory).time().subtract(stateTime.time());
+    Scalar dt = Lists.last(trajectory).time().subtract(stateTime.time());
     return Sign.requirePositiveOrZero(dt);
   }
 

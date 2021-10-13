@@ -6,41 +6,42 @@ import java.awt.geom.Path2D;
 import java.io.Serializable;
 import java.util.function.Supplier;
 
-import ch.alpine.owl.bot.util.RegionRenders;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.GeometricLayer;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.math.BijectionFamily;
-import ch.alpine.sophus.math.d2.Extract2D;
-import ch.alpine.sophus.ply.d2.Polygons;
+import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.sca.N;
 
 /** check if input tensor is inside a polygon */
 public class R2xTPolygonStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
   // ---
-  private final Tensor polygon;
   private final BijectionFamily bijectionFamily;
   private final Supplier<Scalar> supplier;
+  private final Tensor polygon;
+  private final PolygonRegion polygonRegion;
 
   /** @param polygon
    * @param bijectionFamily
    * @param supplier */
   public R2xTPolygonStateTimeRegion(Tensor polygon, BijectionFamily bijectionFamily, Supplier<Scalar> supplier) {
-    this.polygon = N.DOUBLE.of(polygon);
+    this.polygon = polygon;
+    polygonRegion = new PolygonRegion(polygon);
     this.bijectionFamily = bijectionFamily;
     this.supplier = supplier;
   }
 
   @Override // from Region
-  public boolean isMember(StateTime stateTime) {
+  public boolean test(StateTime stateTime) {
     Tensor state = Extract2D.FUNCTION.apply(stateTime.state());
     Scalar time = stateTime.time();
     TensorUnaryOperator rev = bijectionFamily.inverse(time);
-    return Polygons.isInside(polygon, rev.apply(state));
+    return polygonRegion.test(rev.apply(state));
   }
 
   @Override // from RenderInterface

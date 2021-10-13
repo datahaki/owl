@@ -25,13 +25,13 @@ import ch.alpine.tensor.pdf.UniformDistribution;
 public class Se2Display extends Se2AbstractDisplay {
   public static final ManifoldDisplay INSTANCE = new Se2Display();
 
-  /***************************************************/
+  // ---
   private Se2Display() {
     // ---
   }
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return Se2Geodesic.INSTANCE;
   }
 

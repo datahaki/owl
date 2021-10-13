@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -13,7 +14,6 @@ import ch.alpine.sophus.lie.he.HeBiinvariantMean;
 import ch.alpine.sophus.lie.he.HeGeodesic;
 import ch.alpine.sophus.lie.he.HeGroup;
 import ch.alpine.sophus.lie.he.HeManifold;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RealScalar;
@@ -29,7 +29,7 @@ public enum He1Display implements ManifoldDisplay {
   private static final Tensor SQUARE = CirclePoints.of(4).multiply(RealScalar.of(0.2)).unmodifiable();
 
   @Override // from GeodesicDisplay
-  public Geodesic geodesicInterface() {
+  public Geodesic geodesic() {
     return HeGeodesic.INSTANCE;
   }
 
@@ -62,7 +62,7 @@ public enum He1Display implements ManifoldDisplay {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor p) {
-    return Se2Matrix.translation(toPoint(p));
+    return GfxMatrix.translation(toPoint(p));
   }
 
   @Override // from GeodesicDisplay

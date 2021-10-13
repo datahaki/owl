@@ -50,10 +50,10 @@ public class DefaultRrts implements Rrts {
       return Optional.of(rrtsNode);
     }
     if (ignoreCheck || isInsertPlausible(state)) { // TODO GJOEL/JPH is this needed?
-      k_nearest = Math.min(Math.max(1, k_nearest), size);
+      k_nearest = Math.min(Math.max(1, k_nearest), size); // TODO not elegant
       Optional<RrtsNode> optional = connectAlongMinimumCost(state, k_nearest);
       if (optional.isPresent()) {
-        RrtsNode rrtsNode = optional.get();
+        RrtsNode rrtsNode = optional.orElseThrow();
         rewireAround(rrtsNode, k_nearest); // first: rewire
         nodeCollection.insert(rrtsNode); // second: insert to collection
         return Optional.of(rrtsNode);
@@ -65,7 +65,7 @@ public class DefaultRrts implements Rrts {
 
   // TODO GJOEL/JPH probably remove
   private boolean isInsertPlausible(Tensor state) {
-    RrtsNode nearest = nodeCollection.nearTo(state, 1).iterator().next();
+    RrtsNode nearest = nodeCollection.nearTo(state, 1).iterator().next().rrtsNode();
     return isCollisionFree(transitionSpace.connect(nearest.state(), state));
   }
 
@@ -85,16 +85,16 @@ public class DefaultRrts implements Rrts {
      * if (Objects.nonNull(parent))
      * return Optional.of(parent.connectTo(state, costFromRoot)); */
     final NavigableMap<Scalar, RrtsNode> updates = new TreeMap<>(Scalars::compare);
-    nodeCollection.nearFrom(state, k_nearest).stream()
-        // .parallel()
-        .forEach(node -> {
-          Transition transition = transitionSpace.connect(node.state(), state);
-          Scalar cost = transitionCostFunction.cost(node, transition);
-          Scalar compare = node.costFromRoot().add(cost);
+    nodeCollection.nearFrom(state, k_nearest).stream() //
+        .forEach(rrtsNodeTransition -> {
+          RrtsNode rrtsNode = rrtsNodeTransition.rrtsNode();
+          Transition transition = rrtsNodeTransition.transition();
+          Scalar cost = transitionCostFunction.cost(rrtsNode, transition);
+          Scalar compare = rrtsNode.costFromRoot().add(cost);
           synchronized (updates) {
             if (updates.isEmpty() || Scalars.lessThan(compare, updates.firstKey()))
               if (isCollisionFree(transition))
-                updates.put(compare, node);
+                updates.put(compare, rrtsNode);
           }
         });
     if (!updates.isEmpty())
@@ -104,8 +104,9 @@ public class DefaultRrts implements Rrts {
 
   @Override // from Rrts
   public final void rewireAround(RrtsNode parent, int k_nearest) {
-    for (RrtsNode child : nodeCollection.nearFrom(parent.state(), k_nearest)) {
-      Transition transition = transitionSpace.connect(parent.state(), child.state());
+    for (RrtsNodeTransition rrtsNodeTransition : nodeCollection.nearFrom(parent.state(), k_nearest)) {
+      RrtsNode child = rrtsNodeTransition.rrtsNode();
+      Transition transition = rrtsNodeTransition.transition();
       Scalar costFromParent = transitionCostFunction.cost(parent, transition);
       if (Scalars.lessThan(parent.costFromRoot().add(costFromParent), child.costFromRoot()) && // reduce costs
           isCollisionFree(transition)) {

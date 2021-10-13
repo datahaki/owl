@@ -9,7 +9,7 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.LinearRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Clip;
@@ -29,7 +29,7 @@ public class Tse2ComboRegion extends Se2ComboRegion {
         new LinearRegion(goal.Get(3), radiusVector.Get(3)));
   }
 
-  /***************************************************/
+  // ---
   private final LinearRegion linearRegion;
 
   /** @param regionWithDistance for xy
@@ -49,8 +49,8 @@ public class Tse2ComboRegion extends Se2ComboRegion {
   }
 
   @Override // from Region
-  public final boolean isMember(Tensor xyav) {
-    return super.isMember(xyav) && linearRegion.isMember(xyav.get(3));
+  public final boolean test(Tensor xyav) {
+    return super.test(xyav) && linearRegion.test(xyav.get(3));
   }
 
   public Clip v_range() {

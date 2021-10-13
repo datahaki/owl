@@ -124,7 +124,7 @@ public abstract class RelaxedTrajectoryPlanner implements TrajectoryPlanner, Ser
     return Collections.unmodifiableCollection(goalDomainQueue.collection());
   }
 
-  /***************************************************/
+  // ---
   @Override // from TreePlanner
   public final void insertRoot(StateTime stateTime) {
     if (!domainQueueMap.isEmpty())
@@ -136,7 +136,7 @@ public abstract class RelaxedTrajectoryPlanner implements TrajectoryPlanner, Ser
 
   @Override // from TreePlanner
   public final Optional<GlcNode> getBestOrElsePeek() {
-    return Optional.ofNullable(getBest().orElse(globalQueue.peekBest()));
+    return Optional.ofNullable(getBest().orElseGet(() -> globalQueue.peekBest()));
   }
 
   @Override // from TreePlanner
@@ -144,7 +144,7 @@ public abstract class RelaxedTrajectoryPlanner implements TrajectoryPlanner, Ser
     return Collections.unmodifiableCollection(globalQueue.collection());
   }
 
-  /***************************************************/
+  // ---
   @Override // from TrajectoryPlanner
   public final HeuristicFunction getHeuristicFunction() {
     return heuristicFunction;

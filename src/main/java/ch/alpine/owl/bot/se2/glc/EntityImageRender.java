@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.function.Supplier;
 
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.AffineTransforms;
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.AffineTransforms;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -27,14 +27,14 @@ import ch.alpine.tensor.Tensors;
     Tensor invsc = AppendOne.FUNCTION.apply(range.pmul( //
         Tensors.vector(bufferedImage.getWidth(), -bufferedImage.getHeight()).map(Scalar::reciprocal)));
     // not generic since factor / 3 is used
-    Tensor translate = Se2Matrix.translation( //
+    Tensor translate = GfxMatrix.translation( //
         Tensors.vector(-bufferedImage.getWidth() / 3, -bufferedImage.getHeight() / 2));
     matrix = invsc.pmul(translate);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    geometricLayer.pushMatrix(Se2Matrix.of(supplier.get().state()));
+    geometricLayer.pushMatrix(GfxMatrix.of(supplier.get().state()));
     graphics.drawImage(bufferedImage, AffineTransforms.toAffineTransform(geometricLayer.getMatrix().dot(matrix)), null);
     geometricLayer.popMatrix();
   }

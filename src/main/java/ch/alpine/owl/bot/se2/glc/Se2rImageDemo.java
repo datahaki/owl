@@ -5,13 +5,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.util.FlowsInterface;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -23,12 +24,11 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -59,14 +59,14 @@ enum Se2rImageDemo {
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlyFrame owlyFrame = OwlyGui.start();
-    owlyFrame.geometricComponent.setOffset(100, 550);
-    owlyFrame.jFrame.setBounds(100, 100, 700, 700);
-    owlyFrame.addBackground(RegionRenders.create(region));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(100, 550);
+    owlFrame.jFrame.setBounds(100, 100, 700, 700);
+    owlFrame.addBackground(RegionRenders.create(region));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!trajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(1000);
-      owlyFrame.setGlc(trajectoryPlanner);
+      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(10);
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

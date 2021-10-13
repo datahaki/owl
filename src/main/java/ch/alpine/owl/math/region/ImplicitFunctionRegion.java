@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.region;
 
 import ch.alpine.owl.math.SignedDistanceFunction;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
 
@@ -17,7 +18,7 @@ import ch.alpine.tensor.sca.Sign;
  * </ul> */
 public abstract class ImplicitFunctionRegion implements Region<Tensor>, SignedDistanceFunction<Tensor> {
   @Override // from Region<Tensor>
-  public final boolean isMember(Tensor tensor) {
+  public final boolean test(Tensor tensor) {
     return Sign.isNegativeOrZero(signedDistance(tensor));
   }
 }

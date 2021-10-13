@@ -10,7 +10,6 @@ import java.util.function.BiPredicate;
  * 
  * See Chapter 2.1 in "Multi-Objective Optimization Using Preference Structures"
  * 
- * @param <T>
  * @return true or false */
 @FunctionalInterface
 public interface BinaryRelation<T> extends BiPredicate<T, T> {

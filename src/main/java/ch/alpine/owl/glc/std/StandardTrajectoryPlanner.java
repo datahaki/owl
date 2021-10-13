@@ -47,7 +47,7 @@ public class StandardTrajectoryPlanner extends CTrajectoryPlanner {
         SimpleRelabelDecision.DEFAULT, NodeMeritComparator.INSTANCE);
   }
 
-  /***************************************************/
+  // ---
   private final StateIntegrator stateIntegrator;
   private final PlannerConstraint plannerConstraint;
   private final GoalInterface goalInterface;

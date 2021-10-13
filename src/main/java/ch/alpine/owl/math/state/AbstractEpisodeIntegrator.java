@@ -4,11 +4,11 @@ package ch.alpine.owl.math.state;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Lists;
 
 /* package */ abstract class AbstractEpisodeIntegrator implements EpisodeIntegrator, Serializable {
   protected final StateSpaceModel stateSpaceModel;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.Tensor;
   @Override // from EpisodeIntegrator
   public final void move(Tensor u, Scalar now) {
     List<StateTime> trajectory = abstract_move(u, now.subtract(stateTime.time()));
-    stateTime = Lists.getLast(trajectory);
+    stateTime = Lists.last(trajectory);
   }
 
   @Override

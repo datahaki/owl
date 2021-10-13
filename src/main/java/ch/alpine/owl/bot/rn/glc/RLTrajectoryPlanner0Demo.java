@@ -6,10 +6,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -24,26 +25,25 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.rl.RLTrajectoryPlanner;
 import ch.alpine.owl.glc.rl.StandardRLTrajectoryPlanner;
-import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.EtaRender;
+import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.BaseFrame;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 
@@ -69,7 +69,7 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
     CostFunction distanceCost = new CostFunction() {
       @Override // from CostIncrementFunction
       public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
-        return Vector2Norm.between(glcNode.stateTime().state(), Lists.getLast(trajectory).state()); // ||x_prev - x_next||
+        return Vector2Norm.between(glcNode.stateTime().state(), Lists.last(trajectory).state()); // ||x_prev - x_next||
       }
 
       @Override // from HeuristicFunction
@@ -97,7 +97,7 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
   @Override // from DemoInterface
   public BaseFrame start() {
     Optional<GlcNode> optional = getBest();
-    GlcNode goalNode = optional.get();
+    GlcNode goalNode = optional.orElseThrow();
     // System.out.println(goalNode.merit());
     // System.out.println(goalNode.costFromRoot());
     // @SuppressWarnings("unused")
@@ -106,14 +106,14 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
     // ---
     List<TrajectorySample> trajectory = GlcTrajectories.detailedTrajectoryTo(STATE_INTEGRATOR, goalNode);
     // ---
-    OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
-    owlyAnimationFrame.addBackground(new PolygonRegionRender(POLYGON_REGION));
+    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.addBackground(new PolygonRegionRender(POLYGON_REGION));
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(trajectory);
-    owlyAnimationFrame.addBackground(trajectoryRender);
+    owlAnimationFrame.addBackground(trajectoryRender);
     Tensor eta = Tensors.vector(3, 3);
-    owlyAnimationFrame.addBackground(new EtaRender(eta));
-    return owlyAnimationFrame;
+    owlAnimationFrame.addBackground(new EtaRender(eta));
+    return owlAnimationFrame;
   }
 
   public static void main(String[] args) {

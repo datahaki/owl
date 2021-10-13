@@ -1,11 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.So2Family;
 import ch.alpine.sophus.math.BijectionFamily;
-import ch.alpine.sophus.ply.CogPoints;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -17,9 +17,9 @@ public class R2xTPolygonStateTimeRegionTest extends TestCase {
     // ---
     BijectionFamily bijectionFamily = new So2Family(s -> s);
     Region<StateTime> cog0 = new R2xTPolygonStateTimeRegion(polygon, bijectionFamily, null);
-    assertTrue(cog0.isMember(new StateTime(Tensors.vector(0, 0), RealScalar.of(0))));
-    assertTrue(cog0.isMember(new StateTime(Tensors.vector(0, 0), RealScalar.of(1))));
-    assertTrue(cog0.isMember(new StateTime(Tensors.vector(0.8, 0.1), RealScalar.of(0))));
-    assertFalse(cog0.isMember(new StateTime(Tensors.vector(0.8, 0.1), RealScalar.of(0.2))));
+    assertTrue(cog0.test(new StateTime(Tensors.vector(0, 0), RealScalar.of(0))));
+    assertTrue(cog0.test(new StateTime(Tensors.vector(0, 0), RealScalar.of(1))));
+    assertTrue(cog0.test(new StateTime(Tensors.vector(0.8, 0.1), RealScalar.of(0))));
+    assertFalse(cog0.test(new StateTime(Tensors.vector(0.8, 0.1), RealScalar.of(0.2))));
   }
 }

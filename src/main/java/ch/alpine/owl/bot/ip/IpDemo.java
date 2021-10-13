@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
@@ -16,20 +17,20 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.FreeBoundedIntervalRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.sca.Clips;
 
 /** inverted pendulum */
 /* package */ enum IpDemo {
@@ -48,8 +49,8 @@ import ch.alpine.tensor.alg.Array;
         Tensors.vector(2, 0, 0, 0), //
         Tensors.vector(0.1, 0.1, 1, 1));
     Region<Tensor> region = RegionUnion.wrap(Arrays.asList( //
-        new FreeBoundedIntervalRegion(0, RealScalar.of(-1), RealScalar.of(+3)), // ,
-        new FreeBoundedIntervalRegion(2, RealScalar.of(-2), RealScalar.of(+2)) // ,
+        new FreeBoundedIntervalRegion(0, Clips.interval(-1, +3)), // ,
+        new FreeBoundedIntervalRegion(2, Clips.interval(-2, +2)) // ,
     ));
     PlannerConstraint plannerConstraint = RegionConstraints.timeDependent(region);
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
@@ -62,9 +63,9 @@ import ch.alpine.tensor.alg.Array;
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlyGui.glc(trajectoryPlanner);
+    OwlGui.glc(trajectoryPlanner);
   }
 }

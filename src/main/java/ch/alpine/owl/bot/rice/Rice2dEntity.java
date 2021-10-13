@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -13,7 +13,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -22,8 +21,7 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -75,11 +73,12 @@ import ch.alpine.tensor.lie.r2.AngleVector;
     super.render(geometricLayer, graphics);
     treeRender.render(geometricLayer, graphics);
     {
-      Tensor xya = geometricLayer.getMouseSe2State();
-      geometricLayer.pushMatrix(Se2Matrix.of(xya));
-      graphics.setColor(new Color(0, 128, 255, 192));
-      graphics.fill(geometricLayer.toPath2D(SHAPE));
-      geometricLayer.popMatrix();
+      // FIXME this is the wrong place to draw the mouse
+      // Tensor xya = geometricLayer.getMouseSe2State();
+      // geometricLayer.pushMatrix(Se2Matrix.of(xya));
+      // graphics.setColor(new Color(0, 128, 255, 192));
+      // graphics.fill(geometricLayer.toPath2D(SHAPE));
+      // geometricLayer.popMatrix();
     }
   }
 }

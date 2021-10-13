@@ -5,9 +5,9 @@ import java.awt.Shape;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.pursuit.ArgMinVariable;
 import ch.alpine.owl.math.pursuit.ClothoidPursuit;
 import ch.alpine.owl.math.pursuit.ClothoidPursuits;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from AbstractEntity
   protected Optional<Tensor> customControl(StateTime tail, List<TrajectorySample> trailAhead) {
-    Scalar speed = trailAhead.get(0).getFlow().get().Get(0);
+    Scalar speed = trailAhead.get(0).getFlow().orElseThrow().Get(0);
     boolean inReverse = Sign.isNegative(speed);
     Tensor state = tail.state();
     TensorUnaryOperator tensorUnaryOperator = new Se2GroupElement(state).inverse()::combine;
@@ -63,12 +63,12 @@ import ch.alpine.tensor.sca.Sign;
     Scalar var = ArgMinVariable.using(entryFinder, costMapping, MAX_LEVEL).apply(beacons);
     Optional<Tensor> lookAhead = entryFinder.on(beacons).apply(var).point();
     if (lookAhead.isPresent()) {
-      Tensor xya = lookAhead.get();
+      Tensor xya = lookAhead.orElseThrow();
       PursuitInterface pursuitInterface = ClothoidPursuit.of(xya);
       curve = ClothoidPursuits.curve(xya, REFINEMENT);
       if (inReverse)
         ClothoidControlHelper.mirrorAndReverse(curve);
-      return Optional.of(Se2CarFlows.singleton(speed, pursuitInterface.firstRatio().get()));
+      return Optional.of(Se2CarFlows.singleton(speed, pursuitInterface.firstRatio().orElseThrow()));
     }
     curve = null;
     // System.err.println("no compliant strategy found!");
@@ -80,7 +80,7 @@ import ch.alpine.tensor.sca.Sign;
     this.ratioClip = ratioClip;
   }
 
-  @Override // fromTrajectoryTargetRender
+  @Override // from TrajectoryTargetRender
   public Optional<Shape> toTarget(GeometricLayer geometricLayer) {
     return Optional.ofNullable(curve).map(geometricLayer::toPath2D);
   }

@@ -37,7 +37,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
     return new Rice2Controls(seg);
   }
 
-  /***************************************************/
+  // ---
   private final int seg;
 
   private Rice2Controls(int seg) {

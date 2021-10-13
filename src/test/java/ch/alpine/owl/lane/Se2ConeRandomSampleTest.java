@@ -4,7 +4,7 @@ package ch.alpine.owl.lane;
 import java.io.IOException;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
@@ -25,7 +25,7 @@ public class Se2ConeRandomSampleTest extends TestCase {
     Region<Tensor> region = Se2ComboRegion.cone(apex, semi, heading);
     for (int index = 0; index < 20; ++index) {
       Tensor randomSample = RandomSample.of(randomSampleInterface);
-      assertTrue(region.isMember(randomSample));
+      assertTrue(region.test(randomSample));
     }
   }
 }

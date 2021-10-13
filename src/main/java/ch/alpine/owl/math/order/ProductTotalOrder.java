@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import ch.alpine.tensor.ext.Integers;
+
 @SuppressWarnings("rawtypes")
 public enum ProductTotalOrder implements OrderComparator<List<Comparable>> {
   INSTANCE;
@@ -16,7 +18,7 @@ public enum ProductTotalOrder implements OrderComparator<List<Comparable>> {
   @Override // from PartialComparator
   public OrderComparison compare(List<Comparable> x, List<Comparable> y) {
     @SuppressWarnings("unchecked")
-    Set<Integer> set = IntStream.range(0, Math.max(x.size(), y.size())) //
+    Set<Integer> set = IntStream.range(0, Integers.requireEquals(x.size(), y.size())) //
         .map(index -> x.get(index).compareTo(y.get(index))) //
         .map(Integer::signum) //
         .boxed() //

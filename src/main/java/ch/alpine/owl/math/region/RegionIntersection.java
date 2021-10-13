@@ -6,6 +6,8 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Objects;
 
+import ch.alpine.sophus.math.Region;
+
 /** RegionIntersection is a region that defines membership
  * to be member in all of a collection of {@link Region}s
  * 
@@ -25,7 +27,7 @@ public class RegionIntersection<T> implements Region<T>, Serializable {
     return new RegionIntersection<>(Objects.requireNonNull(collection));
   }
 
-  /***************************************************/
+  // ---
   private final Collection<Region<T>> collection;
 
   private RegionIntersection(Collection<Region<T>> collection) {
@@ -33,8 +35,8 @@ public class RegionIntersection<T> implements Region<T>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(T element) {
+  public boolean test(T element) {
     return collection.stream() //
-        .allMatch(region -> region.isMember(element));
+        .allMatch(region -> region.test(element));
   }
 }

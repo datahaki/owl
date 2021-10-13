@@ -3,13 +3,13 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.gui.ren.VectorFieldRender;
-import ch.alpine.owl.math.VectorFields;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
@@ -31,12 +31,12 @@ public class LvEntityTest extends TestCase {
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator(stateSpaceModel, integrator, //
         new StateTime(Tensors.vector(2, 0.3), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
-    new LvEntity(episodeIntegrator, trajectoryControl, stateSpaceModel, controls);
+    LvEntity lvEntity = new LvEntity(episodeIntegrator, trajectoryControl, stateSpaceModel, controls);
+    lvEntity.delayHint();
     Tensor range = Tensors.vector(6, 5);
-    VectorFieldRender vectorFieldRender = new VectorFieldRender();
+    // VectorFieldRender vectorFieldRender = ;
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Tensors.vector(0, 0), range);
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
-    vectorFieldRender.uv_pairs = //
-        VectorFields.of(stateSpaceModel, points, fallback_u, RealScalar.of(0.04));
+    new VectorFieldRender().setUV_Pairs(VectorFields.of(stateSpaceModel, points, fallback_u, RealScalar.of(0.04)));
   }
 }

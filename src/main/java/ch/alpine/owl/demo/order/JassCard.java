@@ -53,7 +53,7 @@ import java.util.Objects;
    * 
    * @param jassCard to be compared to
    * @return true if this card is less (according to the rules) than the given jassCard, false otherwise */
-  public boolean isLess(JassCard jassCard) {
+  public boolean lessThan(JassCard jassCard) {
     cheatChecker(jassCard);
     if (isTrumpf && jassCard.isTrumpf)
       if (type.trumpfOrdering < jassCard.type.trumpfOrdering)

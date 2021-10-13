@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.sca.Sign;
 
 /** Implements the semiorder where the utility function is the identity mapping on the real numbers.
  * 
@@ -16,7 +17,7 @@ public class ScalarSlackSemiorder implements OrderComparator<Scalar>, Serializab
 
   /** @param slack */
   public ScalarSlackSemiorder(Scalar slack) {
-    this.slack = slack;
+    this.slack = Sign.requirePositiveOrZero(slack); // jan added requirement later
   }
 
   @Override // from OrderComparator

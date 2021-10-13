@@ -25,7 +25,7 @@ import ch.alpine.tensor.alg.VectorQ;
     return new LvGoalInterface(new EllipsoidRegion(center, radius));
   }
 
-  /***************************************************/
+  // ---
   public LvGoalInterface(EllipsoidRegion ellipsoidRegion) {
     super(new TimeInvariantRegion(ellipsoidRegion));
     VectorQ.requireLength(ellipsoidRegion.center(), 2);

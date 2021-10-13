@@ -31,7 +31,7 @@ public final class MultiCostGoalAdapter implements GoalInterface, Serializable {
     return new MultiCostGoalAdapter(goalInterface, list);
   }
 
-  /***************************************************/
+  // ---
   private final TrajectoryRegionQuery trajectoryRegionQuery;
   private final Collection<CostFunction> collection;
 
@@ -46,8 +46,8 @@ public final class MultiCostGoalAdapter implements GoalInterface, Serializable {
   }
 
   @Override // from TrajectoryRegionQuery
-  public boolean isMember(StateTime stateTime) {
-    return trajectoryRegionQuery.isMember(stateTime);
+  public boolean test(StateTime stateTime) {
+    return trajectoryRegionQuery.test(stateTime);
   }
 
   @Override // from CostIncrementFunction

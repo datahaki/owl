@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2;
 
 import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import junit.framework.TestCase;
@@ -14,6 +14,6 @@ public class Se2PointsVsRegionTest extends TestCase {
     Tensor xya = Tensors.vector(4, 5, 6);
     Tensor point = Tensors.vector(7, 8);
     Region<Tensor> region2 = new Se2PointsVsRegion(Tensors.of(point), region);
-    assertFalse(region2.isMember(xya));
+    assertFalse(region2.test(xya));
   }
 }

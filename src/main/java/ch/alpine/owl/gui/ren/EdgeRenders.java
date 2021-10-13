@@ -3,9 +3,9 @@ package ch.alpine.owl.gui.ren;
 
 import java.awt.Color;
 
+import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.glc.rl2.RelaxedDebugUtils;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
-import ch.alpine.owl.gui.RenderInterface;
 
 public enum EdgeRenders {
   ;

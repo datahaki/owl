@@ -5,10 +5,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.owl.ani.api.MotionPlanWorker;
 import ch.alpine.owl.ani.api.PlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.win.MotionPlanWorker;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

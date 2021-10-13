@@ -3,6 +3,7 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
 
@@ -18,7 +19,7 @@ public class NegativeHalfspaceRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return Sign.isNegative(tensor.Get(index));
   }
 }

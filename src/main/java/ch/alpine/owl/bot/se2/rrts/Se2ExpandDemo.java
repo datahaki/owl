@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
@@ -25,6 +25,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.AnimationWriter;
 import ch.alpine.tensor.io.GifAnimationWriter;
+import ch.alpine.tensor.opt.nd.Box;
 
 /* package */ enum Se2ExpandDemo {
   ;
@@ -32,7 +33,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
     Tensor min = Tensors.vector(0, 0, -Math.PI);
     Tensor max = Tensors.vector(7, 7, +Math.PI);
     RrtsNodeCollection rrtsNodeCollection = //
-        Se2RrtsNodeCollections.of(transitionSpace, min.extract(0, 2), max.extract(0, 2));
+        new Se2RrtsNodeCollection(transitionSpace, Box.of(min.extract(0, 2), max.extract(0, 2)), 3);
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
@@ -41,20 +42,20 @@ import ch.alpine.tensor.io.GifAnimationWriter;
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures(name), 250, TimeUnit.MILLISECONDS)) {
-      OwlyFrame owlyFrame = OwlyGui.start();
-      owlyFrame.geometricComponent.setOffset(42, 456);
-      owlyFrame.jFrame.setBounds(100, 100, 500, 500);
+      OwlFrame owlFrame = OwlGui.start();
+      owlFrame.geometricComponent.setOffset(42, 456);
+      owlFrame.jFrame.setBounds(100, 100, 500, 500);
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);
-      for (int frame = 0; frame < 40 && owlyFrame.jFrame.isVisible(); ++frame) {
+      for (int frame = 0; frame < 40 && owlFrame.jFrame.isVisible(); ++frame) {
         for (int count = 0; count < 5; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
-        owlyFrame.setRrts(transitionSpace, root, transitionRegionQuery);
-        animationWriter.write(owlyFrame.offscreen());
+        owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+        animationWriter.write(owlFrame.offscreen());
       }
       int repeatLast = 3;
       while (0 < repeatLast--)
-        animationWriter.write(owlyFrame.offscreen());
-      owlyFrame.close();
+        animationWriter.write(owlFrame.offscreen());
+      owlFrame.close();
     }
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);

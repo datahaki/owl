@@ -7,7 +7,7 @@ import java.util.Comparator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.sca.Floor;
 
 /** comparator for vectors
@@ -22,7 +22,7 @@ public class DiscretizedLexicographic implements Comparator<Tensor>, Serializabl
     return new DiscretizedLexicographic(slack);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor slack;
 
   private DiscretizedLexicographic(Tensor slack) {
@@ -32,10 +32,9 @@ public class DiscretizedLexicographic implements Comparator<Tensor>, Serializabl
 
   @Override // from Comparator
   public int compare(Tensor t1, Tensor t2) {
-    if (t1.length() != t2.length())
-      throw TensorRuntimeException.of(t1, t2);
+    int length = Integers.requireEquals(t1.length(), t2.length());
     int cmp = 0;
-    for (int index = 0; index < t1.length() && cmp == 0; ++index) {
+    for (int index = 0; index < length && cmp == 0; ++index) {
       Scalar a = t1.Get(index);
       Scalar b = t2.Get(index);
       Scalar s = slack.Get(index);

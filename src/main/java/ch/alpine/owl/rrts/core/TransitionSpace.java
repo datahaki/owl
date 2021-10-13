@@ -16,8 +16,8 @@ import ch.alpine.tensor.Tensor;
  * @see ClothoidTransitionSpace */
 @FunctionalInterface
 public interface TransitionSpace {
-  /** @param start state
-   * @param end state
+  /** @param head state
+   * @param tail state
    * @return transition that represents the (unique) connection between the start and end state */
-  Transition connect(Tensor start, Tensor end);
+  Transition connect(Tensor head, Tensor tail);
 }

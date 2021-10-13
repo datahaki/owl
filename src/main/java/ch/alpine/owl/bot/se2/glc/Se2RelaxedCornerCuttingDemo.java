@@ -7,25 +7,26 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.se2.LidarEmulator;
-import ch.alpine.owl.bot.util.RegionRenders;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.GoalConsumer;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -54,7 +55,7 @@ public class Se2RelaxedCornerCuttingDemo extends Se2CarDemo {
   }
 
   @Override // from Se2CarDemo
-  protected final void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected final void configure(OwlAnimationFrame owlAnimationFrame) {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);
     Tensor slacks = Tensors.vector(1.5, 0);
     CarRelaxedEntity carRelaxedEntity = CarRelaxedEntity.createDefault(stateTime, slacks);
@@ -75,24 +76,34 @@ public class Se2RelaxedCornerCuttingDemo extends Se2CarDemo {
     Tensor goal = Tensors.vector(4.3, 4.2, 1.517);
     goalConsumer.accept(goal);
     // ---
-    owlyAnimationFrame.add(carRelaxedEntity);
-    owlyAnimationFrame.addBackground(RegionRenders.create(region));
-    MouseGoal.simple(owlyAnimationFrame, carRelaxedEntity, plannerConstraint);
+    owlAnimationFrame.add(carRelaxedEntity);
+    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    MouseGoal.simple(owlAnimationFrame, carRelaxedEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carRelaxedEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, carRelaxedEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(region)), //
-          CarEntity.SHAPE, () -> carRelaxedEntity.getStateTimeNow().time());
-      owlyAnimationFrame.addBackground(renderInterface);
+          CarEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return carRelaxedEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

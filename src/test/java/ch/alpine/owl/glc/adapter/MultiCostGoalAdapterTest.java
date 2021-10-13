@@ -50,8 +50,8 @@ public class MultiCostGoalAdapterTest extends TestCase {
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
     CostFunction costFunction = new Se2ShiftCostFunction(RealScalar.of(3));
     GoalInterface mcga = MultiCostGoalAdapter.of(goalInterface, Arrays.asList(costFunction));
-    assertTrue(mcga.isMember(new StateTime(Tensors.vector(10, 5, 1), RealScalar.ZERO)));
-    assertFalse(mcga.isMember(new StateTime(Tensors.vector(10, 5, 3.1), RealScalar.ZERO)));
+    assertTrue(mcga.test(new StateTime(Tensors.vector(10, 5, 1), RealScalar.ZERO)));
+    assertFalse(mcga.test(new StateTime(Tensors.vector(10, 5, 3.1), RealScalar.ZERO)));
   }
 
   public void testTrivial() {

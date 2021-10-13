@@ -19,7 +19,7 @@ public class ClothoidPursuit implements PursuitInterface, Serializable {
     return new ClothoidPursuit(lookAhead);
   }
 
-  /***************************************************/
+  // ---
   /** first and last ratio/curvature in curve */
   private final LagrangeQuadraticD lagrangeQuadraticD;
 

@@ -26,12 +26,12 @@ public class JassCardTest extends TestCase {
     JassCard card3 = new JassCard(Farbe.SCHELLE, Type.ACE, false);
     JassCard card4 = new JassCard(Farbe.EICHEL, Type.SEVEN, false);
     JassCard card5 = new JassCard(Farbe.SCHELLE, Type.ACE, false);
-    assertFalse(card2.isLess(card1));
-    assertTrue(card1.isLess(card2));
-    assertTrue(card4.isLess(card1));
-    assertFalse(card1.isLess(card3));
-    assertFalse(card5.isLess(card4));
-    assertFalse(card4.isLess(card5));
+    assertFalse(card2.lessThan(card1));
+    assertTrue(card1.lessThan(card2));
+    assertTrue(card4.lessThan(card1));
+    assertFalse(card1.lessThan(card3));
+    assertFalse(card5.lessThan(card4));
+    assertFalse(card4.lessThan(card5));
   }
 
   public void testEquals() {

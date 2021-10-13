@@ -5,10 +5,10 @@ import java.io.Serializable;
 
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.sca.Abs;
+import ch.alpine.tensor.sca.Clip;
 
 /** axis-aligned region of infinity extension in the direction of other axes */
 public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements Serializable {
@@ -18,12 +18,12 @@ public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements
   private final Scalar semiwidth;
   private final Scalar center;
 
-  public FreeBoundedIntervalRegion(int index, Scalar lo, Scalar hi) {
-    if (Scalars.lessEquals(hi, lo))
-      throw TensorRuntimeException.of(lo, hi);
-    this.index = index;
-    semiwidth = hi.subtract(lo).multiply(HALF);
-    center = hi.add(lo).multiply(HALF);
+  /** @param index non-negative
+   * @param clip */
+  public FreeBoundedIntervalRegion(int index, Clip clip) {
+    this.index = Integers.requirePositiveOrZero(index);
+    semiwidth = clip.width().multiply(HALF);
+    center = clip.min().add(semiwidth);
   }
 
   @Override // from SignedDistanceFunction<Tensor>

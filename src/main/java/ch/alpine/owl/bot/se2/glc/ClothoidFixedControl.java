@@ -29,7 +29,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from AbstractEntity
   protected Optional<Tensor> customControl(StateTime tail, List<TrajectorySample> trailAhead) {
-    Tensor u = trailAhead.get(0).getFlow().get();
+    Tensor u = trailAhead.get(0).getFlow().orElseThrow();
     Scalar speed = u.Get(0);
     Tensor state = tail.state();
     TensorUnaryOperator tensorUnaryOperator = //
@@ -42,11 +42,11 @@ import ch.alpine.tensor.sca.Sign;
       ClothoidControlHelper.mirrorAndReverse(beacons);
     Optional<Tensor> optional = curveIntersection.string(beacons);
     if (optional.isPresent()) {
-      PursuitInterface pursuitInterface = ClothoidPursuit.of(optional.get());
+      PursuitInterface pursuitInterface = ClothoidPursuit.of(optional.orElseThrow());
       if (pursuitInterface.firstRatio().isPresent()) {
-        Scalar ratio = pursuitInterface.firstRatio().get();
+        Scalar ratio = pursuitInterface.firstRatio().orElseThrow();
         if (clip.isInside(ratio)) {
-          Tensor targetLocal_ = Tensors.of(optional.get());
+          Tensor targetLocal_ = Tensors.of(optional.orElseThrow());
           if (Sign.isNegative(speed))
             ClothoidControlHelper.mirrorAndReverse(targetLocal_);
           targetLocal = targetLocal_.get(0);

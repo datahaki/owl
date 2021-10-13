@@ -20,7 +20,7 @@ public class HyperplaneRegion extends ImplicitFunctionRegion implements Serializ
     return new HyperplaneRegion(Vector2Norm.NORMALIZE.apply(orthogonal), distanceFromZero);
   }
 
-  /***************************************************/
+  // ---
   /** orthogonal to hyperplane pointing outside */
   private final Tensor normal;
   private final Scalar distanceFromZero;

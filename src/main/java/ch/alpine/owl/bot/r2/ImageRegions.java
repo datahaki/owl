@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.alg.TensorRank;
@@ -38,12 +38,13 @@ public enum ImageRegions {
    * @throws Exception if input does not represent an image */
   public static Tensor grayscale(Tensor image) {
     Optional<Integer> optional = TensorRank.ofArray(image);
-    switch (optional.get()) {
+    switch (optional.orElseThrow()) {
     case 2:
       return image.copy();
     case 3:
       return image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
+    default:
+      throw TensorRuntimeException.of(image);
     }
-    throw TensorRuntimeException.of(image);
   }
 }

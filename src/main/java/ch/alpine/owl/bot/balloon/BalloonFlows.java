@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.balloon;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.tensor.Scalar;
@@ -19,11 +20,11 @@ import ch.alpine.tensor.sca.N;
     return new BalloonFlows(u_max);
   }
 
-  /***************************************************/
+  // ---
   private final Scalar u_max;
 
   private BalloonFlows(Scalar u_max) {
-    this.u_max = u_max;
+    this.u_max = Objects.requireNonNull(u_max);
   }
 
   @Override // from FlowsInterface

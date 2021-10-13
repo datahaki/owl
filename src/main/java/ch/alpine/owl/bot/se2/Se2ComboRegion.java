@@ -7,10 +7,10 @@ import java.util.Objects;
 import ch.alpine.owl.math.RadiusXY;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.math.d2.Extract2D;
+import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -38,7 +38,7 @@ public class Se2ComboRegion implements Region<Tensor>, Serializable {
         So2Region.periodic(goal.Get(2), heading));
   }
 
-  /***************************************************/
+  // ---
   private final RegionWithDistance<Tensor> regionWithDistance;
   private final So2Region so2Region;
 
@@ -64,8 +64,8 @@ public class Se2ComboRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor xya) {
+  public boolean test(Tensor xya) {
     // only the first three entries of xya are considered
-    return regionWithDistance.isMember(Extract2D.FUNCTION.apply(xya)) && so2Region.isMember(xya.get(2));
+    return regionWithDistance.test(Extract2D.FUNCTION.apply(xya)) && so2Region.test(xya.get(2));
   }
 }

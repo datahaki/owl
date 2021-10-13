@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import ch.alpine.owl.bot.rn.RnPointcloudRegions;
-import ch.alpine.owl.math.region.Region;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -34,7 +34,7 @@ public class Rice1StateSpaceModel implements StateSpaceModel, Serializable {
     return new Rice1StateSpaceModel(Exp.of(mu));
   }
 
-  /***************************************************/
+  // ---
   private final Scalar lambda;
 
   /** @param lambda strictly positive friction coefficient */

@@ -20,6 +20,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** variant of {@link ClothoidLaneRrtsEntity} intended for simulation
  * TODO GJOEL perhaps create intermediate class with common code to derive from */
@@ -28,8 +29,8 @@ import ch.alpine.tensor.alg.Array;
   private final Scalar delayHint;
 
   /** @param stateTime initial position of entity */
-  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Tensor lbounds, Tensor ubounds, boolean greedy,
-      Scalar delayHint, Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
+  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box, boolean greedy, Scalar delayHint,
+      Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -45,7 +46,7 @@ import ch.alpine.tensor.alg.Array;
             greedy) {
           @Override // from DefaultRrtsPlannerServer
           protected RrtsNodeCollection rrtsNodeCollection() {
-            return Se2RrtsNodeCollections.of(getTransitionSpace(), lbounds, ubounds);
+            return new Se2RrtsNodeCollection(getTransitionSpace(), box, 3);
           }
 
           @Override // from RrtsPlannerServer

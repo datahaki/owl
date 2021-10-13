@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
@@ -14,17 +17,15 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
+import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
@@ -36,7 +37,7 @@ public class GokartVec0Demo extends GokartDemo {
   private static final Tensor MODEL2PIXEL = Tensors.matrixDouble(new double[][] { { 7.5, 0, 0 }, { 0, -7.5, 640 }, { 0, 0, 1 } });
 
   @Override
-  protected void configure(OwlyAnimationFrame owlyAnimationFrame) {
+  protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(0, 10, 0), RealScalar.ZERO);
     GokartVecEntity gokartEntity = new GokartVecEntity(initial) {
       @Override
@@ -54,9 +55,9 @@ public class GokartVec0Demo extends GokartDemo {
     // ---
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;
     // ---
-    owlyAnimationFrame.add(gokartEntity);
-    owlyAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
-    owlyAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
+    owlAnimationFrame.add(gokartEntity);
+    owlAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
+    owlAnimationFrame.addBackground(new PolygonRegionRender(polygonRegion));
     // ---
     List<GlcPlannerCallback> list = new ArrayList<>();
     list.add(gokartEntity);
@@ -68,12 +69,22 @@ public class GokartVec0Demo extends GokartDemo {
     // // ---
     // }
     goalconsumer.accept(Tensors.vector(35, 10, 0));
-    MouseGoal.simple(owlyAnimationFrame, gokartEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame, gokartEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(polygonRegion), //
-          CarEntity.SHAPE, () -> gokartEntity.getStateTimeNow().time());
-      owlyAnimationFrame.addBackground(renderInterface);
+          CarEntity.SHAPE) {
+        @Override
+        public Scalar getTime() {
+          return gokartEntity.getStateTimeNow().time();
+        }
+
+        @Override
+        public Tensor getSe2() {
+          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+        }
+      };
+      owlAnimationFrame.addBackground(renderInterface);
     }
   }
 

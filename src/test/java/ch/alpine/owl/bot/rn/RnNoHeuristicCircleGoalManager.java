@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.rn;
 
 import java.util.List;
 
-import ch.alpine.owl.data.Lists;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.math.region.BallRegion;
@@ -13,6 +12,7 @@ import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Sign;
 
@@ -33,7 +33,7 @@ public class RnNoHeuristicCircleGoalManager extends SimpleTrajectoryRegionQuery 
   @Override
   public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
     StateTime from = glcNode.stateTime();
-    return Vector2Norm.between(from.state(), Lists.getLast(trajectory).state());
+    return Vector2Norm.between(from.state(), Lists.last(trajectory).state());
   }
 
   @Override

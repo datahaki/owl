@@ -14,8 +14,7 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollections;
-import ch.alpine.owl.data.Lists;
+import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -33,6 +32,8 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
+import ch.alpine.tensor.opt.nd.Box;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -41,7 +42,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
   public void testRn() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
-        new RnRrtsNodeCollection(Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        new RnRrtsNodeCollection(Box.of(Tensors.vector(-5, -5), Tensors.vector(10, 10))), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -73,13 +74,14 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     Chop._15.requireClose(n1.state(), trajectory.get(10).stateTime().state());
     Chop._15.requireClose(n2.state(), trajectory.get(20).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
   }
 
   public void testDubins() {
+    TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Rrts rrts = new DefaultRrts( //
-        DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), //
-        new RnRrtsNodeCollection(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0)), //
+        transitionSpace, //
+        new Se2RrtsNodeCollection(transitionSpace, Box.of(Tensors.vector(-5, -5), Tensors.vector(10, 10)), 3), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -110,7 +112,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     Chop._15.requireClose(n1.state(), trajectory.get(10).stateTime().state());
     Chop._15.requireClose(n2.state(), trajectory.get(20).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 37).stream().map(TrajectorySample::getFlow).allMatch(Optional::isPresent));
@@ -130,7 +132,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
-        Se2RrtsNodeCollections.of(transitionSpace, Tensors.vector(0, 0), Tensors.vector(10, 10)), //
+        new Se2RrtsNodeCollection(transitionSpace, Box.of(Tensors.vector(-5, -5), Tensors.vector(10, 10)), 3), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -151,7 +153,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     List<TrajectorySample> trajectory = //
         generator.createTrajectory(ClothoidTransitionSpace.ANALYTIC, sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
-    assertEquals(44, trajectory.size());
+    assertEquals(71, trajectory.size());
     for (int i = 1; i < 33; i++) {
       // TrajectorySample sample = trajectory.get(i);
       // Tolerance.CHOP.requireClose(RationalScalar.of(i, 16), sample.stateTime().time());
@@ -161,7 +163,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     // Chop._15.requireClose(n1.state(), trajectory.get(16).stateTime().state());
     // Chop._15.requireClose(n2.state(), trajectory.get(32).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 44).stream().map(TrajectorySample::getFlow).map(Optional::get) //
@@ -179,10 +181,11 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
   }
 
   public void testDirectionalClothoid() {
+    TransitionSpace transitionSpace = DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC);
     Rrts rrts = new DefaultRrts( //
-        DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), //
+        transitionSpace, //
         // no specific collection for directional clothoid
-        new RnRrtsNodeCollection(Tensors.vector(0, 0, 0), Tensors.vector(10, 10, 0)), //
+        new Se2RrtsNodeCollection(transitionSpace, Box.of(Tensors.vector(-5, -5), Tensors.vector(10, 10)), 3), //
         EmptyTransitionRegionQuery.INSTANCE, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 0).get();
     assertEquals(0, root.children().size());
@@ -203,7 +206,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     List<TrajectorySample> trajectory = //
         generator.createTrajectory(DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
-    assertEquals(54, trajectory.size());
+    assertEquals(67, trajectory.size());
     for (int i = 1; i < 17; i++) {
       // TrajectorySample sample = trajectory.get(i);
       // assertEquals(RationalScalar.of(i, 16), sample.stateTime().time());
@@ -213,7 +216,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(root.state(), trajectory.get(0).stateTime().state());
     // Chop._15.requireClose(n1.state(), trajectory.get(16).stateTime().state());
     // Chop._15.requireClose(n2.state(), trajectory.get(32).stateTime().state());
-    Chop._15.requireClose(n3.state(), Lists.getLast(trajectory).stateTime().state());
+    Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
     // ---
     assertFalse(trajectory.get(0).getFlow().isPresent());
     assertTrue(trajectory.subList(1, 49).stream().map(TrajectorySample::getFlow).allMatch(Optional::isPresent));

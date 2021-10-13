@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.gds;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -13,7 +13,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 public class S1Display extends SnDisplay {
   public static final ManifoldDisplay INSTANCE = new S1Display();
 
-  /***************************************************/
+  // ---
   private S1Display() {
     super(1);
   }
@@ -39,6 +39,6 @@ public class S1Display extends SnDisplay {
 
   @Override // from GeodesicDisplay
   public Tensor matrixLift(Tensor xy) {
-    return Se2Matrix.translation(toPoint(xy));
+    return GfxMatrix.translation(toPoint(xy));
   }
 }

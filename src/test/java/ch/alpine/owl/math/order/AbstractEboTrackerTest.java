@@ -27,7 +27,7 @@ public class AbstractEboTrackerTest extends TestCase {
     final Set<Integer> minKeys1;
     {
       AbstractEboTracker<Integer> lexicographicSemiorderMinTracker = //
-          (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withSet(slackVector);
+          (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
       for (int index = 0; index < values.length(); ++index)
         lexicographicSemiorderMinTracker.digest(index, values.get(index));
       minKeys1 = new HashSet<>(lexicographicSemiorderMinTracker.getMinKeys());
@@ -36,7 +36,7 @@ public class AbstractEboTrackerTest extends TestCase {
     for (int round = 0; round < 10; ++round) {
       Collections.shuffle(list);
       SetEboTracker<Integer> lsmtc = //
-          (SetEboTracker<Integer>) SetEboTracker.<Integer>withSet(slackVector);
+          (SetEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
       for (int index = 0; index < values.length(); ++index) {
         int count = list.get(index);
         lsmtc.digest(count, values.get(count));
@@ -49,15 +49,15 @@ public class AbstractEboTrackerTest extends TestCase {
   public void testEmptyPollFail() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     EboTracker<Integer> lexicographicSemiorderMinTracker = //
-        SetEboTracker.<Integer>withSet(slackVector);
+        SetEboTracker.<Integer>withList(slackVector);
     AssertFail.of(() -> lexicographicSemiorderMinTracker.pollBestKey());
   }
 
   public void testMatrixSlackFail() {
-    AssertFail.of(() -> SetEboTracker.withSet(HilbertMatrix.of(3)));
+    AssertFail.of(() -> SetEboTracker.withList(HilbertMatrix.of(3)));
   }
 
   public void testScalarSlackFail() {
-    AssertFail.of(() -> SetEboTracker.withSet(Pi.VALUE));
+    AssertFail.of(() -> SetEboTracker.withList(Pi.VALUE));
   }
 }

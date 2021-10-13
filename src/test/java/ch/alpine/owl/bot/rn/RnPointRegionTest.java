@@ -13,7 +13,7 @@ public class RnPointRegionTest extends TestCase {
     Scalar scalar = pointRegion.distance(Tensors.vector(2, 3, 2, 5));
     assertEquals(scalar, RealScalar.of(2));
     ExactScalarQ.require(scalar);
-    assertFalse(pointRegion.isMember(Tensors.vector(2, 3, 4, 5)));
-    assertTrue(pointRegion.isMember(Tensors.vector(1, 2, 3, 4)));
+    assertFalse(pointRegion.test(Tensors.vector(2, 3, 4, 5)));
+    assertTrue(pointRegion.test(Tensors.vector(1, 2, 3, 4)));
   }
 }

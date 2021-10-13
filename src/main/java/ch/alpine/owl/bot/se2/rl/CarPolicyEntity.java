@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.PolicyEntity;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.gui.win.GeometricLayer;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;

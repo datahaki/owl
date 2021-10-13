@@ -34,9 +34,9 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    assertTrue(goalInterface.isMember(new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3))));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.vector(-1, 2, 3), RealScalar.of(3))));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.of(3))));
+    assertTrue(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3))));
+    assertFalse(goalInterface.test(new StateTime(Tensors.vector(-1, 2, 3), RealScalar.of(3))));
+    assertFalse(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.of(3))));
   }
 
   public void testGoalAdapter() {
@@ -45,9 +45,9 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    assertTrue(goalInterface.isMember(new StateTime(Tensors.vector(1, 2, 3), RealScalar.ZERO)));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.vector(-1, 2, 3), RealScalar.ZERO)));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.ZERO)));
+    assertTrue(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3), RealScalar.ZERO)));
+    assertFalse(goalInterface.test(new StateTime(Tensors.vector(-1, 2, 3), RealScalar.ZERO)));
+    assertFalse(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.ZERO)));
   }
 
   public void testQuantity() {
@@ -58,9 +58,9 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
         Tensors.fromString("{1[m], 1[m], 0.1}"));
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    assertTrue(goalInterface.isMember(new StateTime(Tensors.fromString("{1[m], 2[m], 3}"), RealScalar.ZERO)));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.fromString("{-1[m], 2[m], 3}"), RealScalar.ZERO)));
-    assertFalse(goalInterface.isMember(new StateTime(Tensors.fromString("{1[m], 2[m], 3.2}"), RealScalar.ZERO)));
+    assertTrue(goalInterface.test(new StateTime(Tensors.fromString("{1[m], 2[m], 3}"), RealScalar.ZERO)));
+    assertFalse(goalInterface.test(new StateTime(Tensors.fromString("{-1[m], 2[m], 3}"), RealScalar.ZERO)));
+    assertFalse(goalInterface.test(new StateTime(Tensors.fromString("{1[m], 2[m], 3.2}"), RealScalar.ZERO)));
     {
       Scalar minCostToGoal = goalInterface.minCostToGoal(Tensors.fromString("{1[m], 2[m], 3.2}"));
       Chop._10.requireClose(Quantity.of(0.2, "s"), minCostToGoal);
@@ -79,10 +79,10 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     assertTrue(HeuristicQ.of(se2MinTimeGoalManager));
     Scalar cost = se2MinTimeGoalManager.minCostToGoal(Tensors.vector(0, 0, 0));
     assertTrue(Scalars.lessEquals(RealScalar.of(9), cost));
-    assertTrue(se2MinTimeGoalManager.isMember(Tensors.vector(10, 0, Math.PI + 0.9)));
-    assertFalse(se2MinTimeGoalManager.isMember(Tensors.vector(10, 0, Math.PI + 1.1)));
-    assertTrue(se2MinTimeGoalManager.isMember(Tensors.vector(10, 0, Math.PI + 2 * Math.PI + 0.9)));
-    assertFalse(se2MinTimeGoalManager.isMember(Tensors.vector(10, 0, Math.PI + 2 * Math.PI + 1.1)));
+    assertTrue(se2MinTimeGoalManager.test(Tensors.vector(10, 0, Math.PI + 0.9)));
+    assertFalse(se2MinTimeGoalManager.test(Tensors.vector(10, 0, Math.PI + 1.1)));
+    assertTrue(se2MinTimeGoalManager.test(Tensors.vector(10, 0, Math.PI + 2 * Math.PI + 0.9)));
+    assertFalse(se2MinTimeGoalManager.test(Tensors.vector(10, 0, Math.PI + 2 * Math.PI + 1.1)));
   }
 
   public void testAllAngles() {
@@ -91,8 +91,8 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(0, 0, Math.PI), Tensors.vector(1, 1, 4));
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     for (int index = -100; index < 100; ++index) {
-      assertTrue(se2MinTimeGoalManager.isMember(Tensors.vector(0, 0, index)));
-      assertFalse(se2MinTimeGoalManager.isMember(Tensors.vector(2, 0, index)));
+      assertTrue(se2MinTimeGoalManager.test(Tensors.vector(0, 0, index)));
+      assertFalse(se2MinTimeGoalManager.test(Tensors.vector(2, 0, index)));
     }
   }
 

@@ -6,7 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.bot.util.RegionRenders;
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -20,9 +21,8 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.gui.ren.TrajectoryRender;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.EllipsoidRegion;
@@ -76,30 +76,30 @@ import ch.alpine.tensor.ext.Timing;
     // 555 1.149214356 with parallel integration of trajectories
     System.out.println(glcExpand.getExpandCount() + " " + timing.seconds());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    OwlyFrame owlyFrame = OwlyGui.glc(trajectoryPlanner);
+    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     if (optional.isPresent()) {
-      GlcNode glcNode = optional.get();
+      GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
           MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlyFrame.addBackground(trajectoryRender);
+      owlFrame.addBackground(trajectoryRender);
     }
     glcExpand.untilOptimal(1000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
     optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      GlcNode glcNode = optional.get();
+      GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
           MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlyFrame.addBackground(trajectoryRender);
+      owlFrame.addBackground(trajectoryRender);
     }
-    owlyFrame.addBackground(RegionRenders.create(ELLIPSOID_REGION));
+    owlFrame.addBackground(RegionRenders.create(ELLIPSOID_REGION));
   }
 }

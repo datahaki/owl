@@ -7,8 +7,8 @@ import java.util.Arrays;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.mat.MatrixQ;
 import junit.framework.TestCase;
 
 public class ImageRegionsTest extends TestCase {

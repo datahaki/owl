@@ -6,9 +6,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.owl.gui.win.GeometricLayer;
+import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.UnitVector;
@@ -20,7 +20,7 @@ public enum ConeRegionRender {
   private static final Color FAR = new Color(255, 255, 0, 64);
 
   public static void draw(GeometricLayer geometricLayer, Graphics2D graphics, ConeRegion coneRegion) {
-    geometricLayer.pushMatrix(Se2Matrix.of(coneRegion.apex()));
+    geometricLayer.pushMatrix(GfxMatrix.of(coneRegion.apex()));
     graphics.setPaint(new GradientPaint( //
         geometricLayer.toPoint2D(Array.zeros(2)), NEAR, //
         geometricLayer.toPoint2D(UnitVector.of(2, 0)), FAR));

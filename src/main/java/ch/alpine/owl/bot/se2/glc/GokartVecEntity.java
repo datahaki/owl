@@ -22,6 +22,7 @@ import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Integers;
 
 /** gokart that operates on vector costs */
 public class GokartVecEntity extends GokartEntity {
@@ -64,8 +65,7 @@ public class GokartVecEntity extends GokartEntity {
    * @param costVector
    * @param slackVector */
   public void setCostVector(List<CostFunction> costVector, List<Double> slackVector) {
-    if (costVector.size() != slackVector.size())
-      throw new RuntimeException();
+    Integers.requireEquals(costVector.size(), slackVector.size());
     this.costVector = costVector;
     this.slackVector = slackVector;
   }

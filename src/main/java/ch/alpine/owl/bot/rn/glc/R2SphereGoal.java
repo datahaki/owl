@@ -21,7 +21,7 @@ import ch.alpine.owl.math.state.StateTime;
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
     r2SphereBase.show(trajectoryPlanner);

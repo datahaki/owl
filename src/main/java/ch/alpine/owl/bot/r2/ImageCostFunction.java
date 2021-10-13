@@ -8,17 +8,13 @@ import ch.alpine.owl.math.region.FlipYXTensorInterp;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.alg.MatrixQ;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.mat.MatrixQ;
 
 public abstract class ImageCostFunction implements CostFunction, Serializable {
-  private static final Tensor ORIGIN = Array.zeros(2).unmodifiable();
-  // ---
   private final Tensor image;
   private final Tensor range;
-  /* package for testing */
-  final FlipYXTensorInterp<Scalar> flipYXTensorInterp;
+  protected final FlipYXTensorInterp<Scalar> flipYXTensorInterp;
 
   /** @param image as a matrix
    * @param range effective size of image in coordinate space
@@ -44,9 +40,5 @@ public abstract class ImageCostFunction implements CostFunction, Serializable {
 
   public final Tensor scale() {
     return flipYXTensorInterp.scale();
-  }
-
-  public static Tensor origin() {
-    return ORIGIN;
   }
 }

@@ -2,19 +2,16 @@
 package ch.alpine.owl.bot.rn;
 
 import java.io.Serializable;
-import java.util.Collection;
 
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.region.Regions;
 import ch.alpine.sophus.math.MinMax;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.EuclideanNdCenter;
-import ch.alpine.tensor.opt.nd.NdCenterInterface;
+import ch.alpine.tensor.opt.nd.NdCenters;
+import ch.alpine.tensor.opt.nd.NdInsideRadius;
 import ch.alpine.tensor.opt.nd.NdMap;
-import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 import ch.alpine.tensor.sca.Sign;
 
@@ -32,7 +29,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
         : new RnPointcloudRegion(points, radius);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor points;
   private final Scalar radius;
   private final NdMap<Void> ndMap;
@@ -42,18 +39,14 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   private RnPointcloudRegion(Tensor points, Scalar radius) {
     this.points = points.unmodifiable();
     this.radius = radius;
-    MinMax minMax = MinMax.of(points);
-    ndMap = new NdTreeMap<>(minMax.min(), minMax.max(), 5, 20); // magic const
+    ndMap = NdTreeMap.of(MinMax.box(points));
     for (Tensor point : points)
-      ndMap.add(point, null);
+      ndMap.insert(point, null);
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
-    NdCenterInterface distanceInterface = EuclideanNdCenter.of(tensor);
-    Collection<NdMatch<Void>> ndCluster = ndMap.cluster(distanceInterface, 1);
-    Scalar distance = ndCluster.iterator().next().distance();
-    return Scalars.lessEquals(distance, radius);
+  public boolean test(Tensor tensor) {
+    return NdInsideRadius.anyMatch(ndMap, NdCenters.VECTOR_2_NORM.apply(tensor), radius);
   }
 
   public Tensor points() {

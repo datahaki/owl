@@ -4,6 +4,8 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.util.Objects;
 
+import ch.alpine.sophus.math.Region;
+
 public class RegionDifference<T> implements Region<T>, Serializable {
   /** @param belongs
    * @param butNot
@@ -14,7 +16,7 @@ public class RegionDifference<T> implements Region<T>, Serializable {
         Objects.requireNonNull(butNot));
   }
 
-  /***************************************************/
+  // ---
   private final Region<T> belongs;
   private final Region<T> butNot;
 
@@ -24,8 +26,8 @@ public class RegionDifference<T> implements Region<T>, Serializable {
   }
 
   @Override
-  public final boolean isMember(T element) {
-    return belongs.isMember(element) //
-        && !butNot.isMember(element);
+  public final boolean test(T element) {
+    return belongs.test(element) //
+        && !butNot.test(element);
   }
 }

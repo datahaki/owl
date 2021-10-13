@@ -26,11 +26,11 @@ import ch.alpine.tensor.Tensor;
     return new RelaxedDomainQueue(slacks);
   }
 
-  /***************************************************/
+  // ---
   private final EboTracker<GlcNode> eboTracker;
 
   private RelaxedDomainQueue(Tensor slacks) {
-    this.eboTracker = SingleEboTracker.withSet(slacks);
+    this.eboTracker = SingleEboTracker.withList(slacks);
   }
 
   /** Checks whether glcNode's merit precedes or is equally good than any other. If yes, it will be added to the domain map and all

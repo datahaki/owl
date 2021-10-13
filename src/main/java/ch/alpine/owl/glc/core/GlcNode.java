@@ -24,7 +24,7 @@ public interface GlcNode extends StateCostNode {
     return new GlcNodeImpl(flow, stateTime, costFromRoot, minCostToGoal);
   }
 
-  /***************************************************/
+  // ---
   @Override // from Node
   GlcNode parent();
 

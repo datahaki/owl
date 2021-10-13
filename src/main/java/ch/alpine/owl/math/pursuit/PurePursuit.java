@@ -53,7 +53,7 @@ public class PurePursuit implements PursuitInterface {
   public PurePursuit(Optional<Tensor> lookAhead) {
     this.lookAhead = lookAhead;
     ratio = lookAhead.isPresent() //
-        ? ratioPositiveX(lookAhead.get())
+        ? ratioPositiveX(lookAhead.orElseThrow())
         : Optional.empty();
   }
 
@@ -69,6 +69,6 @@ public class PurePursuit implements PursuitInterface {
 
   @Override // from PursuitInterface
   public Tensor ratios() {
-    return Tensors.of(firstRatio().get());
+    return Tensors.of(firstRatio().orElseThrow());
   }
 }

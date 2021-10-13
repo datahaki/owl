@@ -3,19 +3,19 @@ package ch.alpine.sophus.gds;
 
 import java.io.Serializable;
 
+import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.clt.ClothoidBuilder;
+import ch.alpine.sophus.crv.d2.Arrowhead;
+import ch.alpine.sophus.crv.d2.PolygonNormalize;
 import ch.alpine.sophus.decim.LineDistance;
+import ch.alpine.sophus.demo.opt.Spearhead;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.sophus.math.TensorMetric;
-import ch.alpine.sophus.ply.Arrowhead;
-import ch.alpine.sophus.ply.PolygonNormalize;
-import ch.alpine.sophus.ply.Spearhead;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -28,7 +28,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
   private static final Tensor ARROWHEAD = Arrowhead.of(0.2).unmodifiable();
 
   @Override
-  public abstract ClothoidBuilder geodesicInterface();
+  public abstract ClothoidBuilder geodesic();
 
   @Override // from GeodesicDisplay
   public final int dimensions() {
@@ -52,7 +52,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
 
   @Override // from GeodesicDisplay
   public final Tensor matrixLift(Tensor p) {
-    return Se2Matrix.of(p);
+    return GfxMatrix.of(p);
   }
 
   @Override // from GeodesicDisplay
@@ -82,7 +82,7 @@ public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serial
 
   @Override // from GeodesicDisplay
   public final TensorMetric parametricDistance() {
-    return (p, q) -> geodesicInterface().curve(p, q).length();
+    return (p, q) -> geodesic().curve(p, q).length();
   }
 
   @Override // from GeodesicDisplay

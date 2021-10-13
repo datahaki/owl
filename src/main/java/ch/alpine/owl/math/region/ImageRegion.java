@@ -5,22 +5,21 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.sophus.lie.se2.Se2Matrix;
+import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.alg.MatrixQ;
+import ch.alpine.tensor.mat.MatrixQ;
+import ch.alpine.tensor.opt.nd.Box;
 
 /** only the first two coordinates are tested for membership
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
 public class ImageRegion implements Region<Tensor>, Serializable {
-  private static final Tensor ORIGIN = Array.zeros(2).unmodifiable();
-
   /** @param bufferedImage
    * @param range
    * @param outside
@@ -30,11 +29,11 @@ public class ImageRegion implements Region<Tensor>, Serializable {
         Tensors.vector( //
             range.Get(0).number().doubleValue() / bufferedImage.getWidth(), //
             range.Get(1).number().doubleValue() / bufferedImage.getHeight(), 1) //
-            .pmul(Se2Matrix.flipY(bufferedImage.getHeight())),
+            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())),
         outside);
   }
 
-  /***************************************************/
+  // ---
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;
@@ -54,7 +53,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
   }
 
   @Override // from Region
-  public boolean isMember(Tensor tensor) {
+  public boolean test(Tensor tensor) {
     return flipYXTensorInterp.at(tensor);
   }
 
@@ -71,6 +70,10 @@ public class ImageRegion implements Region<Tensor>, Serializable {
   }
 
   public Tensor origin() {
-    return ORIGIN;
+    return range.map(Scalar::zero);
+  }
+
+  public Box box() {
+    return Box.of(origin(), range());
   }
 }

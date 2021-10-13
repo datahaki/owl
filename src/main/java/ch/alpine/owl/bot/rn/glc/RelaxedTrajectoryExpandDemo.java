@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -20,18 +22,16 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.StandardRelaxedLexicographicPlanner;
-import ch.alpine.owl.gui.region.PolygonRegionRender;
 import ch.alpine.owl.gui.ren.BallRegionRender;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
+import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.PolygonRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -87,12 +87,12 @@ public class RelaxedTrajectoryExpandDemo {
     final Tensor stateRoot = Tensors.vector(0.1, 0.1);
     relaxedTrajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
     RelaxedGlcExpand glcExpand = new RelaxedGlcExpand(relaxedTrajectoryPlanner);
-    OwlyFrame owlyFrame = OwlyGui.start();
-    owlyFrame.addBackground(new PolygonRegionRender(relaxedTrajectoryPlanner1Demo.polygonRegion));
-    owlyFrame.addBackground(new BallRegionRender((BallRegion) relaxedTrajectoryPlanner1Demo.regionWithDistance));
-    while (!relaxedTrajectoryPlanner.getBest().isPresent() && owlyFrame.jFrame.isVisible()) {
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.addBackground(new PolygonRegionRender(relaxedTrajectoryPlanner1Demo.polygonRegion));
+    owlFrame.addBackground(new BallRegionRender((BallRegion) relaxedTrajectoryPlanner1Demo.regionWithDistance));
+    while (!relaxedTrajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
       glcExpand.findAny(1);
-      owlyFrame.setGlc(relaxedTrajectoryPlanner);
+      owlFrame.setGlc(relaxedTrajectoryPlanner);
       // animationWriter.append(owlyFrame.offscreen());
       Thread.sleep(1);
     }

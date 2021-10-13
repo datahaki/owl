@@ -1,16 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTImageStateTimeRegion;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.RenderInterface;
-import ch.alpine.owl.gui.win.MouseGoal;
-import ch.alpine.owl.gui.win.OwlyAnimationFrame;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.Region;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
@@ -18,6 +17,7 @@ import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
 import ch.alpine.sophus.hs.r2.Se2Family;
+import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -44,22 +44,22 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
   }
 
   @Override // from AbstractTwdDemo
-  TwdEntity configure(OwlyAnimationFrame owlyAnimationFrame) {
-    owlyAnimationFrame.add(twdxTEntity);
+  TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
+    owlAnimationFrame.add(twdxTEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), twdxTEntity::getStateTimeNow, trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlyAnimationFrame, twdxTEntity, plannerConstraint);
-    owlyAnimationFrame.addBackground((RenderInterface) region);
+    MouseGoal.simple(owlAnimationFrame, twdxTEntity, plannerConstraint);
+    owlAnimationFrame.addBackground((RenderInterface) region);
     {
       RenderInterface renderInterface = new LidarEmulator( //
           LIDAR_RAYTRACER, () -> twdxTEntity.getStateTimeNow(), trajectoryRegionQuery);
-      owlyAnimationFrame.addBackground(renderInterface);
+      owlAnimationFrame.addBackground(renderInterface);
     }
-    owlyAnimationFrame.geometricComponent.setOffset(200, 400);
+    owlAnimationFrame.geometricComponent.setOffset(200, 400);
     return twdxTEntity;
   }
 

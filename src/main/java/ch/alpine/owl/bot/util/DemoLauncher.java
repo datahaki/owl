@@ -19,14 +19,14 @@ import javax.swing.WindowConstants;
 import ch.alpine.java.lang.ClassDiscovery;
 import ch.alpine.java.lang.ClassPaths;
 import ch.alpine.java.lang.ClassVisitor;
-import ch.alpine.owl.gui.win.BaseFrame;
+import ch.alpine.java.win.BaseFrame;
 
 /** scans repository for classes that implement {@link DemoInterface}
  * DemoLauncher creates a gui that allows to start these classes. */
 public enum DemoLauncher {
   ;
   private static final int BUTTON_HEIGHT = 24;
-  private static final Comparator<Class<?>> CLASSNAMECOMPARATOR = new Comparator<Class<?>>() {
+  private static final Comparator<Class<?>> CLASSNAMECOMPARATOR = new Comparator<>() {
     @Override
     public int compare(Class<?> c1, Class<?> c2) {
       return c1.getName().compareToIgnoreCase(c2.getName());
@@ -60,7 +60,7 @@ public enum DemoLauncher {
         JButton jButton = new JButton(cls.getSimpleName());
         jButton.addActionListener(event -> {
           try {
-            DemoInterface demoInterface = (DemoInterface) cls.newInstance();
+            DemoInterface demoInterface = (DemoInterface) cls.getDeclaredConstructor().newInstance();
             BaseFrame baseFrame = demoInterface.start();
             baseFrame.jFrame.setTitle(demoInterface.getClass().getSimpleName());
             baseFrame.jFrame.setBounds(100, 100, 1200, 800);

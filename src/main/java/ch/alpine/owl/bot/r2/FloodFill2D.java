@@ -38,7 +38,7 @@ public class FloodFill2D {
     return of(image, ttl, seeds(image));
   }
 
-  /***************************************************/
+  // ---
   private final List<Integer> dimensions;
   private final Tensor array;
   private final Tensor image;
@@ -94,14 +94,14 @@ public class FloodFill2D {
       for (int c1 = 0; c1 < list.get(1); ++c1)
         if (Scalars.isZero(tensor.Get(c0, c1))) {
           boolean flag = false;
-          if (0 < c0)
-            flag |= Scalars.nonZero(tensor.Get(c0 - 1, c1 + 0));
-          if (c0 + 1 < list.get(0))
-            flag |= Scalars.nonZero(tensor.Get(c0 + 1, c1 + 0));
-          if (0 < c1)
-            flag |= Scalars.nonZero(tensor.Get(c0 + 0, c1 - 1));
-          if (c1 + 1 < list.get(1))
-            flag |= Scalars.nonZero(tensor.Get(c0 + 0, c1 + 1));
+          if (0 < c0 && !flag)
+            flag = Scalars.nonZero(tensor.Get(c0 - 1, c1 + 0));
+          if (c0 + 1 < list.get(0) && !flag)
+            flag = Scalars.nonZero(tensor.Get(c0 + 1, c1 + 0));
+          if (0 < c1 && !flag)
+            flag = Scalars.nonZero(tensor.Get(c0 + 0, c1 - 1));
+          if (c1 + 1 < list.get(1) && !flag)
+            flag = Scalars.nonZero(tensor.Get(c0 + 0, c1 + 1));
           if (flag)
             set.add(Tensors.vector(c0, c1));
         }

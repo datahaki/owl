@@ -4,13 +4,13 @@ package ch.alpine.owl.bot.ap;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.java.win.OwlFrame;
+import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.win.OwlyFrame;
-import ch.alpine.owl.gui.win.OwlyGui;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -26,9 +26,9 @@ import ch.alpine.tensor.qty.Degree;
     // StateTimeRaster stateTimeRaster = ApTrajectoryPlanner.stateTimeRaster();
     StandardTrajectoryPlanner standardTrajectoryPlanner = ApTrajectoryPlanner.apStandardTrajectoryPlanner();
     // ---
-    OwlyFrame owlyFrame = OwlyGui.start();
-    owlyFrame.geometricComponent.setOffset(300, 300);
-    owlyFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
+    OwlFrame owlFrame = OwlGui.start();
+    owlFrame.geometricComponent.setOffset(300, 300);
+    owlFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
     // owlyFrame.addBackground(RegionRenders.create(region));
     // owlyFrame.addBackground(RegionRenders.create(sphericalRegion));
     // owlyFrame.addBackground(RenderElements.create(stateTimeRaster));
@@ -47,10 +47,10 @@ import ch.alpine.tensor.qty.Degree;
     // ---
     if (optional.isPresent()) {
       System.out.println(1);
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());
+      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    owlyFrame.setGlc(standardTrajectoryPlanner);
+    owlFrame.setGlc(standardTrajectoryPlanner);
     // OwlyFrame owlyFrame2 = OwlyGui.glc(standardTrajectoryPlanner);
   }
 }
