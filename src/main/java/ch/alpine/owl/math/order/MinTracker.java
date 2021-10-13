@@ -3,9 +3,7 @@ package ch.alpine.owl.math.order;
 
 import java.util.Collection;
 
-/** Tracks minimal elements of an ordered set.
- *
- * @param <T> */
+/** Tracks minimal elements of an ordered set. */
 public interface MinTracker<T> {
   /** Compares an element x of a set to the current list of minimal elements
    * and modifies the set of minimal elements accordingly.

@@ -58,7 +58,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     super(false, ManifoldDisplays.CL_ONLY);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
+    JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
     container.add("West", jScrollPane);
     // ---

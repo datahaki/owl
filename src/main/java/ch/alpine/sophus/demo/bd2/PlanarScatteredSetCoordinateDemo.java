@@ -31,7 +31,7 @@ import ch.alpine.tensor.Tensors;
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(dequeGenesisProperties);
     fieldsPanel.addUniversalListener(this::recompute);
-    container.add("West", fieldsPanel.getJScrollPane());
+    container.add("West", fieldsPanel.createJScrollPane());
     // ---
     ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;
     actionPerformed(manifoldDisplay);

@@ -125,7 +125,7 @@ public abstract class RLTrajectoryPlanner implements TrajectoryPlanner, Serializ
   @Override // from TreePlanner
   public final Optional<GlcNode> getBestOrElsePeek() {
     // Queue#peek() returns the head of queue, or null if queue is empty
-    return Optional.ofNullable(getBest().orElse(openQueue.peek()));
+    return Optional.ofNullable(getBest().orElseGet(() -> openQueue.peek()));
   }
 
   @Override // from TreePlanner

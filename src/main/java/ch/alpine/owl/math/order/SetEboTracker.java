@@ -27,7 +27,7 @@ public class SetEboTracker<K> extends AbstractEboTracker<K> {
     super(slacks, candidateSet);
   }
 
-  @Override // from AbstractLexSemiMinTracker
+  @Override // from AbstractEboTracker
   protected void trim(Pair<K> applicantPair, Collection<Pair<K>> candidateSet, Collection<K> discardedKeys) {
     Iterator<Pair<K>> iterator = candidateSet.iterator();
     while (iterator.hasNext()) {

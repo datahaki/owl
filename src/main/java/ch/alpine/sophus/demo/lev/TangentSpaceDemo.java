@@ -44,7 +44,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(iterativeAffineProperties);
-    container.add("West", fieldsPanel.getJScrollPane());
+    container.add("West", fieldsPanel.createJScrollPane());
     Tensor sequence = Tensor.of(CirclePoints.of(15).multiply(RealScalar.of(2)).stream().skip(5).map(PadRight.zeros(3)));
     sequence.set(Scalar::zero, 0, Tensor.ALL);
     setControlPointsSe2(sequence);

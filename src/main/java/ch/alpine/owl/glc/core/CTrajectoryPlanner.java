@@ -115,7 +115,7 @@ public abstract class CTrajectoryPlanner implements TrajectoryPlanner, Serializa
   @Override // from TreePlanner
   public final Optional<GlcNode> getBestOrElsePeek() {
     // Queue#peek() returns the head of queue, or null if queue is empty
-    return Optional.ofNullable(getBest().orElse(queue.peek()));
+    return Optional.ofNullable(getBest().orElseGet(() -> queue.peek()));
   }
 
   @Override // from TreePlanner

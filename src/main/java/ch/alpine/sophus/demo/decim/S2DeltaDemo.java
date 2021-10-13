@@ -72,7 +72,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(param);
     fieldsPanel.addUniversalListener(this::compute);
-    container.add("West", fieldsPanel.getJScrollPane());
+    container.add("West", fieldsPanel.createJScrollPane());
     compute();
   }
 

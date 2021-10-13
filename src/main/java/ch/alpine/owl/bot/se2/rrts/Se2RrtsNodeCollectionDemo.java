@@ -59,7 +59,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
+    JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
     container.add("West", jScrollPane);
     // ---

@@ -37,7 +37,7 @@ public class UbongoBackground extends AbstractDemo {
 
   public UbongoBackground() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new PanelFieldsEditor(this).getJScrollPane());
+    container.add("West", new PanelFieldsEditor(this).createJScrollPane());
   }
 
   public Tensor noise(List<Integer> list) {

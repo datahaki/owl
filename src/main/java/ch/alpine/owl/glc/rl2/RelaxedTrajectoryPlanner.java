@@ -136,7 +136,7 @@ public abstract class RelaxedTrajectoryPlanner implements TrajectoryPlanner, Ser
 
   @Override // from TreePlanner
   public final Optional<GlcNode> getBestOrElsePeek() {
-    return Optional.ofNullable(getBest().orElse(globalQueue.peekBest()));
+    return Optional.ofNullable(getBest().orElseGet(() -> globalQueue.peekBest()));
   }
 
   @Override // from TreePlanner

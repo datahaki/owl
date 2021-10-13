@@ -11,9 +11,7 @@ import java.util.LinkedHashSet;
  * Be aware that neg. transitive orders are transitive as well and
  * thus work for this MinTracker but with significant performance loss.
  * 
- * Maintains complete set of representatives of the minimal equivalence classes.
- * 
- * @param <T> type of elements to compare */
+ * Maintains complete set of representatives of the minimal equivalence classes. */
 public class RepresentativeNegTransitiveMinTracker<T> extends NegTransitiveMinTracker<T> {
   public static <T> MinTracker<T> withList(OrderComparator<T> orderComparator) {
     return new RepresentativeNegTransitiveMinTracker<>(orderComparator, new LinkedHashSet<>());

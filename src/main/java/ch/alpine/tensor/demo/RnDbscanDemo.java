@@ -51,7 +51,7 @@ public class RnDbscanDemo extends AbstractDemo {
 
   public RnDbscanDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
+    JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(200, 200));
     container.add("West", jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
