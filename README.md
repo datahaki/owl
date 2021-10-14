@@ -2,7 +2,7 @@
 
 # ch.alpine.owl <a href="https://travis-ci.com/datahaki/owl"><img src="https://travis-ci.com/datahaki/owl.svg?branch=master" alt="Build Status"></a>
 
-Library for motion planning in Java, version `0.6.0`
+Library for motion planning in Java, version `0.6.1`
 
 The library was developed with the following objectives in mind
 * suitable for use in safety-critical real-time systems
@@ -187,7 +187,7 @@ Specify `repository` and `dependency` of the owl library in the `pom.xml` file o
   <dependency>
     <groupId>ch.alpine</groupId>
     <artifactId>owl</artifactId>
-    <version>0.6.0</version>
+    <version>0.6.1</version>
   </dependency>
 </dependencies>
 ```
