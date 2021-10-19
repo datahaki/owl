@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 import javax.swing.JSlider;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.opt.GeodesicCausalFilters;
 import ch.alpine.sophus.flt.WindowSideExtrapolation;

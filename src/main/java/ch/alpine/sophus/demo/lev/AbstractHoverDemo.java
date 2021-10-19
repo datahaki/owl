@@ -9,9 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;

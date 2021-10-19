@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
+import ch.alpine.java.img.FloodFill2D;
 import ch.alpine.java.img.ImageBlackWhiteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

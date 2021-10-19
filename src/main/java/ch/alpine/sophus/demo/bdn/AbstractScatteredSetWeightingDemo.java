@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.JToggleButton;
 
-import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.gds.ManifoldDisplay;

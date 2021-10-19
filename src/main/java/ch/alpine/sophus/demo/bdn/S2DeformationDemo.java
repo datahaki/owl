@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.bdn;
 
 import java.awt.Dimension;
 
-import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplays;

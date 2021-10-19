@@ -37,7 +37,7 @@ public enum DemoLauncher {
     List<Class<?>> demos = new ArrayList<>();
     ClassVisitor classVisitor = new ClassVisitor() {
       @Override
-      public void classFound(String jarfile, Class<?> cls) {
+      public void accept(String jarfile, Class<?> cls) {
         if (DemoInterface.class.isAssignableFrom(cls)) {
           int modifiers = cls.getModifiers();
           if (Modifier.isPublic(modifiers) && !Modifier.isAbstract(modifiers))

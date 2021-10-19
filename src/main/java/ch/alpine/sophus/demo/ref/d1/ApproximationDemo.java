@@ -11,10 +11,10 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;

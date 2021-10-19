@@ -4,11 +4,11 @@ package ch.alpine.sophus.gds;
 import java.awt.Dimension;
 import java.util.List;
 
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.ref.FieldPanel;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.owl.bot.util.DemoInterface;
 
 public abstract class GeodesicDisplayDemo extends AbstractDemo implements DemoInterface {

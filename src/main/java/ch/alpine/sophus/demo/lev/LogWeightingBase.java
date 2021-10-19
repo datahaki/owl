@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;

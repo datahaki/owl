@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;

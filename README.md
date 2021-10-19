@@ -1,6 +1,6 @@
 ![alpine_877](https://user-images.githubusercontent.com/4012178/116814864-1b1a1580-ab5b-11eb-97e6-1441af4ececa.png)
 
-# ch.alpine.owl <a href="https://travis-ci.com/datahaki/owl"><img src="https://travis-ci.com/datahaki/owl.svg?branch=master" alt="Build Status"></a>
+# ch.alpine.owl
 
 Library for motion planning in Java, version `0.6.1`
 

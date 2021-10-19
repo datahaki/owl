@@ -7,10 +7,10 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PointsRender;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;

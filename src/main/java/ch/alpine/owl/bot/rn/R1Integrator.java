@@ -34,7 +34,7 @@ public enum R1Integrator implements Integrator {
     Scalar v0 = x.Get(1);
     Scalar a2 = a.multiply(RationalScalar.HALF);
     return Tensors.of( //
-        a2.multiply(h).add(v0).multiply(h).add(p0), // Series.of(Tensors.of(p0, v0, a2)).apply(h),
+        a2.multiply(h).add(v0).multiply(h).add(p0), // Polynomial.of(Tensors.of(p0, v0, a2)).apply(h),
         a.multiply(h).add(v0));
   }
 }

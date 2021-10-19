@@ -11,8 +11,8 @@ import java.util.Objects;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.crv.d2.HilbertPolygon;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.lev.LeversRender;

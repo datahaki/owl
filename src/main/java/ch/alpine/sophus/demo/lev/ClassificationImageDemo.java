@@ -18,10 +18,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.ren.PointsRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;

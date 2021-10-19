@@ -19,12 +19,12 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.StandardMenu;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.StandardMenu;
 import ch.alpine.sophus.demo.Curvature2DRender;
 import ch.alpine.sophus.demo.curve.AbstractCurvatureDemo;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;

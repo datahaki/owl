@@ -17,7 +17,6 @@ import ch.alpine.tensor.sca.Sign;
 /** for single integrator state space
  * use with {@link EulerIntegrator} */
 public class R2Flows implements FlowsInterface, Serializable {
-  // ---
   private final Scalar speed;
 
   public R2Flows(Scalar speed) {

@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
 import ch.alpine.sophus.demo.opt.GeodesicFilters;

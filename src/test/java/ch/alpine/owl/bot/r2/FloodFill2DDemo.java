@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.r2;
 import java.io.IOException;
 import java.util.List;
 
+import ch.alpine.java.img.FloodFill2D;
 import ch.alpine.owl.math.ImageGradient;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

@@ -6,9 +6,9 @@ import java.awt.Container;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 
-import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.opt.InsideConvexHullLogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.gds.H2Display;

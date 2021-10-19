@@ -15,9 +15,9 @@ import javax.swing.JSlider;
 
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.ManifoldDisplay;

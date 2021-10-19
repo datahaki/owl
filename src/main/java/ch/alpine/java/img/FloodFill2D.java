@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.bot.r2;
+package ch.alpine.java.img;
 
 import java.util.HashSet;
 import java.util.List;
