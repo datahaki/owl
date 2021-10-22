@@ -2,6 +2,7 @@
 package ch.alpine.ubongo;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -37,7 +38,7 @@ public class UbongoBackground extends AbstractDemo {
 
   public UbongoBackground() {
     Container container = timerFrame.jFrame.getContentPane();
-    container.add("West", new PanelFieldsEditor(this).createJScrollPane());
+    container.add(BorderLayout.WEST, new PanelFieldsEditor(this).createJScrollPane());
   }
 
   public Tensor noise(List<Integer> list) {

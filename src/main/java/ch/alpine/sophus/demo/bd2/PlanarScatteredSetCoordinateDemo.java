@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.bd2;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -31,7 +32,7 @@ import ch.alpine.tensor.Tensors;
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(dequeGenesisProperties);
     fieldsPanel.addUniversalListener(this::recompute);
-    container.add("West", fieldsPanel.createJScrollPane());
+    container.add(BorderLayout.WEST, fieldsPanel.createJScrollPane());
     // ---
     ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;
     actionPerformed(manifoldDisplay);

@@ -103,8 +103,8 @@ import ch.alpine.tensor.sca.Clips;
         // ---
         Tensor ttfs = Tensors.empty();
         VisualSet visualSet = new VisualSet();
-        visualSet.setAxesLabelX("time [s]");
-        visualSet.setAxesLabelY("cost");
+        visualSet.getAxisX().setLabel("time [s]");
+        visualSet.getAxisY().setLabel("cost");
         for (int rep = 0; rep < REPS; rep++) {
           System.out.println("iteration " + (rep + 1));
           run(lane, visualSet, ttfs, geometricLayer, task, rep + 1);
@@ -117,7 +117,7 @@ import ch.alpine.tensor.sca.Clips;
         writer.println(summary.replace("\n", System.lineSeparator()));
         System.out.println("\n" + summary + "\n");
         JFreeChart jFreeChart = ListPlot.of(visualSet);
-        jFreeChart.getXYPlot().setDomainAxis(new LogarithmicAxis(visualSet.getAxesLabelX()));
+        jFreeChart.getXYPlot().setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
         List<MinMax> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
             .map(points -> MinMax.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
         jFreeChart.getXYPlot().getRangeAxis().setRange( //

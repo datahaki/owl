@@ -53,8 +53,8 @@ import ch.alpine.tensor.ext.HomeDirectory;
   private static JFreeChart plot( //
       String filename, String diagramTitle, String axisLabelX, String axisLabelY, VisualSet visualSet) {
     visualSet.setPlotLabel(diagramTitle);
-    visualSet.setAxesLabelX(axisLabelX);
-    visualSet.setAxesLabelY(axisLabelY);
+    visualSet.getAxisX().setLabel(axisLabelX);
+    visualSet.getAxisY().setLabel(axisLabelY);
     return ListPlot.of(visualSet);
   }
 

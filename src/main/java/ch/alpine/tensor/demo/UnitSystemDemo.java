@@ -63,14 +63,14 @@ public class UnitSystemDemo {
         });
         jToolBar.add(jButton);
       }
-      jPanel.add("North", jToolBar);
+      jPanel.add(BorderLayout.NORTH, jToolBar);
     }
     update(unitSystem);
     jTextArea.setFont(FONT2);
-    jPanel.add("Center", new JScrollPane(jTextArea));
-    jPane.add("Center", jPanel);
+    jPanel.add(BorderLayout.CENTER, new JScrollPane(jTextArea));
+    jPane.add(BorderLayout.CENTER, jPanel);
     jLabel.setFont(FONT);
-    jPane.add("North", jLabel);
+    jPane.add(BorderLayout.NORTH, jLabel);
     jFrame.setContentPane(jPane);
     jFrame.setBounds(100, 100, 600, 900);
   }

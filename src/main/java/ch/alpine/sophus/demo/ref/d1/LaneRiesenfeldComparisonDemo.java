@@ -77,13 +77,13 @@ import ch.alpine.tensor.red.Quantile;
     ManifoldDisplay geodesicDisplay = manifoldDisplay();
     VisualSet visualSet1 = new VisualSet();
     visualSet1.setPlotLabel("Curvature");
-    visualSet1.setAxesLabelX("length");
-    visualSet1.setAxesLabelY("curvature");
+    visualSet1.getAxisX().setLabel("length");
+    visualSet1.getAxisY().setLabel("curvature");
     // ---
     VisualSet visualSet2 = new VisualSet();
     visualSet2.setPlotLabel("Curvature d/ds");
-    visualSet2.setAxesLabelX("length");
-    visualSet2.setAxesLabelY("curvature d/ds");
+    visualSet2.getAxisX().setLabel("length");
+    visualSet2.getAxisY().setLabel("curvature d/ds");
     for (int i = 0; i < CURVE_SUBDIVISION_SCHEMES.size(); ++i) {
       Tensor refined = curve(geometricLayer, graphics, i);
       if (jToggleCurvature.isSelected() && 1 < refined.length()) {

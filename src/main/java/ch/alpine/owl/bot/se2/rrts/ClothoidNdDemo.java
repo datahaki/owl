@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -60,7 +61,7 @@ public class ClothoidNdDemo extends ControlPointsDemo {
     Container container = timerFrame.jFrame.getContentPane();
     JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
-    container.add("West", jScrollPane);
+    container.add(BorderLayout.WEST, jScrollPane);
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);

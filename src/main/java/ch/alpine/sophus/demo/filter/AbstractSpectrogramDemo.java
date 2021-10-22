@@ -102,7 +102,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
         int dimensions = speeds.get(0).length();
         VisualSet visualSet = new VisualSet();
         visualSet.setPlotLabel(plotLabel());
-        visualSet.setAxesLabelX("sample no.");
+        visualSet.getAxisX().setLabel("sample no.");
         Tensor domain = Range.of(0, speeds.length());
         final int width = timerFrame.geometricComponent.jComponent.getWidth();
         int offset_y = 0;

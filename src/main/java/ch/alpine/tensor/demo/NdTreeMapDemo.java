@@ -61,7 +61,7 @@ import ch.alpine.tensor.sca.Abs;
     // Container container = timerFrame.jFrame.getContentPane();
     // JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
     // jScrollPane.setPreferredSize(new Dimension(200, 200));
-    // container.add("West", jScrollPane);
+    // container.add(BorderLayout.WEST, jScrollPane);
     // timerFrame.geometricComponent.setOffset(100, 600);
   }
 
