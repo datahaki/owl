@@ -4,13 +4,13 @@ package ch.alpine.sophus.gds;
 import java.awt.Dimension;
 import java.util.function.Function;
 
+import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dot;
-import ch.alpine.tensor.img.ArrayPlot;
 
 /** @see ArrayPlot */
 public interface GeodesicArrayPlot {

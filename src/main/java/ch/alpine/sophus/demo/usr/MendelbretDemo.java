@@ -3,6 +3,7 @@ package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 
+import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
 import ch.alpine.tensor.RealScalar;
@@ -12,8 +13,8 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Min;
@@ -47,7 +48,7 @@ import ch.alpine.tensor.red.Nest;
         image.set(Min.of(Vector2Norm.of(tensor.extract(0, 2)), RealScalar.of(1)), x, y);
       }
     }
-    Tensor tensor = ArrayPlot.of(image, ColorDataGradients.CLASSIC);
+    Tensor tensor = Raster.of(image, ColorDataGradients.CLASSIC);
     Export.of(HomeDirectory.Pictures(MendelbretDemo.class.getSimpleName() + ".png"), tensor);
   }
 }

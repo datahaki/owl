@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Random;
 
+import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
@@ -67,6 +68,7 @@ import ch.alpine.tensor.sca.Abs;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    RenderQuality.setQuality(graphics);
     graphics.setColor(Color.GRAY);
     Tensor points = Tensor.of(pointsAll.stream().limit(param.count.number().intValue()));
     for (Tensor point : points) {

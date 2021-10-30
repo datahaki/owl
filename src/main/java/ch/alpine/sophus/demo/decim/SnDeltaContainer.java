@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.fig.ListPlot;
+import ch.alpine.java.fig.Spectrogram;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.sophus.hs.HsDifferences;
 import ch.alpine.sophus.hs.sn.SnManifold;
@@ -15,7 +16,6 @@ import ch.alpine.sophus.hs.sn.TSnMemberQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.fft.Spectrogram;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
 

@@ -8,13 +8,14 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.ResourceData;
 
@@ -26,7 +27,7 @@ import ch.alpine.tensor.io.ResourceData;
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         CURVE_SUBDIVISION.cyclic(waypoints), true, //
         RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
-    Tensor image = ArrayPlot.of(imageCostFunction.image(), ColorDataGradients.CLASSIC);
+    Tensor image = Raster.of(imageCostFunction.image(), ColorDataGradients.CLASSIC);
     BufferedImage bufferedImage = ImageFormat.of(image);
     JFrame frame = new JFrame() {
       @Override

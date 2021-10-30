@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
+import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.AxesRender;
@@ -41,10 +42,10 @@ import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorFormat;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.num.Boole;
@@ -139,7 +140,7 @@ import ch.alpine.tensor.sca.Sign;
           // pix = bufferedImage.getWidth() * 2;
         }
         {
-          Tensor image = ArrayPlot.of(neg, ColorDataGradients.TEMPERATURE);
+          Tensor image = Raster.of(neg, ColorDataGradients.TEMPERATURE);
           BufferedImage bufferedImage = ImageFormat.of(image);
           graphics.drawImage(bufferedImage, 0, 32 + arrayPlotRender.height(), //
               bufferedImage.getWidth() * magnify, //

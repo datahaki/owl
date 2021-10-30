@@ -35,7 +35,7 @@ import ch.alpine.tensor.Tensors;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricLayer.pushMatrix(GfxMatrix.of(supplier.get().state()));
-    graphics.drawImage(bufferedImage, AffineTransforms.toAffineTransform(geometricLayer.getMatrix().dot(matrix)), null);
+    graphics.drawImage(bufferedImage, AffineTransforms.of(geometricLayer.getMatrix().dot(matrix)), null);
     geometricLayer.popMatrix();
   }
 }

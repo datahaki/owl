@@ -62,7 +62,7 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricLayer.pushMatrix(pixel2model);
     graphics.drawImage(bufferedImage, //
-        AffineTransforms.toAffineTransform(geometricLayer.getMatrix()), null);
+        AffineTransforms.of(geometricLayer.getMatrix()), null);
     geometricLayer.popMatrix();
   }
 

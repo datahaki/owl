@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>java</artifactId>
-			<version>0.1.7</version>
+			<version>0.1.9</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.formdev</groupId>
 			<artifactId>flatlaf</artifactId>
-			<version>1.5</version>
+			<version>1.6.1</version>
 		</dependency>
 
 		<dependency>

@@ -21,8 +21,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.nrm.Vector1Norm;
 import ch.alpine.tensor.qty.QuantityMagnitude;
@@ -80,7 +80,7 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
     directory.mkdir();
     for (ColorDataGradients colorDataGradients : ColorDataGradients.values()) {
       File file = new File(directory, String.format("%s.png", colorDataGradients));
-      Export.of(file, ArrayPlot.of(matrix, colorDataGradients));
+      Export.of(file, Raster.of(matrix, colorDataGradients));
     }
   }
 }

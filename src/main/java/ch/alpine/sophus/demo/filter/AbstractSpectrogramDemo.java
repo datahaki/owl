@@ -12,6 +12,7 @@ import java.util.Objects;
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.fig.ListPlot;
+import ch.alpine.java.fig.Spectrogram;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
@@ -25,7 +26,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.fft.Spectrogram;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;

@@ -27,7 +27,7 @@ public enum CenterNorms {
 
     @Override
     protected Tensor shape() {
-      return CirclePoints.of(40);
+      return CirclePoints.of(45);
     }
   },
   _INF {

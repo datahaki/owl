@@ -68,7 +68,7 @@ public class ImageRender implements RenderInterface {
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricLayer.pushMatrix(pixel2model);
-    graphics.drawImage(bufferedImage, AffineTransforms.toAffineTransform(geometricLayer.getMatrix()), null);
+    graphics.drawImage(bufferedImage, AffineTransforms.of(geometricLayer.getMatrix()), null);
     if (DRAW_BOX) {
       graphics.setColor(COLOR);
       graphics.draw(geometricLayer.toPath2D(box, true));

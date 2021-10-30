@@ -49,7 +49,7 @@ public class ShadowMapArea implements RenderInterface {
     Tensor translate = IdentityMatrix.of(3);
     translate.set(RealScalar.of(-image.length()), 1, 2);
     Tensor tmatrix = invsc.pmul(translate);
-    Area obstacleArea = area.createTransformedArea(AffineTransforms.toAffineTransform(tmatrix));
+    Area obstacleArea = area.createTransformedArea(AffineTransforms.of(tmatrix));
     Rectangle2D rInit = new Rectangle2D.Double();
     rInit.setFrame(obstacleArea.getBounds());
     initArea = new Area(rInit);
@@ -99,7 +99,7 @@ public class ShadowMapArea implements RenderInterface {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     final Tensor matrix = geometricLayer.getMatrix();
-    Area plotArea = new Area(shadowArea.createTransformedArea(AffineTransforms.toAffineTransform(matrix)));
+    Area plotArea = new Area(shadowArea.createTransformedArea(AffineTransforms.of(matrix)));
     graphics.setColor(colorShadowFill);
     graphics.fill(plotArea);
     graphics.setColor(colorShadowDraw);
