@@ -3,7 +3,6 @@ package ch.alpine.sophus.demo.analysis;
 
 import java.io.IOException;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.bm.BiinvariantMeans;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;

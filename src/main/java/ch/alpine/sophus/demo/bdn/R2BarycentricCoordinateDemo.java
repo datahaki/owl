@@ -16,7 +16,6 @@ import java.util.stream.IntStream;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.AxesRender;

@@ -34,7 +34,6 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.num.Derive;
 import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
@@ -98,7 +97,7 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
     if (VectorQ.of(_coeffs) && //
         NumberQ.all(_coeffs)) {
       ScalarUnaryOperator f0 = Polynomial.of(_coeffs);
-      ScalarUnaryOperator f1 = Polynomial.of(Derive.of(_coeffs));
+      ScalarUnaryOperator f1 = Polynomial.derivative(_coeffs);
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());

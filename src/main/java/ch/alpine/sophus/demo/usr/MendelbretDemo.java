@@ -3,7 +3,6 @@ package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
 import ch.alpine.tensor.RealScalar;

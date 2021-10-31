@@ -3,7 +3,6 @@ package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.fit.RigidMotionFit;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

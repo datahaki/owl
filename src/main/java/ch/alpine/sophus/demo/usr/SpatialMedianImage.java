@@ -11,7 +11,6 @@ import java.util.Optional;
 import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.fit.WeiszfeldMethod;

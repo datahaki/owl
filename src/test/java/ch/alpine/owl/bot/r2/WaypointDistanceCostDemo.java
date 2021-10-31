@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;

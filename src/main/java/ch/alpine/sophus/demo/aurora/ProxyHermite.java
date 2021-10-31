@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.Function;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;

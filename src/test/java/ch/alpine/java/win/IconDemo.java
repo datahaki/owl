@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.java.win;
 
-import ch.alpine.java.fig.ArrayPlot;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
