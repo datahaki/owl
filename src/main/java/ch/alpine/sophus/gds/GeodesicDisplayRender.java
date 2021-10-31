@@ -12,6 +12,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -26,7 +27,7 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
 
   public static void render_s2(GeometricLayer geometricLayer, Graphics2D graphics) {
     Point2D center = geometricLayer.toPoint2D(0, 0);
-    float fradius = geometricLayer.model2pixelWidth(1);
+    float fradius = geometricLayer.model2pixelWidth(RealScalar.ONE);
     float[] dist = { 0.0f, 0.70f, 1.0f };
     Color[] colors = { CENTER, new Color(224, 224, 224, 128), BORDER };
     Paint paint = new RadialGradientPaint(center, fradius, dist, colors);
@@ -61,14 +62,14 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
       graphics.draw(geometricLayer.toPath2D(points));
     } else //
     if (geodesicDisplay instanceof H2Display) {
-      double modelWidth = 5;
+      Scalar modelWidth = RealScalar.of(5);
       Point2D center = geometricLayer.toPoint2D(0, 0);
       float fradius = geometricLayer.model2pixelWidth(modelWidth);
       float[] dist = { 0.0f, 0.30f, 1.0f };
       Color[] colors = { BORDER, new Color(224, 224, 224, 128), CENTER };
       Paint paint = new RadialGradientPaint(center, fradius, dist, colors);
       graphics.setPaint(paint);
-      graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(RealScalar.of(modelWidth))));
+      graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(modelWidth)));
       // ---
       // graphics.setColor(BORDER);
       // graphics.draw(geometricLayer.toPath2D(CIRCLE, true));

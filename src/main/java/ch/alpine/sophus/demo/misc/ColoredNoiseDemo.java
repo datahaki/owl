@@ -57,7 +57,7 @@ public class ColoredNoiseDemo extends GeodesicDisplayDemo {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Point2D point2d = geometricLayer.toPoint2D(0, 0);
-    float width = geometricLayer.model2pixelWidth(10);
+    float width = geometricLayer.model2pixelWidth(RealScalar.of(10));
     jFreeChart.draw(graphics, new Rectangle((int) point2d.getX(), (int) point2d.getY(), (int) width, (int) (width * 2 / 3)));
   }
 

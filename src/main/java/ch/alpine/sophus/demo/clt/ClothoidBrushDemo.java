@@ -4,6 +4,7 @@ package ch.alpine.sophus.demo.clt;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
@@ -33,18 +34,17 @@ import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.ResourceData;
-import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
 
 @ReflectionMarker
 public class ClothoidBrushDemo extends ControlPointsDemo {
   @FieldPreferredWidth(width = 200)
-  public Tensor shiftL = Tensors.vector(-1, -1, 0);
+  public Tensor shiftL = Tensors.vector(-1.3, -1.3, 0);
   @FieldPreferredWidth(width = 200)
   public Tensor shiftR = Tensors.vector(0, 0, 0);
   @FieldSlider
-  @FieldClip(min = "0.01", max = "1")
-  public final Scalar beta = RealScalar.of(0.05);
+  @FieldClip(min = "0.00", max = "1")
+  public Scalar round = RealScalar.of(0.1);
+  public static final Scalar beta = RealScalar.of(0.05);
   public Boolean shade = true;
   @FieldSlider
   @FieldClip(min = "0", max = "1.5708")
@@ -58,14 +58,13 @@ public class ClothoidBrushDemo extends ControlPointsDemo {
     super(true, ManifoldDisplays.CLC_ONLY);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
-    Tensor image = ResourceData.of("/letter/cal1/hi/a.png");
+    Tensor image = ResourceData.of("/letter/cal2/hi/a.png");
     if (Objects.nonNull(image)) {
       image = image.map(s -> Scalars.isZero(s) ? RealScalar.of(192) : s);
       BufferedImage bufferedImage = ImageFormat.of(image);
       ImageRender imageRender = ImageRender.range(bufferedImage, Tensors.vector(10, 10));
       timerFrame.geometricComponent.addRenderInterfaceBackground(imageRender);
     }
-    setControlPointsSe2(RandomVariate.of(UniformDistribution.of(0, 8), 1 * 2, 3));
     timerFrame.geometricComponent.setOffset(100, 700);
     timerFrame.geometricComponent.addRenderInterfaceBackground(AxesRender.INSTANCE);
   }
@@ -86,13 +85,23 @@ public class ClothoidBrushDemo extends ControlPointsDemo {
       Tensor crv1 = ClothoidSampler.of(clothoidBuilder.curve(beg1, end1), beta);
       {
         graphics.setColor(new Color(0, 0, 0, 128));
-        graphics.setStroke(new BasicStroke(1));
+        float model2pixelWidth = geometricLayer.model2pixelWidth(round);
+        graphics.setStroke(new BasicStroke(model2pixelWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         Tensor polygon = Join.of(crv0, Reverse.of(crv1));
-        graphics.fill(geometricLayer.toPath2D(polygon));
+        {
+          Path2D path2d = geometricLayer.toPath2D(polygon, true);
+          graphics.draw(path2d);
+          graphics.fill(path2d);
+        }
         geometricLayer.pushMatrix(GfxMatrix.translation(10, 0));
         graphics.setColor(new Color(64, 64, 64));
-        graphics.fill(geometricLayer.toPath2D(polygon));
+        {
+          Path2D path2d = geometricLayer.toPath2D(polygon, true);
+          graphics.draw(path2d);
+          graphics.fill(path2d);
+        }
         geometricLayer.popMatrix();
+        graphics.setStroke(new BasicStroke(1));
       }
     }
     renderControlPoints(geometricLayer, graphics);
