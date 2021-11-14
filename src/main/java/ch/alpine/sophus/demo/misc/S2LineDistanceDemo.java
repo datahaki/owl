@@ -38,6 +38,7 @@ import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
@@ -64,7 +65,7 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
     setControlPointsSe2(INITIAL);
     // ---
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
-    timerFrame.geometricComponent.setModel2Pixel(Tensors.vector(5, 5, 1).pmul(model2pixel));
+    timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(5, 5, 1), model2pixel));
     // ---
     timerFrame.geometricComponent.setOffset(400, 400);
     setMidpointIndicated(false);
@@ -80,12 +81,12 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
   private Tensor pixel2model(BufferedImage bufferedImage) {
     double rad = rad();
     Tensor range = Tensors.vector(rad, rad).multiply(RealScalar.TWO); // model
-    Tensor scale = Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()) //
-        .pmul(range.map(Scalar::reciprocal)); // model 2 pixel
+    Tensor scale = Times.of(Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()), //
+        range.map(Scalar::reciprocal)); // model 2 pixel
     return Dot.of( //
         GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
-        AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())));
+        Times.of(AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
+            , GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {

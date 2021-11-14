@@ -32,6 +32,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
+import ch.alpine.tensor.red.Times;
 
 public class S2HermiteSubdivisionDemo extends ControlPointsDemo {
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE1;
@@ -57,7 +58,7 @@ public class S2HermiteSubdivisionDemo extends ControlPointsDemo {
       }
     });
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
-    timerFrame.geometricComponent.setModel2Pixel(Tensors.vector(5, 5, 1).pmul(model2pixel));
+    timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(5, 5, 1),model2pixel));
     timerFrame.geometricComponent.setOffset(400, 400);
     // ---
     setControlPointsSe2(Tensors.fromString("{{-0.3, 0.0, 0}, {0.0, 0.5, 0.0}, {0.5, 0.5, 1}, {0.5, -0.4, 0}}"));

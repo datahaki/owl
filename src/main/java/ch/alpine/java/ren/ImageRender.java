@@ -15,6 +15,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.mat.MatrixQ;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 
 /** Hint:
@@ -34,8 +35,8 @@ public class ImageRender implements RenderInterface {
   /** @param bufferedImage
    * @param range vector of length 2, i.e. the extensions of the image in model coordinates */
   public static ImageRender range(BufferedImage bufferedImage, Tensor range) {
-    Tensor scale = Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()) //
-        .pmul(range.map(Scalar::reciprocal));
+    Tensor scale = Times.of(Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()) //
+        , range.map(Scalar::reciprocal));
     return scale(bufferedImage, scale);
   }
 
@@ -44,8 +45,8 @@ public class ImageRender implements RenderInterface {
   public static ImageRender scale(BufferedImage bufferedImage, Tensor scale) {
     VectorQ.requireLength(scale, 2);
     return new ImageRender(bufferedImage, //
-        Append.of(scale.map(Scalar::reciprocal), RealScalar.ONE) //
-            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())));
+        Times.of(Append.of(scale.map(Scalar::reciprocal), RealScalar.ONE), //
+            GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 
   // ---

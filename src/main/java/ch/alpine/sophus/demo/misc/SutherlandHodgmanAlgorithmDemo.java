@@ -31,6 +31,7 @@ import ch.alpine.tensor.io.ScalarArray;
 import ch.alpine.tensor.lie.Cross;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.red.Mean;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class SutherlandHodgmanAlgorithmDemo extends AbstractPlaceDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict();
@@ -53,7 +54,7 @@ import ch.alpine.tensor.red.Mean;
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     if (isMoving) {
       Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
-      Se2Bijection se2Bijection = new Se2Bijection(mouse.pmul(Tensors.vector(1, 1, 0.3)));
+      Se2Bijection se2Bijection = new Se2Bijection(Times.of(mouse,Tensors.vector(1, 1, 0.3)));
       Tensor sequence = Tensor.of(getGeodesicControlPoints().stream().map(se2Bijection.forward()));
       new PathRender(COLOR_DATA_INDEXED.getColor(0), 1.5f).setCurve(sequence, true).render(geometricLayer, graphics);
       new PathRender(COLOR_DATA_INDEXED.getColor(3), 1.5f).setCurve(CIRCLE, true).render(geometricLayer, graphics);

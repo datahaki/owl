@@ -4,7 +4,6 @@ package ch.alpine.sophus.gds;
 import java.awt.Dimension;
 import java.util.List;
 
-import ch.alpine.java.ref.FieldPanel;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
 import ch.alpine.javax.swing.SpinnerLabel;
@@ -19,7 +18,6 @@ public abstract class GeodesicDisplayDemo extends AbstractDemo implements DemoIn
     if (list.isEmpty())
       throw new RuntimeException();
     this.list = list;
-    manifoldDisplaySpinner.setFont(FieldPanel.FONT);
     manifoldDisplaySpinner.setList(list);
     manifoldDisplaySpinner.setValue(list.get(0));
     if (1 < list.size()) {

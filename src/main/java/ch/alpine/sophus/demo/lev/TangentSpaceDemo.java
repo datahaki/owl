@@ -34,6 +34,7 @@ import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.lie.r2.ConvexHull;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class TangentSpaceDemo extends AbstractPlaceDemo {
   private static final int WIDTH = 300;
@@ -74,7 +75,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
         GenesisDeque dequeGenesis = (GenesisDeque) iterativeAffineProperties.genesis();
         Deque<Evaluation> deque = dequeGenesis.deque(levers2);
         {
-          Tensor leversVirtual = deque.peekLast().factors().pmul(levers2);
+          Tensor leversVirtual = Times.of(deque.peekLast().factors(), levers2);
           geometricLayer.pushMatrix(GfxMatrix.translation(origin));
           {
             graphics.setColor(Color.GRAY);

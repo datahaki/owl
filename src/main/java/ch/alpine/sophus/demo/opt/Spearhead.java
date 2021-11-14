@@ -12,6 +12,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.red.Times;
 
 public enum Spearhead {
   ;
@@ -23,7 +24,7 @@ public enum Spearhead {
    * @param width
    * @return */
   public static Tensor of(Tensor p, Scalar width) {
-    Tensor[] cp = { p, TIP, p.pmul(REF) };
+    Tensor[] cp = { p, TIP, Times.of(p,REF) };
     return Tensor.of(IntStream.range(0, 3) //
         .mapToObj(index -> ClothoidTransition.of(CLOTHOID_BUILDER, cp[index], flip(cp[(index + 1) % 3])).linearized(width)) //
         .flatMap(Tensor::stream) //

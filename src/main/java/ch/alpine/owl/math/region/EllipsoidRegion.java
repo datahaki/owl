@@ -9,6 +9,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Sign;
 
 /** EllipsoidRegion implements an axis aligned elliptic region in the vector space R^n.
@@ -45,7 +46,7 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements Serializa
 
   @Override // from SignedDistanceFunction<Tensor>
   public Scalar signedDistance(Tensor tensor) {
-    return Vector2NormSquared.of(tensor.subtract(center).pmul(invert)).subtract(RealScalar.ONE);
+    return Vector2NormSquared.of(Times.of(tensor.subtract(center),invert)).subtract(RealScalar.ONE);
   }
 
   public Tensor center() {

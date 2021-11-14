@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.itp.Interpolation;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 
 /** LagrangeInterpolation with extrapolation */
@@ -46,7 +47,7 @@ public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {1, 0, 2.1}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-          Tensor.of(tensor.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+          Tensor.of(tensor.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
     }
     // ---
     jSlider.setPreferredSize(new Dimension(500, 28));

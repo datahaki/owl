@@ -21,6 +21,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.red.Nest;
+import ch.alpine.tensor.red.Times;
 
 public class GeodesicMeanFilterDemo extends ControlPointsDemo {
   @FieldInteger
@@ -33,7 +34,7 @@ public class GeodesicMeanFilterDemo extends ControlPointsDemo {
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-          Tensor.of(tensor.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+          Tensor.of(tensor.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
     }
   }
 

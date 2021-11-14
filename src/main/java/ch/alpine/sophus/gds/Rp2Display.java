@@ -18,6 +18,7 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.Orthogonalize;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sqrt;
@@ -90,7 +91,7 @@ public class Rp2Display extends RpnDisplay {
         frame.get(1).extract(0, 2))));
     skew.set(RealScalar.ONE, 2, 2);
     Scalar r = CLIP_Z.rescale(xyz.Get(2));
-    skew = Tensors.of(r, r, RealScalar.ONE).pmul(skew);
+    skew = Times.of(Tensors.of(r, r, RealScalar.ONE),skew);
     return GfxMatrix.translation(toPoint(xyz)).dot(skew);
   }
 

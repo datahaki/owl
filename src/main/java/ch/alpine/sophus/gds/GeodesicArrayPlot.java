@@ -11,6 +11,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dot;
+import ch.alpine.tensor.red.Times;
 
 /** @see ArrayPlot */
 public interface GeodesicArrayPlot {
@@ -30,9 +31,9 @@ public interface GeodesicArrayPlot {
    * @return */
   static Tensor pixel2model(Tensor xy, Tensor range, Dimension dimension) {
     // pixel 2 model
-    Tensor scale = range.pmul(Tensors.vector(dimension.width, dimension.height).map(Scalar::reciprocal));
+    Tensor scale = Times.of(range, Tensors.vector(dimension.width, dimension.height).map(Scalar::reciprocal));
     return Dot.of( //
         GfxMatrix.translation(xy), //
-        AppendOne.FUNCTION.apply(scale).pmul(GfxMatrix.flipY(dimension.height)));
+        Times.of(AppendOne.FUNCTION.apply(scale), GfxMatrix.flipY(dimension.height)));
   }
 }

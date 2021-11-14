@@ -18,6 +18,7 @@ import ch.alpine.tensor.itp.NearestInterpolation;
 import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 
 /** rotated gradient of potential function */
@@ -52,7 +53,7 @@ public class ImageGradientInterpolation implements Serializable {
     Tensor image = _displayOrientation(_image);
     MatrixQ.require(image);
     List<Integer> dims = Dimensions.of(image);
-    scale = Tensors.vector(dims).pmul(range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dims), range.map(Scalar::reciprocal));
     Tensor field = N.DOUBLE.of(ImageGradient.rotated(image)).multiply(amp);
     interpolation = function.apply(field);
     maxNormGradient = field.flatten(1).map(Vector2Norm::of).reduce(Max::of).orElseThrow();
@@ -61,7 +62,7 @@ public class ImageGradientInterpolation implements Serializable {
   /** @param vector of length 2
    * @return potentially unmodifiable */
   public Tensor get(Tensor vector) {
-    Tensor index = vector.pmul(scale);
+    Tensor index = Times.of(vector, scale);
     try {
       return interpolation.get(index);
     } catch (Exception exception) {
