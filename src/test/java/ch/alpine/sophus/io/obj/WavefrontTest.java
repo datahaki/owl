@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.ext.ReadLine;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Min;
 import ch.alpine.tensor.sca.Sign;
 import junit.framework.TestCase;
@@ -30,14 +31,14 @@ public class WavefrontTest extends TestCase {
       for (WavefrontObject wavefrontObject : objects) {
         Tensor faces = wavefrontObject.faces();
         if (0 < faces.length()) {
-          MinMax minMax = MinMax.of(faces);
+          CoordinateBoundingBox minMax = CoordinateBounds.of(faces);
           assertEquals(minMax.min().map(Sign::requirePositiveOrZero), minMax.min());
           ScalarUnaryOperator hi_bound = Min.function(RealScalar.of(vertices.length() - 1));
           assertEquals(minMax.max().map(hi_bound), minMax.max());
         }
         Tensor nrmls = wavefrontObject.normals();
         if (0 < nrmls.length()) {
-          MinMax minMax = MinMax.of(nrmls);
+          CoordinateBoundingBox minMax = CoordinateBounds.of(nrmls);
           assertEquals(minMax.min().map(Sign::requirePositiveOrZero), minMax.min());
           ScalarUnaryOperator hi_bound = Min.function(RealScalar.of(normals.length() - 1));
           assertEquals(minMax.max().map(hi_bound), minMax.max());

@@ -10,11 +10,11 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 enum StaticHelper {
   ;
-  public static void draw(Box box, GeometricLayer geometricLayer, Graphics2D graphics) {
+  public static void draw(CoordinateBoundingBox box, GeometricLayer geometricLayer, Graphics2D graphics) {
     Tensor lc = box.min();
     Tensor rc = box.max();
     Tensor l1 = lc.copy();

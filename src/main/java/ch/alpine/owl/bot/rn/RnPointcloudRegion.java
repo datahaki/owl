@@ -4,11 +4,11 @@ package ch.alpine.owl.bot.rn;
 import java.io.Serializable;
 
 import ch.alpine.owl.math.region.Regions;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdInsideRadius;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -39,7 +39,7 @@ public class RnPointcloudRegion implements Region<Tensor>, Serializable {
   private RnPointcloudRegion(Tensor points, Scalar radius) {
     this.points = points.unmodifiable();
     this.radius = radius;
-    ndMap = NdTreeMap.of(MinMax.box(points));
+    ndMap = NdTreeMap.of(CoordinateBounds.of(points));
     for (Tensor point : points)
       ndMap.insert(point, null);
   }

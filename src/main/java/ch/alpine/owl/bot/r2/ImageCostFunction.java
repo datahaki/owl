@@ -10,7 +10,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.mat.MatrixQ;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public abstract class ImageCostFunction implements CostFunction, Serializable {
   private final Tensor image;
@@ -35,8 +36,8 @@ public abstract class ImageCostFunction implements CostFunction, Serializable {
     return image.unmodifiable();
   }
 
-  public final Box range() {
-    return Box.of(range.map(Scalar::zero), range);
+  public final CoordinateBoundingBox range() {
+    return CoordinateBounds.of(range.map(Scalar::zero), range);
   }
 
   public final Tensor scale() {

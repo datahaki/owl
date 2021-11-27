@@ -13,7 +13,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.mat.MatrixQ;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Times;
 
 /** only the first two coordinates are tested for membership
@@ -74,7 +75,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
     return range.map(Scalar::zero);
   }
 
-  public Box box() {
-    return Box.of(origin(), range());
+  public CoordinateBoundingBox box() {
+    return CoordinateBounds.of(origin(), range());
   }
 }

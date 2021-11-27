@@ -16,13 +16,14 @@ import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum R2Demo {
   ;
   static OwlFrame show() {
     int wid = 7;
-    Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
+    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;

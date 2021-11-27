@@ -12,7 +12,7 @@ import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -24,7 +24,7 @@ public class Se2NdMap<T> {
   private final NdMap<T> ndMap;
   private final Function<T, Tensor> se2Projection;
 
-  public Se2NdMap(Box box, Function<T, Tensor> se2Projection) {
+  public Se2NdMap(CoordinateBoundingBox box, Function<T, Tensor> se2Projection) {
     Integers.requireEquals(box.dimensions(), 2);
     ndMap = NdTreeMap.of(box);
     this.se2Projection = se2Projection;

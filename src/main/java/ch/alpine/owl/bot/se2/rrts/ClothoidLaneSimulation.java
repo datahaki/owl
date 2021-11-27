@@ -36,7 +36,6 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2ClothoidDisplay;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -45,6 +44,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.mat.DiagonalMatrix;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.red.Min;
@@ -118,16 +119,16 @@ import ch.alpine.tensor.sca.Clips;
         System.out.println("\n" + summary + "\n");
         JFreeChart jFreeChart = ListPlot.of(visualSet);
         jFreeChart.getXYPlot().setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
-        List<MinMax> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
-            .map(points -> MinMax.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
+        List<CoordinateBoundingBox> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
+            .map(points -> CoordinateBounds.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
         jFreeChart.getXYPlot().getRangeAxis().setRange( //
             Math.max(0., 0.9 * minMaxes.stream() //
-                .map(MinMax::min) //
+                .map(CoordinateBoundingBox::min) //
                 .map(Scalar.class::cast) //
                 .reduce(Min::of) //
                 .get().number().doubleValue()), //
             1.1 * minMaxes.stream() //
-                .map(MinMax::max) //
+                .map(CoordinateBoundingBox::max) //
                 .map(Scalar.class::cast) //
                 .reduce(Max::of) //
                 .get().number().doubleValue());

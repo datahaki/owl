@@ -24,7 +24,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /* package */ class ClothoidRrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
@@ -41,7 +41,7 @@ import ch.alpine.tensor.opt.nd.Box;
 
   // ---
   /** @param stateTime initial position of entity */
-  public ClothoidRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box) {
+  public ClothoidRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //

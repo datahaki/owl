@@ -20,7 +20,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** variant of {@link ClothoidLaneRrtsEntity} intended for simulation
  * TODO GJOEL perhaps create intermediate class with common code to derive from */
@@ -29,7 +29,7 @@ import ch.alpine.tensor.opt.nd.Box;
   private final Scalar delayHint;
 
   /** @param stateTime initial position of entity */
-  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box, boolean greedy, Scalar delayHint,
+  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box, boolean greedy, Scalar delayHint,
       Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
     super( //
         new SimpleEpisodeIntegrator( //

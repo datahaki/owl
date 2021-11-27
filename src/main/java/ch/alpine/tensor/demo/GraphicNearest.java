@@ -4,7 +4,7 @@ package ch.alpine.tensor.demo;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdEntry;
@@ -22,7 +22,7 @@ public class GraphicNearest<V> extends NdCollectNearest<V> {
   }
 
   @Override
-  public boolean isViable(Box box) {
+  public boolean isViable(CoordinateBoundingBox box) {
     StaticHelper.draw(box, geometricLayer, graphics);
     return super.isViable(box);
   }

@@ -27,7 +27,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.CirclePoints;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** demo shows the use of a cost image that is added to the distance cost
  * which gives an incentive to stay clear of obstacles */
@@ -43,7 +43,7 @@ public class R2VectorCostDemo implements DemoInterface {
     Tensor waypoints = CirclePoints.of(30).multiply(RealScalar.of(10));
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(10), new Dimension(120, 100));
-    Box range = imageCostFunction.range();
+    CoordinateBoundingBox range = imageCostFunction.range();
     System.out.println(range);
     Tensor image = imageCostFunction.image();
     R2Entity r2Entity = new R2VecEntity(episodeIntegrator, trajectoryControl) {

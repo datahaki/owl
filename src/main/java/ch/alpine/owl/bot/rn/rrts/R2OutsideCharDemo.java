@@ -22,12 +22,13 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum R2OutsideCharDemo {
   ;
   public static void main(String[] args) throws Exception {
-    Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
+    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
     Region<Tensor> imageRegion = R2ImageRegions.outside_0b36(box.max());
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(imageRegion, RealScalar.of(0.1));

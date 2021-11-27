@@ -17,12 +17,13 @@ import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum R2NoiseDemo {
   ;
   public static void main(String[] args) {
-    Box box = Box.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
+    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.noise1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;

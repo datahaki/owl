@@ -38,7 +38,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.num.Pi;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum Se2RrtsPlannerServerDemo {
   ;
@@ -63,7 +63,7 @@ import ch.alpine.tensor.opt.nd.Box;
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new Se2RrtsNodeCollection(transitionSpace, Box.of(lbounds, ubounds), 3);
+        return new Se2RrtsNodeCollection(transitionSpace, CoordinateBounds.of(lbounds, ubounds), 3);
       }
 
       @Override

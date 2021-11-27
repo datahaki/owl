@@ -23,13 +23,14 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum R2ImageDemo {
   ;
   public static void main(String[] args) throws Exception {
     Tensor range = Tensors.vector(7, 7);
-    Box box = Box.of(Array.zeros(2), range);
+    CoordinateBoundingBox box = CoordinateBounds.of(Array.zeros(2), range);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", range, false);
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);

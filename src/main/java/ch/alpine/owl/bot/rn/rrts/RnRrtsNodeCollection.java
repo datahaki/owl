@@ -9,7 +9,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdCollectNearest;
 import ch.alpine.tensor.opt.nd.NdMap;
@@ -21,7 +21,7 @@ public final class RnRrtsNodeCollection implements RrtsNodeCollection {
 
   /** @param lbounds vector
    * @param ubounds vector */
-  public RnRrtsNodeCollection(Box box) {
+  public RnRrtsNodeCollection(CoordinateBoundingBox box) {
     ndMap = NdTreeMap.of(box); // magic const
   }
 

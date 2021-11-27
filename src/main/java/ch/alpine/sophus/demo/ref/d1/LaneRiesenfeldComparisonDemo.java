@@ -25,7 +25,6 @@ import ch.alpine.sophus.demo.CurveVisualSet;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -33,6 +32,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Differences;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Quantile;
 
@@ -119,14 +120,14 @@ import ch.alpine.tensor.red.Quantile;
         Tensor tensorMin = Tensor.of(visualSet2.visualRows().stream() //
             .map(VisualRow::points) //
             .map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of) //
-            .map(MinMax::min));
+            .map(CoordinateBounds::of) //
+            .map(CoordinateBoundingBox::min));
         double min = Quantile.of(tensorMin).apply(RationalScalar.of(1, CURVE_SUBDIVISION_SCHEMES.size() - 1)).number().doubleValue();
         Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream() //
             .map(VisualRow::points) //
             .map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of) //
-            .map(MinMax::max));
+            .map(CoordinateBounds::of) //
+            .map(CoordinateBoundingBox::max));
         double max = Quantile.of(tensorMax) //
             .apply(RationalScalar.of(CURVE_SUBDIVISION_SCHEMES.size() - 1, CurveSubdivisionHelper.LANE_RIESENFELD.size() - 1)).number().doubleValue();
         if (min != max)
