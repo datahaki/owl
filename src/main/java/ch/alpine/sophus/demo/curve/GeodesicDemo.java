@@ -9,7 +9,7 @@ import java.util.List;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;

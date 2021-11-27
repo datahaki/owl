@@ -16,8 +16,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.javax.swing.SpinnerLabel;

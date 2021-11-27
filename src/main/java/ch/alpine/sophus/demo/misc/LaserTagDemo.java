@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplays;

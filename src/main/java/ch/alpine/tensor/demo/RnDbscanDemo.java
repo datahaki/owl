@@ -16,9 +16,9 @@ import javax.swing.JScrollPane;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.java.ref.PanelFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnDbscan;
 import ch.alpine.sophus.math.sample.BiasedBoxRandomSample;

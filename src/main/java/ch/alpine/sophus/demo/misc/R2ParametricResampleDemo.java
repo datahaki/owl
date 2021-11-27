@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.sophus.crv.d2.ParametricResample;

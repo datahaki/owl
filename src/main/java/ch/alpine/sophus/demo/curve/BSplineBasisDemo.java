@@ -7,9 +7,9 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.demo.ControlPointsDemo;

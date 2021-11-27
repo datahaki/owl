@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.Curvature2DRender;

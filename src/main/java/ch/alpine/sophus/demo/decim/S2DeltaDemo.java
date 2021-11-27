@@ -11,9 +11,9 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.PanelFieldsEditor;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;

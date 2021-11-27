@@ -8,11 +8,11 @@ import java.awt.geom.Rectangle2D;
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.sophus.clt.ClothoidDistance;

@@ -20,12 +20,12 @@
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>sophus</artifactId>
-			<version>0.0.5</version>
+			<version>0.0.6</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>java</artifactId>
-			<version>0.2.0</version>
+			<version>0.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.formdev</groupId>
 			<artifactId>flatlaf</artifactId>
-			<version>1.6.1</version>
+			<version>1.6.4</version>
 		</dependency>
 
 		<dependency>

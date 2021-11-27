@@ -26,6 +26,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.MatrixQ;
 
+// TODO implement this as an interface
 public enum RegionRenders {
   ;
   /** raster value 230 get's mapped to color {244, 244, 244, 255}

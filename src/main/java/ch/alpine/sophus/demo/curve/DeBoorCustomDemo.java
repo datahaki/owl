@@ -9,8 +9,8 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
