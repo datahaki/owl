@@ -15,12 +15,12 @@ import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;

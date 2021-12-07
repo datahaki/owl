@@ -9,12 +9,12 @@ import java.util.Set;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;

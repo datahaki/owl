@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.ControlPointsDemo;

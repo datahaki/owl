@@ -7,12 +7,12 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
 import ch.alpine.sophus.demo.Curvature2DRender;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;

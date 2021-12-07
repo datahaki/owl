@@ -11,8 +11,8 @@ import java.util.Random;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.PanelFieldsEditor;
 import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.MeshRender;
 import ch.alpine.java.win.AbstractDemo;

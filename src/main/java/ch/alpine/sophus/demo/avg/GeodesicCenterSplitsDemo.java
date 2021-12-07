@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.avg;
 
-import ch.alpine.java.ref.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.sym.SymGeodesic;
 import ch.alpine.sophus.sym.SymScalar;

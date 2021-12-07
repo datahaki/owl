@@ -7,11 +7,11 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;

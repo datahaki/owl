@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JSlider;
 
-import ch.alpine.java.ref.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
 import ch.alpine.sophus.gds.S2Display;

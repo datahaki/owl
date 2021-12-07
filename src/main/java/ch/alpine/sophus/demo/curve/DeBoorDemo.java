@@ -9,9 +9,9 @@ import java.awt.geom.Point2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldSelection;
 import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

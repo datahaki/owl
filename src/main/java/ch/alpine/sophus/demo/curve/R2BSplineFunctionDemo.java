@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ToolbarFieldsEditor;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
