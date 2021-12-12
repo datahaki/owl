@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<title>Image gallery</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8"> 
+<meta name="description" content="Some.">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+<meta name="author" content="Jan Hakenberg">
+
+<link href="../script/all.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div id="main-wrapper">
+
+<script type="text/javascript">
+  (function() {
+
+    var isCanvasSupported = function () {
+      var elem = document.createElement('canvas');
+      return !!(elem.getContext && elem.getContext('2d'));
+    };
+
+    if( isCanvasSupported() ) {
+
+      var canvas = document.getElementById('broken-glass'),
+          context = canvas.getContext('2d'),
+          width = canvas.width = Math.min(800, window.innerWidth),
+          height = canvas.height,  
+          numTriangles = 100,
+          rand = function(min, max){
+            return Math.floor( (Math.random() * (max - min + 1) ) + min);
+          };
+          
+      window.drawTriangles = function(){
+        context.clearRect(0, 0, width, height);
+        var hue = rand(0,360);
+        var increment = 80 / numTriangles;
+        for(var i = 0; i < numTriangles; i++) { 
+            context.beginPath();      
+            context.moveTo(rand(0,width), rand(0,height) );  
+            context.lineTo(rand(0,width), rand(0,height) );
+            context.lineTo(rand(0,width), rand(0,height) );
+            context.globalAlpha = 0.5;
+            context.fillStyle = 'hsl('+Math.round(hue)+', '+rand(15,60)+'%, '+ rand(10, 60) +'%)';      
+            context.closePath();    
+            context.fill();
+
+            hue+=increment;
+            if(hue > 360) hue = 0;
+        }
+        canvas.style.cssText = '-webkit-filter: contrast(115%);';
+      };
+
+      document.getElementById('logo-title').style.color = 'rgba(250, 250, 250, 0.95)';
+      drawTriangles();
+
+      var el = document.getElementById('logo');
+      el.onclick = function() {
+        drawTriangles();
+      };
+    }
+
+  })();
+</script>
+
+<script>
+    document.write('<script src=third-party-libs/' +
+    ('__proto__' in {} ? 'zepto' : 'jquery') +
+    '.min.js><\/script>')
+</script>
+
+<script src="../script/zepto.js"></script>
+<script src="../script/jquery.js"></script>
+
+<div class="html-code grid-of-images">
+<div class="popup-gallery">
+
+<!--<a href="image/d8072e73.jpg"><img src="thumb/d8072e73.jpg"></a>-->
+

@@ -1,12 +1,15 @@
 // code by jph
 package ch.alpine.tensor.demo;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ch.alpine.tensor.RationalScalar;
@@ -14,10 +17,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.img.ImageResize;
+import ch.alpine.tensor.img.ImageRotate;
 import ch.alpine.tensor.img.Thumbnail;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.FileHash;
 import ch.alpine.tensor.io.Import;
+import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.sca.Sqrt;
 
 public class ImageGallery {
@@ -33,8 +38,22 @@ public class ImageGallery {
     dst_image.mkdir();
     Stream.of(src.listFiles()) //
         .filter(this::isMissing) //
-        .parallel() //
         .forEach(this::handle);
+    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dst, "index.html")))) {
+      for (String string : ResourceData.lines("/html/gallery/head.html"))
+        bufferedWriter.write(string + "\n");
+      // ---
+      List<File> list = Stream.of(dst_thumb.listFiles()).sorted((f1, f2) -> Long.compare(f1.lastModified(), f2.lastModified())).collect(Collectors.toList());
+      for (File file : list) {
+        String name = file.getName();
+        bufferedWriter.write("<a href=\"image/" + name + "\"><img src=\"thumb/" + name + "\"></a>\n");
+      }
+      // ---
+      for (String string : ResourceData.lines("/html/gallery/tail.html"))
+        bufferedWriter.write(string + "\n");
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
   }
 
   private boolean isMissing(File file) {
@@ -82,7 +101,14 @@ public class ImageGallery {
   }
 
   public static Tensor read(File file) throws IOException {
-    return Import.of(file);
+    String string = file.getName();
+    String substring = string.substring(0, string.lastIndexOf('.'));
+    Tensor tensor = Import.of(file);
+    if (substring.endsWith("_2r")) {
+      System.out.println("rotate " + string);
+      tensor = ImageRotate.cw(tensor);
+    }
+    return tensor;
   }
 
   public static void main(String[] args) {
