@@ -13,7 +13,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldLabel;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.win.LookAndFeels;
@@ -53,7 +53,7 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
   @FieldLabel(text = "S^n line distance method")
   public SnLineDistances snLineDistances = SnLineDistances.DEFAULT;
   @FieldInteger
-  @FieldSelection(array = { "20", "30", "50", "75", "100", "150", "200", "250" })
+  @FieldSelectionArray(values = { "20", "30", "50", "75", "100", "150", "200", "250" })
   public Scalar resolution = RealScalar.of(30);
   @FieldLabel(text = "color data gradient")
   public ColorDataGradients colorDataGradients = ColorDataGradients.PARULA;

@@ -11,7 +11,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
@@ -42,7 +42,7 @@ public class S2HermiteSubdivisionDemo extends ControlPointsDemo {
   @FieldClip(min = "0", max = "8")
   public Scalar refine = RealScalar.of(4);
   // ---
-  @FieldSelection(array = { "1/8", "1/4", "1/2", "1", "3/2", "2" })
+  @FieldSelectionArray(values = { "1/8", "1/4", "1/2", "1", "3/2", "2" })
   public Scalar beta = RealScalar.ONE;
   public Boolean cyclic = false;
   public Boolean derivatives = true;

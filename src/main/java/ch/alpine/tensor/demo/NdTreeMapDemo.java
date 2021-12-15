@@ -14,6 +14,7 @@ import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.LookAndFeels;
@@ -34,6 +35,7 @@ import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
 /* package */ class NdTreeMapDemo extends AbstractDemo {
+  @ReflectionMarker
   public static class Param {
     @FieldPreferredWidth(width = 40)
     @FieldInteger

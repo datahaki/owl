@@ -10,7 +10,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicCatmullRom;
@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.Clips;
 
 public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
   public Scalar refine = RealScalar.of(5);
   @FieldSlider
   @FieldPreferredWidth(width = 300)

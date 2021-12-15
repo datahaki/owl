@@ -13,7 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.decim.CurveDecimation;
@@ -53,11 +53,11 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 
   // ---
   public static class Param {
-    @FieldSelection(array = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
+    @FieldSelectionArray(values = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
     public Scalar width = RealScalar.of(0);
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5" })
+    @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5" })
     public Scalar level = RealScalar.of(2);
-    @FieldSelection(array = { "1", "2", "3" })
+    @FieldSelectionArray(values = { "1", "2", "3" })
     public Scalar degre = RealScalar.of(1);
     public LineDistances type = LineDistances.STANDARD;
     public Boolean error = false;

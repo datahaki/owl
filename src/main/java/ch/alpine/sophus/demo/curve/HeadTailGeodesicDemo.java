@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.demo.ControlPointsDemo;
@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.Round;
 
 public class HeadTailGeodesicDemo extends ControlPointsDemo {
   @FieldInteger
-  @FieldSelection(array = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  @FieldSelectionArray(values = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
   public Scalar refine = RealScalar.of(6);
 
   public HeadTailGeodesicDemo() {

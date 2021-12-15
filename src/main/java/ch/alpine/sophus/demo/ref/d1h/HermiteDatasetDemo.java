@@ -18,7 +18,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
@@ -51,9 +51,9 @@ public class HermiteDatasetDemo extends GeodesicDatasetDemo {
   private final PathRender pathRenderShape = new PathRender(COLOR_RECON, 2f);
   // ---
   private final GokartPoseDataV2 gokartPoseDataV2;
-  @FieldSelection(array = { "1", "2", "5", "10", "25", "50", "100", "250", "500" })
+  @FieldSelectionArray(values = { "1", "2", "5", "10", "25", "50", "100", "250", "500" })
   public Scalar skips = RealScalar.of(50);
-  @FieldSelection(array = { "0", "2", "4", "6", "8", "10", "15", "20" })
+  @FieldSelectionArray(values = { "0", "2", "4", "6", "8", "10", "15", "20" })
   public Scalar shift = RealScalar.of(0);
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
   @FieldSlider

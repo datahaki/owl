@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
@@ -33,10 +33,10 @@ public class BSplineBasisDemo extends ControlPointsDemo {
   private static final Color TICKS_COLOR = new Color(0, 0, 0, 128);
   // ---
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
   public Scalar degree = RealScalar.of(1);
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
   public Scalar refine = RealScalar.of(4);
   public Boolean interp = false;
 

@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.Curvature2DRender;
@@ -25,7 +25,7 @@ import ch.alpine.tensor.red.Times;
 
 public class GeodesicMeanFilterDemo extends ControlPointsDemo {
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
+  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
   public Scalar radius = RealScalar.of(9);
 
   GeodesicMeanFilterDemo() {
