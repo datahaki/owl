@@ -37,14 +37,14 @@ import ch.alpine.tensor.sca.Clips;
 
 public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
   public Scalar refine = RealScalar.of(5);
   @FieldSlider
-  @FieldPreferredWidth(width = 300)
+  @FieldPreferredWidth(300)
   @FieldClip(min = "0", max = "1")
   public Scalar evalAt = RationalScalar.HALF;
   @FieldSlider
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   @FieldClip(min = "0", max = "2")
   public Scalar exponent = RealScalar.ONE;
 

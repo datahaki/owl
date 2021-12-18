@@ -19,7 +19,7 @@ import junit.framework.TestCase;
 
 public class Se2WrapTest extends TestCase {
   static Tensor convertToKey(Tensor eta, TensorUnaryOperator represent, Tensor x) {
-    return Times.of(eta,represent.apply(x)).map(Floor.FUNCTION);
+    return Times.of(eta, represent.apply(x)).map(Floor.FUNCTION);
   }
 
   public void testSe2xT_represent() {

@@ -37,18 +37,18 @@ import ch.alpine.tensor.sca.Abs;
 /* package */ class NdTreeMapDemo extends AbstractDemo {
   @ReflectionMarker
   public static class Param {
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     public Scalar leafSizeMax = RealScalar.of(5);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     @FieldClip(min = "1", max = "10000")
     public Scalar count = RealScalar.of(1000);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     @FieldClip(min = "1", max = "20")
     public Scalar multi = RealScalar.of(10);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     public Scalar pCount = RealScalar.of(4);
     public Boolean nearest = false;

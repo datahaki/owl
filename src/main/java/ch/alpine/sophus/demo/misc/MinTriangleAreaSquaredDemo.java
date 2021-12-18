@@ -37,8 +37,7 @@ import ch.alpine.tensor.red.Times;
     // ---
     Tensor blub = Tensors.fromString("{{1, 0, 0}, {0, 1, 0}, {2, 0, 2.5708}, {1, 0, 2.1}}");
     setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 0), //
-        Tensor.of(blub.stream().map(Times.operator(
-            Tensors.vector(2, 1, 1))))));
+        Tensor.of(blub.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
   }
 
   @Override // from RenderInterface

@@ -122,7 +122,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
       LieDifferences lieDifferences = new LieDifferences(manifoldDisplay.lieExponential());
       LieDifferences lieDifferencesTime = new LieDifferences(RnManifold.INSTANCE);
       Tensor timeDifference = lieDifferencesTime.apply(Tensor.of(navigableMapStateTime().keySet().stream())).map(x -> x.reciprocal());
-      Tensor speeds = Times.of(timeDifference,lieDifferences.apply(refined));
+      Tensor speeds = Times.of(timeDifference, lieDifferences.apply(refined));
       if (0 < speeds.length()) {
         int dimensions = speeds.get(0).length();
         VisualSet visualSet = new VisualSet();

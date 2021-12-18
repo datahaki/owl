@@ -51,13 +51,13 @@ public class HermiteDatasetDemo extends GeodesicDatasetDemo {
   private final PathRender pathRenderShape = new PathRender(COLOR_RECON, 2f);
   // ---
   private final GokartPoseDataV2 gokartPoseDataV2;
-  @FieldSelectionArray(values = { "1", "2", "5", "10", "25", "50", "100", "250", "500" })
+  @FieldSelectionArray(value = { "1", "2", "5", "10", "25", "50", "100", "250", "500" })
   public Scalar skips = RealScalar.of(50);
-  @FieldSelectionArray(values = { "0", "2", "4", "6", "8", "10", "15", "20" })
+  @FieldSelectionArray(value = { "0", "2", "4", "6", "8", "10", "15", "20" })
   public Scalar shift = RealScalar.of(0);
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
   @FieldSlider
-  @FieldPreferredWidth(width = 80)
+  @FieldPreferredWidth(80)
   @FieldInteger
   @FieldClip(min = "0", max = "8")
   public Scalar level = RealScalar.of(3);

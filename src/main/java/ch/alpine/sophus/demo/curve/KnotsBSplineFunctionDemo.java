@@ -32,7 +32,7 @@ import ch.alpine.tensor.red.Times;
 
 public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
   @FieldSlider
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   @FieldClip(min = "0", max = "1")
   public Scalar exponent = RealScalar.ONE;
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);

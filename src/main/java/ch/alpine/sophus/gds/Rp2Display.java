@@ -91,7 +91,7 @@ public class Rp2Display extends RpnDisplay {
         frame.get(1).extract(0, 2))));
     skew.set(RealScalar.ONE, 2, 2);
     Scalar r = CLIP_Z.rescale(xyz.Get(2));
-    skew = Times.of(Tensors.of(r, r, RealScalar.ONE),skew);
+    skew = Times.of(Tensors.of(r, r, RealScalar.ONE), skew);
     return GfxMatrix.translation(toPoint(xyz)).dot(skew);
   }
 

@@ -24,7 +24,7 @@ public enum Spearhead {
    * @param width
    * @return */
   public static Tensor of(Tensor p, Scalar width) {
-    Tensor[] cp = { p, TIP, Times.of(p,REF) };
+    Tensor[] cp = { p, TIP, Times.of(p, REF) };
     return Tensor.of(IntStream.range(0, 3) //
         .mapToObj(index -> ClothoidTransition.of(CLOTHOID_BUILDER, cp[index], flip(cp[(index + 1) % 3])).linearized(width)) //
         .flatMap(Tensor::stream) //

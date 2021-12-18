@@ -40,12 +40,12 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
   private static final int HEIGHT = 300;
 
   public static class Param {
-    @FieldPreferredWidth(width = 50)
-    @FieldSelectionArray(values = { "0", "1/4", "1/2", "3/4", "1" })
+    @FieldPreferredWidth(50)
+    @FieldSelectionArray(value = { "0", "1/4", "1/2", "3/4", "1" })
     public Scalar beta = RealScalar.ZERO;
-    @FieldPreferredWidth(width = 100)
+    @FieldPreferredWidth(100)
     @FieldInteger
-    @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7" })
+    @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7" })
     public Scalar degree = RealScalar.ONE;
     public Boolean lagra = false;
     public Boolean basis = true;

@@ -53,11 +53,11 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 
   // ---
   public static class Param {
-    @FieldSelectionArray(values = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
+    @FieldSelectionArray(value = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
     public Scalar width = RealScalar.of(0);
-    @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5" })
+    @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5" })
     public Scalar level = RealScalar.of(2);
-    @FieldSelectionArray(values = { "1", "2", "3" })
+    @FieldSelectionArray(value = { "1", "2", "3" })
     public Scalar degre = RealScalar.of(1);
     public LineDistances type = LineDistances.STANDARD;
     public Boolean error = false;

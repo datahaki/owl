@@ -50,12 +50,12 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
   private static final Tensor GEODESIC_DOMAIN = Subdivide.of(0.0, 1.0, 11);
   private static final Tensor INITIAL = Tensors.fromString("{{-0.5, 0, 0}, {0.5, 0, 0}}").unmodifiable();
   // ---
-  @FieldLabel(text = "S^n line distance method")
+  @FieldLabel("S^n line distance method")
   public SnLineDistances snLineDistances = SnLineDistances.DEFAULT;
   @FieldInteger
-  @FieldSelectionArray(values = { "20", "30", "50", "75", "100", "150", "200", "250" })
+  @FieldSelectionArray(value = { "20", "30", "50", "75", "100", "150", "200", "250" })
   public Scalar resolution = RealScalar.of(30);
-  @FieldLabel(text = "color data gradient")
+  @FieldLabel("color data gradient")
   public ColorDataGradients colorDataGradients = ColorDataGradients.PARULA;
 
   public S2LineDistanceDemo() {

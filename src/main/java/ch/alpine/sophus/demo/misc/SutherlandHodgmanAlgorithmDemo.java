@@ -54,7 +54,7 @@ import ch.alpine.tensor.red.Times;
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     if (isMoving) {
       Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
-      Se2Bijection se2Bijection = new Se2Bijection(Times.of(mouse,Tensors.vector(1, 1, 0.3)));
+      Se2Bijection se2Bijection = new Se2Bijection(Times.of(mouse, Tensors.vector(1, 1, 0.3)));
       Tensor sequence = Tensor.of(getGeodesicControlPoints().stream().map(se2Bijection.forward()));
       new PathRender(COLOR_DATA_INDEXED.getColor(0), 1.5f).setCurve(sequence, true).render(geometricLayer, graphics);
       new PathRender(COLOR_DATA_INDEXED.getColor(3), 1.5f).setCurve(CIRCLE, true).render(geometricLayer, graphics);

@@ -33,11 +33,11 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
   private BufferedImage bufferedImage;
 
   public static class Param {
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar len = RealScalar.of(50);
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar step = RealScalar.of(73);
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar val = RealScalar.of(0);
   }
 

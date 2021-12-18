@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.Round;
 
 public class HeadTailGeodesicDemo extends ControlPointsDemo {
   @FieldInteger
-  @FieldSelectionArray(values = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
+  @FieldSelectionArray(value = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20" })
   public Scalar refine = RealScalar.of(6);
 
   public HeadTailGeodesicDemo() {

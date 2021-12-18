@@ -46,7 +46,7 @@ import ch.alpine.tensor.io.Primitives;
     public Boolean axes = true;
     public Boolean ctrl = true;
     @FieldSlider
-    @FieldPreferredWidth(width = 100)
+    @FieldPreferredWidth(100)
     @FieldInteger
     @FieldClip(min = "0", max = "4")
     public Scalar refine = RealScalar.of(2);

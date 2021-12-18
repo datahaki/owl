@@ -41,9 +41,9 @@ import ch.alpine.tensor.io.ResourceData;
 @ReflectionMarker
 public class ClothoidBrushDemo extends ControlPointsDemo {
   public final Cache<Tensor, Tensor> cache = Cache.of(ClothoidBrushDemo::sample, 100);
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   public Tensor shiftL = Tensors.vector(-1.3, -1.3, 0);
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   public Tensor shiftR = Tensors.vector(0, 0, 0);
   @FieldSlider
   @FieldClip(min = "0.00", max = "1")
@@ -78,7 +78,7 @@ public class ClothoidBrushDemo extends ControlPointsDemo {
       image = image.map(s -> Scalars.isZero(s) ? RealScalar.of(192) : s);
       BufferedImage bufferedImage = ImageFormat.of(image);
       ImageRender imageRender = ImageRender.range(bufferedImage, Tensors.vector(10, 10));
-//      timerFrame.geometricComponent.addRenderInterfaceBackground(imageRender);
+      // timerFrame.geometricComponent.addRenderInterfaceBackground(imageRender);
     }
     timerFrame.geometricComponent.setOffset(100, 700);
     timerFrame.geometricComponent.addRenderInterfaceBackground(AxesRender.INSTANCE);
@@ -87,8 +87,7 @@ public class ClothoidBrushDemo extends ControlPointsDemo {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
-    
-   if (Objects.nonNull(font)) {
+    if (Objects.nonNull(font)) {
       graphics.setColor(new Color(164, 164, 64));
       graphics.setFont(font);
       graphics.drawString("ABCDEF", 0, 500);

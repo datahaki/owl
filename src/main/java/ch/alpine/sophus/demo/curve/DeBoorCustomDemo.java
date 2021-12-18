@@ -27,7 +27,7 @@ import ch.alpine.tensor.itp.DeBoor;
 public class DeBoorCustomDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   // ---
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   public Tensor knots = Tensors.vector(0, 1);
 
   public DeBoorCustomDemo() {

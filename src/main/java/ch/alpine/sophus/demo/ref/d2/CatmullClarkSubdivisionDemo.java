@@ -29,7 +29,7 @@ public class CatmullClarkSubdivisionDemo extends ControlPointsDemo {
   private static final Tensor ARROWHEAD_LO = Arrowhead.of(0.18);
   // ---
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "5")
   public Scalar refine = RealScalar.of(2);

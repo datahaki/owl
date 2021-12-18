@@ -44,7 +44,7 @@ public class HermiteSubdivisionDemo extends ControlPointsDemo {
   // ---
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "9")
   public Scalar refine = RealScalar.of(6);

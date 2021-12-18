@@ -29,7 +29,7 @@ import ch.alpine.tensor.alg.Subdivide;
 
 /** Bezier function with extrapolation */
 public class BezierFunctionDemo extends AbstractCurvatureDemo {
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   @FieldSlider
   @FieldInteger
   @FieldClip(min = "0", max = "10")

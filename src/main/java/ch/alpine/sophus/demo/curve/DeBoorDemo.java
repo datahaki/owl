@@ -34,7 +34,7 @@ import ch.alpine.tensor.mat.re.Inverse;
   // ---
   @ReflectionMarker
   public static class Param {
-    @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6" })
+    @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6" })
     public Scalar degree = RealScalar.of(1);
   }
 

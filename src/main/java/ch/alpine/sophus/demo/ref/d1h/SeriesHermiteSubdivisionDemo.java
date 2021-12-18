@@ -43,11 +43,11 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
   // ---
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE1;
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "8")
   public Scalar refine = RealScalar.of(4);
-  @FieldPreferredWidth(width = 300)
+  @FieldPreferredWidth(300)
   public Tensor coeffs = Tensors.fromString("{2, 1, -1/5, -1/10}");
   // ---
   public Boolean derivatives = true;

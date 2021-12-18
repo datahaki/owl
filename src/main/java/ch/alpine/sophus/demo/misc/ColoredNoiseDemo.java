@@ -27,12 +27,12 @@ import ch.alpine.tensor.pdf.RandomVariate;
 
 @ReflectionMarker
 public class ColoredNoiseDemo extends GeodesicDisplayDemo {
-  @FieldPreferredWidth(width = 150)
+  @FieldPreferredWidth(150)
   public Scalar alpha = RealScalar.of(2);
-  @FieldPreferredWidth(width = 150)
+  @FieldPreferredWidth(150)
   @FieldInteger
   public Scalar length = RealScalar.of(300);
-  @FieldFuse(text = "generate")
+  @FieldFuse(value = "generate")
   public Boolean generate = true;
   // ---
   private JFreeChart jFreeChart;

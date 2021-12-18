@@ -40,10 +40,10 @@ import ch.alpine.tensor.red.Times;
   public Tensor pixel2model(Dimension dimension) {
     Tensor range = Tensors.of(radius, radius).multiply(RealScalar.TWO); // model
     Tensor scale = Times.of(Tensors.vector(dimension.width, dimension.height) //
-        ,range.map(Scalar::reciprocal)); // model 2 pixel
+        , range.map(Scalar::reciprocal)); // model 2 pixel
     return Dot.of( //
         GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
         Times.of(AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            ,GfxMatrix.flipY(dimension.height)));
+            , GfxMatrix.flipY(dimension.height)));
   }
 }

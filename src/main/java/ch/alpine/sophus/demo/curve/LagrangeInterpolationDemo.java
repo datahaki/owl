@@ -36,7 +36,7 @@ import ch.alpine.tensor.sca.N;
 /** LagrangeInterpolation with extrapolation */
 public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+  @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
   public Scalar refine = RealScalar.of(7);
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 

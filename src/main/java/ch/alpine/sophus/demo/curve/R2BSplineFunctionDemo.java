@@ -24,7 +24,7 @@ import ch.alpine.tensor.itp.BSplineFunctionString;
 /** use of tensor lib {@link BSplineFunction} */
 public class R2BSplineFunctionDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelectionArray(values = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
   public Scalar degree = RealScalar.of(3);
   public Boolean cyclic = false;
 
