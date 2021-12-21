@@ -24,9 +24,9 @@ import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.ext.ArgMin;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.red.ArgMin;
 
 /* package */ class WeightsDemo extends LogWeightingDemo implements SpinnerListener<ManifoldDisplay> {
   private final JToggleButton jToggleAxes = new JToggleButton("axes");

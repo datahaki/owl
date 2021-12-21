@@ -9,9 +9,9 @@ import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
+import ch.alpine.tensor.ext.ArgMax;
+import ch.alpine.tensor.ext.ArgMin;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.red.ArgMax;
-import ch.alpine.tensor.red.ArgMin;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
 
