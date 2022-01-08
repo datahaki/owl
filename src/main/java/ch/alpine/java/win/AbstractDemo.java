@@ -1,8 +1,10 @@
 // code by jph
 package ch.alpine.java.win;
 
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ren.RenderInterface;
 
+@ReflectionMarker
 public abstract class AbstractDemo implements RenderInterface {
   public final TimerFrame timerFrame = new TimerFrame();
 

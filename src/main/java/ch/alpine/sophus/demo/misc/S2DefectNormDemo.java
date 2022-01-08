@@ -18,11 +18,13 @@ import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.win.LookAndFeels;
+import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.opt.SnLineDistances;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.VectorLogManifold;
+import ch.alpine.sophus.hs.sn.SnExponential;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorNorm;
@@ -38,19 +40,21 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
+import ch.alpine.tensor.nrm.FrobeniusNorm;
+import ch.alpine.tensor.nrm.Vector1Norm;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
+import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.Sqrt;
 
 @ReflectionMarker
-public class S2LineDistanceDemo extends ControlPointsDemo {
+public class S2DefectNormDemo extends ControlPointsDemo {
   private static final Stroke STROKE = //
       new BasicStroke(2.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0);
-  private static final Tensor GEODESIC_DOMAIN = Subdivide.of(0.0, 1.0, 11);
-  private static final Tensor INITIAL = Tensors.fromString("{{-0.5, 0, 0}, {0.5, 0, 0}}").unmodifiable();
+  private static final Tensor INITIAL = Tensors.fromString("{{-0.5, 0, 0}, {0.5, 0, 0}, {0, 0.5, 0}, {0, -0.5, 0}}").unmodifiable();
   // ---
   @FieldLabel("S^n line distance method")
   public SnLineDistances snLineDistances = SnLineDistances.DEFAULT;
@@ -59,9 +63,11 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
   public Scalar resolution = RealScalar.of(30);
   @FieldLabel("color data gradient")
   public ColorDataGradients colorDataGradients = ColorDataGradients.PARULA;
+  @FieldLabel("weights")
+  public Tensor user_weights = Tensors.vector(1, 1, 1, 1, 1, 1, 1);
 
-  public S2LineDistanceDemo() {
-    super(false, ManifoldDisplays.S2_ONLY);
+  public S2DefectNormDemo() {
+    super(true, ManifoldDisplays.S2_ONLY);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
     setControlPointsSe2(INITIAL);
@@ -91,8 +97,25 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
             , GfxMatrix.flipY(bufferedImage.getHeight())));
   }
 
+  public class TSF implements TensorScalarFunction {
+    private final Tensor sequence;
+    private final Tensor weights;
+
+    public TSF() {
+      sequence = getGeodesicControlPoints();
+      int n = sequence.length();
+      weights = Vector1Norm.NORMALIZE.apply(N.DOUBLE.of(user_weights.extract(0, n)));
+    }
+
+    @Override
+    public Scalar apply(Tensor xyz) {
+      MeanDefect meanDefect = new MeanDefect(sequence, weights, new SnExponential(xyz));
+      return FrobeniusNorm.of(meanDefect.tangent());
+    }
+  }
+
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {
-    Tensor matrix = Tensors.matrix(array(resolution, tensorNorm()::norm));
+    Tensor matrix = Tensors.matrix(array(resolution, new TSF()));
     return ImageFormat.of(matrix.map(colorDataGradients));
   }
 
@@ -136,9 +159,9 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
     Tensor cp = getGeodesicControlPoints();
     ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(cp.get(0), cp.get(1));
     graphics.setStroke(STROKE);
-    Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(manifoldDisplay::toPoint));
+    // Tensor ms = Tensor.of(GEODESIC_DOMAIN.map(scalarTensorFunction).stream().map(manifoldDisplay::toPoint));
     graphics.setColor(new Color(192, 192, 192));
-    graphics.draw(geometricLayer.toPath2D(ms));
+    // graphics.draw(geometricLayer.toPath2D(ms));
     graphics.setStroke(new BasicStroke());
     // ---
     renderControlPoints(geometricLayer, graphics);
@@ -146,6 +169,6 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
 
   public static void main(String[] args) {
     LookAndFeels.DARK.updateUI();
-    new S2LineDistanceDemo().setVisible(1200, 600);
+    new S2DefectNormDemo().setVisible(1200, 800);
   }
 }

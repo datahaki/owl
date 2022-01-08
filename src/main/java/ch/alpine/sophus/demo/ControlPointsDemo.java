@@ -15,6 +15,7 @@ import java.util.Optional;
 import javax.swing.JButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
@@ -37,6 +38,7 @@ import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Sqrt;
 
 /** class is used in other projects outside of owl */
+@ReflectionMarker
 public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
   /** mouse snaps 20 pixel to control points */
   private static final Scalar PIXEL_THRESHOLD = RealScalar.of(20.0);
