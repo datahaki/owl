@@ -6,11 +6,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldLabel;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
@@ -20,32 +20,30 @@ import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.demo.ControlPointsDemo;
+import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.opt.SnLineDistances;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.VectorLogManifold;
+import ch.alpine.sophus.hs.sn.SnBiinvariantMean;
 import ch.alpine.sophus.hs.sn.SnExponential;
-import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.TensorNorm;
 import ch.alpine.tensor.DoubleScalar;
-import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Dot;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.TensorScalarFunction;
+import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.nrm.FrobeniusNorm;
-import ch.alpine.tensor.nrm.Vector1Norm;
+import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.red.Times;
-import ch.alpine.tensor.sca.Clip;
-import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.Sqrt;
@@ -63,8 +61,9 @@ public class S2DefectNormDemo extends ControlPointsDemo {
   public Scalar resolution = RealScalar.of(30);
   @FieldLabel("color data gradient")
   public ColorDataGradients colorDataGradients = ColorDataGradients.PARULA;
+  public Boolean vector = true;
   @FieldLabel("weights")
-  public Tensor user_weights = Tensors.vector(1, 1, 1, 1, 1, 1, 1);
+  public Tensor user_weights = Tensors.vector(3, 2, -2, 1, 1, 1, 1);
 
   public S2DefectNormDemo() {
     super(true, ManifoldDisplays.S2_ONLY);
@@ -79,32 +78,14 @@ public class S2DefectNormDemo extends ControlPointsDemo {
     setMidpointIndicated(false);
   }
 
-  TensorNorm tensorNorm() {
-    Tensor cp = getGeodesicControlPoints();
-    return 1 < cp.length() //
-        ? snLineDistances.lineDistance().tensorNorm(cp.get(0), cp.get(1))
-        : t -> RealScalar.ZERO;
-  }
-
-  private Tensor pixel2model(BufferedImage bufferedImage) {
-    double rad = rad();
-    Tensor range = Tensors.vector(rad, rad).multiply(RealScalar.TWO); // model
-    Tensor scale = Times.of(Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()), //
-        range.map(Scalar::reciprocal)); // model 2 pixel
-    return Dot.of( //
-        GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
-        Times.of(AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            , GfxMatrix.flipY(bufferedImage.getHeight())));
-  }
-
   public class TSF implements TensorScalarFunction {
-    private final Tensor sequence;
-    private final Tensor weights;
+    final Tensor sequence;
+    final Tensor weights;
 
     public TSF() {
       sequence = getGeodesicControlPoints();
       int n = sequence.length();
-      weights = Vector1Norm.NORMALIZE.apply(N.DOUBLE.of(user_weights.extract(0, n)));
+      weights = NormalizeTotal.FUNCTION.apply(N.DOUBLE.of(user_weights.extract(0, n)));
     }
 
     @Override
@@ -115,31 +96,8 @@ public class S2DefectNormDemo extends ControlPointsDemo {
   }
 
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {
-    Tensor matrix = Tensors.matrix(array(resolution, new TSF()));
+    Tensor matrix = Tensors.matrix(S2ArrayHelper.of(resolution, rad(), new TSF()));
     return ImageFormat.of(matrix.map(colorDataGradients));
-  }
-
-  Scalar[][] array(int resolution, TensorScalarFunction tensorScalarFunction) {
-    double rad = rad();
-    Tensor dx = Subdivide.of(-rad, +rad, resolution);
-    Tensor dy = Subdivide.of(+rad, -rad, resolution);
-    int rows = dy.length();
-    int cols = dx.length();
-    Scalar[][] array = new Scalar[rows][cols];
-    Clip clip = Clips.unit();
-    IntStream.range(0, rows).parallel().forEach(cx -> {
-      for (int cy = 0; cy < cols; ++cy) {
-        Tensor point = Tensors.of(dx.get(cx), dy.get(cy)); // in R2
-        Scalar z2 = RealScalar.ONE.subtract(Vector2NormSquared.of(point));
-        if (Sign.isPositive(z2)) {
-          Scalar z = Sqrt.FUNCTION.apply(z2);
-          Tensor xyz = point.append(z);
-          array[cy][cx] = clip.apply(tensorScalarFunction.apply(xyz));
-        } else
-          array[cy][cx] = DoubleScalar.INDETERMINATE;
-      }
-    });
-    return array;
   }
 
   double rad() {
@@ -150,8 +108,9 @@ public class S2DefectNormDemo extends ControlPointsDemo {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     RenderQuality.setDefault(graphics);
-    BufferedImage bufferedImage = bufferedImage(resolution.number().intValue(), manifoldDisplay.hsManifold());
-    ImageRender.of(bufferedImage, pixel2model(bufferedImage)) //
+    int res = resolution.number().intValue();
+    BufferedImage bufferedImage = bufferedImage(res, manifoldDisplay.hsManifold());
+    ImageRender.of(bufferedImage, S2ArrayHelper.pixel2model(bufferedImage, rad())) //
         .render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
     // ---
@@ -164,7 +123,56 @@ public class S2DefectNormDemo extends ControlPointsDemo {
     // graphics.draw(geometricLayer.toPath2D(ms));
     graphics.setStroke(new BasicStroke());
     // ---
-    renderControlPoints(geometricLayer, graphics);
+    TSF tsf = new TSF();
+    Tensor mean = SnBiinvariantMean.INSTANCE.mean(tsf.sequence, tsf.weights);
+    if (vector) {
+      double rad = 1;
+      Tensor dx = Subdivide.of(-rad, +rad, res);
+      Tensor dy = Subdivide.of(+rad, -rad, res);
+      int rows = dy.length();
+      int cols = dx.length();
+      Scalar[][] array = new Scalar[rows][cols];
+      IntStream.range(0, rows).forEach(cx -> {
+        for (int cy = 0; cy < cols; ++cy) {
+          Tensor point = Tensors.of(dx.get(cx), dy.get(cy)); // in R2
+          Scalar z2 = RealScalar.ONE.subtract(Vector2NormSquared.of(point));
+          if (Sign.isPositive(z2)) {
+            Scalar z = Sqrt.FUNCTION.apply(z2);
+            Tensor xyz = point.append(z);
+            MeanDefect meanDefect = new MeanDefect(tsf.sequence, tsf.weights, new SnExponential(xyz));
+            Tensor v = meanDefect.tangent();
+            renderTangentsPtoX(geometricLayer, graphics, xyz, v.multiply(RealScalar.of(0.2)));
+          } else
+            array[cy][cx] = DoubleScalar.INDETERMINATE;
+        }
+      });
+    }
+    LeversRender leversRender = LeversRender.of(manifoldDisplay, tsf.sequence, mean, geometricLayer, graphics);
+    leversRender.renderOrigin();
+    leversRender.renderSequence();
+    leversRender.renderWeights(tsf.weights);
+  }
+
+  public void renderTangentsPtoX(GeometricLayer geometricLayer, Graphics2D graphics, Tensor p, Tensor v) {
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    geometricLayer.pushMatrix(manifoldDisplay.matrixLift(p));
+    TensorUnaryOperator tangentProjection = manifoldDisplay.tangentProjection(p);
+    if (Objects.nonNull(tangentProjection))
+      graphics.draw(geometricLayer.toLine2D(tangentProjection.apply(v)));
+    // ---
+    geometricLayer.popMatrix();
+  }
+
+  public final Tensor iterationPath(Tensor sequence, Tensor weights, Tensor shifted, int iter) {
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
+    HsManifold hsManifold = manifoldDisplay.hsManifold();
+    Tensor tensor = Tensors.empty();
+    for (int count = 0; count < iter; ++count) {
+      MeanDefect meanDefect = new MeanDefect(sequence, weights, hsManifold.exponential(shifted));
+      shifted = meanDefect.shifted();
+      tensor.append(shifted);
+    }
+    return tensor;
   }
 
   public static void main(String[] args) {

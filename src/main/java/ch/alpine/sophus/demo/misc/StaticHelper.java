@@ -8,9 +8,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Put;
 
-enum StaticHelper {
+/* package */ enum StaticHelper {
   ;
-  static void ephemeralDubins(String title, Tensor init, Tensor move) {
+  public static void ephemeralDubins(String title, Tensor init, Tensor move) {
     File dir = HomeDirectory.file("Projects", "ephemeral", "src", "main", "resources", "geometry", "dubins", title);
     dir.mkdir();
     if (dir.isDirectory())
@@ -24,7 +24,7 @@ enum StaticHelper {
       System.err.println("no ex");
   }
 
-  static void ephemeralSe2(String title, Tensor control) {
+  public static void ephemeralSe2(String title, Tensor control) {
     File dir = HomeDirectory.file("Projects", "ephemeral", "src", "main", "resources", "geometry", "se2");
     if (dir.isDirectory())
       try {

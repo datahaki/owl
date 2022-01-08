@@ -6,11 +6,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
-import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldLabel;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
@@ -23,27 +21,17 @@ import ch.alpine.sophus.demo.opt.SnLineDistances;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.sophus.math.TensorNorm;
-import ch.alpine.tensor.DoubleScalar;
-import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Dot;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
-import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
-import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.red.Times;
-import ch.alpine.tensor.sca.Clip;
-import ch.alpine.tensor.sca.Clips;
-import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.Sqrt;
 
 @ReflectionMarker
 public class S2LineDistanceDemo extends ControlPointsDemo {
@@ -80,43 +68,9 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
         : t -> RealScalar.ZERO;
   }
 
-  private Tensor pixel2model(BufferedImage bufferedImage) {
-    double rad = rad();
-    Tensor range = Tensors.vector(rad, rad).multiply(RealScalar.TWO); // model
-    Tensor scale = Times.of(Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()), //
-        range.map(Scalar::reciprocal)); // model 2 pixel
-    return Dot.of( //
-        GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
-        Times.of(AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            , GfxMatrix.flipY(bufferedImage.getHeight())));
-  }
-
   private BufferedImage bufferedImage(int resolution, VectorLogManifold vectorLogManifold) {
-    Tensor matrix = Tensors.matrix(array(resolution, tensorNorm()::norm));
+    Tensor matrix = Tensors.matrix(S2ArrayHelper.of(resolution, rad(), tensorNorm()::norm));
     return ImageFormat.of(matrix.map(colorDataGradients));
-  }
-
-  Scalar[][] array(int resolution, TensorScalarFunction tensorScalarFunction) {
-    double rad = rad();
-    Tensor dx = Subdivide.of(-rad, +rad, resolution);
-    Tensor dy = Subdivide.of(+rad, -rad, resolution);
-    int rows = dy.length();
-    int cols = dx.length();
-    Scalar[][] array = new Scalar[rows][cols];
-    Clip clip = Clips.unit();
-    IntStream.range(0, rows).parallel().forEach(cx -> {
-      for (int cy = 0; cy < cols; ++cy) {
-        Tensor point = Tensors.of(dx.get(cx), dy.get(cy)); // in R2
-        Scalar z2 = RealScalar.ONE.subtract(Vector2NormSquared.of(point));
-        if (Sign.isPositive(z2)) {
-          Scalar z = Sqrt.FUNCTION.apply(z2);
-          Tensor xyz = point.append(z);
-          array[cy][cx] = clip.apply(tensorScalarFunction.apply(xyz));
-        } else
-          array[cy][cx] = DoubleScalar.INDETERMINATE;
-      }
-    });
-    return array;
   }
 
   double rad() {
@@ -128,7 +82,7 @@ public class S2LineDistanceDemo extends ControlPointsDemo {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     RenderQuality.setDefault(graphics);
     BufferedImage bufferedImage = bufferedImage(resolution.number().intValue(), manifoldDisplay.hsManifold());
-    ImageRender.of(bufferedImage, pixel2model(bufferedImage)) //
+    ImageRender.of(bufferedImage, S2ArrayHelper.pixel2model(bufferedImage, rad())) //
         .render(geometricLayer, graphics);
     RenderQuality.setQuality(graphics);
     // ---
