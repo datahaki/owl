@@ -1,10 +1,13 @@
 // code by jph
 package ch.alpine.tensor.demo;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
@@ -12,16 +15,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.imageio.ImageIO;
+
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.img.ImageRotate;
 import ch.alpine.tensor.img.Thumbnail;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.FileHash;
-import ch.alpine.tensor.io.Import;
+import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.sca.Sqrt;
 
@@ -70,7 +74,7 @@ public class ImageGallery {
 
   private void handle(File file) {
     String key = map.get(file);
-    Tensor image = null;
+    BufferedImage image = null;
     try {
       {
         File ifile = new File(dst_thumb, key);
@@ -78,7 +82,16 @@ public class ImageGallery {
           System.out.println("read image " + file.getName());
           image = read(file);
           System.out.println("thumbnail " + key);
-          Export.of(ifile, Thumbnail.of(image, 100));
+          BufferedImage bufferedImage = Thumbnail.of(image, 100);
+          try (OutputStream outputStream = new FileOutputStream(file)) {
+            ImageIO.write(bufferedImage, "JPG", outputStream);
+          }
+          if (ifile.isFile()) {
+            System.out.println("wrote " + ifile);
+          } else {
+            System.err.println("something went wrong");
+            Export.of(ifile, ImageFormat.from(bufferedImage));
+          }
         }
       }
       {
@@ -86,12 +99,23 @@ public class ImageGallery {
         if (!ifile.exists()) {
           if (image == null)
             image = read(file);
-          List<Integer> list = Dimensions.of(image);
+          // List<Integer> list = Dimensions.of(image);
           Scalar pixels = RationalScalar.of( //
               768 * 1024, //
-              Math.multiplyExact(list.get(0), list.get(1)));
-          Tensor result = ImageResize.of(image, Sqrt.FUNCTION.apply(pixels));
-          Export.of(ifile, result);
+              Math.multiplyExact(image.getHeight(), image.getWidth()));
+          Scalar factor = Sqrt.FUNCTION.apply(pixels);
+          double doubleValue = factor.number().doubleValue();
+          BufferedImage result = ImageResize.of(image, //
+              (int) Math.round(image.getWidth() * doubleValue), //
+              (int) Math.round(image.getHeight() * doubleValue));
+          // Export.of(ifile, result);
+          ImageIO.write(result, "JPG", ifile);
+          if (ifile.isFile()) {
+            System.out.println("wrote " + ifile);
+          } else {
+            System.err.println("something went wrong");
+            Export.of(ifile, ImageFormat.from(result));
+          }
         }
       }
       // BufferedImage bufferedImage = ImageIO.read(file);
@@ -100,15 +124,17 @@ public class ImageGallery {
     }
   }
 
-  public static Tensor read(File file) throws IOException {
+  public static BufferedImage read(File file) throws IOException {
     String string = file.getName();
     String substring = string.substring(0, string.lastIndexOf('.'));
-    Tensor tensor = Import.of(file);
+    BufferedImage bufferedImage = ImageIO.read(file);
     if (substring.endsWith("_2r")) {
+      Tensor tensor = ImageFormat.from(bufferedImage);
       System.out.println("rotate " + string);
       tensor = ImageRotate.cw(tensor);
+      bufferedImage = ImageFormat.of(tensor);
     }
-    return tensor;
+    return bufferedImage;
   }
 
   public static void main(String[] args) {

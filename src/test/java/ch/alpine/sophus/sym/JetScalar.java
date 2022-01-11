@@ -36,15 +36,23 @@ public class JetScalar extends AbstractScalar implements //
 
   /** @param vector {f[x], f'[x], f''[x], ...}
    * @return */
-  public static Scalar of(Tensor vector) {
+  public static JetScalar of(Tensor vector) {
     return new JetScalar(VectorQ.require(vector));
   }
 
-  /** @param value
-   * @param n
+  /** TODO important:
+   * Distinguish between constants with value v == {v,0,...}
+   * ... and variables with value v == {v,1,0,...}
+   * 
+   * @param value
+   * @param n strictly positive
    * @return {value, 1, 0, 0, ...} */
-  public static Scalar of(Scalar value, int n) {
-    return new JetScalar(Tensors.vector(i -> i.equals(0) ? value : (i.equals(1) ? value.one() : value.zero()), n));
+  public static JetScalar of(Scalar value, int n) {
+    if (n == 1)
+      return new JetScalar(Tensors.of(value));
+    Tensor vector = UnitVector.of(n, 1);
+    vector.set(value, 0);
+    return new JetScalar(vector);
   }
 
   /** drop function, promote derivatives, and decrease order by 1
@@ -108,8 +116,8 @@ public class JetScalar extends AbstractScalar implements //
   @Override // from Scalar
   public Scalar multiply(Scalar scalar) {
     if (scalar instanceof JetScalar) {
-      JetScalar audiScalar = (JetScalar) scalar;
-      return new JetScalar(product(vector, audiScalar.vector));
+      JetScalar jetScalar = (JetScalar) scalar;
+      return new JetScalar(product(vector, jetScalar.vector));
     }
     return new JetScalar(vector.multiply(scalar));
   }
@@ -143,8 +151,13 @@ public class JetScalar extends AbstractScalar implements //
 
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
-    JetScalar audiScalar = (JetScalar) scalar;
-    return new JetScalar(vector.add(audiScalar.vector));
+    if (scalar instanceof JetScalar) {
+      JetScalar jetScalar = (JetScalar) scalar;
+      return new JetScalar(vector.add(jetScalar.vector));
+    }
+    Tensor result = vector.copy();
+    result.set(scalar::add, 0); // this + constant scalar
+    return new JetScalar(result);
   }
 
   // ---
@@ -204,14 +217,14 @@ public class JetScalar extends AbstractScalar implements //
   @Override
   public boolean equals(Object object) {
     if (object instanceof JetScalar) {
-      JetScalar audiScalar = (JetScalar) object;
-      return vector.equals(audiScalar.vector);
+      JetScalar jetScalar = (JetScalar) object;
+      return vector.equals(jetScalar.vector);
     }
     return false;
   }
 
   @Override
   public String toString() {
-    return vector.toString();
+    return "J" + vector.toString();
   }
 }
