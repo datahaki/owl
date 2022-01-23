@@ -20,9 +20,22 @@ import junit.framework.TestCase;
 
 public class LaneRandomSampleTest extends TestCase {
   public void testSimple() throws ClassNotFoundException, IOException {
+    Tensor se2s = Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}");
     LaneInterface laneInterface = StableLanes.of( //
-        Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}"), //
+        se2s, //
         LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder(), 1)::cyclic, 3, Quantity.of(0.3, "m"));
+    Distribution rotDist = UniformDistribution.of(Clips.absoluteOne());
+    RandomSampleInterface randomSampleInterface = Serialization.copy(LaneRandomSample.of(laneInterface, rotDist));
+    Tensor tensor = RandomSample.of(randomSampleInterface);
+    new PolygonRegion(Tensor.of(laneInterface.rightBoundary().stream().map(Extract2D.FUNCTION))).test(tensor);
+    new PolygonRegion(Tensor.of(laneInterface.leftBoundary().stream().map(Extract2D.FUNCTION))).test(tensor);
+  }
+
+  public void testNonUnit() throws ClassNotFoundException, IOException {
+    Tensor se2s = Tensors.fromString("{{0[], 1[], 2}, {2[], 0[], 4}, {-1[],-3[], -2}}");
+    LaneInterface laneInterface = StableLanes.of( //
+        se2s, //
+        LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder(), 1)::cyclic, 3, Quantity.of(0.3, ""));
     Distribution rotDist = UniformDistribution.of(Clips.absoluteOne());
     RandomSampleInterface randomSampleInterface = Serialization.copy(LaneRandomSample.of(laneInterface, rotDist));
     Tensor tensor = RandomSample.of(randomSampleInterface);

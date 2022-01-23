@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 public class Se2FlowIntegratorTest extends TestCase {
   public void testSe2Exact() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
-    Tensor flow = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").map(UnitSystem.SI());
+    Tensor flow = Tensors.fromString("{1[m*s^-1], 0[m*s^-1], 2[rad*s^-1]}").map(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").map(UnitSystem.SI());
     Tensor r = Se2FlowIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
     Chop._10.requireClose(r, //

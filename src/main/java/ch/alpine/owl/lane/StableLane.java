@@ -4,6 +4,7 @@ package ch.alpine.owl.lane;
 import java.io.Serializable;
 
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -11,10 +12,6 @@ import ch.alpine.tensor.alg.ConstantArray;
 
 /** lane of constant width */
 public class StableLane implements LaneInterface, Serializable {
-  /** the offset vectors are not magic constants but are multiplied by width */
-  private final static Tensor OFS_L = Tensors.vector(0, +1, 0).unmodifiable();
-  private final static Tensor OFS_R = Tensors.vector(0, -1, 0).unmodifiable();
-
   /** @param controlPoints may be null
    * @param refined
    * @param halfWidth */
@@ -32,16 +29,18 @@ public class StableLane implements LaneInterface, Serializable {
   private StableLane(Tensor controlPoints, Tensor refined, Scalar halfWidth) {
     this.controlPoints = controlPoints;
     this.refined = refined;
-    lbound = boundary(OFS_L, halfWidth).unmodifiable();
-    rbound = boundary(OFS_R, halfWidth).unmodifiable();
+    /** the offset vectors are not magic constants but are multiplied by width */
+    Tensor OFS_L = Tensors.of(halfWidth.zero(), halfWidth, RealScalar.ZERO);
+    Tensor OFS_R = Tensors.of(halfWidth.zero(), halfWidth.negate(), RealScalar.ZERO);
+    lbound = boundary(OFS_L).unmodifiable();
+    rbound = boundary(OFS_R).unmodifiable();
     margins = ConstantArray.of(halfWidth, refined.length());
   }
 
-  private Tensor boundary(Tensor base, Scalar halfWidth) {
-    Tensor ofs = base.multiply(halfWidth);
+  private Tensor boundary(Tensor base) {
     return Tensor.of(refined.stream() //
         .map(Se2GroupElement::new) //
-        .map(se2GroupElement -> se2GroupElement.combine(ofs)));
+        .map(se2GroupElement -> se2GroupElement.combine(base)));
   }
 
   @Override // from LaneInterface

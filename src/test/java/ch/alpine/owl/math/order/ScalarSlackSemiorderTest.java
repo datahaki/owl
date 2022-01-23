@@ -20,8 +20,8 @@ public class ScalarSlackSemiorderTest extends TestCase {
     ScalarSlackSemiorder scalarSlackSemiorder = new ScalarSlackSemiorder(Quantity.of(0, "kg"));
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2, "kg"), Quantity.of(2, "kg")), OrderComparison.INDIFFERENT);
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2.3, "kg"), Quantity.of(2.3, "kg")), OrderComparison.INDIFFERENT);
-    assertEquals(scalarSlackSemiorder.compare(Quantity.of(3, "s"), Quantity.of(2, "s")), OrderComparison.STRICTLY_SUCCEEDS);
-    assertEquals(scalarSlackSemiorder.compare(Quantity.of(-20, "s"), Quantity.of(-2, "s")), OrderComparison.STRICTLY_PRECEDES);
+    // assertEquals(scalarSlackSemiorder.compare(Quantity.of(3, "s"), Quantity.of(2, "s")), OrderComparison.STRICTLY_SUCCEEDS);
+    // assertEquals(scalarSlackSemiorder.compare(Quantity.of(-20, "s"), Quantity.of(-2, "s")), OrderComparison.STRICTLY_PRECEDES);
   }
 
   public void testBoundaryCase() {
