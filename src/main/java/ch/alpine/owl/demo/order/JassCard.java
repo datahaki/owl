@@ -2,12 +2,14 @@
 package ch.alpine.owl.demo.order;
 
 import java.io.Serializable;
-import java.util.Objects;
+
+import ch.alpine.owl.demo.order.JassCard.Farbe;
+import ch.alpine.owl.demo.order.JassCard.Type;
 
 /** Creates a card of the game jassen with the attributes color and card type
  * 
  * https://en.wikipedia.org/wiki/Jass */
-/* package */ class JassCard implements Serializable {
+/* package */ record JassCard(Farbe farbe, Type type, boolean isTrumpf) implements Serializable {
   public static enum Farbe {
     ROSEN, EICHEL, SCHILTEN, SCHELLE
   }
@@ -20,20 +22,6 @@ import java.util.Objects;
     private Type(int trumpfOrdering) {
       this.trumpfOrdering = trumpfOrdering;
     }
-  }
-
-  private final Farbe farbe;
-  private final Type type;
-  private final boolean isTrumpf;
-
-  public JassCard(Farbe farbe, Type type, boolean isTrumpf) {
-    this.farbe = farbe;
-    this.type = type;
-    this.isTrumpf = isTrumpf;
-  }
-
-  public boolean isTrumpf() {
-    return isTrumpf;
   }
 
   /** checks whether the two cards are exactly the same or if two different colors were assigned Trumpf
@@ -64,21 +52,5 @@ import java.util.Objects;
       if (farbe.equals(jassCard.farbe) && type.compareTo(jassCard.type) < 0)
         return true;
     return false;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    if (object instanceof JassCard) {
-      JassCard jassCard = (JassCard) object;
-      return farbe.equals(jassCard.farbe) //
-          && type.equals(jassCard.type) //
-          && isTrumpf == jassCard.isTrumpf;
-    }
-    return false;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(farbe, type, isTrumpf);
   }
 }

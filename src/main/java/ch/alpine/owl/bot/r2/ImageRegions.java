@@ -36,13 +36,10 @@ public enum ImageRegions {
    * @return matrix with entries from the range {0, 1, ..., 255}
    * @throws Exception if input does not represent an image */
   public static Tensor grayscale(Tensor image) {
-    switch (TensorRank.ofArray(image)) {
-    case 2:
-      return image.copy();
-    case 3:
-      return image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
-    default:
-      throw TensorRuntimeException.of(image);
-    }
+    return switch (TensorRank.ofArray(image)) {
+    case 2 -> image.copy();
+    case 3 -> image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
+    default -> throw TensorRuntimeException.of(image);
+    };
   }
 }

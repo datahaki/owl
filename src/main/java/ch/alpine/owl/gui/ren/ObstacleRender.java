@@ -38,8 +38,8 @@ public class ObstacleRender implements RenderInterface {
   }
 
   public void fromStateTimeCollector(Object object) {
-    collection = object instanceof StateTimeCollector //
-        ? new HashSet<>(((StateTimeCollector) object).getMembers()) //
+    collection = object instanceof StateTimeCollector stateTimeCollector //
+        ? new HashSet<>(stateTimeCollector.getMembers()) //
         : Collections.emptySet();
   }
 }

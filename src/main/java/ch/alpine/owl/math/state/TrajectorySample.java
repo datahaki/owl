@@ -7,28 +7,14 @@ import java.util.Optional;
 
 import ch.alpine.tensor.Tensor;
 
-/** container class that bundles information to follow a trajectory */
-public class TrajectorySample implements Serializable {
+/** container class that bundles information to follow a trajectory
+ * 
+ * flow may be null */
+public record TrajectorySample(StateTime stateTime, Tensor flow) implements Serializable {
   /** @param stateTime
    * @return first entry of a trajectory that does not specify flow */
   public static TrajectorySample head(StateTime stateTime) {
     return new TrajectorySample(stateTime, null);
-  }
-
-  // ---
-  private final StateTime stateTime;
-  private final Tensor flow;
-
-  /** @param stateTime
-   * @param flow may be null */
-  public TrajectorySample(StateTime stateTime, Tensor flow) {
-    this.stateTime = stateTime;
-    this.flow = flow;
-  }
-
-  /** @return statetime of this trajectory sample */
-  public StateTime stateTime() {
-    return stateTime;
   }
 
   /** typically the first state time in a trajectory
