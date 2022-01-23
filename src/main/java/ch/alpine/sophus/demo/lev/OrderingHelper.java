@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ren.BarLegend;
 import ch.alpine.java.ren.ImageRender;
-import ch.alpine.java.ren.LegendImage;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.RationalScalar;
@@ -49,7 +49,7 @@ import ch.alpine.tensor.num.Pi;
     }
     {
       // 100
-      BufferedImage bufferedImage = LegendImage.of(colorDataGradientD, 130, "far", "near");
+      BufferedImage bufferedImage = BarLegend.of(colorDataGradientD, 130, "far", "near");
       Scalar dy = Pi.VALUE;
       dy = FACTOR.multiply(Pi.VALUE);
       Tensor pixel2model = GeodesicArrayPlot.pixel2model( //

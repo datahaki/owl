@@ -14,11 +14,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Join;
+import ch.alpine.tensor.ext.ArgMin;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.UniformDistribution;
-import ch.alpine.tensor.red.ArgMin;
 import ch.alpine.tensor.sca.Round;
 
 /* package */ enum BSpline4SplitComparisonDemo {

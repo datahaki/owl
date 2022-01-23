@@ -11,7 +11,7 @@ import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;

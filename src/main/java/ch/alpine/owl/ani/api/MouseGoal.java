@@ -26,8 +26,8 @@ public enum MouseGoal {
       OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<GlcPlannerCallback> _callbacks) {
     List<GlcPlannerCallback> callbacks = new ArrayList<>(_callbacks);
-    if (trajectoryEntity instanceof GlcPlannerCallback)
-      callbacks.add((GlcPlannerCallback) trajectoryEntity);
+    if (trajectoryEntity instanceof GlcPlannerCallback glcPlannerCallback)
+      callbacks.add(glcPlannerCallback);
     callbacks.add(EntityGlcPlannerCallback.of(trajectoryEntity));
     supply(owlAnimationFrame.geometricComponent, //
         new SimpleGoalConsumer(trajectoryEntity, plannerConstraint, callbacks));
@@ -42,8 +42,8 @@ public enum MouseGoal {
       OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<RrtsPlannerCallback> _callbacks) {
     List<RrtsPlannerCallback> callbacks = new ArrayList<>(_callbacks);
-    if (trajectoryEntity instanceof RrtsPlannerCallback)
-      callbacks.add((RrtsPlannerCallback) trajectoryEntity);
+    if (trajectoryEntity instanceof RrtsPlannerCallback rrtsPlannerCallback)
+      callbacks.add(rrtsPlannerCallback);
     supply(owlAnimationFrame.geometricComponent, //
         new SimpleGoalConsumer(trajectoryEntity, plannerConstraint, callbacks));
   }

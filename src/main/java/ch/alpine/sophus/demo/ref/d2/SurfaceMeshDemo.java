@@ -14,7 +14,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;
@@ -46,7 +46,7 @@ import ch.alpine.tensor.io.Primitives;
     public Boolean axes = true;
     public Boolean ctrl = true;
     @FieldSlider
-    @FieldPreferredWidth(width = 100)
+    @FieldPreferredWidth(100)
     @FieldInteger
     @FieldClip(min = "0", max = "4")
     public Scalar refine = RealScalar.of(2);

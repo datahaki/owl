@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.flt.ga.Regularization2Step;

@@ -15,10 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.ImageRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.gds.GeodesicArrayPlot;
 import ch.alpine.sophus.gds.ManifoldDisplay;

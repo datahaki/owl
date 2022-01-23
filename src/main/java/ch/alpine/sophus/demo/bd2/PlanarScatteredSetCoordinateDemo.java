@@ -1,14 +1,15 @@
 // code by jph
 package ch.alpine.sophus.demo.bd2;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 
-import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.util.PanelFieldsEditor;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.opt.InsideConvexHullLogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.gds.H2Display;
@@ -31,7 +32,7 @@ import ch.alpine.tensor.Tensors;
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(dequeGenesisProperties);
     fieldsPanel.addUniversalListener(this::recompute);
-    container.add("West", fieldsPanel.createJScrollPane());
+    container.add(BorderLayout.WEST, fieldsPanel.createJScrollPane());
     // ---
     ManifoldDisplay manifoldDisplay = R2Display.INSTANCE;
     actionPerformed(manifoldDisplay);

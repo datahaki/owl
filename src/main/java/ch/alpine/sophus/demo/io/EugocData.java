@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     }
     {
       TensorUnaryOperator tensorUnaryOperator = //
-          CenterFilter.of(GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), 6);
+          new CenterFilter(GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), 6);
       Tensor smooth = tensorUnaryOperator.apply(poses);
       Put.of(HomeDirectory.file("gokart_poses_gauss.file"), smooth);
       Tensor delta = Se2Differences.INSTANCE.apply(smooth);
@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     }
     {
       TensorUnaryOperator tensorUnaryOperator = //
-          CenterFilter.of(GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.HAMMING.get()), 6);
+          new CenterFilter(GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.HAMMING.get()), 6);
       Tensor smooth = tensorUnaryOperator.apply(poses);
       Put.of(HomeDirectory.file("gokart_poses_hammi.file"), smooth);
       Tensor delta = Se2Differences.INSTANCE.apply(smooth);

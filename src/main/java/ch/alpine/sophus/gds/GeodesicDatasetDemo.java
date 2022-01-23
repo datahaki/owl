@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.List;
 
-import ch.alpine.java.awt.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 
 public abstract class GeodesicDatasetDemo extends GeodesicDisplayDemo {

@@ -15,6 +15,7 @@ import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
+import ch.alpine.tensor.red.Times;
 
 // TODO implementation can be made more efficient
 public class LidarRaytracer implements Serializable {
@@ -48,6 +49,6 @@ public class LidarRaytracer implements Serializable {
   /** @param scan vector obtained by {@link #scan(TrajectoryRegionQuery, StateTime)}
    * @return list of 2D-points */
   public Tensor toPoints(Tensor scan) {
-    return scan.pmul(directions);
+    return Times.of(scan, directions);
   }
 }

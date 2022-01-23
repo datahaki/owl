@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.util.DisjointSets;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;

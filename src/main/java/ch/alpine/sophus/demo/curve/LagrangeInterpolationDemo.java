@@ -12,8 +12,8 @@ import javax.swing.JSlider;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.LagrangeInterpolation;
 import ch.alpine.sophus.demo.Curvature2DRender;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
@@ -30,12 +30,13 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.itp.Interpolation;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 
 /** LagrangeInterpolation with extrapolation */
 public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
+  @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
   public Scalar refine = RealScalar.of(7);
   private final JSlider jSlider = new JSlider(0, 1000, 500);
 
@@ -46,7 +47,7 @@ public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
     {
       Tensor tensor = Tensors.fromString("{{1, 0, 0}, {1, 0, 2.1}}");
       setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-          Tensor.of(tensor.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+          Tensor.of(tensor.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
     }
     // ---
     jSlider.setPreferredSize(new Dimension(500, 28));

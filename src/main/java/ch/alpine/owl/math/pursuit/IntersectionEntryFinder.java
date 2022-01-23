@@ -6,13 +6,15 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.itp.Interpolation;
 import ch.alpine.tensor.itp.LinearInterpolation;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public final class IntersectionEntryFinder extends TrajectoryEntryFinder implements Serializable {
   public static final TrajectoryEntryFinder SPHERE_RN = new IntersectionEntryFinder(SphereCurveIntersection::new);
@@ -31,8 +33,8 @@ public final class IntersectionEntryFinder extends TrajectoryEntryFinder impleme
 
   @Override // from TrajectoryEntryFinder
   protected Stream<Scalar> sweep_variables(Tensor waypoints) {
-    MinMax minmax = MinMax.of(Tensor.of(waypoints.stream().map(Extract2D.FUNCTION).map(Vector2Norm::of)));
-    Interpolation interpolation = LinearInterpolation.of(minmax.matrix());
+    CoordinateBoundingBox minmax = CoordinateBounds.of(Tensor.of(waypoints.stream().map(Extract2D.FUNCTION).map(Vector2Norm::of)));
+    Interpolation interpolation = LinearInterpolation.of(Tensors.of(minmax.min(), minmax.max()));
     return IntStream.range(0, waypoints.length()) //
         .mapToObj(i -> RationalScalar.of(i, waypoints.length() - 1)) //
         .map(interpolation::At);

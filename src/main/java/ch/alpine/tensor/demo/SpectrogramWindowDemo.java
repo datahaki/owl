@@ -4,12 +4,12 @@ package ch.alpine.tensor.demo;
 import java.io.File;
 import java.io.IOException;
 
+import ch.alpine.java.fig.Spectrogram;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.fft.Spectrogram;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;

@@ -14,6 +14,7 @@ import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.red.Times;
 
 /** Renders an arbitrary image at the supplier state */
 /* package */ class EntityImageRender implements RenderInterface {
@@ -24,18 +25,18 @@ import ch.alpine.tensor.Tensors;
   public EntityImageRender(Supplier<StateTime> supplier, BufferedImage bufferedImage, Tensor range) {
     this.supplier = supplier;
     this.bufferedImage = bufferedImage;
-    Tensor invsc = AppendOne.FUNCTION.apply(range.pmul( //
+    Tensor invsc = AppendOne.FUNCTION.apply(Times.of(range, //
         Tensors.vector(bufferedImage.getWidth(), -bufferedImage.getHeight()).map(Scalar::reciprocal)));
     // not generic since factor / 3 is used
     Tensor translate = GfxMatrix.translation( //
         Tensors.vector(-bufferedImage.getWidth() / 3, -bufferedImage.getHeight() / 2));
-    matrix = invsc.pmul(translate);
+    matrix = Times.of(invsc, translate);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricLayer.pushMatrix(GfxMatrix.of(supplier.get().state()));
-    graphics.drawImage(bufferedImage, AffineTransforms.toAffineTransform(geometricLayer.getMatrix().dot(matrix)), null);
+    graphics.drawImage(bufferedImage, AffineTransforms.of(geometricLayer.getMatrix().dot(matrix)), null);
     geometricLayer.popMatrix();
   }
 }

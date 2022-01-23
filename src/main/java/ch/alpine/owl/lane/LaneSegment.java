@@ -4,8 +4,8 @@ package ch.alpine.owl.lane;
 import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.ext.ArgMin;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.red.ArgMin;
 
 public class LaneSegment implements LaneInterface {
   /** @param laneInterface

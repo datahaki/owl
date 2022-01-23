@@ -14,18 +14,17 @@ import javax.swing.JToggleButton;
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.CurveVisualSet;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -33,6 +32,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Differences;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Quantile;
 
@@ -77,13 +78,13 @@ import ch.alpine.tensor.red.Quantile;
     ManifoldDisplay geodesicDisplay = manifoldDisplay();
     VisualSet visualSet1 = new VisualSet();
     visualSet1.setPlotLabel("Curvature");
-    visualSet1.setAxesLabelX("length");
-    visualSet1.setAxesLabelY("curvature");
+    visualSet1.getAxisX().setLabel("length");
+    visualSet1.getAxisY().setLabel("curvature");
     // ---
     VisualSet visualSet2 = new VisualSet();
     visualSet2.setPlotLabel("Curvature d/ds");
-    visualSet2.setAxesLabelX("length");
-    visualSet2.setAxesLabelY("curvature d/ds");
+    visualSet2.getAxisX().setLabel("length");
+    visualSet2.getAxisY().setLabel("curvature d/ds");
     for (int i = 0; i < CURVE_SUBDIVISION_SCHEMES.size(); ++i) {
       Tensor refined = curve(geometricLayer, graphics, i);
       if (jToggleCurvature.isSelected() && 1 < refined.length()) {
@@ -119,14 +120,14 @@ import ch.alpine.tensor.red.Quantile;
         Tensor tensorMin = Tensor.of(visualSet2.visualRows().stream() //
             .map(VisualRow::points) //
             .map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of) //
-            .map(MinMax::min));
+            .map(CoordinateBounds::of) //
+            .map(CoordinateBoundingBox::min));
         double min = Quantile.of(tensorMin).apply(RationalScalar.of(1, CURVE_SUBDIVISION_SCHEMES.size() - 1)).number().doubleValue();
         Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream() //
             .map(VisualRow::points) //
             .map(points -> points.get(Tensor.ALL, 1)) //
-            .map(MinMax::of) //
-            .map(MinMax::max));
+            .map(CoordinateBounds::of) //
+            .map(CoordinateBoundingBox::max));
         double max = Quantile.of(tensorMax) //
             .apply(RationalScalar.of(CURVE_SUBDIVISION_SCHEMES.size() - 1, CurveSubdivisionHelper.LANE_RIESENFELD.size() - 1)).number().doubleValue();
         if (min != max)

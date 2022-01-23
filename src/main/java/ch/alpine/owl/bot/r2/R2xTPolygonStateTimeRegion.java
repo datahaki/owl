@@ -20,7 +20,6 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 
 /** check if input tensor is inside a polygon */
 public class R2xTPolygonStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
-  // ---
   private final BijectionFamily bijectionFamily;
   private final Supplier<Scalar> supplier;
   private final Tensor polygon;

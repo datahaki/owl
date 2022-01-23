@@ -10,7 +10,7 @@ import java.awt.geom.Path2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.itp.DeBoor;
 public class DeBoorCustomDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   // ---
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   public Tensor knots = Tensors.vector(0, 1);
 
   public DeBoorCustomDemo() {

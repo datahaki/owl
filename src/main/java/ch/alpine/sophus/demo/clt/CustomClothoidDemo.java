@@ -15,12 +15,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidContext;

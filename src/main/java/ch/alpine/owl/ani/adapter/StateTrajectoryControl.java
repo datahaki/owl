@@ -15,7 +15,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.red.ArgMin;
+import ch.alpine.tensor.ext.ArgMin;
 
 /** trajectory control for a time-invariant state-space */
 public abstract class StateTrajectoryControl implements TrajectoryControl, Serializable {

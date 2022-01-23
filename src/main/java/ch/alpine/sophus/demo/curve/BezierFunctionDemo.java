@@ -11,7 +11,7 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.alg.Subdivide;
 
 /** Bezier function with extrapolation */
 public class BezierFunctionDemo extends AbstractCurvatureDemo {
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   @FieldSlider
   @FieldInteger
   @FieldClip(min = "0", max = "10")

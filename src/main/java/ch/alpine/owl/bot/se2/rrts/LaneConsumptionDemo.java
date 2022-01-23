@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 import javax.swing.JButton;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;

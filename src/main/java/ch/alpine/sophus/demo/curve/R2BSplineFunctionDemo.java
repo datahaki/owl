@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.itp.BSplineFunctionString;
 /** use of tensor lib {@link BSplineFunction} */
 public class R2BSplineFunctionDemo extends AbstractCurvatureDemo {
   @FieldInteger
-  @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
+  @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" })
   public Scalar degree = RealScalar.of(3);
   public Boolean cyclic = false;
 

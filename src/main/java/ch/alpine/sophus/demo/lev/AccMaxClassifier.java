@@ -7,8 +7,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.ext.ArgMax;
 import ch.alpine.tensor.io.Primitives;
-import ch.alpine.tensor.red.ArgMax;
 import ch.alpine.tensor.red.Total;
 import ch.alpine.tensor.sca.Clips;
 

@@ -43,24 +43,24 @@ public enum PolygonCoordinates implements LogWeighting {
   WACHSPRESS(ThreePointCoordinate.of(Barycenter.WACHSPRESS)), //
   DISCRETE_HARMONIC(ThreePointCoordinate.of(Barycenter.DISCRETE_HARMONIC)), //
   INVERSE_DISTANCE(MetricCoordinate.of(InversePowerVariogram.of(2))), //
-  LAGRANG_DISTANCE(LagrangeCoordinate.of(InverseDistanceWeighting.of(InversePowerVariogram.of(2)))), //
+  LAGRANG_DISTANCE(new LagrangeCoordinate(InverseDistanceWeighting.of(InversePowerVariogram.of(2)))), //
   ITER_TARGET(new IterativeTargetCoordinate(InverseDistanceWeighting.of(InversePowerVariogram.of(2)), RealScalar.ONE, 50)), //
-  ITERATIVE_AF_0(IterativeCoordinate.of(AffineCoordinate.INSTANCE, 0)), //
-  ITERATIVE_AF_1(IterativeCoordinate.of(AffineCoordinate.INSTANCE, 1)), //
-  ITERATIVE_AF_2(IterativeCoordinate.of(AffineCoordinate.INSTANCE, 2)), //
-  ITERATIVE_AF_3(IterativeCoordinate.of(AffineCoordinate.INSTANCE, 3)), //
-  ITERATIVE_AF_5(IterativeCoordinate.of(AffineCoordinate.INSTANCE, 5)), //
+  ITERATIVE_AF_0(new IterativeCoordinate(AffineCoordinate.INSTANCE, 0)), //
+  ITERATIVE_AF_1(new IterativeCoordinate(AffineCoordinate.INSTANCE, 1)), //
+  ITERATIVE_AF_2(new IterativeCoordinate(AffineCoordinate.INSTANCE, 2)), //
+  ITERATIVE_AF_3(new IterativeCoordinate(AffineCoordinate.INSTANCE, 3)), //
+  ITERATIVE_AF_5(new IterativeCoordinate(AffineCoordinate.INSTANCE, 5)), //
   ITERATIVE_EX_05(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 05)), //
   ITERATIVE_EX_10(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 10)), //
   ITERATIVE_EX_20(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 20)), //
   ITERATIVE_EX_30(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 30)), //
   ITERATIVE_EX_50(new IterativeAffineCoordinate(Amplifiers.EXP.supply(5), 50)), //
-  TARGET(LeveragesGenesis.of(InversePowerVariogram.of(2))), //
-  ITERATIVE_IL_0(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 0)), //
-  ITERATIVE_IL_1(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 1)), //
-  ITERATIVE_IL_2(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 2)), //
-  ITERATIVE_IL_3(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 3)), //
-  ITERATIVE_IL_5(IterativeCoordinate.of(LeveragesGenesis.of(InversePowerVariogram.of(2)), 5)), //
+  TARGET(new LeveragesGenesis(InversePowerVariogram.of(2))), //
+  ITERATIVE_IL_0(new IterativeCoordinate(new LeveragesGenesis(InversePowerVariogram.of(2)), 0)), //
+  ITERATIVE_IL_1(new IterativeCoordinate(new LeveragesGenesis(InversePowerVariogram.of(2)), 1)), //
+  ITERATIVE_IL_2(new IterativeCoordinate(new LeveragesGenesis(InversePowerVariogram.of(2)), 2)), //
+  ITERATIVE_IL_3(new IterativeCoordinate(new LeveragesGenesis(InversePowerVariogram.of(2)), 3)), //
+  ITERATIVE_IL_5(new IterativeCoordinate(new LeveragesGenesis(InversePowerVariogram.of(2)), 5)), //
   ;
 
   private static final Set<PolygonCoordinates> CONVEX = //
@@ -81,8 +81,8 @@ public enum PolygonCoordinates implements LogWeighting {
     return HsGenesis.wrap( //
         vectorLogManifold, //
         CONVEX.contains(this) //
-            ? InsideConvexHullCoordinate.of(genesis)
-            : InsidePolygonCoordinate.of(genesis), //
+            ? new InsideConvexHullCoordinate(genesis)
+            : new InsidePolygonCoordinate(genesis), //
         sequence);
   }
 

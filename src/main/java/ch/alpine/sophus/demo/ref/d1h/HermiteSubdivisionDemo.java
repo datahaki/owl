@@ -12,7 +12,7 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.sophus.clt.ClothoidDistance;
@@ -44,7 +44,7 @@ public class HermiteSubdivisionDemo extends ControlPointsDemo {
   // ---
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE3;
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "9")
   public Scalar refine = RealScalar.of(6);

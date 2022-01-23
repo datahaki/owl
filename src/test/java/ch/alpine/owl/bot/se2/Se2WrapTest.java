@@ -12,13 +12,14 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Floor;
 import junit.framework.TestCase;
 
 public class Se2WrapTest extends TestCase {
   static Tensor convertToKey(Tensor eta, TensorUnaryOperator represent, Tensor x) {
-    return eta.pmul(represent.apply(x)).map(Floor.FUNCTION);
+    return Times.of(eta, represent.apply(x)).map(Floor.FUNCTION);
   }
 
   public void testSe2xT_represent() {

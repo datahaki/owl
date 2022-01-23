@@ -16,6 +16,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dot;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class H2ArrayPlot implements GeodesicArrayPlot, Serializable {
   private final Scalar radius;
@@ -38,11 +39,11 @@ import ch.alpine.tensor.alg.Subdivide;
   @Override // from GeodesicArrayPlot
   public Tensor pixel2model(Dimension dimension) {
     Tensor range = Tensors.of(radius, radius).multiply(RealScalar.TWO); // model
-    Tensor scale = Tensors.vector(dimension.width, dimension.height) //
-        .pmul(range.map(Scalar::reciprocal)); // model 2 pixel
+    Tensor scale = Times.of(Tensors.vector(dimension.width, dimension.height) //
+        , range.map(Scalar::reciprocal)); // model 2 pixel
     return Dot.of( //
         GfxMatrix.translation(range.multiply(RationalScalar.HALF.negate())), //
-        AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
-            .pmul(GfxMatrix.flipY(dimension.height)));
+        Times.of(AppendOne.FUNCTION.apply(scale.map(Scalar::reciprocal)) // pixel 2 model
+            , GfxMatrix.flipY(dimension.height)));
   }
 }

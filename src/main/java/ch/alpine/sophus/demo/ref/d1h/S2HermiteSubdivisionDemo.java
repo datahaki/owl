@@ -11,9 +11,9 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
@@ -32,16 +32,17 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
+import ch.alpine.tensor.red.Times;
 
 public class S2HermiteSubdivisionDemo extends ControlPointsDemo {
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE1;
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "8")
   public Scalar refine = RealScalar.of(4);
   // ---
-  @FieldSelection(array = { "1/8", "1/4", "1/2", "1", "3/2", "2" })
+  @FieldSelectionArray(value = { "1/8", "1/4", "1/2", "1", "3/2", "2" })
   public Scalar beta = RealScalar.ONE;
   public Boolean cyclic = false;
   public Boolean derivatives = true;
@@ -57,7 +58,7 @@ public class S2HermiteSubdivisionDemo extends ControlPointsDemo {
       }
     });
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
-    timerFrame.geometricComponent.setModel2Pixel(Tensors.vector(5, 5, 1).pmul(model2pixel));
+    timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(5, 5, 1), model2pixel));
     timerFrame.geometricComponent.setOffset(400, 400);
     // ---
     setControlPointsSe2(Tensors.fromString("{{-0.3, 0.0, 0}, {0.0, 0.5, 0.0}, {0.5, 0.5, 1}, {0.5, -0.4, 0}}"));

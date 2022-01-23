@@ -20,6 +20,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class KlotskiPlot {
   private static final Color STONE_GOAL = new Color(128 - 32, 128 - 32, 255);
@@ -90,10 +91,10 @@ import ch.alpine.tensor.ext.HomeDirectory;
           if (index < limit) {
             Tensor format = BLOCKS.get(index);
             polygon = Tensors.of( //
-                format.pmul(Tensors.vector(0, 0)).add(Tensors.vector(+MARGIN, +MARGIN)), //
-                format.pmul(Tensors.vector(0, 1)).add(Tensors.vector(+MARGIN, -MARGIN)), //
-                format.pmul(Tensors.vector(1, 1)).add(Tensors.vector(-MARGIN, -MARGIN)), //
-                format.pmul(Tensors.vector(1, 0)).add(Tensors.vector(-MARGIN, +MARGIN)));
+                Times.of(format, Tensors.vector(0, 0)).add(Tensors.vector(+MARGIN, +MARGIN)), //
+                Times.of(format, Tensors.vector(0, 1)).add(Tensors.vector(+MARGIN, -MARGIN)), //
+                Times.of(format, Tensors.vector(1, 1)).add(Tensors.vector(-MARGIN, -MARGIN)), //
+                Times.of(format, Tensors.vector(1, 0)).add(Tensors.vector(-MARGIN, +MARGIN)));
           } else {
             switch (index) {
             case 6:

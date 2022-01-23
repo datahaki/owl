@@ -19,12 +19,12 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.StandardMenu;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.StandardMenu;
 import ch.alpine.sophus.demo.Curvature2DRender;
 import ch.alpine.sophus.demo.curve.AbstractCurvatureDemo;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
@@ -43,6 +43,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Nest;
+import ch.alpine.tensor.red.Times;
 
 /** split interface and biinvariant mean based curve subdivision */
 public class CurveSubdivisionDemo extends AbstractCurvatureDemo {
@@ -65,7 +66,7 @@ public class CurveSubdivisionDemo extends AbstractCurvatureDemo {
     {
       Tensor move = Tensors.fromString( //
           "{{1, 0, 0}, {1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}, {4, 0, 3.14159}, {2, 0, 3.14159}, {2, 0, 0}}");
-      move = Tensor.of(move.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))));
+      move = Tensor.of(move.stream().map(Times.operator(Tensors.vector(2, 1, 1))));
       Tensor init = Tensors.vector(0, 0, 2.1);
       control = DubinsGenerator.of(init, move);
       control = Tensors.fromString("{{0, 0, 0}, {1, 0, 0}, {2, 0, 0}, {3, 1, 0}, {4, 1, 0}, {5, 0, 0}, {6, 0, 0}, {7, 0, 0}}").multiply(RealScalar.of(2));
@@ -84,7 +85,7 @@ public class CurveSubdivisionDemo extends AbstractCurvatureDemo {
               @Override
               public void actionPerformed(ActionEvent actionEvent) {
                 Tensor tensor = ResourceData.of("/dubilab/controlpoints/" + string);
-                tensor = Tensor.of(tensor.stream().map(row -> row.pmul(Tensors.vector(0.5, 0.5, 1))));
+                tensor = Tensor.of(tensor.stream().map(Times.operator(Tensors.vector(0.5, 0.5, 1))));
                 Tensor center = Mean.of(tensor);
                 center.set(RealScalar.ZERO, 2);
                 tensor = Tensor.of(tensor.stream().map(row -> row.subtract(center)));

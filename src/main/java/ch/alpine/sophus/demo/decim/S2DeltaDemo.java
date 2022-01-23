@@ -2,6 +2,7 @@
 package ch.alpine.sophus.demo.decim;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -12,7 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
@@ -72,7 +73,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(param);
     fieldsPanel.addUniversalListener(this::compute);
-    container.add("West", fieldsPanel.createJScrollPane());
+    container.add(BorderLayout.WEST, fieldsPanel.createJScrollPane());
     compute();
   }
 
@@ -86,7 +87,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     sequence = Tensor.of(sequence.stream().map(tuo));
     ScalarUnaryOperator s_window = param.s_window.get();
     snDeltaRaw = new SnDeltaContainer(sequence, s_window);
-    TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
+    TensorUnaryOperator tensorUnaryOperator = new CenterFilter( //
         GeodesicCenter.of(SnGeodesic.INSTANCE, param.f_window.get()), param.getWidth());
     snDeltaFil = new SnDeltaContainer(tensorUnaryOperator.apply(sequence), s_window);
   }

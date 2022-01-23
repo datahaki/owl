@@ -17,8 +17,8 @@ import ch.alpine.tensor.alg.Partition;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Put;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -75,12 +75,12 @@ import ch.alpine.tensor.sca.Abs;
       Put.of(HomeDirectory.file("lp3_hd.mathematica"), lp3_hd);
     }
     {
-      Tensor image = ArrayPlot.of(err_xy, ColorDataGradients.CLASSIC);
+      Tensor image = Raster.of(err_xy, ColorDataGradients.CLASSIC);
       Export.of(HomeDirectory.file("err_xy.csv"), err_xy);
       Export.of(HomeDirectory.Pictures(Se2Prediction.class.getSimpleName() + "_xy.png"), image);
     }
     {
-      Tensor image = ArrayPlot.of(err_hd, ColorDataGradients.CLASSIC);
+      Tensor image = Raster.of(err_hd, ColorDataGradients.CLASSIC);
       Export.of(HomeDirectory.file("err_hd.csv"), err_hd);
       Export.of(HomeDirectory.Pictures(Se2Prediction.class.getSimpleName() + "_hd.png"), image);
     }

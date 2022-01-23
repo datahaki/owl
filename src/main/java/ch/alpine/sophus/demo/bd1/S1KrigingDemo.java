@@ -27,6 +27,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.mat.DiagonalMatrix;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.N;
 
@@ -75,13 +76,13 @@ import ch.alpine.tensor.sca.N;
         TensorUnaryOperator tensorUnaryOperator = operator(SnManifold.INSTANCE, sequence);
         Kriging kriging = Kriging.regression(tensorUnaryOperator, sequence, funceva, covariance);
         Tensor estimate = Tensor.of(DOMAIN.stream().map(kriging::estimate));
-        Tensor curve = estimate.pmul(DOMAIN);
+        Tensor curve = Times.of(estimate, DOMAIN);
         new PathRender(Color.BLUE, 1.25f).setCurve(curve, false).render(geometricLayer, graphics);
         Tensor errors = Tensor.of(DOMAIN.stream().map(kriging::variance));
         // ---
         Path2D path2d = geometricLayer.toPath2D(Join.of( //
-            estimate.add(errors).pmul(DOMAIN), //
-            Reverse.of(estimate.subtract(errors).pmul(DOMAIN))));
+            Times.of(estimate.add(errors), DOMAIN), //
+            Reverse.of(Times.of(estimate.subtract(errors), DOMAIN))));
         graphics.setColor(new Color(128, 128, 128, 32));
         graphics.fill(path2d);
       }

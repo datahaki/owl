@@ -21,6 +21,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class S1InterpolationDemo extends LogWeightingDemo {
   public S1InterpolationDemo() {
@@ -58,7 +59,7 @@ import ch.alpine.tensor.num.Pi;
         ScalarTensorFunction scalarTensorFunction = //
             point -> tensorUnaryOperator.apply(AngleVector.of(point));
         Tensor basis = Tensor.of(domain.stream().parallel().map(Scalar.class::cast).map(scalarTensorFunction));
-        Tensor curve = basis.dot(values).pmul(spherics);
+        Tensor curve = Times.of(basis.dot(values), spherics);
         new PathRender(Color.BLUE, 1.25f).setCurve(curve, true).render(geometricLayer, graphics);
         // ---
         Reverse.of(spherics).stream().forEach(curve::append);

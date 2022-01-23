@@ -36,7 +36,7 @@ public class ArrayPlotRender implements RenderInterface {
     bufferedImage = ImageFormat.of(tensor.map(colorDataGradient));
     width = bufferedImage.getWidth() * magnify;
     height = bufferedImage.getHeight() * magnify;
-    legend = LegendImage.of(colorDataGradient, height, clip);
+    legend = BarLegend.of(colorDataGradient, height, clip);
   }
 
   @Override

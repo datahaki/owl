@@ -8,6 +8,7 @@ import ch.alpine.owl.rrts.core.TransitionWrap;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.clt.ClothoidSampler;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -60,9 +61,9 @@ public class ClothoidTransitionTest extends TestCase {
     // System.out.println(lagrangeQuadraticD.apply(RealScalar.ZERO));
     // System.out.println(lagrangeQuadraticD.apply(RealScalar.ONE));
     assertTrue(lagrangeQuadraticD.isZero(Tolerance.CHOP));
-    ClothoidTransition clothoidTransition = ClothoidTransition.of(CLOTHOID_BUILDER, start, end);
-    Tensor vector = clothoidTransition.linearized_samples(RealScalar.of(0.1));
+    Tensor vector = ClothoidSampler.samples(clothoid, RealScalar.of(0.1));
     assertEquals(vector, UnitVector.of(2, 1));
+    ClothoidTransition clothoidTransition = ClothoidTransition.of(CLOTHOID_BUILDER, start, end);
     assertEquals(clothoidTransition.linearized(RealScalar.of(0.1)), Array.zeros(2, 3));
   }
 

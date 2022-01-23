@@ -20,6 +20,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.red.Times;
 
 /** ellipsoid region that is moving with respect to time */
 public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
@@ -46,7 +47,7 @@ public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderIn
     Tensor state = stateTime.state().extract(0, invert.length());
     Scalar time = stateTime.time();
     TensorUnaryOperator rev = bijectionFamily.inverse(time);
-    return Scalars.lessEquals(Vector2NormSquared.of(rev.apply(state).pmul(invert)), RealScalar.ONE);
+    return Scalars.lessEquals(Vector2NormSquared.of(Times.of(rev.apply(state), invert)), RealScalar.ONE);
   }
 
   @Override // from RenderInterface

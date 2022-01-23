@@ -17,7 +17,9 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Round;
 
-public enum LegendImage {
+/** <p>inspired by
+ * <a href="https://reference.wolfram.com/language/ref/BarLegend.html">BarLegend</a> */
+public enum BarLegend {
   ;
   private static final Font FONT = new Font(Font.DIALOG, Font.PLAIN, 12);
   private static final Color FONT_COLOR = Color.BLACK;

@@ -38,8 +38,8 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Lists;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
@@ -107,7 +107,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     DQMInspection dqmIntrospection = new DQMInspection(rlDomainQueueMap);
     Tensor count = dqmIntrospection.getCount();
     // Tensor image =
-    ArrayPlot.of(count, ColorDataGradients.CLASSIC);
+    Raster.of(count, ColorDataGradients.CLASSIC);
     // File file = HomeDirectory.Pictures(name + ".png");
     // Export.of(file, ImageResize.nearest(image, 4));
     // System.out.println("domain queue map size=" + rlDomainQueueMap.size());

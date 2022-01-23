@@ -32,7 +32,8 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 import junit.framework.TestCase;
@@ -44,7 +45,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
     Scalar radius = Vector2Norm.between(goal, state).multiply(RationalScalar.HALF).add(RealScalar.ONE);
     Tensor center = Mean.of(Tensors.of(state, goal));
-    Box box = Box.of( //
+    CoordinateBoundingBox box = CoordinateBounds.of( //
         center.map(scalar -> scalar.subtract(radius)), //
         center.map(scalar -> scalar.add(radius)));
     // ---
@@ -84,7 +85,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
   }
 
   public void testDubins() {
-    Box box = Box.of( //
+    CoordinateBoundingBox box = CoordinateBounds.of( //
         Tensors.vector(0, 0, -Math.PI), //
         Tensors.vector(10, 10, Math.PI));
     Tensor goal = Tensors.vector(10, 10, 0);
@@ -144,7 +145,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {
-        return new Se2RrtsNodeCollection(getTransitionSpace(), Box.of(lbounds, ubounds), 3);
+        return new Se2RrtsNodeCollection(getTransitionSpace(), CoordinateBounds.of(lbounds, ubounds), 3);
       }
 
       @Override

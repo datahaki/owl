@@ -12,7 +12,8 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ enum StaticHelper {
   ;
@@ -20,8 +21,8 @@ import ch.alpine.tensor.opt.nd.Box;
 
   public static RenderInterface vectorFieldRender( //
       StateSpaceModel stateSpaceModel, Tensor range, Region<Tensor> region, Scalar factor) {
-    Box box = Box.of(range.map(Scalar::zero), range);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.map(Scalar::zero), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
     Tensor points = Tensor.of(RandomSample.stream(randomSampleInterface) //
         .filter(p -> !region.test(p)) //
         .limit(LIMIT));

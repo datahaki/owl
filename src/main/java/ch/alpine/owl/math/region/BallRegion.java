@@ -3,10 +3,13 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
+import ch.alpine.sophus.math.RegionBoundsInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Sign;
 
 /** the ball region is a special case of an {@link EllipsoidRegion}.
@@ -24,7 +27,7 @@ import ch.alpine.tensor.sca.Sign;
  * <li>zero in a single point: the center, and
  * <li>negative nowhere
  * </ul> */
-public class BallRegion extends ImplicitRegionWithDistance implements Serializable {
+public class BallRegion extends ImplicitRegionWithDistance implements RegionBoundsInterface, Serializable {
   private final Tensor center;
   private final Scalar radius;
 
@@ -47,5 +50,13 @@ public class BallRegion extends ImplicitRegionWithDistance implements Serializab
 
   public Scalar radius() {
     return radius;
+  }
+
+  @Override // from RegionBoundsInterface
+  public CoordinateBoundingBox coordinateBounds() {
+    Scalar n_radius = radius.negate();
+    return CoordinateBounds.of( //
+        center.map(n_radius::add), //
+        center.map(radius::add));
   }
 }

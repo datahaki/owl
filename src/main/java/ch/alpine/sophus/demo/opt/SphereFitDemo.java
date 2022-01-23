@@ -32,6 +32,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.opt.hun.BipartiteMatching;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 
 /* package */ class SphereFitDemo extends ControlPointsDemo {
@@ -49,7 +50,7 @@ import ch.alpine.tensor.sca.Chop;
     Tensor blub = Tensors.fromString(
         "{{1, 0, 0}, {1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}, {4, 0, 3.14159}, {2, 0, 3.14159}, {2, 0, 0}}");
     setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-        Tensor.of(blub.stream().map(Tensors.vector(2, 1, 1)::pmul))));
+        Tensor.of(blub.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
   }
 
   @Override // from RenderInterface
@@ -83,7 +84,7 @@ import ch.alpine.tensor.sca.Chop;
         }
     }
     {
-      Tensor weiszfeld = WeiszfeldMethod.with(Chop._04).uniform(control).get();
+      Tensor weiszfeld = new WeiszfeldMethod(Chop._04).uniform(control).get();
       geometricLayer.pushMatrix(GfxMatrix.translation(weiszfeld));
       Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       path2d.closePath();
@@ -97,7 +98,7 @@ import ch.alpine.tensor.sca.Chop;
       Biinvariant biinvariant = MetricBiinvariant.EUCLIDEAN;
       TensorUnaryOperator weightingInterface = //
           biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), control);
-      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(manifoldDisplay.biinvariantMean(), weightingInterface, Chop._06);
+      SpatialMedian spatialMedian = new HsWeiszfeldMethod(manifoldDisplay.biinvariantMean(), weightingInterface, Chop._06);
       Optional<Tensor> optional = spatialMedian.uniform(control);
       if (optional.isPresent()) {
         Tensor weiszfeld = optional.get();

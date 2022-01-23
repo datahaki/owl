@@ -9,9 +9,9 @@ import java.awt.geom.Point2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldSelection;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.mat.re.Inverse;
   // ---
   @ReflectionMarker
   public static class Param {
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5", "6" })
+    @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6" })
     public Scalar degree = RealScalar.of(1);
   }
 

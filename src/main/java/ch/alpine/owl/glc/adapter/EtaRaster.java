@@ -10,6 +10,7 @@ import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Append;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Floor;
 
 /** mapping from state time to domain coordinates according to the standard projection
@@ -57,7 +58,7 @@ public class EtaRaster implements StateTimeRaster, Serializable {
 
   @Override // from StateTimeRasterization
   public Tensor convertToKey(StateTime stateTime) {
-    return eta.pmul(represent.apply(stateTime)).map(Floor.FUNCTION);
+    return Times.of(eta, represent.apply(stateTime)).map(Floor.FUNCTION);
   }
 
   /** @return unmodifiable */

@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.lev;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -15,7 +16,7 @@ import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
@@ -33,6 +34,7 @@ import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.lie.r2.ConvexHull;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class TangentSpaceDemo extends AbstractPlaceDemo {
   private static final int WIDTH = 300;
@@ -44,7 +46,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
     // ---
     Container container = timerFrame.jFrame.getContentPane();
     PanelFieldsEditor fieldsPanel = new PanelFieldsEditor(iterativeAffineProperties);
-    container.add("West", fieldsPanel.createJScrollPane());
+    container.add(BorderLayout.WEST, fieldsPanel.createJScrollPane());
     Tensor sequence = Tensor.of(CirclePoints.of(15).multiply(RealScalar.of(2)).stream().skip(5).map(PadRight.zeros(3)));
     sequence.set(Scalar::zero, 0, Tensor.ALL);
     setControlPointsSe2(sequence);
@@ -73,7 +75,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
         GenesisDeque dequeGenesis = (GenesisDeque) iterativeAffineProperties.genesis();
         Deque<Evaluation> deque = dequeGenesis.deque(levers2);
         {
-          Tensor leversVirtual = deque.peekLast().factors().pmul(levers2);
+          Tensor leversVirtual = Times.of(deque.peekLast().factors(), levers2);
           geometricLayer.pushMatrix(GfxMatrix.translation(origin));
           {
             graphics.setColor(Color.GRAY);

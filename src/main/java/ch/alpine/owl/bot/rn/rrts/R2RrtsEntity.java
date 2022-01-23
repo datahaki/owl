@@ -24,7 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 // TODO the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
@@ -36,7 +36,7 @@ import ch.alpine.tensor.opt.nd.Box;
   /** @param stateTime initial position of entity
    * @param transitionRegionQuery
    * @param box */
-  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box) {
+  public R2RrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //

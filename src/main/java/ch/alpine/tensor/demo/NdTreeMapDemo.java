@@ -8,15 +8,16 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Random;
 
+import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ann.ReflectionMarker;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.LookAndFeels;
-import ch.alpine.sophus.math.MinMax;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.tensor.RealScalar;
@@ -24,7 +25,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
@@ -33,19 +35,20 @@ import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
 /* package */ class NdTreeMapDemo extends AbstractDemo {
+  @ReflectionMarker
   public static class Param {
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     public Scalar leafSizeMax = RealScalar.of(5);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     @FieldClip(min = "1", max = "10000")
     public Scalar count = RealScalar.of(1000);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     @FieldClip(min = "1", max = "20")
     public Scalar multi = RealScalar.of(10);
-    @FieldPreferredWidth(width = 40)
+    @FieldPreferredWidth(40)
     @FieldInteger
     public Scalar pCount = RealScalar.of(4);
     public Boolean nearest = false;
@@ -53,7 +56,7 @@ import ch.alpine.tensor.sca.Abs;
   }
 
   private final Param param = new Param();
-  private final Box box = Box.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
+  private final CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 8));
   private final Tensor pointsAll = RandomSample.of(BoxRandomSample.of(box), 5000);
 
   public NdTreeMapDemo() {
@@ -61,12 +64,13 @@ import ch.alpine.tensor.sca.Abs;
     // Container container = timerFrame.jFrame.getContentPane();
     // JScrollPane jScrollPane = new PanelFieldsEditor(param).getJScrollPane();
     // jScrollPane.setPreferredSize(new Dimension(200, 200));
-    // container.add("West", jScrollPane);
+    // container.add(BorderLayout.WEST, jScrollPane);
     // timerFrame.geometricComponent.setOffset(100, 600);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    RenderQuality.setQuality(graphics);
     graphics.setColor(Color.GRAY);
     Tensor points = Tensor.of(pointsAll.stream().limit(param.count.number().intValue()));
     for (Tensor point : points) {
@@ -75,7 +79,7 @@ import ch.alpine.tensor.sca.Abs;
     }
     Tensor xya = timerFrame.geometricComponent.getMouseSe2CState();
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2).multiply(RealScalar.of(0.3)));
-    Box actual = MinMax.box(points);
+    CoordinateBoundingBox actual = CoordinateBounds.of(points);
     NdMap<Void> ndMap = NdTreeMap.of(actual, param.leafSizeMax.number().intValue());
     Random random = new Random(1);
     int multi = param.multi.number().intValue();
@@ -124,7 +128,7 @@ import ch.alpine.tensor.sca.Abs;
     }
     {
       Tensor mxy = xya.extract(0, 2);
-      Tensor spc = actual.clip(mxy);
+      Tensor spc = actual.mapInside(mxy);
       graphics.setColor(new Color(0, 128, 255, 255));
       graphics.draw(geometricLayer.toLine2D(mxy, spc));
     }

@@ -9,6 +9,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.red.Times;
 
 /** the motivation for the coordinate ordering is
  * that the input image tensor looks the same when printed in the console
@@ -32,7 +33,7 @@ public class FlipYXTensorInterp<T> implements Serializable {
     dim1 = dimensions.get(1);
     max_y = dimensions.get(0) - 1;
     VectorQ.requireLength(range, 2);
-    scale = Tensors.vector(dimensions.get(1), dimensions.get(0)).pmul(range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dimensions.get(1), dimensions.get(0)), range.map(Scalar::reciprocal));
     scaleX = scale.Get(0).number().floatValue();
     scaleY = scale.Get(1).number().floatValue();
     this.outside = outside;

@@ -12,7 +12,7 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.demo.ControlPointsDemo;
@@ -34,7 +34,6 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.num.Derive;
 import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
@@ -44,11 +43,11 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
   // ---
   public HermiteSubdivisions scheme = HermiteSubdivisions.HERMITE1;
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "8")
   public Scalar refine = RealScalar.of(4);
-  @FieldPreferredWidth(width = 300)
+  @FieldPreferredWidth(300)
   public Tensor coeffs = Tensors.fromString("{2, 1, -1/5, -1/10}");
   // ---
   public Boolean derivatives = true;
@@ -98,7 +97,7 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
     if (VectorQ.of(_coeffs) && //
         NumberQ.all(_coeffs)) {
       ScalarUnaryOperator f0 = Polynomial.of(_coeffs);
-      ScalarUnaryOperator f1 = Polynomial.of(Derive.of(_coeffs));
+      ScalarUnaryOperator f1 = Polynomial.derivative(_coeffs);
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());

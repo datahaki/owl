@@ -35,17 +35,10 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
           int value = Scalars.intValueExact(board.Get(px, py));
           // System.out.println(px + " " + value);
           switch (value) {
-          case 0:
-            graphics.setColor(EMPTY);
-            break;
-          case 1:
-            graphics.setColor(LIGHT);
-            break;
-          case 2:
-            graphics.setColor(DARK);
-            break;
-          default:
-            throw new RuntimeException();
+          case 0 -> graphics.setColor(EMPTY);
+          case 1 -> graphics.setColor(LIGHT);
+          case 2 -> graphics.setColor(DARK);
+          default -> throw new RuntimeException();
           }
           geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(px + 0.5, py + 0.5)));
           Path2D path2d = geometricLayer.toPath2D(CIRCLE);

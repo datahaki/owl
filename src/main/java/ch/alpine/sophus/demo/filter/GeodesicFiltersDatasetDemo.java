@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
 import ch.alpine.sophus.demo.opt.GeodesicFilters;
@@ -55,7 +55,7 @@ import ch.alpine.tensor.red.Nest;
     GeodesicFilters geodesicFilters = spinnerFilters.getValue();
     TensorUnaryOperator tensorUnaryOperator = geodesicFilters.from(manifoldDisplay, smoothingKernel);
     return Nest.of( //
-        CenterFilter.of(tensorUnaryOperator, spinnerRadius.getValue()), //
+        new CenterFilter(tensorUnaryOperator, spinnerRadius.getValue()), //
         control(), spinnerConvolution.getValue());
   }
 

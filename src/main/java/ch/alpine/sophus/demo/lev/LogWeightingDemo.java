@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.SpinnerListener;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.opt.LogWeighting;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gds.ManifoldDisplay;

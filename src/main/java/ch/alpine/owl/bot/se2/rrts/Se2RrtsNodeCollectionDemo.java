@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -12,7 +13,7 @@ import javax.swing.JScrollPane;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.gui.PanelFieldsEditor;
+import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
@@ -28,14 +29,15 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
-  private static final Box ND_BOX_R2 = Box.of( //
+  private static final CoordinateBoundingBox ND_BOX_R2 = CoordinateBounds.of( //
       Tensors.vector(-5, -5), //
       Tensors.vector(+5, +5));
-  private static final Box ND_BOX_SE2 = Box.of( //
+  private static final CoordinateBoundingBox ND_BOX_SE2 = CoordinateBounds.of( //
       Tensors.vector(-5, -5, -Math.PI), //
       Tensors.vector(+5, +5, +Math.PI));
   // ---
@@ -61,7 +63,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     Container container = timerFrame.jFrame.getContentPane();
     JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(120, 200));
-    container.add("West", jScrollPane);
+    container.add(BorderLayout.WEST, jScrollPane);
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);

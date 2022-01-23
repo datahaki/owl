@@ -3,12 +3,16 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
+import ch.alpine.sophus.math.RegionBoundsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Sign;
 
 /** EllipsoidRegion implements an axis aligned elliptic region in the vector space R^n.
@@ -19,7 +23,7 @@ import ch.alpine.tensor.sca.Sign;
  * Notice: evaluate(...) does not correspond to Euclidean distance
  * 
  * @see BallRegion */
-public class EllipsoidRegion extends ImplicitFunctionRegion implements Serializable {
+public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBoundsInterface, Serializable {
   private final Tensor center;
   private final Tensor radius;
   private final Tensor invert;
@@ -45,7 +49,7 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements Serializa
 
   @Override // from SignedDistanceFunction<Tensor>
   public Scalar signedDistance(Tensor tensor) {
-    return Vector2NormSquared.of(tensor.subtract(center).pmul(invert)).subtract(RealScalar.ONE);
+    return Vector2NormSquared.of(Times.of(tensor.subtract(center), invert)).subtract(RealScalar.ONE);
   }
 
   public Tensor center() {
@@ -54,5 +58,10 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements Serializa
 
   public Tensor radius() {
     return radius.unmodifiable();
+  }
+
+  @Override
+  public CoordinateBoundingBox coordinateBounds() {
+    return CoordinateBounds.of(center.subtract(radius), center.add(radius));
   }
 }

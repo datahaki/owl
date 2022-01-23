@@ -37,9 +37,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Partition;
-import ch.alpine.tensor.alg.Rescale;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.qty.Degree;
@@ -165,7 +165,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
       int piy = (int) p.getY();
       {
         Tensor values = qsa.values();
-        Tensor imag = Rescale.of(Partition.of(values, 8)).map(ColorDataGradients.CLASSIC);
+        Tensor imag = Raster.of(Partition.of(values, 8), ColorDataGradients.CLASSIC);
         BufferedImage bufferedImage = ImageFormat.of(imag);
         int mag = 4;
         graphics.drawImage(bufferedImage, pix, piy, //

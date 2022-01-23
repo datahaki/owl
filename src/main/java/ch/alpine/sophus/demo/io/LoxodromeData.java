@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     for (WindowFunctions windowFunctions : WindowFunctions.values()) {
       ScalarUnaryOperator smoothingKernel = windowFunctions.get();
       TensorUnaryOperator tensorUnaryOperator = //
-          CenterFilter.of(GeodesicCenter.of(geodesicInterface, smoothingKernel), 7);
+          new CenterFilter(GeodesicCenter.of(geodesicInterface, smoothingKernel), 7);
       Tensor smooth = tensorUnaryOperator.apply(tensor);
       Export.of(HomeDirectory.file("loxodrome_" + smoothingKernel + ".csv"), smooth);
     }

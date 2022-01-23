@@ -181,11 +181,11 @@ public class LeversRender {
   }
 
   private void renderLeversRescaled(Tensor rescale) {
-    Geodesic geodesicInterface = manifoldDisplay.geodesic();
+    Geodesic geodesic = manifoldDisplay.geodesic();
     int index = 0;
     graphics.setStroke(STROKE_GEODESIC);
     for (Tensor p : sequence) {
-      ScalarTensorFunction scalarTensorFunction = geodesicInterface.curve(origin, p);
+      ScalarTensorFunction scalarTensorFunction = geodesic.curve(origin, p);
       Tensor domain = Subdivide.of(0, 1, 21);
       Tensor ms = Tensor.of(domain.map(scalarTensorFunction).stream().map(manifoldDisplay::toPoint));
       Tensor rgba = COLOR_DATA_GRADIENT.apply(rescale.Get(index));

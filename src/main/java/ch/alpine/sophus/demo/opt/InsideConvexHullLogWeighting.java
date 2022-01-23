@@ -29,7 +29,7 @@ public class InsideConvexHullLogWeighting implements LogWeighting {
       Tensor sequence) {
     return HsGenesis.wrap( //
         vectorLogManifold, //
-        InsideConvexHullCoordinate.of(genesis), //
+        new InsideConvexHullCoordinate(genesis), //
         sequence);
   }
 

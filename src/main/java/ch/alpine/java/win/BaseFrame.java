@@ -39,6 +39,8 @@ public class BaseFrame {
       try {
         ImageIcon imageIcon = new ImageIcon(ResourceData.bufferedImage("/icon/camera.gif"));
         jButton = new JButton(imageIcon);
+        // jButton = new JButton(UIManagerIcon.html_pendingImage.get());
+        // jButton.setPreferredSize(new Dimension(28,28));
       } catch (Exception exception) {
         System.err.println(exception);
       }

@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.ArgMax;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.io.Primitives;
-import ch.alpine.tensor.red.ArgMax;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Clips;
 

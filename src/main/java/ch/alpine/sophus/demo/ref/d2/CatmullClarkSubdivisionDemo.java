@@ -11,7 +11,7 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -29,7 +29,7 @@ public class CatmullClarkSubdivisionDemo extends ControlPointsDemo {
   private static final Tensor ARROWHEAD_LO = Arrowhead.of(0.18);
   // ---
   @FieldSlider
-  @FieldPreferredWidth(width = 100)
+  @FieldPreferredWidth(100)
   @FieldInteger
   @FieldClip(min = "0", max = "5")
   public Scalar refine = RealScalar.of(2);

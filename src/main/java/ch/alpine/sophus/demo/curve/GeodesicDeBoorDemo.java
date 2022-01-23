@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.Curvature2DRender;
@@ -26,6 +26,7 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.itp.DeBoor;
+import ch.alpine.tensor.red.Times;
 
 // TODO JPH demo does not seem correct
 public class GeodesicDeBoorDemo extends AbstractCurveDemo implements BufferedImageSupplier {
@@ -39,7 +40,7 @@ public class GeodesicDeBoorDemo extends AbstractCurveDemo implements BufferedIma
     // ---
     Tensor dubins = Tensors.fromString("{{1, 0, 0}, {2, 0, 2.5708}}");
     setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 0), //
-        Tensor.of(dubins.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+        Tensor.of(dubins.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
   }
 
   @Override // from RenderInterface

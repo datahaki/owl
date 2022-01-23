@@ -37,7 +37,7 @@ public class GeodesicFiltersTest extends TestCase {
     for (GeodesicFilters geodesicFilters : GeodesicFilters.values()) {
       TensorUnaryOperator tensorUnaryOperator = //
           geodesicFilters.supply(geodesicInterface, smoothingKernel, biinvariantMean);
-      Tensor filtered = CenterFilter.of(tensorUnaryOperator, radius).apply(control);
+      Tensor filtered = new CenterFilter(tensorUnaryOperator, radius).apply(control);
       map.put(geodesicFilters, filtered);
     }
     for (GeodesicFilters lieGroupFilters : GeodesicFilters.values()) {
@@ -67,7 +67,7 @@ public class GeodesicFiltersTest extends TestCase {
                 // lieGroup, exponential,
                 biinvariantMean);
         Timing timing = Timing.started();
-        CenterFilter.of(tensorUnaryOperator, radius).apply(control);
+        new CenterFilter(tensorUnaryOperator, radius).apply(control);
         timing.stop();
         // System.out.println(lieGroupFilters+" "+timing.seconds());
       }

@@ -6,11 +6,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
@@ -22,11 +23,15 @@ import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.dubins.DubinsPath;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
 import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
+import ch.alpine.sophus.crv.dubins.DubinsRadius;
+import ch.alpine.sophus.crv.dubins.DubinsType;
 import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;
 import ch.alpine.sophus.gds.Se2CoveringDisplay;
 import ch.alpine.sophus.lie.se2c.Se2CoveringGeodesic;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
+import ch.alpine.tensor.DeterminateScalarQ;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.PadLeft;
@@ -35,6 +40,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.red.Nest;
+import ch.alpine.tensor.sca.Clips;
 
 /* package */ class DubinsPathDemo extends AbstractDemo implements DemoInterface {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
@@ -44,6 +50,7 @@ import ch.alpine.tensor.red.Nest;
 
   public static class Param {
     public Boolean allDubins = true;
+    public Boolean relax = true;
     public Boolean shortest = true;
     public Boolean clothoid = true;
   }
@@ -66,8 +73,19 @@ import ch.alpine.tensor.red.Nest;
     if (param.allDubins) {
       graphics.setColor(COLOR_DATA_INDEXED.getColor(0));
       graphics.setStroke(new BasicStroke(1f));
-      for (DubinsPath dubinsPath : list)
-        graphics.draw(geometricLayer.toPath2D(sample(dubinsPath)));
+      if (param.relax) { // draw shortest path
+        for (DubinsType dubinsType : DubinsType.values()) {
+          Scalar maxRadius = DubinsRadius.getMax(mouse, dubinsType, Clips.interval(0.5, 2));
+          if (DeterminateScalarQ.of(maxRadius)) {
+            Optional<DubinsPath> optional = FixedRadiusDubins.of(mouse, dubinsType, maxRadius);
+            if (optional.isPresent()) {
+              graphics.draw(geometricLayer.toPath2D(sample(optional.get())));
+            }
+          }
+        }
+      } else
+        for (DubinsPath dubinsPath : list)
+          graphics.draw(geometricLayer.toPath2D(sample(dubinsPath)));
     }
     if (param.shortest) { // draw shortest path
       graphics.setColor(COLOR_DATA_INDEXED.getColor(1));

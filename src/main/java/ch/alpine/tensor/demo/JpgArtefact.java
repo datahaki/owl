@@ -15,12 +15,12 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.LookAndFeels;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
@@ -33,11 +33,11 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
   private BufferedImage bufferedImage;
 
   public static class Param {
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar len = RealScalar.of(50);
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar step = RealScalar.of(73);
-    @FieldPreferredWidth(width = 60)
+    @FieldPreferredWidth(60)
     public Scalar val = RealScalar.of(0);
   }
 

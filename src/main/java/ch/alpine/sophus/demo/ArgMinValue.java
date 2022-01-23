@@ -7,7 +7,7 @@ import java.util.Optional;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.red.ArgMin;
+import ch.alpine.tensor.ext.ArgMin;
 
 /** Hint:
  * does not implement {@link Serializable} because {@link Optional} does not implement {@link Serializable} */

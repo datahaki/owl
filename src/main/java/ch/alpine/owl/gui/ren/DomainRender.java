@@ -12,6 +12,7 @@ import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.red.Times;
 
 /** keys are projected to the plane */
 public class DomainRender implements RenderInterface {
@@ -33,16 +34,16 @@ public class DomainRender implements RenderInterface {
     int lo = 0;
     int hi = 1;
     ratios = Tensors.of( //
-        eta_invert.pmul(Tensors.vector(lo, lo)), //
-        eta_invert.pmul(Tensors.vector(hi, lo)), //
-        eta_invert.pmul(Tensors.vector(hi, hi)), //
-        eta_invert.pmul(Tensors.vector(lo, hi)));
+        Times.of(eta_invert, Tensors.vector(lo, lo)), //
+        Times.of(eta_invert, Tensors.vector(hi, lo)), //
+        Times.of(eta_invert, Tensors.vector(hi, hi)), //
+        Times.of(eta_invert, Tensors.vector(lo, hi)));
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     for (Tensor key : keys) {
-      Tensor x = key.pmul(eta_invert);
+      Tensor x = Times.of(key, eta_invert);
       Path2D path2d = geometricLayer.toPath2D(Tensor.of(ratios.stream().map(x::add)));
       path2d.closePath();
       graphics.setColor(color(key));

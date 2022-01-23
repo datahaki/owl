@@ -41,7 +41,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
         TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(Se2Geodesic.INSTANCE, smoothingKernel);
         for (int radius = 0; radius < 15; radius++) {
           // Create new Geod. Center
-          Tensor refined = CenterFilter.of(tensorUnaryOperator, radius).apply(control);
+          Tensor refined = new CenterFilter(tensorUnaryOperator, radius).apply(control);
           System.out.println(data + smoothingKernel + radius);
           System.err.println(speeds(refined));
           // export velocities

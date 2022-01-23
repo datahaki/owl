@@ -13,7 +13,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.mat.MatrixQ;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.red.Times;
 
 /** only the first two coordinates are tested for membership
  * a location is available if the grayscale value of the pixel equals 0
@@ -26,10 +28,10 @@ public class ImageRegion implements Region<Tensor>, Serializable {
    * @return */
   public static Region<Tensor> of(BufferedImage bufferedImage, Tensor range, boolean outside) {
     return new BufferedImageRegion(bufferedImage, //
-        Tensors.vector( //
+        Times.of(Tensors.vector( //
             range.Get(0).number().doubleValue() / bufferedImage.getWidth(), //
-            range.Get(1).number().doubleValue() / bufferedImage.getHeight(), 1) //
-            .pmul(GfxMatrix.flipY(bufferedImage.getHeight())),
+            range.Get(1).number().doubleValue() / bufferedImage.getHeight(), 1), //
+            GfxMatrix.flipY(bufferedImage.getHeight())),
         outside);
   }
 
@@ -48,7 +50,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
     int dim0 = dimensions.get(0);
     int dim1 = dimensions.get(1);
     this.range = range;
-    scale = Tensors.vector(dim1, dim0).pmul(range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dim1, dim0), range.map(Scalar::reciprocal));
     flipYXTensorInterp = new FlipYXTensorInterp<>(image, range, Scalars::nonZero, outside);
   }
 
@@ -73,7 +75,7 @@ public class ImageRegion implements Region<Tensor>, Serializable {
     return range.map(Scalar::zero);
   }
 
-  public Box box() {
-    return Box.of(origin(), range());
+  public CoordinateBoundingBox box() {
+    return CoordinateBounds.of(origin(), range());
   }
 }

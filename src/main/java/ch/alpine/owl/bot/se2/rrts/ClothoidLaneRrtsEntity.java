@@ -24,7 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /* package */ class ClothoidLaneRrtsEntity extends AbstractRrtsEntity {
   private static final Scalar DELAY_HINT = RealScalar.of(3);
@@ -39,12 +39,12 @@ import ch.alpine.tensor.opt.nd.Box;
       }).unmodifiable();
 
   // ---
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box) {
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box) {
     this(stateTime, transitionRegionQuery, box, false);
   }
 
   /** @param stateTime initial position of entity */
-  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, Box box, boolean greedy) {
+  public ClothoidLaneRrtsEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box, boolean greedy) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //

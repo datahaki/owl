@@ -12,6 +12,7 @@ import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.red.Times;
 
 /* package */ class S2LogDemo extends ControlPointsDemo {
   public S2LogDemo() {
@@ -24,7 +25,7 @@ import ch.alpine.tensor.Tensors;
       }
     });
     Tensor model2pixel = timerFrame.geometricComponent.getModel2Pixel();
-    timerFrame.geometricComponent.setModel2Pixel(Tensors.vector(5, 5, 1).pmul(model2pixel));
+    timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(5, 5, 1), model2pixel));
     timerFrame.geometricComponent.setOffset(400, 400);
     // ---
     setControlPointsSe2(Tensors.fromString("{{-0.3, 0.0, 0}, {0.0, 0.5, 0.0}, {0.5, 0.5, 1}, {0.5, -0.4, 0}}"));

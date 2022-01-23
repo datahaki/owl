@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.ControlPointsDemo;
@@ -101,7 +101,7 @@ public class BiinvariantMeanDemo extends ControlPointsDemo {
       Biinvariant biinvariant = biinvariants;
       TensorUnaryOperator weightingInterface = //
           biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
-      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
+      SpatialMedian spatialMedian = new HsWeiszfeldMethod(biinvariantMean, weightingInterface, Chop._05);
       Optional<Tensor> optional = spatialMedian.uniform(sequence);
       if (optional.isPresent()) {
         mean = optional.orElseThrow();

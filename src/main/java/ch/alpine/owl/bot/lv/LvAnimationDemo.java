@@ -26,7 +26,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public class LvAnimationDemo implements DemoInterface {
   @Override
@@ -44,7 +44,7 @@ public class LvAnimationDemo implements DemoInterface {
     // ---
     Tensor range = Tensors.vector(6, 5);
     // VectorFieldRender vectorFieldRender = ;
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Box.of(Tensors.vector(0, 0), range));
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     RenderInterface renderInterface = new VectorFieldRender().setUV_Pairs( //
         VectorFields.of(stateSpaceModel, points, Array.zeros(1), RealScalar.of(0.04)));

@@ -15,7 +15,7 @@ import ch.alpine.java.ref.ann.FieldFuse;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.ReflectionMarker;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.math.noise.ColoredNoise;
@@ -27,12 +27,12 @@ import ch.alpine.tensor.pdf.RandomVariate;
 
 @ReflectionMarker
 public class ColoredNoiseDemo extends GeodesicDisplayDemo {
-  @FieldPreferredWidth(width = 150)
+  @FieldPreferredWidth(150)
   public Scalar alpha = RealScalar.of(2);
-  @FieldPreferredWidth(width = 150)
+  @FieldPreferredWidth(150)
   @FieldInteger
   public Scalar length = RealScalar.of(300);
-  @FieldFuse(text = "generate")
+  @FieldFuse(value = "generate")
   public Boolean generate = true;
   // ---
   private JFreeChart jFreeChart;
@@ -57,7 +57,7 @@ public class ColoredNoiseDemo extends GeodesicDisplayDemo {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Point2D point2d = geometricLayer.toPoint2D(0, 0);
-    float width = geometricLayer.model2pixelWidth(10);
+    float width = geometricLayer.model2pixelWidth(RealScalar.of(10));
     jFreeChart.draw(graphics, new Rectangle((int) point2d.getX(), (int) point2d.getY(), (int) width, (int) (width * 2 / 3)));
   }
 

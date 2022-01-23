@@ -10,8 +10,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.num.Pi;
@@ -49,7 +49,7 @@ import ch.alpine.tensor.sca.Clips;
         Scalar angle = ArcTan.of(rotation.Get(0, 0), rotation.Get(1, 0));
         array[x][y] = clip.rescale(angle);
       }
-    Tensor image = ArrayPlot.of(Tensors.matrix(array), ColorDataGradients.HUE);
+    Tensor image = Raster.of(Tensors.matrix(array), ColorDataGradients.HUE);
     Export.of(HomeDirectory.Pictures("some.png"), image);
   }
 }

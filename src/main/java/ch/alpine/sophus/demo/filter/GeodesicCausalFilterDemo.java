@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 import javax.swing.JSlider;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.opt.GeodesicCausalFilters;
 import ch.alpine.sophus.flt.WindowSideExtrapolation;
@@ -60,22 +60,14 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       // System.out.println(geodesicCausalFilters);
       // TODO should be able to do with geodesicCausalFilters.supply, but doesn't
       TensorUnaryOperator tensorUnaryOperator = geodesicCausalFilters.supply(manifoldDisplay(), windowFunctions, radius, alpha());
-      switch (geodesicCausalFilters) {
-      case GEODESIC_FIR:
-        tensorUnaryOperator = GeodesicFIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());
-        break;
-      case GEODESIC_IIR:
-        tensorUnaryOperator = GeodesicIIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());
-        break;
-      case BIINVARIANT_MEAN_FIR:
-        tensorUnaryOperator = //
-            BiinvariantMeanFIRnFilter.of(se2BiinvariantMean, WindowSideExtrapolation.of(windowFunctions), Se2Geodesic.INSTANCE, radius, alpha());
-        break;
-      case BIINVARIANT_MEAN_IIR:
-        tensorUnaryOperator = //
-            BiinvariantMeanIIRnFilter.of(se2BiinvariantMean, WindowSideExtrapolation.of(windowFunctions), Se2Geodesic.INSTANCE, radius, alpha());
-        break;
-      }
+      tensorUnaryOperator = switch (geodesicCausalFilters) {
+      case GEODESIC_FIR -> GeodesicFIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());
+      case GEODESIC_IIR -> GeodesicIIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());
+      case BIINVARIANT_MEAN_FIR -> BiinvariantMeanFIRnFilter.of( //
+          se2BiinvariantMean, WindowSideExtrapolation.of(windowFunctions), Se2Geodesic.INSTANCE, radius, alpha());
+      case BIINVARIANT_MEAN_IIR -> BiinvariantMeanIIRnFilter.of( //
+          se2BiinvariantMean, WindowSideExtrapolation.of(windowFunctions), Se2Geodesic.INSTANCE, radius, alpha());
+      };
       return tensorUnaryOperator.apply(control());
     }
     return control();

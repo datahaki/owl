@@ -30,8 +30,9 @@ public class ReversalTransitionSpaceTest extends TestCase {
   }
 
   public void testSamples() {
-    Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(Tensors.vector(0, 0, Math.PI));
-    Tensor end = Tensors.fromString("{1[m], 6[m], 3}").add(Tensors.vector(0, 0, Math.PI));
+    Tensor se2pi = Tensors.of(Quantity.of(0, "m"), Quantity.of(0, "m"), Pi.VALUE);
+    Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(se2pi);
+    Tensor end = Tensors.fromString("{1[m], 6[m], 3}").add(se2pi);
     Transition transition = ReversalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC).connect(start, end);
     {
       Scalar res = Quantity.of(0.5, "m");
@@ -51,8 +52,9 @@ public class ReversalTransitionSpaceTest extends TestCase {
   }
 
   public void testWrap() {
-    Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(Tensors.vector(0, 0, Math.PI));
-    Tensor end = Tensors.fromString("{1[m], 6[m], 3}").add(Tensors.vector(0, 0, Math.PI));
+    Tensor se2pi = Tensors.of(Quantity.of(0, "m"), Quantity.of(0, "m"), Pi.VALUE);
+    Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(se2pi);
+    Tensor end = Tensors.fromString("{1[m], 6[m], 3}").add(se2pi);
     Transition transition = ReversalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC).connect(start, end);
     {
       Scalar res = Quantity.of(0.5, "m");

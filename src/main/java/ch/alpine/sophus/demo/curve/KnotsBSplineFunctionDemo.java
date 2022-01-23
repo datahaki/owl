@@ -11,7 +11,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.Curvature2DRender;
@@ -28,10 +28,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.itp.DeBoor;
+import ch.alpine.tensor.red.Times;
 
 public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements BufferedImageSupplier {
   @FieldSlider
-  @FieldPreferredWidth(width = 200)
+  @FieldPreferredWidth(200)
   @FieldClip(min = "0", max = "1")
   public Scalar exponent = RealScalar.ONE;
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -45,7 +46,7 @@ public class KnotsBSplineFunctionDemo extends AbstractCurveDemo implements Buffe
     Tensor dubins = Tensors.fromString(
         "{{1, 0, 0}, {1, 0, 0}, {2, 0, 2.5708}, {1, 0, 2.1}, {1.5, 0, 0}, {2.3, 0, -1.2}, {1.5, 0, 0}, {4, 0, 3.14159}, {2, 0, 3.14159}, {2, 0, 0}}");
     setControlPointsSe2(DubinsGenerator.of(Tensors.vector(0, 0, 2.1), //
-        Tensor.of(dubins.stream().map(row -> row.pmul(Tensors.vector(2, 1, 1))))));
+        Tensor.of(dubins.stream().map(Times.operator(Tensors.vector(2, 1, 1))))));
   }
 
   @Override // from RenderInterface

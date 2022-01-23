@@ -9,6 +9,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import junit.framework.TestCase;
 
 public class WaypointDistanceCostTest extends TestCase {
@@ -25,8 +26,8 @@ public class WaypointDistanceCostTest extends TestCase {
     Tensor waypoints = CirclePoints.of(30).multiply(RealScalar.of(10));
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(10), new Dimension(120, 100));
-    Tensor range = imageCostFunction.range();
-    assertEquals(range, Tensors.vector(12, 10));
-    ExactTensorQ.require(range);
+    CoordinateBoundingBox range = imageCostFunction.range();
+    assertEquals(range.max(), Tensors.vector(12, 10));
+    ExactTensorQ.require(range.max());
   }
 }

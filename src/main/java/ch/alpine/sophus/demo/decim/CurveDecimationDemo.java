@@ -13,11 +13,11 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldSelection;
-import ch.alpine.java.ref.gui.ToolbarFieldsEditor;
+import ch.alpine.java.ref.ann.FieldSelectionArray;
+import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.decim.CurveDecimation;
-import ch.alpine.sophus.decim.CurveDecimation.Result;
+import ch.alpine.sophus.decim.DecimationResult;
 import ch.alpine.sophus.decim.LineDistances;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
@@ -53,11 +53,11 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 
   // ---
   public static class Param {
-    @FieldSelection(array = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
+    @FieldSelectionArray(value = { "0", "1", "5", "8", "10", "15", "20", "25", "30", "35" })
     public Scalar width = RealScalar.of(0);
-    @FieldSelection(array = { "0", "1", "2", "3", "4", "5" })
+    @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5" })
     public Scalar level = RealScalar.of(2);
-    @FieldSelection(array = { "1", "2", "3" })
+    @FieldSelectionArray(value = { "1", "2", "3" })
     public Scalar degre = RealScalar.of(1);
     public LineDistances type = LineDistances.STANDARD;
     public Boolean error = false;
@@ -84,7 +84,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   protected void updateState() {
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
-    TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
+    TensorUnaryOperator tensorUnaryOperator = new CenterFilter( //
         GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), param.width.number().intValue());
     _control = tensorUnaryOperator.apply(gokartPoseData.getPose(name, limit));
   }
@@ -113,7 +113,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     CurveDecimation curveDecimation = CurveDecimation.of( //
         param.type.supply(manifoldDisplay.hsManifold()), epsilon);
     Tensor control = Tensor.of(_control.stream().map(manifoldDisplay::project));
-    Result result = curveDecimation.evaluate(control);
+    DecimationResult result = curveDecimation.evaluate(control);
     Tensor simplified = result.result();
     graphics.setColor(Color.DARK_GRAY);
     // graphics.drawString("SIMPL=" + control.length(), 0, 20);
@@ -139,8 +139,8 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
       Dimension dimension = timerFrame.geometricComponent.jComponent.getSize();
       VisualSet visualSet = new VisualSet(ColorDataLists._097.cyclic().deriveWithAlpha(192));
       visualSet.setPlotLabel("Reduction from " + control.length() + " to " + simplified.length() + " samples");
-      visualSet.setAxesLabelX("sample no.");
-      visualSet.setAxesLabelY("error");
+      visualSet.getAxisX().setLabel("sample no.");
+      visualSet.getAxisY().setLabel("error");
       // visualSet.setPlotLabel("error");
       visualSet.add(Range.of(0, control.length()), result.errors());
       JFreeChart jFreeChart = ListPlot.of(visualSet);

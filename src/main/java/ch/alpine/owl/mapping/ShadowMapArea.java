@@ -19,6 +19,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.IdentityMatrix;
+import ch.alpine.tensor.red.Times;
 
 /** implementation uses only java default function and does not depend on 3rd party libraries */
 public class ShadowMapArea implements RenderInterface {
@@ -48,8 +49,8 @@ public class ShadowMapArea implements RenderInterface {
         scale.Get(0).reciprocal(), scale.Get(1).negate().reciprocal(), RealScalar.ONE);
     Tensor translate = IdentityMatrix.of(3);
     translate.set(RealScalar.of(-image.length()), 1, 2);
-    Tensor tmatrix = invsc.pmul(translate);
-    Area obstacleArea = area.createTransformedArea(AffineTransforms.toAffineTransform(tmatrix));
+    Tensor tmatrix = Times.of(invsc, translate);
+    Area obstacleArea = area.createTransformedArea(AffineTransforms.of(tmatrix));
     Rectangle2D rInit = new Rectangle2D.Double();
     rInit.setFrame(obstacleArea.getBounds());
     initArea = new Area(rInit);
@@ -99,7 +100,7 @@ public class ShadowMapArea implements RenderInterface {
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     final Tensor matrix = geometricLayer.getMatrix();
-    Area plotArea = new Area(shadowArea.createTransformedArea(AffineTransforms.toAffineTransform(matrix)));
+    Area plotArea = new Area(shadowArea.createTransformedArea(AffineTransforms.of(matrix)));
     graphics.setColor(colorShadowFill);
     graphics.fill(plotArea);
     graphics.setColor(colorShadowDraw);

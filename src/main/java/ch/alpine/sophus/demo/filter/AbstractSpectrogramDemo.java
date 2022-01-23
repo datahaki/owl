@@ -11,9 +11,10 @@ import java.util.Objects;
 
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.awt.SpinnerLabel;
 import ch.alpine.java.fig.ListPlot;
+import ch.alpine.java.fig.Spectrogram;
 import ch.alpine.java.fig.VisualSet;
+import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -25,7 +26,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.fft.Spectrogram;
 import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.io.ImageFormat;
@@ -102,7 +102,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
         int dimensions = speeds.get(0).length();
         VisualSet visualSet = new VisualSet();
         visualSet.setPlotLabel(plotLabel());
-        visualSet.setAxesLabelX("sample no.");
+        visualSet.getAxisX().setLabel("sample no.");
         Tensor domain = Range.of(0, speeds.length());
         final int width = timerFrame.geometricComponent.jComponent.getWidth();
         int offset_y = 0;

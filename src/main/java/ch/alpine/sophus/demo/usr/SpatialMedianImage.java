@@ -20,8 +20,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.img.ArrayPlot;
 import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.re.Inverse;
@@ -50,7 +50,7 @@ import ch.alpine.tensor.sca.Chop;
   private static Tensor image(int seed) {
     Random random = new Random(seed);
     Tensor points = RandomVariate.of(UniformDistribution.unit(), random, 15, 2);
-    Optional<Tensor> optional = WeiszfeldMethod.with(Chop._10).uniform(points);
+    Optional<Tensor> optional = new WeiszfeldMethod(Chop._10).uniform(points);
     GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     if (optional.isPresent()) {
@@ -59,7 +59,7 @@ import ch.alpine.tensor.sca.Chop;
       Tensor py = Range.of(0, 192);
       Pixel2Coord some = new Pixel2Coord(points);
       Tensor image = Tensors.matrix((j, i) -> some.dist(px.Get(i), py.Get(j)), px.length(), py.length());
-      BufferedImage background = ImageFormat.of(ArrayPlot.of(image, ColorDataGradients.DENSITY));
+      BufferedImage background = ImageFormat.of(Raster.of(image, ColorDataGradients.DENSITY));
       Graphics2D graphics = bufferedImage.createGraphics();
       graphics.drawImage(background, 0, 0, null);
       RenderQuality.setQuality(graphics);

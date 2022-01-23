@@ -20,7 +20,6 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 
 /** for images only rigid transformations are allowed */
 public class R2xTImageStateTimeRegion implements Region<StateTime>, RenderInterface, Serializable {
-  // ---
   private final ImageRegion imageRegion;
   private final R2RigidFamily rigidFamily;
   private final Supplier<Scalar> supplier;

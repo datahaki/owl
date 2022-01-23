@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.awt.SpinnerLabel;
-import ch.alpine.java.awt.SpinnerListener;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
+import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.opt.LogWeightings;
 import ch.alpine.sophus.gbc.d2.IterativeCoordinateMatrix;
 import ch.alpine.sophus.gds.ManifoldDisplay;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.Tensors;
       VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
       HsDesign hsDesign = new HsDesign(vectorLogManifold);
       try {
-        Tensor matrix = IterativeCoordinateMatrix.of(spinnerTotal.getValue()).origin(hsDesign.matrix(sequence, origin));
+        Tensor matrix = new IterativeCoordinateMatrix(spinnerTotal.getValue()).origin(hsDesign.matrix(sequence, origin));
         Tensor circum = matrix.dot(sequence);
         // new PointsRender(color_fill, color_draw).show(matrixLift, shape, points);
         // new PointsRender(new Color(128, 128, 128, 64), new Color(128, 128, 128, 255)) //

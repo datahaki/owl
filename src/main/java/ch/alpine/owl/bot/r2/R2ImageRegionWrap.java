@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.img.FloodFill2D;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.sophus.math.Region;
@@ -11,7 +12,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ImageFormat;
-import ch.alpine.tensor.opt.nd.Box;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
@@ -43,7 +45,7 @@ public class R2ImageRegionWrap {
     return range;
   }
 
-  public Box box() {
-    return Box.of(range.map(Scalar::zero), range);
+  public CoordinateBoundingBox box() {
+    return CoordinateBounds.of(range.map(Scalar::zero), range);
   }
 }
