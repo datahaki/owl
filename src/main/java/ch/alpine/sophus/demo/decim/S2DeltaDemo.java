@@ -87,7 +87,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     sequence = Tensor.of(sequence.stream().map(tuo));
     ScalarUnaryOperator s_window = param.s_window.get();
     snDeltaRaw = new SnDeltaContainer(sequence, s_window);
-    TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
+    TensorUnaryOperator tensorUnaryOperator = new CenterFilter( //
         GeodesicCenter.of(SnGeodesic.INSTANCE, param.f_window.get()), param.getWidth());
     snDeltaFil = new SnDeltaContainer(tensorUnaryOperator.apply(sequence), s_window);
   }

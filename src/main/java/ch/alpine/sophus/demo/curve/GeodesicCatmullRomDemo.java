@@ -30,7 +30,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.itp.LinearInterpolation;
+import ch.alpine.tensor.itp.LinearBinaryAverage;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
@@ -77,7 +77,7 @@ public class GeodesicCatmullRomDemo extends AbstractCurvatureDemo {
       Scalar hi = knots.Get(knots.length() - 2);
       hi = DoubleScalar.of(Math.nextDown(hi.number().doubleValue()));
       Clip interval = Clips.interval(lo, hi);
-      Scalar parameter = LinearInterpolation.of(Tensors.of(lo, hi)).At(evalAt);
+      Scalar parameter = (Scalar) LinearBinaryAverage.INSTANCE.split(lo, hi, evalAt);
       ScalarTensorFunction scalarTensorFunction = GeodesicCatmullRom.of(geodesicInterface, knots, control);
       Tensor refined = Subdivide.increasing(interval, Math.max(1, levels * control.length())).map(scalarTensorFunction);
       {

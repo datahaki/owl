@@ -55,7 +55,7 @@ import ch.alpine.tensor.red.Nest;
     GeodesicFilters geodesicFilters = spinnerFilters.getValue();
     TensorUnaryOperator tensorUnaryOperator = geodesicFilters.from(manifoldDisplay, smoothingKernel);
     return Nest.of( //
-        CenterFilter.of(tensorUnaryOperator, spinnerRadius.getValue()), //
+        new CenterFilter(tensorUnaryOperator, spinnerRadius.getValue()), //
         control(), spinnerConvolution.getValue());
   }
 

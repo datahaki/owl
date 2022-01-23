@@ -32,7 +32,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     System.out.println("smooth");
     {
       TensorUnaryOperator tensorUnaryOperator = //
-          CenterFilter.of(GeodesicCenter.of(Se3Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), 4 * 3 * 2);
+          new CenterFilter(GeodesicCenter.of(Se3Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), 4 * 3 * 2);
       Tensor smooth = tensorUnaryOperator.apply(poses);
       System.out.println("store");
       Put.of(HomeDirectory.file("MH_04_difficult_poses_smooth.file"), smooth);

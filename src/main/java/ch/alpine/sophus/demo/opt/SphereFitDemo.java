@@ -84,7 +84,7 @@ import ch.alpine.tensor.sca.Chop;
         }
     }
     {
-      Tensor weiszfeld = WeiszfeldMethod.with(Chop._04).uniform(control).get();
+      Tensor weiszfeld = new WeiszfeldMethod(Chop._04).uniform(control).get();
       geometricLayer.pushMatrix(GfxMatrix.translation(weiszfeld));
       Path2D path2d = geometricLayer.toPath2D(manifoldDisplay.shape());
       path2d.closePath();
@@ -98,7 +98,7 @@ import ch.alpine.tensor.sca.Chop;
       Biinvariant biinvariant = MetricBiinvariant.EUCLIDEAN;
       TensorUnaryOperator weightingInterface = //
           biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), control);
-      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(manifoldDisplay.biinvariantMean(), weightingInterface, Chop._06);
+      SpatialMedian spatialMedian = new HsWeiszfeldMethod(manifoldDisplay.biinvariantMean(), weightingInterface, Chop._06);
       Optional<Tensor> optional = spatialMedian.uniform(control);
       if (optional.isPresent()) {
         Tensor weiszfeld = optional.get();

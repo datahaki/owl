@@ -101,7 +101,7 @@ public class BiinvariantMeanDemo extends ControlPointsDemo {
       Biinvariant biinvariant = biinvariants;
       TensorUnaryOperator weightingInterface = //
           biinvariant.weighting(manifoldDisplay.hsManifold(), InversePowerVariogram.of(1), sequence);
-      SpatialMedian spatialMedian = HsWeiszfeldMethod.of(biinvariantMean, weightingInterface, Chop._05);
+      SpatialMedian spatialMedian = new HsWeiszfeldMethod(biinvariantMean, weightingInterface, Chop._05);
       Optional<Tensor> optional = spatialMedian.uniform(sequence);
       if (optional.isPresent()) {
         mean = optional.orElseThrow();

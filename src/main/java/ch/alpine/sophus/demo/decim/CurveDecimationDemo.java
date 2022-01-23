@@ -17,7 +17,7 @@ import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.decim.CurveDecimation;
-import ch.alpine.sophus.decim.CurveDecimation.Result;
+import ch.alpine.sophus.decim.DecimationResult;
 import ch.alpine.sophus.decim.LineDistances;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
@@ -84,7 +84,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   protected void updateState() {
     int limit = spinnerLabelLimit.getValue();
     String name = spinnerLabelString.getValue();
-    TensorUnaryOperator tensorUnaryOperator = CenterFilter.of( //
+    TensorUnaryOperator tensorUnaryOperator = new CenterFilter( //
         GeodesicCenter.of(Se2Geodesic.INSTANCE, WindowFunctions.GAUSSIAN.get()), param.width.number().intValue());
     _control = tensorUnaryOperator.apply(gokartPoseData.getPose(name, limit));
   }
@@ -113,7 +113,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     CurveDecimation curveDecimation = CurveDecimation.of( //
         param.type.supply(manifoldDisplay.hsManifold()), epsilon);
     Tensor control = Tensor.of(_control.stream().map(manifoldDisplay::project));
-    Result result = curveDecimation.evaluate(control);
+    DecimationResult result = curveDecimation.evaluate(control);
     Tensor simplified = result.result();
     graphics.setColor(Color.DARK_GRAY);
     // graphics.drawString("SIMPL=" + control.length(), 0, 20);

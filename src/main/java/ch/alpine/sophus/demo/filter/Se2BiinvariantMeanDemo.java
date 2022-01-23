@@ -59,7 +59,7 @@ import ch.alpine.tensor.red.Nest;
     Se2BiinvariantMeans se2BiinvariantMean = spinnerFilters.getValue();
     TensorUnaryOperator tensorUnaryOperator = BiinvariantMeanCenter.of(se2BiinvariantMean, smoothingKernel);
     return Nest.of( //
-        CenterFilter.of(tensorUnaryOperator, spinnerRadius.getValue()), //
+        new CenterFilter(tensorUnaryOperator, spinnerRadius.getValue()), //
         control(), spinnerConvolution.getValue());
   }
 

@@ -58,7 +58,7 @@ import ch.alpine.tensor.Tensors;
       VectorLogManifold vectorLogManifold = manifoldDisplay.hsManifold();
       HsDesign hsDesign = new HsDesign(vectorLogManifold);
       try {
-        Tensor matrix = IterativeCoordinateMatrix.of(spinnerTotal.getValue()).origin(hsDesign.matrix(sequence, origin));
+        Tensor matrix = new IterativeCoordinateMatrix(spinnerTotal.getValue()).origin(hsDesign.matrix(sequence, origin));
         Tensor circum = matrix.dot(sequence);
         // new PointsRender(color_fill, color_draw).show(matrixLift, shape, points);
         // new PointsRender(new Color(128, 128, 128, 64), new Color(128, 128, 128, 255)) //

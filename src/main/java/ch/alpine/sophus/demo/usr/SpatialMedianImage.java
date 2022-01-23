@@ -50,7 +50,7 @@ import ch.alpine.tensor.sca.Chop;
   private static Tensor image(int seed) {
     Random random = new Random(seed);
     Tensor points = RandomVariate.of(UniformDistribution.unit(), random, 15, 2);
-    Optional<Tensor> optional = WeiszfeldMethod.with(Chop._10).uniform(points);
+    Optional<Tensor> optional = new WeiszfeldMethod(Chop._10).uniform(points);
     GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
     BufferedImage bufferedImage = StaticHelper.createWhite();
     if (optional.isPresent()) {

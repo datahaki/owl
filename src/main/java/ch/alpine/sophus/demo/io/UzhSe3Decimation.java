@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ch.alpine.sophus.decim.CurveDecimation;
-import ch.alpine.sophus.decim.CurveDecimation.Result;
+import ch.alpine.sophus.decim.DecimationResult;
 import ch.alpine.sophus.lie.se3.Se3CurveDecimation;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -31,7 +31,7 @@ import ch.alpine.tensor.io.Put;
     {
       CurveDecimation curveDecimation = Se3CurveDecimation.of(RealScalar.of(0.02));
       Timing timing = Timing.started();
-      Result result = curveDecimation.evaluate(poses);
+      DecimationResult result = curveDecimation.evaluate(poses);
       Tensor decimated = result.result();
       timing.stop();
       System.out.println(timing.seconds());

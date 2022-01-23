@@ -16,7 +16,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.Chop;
 
 /* package */ enum IterativeGenesis {
-  MEAN_VALUE(ThreePointWeighting.of(Barycenter.MEAN_VALUE)), //
+  MEAN_VALUE(new ThreePointWeighting(Barycenter.MEAN_VALUE)), //
   INVERSE_DISTANCE(AffineCoordinate.INSTANCE), //
   ;
 
@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.Chop;
   }
 
   public TensorScalarFunction with(int max) {
-    return IterativeCoordinateLevel.of(genesis, Chop._08, max);
+    return new IterativeCoordinateLevel(genesis, Chop._08, max);
   }
 
   public static TensorUnaryOperator counts(VectorLogManifold vectorLogManifold, Tensor sequence, int max) {

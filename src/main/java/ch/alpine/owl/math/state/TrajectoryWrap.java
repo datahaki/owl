@@ -12,9 +12,7 @@ import java.util.stream.Collectors;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.itp.Interpolation;
-import ch.alpine.tensor.itp.LinearInterpolation;
+import ch.alpine.tensor.itp.LinearBinaryAverage;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
@@ -78,11 +76,11 @@ public class TrajectoryWrap {
     Entry<Scalar, TrajectorySample> lo = navigableMap.floorEntry(now);
     Entry<Scalar, TrajectorySample> hi = navigableMap.higherEntry(now);
     Scalar index = Clips.interval(lo.getKey(), hi.getKey()).rescale(now);
-    Interpolation interpolation = LinearInterpolation.of(Tensors.of( //
+    Tensor split = LinearBinaryAverage.INSTANCE.split( //
         lo.getValue().stateTime().state(), //
-        hi.getValue().stateTime().state()));
+        hi.getValue().stateTime().state(), index);
     return new TrajectorySample( //
-        new StateTime(interpolation.at(index), now), //
+        new StateTime(split, now), //
         hi.getValue().getFlow().orElseThrow());
   }
 }
