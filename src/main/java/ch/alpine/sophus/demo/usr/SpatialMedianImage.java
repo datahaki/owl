@@ -27,7 +27,7 @@ import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
 /* package */ enum SpatialMedianImage {

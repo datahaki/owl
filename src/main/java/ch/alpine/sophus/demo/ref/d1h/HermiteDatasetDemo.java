@@ -40,6 +40,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
+// TODO use fields editor
 public class HermiteDatasetDemo extends GeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;

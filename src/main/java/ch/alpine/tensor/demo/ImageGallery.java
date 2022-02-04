@@ -138,8 +138,8 @@ public class ImageGallery {
   }
 
   public static void main(String[] args) {
-    File src = new File("/run/media/datahaki/data/pictures/2021_12/best_of");
-    File dst = new File("/run/media/datahaki/data/public_html/photos/2021_poland");
+    File src = new File("/run/media/datahaki/data/pictures/2022_01/best_of");
+    File dst = new File("/run/media/datahaki/data/public_html/photos/2022_east");
     new ImageGallery(src, dst);
   }
 }

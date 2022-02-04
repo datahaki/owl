@@ -20,7 +20,7 @@ import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.opt.hun.BipartiteMatching;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 // 4 22 35
 /* package */ class BipartitionImage {

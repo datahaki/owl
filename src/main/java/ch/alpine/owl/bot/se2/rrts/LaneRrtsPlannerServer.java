@@ -26,7 +26,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.NormalDistribution;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Degree;
 
 // TODO don't use magic constants at all. implement via interface, make interface final 

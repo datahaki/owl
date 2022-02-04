@@ -33,7 +33,7 @@ import ch.alpine.tensor.mat.SymmetricMatrixQ;
 import ch.alpine.tensor.opt.ts.Tsp2OptHeuristic;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 @ReflectionMarker
 public class Tsp2OptHeuristicDemo extends ControlPointsDemo {

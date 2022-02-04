@@ -20,7 +20,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 public class Se2Display extends Se2AbstractDisplay {
   public static final ManifoldDisplay INSTANCE = new Se2Display();

@@ -8,8 +8,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.ExponentialDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.ExponentialDistribution;
 import junit.framework.TestCase;
 
 public class ScanToStateTest extends TestCase {

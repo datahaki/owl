@@ -96,8 +96,8 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
     Tensor _coeffs = coeffs;
     if (VectorQ.of(_coeffs) && //
         NumberQ.all(_coeffs)) {
-      ScalarUnaryOperator f0 = Polynomial.of(_coeffs);
-      ScalarUnaryOperator f1 = Polynomial.derivative(_coeffs);
+      Polynomial f0 = Polynomial.of(_coeffs);
+      ScalarUnaryOperator f1 = f0.derivative();
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());
