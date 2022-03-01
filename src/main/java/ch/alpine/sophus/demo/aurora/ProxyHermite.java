@@ -42,9 +42,8 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
   private final Tensor matrix;
 
   /** @param name "20190701T163225_01"
-   * @param levels 2
-   * @throws IOException */
-  public ProxyHermite(String name, int levels) throws IOException {
+   * @param levels 2*/
+  public ProxyHermite(String name, int levels) {
     this.levels = levels;
     folder = HomeDirectory.Documents(name);
     folder.mkdir();

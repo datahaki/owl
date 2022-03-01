@@ -16,7 +16,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Log;
 
 /* package */ class Hermite2Array extends HermiteArray {
-  public Hermite2Array(String name, Scalar period, int levels) throws IOException {
+  public Hermite2Array(String name, Scalar period, int levels) {
     super(name, period, levels);
   }
 

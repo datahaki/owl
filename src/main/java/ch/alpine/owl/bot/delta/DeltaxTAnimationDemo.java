@@ -89,7 +89,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
         supplier);
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new DeltaxTAnimationDemo().start().jFrame.setVisible(true);
   }
 }

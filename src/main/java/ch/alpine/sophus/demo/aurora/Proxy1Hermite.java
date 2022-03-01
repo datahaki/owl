@@ -16,7 +16,7 @@ import ch.alpine.tensor.sca.Log;
 import ch.alpine.tensor.sca.N;
 
 /* package */ class Proxy1Hermite extends ProxyHermite {
-  public Proxy1Hermite(String name, int levels) throws IOException {
+  public Proxy1Hermite(String name, int levels) {
     super(name, levels);
   }
 

@@ -38,7 +38,7 @@ import ch.alpine.tensor.ext.Timing;
 
 /* package */ enum R2ImageDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     Tensor partitionScale = Tensors.vector(6, 6);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);

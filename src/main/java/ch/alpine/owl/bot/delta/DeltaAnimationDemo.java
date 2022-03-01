@@ -51,7 +51,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new DeltaAnimationDemo().start().jFrame.setVisible(true);
   }
 }

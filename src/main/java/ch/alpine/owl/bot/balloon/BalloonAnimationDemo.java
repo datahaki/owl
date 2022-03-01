@@ -41,7 +41,7 @@ public class BalloonAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new BalloonAnimationDemo().start().jFrame.setVisible(true);
   }
 }
