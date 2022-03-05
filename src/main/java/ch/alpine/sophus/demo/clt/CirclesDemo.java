@@ -21,7 +21,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.sca.Ceiling;
 import ch.alpine.tensor.sca.Clips;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 public class CirclesDemo extends AbstractDemo {
   @FieldSlider

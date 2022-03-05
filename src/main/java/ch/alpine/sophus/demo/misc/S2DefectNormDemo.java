@@ -46,7 +46,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 @ReflectionMarker
 public class S2DefectNormDemo extends ControlPointsDemo {

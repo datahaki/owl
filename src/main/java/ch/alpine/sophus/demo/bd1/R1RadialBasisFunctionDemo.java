@@ -18,7 +18,7 @@ import ch.alpine.tensor.alg.Sort;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-/** TODO investigate, this produces some nice results for kriging+metric+power */
+/** TODO OWL ALG investigate, this produces some nice results for kriging+metric+power */
 /* package */ class R1RadialBasisFunctionDemo extends A1AveragingDemo {
   public R1RadialBasisFunctionDemo() {
     super(R2Display.INSTANCE);

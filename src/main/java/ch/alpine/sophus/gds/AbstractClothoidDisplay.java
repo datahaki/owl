@@ -21,7 +21,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-// TODO probably obsolete: instead use Se2 and Se2Covering with different clothoid builders
+// TODO OWL ALG probably obsolete: instead use Se2 and Se2Covering with different clothoid builders
 public abstract class AbstractClothoidDisplay implements ManifoldDisplay, Serializable {
   private static final Tensor SPEARHEAD = PolygonNormalize.of( //
       Spearhead.of(Tensors.vector(-0.217, -0.183, 4.189), RealScalar.of(0.1)), RealScalar.of(0.08));

@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.List;
 
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 
+@ReflectionMarker
 public abstract class GeodesicDatasetDemo extends GeodesicDisplayDemo {
   protected final GokartPoseData gokartPoseData;
   protected final SpinnerLabel<String> spinnerLabelString = new SpinnerLabel<>();

@@ -72,11 +72,11 @@ public class HermiteSubdivisionDemo extends ControlPointsDemo {
       switch (manifoldDisplay.toString()) {
       case "SE2C":
       case "SE2":
-        // TODO use various options: unit vector, scaled by parametric distance, ...
+        // TODO OWL ALG use various options: unit vector, scaled by parametric distance, ...
         control = Tensor.of(tensor.stream().map(xya -> Tensors.of(xya, UnitVector.of(3, 0))));
         break;
       case "R2":
-        // TODO use various options: unit vector, scaled by parametric distance, ...
+        // TODO OWL ALG use various options: unit vector, scaled by parametric distance, ...
         control = Tensor.of(tensor.stream().map(xya -> Tensors.of(xya.extract(0, 2), AngleVector.of(xya.Get(2)))));
         break;
       default:

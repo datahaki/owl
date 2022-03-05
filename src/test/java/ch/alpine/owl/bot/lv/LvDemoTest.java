@@ -22,7 +22,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.sca.Log;
+import ch.alpine.tensor.sca.exp.Log;
 import junit.framework.TestCase;
 
 public class LvDemoTest extends TestCase {

@@ -14,7 +14,7 @@ import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.num.Polynomial;
-import ch.alpine.tensor.sca.Cos;
+import ch.alpine.tensor.sca.tri.Cos;
 import ch.alpine.tensor.sca.win.DirichletWindow;
 
 /** Example from Mathematica::Spectrogram:

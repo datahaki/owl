@@ -5,7 +5,7 @@ import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.sca.Factorial;
+import ch.alpine.tensor.sca.gam.Factorial;
 import junit.framework.TestCase;
 
 public class CarDiscreteModelTest extends TestCase {

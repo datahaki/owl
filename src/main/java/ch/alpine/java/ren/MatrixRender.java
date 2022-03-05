@@ -13,9 +13,9 @@ import ch.alpine.tensor.img.ColorDataGradient;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorFormat;
 import ch.alpine.tensor.num.Pi;
-import ch.alpine.tensor.sca.ArcTan;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
+import ch.alpine.tensor.sca.tri.ArcTan;
 
 public class MatrixRender {
   public static MatrixRender absoluteOne(Graphics2D graphics, ColorDataIndexed colorDataIndexed, ColorDataGradient colorDataGradient) {

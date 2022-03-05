@@ -27,7 +27,7 @@ import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.FileHash;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.ResourceData;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 public class ImageGallery {
   private final Map<File, String> map = new HashMap<>();

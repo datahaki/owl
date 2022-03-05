@@ -76,7 +76,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     super.render(geometricLayer, graphics);
     {
-      // FIXME this is the wrong place to draw the mouse!
+      // FIXME OWL API this is the wrong place to draw the mouse!
       // Tensor xya = geometricLayer.getMouseSe2State();
       // geometricLayer.pushMatrix(Se2Matrix.of(xya));
       // graphics.setColor(new Color(0, 128, 255, 192));

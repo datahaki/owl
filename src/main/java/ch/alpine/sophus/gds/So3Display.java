@@ -118,7 +118,7 @@ public class So3Display implements ManifoldDisplay, Serializable {
 
   @Override
   public final LineDistance lineDistance() {
-    return null; // TODO line distance should be similar to s^3
+    return null; // TODO OWL ALG line distance should be similar to s^3
   }
 
   @Override // from Object

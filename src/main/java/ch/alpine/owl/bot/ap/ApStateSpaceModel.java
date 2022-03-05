@@ -8,8 +8,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.red.Times;
-import ch.alpine.tensor.sca.Cos;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Cos;
+import ch.alpine.tensor.sca.tri.Sin;
 
 /** State-Space Model for Flying Aircraft
  * taken from "Validating a Hamilton-Jacobi Approximation to Hybrid System Reachable Sets⋆" by Ian Mitchel et al.

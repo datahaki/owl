@@ -25,7 +25,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Cache;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.sca.Power;
+import ch.alpine.tensor.sca.pow.Power;
 
 public class HilbertCurveDemo extends ControlPointsDemo {
   private static final int CACHE_SIZE = 10;

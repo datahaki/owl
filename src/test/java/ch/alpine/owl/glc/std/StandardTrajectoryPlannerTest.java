@@ -57,7 +57,7 @@ public class StandardTrajectoryPlannerTest extends TestCase {
     if (optional.isPresent()) {
       GlcNode goalNode = optional.get(); // <- throws exception if
       Scalar cost = goalNode.costFromRoot();
-      // FIXME abs!?
+      // FIXME OWL TEST abs!?
       Scalar lowerBound = Ramp.of(Vector2Norm.of(stateGoal.subtract(stateRoot)).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
         throw TensorRuntimeException.of(cost, lowerBound);

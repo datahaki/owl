@@ -40,7 +40,7 @@ public class SnDeltaContainer {
     Tensor domain = Range.of(0, t0_deltas.length());
     for (int d = 1; d < 3; ++d) {
       Tensor values = t0_deltas.get(Tensor.ALL, d);
-      spectrogram[d - 1] = Spectrogram.of(values, window, ColorDataGradients.VISIBLESPECTRUM);
+      spectrogram[d - 1] = Spectrogram.of(values, window, ColorDataGradients.VISIBLE_SPECTRUM);
       bufferedImage[d - 1] = ImageFormat.of(spectrogram[d - 1]);
       visualSet.add(domain, values);
     }

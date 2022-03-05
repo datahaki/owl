@@ -43,7 +43,7 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
 
   /** @param name "20190701T163225_01"
    * @param period 1/2[s]
-   * @param levels 4*/
+   * @param levels 4 */
   public HermiteArray(String name, Scalar period, int levels) {
     this.levels = Integers.requirePositive(levels);
     folder = HomeDirectory.Documents(name);

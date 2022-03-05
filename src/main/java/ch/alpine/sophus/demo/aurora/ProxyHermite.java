@@ -42,7 +42,7 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
   private final Tensor matrix;
 
   /** @param name "20190701T163225_01"
-   * @param levels 2*/
+   * @param levels 2 */
   public ProxyHermite(String name, int levels) {
     this.levels = levels;
     folder = HomeDirectory.Documents(name);
@@ -66,7 +66,7 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
   final Scalar process(HermiteSubdivision hermiteSubdivision) {
     TensorIteration tensorIteration = hermiteSubdivision.string(delta, control);
     Tensor refined = Do.of(control, tensorIteration::iterate, levels);
-    // TODO not a distance
+    // TODO OWL ALG not a distance
     if (refined.length() != data.length())
       System.err.println("nonono");
     Scalar total = RealScalar.ZERO;

@@ -39,7 +39,7 @@ public class ReversalTransitionSpace implements TransitionSpace, Serializable {
         int steps = Integers.requirePositive(Ceiling.intValueExact(length().divide(minResolution)));
         Tensor samples = sampled(length().divide(RealScalar.of(steps)));
         Tensor spacing = Array.zeros(samples.length());
-        // TODO GJOEL use of function "connect" does not give subsegments of transition generally
+        // TODO OWL ALG use of function "connect" does not give subsegments of transition generally
         IntStream.range(0, samples.length()) //
             .forEach(i -> spacing.set(i > 0 //
                 ? connect(samples.get(i - 1), samples.get(i)).length() //

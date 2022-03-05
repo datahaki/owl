@@ -58,7 +58,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       // ---
       GeodesicCausalFilters geodesicCausalFilters = spinnerCausalFilter.getValue();
       // System.out.println(geodesicCausalFilters);
-      // TODO should be able to do with geodesicCausalFilters.supply, but doesn't
+      // TODO OWL ALG should be able to do with geodesicCausalFilters.supply, but doesn't
       TensorUnaryOperator tensorUnaryOperator = geodesicCausalFilters.supply(manifoldDisplay(), windowFunctions, radius, alpha());
       tensorUnaryOperator = switch (geodesicCausalFilters) {
       case GEODESIC_FIR -> GeodesicFIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());

@@ -13,7 +13,7 @@ public enum Tse2Controls {
   ;
   /** @param flows
    * @return max rate per meter driven in unit "s^-1" */
-  // TODO JPH max effective turning rate/angular rate depends on tangent speed
+  // TODO OWL API max effective turning rate/angular rate depends on tangent speed
   public static Scalar maxTurning(Collection<Tensor> flows) {
     return flows.stream() //
         .map(u -> u.Get(Tse2StateSpaceModel.CONTROL_INDEX_STEER)) //

@@ -24,7 +24,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.DiagonalMatrix;
 import ch.alpine.tensor.sca.Abs;
 
-// TODO behaves counter intuitively!?
+// TODO OWL DEMO behaves counter intuitively!?
 /* package */ class R1KrigingDemo extends A1AveragingDemo {
   public R1KrigingDemo() {
     super(R2Display.INSTANCE);

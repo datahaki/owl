@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.esp;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.math.order.VectorLexicographic;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.tensor.ScalarQ;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.alg.Reverse;
@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Transpose;
   @Override // from StateTimeRaster
   public Tensor convertToKey(StateTime stateTime) {
     Tensor x = stateTime.state();
-    if (ScalarQ.of(x))
+    if (x instanceof Scalar)
       return x;
     Tensor m0 = x.extract(0, 5);
     Tensor m1 = Transpose.of(m0);

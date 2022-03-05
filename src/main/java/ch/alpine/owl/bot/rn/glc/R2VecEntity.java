@@ -33,7 +33,7 @@ import ch.alpine.tensor.alg.Array;
   @Override
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     System.out.println("goal=" + goal);
-    Collection<Tensor> controls = createControls(); // TODO design no good
+    Collection<Tensor> controls = createControls(); // TODO OWL API design no good
     goalRegion = getGoalRegionWithDistance(goal);
     GoalInterface minTimeGoal = RnMinTimeGoalManager.create(goalRegion, controls); //
     List<CostFunction> costs = new ArrayList<>();

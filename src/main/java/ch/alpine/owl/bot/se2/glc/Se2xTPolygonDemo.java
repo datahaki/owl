@@ -15,7 +15,7 @@ import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Sin;
 
 public class Se2xTPolygonDemo implements DemoInterface {
   private static final Tensor CORNER_TOP_LEFT = Tensors.matrix(new Number[][] { //

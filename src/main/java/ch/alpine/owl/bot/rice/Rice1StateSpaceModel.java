@@ -6,8 +6,8 @@ import java.io.Serializable;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.sca.Exp;
 import ch.alpine.tensor.sca.Sign;
+import ch.alpine.tensor.sca.exp.Exp;
 
 /** Important:
  * The use of {@link Duncan1StateSpaceModel} is preferred and

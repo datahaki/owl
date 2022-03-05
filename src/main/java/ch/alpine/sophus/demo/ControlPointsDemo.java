@@ -35,7 +35,7 @@ import ch.alpine.tensor.mat.re.Det;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.N;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** class is used in other projects outside of owl */
 @ReflectionMarker
@@ -234,7 +234,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
     return PIXEL_THRESHOLD.divide(Sqrt.FUNCTION.apply(Abs.of(Det.of(timerFrame.geometricComponent.getModel2Pixel()))));
   }
 
-  // TODO function should not be here!
+  // TODO OWL API function should not be here!
   public final void addButtonDubins() {
     JButton jButton = new JButton("dubins");
     jButton.setToolTipText("project control points to dubins path");
@@ -250,7 +250,7 @@ public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
 
   /** @return control points as matrix of dimensions N x 3 */
   public final Tensor getControlPointsSe2() {
-    return control.unmodifiable(); // TODO should return copy!?
+    return control.unmodifiable(); // TODO OWL API should return copy!?
   }
 
   /** @return control points for selected {@link ManifoldDisplay} */

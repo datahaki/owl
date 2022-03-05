@@ -14,7 +14,7 @@ import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.num.Polynomial;
-import ch.alpine.tensor.sca.Cos;
+import ch.alpine.tensor.sca.tri.Cos;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
 /** Example from Mathematica::Spectrogram:
@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
     folder.mkdir();
     for (WindowFunctions windowFunctions : WindowFunctions.values()) {
       ScalarUnaryOperator scalarUnaryOperator = windowFunctions.get();
-      Tensor image = Spectrogram.of(tensor, scalarUnaryOperator, ColorDataGradients.VISIBLESPECTRUM);
+      Tensor image = Spectrogram.of(tensor, scalarUnaryOperator, ColorDataGradients.VISIBLE_SPECTRUM);
       Export.of(new File(folder, windowFunctions.name() + ".png"), ImageResize.nearest(image, 4));
     }
   }

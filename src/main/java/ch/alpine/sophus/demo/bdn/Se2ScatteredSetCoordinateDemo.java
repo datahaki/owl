@@ -89,7 +89,7 @@ import ch.alpine.tensor.num.Pi;
     Tensor sY = Subdivide.of(+RANGE, -RANGE, refinement);
     Tensor sA = Drop.tail(Subdivide.of(Pi.VALUE.negate(), Pi.VALUE, 6), 1);
     int n = sX.length();
-    Tensor origin = getGeodesicControlPoints(); // TODO
+    Tensor origin = getGeodesicControlPoints(); // TODO OWL ALG
     Tensor wgs = Array.of(l -> DoubleScalar.INDETERMINATE, n * sA.length(), n, origin.length());
     IntStream.range(0, n).parallel().forEach(c0 -> {
       Scalar x = sX.Get(c0);

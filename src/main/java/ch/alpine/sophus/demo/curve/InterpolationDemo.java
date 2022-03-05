@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.red.Nest;
 
-// TODO functionality/purpose is not clear
+// TODO OWL ALG functionality/purpose is not clear
 /* package */ class InterpolationDemo extends ControlPointsDemo {
   public InterpolationDemo() {
     super(true, ManifoldDisplays.SE2C_SE2_R2);

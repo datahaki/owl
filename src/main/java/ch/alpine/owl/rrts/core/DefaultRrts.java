@@ -45,12 +45,12 @@ public class DefaultRrts implements Rrts {
     // that means no sanity collision check on state is carried out inside function insertAsNode
     int size = nodeCollection.size();
     if (size == 0) {
-      RrtsNode rrtsNode = RrtsNode.createRoot(state, RealScalar.ZERO); // TODO JPH/GJOEL units?
+      RrtsNode rrtsNode = RrtsNode.createRoot(state, RealScalar.ZERO); // TODO OWL ALG units?
       nodeCollection.insert(rrtsNode);
       return Optional.of(rrtsNode);
     }
-    if (ignoreCheck || isInsertPlausible(state)) { // TODO GJOEL/JPH is this needed?
-      k_nearest = Math.min(Math.max(1, k_nearest), size); // TODO not elegant
+    if (ignoreCheck || isInsertPlausible(state)) { // TODO OWL ALG is this needed?
+      k_nearest = Math.min(Math.max(1, k_nearest), size); // TODO OWL ALG not elegant
       Optional<RrtsNode> optional = connectAlongMinimumCost(state, k_nearest);
       if (optional.isPresent()) {
         RrtsNode rrtsNode = optional.orElseThrow();
@@ -63,7 +63,7 @@ public class DefaultRrts implements Rrts {
     return Optional.empty();
   }
 
-  // TODO GJOEL/JPH probably remove
+  // TODO OWL API probably remove
   private boolean isInsertPlausible(Tensor state) {
     RrtsNode nearest = nodeCollection.nearTo(state, 1).iterator().next().rrtsNode();
     return isCollisionFree(transitionSpace.connect(nearest.state(), state));

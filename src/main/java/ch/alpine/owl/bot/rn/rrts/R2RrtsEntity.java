@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
-// TODO the redundancy in R2****Entity shows that re-factoring is needed!
+// TODO OWL API the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = RealScalar.of(0.5);

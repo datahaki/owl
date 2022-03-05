@@ -59,7 +59,7 @@ import ch.alpine.tensor.sca.Clips;
     laneConsumptionDemo.setControlPointsSe2(Tensors.of(stateTime.state()));
     laneConsumptionDemo.timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
     laneConsumptionDemo.timerFrame.geometricComponent.addRenderInterface(entity);
-    /** TODO GJOEL rework; currently taken over from {@link OwlyAnimationFrame}
+    /** TODO OWL API rework; currently taken over from {@link OwlyAnimationFrame}
      * shorter variant, that does not close properly
      * OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
      * owlyAnimationFrame.add(entity); */

@@ -22,9 +22,9 @@ import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
 import ch.alpine.sophus.hs.sn.SnGeodesic;
-import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.hs.sn.SnMetric;
 import ch.alpine.sophus.hs.sn.SnPerturbation;
+import ch.alpine.sophus.hs.sn.SnRotationMatrix;
 import ch.alpine.sophus.itp.UniformResample;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
@@ -123,7 +123,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
           geometricLayer.popMatrix();
         }
         Tensor q = snDeltaRaw.sequence.get(index - 0);
-        v0 = SnManifold.INSTANCE.endomorphism(p, q).dot(v0);
+        v0 = SnRotationMatrix.of(p, q).dot(v0);
       }
     }
     int mag = 4;

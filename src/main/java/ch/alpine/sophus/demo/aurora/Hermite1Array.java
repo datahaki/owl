@@ -13,8 +13,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.qty.Quantity;
-import ch.alpine.tensor.sca.Log;
 import ch.alpine.tensor.sca.N;
+import ch.alpine.tensor.sca.exp.Log;
 
 /* package */ class Hermite1Array extends HermiteArray {
   public Hermite1Array(String name, Scalar period, int levels) {

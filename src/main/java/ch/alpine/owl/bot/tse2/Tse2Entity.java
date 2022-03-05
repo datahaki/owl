@@ -48,7 +48,7 @@ public abstract class Tse2Entity extends TrajectoryEntity implements GlcPlannerC
         trajectoryControl);
     fixedStateIntegrator = // node interval == 3/10
         FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, RationalScalar.of(1, 10), 3);
-    // TODO JPH use tse2 fallback control
+    // TODO OWL ALG use tse2 fallback control
     add(FallbackControl.of(Array.zeros(2)));
   }
 

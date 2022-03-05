@@ -20,7 +20,7 @@ public abstract class AbstractEntity implements RenderInterface, AnimationInterf
   private final NavigableSet<EntityControl> entityControls = //
       new ConcurrentSkipListSet<>(EntityControlComparator.INSTANCE);
 
-  // TODO JPH possibly pass in fallback control as argument? to avoid throw in integrate
+  // TODO OWL API possibly pass in fallback control as argument? to avoid throw in integrate
   protected AbstractEntity(EpisodeIntegrator episodeIntegrator) {
     this.episodeIntegrator = episodeIntegrator;
   }

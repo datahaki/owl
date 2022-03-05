@@ -38,7 +38,7 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.red.Nest;
-import ch.alpine.tensor.sca.Power;
+import ch.alpine.tensor.sca.pow.Power;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
 /* package */ class CurveDecimationDemo extends GeodesicDatasetDemo {

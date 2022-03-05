@@ -117,7 +117,7 @@ import ch.alpine.tensor.sca.Clips;
           ClothoidTransition.of(CLOTHOID_BUILDER, START, mouse);
       Tensor tensor = clothoidTransition.linearized(RealScalar.of(0.1));
       pathRenderClothoid.setCurve(tensor, false).render(geometricLayer, graphics);
-      // TODO
+      // TODO OWL ALG
     }
     { // draw least curved path
       graphics.setColor(COLOR_DATA_INDEXED.getColor(2));

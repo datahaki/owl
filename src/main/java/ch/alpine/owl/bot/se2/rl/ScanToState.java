@@ -11,7 +11,7 @@ import ch.alpine.tensor.sca.Chop;
 
 /* package */ enum ScanToState {
   ;
-  // TODO possibly switch to empty {} instead of {0}
+  // TODO OWL ALG possibly switch to empty {} instead of {0}
   public static final Tensor COLLISION = Tensors.vector(0).unmodifiable();
 
   /** @param range

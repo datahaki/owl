@@ -39,7 +39,7 @@ import ch.alpine.tensor.red.Times;
     Tensor control = getGeodesicControlPoints();
     final Tensor shape = getControlPointShape(); // .multiply(RealScalar.of(0.3));
     if (0 < control.length()) {
-      // TODO check for zero norm below
+      // TODO OWL ALG check for zero norm below
       Tensor sequence = Tensor.of(control.stream().map(Vector2Norm.NORMALIZE));
       Tensor target = sequence;
       graphics.setColor(Color.GREEN);

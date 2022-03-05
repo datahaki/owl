@@ -8,7 +8,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.num.Pi;
 
-// TODO crashes when only 2 control points exist
+// TODO OWL ALG crashes when only 2 control points exist
 /* package */ class S1BarycentricCoordinateDemo extends A1BarycentricCoordinateDemo {
   public S1BarycentricCoordinateDemo() {
     super(LogWeightings.list());

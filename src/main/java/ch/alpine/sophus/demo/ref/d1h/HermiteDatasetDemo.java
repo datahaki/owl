@@ -20,6 +20,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
@@ -40,7 +41,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-// TODO use fields editor
+@ReflectionMarker
 public class HermiteDatasetDemo extends GeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;

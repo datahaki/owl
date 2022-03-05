@@ -94,7 +94,7 @@ public enum HermiteSubdivisions {
     }
   };
 
-  // TODO class design is no good
+  // TODO OWL ALG class design is no good
   public static Scalar LAMBDA = RationalScalar.of(-1, 8);
   public static Scalar MU = RationalScalar.of(-1, 2);
   public static Scalar THETA = RationalScalar.of(+1, 128);

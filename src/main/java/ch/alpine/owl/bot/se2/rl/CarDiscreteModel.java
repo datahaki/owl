@@ -19,10 +19,10 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.lie.Permutations;
 import ch.alpine.tensor.num.Rationalize;
-import ch.alpine.tensor.sca.Factorial;
+import ch.alpine.tensor.sca.gam.Factorial;
 
 /* package */ class CarDiscreteModel implements DiscreteModel, TerminalInterface {
-  // TODO should depend on time!
+  // TODO OWL ALG should depend on time!
   private static final Scalar DISCOUNT_FACTOR = RealScalar.of(0.98);
   // ---
   private final Tensor states;

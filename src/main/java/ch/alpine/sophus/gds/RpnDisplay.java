@@ -35,7 +35,7 @@ public abstract class RpnDisplay implements ManifoldDisplay, Serializable {
 
   @Override // from GeodesicDisplay
   public final Geodesic geodesic() {
-    return SnGeodesic.INSTANCE; // TODO
+    return SnGeodesic.INSTANCE; // TODO OWL ALG
   }
 
   @Override
@@ -80,7 +80,7 @@ public abstract class RpnDisplay implements ManifoldDisplay, Serializable {
 
   @Override // from GeodesicDisplay
   public final BiinvariantMean biinvariantMean() {
-    return SnFastMean.INSTANCE; // TODO
+    return SnFastMean.INSTANCE; // TODO OWL ALG
   }
 
   @Override

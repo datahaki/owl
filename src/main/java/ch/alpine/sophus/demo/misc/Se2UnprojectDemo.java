@@ -27,7 +27,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.pd.Orthogonalize;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ class Se2UnprojectDemo extends ControlPointsDemo {
   private static final Tensor ARROWHEAD = Arrowhead.of(0.5);

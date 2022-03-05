@@ -28,7 +28,7 @@ public class RnPointcloudRegionRender implements RenderInterface {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     for (Tensor point : points) {
       geometricLayer.pushMatrix(GfxMatrix.translation(point));
-      // TODO make polygon dependent on resolution
+      // TODO OWL ALG make polygon dependent on resolution
       Path2D path2D = geometricLayer.toPath2D(polygon, true);
       graphics.setColor(RegionRenders.COLOR);
       graphics.fill(path2D);

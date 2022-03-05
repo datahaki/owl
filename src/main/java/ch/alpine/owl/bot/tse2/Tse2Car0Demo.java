@@ -25,7 +25,7 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     Region<Tensor> region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);
     owlAnimationFrame.add(tse2CarEntity);
-    // TODO add option to select goal velocity / range
+    // TODO OWL API add option to select goal velocity / range
     MouseGoal.simple(owlAnimationFrame, tse2CarEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenders.create(region));
     {

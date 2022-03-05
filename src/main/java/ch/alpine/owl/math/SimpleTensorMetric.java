@@ -7,9 +7,9 @@ import java.util.Objects;
 import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.nrm.FrobeniusNorm;
 
-// TODO design/naming not good
+// TODO OWL API design/naming not good
 public class SimpleTensorMetric implements TensorMetric, Serializable {
   private final TensorDifference tensorDifference;
 
@@ -20,6 +20,6 @@ public class SimpleTensorMetric implements TensorMetric, Serializable {
 
   @Override // from TensorMetric
   public Scalar distance(Tensor p, Tensor q) {
-    return Vector2Norm.of(tensorDifference.difference(p, q));
+    return FrobeniusNorm.of(tensorDifference.difference(p, q));
   }
 }

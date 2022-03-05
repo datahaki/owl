@@ -17,7 +17,7 @@ public enum CarRrtsFlow {
   public static Tensor uBetween(StateTime orig, StateTime dest) {
     Tensor log = Se2Wrap.INSTANCE.difference(orig.state(), dest.state());
     Scalar delta = dest.time().subtract(orig.time());
-    // TODO side speed should not result in forward motion! rather project
+    // TODO OWL API side speed should not result in forward motion! rather project
     // ... the sign of vx is not always correct when using norm!
     Scalar vx = Vector2Norm.of(Extract2D.FUNCTION.apply(log));
     return Tensors.of(vx, vx.zero(), log.Get(2)).divide(delta);

@@ -75,7 +75,7 @@ import ch.alpine.tensor.sca.Sign;
         ti = ti.add(spacing.Get(i));
         StateTime stateTime = new StateTime(samples.get(i), ti);
         StateTime orig = Lists.last(trajectory).stateTime();
-        // TODO GJOEL this boolean expression appears twice => extract to function
+        // TODO OWL ALG this boolean expression appears twice => extract to function
         Tensor u = (transition instanceof DirectedTransition && !((DirectedTransition) transition).isForward) //
             ? uBetween.apply(stateTime, orig) //
             : uBetween.apply(orig, stateTime);

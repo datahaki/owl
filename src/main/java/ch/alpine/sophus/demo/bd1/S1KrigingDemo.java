@@ -31,7 +31,7 @@ import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.N;
 
-// FIXME what does this demo do: there is no curve shown
+// FIXME OWL DEMO what does this demo do: there is no curve shown
 /* package */ class S1KrigingDemo extends AnAveragingDemo {
   private static final Tensor DOMAIN = Drop.tail(CirclePoints.of(161).map(N.DOUBLE), 80);
 
@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.N;
     Tensor control = getGeodesicControlPoints();
     final Tensor shape = getControlPointShape(); // .multiply(RealScalar.of(0.3));
     if (1 < control.length()) {
-      // TODO check for zero norm below
+      // TODO OWL ALG check for zero norm below
       Tensor sequence = Tensor.of(control.stream().map(Vector2Norm.NORMALIZE));
       Tensor funceva = Tensor.of(control.stream().map(Vector2Norm::of));
       Tensor cvarian = getControlPointsSe2().get(Tensor.ALL, 2).multiply(RationalScalar.HALF).map(Abs.FUNCTION);

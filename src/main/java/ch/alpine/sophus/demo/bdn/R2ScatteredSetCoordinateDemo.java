@@ -37,7 +37,7 @@ import ch.alpine.tensor.red.Entrywise;
 
 /** transfer weights from barycentric coordinates defined by set of control points
  * in the square domain (subset of R^2) to means in non-linear spaces */
-// TODO possibly only recompute when points have changed
+// TODO OWL ALG possibly only recompute when points have changed
 /* package */ class R2ScatteredSetCoordinateDemo extends AbstractScatteredSetWeightingDemo {
   private static final double RANGE = 5;
   // ---

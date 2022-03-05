@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.lie.r2.CirclePoints;
-import ch.alpine.tensor.sca.Power;
+import ch.alpine.tensor.sca.pow.Power;
 
 public abstract class GeodesicDisplayRender implements RenderInterface {
   private static final Tensor CIRCLE = CirclePoints.of(61);

@@ -35,7 +35,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** several magic constants are hard-coded in the implementation.
  * that means, the functionality does not apply to all examples universally. */
@@ -77,7 +77,7 @@ public class CarEntity extends Se2Entity {
   public final Tensor goalRadius;
   final Tensor partitionScale;
   private final Tensor shape;
-  protected final TrajectoryControl trajectoryControl; // TODO JPH design is despicable
+  protected final TrajectoryControl trajectoryControl; // TODO OWL API design is despicable
 
   /** extra cost functions, for instance
    * 1) to penalize switching gears

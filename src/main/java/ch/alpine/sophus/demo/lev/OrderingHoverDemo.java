@@ -22,7 +22,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Clips;
 
-// FIXME pressing shuffle button crashes app
+// FIXME OWL ALG pressing shuffle button crashes app
 /* package */ class OrderingHoverDemo extends AbstractHoverDemo {
   private final SpinnerLabel<Integer> spinnerLength = new SpinnerLabel<>();
   private final SpinnerLabel<ColorDataGradient> spinnerColorData = SpinnerLabel.of(ColorDataGradients.values());

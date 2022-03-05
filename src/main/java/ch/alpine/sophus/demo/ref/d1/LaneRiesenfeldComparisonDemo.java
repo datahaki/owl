@@ -38,6 +38,7 @@ import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Quantile;
 
 /** compare different levels of smoothing in the LaneRiesenfeldCurveSubdivision */
+// TODO OWL DEMO is broken
 /* package */ class LaneRiesenfeldComparisonDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLORS = ColorDataLists._097.cyclic();
   private static final List<CurveSubdivisionSchemes> CURVE_SUBDIVISION_SCHEMES = //

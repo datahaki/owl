@@ -51,7 +51,7 @@ import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
   private static List<Biinvariant> distinct() {
     return Arrays.asList( //
-        MetricBiinvariant.EUCLIDEAN, // FIXME should be retrieved from bitype
+        MetricBiinvariant.EUCLIDEAN, // FIXME OWL ALG should be retrieved from bitype
         Biinvariants.LEVERAGES, //
         Biinvariants.GARDEN);
   }

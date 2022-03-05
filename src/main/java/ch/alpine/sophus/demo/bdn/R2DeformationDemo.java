@@ -66,7 +66,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
   @Override
   MovingDomain2D updateMovingDomain2D(Tensor movingOrigin) {
     int res = refinement();
-    // TODO meshgrid functionality is already(?)/should be generalized
+    // TODO OWL ALG meshgrid functionality is already(?)/should be generalized
     Tensor dx = Subdivide.of(0.0, EXTENT, res - 1);
     Tensor dy = Subdivide.of(0.0, EXTENT, res - 3);
     Tensor domain = Tensors.matrix((cx, cy) -> Tensors.of(dx.get(cx), dy.get(cy)), dx.length(), dy.length());
