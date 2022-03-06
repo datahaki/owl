@@ -15,6 +15,7 @@ import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.CirclePoints;
@@ -69,7 +70,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
     // TODO OWL ALG meshgrid functionality is already(?)/should be generalized
     Tensor dx = Subdivide.of(0.0, EXTENT, res - 1);
     Tensor dy = Subdivide.of(0.0, EXTENT, res - 3);
-    Tensor domain = Tensors.matrix((cx, cy) -> Tensors.of(dx.get(cx), dy.get(cy)), dx.length(), dy.length());
+    Tensor domain = Outer.of(Tensors::of, dx, dy);
     TensorUnaryOperator tensorUnaryOperator = operator(movingOrigin);
     return jToggleRigidMotionFit.isSelected() //
         ? RnFittedMovingDomain2D.of(movingOrigin, tensorUnaryOperator, domain)

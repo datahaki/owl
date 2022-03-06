@@ -9,6 +9,7 @@ import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
@@ -39,7 +40,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
     int res = refinement();
     Tensor dx = Subdivide.of(0, 6, res - 1);
     Tensor dy = Subdivide.of(0, 6, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> Tensors.of(dx.get(cx), dy.get(cy), RealScalar.ZERO), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> Tensors.of(cx, cy, RealScalar.ZERO), dx, dy);
     return AveragedMovingDomain2D.of(movingOrigin, operator(movingOrigin), domain);
   }
 

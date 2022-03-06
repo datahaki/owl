@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2;
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.region.Regions;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;

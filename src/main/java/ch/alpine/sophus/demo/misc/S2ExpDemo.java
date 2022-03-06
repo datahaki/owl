@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.sophus.api.Exponential;
 import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.gds.GeodesicDisplayRender;
@@ -12,7 +13,6 @@ import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.hs.sn.TSnProjection;
-import ch.alpine.sophus.math.Exponential;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

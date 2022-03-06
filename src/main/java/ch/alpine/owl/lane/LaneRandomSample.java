@@ -4,8 +4,8 @@ package ch.alpine.owl.lane;
 import java.io.Serializable;
 import java.util.Random;
 
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
-import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;

@@ -16,14 +16,14 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.util.DisjointSets;
 import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.demo.opt.LogWeightings;
+import ch.alpine.sophus.fit.MinimumSpanningTree;
+import ch.alpine.sophus.fit.MinimumSpanningTree.Edge;
+import ch.alpine.sophus.fit.MinimumSpanningTree.EdgeComparator;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.MinimumSpanningTree;
-import ch.alpine.sophus.math.MinimumSpanningTree.Edge;
-import ch.alpine.sophus.math.MinimumSpanningTree.EdgeComparator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -66,12 +66,12 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
       int count = Math.max(0, list.size() - splits);
       {
         for (Edge edge : list.subList(0, count))
-          disjointSets.union(edge.i, edge.j);
+          disjointSets.union(edge.i(), edge.j());
       }
       graphics.setColor(Color.BLACK);
       for (Edge edge : list.subList(0, count)) {
-        Tensor p = sequence.get(edge.i);
-        Tensor q = sequence.get(edge.j);
+        Tensor p = sequence.get(edge.i());
+        Tensor q = sequence.get(edge.j());
         ScalarTensorFunction curve = geodesicInterface.curve(p, q);
         Path2D line = geometricLayer.toPath2D(domain.map(curve));
         graphics.draw(line);

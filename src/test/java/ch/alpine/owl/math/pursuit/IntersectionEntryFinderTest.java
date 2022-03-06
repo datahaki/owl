@@ -3,7 +3,7 @@ package ch.alpine.owl.math.pursuit;
 
 import java.util.Optional;
 
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;

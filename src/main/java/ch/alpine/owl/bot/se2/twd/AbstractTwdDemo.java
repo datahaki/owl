@@ -6,7 +6,7 @@ import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

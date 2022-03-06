@@ -13,7 +13,7 @@ import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.lie.r3.MinTriangleAreaSquared;
+import ch.alpine.sophus.hs.r3.MinTriangleAreaSquared;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

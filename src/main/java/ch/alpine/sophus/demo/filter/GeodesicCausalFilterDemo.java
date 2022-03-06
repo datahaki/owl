@@ -9,6 +9,7 @@ import javax.swing.JSlider;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.opt.GeodesicCausalFilters;
 import ch.alpine.sophus.flt.WindowSideExtrapolation;
@@ -20,7 +21,6 @@ import ch.alpine.sophus.flt.ga.GeodesicIIRnFilter;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
-import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

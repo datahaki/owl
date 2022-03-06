@@ -25,7 +25,7 @@ import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionPlanner;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.math.TensorMetric;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

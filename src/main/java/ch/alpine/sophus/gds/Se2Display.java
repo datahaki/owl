@@ -3,6 +3,8 @@ package ch.alpine.sophus.gds;
 
 import java.util.Random;
 
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.r2.Se2Parametric;
@@ -13,8 +15,6 @@ import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2Manifold;
 import ch.alpine.sophus.lie.so2.So2;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.num.Pi;

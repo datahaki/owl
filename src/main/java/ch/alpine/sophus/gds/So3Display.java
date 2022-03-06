@@ -4,6 +4,8 @@ package ch.alpine.sophus.gds;
 import java.io.Serializable;
 
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.decim.LineDistance;
 import ch.alpine.sophus.hs.Biinvariant;
@@ -19,8 +21,6 @@ import ch.alpine.sophus.lie.so3.So3BiinvariantMean;
 import ch.alpine.sophus.lie.so3.So3Geodesic;
 import ch.alpine.sophus.lie.so3.So3Manifold;
 import ch.alpine.sophus.lie.so3.So3Metric;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

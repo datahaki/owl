@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.opt;
 
+import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.lie.LieTransport;
 import ch.alpine.sophus.lie.rn.RnBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RnManifold;
@@ -9,7 +10,6 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2Manifold;
 import ch.alpine.sophus.lie.se2c.Se2CoveringExponential;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

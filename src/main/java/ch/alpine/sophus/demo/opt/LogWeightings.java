@@ -44,7 +44,7 @@ public enum LogWeightings implements LogWeighting {
     public TensorScalarFunction function( //
         Biinvariant biinvariant, VectorLogManifold vectorLogManifold, ScalarUnaryOperator variogram, //
         Tensor sequence, Tensor values) {
-      TensorUnaryOperator tensorUnaryOperator = CrossAveraging.of( //
+      TensorUnaryOperator tensorUnaryOperator = new CrossAveraging( //
           operator(biinvariant, vectorLogManifold, variogram, sequence), //
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);
@@ -62,7 +62,7 @@ public enum LogWeightings implements LogWeighting {
     public TensorScalarFunction function( //
         Biinvariant biinvariant, VectorLogManifold vectorLogManifold, ScalarUnaryOperator variogram, //
         Tensor sequence, Tensor values) {
-      TensorUnaryOperator tensorUnaryOperator = CrossAveraging.of( //
+      TensorUnaryOperator tensorUnaryOperator = new CrossAveraging( //
           operator(biinvariant, vectorLogManifold, variogram, sequence), //
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);
@@ -80,7 +80,7 @@ public enum LogWeightings implements LogWeighting {
     public TensorScalarFunction function( //
         Biinvariant biinvariant, VectorLogManifold vectorLogManifold, ScalarUnaryOperator variogram, //
         Tensor sequence, Tensor values) {
-      TensorUnaryOperator tensorUnaryOperator = CrossAveraging.of( //
+      TensorUnaryOperator tensorUnaryOperator = new CrossAveraging( //
           operator(biinvariant, vectorLogManifold, variogram, sequence), //
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);
@@ -120,7 +120,7 @@ public enum LogWeightings implements LogWeighting {
     public TensorScalarFunction function( //
         Biinvariant biinvariant, VectorLogManifold vectorLogManifold, ScalarUnaryOperator variogram, //
         Tensor sequence, Tensor values) {
-      TensorUnaryOperator tensorUnaryOperator = CrossAveraging.of( //
+      TensorUnaryOperator tensorUnaryOperator = new CrossAveraging( //
           operator(biinvariant, vectorLogManifold, variogram, sequence), //
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);
@@ -138,7 +138,7 @@ public enum LogWeightings implements LogWeighting {
     public TensorScalarFunction function( //
         Biinvariant biinvariant, VectorLogManifold vectorLogManifold, ScalarUnaryOperator variogram, //
         Tensor sequence, Tensor values) {
-      TensorUnaryOperator tensorUnaryOperator = CrossAveraging.of( //
+      TensorUnaryOperator tensorUnaryOperator = new CrossAveraging( //
           operator(biinvariant, vectorLogManifold, variogram, sequence), //
           RnBiinvariantMean.INSTANCE, values);
       return point -> (Scalar) tensorUnaryOperator.apply(point);

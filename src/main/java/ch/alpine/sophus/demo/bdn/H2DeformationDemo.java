@@ -11,6 +11,7 @@ import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.CirclePoints;
@@ -40,7 +41,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
     double rad = 1.0;
     Tensor dx = Subdivide.of(-rad, rad, res - 1);
     Tensor dy = Subdivide.of(-rad, rad, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> HnWeierstrassCoordinate.toPoint(Tensors.of(dx.get(cx), dy.get(cy))), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> HnWeierstrassCoordinate.toPoint(Tensors.of(cx, cy)), dx, dy);
     TensorUnaryOperator tensorUnaryOperator = operator(movingOrigin);
     return AveragedMovingDomain2D.of(movingOrigin, tensorUnaryOperator, domain);
   }

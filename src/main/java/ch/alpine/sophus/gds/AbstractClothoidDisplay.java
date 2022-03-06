@@ -4,6 +4,7 @@ package ch.alpine.sophus.gds;
 import java.io.Serializable;
 
 import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.crv.d2.Arrowhead;
@@ -15,7 +16,6 @@ import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieExponential;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

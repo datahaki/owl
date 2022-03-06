@@ -1,13 +1,13 @@
 // code by ob, jph
 package ch.alpine.sophus.demo.opt;
 
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.crv.spline.MonomialExtrapolationMask;
 import ch.alpine.sophus.flt.bm.BiinvariantMeanExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicFIRn;
 import ch.alpine.sophus.flt.ga.GeodesicIIRn;
 import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorUnaryOperator;

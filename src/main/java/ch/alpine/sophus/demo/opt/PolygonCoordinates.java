@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import ch.alpine.sophus.api.Genesis;
 import ch.alpine.sophus.gbc.AffineCoordinate;
 import ch.alpine.sophus.gbc.LagrangeCoordinate;
 import ch.alpine.sophus.gbc.LeveragesGenesis;
@@ -24,7 +25,6 @@ import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.HsGenesis;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.itp.InverseDistanceWeighting;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.sophus.math.var.InversePowerVariogram;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -43,8 +43,8 @@ public enum PolygonCoordinates implements LogWeighting {
   WACHSPRESS(ThreePointCoordinate.of(Barycenter.WACHSPRESS)), //
   DISCRETE_HARMONIC(ThreePointCoordinate.of(Barycenter.DISCRETE_HARMONIC)), //
   INVERSE_DISTANCE(MetricCoordinate.of(InversePowerVariogram.of(2))), //
-  LAGRANG_DISTANCE(new LagrangeCoordinate(InverseDistanceWeighting.of(InversePowerVariogram.of(2)))), //
-  ITER_TARGET(new IterativeTargetCoordinate(InverseDistanceWeighting.of(InversePowerVariogram.of(2)), RealScalar.ONE, 50)), //
+  LAGRANG_DISTANCE(new LagrangeCoordinate(new InverseDistanceWeighting(InversePowerVariogram.of(2)))), //
+  ITER_TARGET(new IterativeTargetCoordinate(new InverseDistanceWeighting(InversePowerVariogram.of(2)), RealScalar.ONE, 50)), //
   ITERATIVE_AF_0(new IterativeCoordinate(AffineCoordinate.INSTANCE, 0)), //
   ITERATIVE_AF_1(new IterativeCoordinate(AffineCoordinate.INSTANCE, 1)), //
   ITERATIVE_AF_2(new IterativeCoordinate(AffineCoordinate.INSTANCE, 2)), //

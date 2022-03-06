@@ -18,6 +18,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.img.ColorDataGradients;
@@ -41,7 +42,7 @@ import ch.alpine.tensor.sca.Chop;
       this.points = points;
     }
 
-    Scalar dist(Scalar x, Scalar y) {
+    Scalar dist(Scalar y, Scalar x) {
       Tensor p = INVERSE.dot(Tensors.of(x, y, RealScalar.ONE)).extract(0, 2);
       return points.stream().map(r -> Vector2Norm.between(r, p)).reduce(Scalar::add).get();
     }
@@ -58,7 +59,7 @@ import ch.alpine.tensor.sca.Chop;
       Tensor px = Range.of(0, 192);
       Tensor py = Range.of(0, 192);
       Pixel2Coord some = new Pixel2Coord(points);
-      Tensor image = Tensors.matrix((j, i) -> some.dist(px.Get(i), py.Get(j)), px.length(), py.length());
+      Tensor image = Outer.of(some::dist, px, py);
       BufferedImage background = ImageFormat.of(Raster.of(image, ColorDataGradients.DENSITY));
       Graphics2D graphics = bufferedImage.createGraphics();
       graphics.drawImage(background, 0, 0, null);

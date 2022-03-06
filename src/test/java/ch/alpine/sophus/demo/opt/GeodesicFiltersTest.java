@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
@@ -13,7 +14,6 @@ import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.Se2Display;
 import ch.alpine.sophus.lie.so2.So2;
-import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;

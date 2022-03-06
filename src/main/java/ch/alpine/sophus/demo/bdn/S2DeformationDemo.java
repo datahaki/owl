@@ -11,6 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.CirclePoints;
@@ -58,7 +59,7 @@ import ch.alpine.tensor.red.Times;
     int res = refinement();
     Tensor dx = Subdivide.of(-1, 1, res - 1);
     Tensor dy = Subdivide.of(-1, 1, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> Vector2Norm.NORMALIZE.apply(Tensors.of(dx.get(cx), dy.get(cy), ZHEIGHT)), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> Vector2Norm.NORMALIZE.apply(Tensors.of(cx, cy, ZHEIGHT)), dx, dy);
     TensorUnaryOperator tensorUnaryOperator = operator(movingOrigin);
     return AveragedMovingDomain2D.of(movingOrigin, tensorUnaryOperator, domain);
   }

@@ -51,7 +51,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
         try {
           TensorUnaryOperator weightingInterface = operator(sequence);
           TensorUnaryOperator operator = //
-              CrossAveraging.of(p -> weightingInterface.apply(p), RnBiinvariantMean.INSTANCE, funceva);
+              new CrossAveraging(weightingInterface, RnBiinvariantMean.INSTANCE, funceva);
           Tensor result = Tensor.of(domain.stream().map(Tensors::of).map(operator));
           new PathRender(Color.RED, 1.25f) //
               .setCurve(Transpose.of(Tensors.of(domain, result)), false) //

@@ -1,13 +1,13 @@
 // code by ob, jph
 package ch.alpine.sophus.demo.opt;
 
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.SplitInterface;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.flt.bm.BiinvariantMeanCenter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.flt.ga.GeodesicCenterMidSeeded;
 import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.SplitInterface;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 

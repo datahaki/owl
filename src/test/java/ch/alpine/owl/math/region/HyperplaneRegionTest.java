@@ -2,7 +2,7 @@
 package ch.alpine.owl.math.region;
 
 import ch.alpine.owl.math.AssertFail;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

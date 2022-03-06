@@ -2,7 +2,7 @@
 package ch.alpine.owl.math.state;
 
 import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import junit.framework.TestCase;

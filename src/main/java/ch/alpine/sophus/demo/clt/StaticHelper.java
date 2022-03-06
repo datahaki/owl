@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophus.demo.clt;
 
+import ch.alpine.sophus.crv.d2.TripleReduceExtrapolation;
 import ch.alpine.sophus.lie.rn.RnLineDistance;
-import ch.alpine.sophus.math.TripleReduceExtrapolation;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

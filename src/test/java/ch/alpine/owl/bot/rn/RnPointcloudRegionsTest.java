@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.math.region.BufferedImageRegion;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

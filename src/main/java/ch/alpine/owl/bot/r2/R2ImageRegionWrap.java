@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import ch.alpine.java.img.FloodFill2D;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

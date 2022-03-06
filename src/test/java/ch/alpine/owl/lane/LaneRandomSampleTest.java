@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;

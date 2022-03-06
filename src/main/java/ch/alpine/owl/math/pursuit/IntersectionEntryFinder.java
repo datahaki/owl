@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -25,6 +25,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
@@ -72,8 +73,8 @@ import ch.alpine.tensor.sca.Chop;
     pathRenderHull.setCurve(ConvexHull.of(control), true);
     {
       new PathRender(Color.GRAY).setCurve(CIRCLE, true).render(geometricLayer, graphics);
-      Tensor matrix = Tensors.matrix((i, j) -> //
-      Vector2Norm.between(control.get(i), CIRCLE.get(j)), control.length(), CIRCLE.length());
+      
+      Tensor matrix = Outer.of(Vector2Norm::between, control, CIRCLE);
       BipartiteMatching bipartiteMatching = BipartiteMatching.of(matrix);
       int[] matching = bipartiteMatching.matching();
       graphics.setColor(Color.RED);

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

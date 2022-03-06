@@ -21,7 +21,7 @@ import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
 import ch.alpine.sophus.gds.GeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

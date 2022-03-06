@@ -1,12 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d1;
 
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.MidpointInterface;
+import ch.alpine.sophus.api.SplitInterface;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.R2Display;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.MidpointInterface;
-import ch.alpine.sophus.math.SplitInterface;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;

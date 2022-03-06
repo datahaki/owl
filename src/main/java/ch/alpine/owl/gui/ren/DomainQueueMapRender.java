@@ -6,7 +6,7 @@ import java.util.Map;
 
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.glc.rl2.RelaxedPriorityQueue;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
