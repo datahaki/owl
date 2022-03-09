@@ -1,4 +1,4 @@
-// code by jph 
+// code by jph
 package ch.alpine.owl.bot.rn;
 
 import ch.alpine.owl.math.AssertFail;

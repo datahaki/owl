@@ -38,6 +38,7 @@ public abstract class RelaxedTrajectoryPlanner implements TrajectoryPlanner, Ser
   }
 
   /** Adds node to global queue if it does not have children
+   * 
    * @param node non-null */
   protected final void addToGlobalQueue(GlcNode node) {
     if (!node.isLeaf()) {

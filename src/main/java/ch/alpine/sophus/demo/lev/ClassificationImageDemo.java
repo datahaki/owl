@@ -76,11 +76,11 @@ import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
       spinnerLogWeighting.addSpinnerListener(logWeighting -> {
         if (logWeighting.equals(LogWeightings.DISTANCES))
           spinnerLabels.setValue(Labels.ARG_MIN);
-        else //
-        if ( //
-        logWeighting.equals(LogWeightings.WEIGHTING) || //
-        logWeighting.equals(LogWeightings.COORDINATE))
-          spinnerLabels.setValue(Labels.ARG_MAX);
+        else
+          if ( //
+          logWeighting.equals(LogWeightings.WEIGHTING) || //
+          logWeighting.equals(LogWeightings.COORDINATE))
+            spinnerLabels.setValue(Labels.ARG_MAX);
       });
       spinnerLogWeighting.addSpinnerListener(v -> recompute());
     }

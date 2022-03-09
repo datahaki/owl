@@ -73,6 +73,7 @@ public class Tse2CarEntity extends Tse2Entity {
   protected final TrajectoryControl trajectoryControl; // TODO OWL API design is despicable
 
   /** extra cost functions, for instance
+   * 
    * @param stateTime initial position */
   public Tse2CarEntity(StateTime stateTime, TrajectoryControl trajectoryControl, Tensor partitionScale, FlowsInterface carFlows, Tensor shape) {
     super(v_range, stateTime, trajectoryControl);

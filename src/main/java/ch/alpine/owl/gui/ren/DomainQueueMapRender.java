@@ -1,4 +1,4 @@
-// code by jph 
+// code by jph
 package ch.alpine.owl.gui.ren;
 
 import java.awt.Color;

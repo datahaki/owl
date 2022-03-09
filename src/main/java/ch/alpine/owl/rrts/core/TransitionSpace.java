@@ -11,6 +11,7 @@ import ch.alpine.tensor.Tensor;
  * An instance of TransitionSpace is immutable.
  * 
  * Examples:
+ * 
  * @see RnTransitionSpace
  * @see DubinsTransitionSpace
  * @see ClothoidTransitionSpace */

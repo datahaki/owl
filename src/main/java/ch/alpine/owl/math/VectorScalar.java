@@ -1,4 +1,4 @@
-// code by ynager
+// code by ynager
 package ch.alpine.owl.math;
 
 import java.io.Serializable;
@@ -43,10 +43,10 @@ import ch.alpine.tensor.sca.Real;
  * to prevent confusion with standard vectors that are formatted as {1, 2, 3}.
  * 
  * <p>Hint: a {@link VectorScalar} may also have zero entries */
-// API not finalized: should VectorScalar allow entries with other VectorScalar's?
 public class VectorScalar extends AbstractScalar implements //
     ChopInterface, ComplexEmbedding, ConjugateInterface, ExactScalarQInterface, //
     NInterface, Comparable<Scalar>, Serializable {
+  // TODO API not finalized: should VectorScalar allow entries with other VectorScalar's?
   /** @param vector
    * @return
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */

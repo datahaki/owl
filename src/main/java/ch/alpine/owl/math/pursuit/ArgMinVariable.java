@@ -49,6 +49,7 @@ public class ArgMinVariable implements TensorScalarFunction {
   }
 
   /** calculate and add pair {value, variable}
+   * 
    * @param trajectoryEntry */
   private void insert(TrajectoryEntry trajectoryEntry) {
     Optional<Tensor> optional = trajectoryEntry.point();

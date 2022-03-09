@@ -7,6 +7,7 @@ import ch.alpine.java.img.FloodFill2D;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -18,7 +19,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
  * 2) {@link CostFunction} with given radius */
-public class R2ImageRegionWrap {
+public class R2ImageRegionWrap implements RegionBoundsInterface {
   private final Region<Tensor> imageRegion;
   private final CostFunction costFunction;
   private final Tensor range;
@@ -45,7 +46,8 @@ public class R2ImageRegionWrap {
     return range;
   }
 
-  public CoordinateBoundingBox box() {
+  @Override
+  public CoordinateBoundingBox coordinateBounds() {
     return CoordinateBounds.of(range.map(Scalar::zero), range);
   }
 }

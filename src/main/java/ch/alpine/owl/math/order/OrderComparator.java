@@ -13,6 +13,7 @@ public interface OrderComparator<T> {
    * <tt>x &lt y</tt>,
    * <tt>x > y</tt>, or
    * <tt>x ~ y</tt>, i.e. x and y are incomparable
+   * 
    * @param x left hand side of comparison
    * @param y right hand side of comparison
    * @return one of the following

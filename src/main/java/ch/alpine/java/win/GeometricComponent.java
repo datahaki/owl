@@ -83,16 +83,16 @@ public final class GeometricComponent {
       final int mask = InputEvent.CTRL_DOWN_MASK; // 128 = 2^7
       if ((mods & mask) == 0) // ctrl pressed?
         mouseWheel += delta;
-      else //
-      if (isZoomable) {
-        Scalar factor = Power.of(SCALE_FACTOR, delta);
-        Tensor scale = DiagonalMatrix.of(factor, factor, RealScalar.ONE);
-        Tensor shift = Tensors.vector(event.getX(), event.getY());
-        shift = shift.subtract(shift.multiply(factor));
-        scale.set(shift.Get(0), 0, 2);
-        scale.set(shift.Get(1), 1, 2);
-        model2pixel = scale.dot(model2pixel);
-      }
+      else
+        if (isZoomable) {
+          Scalar factor = Power.of(SCALE_FACTOR, delta);
+          Tensor scale = DiagonalMatrix.of(factor, factor, RealScalar.ONE);
+          Tensor shift = Tensors.vector(event.getX(), event.getY());
+          shift = shift.subtract(shift.multiply(factor));
+          scale.set(shift.Get(0), 0, 2);
+          scale.set(shift.Get(1), 1, 2);
+          model2pixel = scale.dot(model2pixel);
+        }
       jComponent.repaint();
     });
     {

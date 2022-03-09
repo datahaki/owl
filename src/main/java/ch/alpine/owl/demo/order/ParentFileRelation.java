@@ -1,5 +1,5 @@
 // code from http://www.java2s.com/Tutorial/Java/0180__File/Checkswhetherthechilddirectoryisasubdirectoryofthebasedirectory.htm
-// adapted by jph 
+// adapted by jph
 package ch.alpine.owl.demo.order;
 
 import java.io.File;

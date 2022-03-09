@@ -73,7 +73,6 @@ import ch.alpine.tensor.sca.Chop;
     pathRenderHull.setCurve(ConvexHull.of(control), true);
     {
       new PathRender(Color.GRAY).setCurve(CIRCLE, true).render(geometricLayer, graphics);
-      
       Tensor matrix = Outer.of(Vector2Norm::between, control, CIRCLE);
       BipartiteMatching bipartiteMatching = BipartiteMatching.of(matrix);
       int[] matching = bipartiteMatching.matching();

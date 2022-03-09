@@ -1,4 +1,4 @@
-// code by jph 
+// code by jph
 package ch.alpine.owl.demo.order;
 
 import java.io.File;

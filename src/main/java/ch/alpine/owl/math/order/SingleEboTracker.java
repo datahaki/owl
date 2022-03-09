@@ -45,11 +45,11 @@ public class SingleEboTracker<K> extends AbstractEboTracker<K> {
           iterator.remove();
           continue; // continue with while loop
           // if applicantPair is indifferent or worse in all dimension discard applicantPair
-        } else //
-        if (!orderComparison.equals(OrderComparison.INCOMPARABLE)) {
-          discardedKeys.add(applicantPair.key());
-          return;
-        }
+        } else
+          if (!orderComparison.equals(OrderComparison.INCOMPARABLE)) {
+            discardedKeys.add(applicantPair.key());
+            return;
+          }
       }
       // the code below is identical to LexicographicSemiorderMinTracker::digest
       ProductOrderTracker<Scalar> productOrderTracker = new ProductOrderTracker<>(ScalarTotalOrder.INSTANCE);
@@ -67,13 +67,13 @@ public class SingleEboTracker<K> extends AbstractEboTracker<K> {
             break; // leave for loop, continue with while loop
           }
         } else
-        // if x strictly succeeding the current object and it is strictly succeeding
-        // in every coordinate until now, then x will be discarded
-        if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS))
-          if (productorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
-            discardedKeys.add(applicantPair.key());
-            return;
-          }
+          // if x strictly succeeding the current object and it is strictly succeeding
+          // in every coordinate until now, then x will be discarded
+          if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS))
+            if (productorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
+              discardedKeys.add(applicantPair.key());
+              return;
+            }
       }
     }
     candidateSet.add(applicantPair);

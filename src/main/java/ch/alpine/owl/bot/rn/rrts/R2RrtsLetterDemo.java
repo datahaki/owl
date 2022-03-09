@@ -30,7 +30,7 @@ import ch.alpine.tensor.Tensors;
     Region<Tensor> region = r2ImageRegionWrap.region();
     StateTime stateTime = new StateTime(Tensors.vector(6, 5), RealScalar.ZERO);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.05));
-    R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box());
+    R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenders.create(region));
     MouseGoal.simpleRrts(owlAnimationFrame, entity, null);
     owlAnimationFrame.add(entity);

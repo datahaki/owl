@@ -1,4 +1,4 @@
-//code by astoll
+// code by astoll
 package ch.alpine.owl.bot.ap;
 
 import ch.alpine.tensor.Tensor;

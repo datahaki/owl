@@ -150,7 +150,7 @@ import ch.alpine.tensor.sca.Clips;
     List<RrtsNode> first = new ArrayList<>();
     List<RrtsNode> last = new ArrayList<>();
     ClothoidLaneEntity entity = //
-        new ClothoidLaneEntity(stateTime, TRANSITION_REGION_QUERY, R2_IMAGE_REGION_WRAP.box(), true, DELAY_HINT, //
+        new ClothoidLaneEntity(stateTime, TRANSITION_REGION_QUERY, R2_IMAGE_REGION_WRAP.coordinateBounds(), true, DELAY_HINT, //
             process, rrtsNode -> first.addAll(Nodes.listFromRoot(rrtsNode)), rrtsNode -> last.addAll(Nodes.listFromRoot(rrtsNode)));
     LaneConsumer laneConsumer = new SimpleLaneConsumer(entity, null, Collections.singleton(entity));
     laneConsumer.accept(lane);

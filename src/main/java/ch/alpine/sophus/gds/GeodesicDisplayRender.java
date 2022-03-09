@@ -41,46 +41,46 @@ public abstract class GeodesicDisplayRender implements RenderInterface {
     if (geodesicDisplay instanceof S1Display) {
       graphics.setColor(BORDER);
       graphics.draw(geometricLayer.toPath2D(CIRCLE, true));
-    } else //
-    if (geodesicDisplay instanceof S2Display || //
-        geodesicDisplay instanceof Rp2Display) {
-      render_s2(geometricLayer, graphics);
-    } else //
-    // if (geodesicDisplay instanceof HP2GeodesicDisplay) {
-    // Paint paint = new GradientPaint( //
-    // geometricLayer.toPoint2D(0, 0), BORDER, //
-    // geometricLayer.toPoint2D(0, 5), CENTER);
-    // graphics.setPaint(paint);
-    // Tensor box = Tensors.fromString("{{-20, 0}, {+20, 0}, {+20, 5}, {-20, 5}}");
-    // graphics.fill(geometricLayer.toPath2D(box));
-    // } else //
-    if (geodesicDisplay instanceof H1Display) {
-      Tensor points = //
-          Tensor.of(H1_DOMAIN.map(Tensors::of).stream().map(HnWeierstrassCoordinate::toPoint));
-      // ---
-      graphics.setColor(BORDER);
-      graphics.draw(geometricLayer.toPath2D(points));
-    } else //
-    if (geodesicDisplay instanceof H2Display) {
-      Scalar modelWidth = RealScalar.of(5);
-      Point2D center = geometricLayer.toPoint2D(0, 0);
-      float fradius = geometricLayer.model2pixelWidth(modelWidth);
-      float[] dist = { 0.0f, 0.30f, 1.0f };
-      Color[] colors = { BORDER, new Color(224, 224, 224, 128), CENTER };
-      Paint paint = new RadialGradientPaint(center, fradius, dist, colors);
-      graphics.setPaint(paint);
-      graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(modelWidth)));
-      // ---
-      // graphics.setColor(BORDER);
-      // graphics.draw(geometricLayer.toPath2D(CIRCLE, true));
-    } else //
-    if (geodesicDisplay instanceof Spd2Display) {
-      Point2D point2d = geometricLayer.toPoint2D(0, 0);
-      graphics.setColor(Color.DARK_GRAY);
-      graphics.fill(new Rectangle( //
-          (int) point2d.getX(), //
-          (int) point2d.getY(), 1, 1));
-    }
+    } else
+      if (geodesicDisplay instanceof S2Display || //
+          geodesicDisplay instanceof Rp2Display) {
+        render_s2(geometricLayer, graphics);
+      } else //
+        // if (geodesicDisplay instanceof HP2GeodesicDisplay) {
+        // Paint paint = new GradientPaint( //
+        // geometricLayer.toPoint2D(0, 0), BORDER, //
+        // geometricLayer.toPoint2D(0, 5), CENTER);
+        // graphics.setPaint(paint);
+        // Tensor box = Tensors.fromString("{{-20, 0}, {+20, 0}, {+20, 5}, {-20, 5}}");
+        // graphics.fill(geometricLayer.toPath2D(box));
+        // } else //
+        if (geodesicDisplay instanceof H1Display) {
+          Tensor points = //
+              Tensor.of(H1_DOMAIN.map(Tensors::of).stream().map(HnWeierstrassCoordinate::toPoint));
+          // ---
+          graphics.setColor(BORDER);
+          graphics.draw(geometricLayer.toPath2D(points));
+        } else //
+          if (geodesicDisplay instanceof H2Display) {
+            Scalar modelWidth = RealScalar.of(5);
+            Point2D center = geometricLayer.toPoint2D(0, 0);
+            float fradius = geometricLayer.model2pixelWidth(modelWidth);
+            float[] dist = { 0.0f, 0.30f, 1.0f };
+            Color[] colors = { BORDER, new Color(224, 224, 224, 128), CENTER };
+            Paint paint = new RadialGradientPaint(center, fradius, dist, colors);
+            graphics.setPaint(paint);
+            graphics.fill(geometricLayer.toPath2D(CIRCLE.multiply(modelWidth)));
+            // ---
+            // graphics.setColor(BORDER);
+            // graphics.draw(geometricLayer.toPath2D(CIRCLE, true));
+          } else //
+            if (geodesicDisplay instanceof Spd2Display) {
+              Point2D point2d = geometricLayer.toPoint2D(0, 0);
+              graphics.setColor(Color.DARK_GRAY);
+              graphics.fill(new Rectangle( //
+                  (int) point2d.getX(), //
+                  (int) point2d.getY(), 1, 1));
+            }
   }
 
   public abstract ManifoldDisplay getGeodesicDisplay();

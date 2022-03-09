@@ -16,15 +16,15 @@ import ch.alpine.tensor.Tensors;
   void parse(String string) {
     if (string.startsWith("v "))
       vertices.append(StaticHelper.three(string.substring(2)));
-    else //
-    if (string.startsWith("vn "))
-      normals.append(StaticHelper.three(string.substring(3)));
-    else //
-    if (string.startsWith("f "))
-      ((WavefrontObjectImpl) object()).append_f(string.substring(2).trim());
-    else //
-    if (string.startsWith("o "))
-      objects.add(new WavefrontObjectImpl(string.substring(2)));
+    else
+      if (string.startsWith("vn "))
+        normals.append(StaticHelper.three(string.substring(3)));
+      else //
+        if (string.startsWith("f "))
+          ((WavefrontObjectImpl) object()).append_f(string.substring(2).trim());
+        else //
+          if (string.startsWith("o "))
+            objects.add(new WavefrontObjectImpl(string.substring(2)));
   }
 
   @Override // from Wavefront

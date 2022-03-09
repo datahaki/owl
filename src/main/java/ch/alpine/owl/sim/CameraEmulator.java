@@ -18,7 +18,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-// TODO OWL ALG several issues: 
+// TODO OWL ALG several issues:
 // 1) frame rate should be handled outside this class!
 // 2) localPoints = Tensors.empty(); // make unmodifiable
 // 3) exposure should not happen inside drawing

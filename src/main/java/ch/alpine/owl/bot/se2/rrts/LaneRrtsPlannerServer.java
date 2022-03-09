@@ -29,7 +29,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Degree;
 
-// TODO OWL API don't use magic constants at all. implement via interface, make interface final 
+// TODO OWL API don't use magic constants at all. implement via interface, make interface final
 public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer implements LaneConsumer {
   private static final Distribution DEFAULT_ROT_DIST = NormalDistribution.of(RealScalar.ZERO, Degree.of(5));
   // ---
