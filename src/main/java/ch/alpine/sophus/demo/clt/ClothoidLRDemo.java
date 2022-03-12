@@ -17,7 +17,7 @@ import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.d2.Arrowhead;
-import ch.alpine.sophus.gds.Se2ClothoidDisplay;
+import ch.alpine.sophus.ext.dis.Se2ClothoidDisplay;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.Tensor;

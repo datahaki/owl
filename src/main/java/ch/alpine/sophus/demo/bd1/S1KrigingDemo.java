@@ -10,7 +10,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
-import ch.alpine.sophus.gds.R2Display;
+import ch.alpine.sophus.ext.dis.R2Display;
 import ch.alpine.sophus.hs.r2.ArcTan2D;
 import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.itp.Kriging;

@@ -8,7 +8,7 @@ import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.d2.Curvature2D;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
-import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
+import ch.alpine.sophus.ext.api.HermiteSubdivisions;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;
 import ch.alpine.sophus.lie.LieTransport;

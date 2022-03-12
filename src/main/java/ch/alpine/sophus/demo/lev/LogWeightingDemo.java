@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.math.var.VariogramFunctions;

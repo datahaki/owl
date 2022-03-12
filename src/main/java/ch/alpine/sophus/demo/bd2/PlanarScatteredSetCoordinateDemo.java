@@ -10,12 +10,12 @@ import java.util.Arrays;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.javax.swing.SpinnerListener;
-import ch.alpine.sophus.demo.opt.InsideConvexHullLogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.gds.H2Display;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.R2Display;
-import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.ext.api.InsideConvexHullLogWeighting;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.dis.H2Display;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.R2Display;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

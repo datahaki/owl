@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.bd1;
 
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.Tensors;
 
 /* package */ class R2AveragingDemo extends A2AveragingDemo {

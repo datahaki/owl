@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.avg.GeometricSymLinkRender.Link;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.sym.SymLink;
 import ch.alpine.sophus.sym.SymLinkBuilder;
 import ch.alpine.sophus.sym.SymLinkImage;

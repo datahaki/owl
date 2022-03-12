@@ -4,7 +4,7 @@ package ch.alpine.sophus.demo.bdn;
 import java.util.stream.IntStream;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.fit.RigidMotionFit;
+import ch.alpine.sophus.lie.se.RigidMotionFit;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.api.TensorUnaryOperator;

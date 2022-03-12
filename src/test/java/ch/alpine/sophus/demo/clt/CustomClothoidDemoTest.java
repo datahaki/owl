@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.clt;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 import junit.framework.TestCase;
 
 public class CustomClothoidDemoTest extends TestCase {

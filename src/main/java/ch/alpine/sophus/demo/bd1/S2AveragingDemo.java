@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophus.demo.bd1;
 
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -4,7 +4,7 @@ package ch.alpine.sophus.demo.bdn;
 import java.util.Objects;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.demo.ImageReshape;
+import ch.alpine.sophus.ext.api.ImageReshape;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;

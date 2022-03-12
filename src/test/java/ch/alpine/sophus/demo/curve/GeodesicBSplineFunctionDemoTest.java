@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.curve;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 import ch.alpine.sophus.sym.SymLinkImage;
 import ch.alpine.sophus.sym.SymLinkImages;
 import ch.alpine.tensor.RationalScalar;

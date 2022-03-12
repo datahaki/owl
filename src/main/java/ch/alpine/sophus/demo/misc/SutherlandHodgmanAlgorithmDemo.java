@@ -18,7 +18,7 @@ import ch.alpine.sophus.crv.d2.PolygonCentroid;
 import ch.alpine.sophus.crv.d2.SutherlandHodgmanAlgorithm;
 import ch.alpine.sophus.demo.lev.AbstractPlaceDemo;
 import ch.alpine.sophus.demo.lev.LeversRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

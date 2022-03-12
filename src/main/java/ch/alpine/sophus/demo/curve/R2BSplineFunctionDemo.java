@@ -10,7 +10,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

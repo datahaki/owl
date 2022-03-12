@@ -8,11 +8,11 @@ import java.awt.image.BufferedImage;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ren.ArrayPlotRender;
-import ch.alpine.sophus.demo.ImageReshape;
-import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.ext.api.ImageReshape;
+import ch.alpine.sophus.ext.arp.HsArrayPlot;
+import ch.alpine.sophus.ext.dis.GeodesicDisplayRender;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.sca.Clip;
 /* package */ enum StaticHelper {
   ;
   public static BufferedImage fuseImages(ManifoldDisplay manifoldDisplay, ArrayPlotRender arrayPlotRender, int refinement, int sequence_length) {
-    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
+    HsArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
     BufferedImage foreground = arrayPlotRender.export();
     BufferedImage background = new BufferedImage(foreground.getWidth(), foreground.getHeight(), BufferedImage.TYPE_INT_ARGB);
     Graphics2D graphics = background.createGraphics();

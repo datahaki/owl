@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 
-import ch.alpine.sophus.fit.RigidMotionFit;
+import ch.alpine.sophus.lie.se.RigidMotionFit;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -5,8 +5,8 @@ import java.awt.Dimension;
 
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

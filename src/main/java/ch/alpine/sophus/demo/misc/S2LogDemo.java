@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.lev.LeversRender;
-import ch.alpine.sophus.gds.GeodesicDisplayRender;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.GeodesicDisplayRender;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.red.Times;

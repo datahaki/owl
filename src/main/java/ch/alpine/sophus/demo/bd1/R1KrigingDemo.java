@@ -9,7 +9,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.gds.R2Display;
+import ch.alpine.sophus.ext.dis.R2Display;
 import ch.alpine.sophus.itp.Kriging;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;

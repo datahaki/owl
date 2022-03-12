@@ -22,14 +22,14 @@ import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.lev.LogWeightingBase;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.PolygonCoordinates;
-import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.H2Display;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.gds.R2Display;
-import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.PolygonCoordinates;
+import ch.alpine.sophus.ext.arp.HsArrayPlot;
+import ch.alpine.sophus.ext.dis.H2Display;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.R2Display;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Tensor;
@@ -98,7 +98,7 @@ import ch.alpine.tensor.img.ColorDataLists;
         try {
           System.out.println(logWeighting);
           TensorScalarFunction tensorUnaryOperator = function(sequence, reference.multiply(DoubleScalar.of(spinnerFactor.getValue())));
-          GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
+          HsArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
           // TODO OWL ALG redundant
           Tensor matrix = geodesicArrayPlot.raster(512, tensorUnaryOperator, DoubleScalar.INDETERMINATE);
           BufferedImage bufferedImage = ArrayPlotRender.rescale(matrix, COLOR_DATA_INDEXED, 1).export();
@@ -119,7 +119,7 @@ import ch.alpine.tensor.img.ColorDataLists;
     if (jToggleButton.isSelected()) {
       System.out.println("compute");
       Tensor sequence = getGeodesicControlPoints();
-      GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
+      HsArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
       Tensor matrix = geodesicArrayPlot.raster( //
           spinnerRefine.getValue(), //
           function(sequence, reference.multiply(DoubleScalar.of(spinnerFactor.getValue()))), //
@@ -145,7 +145,7 @@ import ch.alpine.tensor.img.ColorDataLists;
         recompute();
       if (Objects.nonNull(bufferedImage)) {
         RenderQuality.setDefault(graphics); // default so that raster becomes visible
-        GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
+        HsArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
         Tensor pixel2model = geodesicArrayPlot.pixel2model(new Dimension(bufferedImage.getHeight(), bufferedImage.getHeight()));
         ImageRender.of(bufferedImage, pixel2model).render(geometricLayer, graphics);
       }

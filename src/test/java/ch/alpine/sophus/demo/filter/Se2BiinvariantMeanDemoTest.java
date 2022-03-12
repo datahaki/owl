@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.filter;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 import junit.framework.TestCase;
 
 public class Se2BiinvariantMeanDemoTest extends TestCase {

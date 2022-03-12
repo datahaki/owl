@@ -5,7 +5,7 @@ import java.awt.BasicStroke;
 import java.awt.Stroke;
 import java.util.Arrays;
 
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

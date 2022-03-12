@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 import junit.framework.TestCase;
 
 public class ClothoidNdDemoTest extends TestCase {

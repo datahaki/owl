@@ -8,7 +8,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.gds.R2Display;
+import ch.alpine.sophus.ext.dis.R2Display;
 import ch.alpine.sophus.itp.CrossAveraging;
 import ch.alpine.sophus.itp.RadialBasisFunctionInterpolation;
 import ch.alpine.sophus.lie.rn.RnBiinvariantMean;

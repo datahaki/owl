@@ -8,7 +8,7 @@ import javax.swing.JSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.crv.bezier.BezierFunction;
-import ch.alpine.sophus.gds.S2Display;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.sophus.sym.SymGeodesic;
 import ch.alpine.sophus.sym.SymScalar;
 import ch.alpine.tensor.RationalScalar;
