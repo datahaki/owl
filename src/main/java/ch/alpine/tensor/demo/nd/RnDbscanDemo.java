@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.tensor.demo;
+package ch.alpine.tensor.demo.nd;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +18,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.sophus.lie.rn.RnDbscan;
@@ -34,10 +35,12 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
 
+// TODO OWL draw points from different distribution
 public class RnDbscanDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic();
   private static final ColorDataIndexed COLOR_FILL_INDEXED = COLOR_DATA_INDEXED.deriveWithAlpha(96);
 
+  @ReflectionMarker
   public static class Param {
     @FieldInteger
     @FieldClip(min = "1", max = "1000")

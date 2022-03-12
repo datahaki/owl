@@ -27,7 +27,7 @@ import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
 import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
-import ch.alpine.sophus.gds.GeodesicDatasetDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDatasetDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.so2.So2Lift;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 @ReflectionMarker
-public class HermiteDatasetDemo extends GeodesicDatasetDemo {
+public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);

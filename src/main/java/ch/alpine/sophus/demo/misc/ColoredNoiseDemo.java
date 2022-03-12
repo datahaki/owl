@@ -16,7 +16,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.gds.R2Display;
 import ch.alpine.sophus.math.noise.ColoredNoise;
 import ch.alpine.tensor.RealScalar;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.pdf.RandomVariate;
 
 @ReflectionMarker
-public class ColoredNoiseDemo extends GeodesicDisplayDemo {
+public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
   @FieldPreferredWidth(150)
   public Scalar alpha = RealScalar.of(2);
   @FieldPreferredWidth(150)

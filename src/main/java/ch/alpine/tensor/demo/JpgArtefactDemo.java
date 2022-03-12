@@ -24,7 +24,7 @@ import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
-public class JpgArtefact extends AbstractDemo implements ChangeListener {
+public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   private static final File ROOT = //
       new File("/run/media/datahaki/data/public_html/photos/2016_germany/image");
   // ---
@@ -43,7 +43,7 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
 
   private final Param param = new Param();
 
-  public JpgArtefact() {
+  public JpgArtefactDemo() {
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(() -> stateChanged(null));
     // ---
     File[] files = ROOT.listFiles();
@@ -87,6 +87,6 @@ public class JpgArtefact extends AbstractDemo implements ChangeListener {
 
   public static void main(String[] args) {
     LookAndFeels.DARK.updateUI();
-    new JpgArtefact().setVisible(1500, 950);
+    new JpgArtefactDemo().setVisible(1500, 950);
   }
 }

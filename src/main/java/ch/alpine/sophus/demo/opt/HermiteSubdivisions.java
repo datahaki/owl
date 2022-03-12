@@ -11,6 +11,7 @@ import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 
+// TODO OWL all demos that use this should provide means to modify lambda, mu etc
 public enum HermiteSubdivisions {
   HERMITE1 {
     @Override

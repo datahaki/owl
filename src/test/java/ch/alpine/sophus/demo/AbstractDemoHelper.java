@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 
 public enum AbstractDemoHelper {
@@ -45,8 +45,8 @@ public enum AbstractDemoHelper {
     BufferedImage bufferedImage = new BufferedImage(1280, 960, BufferedImage.TYPE_INT_ARGB);
     abstractDemo.render(geometricLayer, bufferedImage.createGraphics());
     boolean success = true;
-    if (abstractDemo instanceof GeodesicDisplayDemo) {
-      GeodesicDisplayDemo geodesicDisplayDemo = (GeodesicDisplayDemo) abstractDemo;
+    if (abstractDemo instanceof AbstractGeodesicDisplayDemo) {
+      AbstractGeodesicDisplayDemo geodesicDisplayDemo = (AbstractGeodesicDisplayDemo) abstractDemo;
       for (ManifoldDisplay manifoldDisplay : geodesicDisplayDemo.getManifoldDisplays())
         try {
           geodesicDisplayDemo.setGeodesicDisplay(manifoldDisplay);

@@ -14,14 +14,14 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.demo.BufferedImageSupplier;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 
-/* package */ abstract class AbstractDatasetFilterDemo extends GeodesicDisplayDemo {
+/* package */ abstract class AbstractDatasetFilterDemo extends AbstractGeodesicDisplayDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
   private static final Color COLOR_SHAPE = new Color(160, 160, 160, 192);
   private static final GridRender GRID_RENDER = new GridRender(Subdivide.of(0, 100, 10));

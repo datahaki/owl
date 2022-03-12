@@ -12,11 +12,11 @@ import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.owl.bot.util.DemoInterface;
 
 @ReflectionMarker
-public abstract class GeodesicDisplayDemo extends AbstractDemo implements DemoInterface {
+public abstract class AbstractGeodesicDisplayDemo extends AbstractDemo implements DemoInterface {
   private final SpinnerLabel<ManifoldDisplay> manifoldDisplaySpinner = new SpinnerLabel<>();
   private final List<ManifoldDisplay> list;
 
-  public GeodesicDisplayDemo(List<ManifoldDisplay> list) {
+  public AbstractGeodesicDisplayDemo(List<ManifoldDisplay> list) {
     if (list.isEmpty())
       throw new RuntimeException();
     this.list = list;

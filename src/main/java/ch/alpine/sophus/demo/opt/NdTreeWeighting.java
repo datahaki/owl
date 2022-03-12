@@ -20,6 +20,9 @@ import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 
+/** concept is mathematically not sound
+ * in the best case, the issues are restricted to inconsistent distance/metric,
+ * and non-differentiability */
 public class NdTreeWeighting implements LogWeighting, Serializable {
   private final int limit;
 

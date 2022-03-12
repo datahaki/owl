@@ -30,10 +30,10 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
   ;
   public static void main(String[] args) throws Exception {
     Tensor range = Tensors.vector(7, 7);
-    CoordinateBoundingBox box = CoordinateBounds.of(Array.zeros(2), range);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Array.zeros(2), range);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", range, false);
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery( //
         imageRegion, RealScalar.of(0.1));
     // ---
@@ -44,7 +44,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
     owlFrame.addBackground(RegionRenders.create(imageRegion));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int c = 0; c < 50; ++c)

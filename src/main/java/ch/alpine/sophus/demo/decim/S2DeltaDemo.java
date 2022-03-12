@@ -17,7 +17,7 @@ import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-/* package */ class S2DeltaDemo extends GeodesicDisplayDemo {
+/* package */ class S2DeltaDemo extends AbstractGeodesicDisplayDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 128 + 64);
   private static final Color COLOR_SHAPE = new Color(128, 255, 128, 128 + 64);
   private static final int WIDTH = 360;

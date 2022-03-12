@@ -9,13 +9,14 @@ import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 
+// TODO OWL the contents of this package need to be restructured
 @ReflectionMarker
-public abstract class GeodesicDatasetDemo extends GeodesicDisplayDemo {
+public abstract class AbstractGeodesicDatasetDemo extends AbstractGeodesicDisplayDemo {
   protected final GokartPoseData gokartPoseData;
   protected final SpinnerLabel<String> spinnerLabelString = new SpinnerLabel<>();
   protected final SpinnerLabel<Integer> spinnerLabelLimit = new SpinnerLabel<>();
 
-  public GeodesicDatasetDemo(List<ManifoldDisplay> list, GokartPoseData gokartPoseData) {
+  public AbstractGeodesicDatasetDemo(List<ManifoldDisplay> list, GokartPoseData gokartPoseData) {
     super(list);
     this.gokartPoseData = gokartPoseData;
     {

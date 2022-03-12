@@ -76,6 +76,7 @@ public class ImageRegion implements Region<Tensor>, RegionBoundsInterface, Seria
     return range.map(Scalar::zero);
   }
 
+  @Override
   public CoordinateBoundingBox coordinateBounds() {
     return CoordinateBounds.of(origin(), range());
   }

@@ -11,6 +11,7 @@ import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.crv.d2.Arrowhead;
@@ -25,7 +26,8 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.ArrayReshape;
 import ch.alpine.tensor.red.Nest;
 
-public class CatmullClarkSubdivisionDemo extends ControlPointsDemo {
+@ReflectionMarker
+public class GeodesicCatmullClarkSubdivisionDemo extends ControlPointsDemo {
   private static final Tensor ARROWHEAD_LO = Arrowhead.of(0.18);
   // ---
   @FieldSlider
@@ -34,7 +36,7 @@ public class CatmullClarkSubdivisionDemo extends ControlPointsDemo {
   @FieldClip(min = "0", max = "5")
   public Scalar refine = RealScalar.of(2);
 
-  CatmullClarkSubdivisionDemo() {
+  GeodesicCatmullClarkSubdivisionDemo() {
     super(false, ManifoldDisplays.SE2C_SE2);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---
@@ -69,6 +71,6 @@ public class CatmullClarkSubdivisionDemo extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
-    new CatmullClarkSubdivisionDemo().setVisible(1000, 600);
+    new GeodesicCatmullClarkSubdivisionDemo().setVisible(1000, 600);
   }
 }

@@ -19,7 +19,7 @@ import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.demo.opt.DubinsGenerator;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
+import ch.alpine.sophus.gds.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.gds.ManifoldDisplay;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** class is used in other projects outside of owl */
 @ReflectionMarker
-public abstract class ControlPointsDemo extends GeodesicDisplayDemo {
+public abstract class ControlPointsDemo extends AbstractGeodesicDisplayDemo {
   /** mouse snaps 20 pixel to control points */
   private static final Scalar PIXEL_THRESHOLD = RealScalar.of(20.0);
   /** control points */

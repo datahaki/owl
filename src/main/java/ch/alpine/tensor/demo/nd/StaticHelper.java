@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.tensor.demo;
+package ch.alpine.tensor.demo.nd;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -14,9 +14,10 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 enum StaticHelper {
   ;
-  public static void draw(CoordinateBoundingBox box, GeometricLayer geometricLayer, Graphics2D graphics) {
-    Tensor lc = box.min();
-    Tensor rc = box.max();
+  public static void draw(CoordinateBoundingBox coordinateBoundingBox, GeometricLayer geometricLayer, Graphics2D graphics) {
+    // TODO OWL refactor once CoordinateBoundingBox -> polygon is available
+    Tensor lc = coordinateBoundingBox.min();
+    Tensor rc = coordinateBoundingBox.max();
     Tensor l1 = lc.copy();
     l1.set(rc.Get(1), 1);
     Tensor r1 = rc.copy();

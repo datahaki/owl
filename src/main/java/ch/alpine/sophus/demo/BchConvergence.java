@@ -10,7 +10,7 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualRow;
 import ch.alpine.java.fig.VisualSet;
-import ch.alpine.sophus.lie.ad.BakerCampbellHausdorff;
+import ch.alpine.sophus.math.bch.BakerCampbellHausdorff;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

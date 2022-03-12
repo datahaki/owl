@@ -23,8 +23,8 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 /* package */ enum R2NoiseDemo {
   ;
   public static void main(String[] args) {
-    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.noise1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
