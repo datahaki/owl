@@ -14,13 +14,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
-
 public class R2ArrayPlot implements HsArrayPlot, Serializable {
   private final Scalar radius;
 
-  // TODO OWL use CoordinateBoundingBox 
+  // TODO OWL use CoordinateBoundingBox
   public R2ArrayPlot(Scalar radius) {
-    
     this.radius = Objects.requireNonNull(radius);
   }
 
