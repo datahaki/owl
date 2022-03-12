@@ -10,6 +10,7 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.sophus.bm.BiinvariantMean;
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.sophus.ext.api.MixedLogWeightings;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
@@ -32,7 +33,8 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
   private final RenderInterface renderInterface = new RenderInterface() {
     @Override
     public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-      Tensor box = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}").multiply(RealScalar.of(EXTENT));
+      
+      Tensor box = Box2D.SQUARE.multiply(RealScalar.of(EXTENT));
       Path2D path2d = geometricLayer.toPath2D(box, true);
       graphics.setColor(Color.LIGHT_GRAY);
       graphics.draw(path2d);

@@ -23,6 +23,7 @@ import ch.alpine.sophus.ext.api.ControlPointsDemo;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.ref.d2.CatmullClarkRefinement;
+import ch.alpine.sophus.ref.d2.DooSabinRefinement;
 import ch.alpine.sophus.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophus.srf.SurfaceMesh;
 import ch.alpine.tensor.RealScalar;
@@ -34,8 +35,9 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.io.Primitives;
 
-/* package */ class SurfaceMeshDemo extends ControlPointsDemo {
+/* package */ class DooSabinDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED_DRAW = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final ColorDataIndexed COLOR_DATA_INDEXED_FILL = ColorDataLists._097.cyclic().deriveWithAlpha(192);
 
@@ -54,7 +56,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   private final Param param = new Param();
   private final SurfaceMesh surfaceMesh = SurfaceMeshExamples.quads7();
 
-  public SurfaceMeshDemo() {
+  public DooSabinDemo() {
     super(false, ManifoldDisplays.SE2C_R2);
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
@@ -71,10 +73,11 @@ import ch.alpine.tensor.img.ColorDataLists;
     RenderQuality.setQuality(graphics);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     SurfaceMeshRefinement surfaceMeshRefinement = //
-        CatmullClarkRefinement.of(manifoldDisplay.biinvariantMean());
+        new DooSabinRefinement(manifoldDisplay.biinvariantMean());
+//        CatmullClarkRefinement.of(manifoldDisplay.biinvariantMean());
     // surfaceMeshRefinement = DooSabinRefinement.of(geodesicDisplay.biinvariantMean());
     SurfaceMesh refine = surfaceMesh;
-    for (int count = 0; count < param.refine.number().intValue(); ++count)
+//    for (int count = 0; count < param.refine.number().intValue(); ++count)
       refine = surfaceMeshRefinement.refine(refine);
     for (Tensor polygon : refine.polygons()) {
       Path2D path2d = geometricLayer.toPath2D(polygon);
@@ -113,6 +116,6 @@ import ch.alpine.tensor.img.ColorDataLists;
 
   public static void main(String[] args) {
     LookAndFeels.INTELLI_J.updateUI();
-    new SurfaceMeshDemo().setVisible(1200, 800);
+    new DooSabinDemo().setVisible(1200, 800);
   }
 }

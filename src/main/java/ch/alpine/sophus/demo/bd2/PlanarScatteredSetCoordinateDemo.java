@@ -10,20 +10,18 @@ import java.util.Arrays;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.javax.swing.SpinnerListener;
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.sophus.ext.api.InsideConvexHullLogWeighting;
 import ch.alpine.sophus.ext.api.LogWeighting;
 import ch.alpine.sophus.ext.dis.H2Display;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.R2Display;
 import ch.alpine.sophus.ext.dis.S2Display;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 /** transfer weights from barycentric coordinates defined by set of control points
  * in the square domain (subset of R^2) to means in non-linear spaces */
 /* package */ class PlanarScatteredSetCoordinateDemo extends A2ScatteredSetCoordinateDemo implements SpinnerListener<ManifoldDisplay> {
-  public static final Tensor BOX = Tensors.fromString("{{1, 1}, {-1, 1}, {-1, -1}, {1, -1}}");
-  // ---
   private final GenesisDequeProperties dequeGenesisProperties = new GenesisDequeProperties();
 
   public PlanarScatteredSetCoordinateDemo() {
@@ -44,7 +42,7 @@ import ch.alpine.tensor.Tensors;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     graphics.setColor(Color.LIGHT_GRAY);
-    graphics.draw(geometricLayer.toPath2D(BOX, true));
+    graphics.draw(geometricLayer.toPath2D(Box2D.CORNERS, true));
     super.render(geometricLayer, graphics);
   }
 

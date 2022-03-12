@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.tensor.demo.nd;
 
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.opt.nd.NdCenterInterface;
 import ch.alpine.tensor.opt.nd.NdCenters;
@@ -38,7 +38,7 @@ public enum CenterNorms {
 
     @Override
     protected Tensor shape() {
-      return Tensors.fromString("{{1,1}, {-1,1}, {-1,-1}, {1,-1}}");
+      return Box2D.CORNERS;
     }
   }, //
   ;

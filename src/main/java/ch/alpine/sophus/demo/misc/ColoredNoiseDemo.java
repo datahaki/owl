@@ -11,9 +11,11 @@ import org.jfree.chart.JFreeChart;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldFuse;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
+import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.ext.api.AbstractGeodesicDisplayDemo;
@@ -27,7 +29,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 
 @ReflectionMarker
 public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
-  @FieldPreferredWidth(150)
+  @FieldSlider
+  @FieldClip(min = "0", max = "2")
+  @FieldPreferredWidth(250)
   public Scalar alpha = RealScalar.of(2);
   @FieldPreferredWidth(150)
   @FieldInteger

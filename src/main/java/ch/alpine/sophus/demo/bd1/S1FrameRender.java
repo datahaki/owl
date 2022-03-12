@@ -8,16 +8,16 @@ import java.awt.geom.Path2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.sca.N;
 
 /* package */ enum S1FrameRender implements RenderInterface {
   INSTANCE;
 
-  private static final Tensor BOX = Tensors.fromString("{{-1, -1}, {1, -1}, {1, 1}, {-1, 1}}").multiply(RealScalar.of(2.5));
+  private static final Tensor BOX = Box2D.CORNERS.multiply(RealScalar.of(2.5));
   private static final Tensor CIRCLE = CirclePoints.of(61).map(N.DOUBLE);
 
   @Override

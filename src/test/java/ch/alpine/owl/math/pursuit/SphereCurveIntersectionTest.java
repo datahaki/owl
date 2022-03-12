@@ -3,6 +3,7 @@ package ch.alpine.owl.math.pursuit;
 
 import java.util.Optional;
 
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -19,7 +20,8 @@ import junit.framework.TestCase;
 
 public class SphereCurveIntersectionTest extends TestCase {
   public void testString() {
-    Tensor curve = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}").unmodifiable();
+    
+    Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.string(RotateLeft.of(curve, index));
@@ -33,7 +35,7 @@ public class SphereCurveIntersectionTest extends TestCase {
   }
 
   public void testCyclic() {
-    Tensor curve = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}").unmodifiable();
+    Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));

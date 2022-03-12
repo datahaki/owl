@@ -57,4 +57,11 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
     surfaceMesh.addFace(9, 10, 11, 8);
     return surfaceMesh;
   }
+  public static SurfaceMesh quads7() {
+    SurfaceMesh surfaceMesh = quads5();
+    surfaceMesh.addVert(Tensors.vector(7, 5.5, 0));
+    surfaceMesh.addVert(Tensors.vector(5.5, 6.5, 1));
+    surfaceMesh.addFace(9, 10, 11, 12, 8);
+    return surfaceMesh;
+  }
 }

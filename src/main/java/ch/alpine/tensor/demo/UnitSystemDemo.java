@@ -30,7 +30,7 @@ public class UnitSystemDemo {
   UnitSystem unitSystem;
 
   public UnitSystemDemo() {
-    unitSystem = SimpleUnitSystem.from(ResourceData.properties("/demo/si.properties"));
+    unitSystem = SimpleUnitSystem.from(ResourceData.properties("/demo/si_reduced.properties"));
     jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     JPanel jPane = new JPanel(new BorderLayout());
     JPanel jPanel = new JPanel(new BorderLayout());

@@ -22,6 +22,7 @@ import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
 import ch.alpine.sophus.demo.lev.LeversRender;
 import ch.alpine.sophus.demo.lev.LogWeightingBase;
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.sophus.ext.api.LogWeighting;
 import ch.alpine.sophus.ext.api.PolygonCoordinates;
 import ch.alpine.sophus.ext.arp.HsArrayPlot;
@@ -45,7 +46,6 @@ import ch.alpine.tensor.img.ColorDataLists;
 /* package */ class CheckerBoardDemo extends LogWeightingBase //
     implements SpinnerListener<ManifoldDisplay> {
   public static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._000.strict();
-  public static final Tensor BOX = Tensors.fromString("{{1, 1}, {-1, 1}, {-1, -1}, {1, -1}}");
   // ---
   final SpinnerLabel<ParameterizationPattern> spinnerPattern = SpinnerLabel.of(ParameterizationPattern.values());
   final SpinnerLabel<Integer> spinnerRefine = new SpinnerLabel<>();
@@ -133,7 +133,7 @@ import ch.alpine.tensor.img.ColorDataLists;
   @Override
   public final void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     graphics.setColor(Color.LIGHT_GRAY);
-    graphics.draw(geometricLayer.toPath2D(BOX, true));
+    graphics.draw(geometricLayer.toPath2D(Box2D.CORNERS, true));
     RenderQuality.setQuality(graphics);
     renderControlPoints(geometricLayer, graphics);
     // ---

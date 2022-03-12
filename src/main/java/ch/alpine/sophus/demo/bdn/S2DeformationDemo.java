@@ -21,6 +21,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.red.Times;
 
+// TODO OWL recomputes every frame right now
 /* package */ class S2DeformationDemo extends AbstractDeformationDemo {
   private static final Tensor TRIANGLE = CirclePoints.of(3).multiply(RealScalar.of(0.05));
   private static final Scalar ZHEIGHT = RealScalar.of(1.0); // 1.8 for initial pics
