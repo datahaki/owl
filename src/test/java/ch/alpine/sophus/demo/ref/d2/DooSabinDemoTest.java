@@ -15,18 +15,17 @@ public class DooSabinDemoTest extends TestCase {
   public void testSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         new DooSabinRefinement(RnBiinvariantMean.INSTANCE);
-    SurfaceMesh surfaceMesh = SurfaceMeshExamples.quads7();
+    SurfaceMesh surfaceMesh = SurfaceMeshExamples.mixed7();
     // surfaceMeshRefinement.refine(surfaceMesh);
   }
 
   public void testSimple2() {
-    SurfaceMesh surfaceMesh = SurfaceMeshExamples.quads7();
+    SurfaceMesh surfaceMesh = SurfaceMeshExamples.mixed7();
     assertEquals(surfaceMesh.vrt.get(3), Tensors.vector(2, 2, 0));
     assertEquals(Tensors.vectorInt(surfaceMesh.face(0)), Tensors.vectorInt(0, 2, 3, 1));
     // surfaceMeshRefinement.refine(surfaceMesh);
     MeshStructure meshStructure = new MeshStructure(surfaceMesh);
     List<DirectedEdge> list = meshStructure.ring(new DirectedEdge(3, 1));
-    System.out.println(list);
-    
+    assertEquals(list.stream().distinct().count(), list.size());
   }
 }
