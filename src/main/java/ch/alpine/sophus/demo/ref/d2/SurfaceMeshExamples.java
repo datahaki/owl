@@ -22,12 +22,12 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
 
   public static SurfaceMesh quads2() {
     SurfaceMesh surfaceMesh = new SurfaceMesh();
-    surfaceMesh.addVert(Tensors.vector(0, 0, 0));
-    surfaceMesh.addVert(Tensors.vector(0, 2, 0));
-    surfaceMesh.addVert(Tensors.vector(2, 0, 0));
-    surfaceMesh.addVert(Tensors.vector(2, 2, 0));
-    surfaceMesh.addVert(Tensors.vector(4, 0, 0));
-    surfaceMesh.addVert(Tensors.vector(4, 2, 0));
+    surfaceMesh.addVert(Tensors.vector(0, 0, 0)); // 0
+    surfaceMesh.addVert(Tensors.vector(0, 2, 0)); // 1
+    surfaceMesh.addVert(Tensors.vector(2, 0, 0)); // 2
+    surfaceMesh.addVert(Tensors.vector(2, 2, 0)); // 3
+    surfaceMesh.addVert(Tensors.vector(4, 0, 0)); // 4
+    surfaceMesh.addVert(Tensors.vector(4, 2, 0)); // 5
     surfaceMesh.addFace(0, 2, 3, 1);
     surfaceMesh.addFace(2, 4, 5, 3);
     return surfaceMesh;
@@ -35,9 +35,22 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
 
   public static SurfaceMesh quads3() {
     SurfaceMesh surfaceMesh = quads2();
-    surfaceMesh.addVert(Tensors.vector(0, 4, 0));
-    surfaceMesh.addVert(Tensors.vector(2, 4, 0));
+    surfaceMesh.addVert(Tensors.vector(0, 4, 0)); // 6
+    surfaceMesh.addVert(Tensors.vector(2, 4, 0)); // 7
     surfaceMesh.addFace(1, 3, 7, 6);
+    return surfaceMesh;
+  }
+
+  public static SurfaceMesh quads4() {
+    SurfaceMesh surfaceMesh = quads3();
+    surfaceMesh.addVert(Tensors.vector(4, 4, 0)); // 8
+    surfaceMesh.addFace(3, 5, 8, 7);
+    return surfaceMesh;
+  }
+
+  public static SurfaceMesh quads3Tri() {
+    SurfaceMesh surfaceMesh = quads3();
+    surfaceMesh.addFace(3, 5, 7);
     return surfaceMesh;
   }
 

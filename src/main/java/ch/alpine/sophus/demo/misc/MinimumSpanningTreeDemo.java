@@ -22,8 +22,9 @@ import ch.alpine.sophus.ext.api.LogWeightings;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.fit.MinimumSpanningTree;
-import ch.alpine.sophus.fit.MinimumSpanningTree.Edge;
 import ch.alpine.sophus.fit.MinimumSpanningTree.EdgeComparator;
+import ch.alpine.sophus.math.DirectedEdge;
+import ch.alpine.sophus.math.UndirectedEdge;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -61,17 +62,18 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
     DisjointSets disjointSets = DisjointSets.allocate(sequence.length());
     if (0 < sequence.length()) {
       Tensor matrix = distanceMatrix(sequence);
-      List<Edge> list = MinimumSpanningTree.of(matrix);
+      
+      List<UndirectedEdge> list = MinimumSpanningTree.of(matrix);
       Collections.sort(list, new EdgeComparator(matrix));
       int count = Math.max(0, list.size() - splits);
       {
-        for (Edge edge : list.subList(0, count))
-          disjointSets.union(edge.i(), edge.j());
+        for (UndirectedEdge directedEdge : list.subList(0, count))
+          disjointSets.union(directedEdge.i(), directedEdge.j());
       }
       graphics.setColor(Color.BLACK);
-      for (Edge edge : list.subList(0, count)) {
-        Tensor p = sequence.get(edge.i());
-        Tensor q = sequence.get(edge.j());
+      for (UndirectedEdge directedEdge : list.subList(0, count)) {
+        Tensor p = sequence.get(directedEdge.i());
+        Tensor q = sequence.get(directedEdge.j());
         ScalarTensorFunction curve = geodesicInterface.curve(p, q);
         Path2D line = geometricLayer.toPath2D(domain.map(curve));
         graphics.draw(line);

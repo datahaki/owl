@@ -19,10 +19,11 @@ import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.crv.d2.PolygonArea;
 import ch.alpine.sophus.ext.api.ControlPointsDemo;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
-import ch.alpine.sophus.ref.d2.CatmullClarkRefinement;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.ref.d2.DooSabinRefinement;
 import ch.alpine.sophus.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophus.srf.SurfaceMesh;
@@ -35,7 +36,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.io.Primitives;
+import ch.alpine.tensor.sca.Sign;
 
 /* package */ class DooSabinDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED_DRAW = ColorDataLists._097.cyclic().deriveWithAlpha(192);
@@ -50,7 +51,7 @@ import ch.alpine.tensor.io.Primitives;
     @FieldPreferredWidth(100)
     @FieldInteger
     @FieldClip(min = "0", max = "4")
-    public Scalar refine = RealScalar.of(2);
+    public Scalar refine = RealScalar.of(0);
   }
 
   private final Param param = new Param();
@@ -74,11 +75,17 @@ import ch.alpine.tensor.io.Primitives;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     SurfaceMeshRefinement surfaceMeshRefinement = //
         new DooSabinRefinement(manifoldDisplay.biinvariantMean());
-//        CatmullClarkRefinement.of(manifoldDisplay.biinvariantMean());
-    // surfaceMeshRefinement = DooSabinRefinement.of(geodesicDisplay.biinvariantMean());
     SurfaceMesh refine = surfaceMesh;
-//    for (int count = 0; count < param.refine.number().intValue(); ++count)
+    for (int count = 0; count < param.refine.number().intValue(); ++count)
       refine = surfaceMeshRefinement.refine(refine);
+    {
+      for (int index = 0; index < refine.faces().size(); ++index) {
+        Tensor polygon_face = Tensor.of(refine.polygon_face(refine.face(index)).stream().map(Extract2D.FUNCTION));
+        Scalar area = PolygonArea.of(polygon_face);
+        if (Sign.isNegativeOrZero(area))
+          System.err.println("neg");
+      }
+    }
     for (Tensor polygon : refine.polygons()) {
       Path2D path2d = geometricLayer.toPath2D(polygon);
       path2d.closePath();
@@ -94,7 +101,7 @@ import ch.alpine.tensor.io.Primitives;
       graphics.fill(geometricLayer.toPath2D(shape));
       geometricLayer.popMatrix();
     }
-    if (param.ctrl) {
+    if (param.ctrl ) {
       Geodesic geodesicInterface = manifoldDisplay.geodesic();
       Tensor domain = Subdivide.of(0.0, 1.0, 10);
       Set<Tensor> set = new HashSet<>();
@@ -115,7 +122,7 @@ import ch.alpine.tensor.io.Primitives;
   }
 
   public static void main(String[] args) {
-    LookAndFeels.INTELLI_J.updateUI();
+    LookAndFeels.LIGHT.updateUI();
     new DooSabinDemo().setVisible(1200, 800);
   }
 }
