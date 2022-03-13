@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.ref.d2;
 import java.util.List;
 
 import ch.alpine.sophus.lie.rn.RnBiinvariantMean;
-import ch.alpine.sophus.math.DirectedEdge;
+import ch.alpine.sophus.math.IntDirectedEdge;
 import ch.alpine.sophus.ref.d2.DooSabinRefinement;
 import ch.alpine.sophus.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophus.srf.MeshStructure;
@@ -25,7 +25,7 @@ public class DooSabinDemoTest extends TestCase {
     assertEquals(Tensors.vectorInt(surfaceMesh.face(0)), Tensors.vectorInt(0, 2, 3, 1));
     // surfaceMeshRefinement.refine(surfaceMesh);
     MeshStructure meshStructure = new MeshStructure(surfaceMesh);
-    List<DirectedEdge> list = meshStructure.ring(new DirectedEdge(3, 1));
+    List<IntDirectedEdge> list = meshStructure.ring(new IntDirectedEdge(3, 1));
     assertEquals(list.stream().distinct().count(), list.size());
   }
 }

@@ -21,7 +21,7 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.lie.rn.RnDbscan;
+import ch.alpine.sophus.lie.rn.Dbscan;
 import ch.alpine.sophus.math.sample.BiasedBoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.tensor.RealScalar;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
 
 // TODO OWL draw points from different distribution
-public class RnDbscanDemo extends AbstractDemo {
+public class DbscanDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic();
   private static final ColorDataIndexed COLOR_FILL_INDEXED = COLOR_DATA_INDEXED.deriveWithAlpha(96);
 
@@ -53,7 +53,7 @@ public class RnDbscanDemo extends AbstractDemo {
   private final Param param = new Param();
   private final Tensor pointsAll;
 
-  public RnDbscanDemo() {
+  public DbscanDemo() {
     Container container = timerFrame.jFrame.getContentPane();
     JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(200, 200));
@@ -70,7 +70,7 @@ public class RnDbscanDemo extends AbstractDemo {
     Scalar radius = Abs.FUNCTION.apply(xya.Get(2)).multiply(RealScalar.of(0.2));
     Timing timing = Timing.started();
     CenterNorms centerNorms = param.centerNorms;
-    Integer[] labels = RnDbscan.of(points, centerNorms::ndCenterInterface, radius, param.dep.number().intValue());
+    Integer[] labels = Dbscan.of(points, centerNorms::ndCenterInterface, radius, param.dep.number().intValue());
     double seconds = timing.seconds();
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
     {
@@ -105,6 +105,6 @@ public class RnDbscanDemo extends AbstractDemo {
   }
 
   public static void main(String[] args) {
-    new RnDbscanDemo().setVisible(1000, 800);
+    new DbscanDemo().setVisible(1000, 800);
   }
 }

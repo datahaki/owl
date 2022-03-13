@@ -23,7 +23,7 @@ import ch.alpine.sophus.ext.api.LogWeightings;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.fit.MinimumSpanningTree;
-import ch.alpine.sophus.math.UndirectedEdge;
+import ch.alpine.sophus.math.IntUndirectedEdge;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -38,9 +38,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 /* package */ class MinimumSpanningTreeDemo extends LogWeightingDemo {
-  public static record EdgeComparator(Tensor matrix) implements Comparator<UndirectedEdge> {
+  private static record EdgeComparator(Tensor matrix) implements Comparator<IntUndirectedEdge> {
     @Override
-    public int compare(UndirectedEdge edge1, UndirectedEdge edge2) {
+    public int compare(IntUndirectedEdge edge1, IntUndirectedEdge edge2) {
       return Scalars.compare( //
           edge1.Get(matrix), //
           edge2.Get(matrix));
@@ -71,15 +71,15 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
     DisjointSets disjointSets = DisjointSets.allocate(sequence.length());
     if (0 < sequence.length()) {
       Tensor matrix = distanceMatrix(sequence);
-      List<UndirectedEdge> list = MinimumSpanningTree.of(matrix);
+      List<IntUndirectedEdge> list = MinimumSpanningTree.of(matrix);
       Collections.sort(list, new EdgeComparator(matrix));
       int count = Math.max(0, list.size() - splits);
       {
-        for (UndirectedEdge directedEdge : list.subList(0, count))
+        for (IntUndirectedEdge directedEdge : list.subList(0, count))
           disjointSets.union(directedEdge.i(), directedEdge.j());
       }
       graphics.setColor(Color.BLACK);
-      for (UndirectedEdge directedEdge : list.subList(0, count)) {
+      for (IntUndirectedEdge directedEdge : list.subList(0, count)) {
         Tensor p = sequence.get(directedEdge.i());
         Tensor q = sequence.get(directedEdge.j());
         ScalarTensorFunction curve = geodesicInterface.curve(p, q);
