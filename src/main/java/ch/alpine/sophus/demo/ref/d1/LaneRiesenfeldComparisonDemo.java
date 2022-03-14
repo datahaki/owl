@@ -25,7 +25,7 @@ import ch.alpine.sophus.ext.api.ControlPointsDemo;
 import ch.alpine.sophus.ext.api.CurveVisualSet;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.sophus.ext.dis.Se2ClothoidDisplay;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -35,10 +35,8 @@ import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
-import ch.alpine.tensor.red.Quantile;
 
 /** compare different levels of smoothing in the LaneRiesenfeldCurveSubdivision */
-// TODO OWL DEMO is broken
 /* package */ class LaneRiesenfeldComparisonDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLORS = ColorDataLists._097.cyclic();
   private static final List<CurveSubdivisionSchemes> CURVE_SUBDIVISION_SCHEMES = //
@@ -64,12 +62,14 @@ import ch.alpine.tensor.red.Quantile;
     timerFrame.jToolBar.addSeparator();
     // ---
     spinnerRefine.setList(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-    spinnerRefine.setValue(4);
+    spinnerRefine.setValue(3);
     spinnerRefine.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), "refinement");
     // ---
     for (int i = 0; i < CURVE_SUBDIVISION_SCHEMES.size(); ++i)
       pathRenders.add(new PathRender(COLORS.getColor(i)));
     // ---
+    setGeodesicDisplay(Se2ClothoidDisplay.LEGENDRE);
+    
     timerFrame.geometricComponent.setOffset(100, 600);
   }
 
@@ -123,16 +123,17 @@ import ch.alpine.tensor.red.Quantile;
             .map(points -> points.get(Tensor.ALL, 1)) //
             .map(CoordinateBounds::of) //
             .map(CoordinateBoundingBox::min));
-        double min = Quantile.of(tensorMin).apply(RationalScalar.of(1, CURVE_SUBDIVISION_SCHEMES.size() - 1)).number().doubleValue();
-        Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream() //
-            .map(VisualRow::points) //
-            .map(points -> points.get(Tensor.ALL, 1)) //
-            .map(CoordinateBounds::of) //
-            .map(CoordinateBoundingBox::max));
-        double max = Quantile.of(tensorMax) //
-            .apply(RationalScalar.of(CURVE_SUBDIVISION_SCHEMES.size() - 1, CurveSubdivisionHelper.LANE_RIESENFELD.size() - 1)).number().doubleValue();
-        if (min != max)
-          jFreeChart2.getXYPlot().getRangeAxis().setRange(1.1 * min, 1.1 * max);
+        // TODO OWL DEMO code below is broken
+        // double min = Quantile.of(tensorMin).apply(RationalScalar.of(1, CURVE_SUBDIVISION_SCHEMES.size() - 1)).number().doubleValue();
+        // Tensor tensorMax = Tensor.of(visualSet2.visualRows().stream() //
+        // .map(VisualRow::points) //
+        // .map(points -> points.get(Tensor.ALL, 1)) //
+        // .map(CoordinateBounds::of) //
+        // .map(CoordinateBoundingBox::max));
+        // double max = Quantile.of(tensorMax) //
+        // .apply(RationalScalar.of(CURVE_SUBDIVISION_SCHEMES.size() - 1, CurveSubdivisionHelper.LANE_RIESENFELD.size() - 1)).number().doubleValue();
+        // if (min != max)
+        // jFreeChart2.getXYPlot().getRangeAxis().setRange(1.1 * min, 1.1 * max);
       }
       jFreeChart2.draw(graphics, new Rectangle2D.Double(dimension.width * .5, dimension.height * .5, dimension.width * .5, dimension.height * .5));
     }

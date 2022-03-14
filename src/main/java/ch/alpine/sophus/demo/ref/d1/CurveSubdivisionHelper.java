@@ -38,6 +38,7 @@ import ch.alpine.tensor.Scalar;
   }
 
   // ---
+  // TODO OWL bad design
   static Scalar MAGIC_C = RationalScalar.of(1, 6);
 
   static CurveSubdivision of(SplitInterface splitInterface) {

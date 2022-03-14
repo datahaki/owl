@@ -17,13 +17,11 @@ import javax.swing.JScrollPane;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.java.ref.ann.FieldClip;
+import ch.alpine.java.ref.ann.FieldFuse;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.lie.rn.Dbscan;
-import ch.alpine.sophus.math.sample.BiasedBoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,10 +30,13 @@ import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.lie.r2.ConvexHull;
-import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.opt.nd.Dbscan;
+import ch.alpine.tensor.pdf.Distribution;
+import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Abs;
 
-// TODO OWL draw points from different distribution
 public class DbscanDemo extends AbstractDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic();
   private static final ColorDataIndexed COLOR_FILL_INDEXED = COLOR_DATA_INDEXED.deriveWithAlpha(96);
@@ -44,22 +45,44 @@ public class DbscanDemo extends AbstractDemo {
   public static class Param {
     @FieldInteger
     @FieldClip(min = "1", max = "1000")
-    public Scalar count = RealScalar.of(100);
+    public Scalar count = RealScalar.of(200);
     @FieldInteger
     public Scalar dep = RealScalar.of(5);
     public CenterNorms centerNorms = CenterNorms._2;
+    @FieldFuse
+    public Boolean shuffle = false;
   }
 
   private final Param param = new Param();
-  private final Tensor pointsAll;
+  private Tensor pointsAll;
 
   public DbscanDemo() {
     Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
+    PanelFieldsEditor panelFieldsEditor = new PanelFieldsEditor(param);
+    panelFieldsEditor.addUniversalListener(() -> {
+      if (param.shuffle) {
+        param.shuffle = false;
+        pointsAll = recomp();
+      }
+    });
+    JScrollPane jScrollPane = panelFieldsEditor.createJScrollPane();
     jScrollPane.setPreferredSize(new Dimension(200, 200));
     container.add(BorderLayout.WEST, jScrollPane);
     timerFrame.geometricComponent.setOffset(100, 600);
-    pointsAll = RandomSample.of(new BiasedBoxRandomSample(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10)), 3), 5000);
+    // System.out.println(pointsAll.length());
+    pointsAll = recomp();
+  }
+
+  private static Tensor recomp() {
+    Distribution dist_b = UniformDistribution.of(0, 10);
+    Distribution dist_r = NormalDistribution.of(0, 1);
+    Tensor points = Tensors.empty();
+    Tensor base = RandomVariate.of(dist_b, 5, 2);
+    for (int index = 0; index < 20; ++index)
+      for (Tensor r : base)
+        for (Tensor p : RandomVariate.of(dist_r, 10, 2))
+          points.append(r.add(p));
+    return points;
   }
 
   @Override
@@ -74,11 +97,12 @@ public class DbscanDemo extends AbstractDemo {
     double seconds = timing.seconds();
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
     {
+      
       Map<Integer, Tensor> map = new HashMap<>();
       IntStream.range(0, labels.length) //
           .forEach(index -> map.computeIfAbsent(labels[index], i -> Tensors.empty()).append(points.get(index)));
       for (Entry<Integer, Tensor> entry : map.entrySet())
-        if (0 <= entry.getKey()) {
+        if (Dbscan.NOISE < entry.getKey()) {
           Tensor tensor = ConvexHull.of(entry.getValue());
           graphics.setColor(COLOR_FILL_INDEXED.getColor(entry.getKey()));
           graphics.fill(geometricLayer.toPath2D(tensor, true));
@@ -92,7 +116,7 @@ public class DbscanDemo extends AbstractDemo {
         graphics.setColor(label < 0 //
             ? Color.BLACK
             : COLOR_DATA_INDEXED.getColor(label));
-        graphics.fillRect((int) point2d.getX(), (int) point2d.getY(), 5, 5);
+        graphics.fillRect((int) point2d.getX() - 2, (int) point2d.getY() - 2, 5, 5);
         ++index;
       }
     }

@@ -12,17 +12,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.Cross;
 
-/* package */ class Se2HermitePlot implements RenderInterface {
-  private final Tensor points;
-  private final Scalar scale;
-
-  /** @param points with dimensions N x 2 x 3
-   * @param scale */
-  public Se2HermitePlot(Tensor points, Scalar scale) {
-    this.points = points;
-    this.scale = scale;
-  }
-
+/* package */ record Se2HermitePlot(Tensor points, Scalar scale) implements RenderInterface {
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     for (Tensor point : points) {

@@ -55,7 +55,7 @@ import ch.alpine.tensor.sca.Sign;
   }
 
   private final Param param = new Param();
-  private final SurfaceMesh surfaceMesh = SurfaceMeshExamples.mixed7();
+  private final SurfaceMesh surfaceMesh = SurfaceMeshExamples.mixed11();
 
   public SurfaceMeshDemo() {
     super(false, ManifoldDisplays.SE2C_R2);
