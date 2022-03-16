@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.jfree.chart.JFreeChart;
 
 import ch.alpine.java.fig.ListPlot;
+import ch.alpine.java.fig.Spectrogram;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
@@ -24,8 +25,9 @@ import ch.alpine.sophus.math.noise.ColoredNoise;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.sca.Clips;
 
 @ReflectionMarker
 public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
@@ -40,6 +42,7 @@ public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
   public Boolean generate = true;
   // ---
   private JFreeChart jFreeChart;
+  private JFreeChart spectrogra;
 
   // private final Tensor vector;
   public ColoredNoiseDemo() {
@@ -53,16 +56,28 @@ public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
   private void compute() {
     ColoredNoise coloredNoise = new ColoredNoise(alpha.number().doubleValue());
     Tensor values = RandomVariate.of(coloredNoise, length.number().intValue());
-    VisualSet visualSet = new VisualSet();
-    visualSet.add(Subdivide.of(0, 1, values.length() - 1), values);
-    jFreeChart = ListPlot.of(visualSet, true);
+    Tensor domain = Range.of(0, values.length());
+    {
+      VisualSet visualSet = new VisualSet();
+      
+      visualSet.add(domain, values);
+      visualSet.getAxisX().setClip(Clips.interval(0, values.length()-1));
+      jFreeChart = ListPlot.of(visualSet, true);
+    }
+    {
+      VisualSet visualSet = new VisualSet();
+      visualSet.add(domain, values);
+      spectrogra = Spectrogram.of(visualSet);
+    }
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    Point2D point2d = geometricLayer.toPoint2D(0, 0);
-    float width = geometricLayer.model2pixelWidth(RealScalar.of(10));
-    jFreeChart.draw(graphics, new Rectangle((int) point2d.getX(), (int) point2d.getY(), (int) width, (int) (width * 2 / 3)));
+    float width = geometricLayer.model2pixelWidth(RealScalar.of(15));
+    int piw = (int) width;
+    int pih = (int) (width * 0.4);
+    jFreeChart.draw(graphics, new Rectangle(0, 0, piw, pih));
+    spectrogra.draw(graphics, new Rectangle(0, pih, piw, pih));
   }
 
   public static void main(String[] args) {

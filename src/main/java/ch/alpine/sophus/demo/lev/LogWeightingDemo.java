@@ -25,6 +25,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 public abstract class LogWeightingDemo extends LogWeightingBase {
   private static final Tensor BETAS = Tensors.fromString("{0, 1/2, 1, 3/2, 7/4, 2, 5/2, 3}");
   // ---
+  // TODO SOPHUS DEMO manage by reflection
   private final SpinnerLabel<Bitype> spinnerBiinvariant = new SpinnerLabel<>();
   private final SpinnerLabel<VariogramFunctions> spinnerVariogram = SpinnerLabel.of(VariogramFunctions.values());
   private final SpinnerLabel<Scalar> spinnerBeta = new SpinnerLabel<>();

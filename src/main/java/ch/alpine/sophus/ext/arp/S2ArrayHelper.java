@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.misc;
+package ch.alpine.sophus.ext.arp;
 
 import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
-/* package */ enum S2ArrayHelper {
+public enum S2ArrayHelper {
   ;
   public static Scalar[][] of(int resolution, double rad, TensorScalarFunction tensorScalarFunction) {
     Tensor dx = Subdivide.of(-rad, +rad, resolution);
@@ -46,7 +46,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
     return array;
   }
 
-  static Tensor pixel2model(BufferedImage bufferedImage, double rad) {
+  public static Tensor pixel2model(BufferedImage bufferedImage, double rad) {
     Tensor range = Tensors.vector(rad, rad).multiply(RealScalar.TWO); // model
     Tensor scale = Times.of(Tensors.vector(bufferedImage.getWidth(), bufferedImage.getHeight()), //
         range.map(Scalar::reciprocal)); // model 2 pixel

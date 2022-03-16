@@ -27,7 +27,7 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.sca.pow.Power;
 
-public class HilbertCurveDemo extends ControlPointsDemo {
+public class HilbertPolygonDemo extends ControlPointsDemo {
   private static final int CACHE_SIZE = 10;
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.strict();
 
@@ -39,9 +39,9 @@ public class HilbertCurveDemo extends ControlPointsDemo {
   @FieldInteger
   @FieldClip(min = "1", max = "7")
   public Scalar total = RealScalar.of(2);
-  private final Function<Integer, Tensor> cache = Cache.of(HilbertCurveDemo::curve, CACHE_SIZE);
+  private final Function<Integer, Tensor> cache = Cache.of(HilbertPolygonDemo::curve, CACHE_SIZE);
 
-  public HilbertCurveDemo() {
+  public HilbertPolygonDemo() {
     super(false, ManifoldDisplays.R2_ONLY);
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     setPositioningEnabled(false);
@@ -61,7 +61,7 @@ public class HilbertCurveDemo extends ControlPointsDemo {
     graphics.fill(path2d);
     new PathRender(COLOR_DATA_INDEXED.getColor(1), 1.5f).setCurve(tensor, true).render(geometricLayer, graphics);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    {
+    if (n < 4) {
       PointsRender pointsRender = new PointsRender(new Color(255, 128, 128, 64), new Color(255, 128, 128, 255));
       pointsRender.show(manifoldDisplay::matrixLift, manifoldDisplay.shape(), tensor).render(geometricLayer, graphics);
     }
@@ -72,6 +72,6 @@ public class HilbertCurveDemo extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
-    new HilbertCurveDemo().setVisible(1000, 600);
+    new HilbertPolygonDemo().setVisible(1000, 600);
   }
 }

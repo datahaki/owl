@@ -52,6 +52,7 @@ import ch.alpine.tensor.red.Mean;
 
   public LaneRiesenfeldComparisonDemo(List<ManifoldDisplay> list) {
     super(true, list);
+    setGeodesicDisplay(Se2ClothoidDisplay.LEGENDRE);
     // ---
     jToggleCurvature.setSelected(true);
     jToggleCurvature.setToolTipText("curvature plot");
@@ -68,8 +69,6 @@ import ch.alpine.tensor.red.Mean;
     for (int i = 0; i < CURVE_SUBDIVISION_SCHEMES.size(); ++i)
       pathRenders.add(new PathRender(COLORS.getColor(i)));
     // ---
-    setGeodesicDisplay(Se2ClothoidDisplay.LEGENDRE);
-    
     timerFrame.geometricComponent.setOffset(100, 600);
   }
 
