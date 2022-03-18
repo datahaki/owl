@@ -1,10 +1,16 @@
 // code by gjoel
 package ch.alpine.owl.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
@@ -36,9 +42,9 @@ import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
+public class RrtsFlowTrajectoryGeneratorTest {
+  @Test
   public void testRn() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
@@ -77,6 +83,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     Chop._15.requireClose(n3.state(), Lists.last(trajectory).stateTime().state());
   }
 
+  @Test
   public void testDubins() {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Rrts rrts = new DefaultRrts( //
@@ -128,6 +135,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testClothoid() {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
@@ -180,6 +188,7 @@ public class RrtsFlowTrajectoryGeneratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testDirectionalClothoid() {
     TransitionSpace transitionSpace = DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC);
     Rrts rrts = new DefaultRrts( //

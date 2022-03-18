@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.crv.d2.PolygonArea;
-import ch.alpine.sophus.ext.dis.Se2ClothoidDisplay;
 import ch.alpine.sophus.hs.r2.Se2Parametric;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -11,9 +14,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.sca.Clips;
-import junit.framework.TestCase;
 
-public class Se2ClothoidDisplayTest extends TestCase {
+public class Se2ClothoidDisplayTest {
+  @Test
   public void testSimple() {
     // 1 2.5180768787131558
     // 2 2.5597567801548426
@@ -27,6 +30,7 @@ public class Se2ClothoidDisplayTest extends TestCase {
     assertEquals(result, RealScalar.of(2));
   }
 
+  @Test
   public void testShapeArea() {
     Scalar a1 = PolygonArea.of(Arrowhead.of(0.4));
     Scalar a2 = PolygonArea.of(Se2ClothoidDisplay.ANALYTIC.shape());

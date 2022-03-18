@@ -1,6 +1,10 @@
 package ch.alpine.sophus.demo.ref.d2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RnBiinvariantMean;
 import ch.alpine.sophus.math.IntDirectedEdge;
@@ -9,9 +13,9 @@ import ch.alpine.sophus.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophus.srf.MeshStructure;
 import ch.alpine.sophus.srf.SurfaceMesh;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class DooSabinDemoTest extends TestCase {
+public class DooSabinDemoTest {
+  @Test
   public void testSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         new DooSabinRefinement(RnBiinvariantMean.INSTANCE);
@@ -19,6 +23,7 @@ public class DooSabinDemoTest extends TestCase {
     // surfaceMeshRefinement.refine(surfaceMesh);
   }
 
+  @Test
   public void testSimple2() {
     SurfaceMesh surfaceMesh = SurfaceMeshExamples.mixed7();
     assertEquals(surfaceMesh.vrt.get(3), Tensors.vector(2, 2, 0));

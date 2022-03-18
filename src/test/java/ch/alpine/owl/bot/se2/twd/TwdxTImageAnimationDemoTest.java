@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class TwdxTImageAnimationDemoTest extends TestCase {
+import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+
+public class TwdxTImageAnimationDemoTest {
+  @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new TwdxTImageAnimationDemo());
   }

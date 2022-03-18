@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d1h;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class S2HermiteSubdivisionDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class S2HermiteSubdivisionDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new S2HermiteSubdivisionDemo());
   }

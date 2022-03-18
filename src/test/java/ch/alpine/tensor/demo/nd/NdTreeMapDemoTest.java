@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.tensor.demo.nd;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class NdTreeMapDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class NdTreeMapDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new NdTreeMapDemo());
   }

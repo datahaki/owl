@@ -1,10 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class KlotskiGoalRegionTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.Tensors;
+
+public class KlotskiGoalRegionTest {
+  @Test
   public void testSimple() {
     KlotskiGoalRegion klotskiGoalRegion = new KlotskiGoalRegion(Tensors.vector(0, 4, 2));
     for (Huarong huarong : Huarong.values())

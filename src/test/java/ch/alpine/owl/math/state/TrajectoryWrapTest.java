@@ -1,14 +1,19 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class TrajectoryWrapTest extends TestCase {
+public class TrajectoryWrapTest {
+  @Test
   public void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(4));
     TrajectorySample trajectorySample = new TrajectorySample(stateTime, null);

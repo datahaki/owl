@@ -3,6 +3,8 @@ package ch.alpine.owl.lane;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.hs.r2.Extract2D;
@@ -16,9 +18,9 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
-import junit.framework.TestCase;
 
-public class LaneRandomSampleTest extends TestCase {
+public class LaneRandomSampleTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Tensor se2s = Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}");
     LaneInterface laneInterface = StableLanes.of( //
@@ -31,6 +33,7 @@ public class LaneRandomSampleTest extends TestCase {
     new PolygonRegion(Tensor.of(laneInterface.leftBoundary().stream().map(Extract2D.FUNCTION))).test(tensor);
   }
 
+  @Test
   public void testNonUnit() throws ClassNotFoundException, IOException {
     Tensor se2s = Tensors.fromString("{{0[], 1[], 2}, {2[], 0[], 4}, {-1[],-3[], -2}}");
     LaneInterface laneInterface = StableLanes.of( //

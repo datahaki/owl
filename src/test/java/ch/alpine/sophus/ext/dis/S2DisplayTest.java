@@ -1,11 +1,13 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -14,14 +16,15 @@ import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
-import junit.framework.TestCase;
 
-public class S2DisplayTest extends TestCase {
+public class S2DisplayTest {
+  @Test
   public void testSimple() {
     Tensor tensor = S2Display.tangentSpace(Tensors.vector(0, 1, 0));
     assertEquals(Dimensions.of(tensor), Arrays.asList(2, 3));
   }
 
+  @Test
   public void testInvariant() {
     ManifoldDisplay manifoldDisplay = S2Display.INSTANCE;
     Tensor xyz = manifoldDisplay.project(Tensors.vector(1, 2, 0));
@@ -29,6 +32,7 @@ public class S2DisplayTest extends TestCase {
     Tolerance.CHOP.requireClose(Vector2Norm.of(xy), RealScalar.ONE);
   }
 
+  @Test
   public void testTangent() {
     Tensor xyz = Vector2Norm.NORMALIZE.apply(Tensors.vector(1, 0.3, 0.5));
     Tensor matrix = S2Display.tangentSpace(xyz);
@@ -36,6 +40,7 @@ public class S2DisplayTest extends TestCase {
     Tolerance.CHOP.requireAllZero(matrix.dot(xyz));
   }
 
+  @Test
   public void testProjTangent() {
     S2Display s2GeodesicDisplay = (S2Display) S2Display.INSTANCE;
     for (int index = 0; index < 10; ++index) {
@@ -46,6 +51,7 @@ public class S2DisplayTest extends TestCase {
     }
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> S2Display.tangentSpace(Tensors.vector(1, 1, 1)));
   }

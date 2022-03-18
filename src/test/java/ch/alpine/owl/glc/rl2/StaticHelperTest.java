@@ -1,17 +1,23 @@
 // code by astoll
 package ch.alpine.owl.glc.rl2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.PriorityQueue;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class StaticHelperTest extends TestCase {
+public class StaticHelperTest {
+  @Test
   public void testIsSimilar() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -30,6 +36,7 @@ public class StaticHelperTest extends TestCase {
     assertFalse(StaticHelper.isSimilar(node6, rlQueue));
   }
 
+  @Test
   public void testNumberEquals() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -48,6 +55,7 @@ public class StaticHelperTest extends TestCase {
     assertEquals(StaticHelper.numberEquals(rlQueue), 1);
   }
 
+  @Test
   public void testPriorityQueue() throws ClassNotFoundException, IOException {
     PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
     priorityQueue.add(2);

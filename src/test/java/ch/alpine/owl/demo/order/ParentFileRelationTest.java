@@ -1,11 +1,15 @@
 // code by jph
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.File;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ParentFileRelationTest extends TestCase {
+public class ParentFileRelationTest {
+  @Test
   public void testSimple() {
     assertTrue(ParentFileRelation.INSTANCE.test(new File("/some/blub"), new File("/some/blub/")));
     assertTrue(ParentFileRelation.INSTANCE.test(new File("/some/blub"), new File("/some/blub/minor")));

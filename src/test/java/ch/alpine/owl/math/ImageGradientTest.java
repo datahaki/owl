@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.owl.math;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
-import junit.framework.TestCase;
 
-public class ImageGradientTest extends TestCase {
+public class ImageGradientTest {
+  @Test
   public void testSimple() {
     Tensor image = Tensors.fromString("{{1, 5}, {2, 3}, {4, 5}}");
     assertEquals(Dimensions.of(image), Arrays.asList(3, 2));
@@ -21,6 +25,7 @@ public class ImageGradientTest extends TestCase {
     assertEquals(diffy, Tensors.fromString("{{4}, {1}}"));
   }
 
+  @Test
   public void testRotated() {
     Tensor image = Tensors.fromString("{{1, 5}, {2, 3}, {4, 5}}");
     assertEquals(Dimensions.of(image), Arrays.asList(3, 2));

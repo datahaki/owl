@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d2;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SurfaceMeshDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class SurfaceMeshDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new SurfaceMeshDemo());
   }

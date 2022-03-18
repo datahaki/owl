@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.gui.ren.RegionRenders;
@@ -11,9 +13,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
-import junit.framework.TestCase;
 
-public class DeltaStateSpaceModelTest extends TestCase {
+public class DeltaStateSpaceModelTest {
+  @Test
   public void testConstructors() {
     Scalar amp = RealScalar.of(-.05);
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();

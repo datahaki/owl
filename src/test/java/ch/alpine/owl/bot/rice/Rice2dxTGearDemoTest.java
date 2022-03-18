@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class Rice2dxTGearDemoTest extends TestCase {
+import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+
+public class Rice2dxTGearDemoTest {
+  @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new Rice2dxTGearDemo());
   }

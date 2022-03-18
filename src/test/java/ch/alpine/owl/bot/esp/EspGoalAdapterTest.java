@@ -1,17 +1,23 @@
 // code by jph
 package ch.alpine.owl.bot.esp;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import junit.framework.TestCase;
 
-public class EspGoalAdapterTest extends TestCase {
+public class EspGoalAdapterTest {
+  @Test
   public void testGoal() {
     Tensor goal = EspGoalAdapter.GOAL;
     assertEquals(EspGoalAdapter.INSTANCE.minCostToGoal(goal), RealScalar.ZERO);
   }
 
+  @Test
   public void testStart() {
     assertTrue(Scalars.lessEquals( //
         RealScalar.of(0), //

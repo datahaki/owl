@@ -1,15 +1,20 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import ch.alpine.owl.math.AssertFail;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class LexicographicTotalOrderTest extends TestCase {
+import ch.alpine.owl.math.AssertFail;
+
+public class LexicographicTotalOrderTest {
   @SuppressWarnings("rawtypes")
+  @Test
   public void testEquals() {
     List<Comparable> x = new LinkedList<>();
     x.add(1);
@@ -24,6 +29,7 @@ public class LexicographicTotalOrderTest extends TestCase {
   }
 
   @SuppressWarnings("rawtypes")
+  @Test
   public void testLessThan() {
     List<Comparable> x = new LinkedList<>();
     x.add(true);
@@ -40,6 +46,7 @@ public class LexicographicTotalOrderTest extends TestCase {
   }
 
   @SuppressWarnings("rawtypes")
+  @Test
   public void testGreaterThan() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwewwww");
@@ -54,6 +61,7 @@ public class LexicographicTotalOrderTest extends TestCase {
   }
 
   @SuppressWarnings("rawtypes")
+  @Test
   public void testException() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwei");
@@ -66,6 +74,7 @@ public class LexicographicTotalOrderTest extends TestCase {
     AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(y, x));
   }
 
+  @Test
   public void testEmpty() {
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(Arrays.asList(), Arrays.asList()), 0);
   }

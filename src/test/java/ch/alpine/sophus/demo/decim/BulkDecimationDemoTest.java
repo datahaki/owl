@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.decim;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class BulkDecimationDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class BulkDecimationDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new BulkDecimationDemo());
   }

@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EmptyPlannerConstraintTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class EmptyPlannerConstraintTest {
+  @Test
   public void testSimple() {
     assertTrue(EmptyPlannerConstraint.INSTANCE.isSatisfied(null, null, null));
   }

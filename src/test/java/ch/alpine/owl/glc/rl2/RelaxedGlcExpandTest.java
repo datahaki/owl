@@ -1,15 +1,20 @@
 // code by jph
 package ch.alpine.owl.glc.rl2;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RelaxedGlcExpandTest extends TestCase {
+public class RelaxedGlcExpandTest {
+  @Test
   public void testExpand() {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = TestHelper.createPlanner();
     Objects.requireNonNull(relaxedTrajectoryPlanner.getStateIntegrator());

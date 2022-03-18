@@ -1,11 +1,14 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
-import ch.alpine.sophus.ext.dis.He1Display;
-import ch.alpine.sophus.lie.he.HeGeodesic;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class He1DisplayTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophus.lie.he.HeGeodesic;
+
+public class He1DisplayTest {
+  @Test
   public void testSimple() {
     assertEquals(He1Display.INSTANCE.geodesic(), HeGeodesic.INSTANCE);
   }

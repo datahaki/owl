@@ -1,8 +1,12 @@
 // code by jph
 package ch.alpine.owl.glc.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.bot.rn.RnNoHeuristicCircleGoalManager;
@@ -14,9 +18,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class GlcNodesTest extends TestCase {
+public class GlcNodesTest {
+  @Test
   public void testCostIncrement1() {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(Tensors.vector(5, 0), RealScalar.of(2));
@@ -25,6 +29,7 @@ public class GlcNodesTest extends TestCase {
     assertEquals(incr, RealScalar.of(8));
   }
 
+  @Test
   public void testCostIncrement2() {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     RnNoHeuristicCircleGoalManager rnGoal = new RnNoHeuristicCircleGoalManager(Tensors.vector(5, 0), RealScalar.of(2));
@@ -33,6 +38,7 @@ public class GlcNodesTest extends TestCase {
     assertEquals(incr, RealScalar.of(8));
   }
 
+  @Test
   public void testCreateRoot() {
     GlcNode glcNode = GlcNodes.createRoot( //
         new StateTime(Tensors.vector(1, 2), RealScalar.of(10)), //
@@ -42,6 +48,7 @@ public class GlcNodesTest extends TestCase {
     assertEquals(dt, RealScalar.of(5));
   }
 
+  @Test
   public void testSimple2() {
     CostFunction costFunction = new Se2ShiftCostFunction(Quantity.of(100, "CHF"));
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), costFunction);
@@ -49,10 +56,12 @@ public class GlcNodesTest extends TestCase {
     assertEquals(scalar, Quantity.of(0, "CHF"));
   }
 
+  @Test
   public void testRootFail() {
     AssertFail.of(() -> GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), null));
   }
 
+  @Test
   public void testRoot() {
     GlcNode root = GlcNode.of(null, new StateTime(Tensors.empty(), RealScalar.ZERO), //
         RealScalar.ZERO, RealScalar.ZERO);
@@ -60,6 +69,7 @@ public class GlcNodesTest extends TestCase {
     assertEquals(list.size(), 1);
   }
 
+  @Test
   public void testSimple() {
     AssertFail.of(() -> GlcNodes.getPathFromRootTo(null));
   }

@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.lev;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class LbsBarycenterDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class LbsBarycenterDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new LbsBarycenterDemo());
   }

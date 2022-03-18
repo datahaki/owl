@@ -33,7 +33,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ class RigidMotionFitDemo extends ControlPointsDemo {
+public class RigidMotionFitDemo extends ControlPointsDemo {
   private static final Tensor ORIGIN = CirclePoints.of(3).multiply(RealScalar.of(0.2));
   private static final PointsRender POINTS_RENDER_RESULT = //
       new PointsRender(new Color(128, 128, 255, 64), new Color(128, 128, 255, 255));

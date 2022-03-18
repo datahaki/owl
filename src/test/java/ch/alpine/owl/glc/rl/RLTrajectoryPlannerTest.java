@@ -1,11 +1,16 @@
 // code by ynager
 package ch.alpine.owl.glc.rl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
@@ -43,9 +48,8 @@ import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class RLTrajectoryPlannerTest extends TestCase {
+public class RLTrajectoryPlannerTest {
   private static GlcNode _withSlack(String name, Tensor slacks) {
     final Tensor stateRoot = Tensors.vector(0, 0);
     final Tensor stateGoal = Tensors.vector(5, 0);
@@ -115,6 +119,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     return goalNode;
   }
 
+  @Test
   public void testSix() {
     GlcNode goalNode = _withSlack("slack6", Tensors.vector(6, 0, 0));
     // Tensor costFromRoot =
@@ -123,6 +128,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     // assertEquals(costFromRoot, Tensors.vector(9, 2, 9));
   }
 
+  @Test
   public void testFour() {
     GlcNode goalNode = _withSlack("slack4", Tensors.vector(4, 0, 0));
     // Tensor costFromRoot =
@@ -134,6 +140,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     // assertEquals(costFromRoot, Tensors.vector(9, 2, 9));
   }
 
+  @Test
   public void testTwo() {
     GlcNode goalNode = _withSlack("slack2", Tensors.vector(2, 0, 0));
     // Tensor costFromRoot =
@@ -142,6 +149,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     // assertEquals(costFromRoot, Tensors.vector(7, 3, 7));
   }
 
+  @Test
   public void testZeroEbbes() {
     GlcNode goalNode = _withSlack("slack1", Tensors.vector(1.3, 0, 0));
     // Tensor costFromRoot =
@@ -150,6 +158,7 @@ public class RLTrajectoryPlannerTest extends TestCase {
     // assertEquals(costFromRoot, Tensors.vector(5, 4, 5));
   }
 
+  @Test
   public void testZero() {
     GlcNode bestNode = _withSlack("slack0", Tensors.vector(0, 0, 0));
     // Tensor costFromRoot =

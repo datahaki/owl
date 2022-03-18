@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
-import ch.alpine.java.win.OwlFrame;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class R2DemoTest extends TestCase {
+import ch.alpine.java.win.OwlFrame;
+
+public class R2DemoTest {
+  @Test
   public void testSimple() throws InterruptedException {
     OwlFrame owlFrame = R2Demo.show();
     Thread.sleep(200);

@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.RealScalar;
@@ -9,9 +11,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2FlowIntegratorTest extends TestCase {
+public class Se2FlowIntegratorTest {
+  @Test
   public void testSe2Exact() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor flow = Tensors.fromString("{1[m*s^-1], 0[m*s^-1], 2[rad*s^-1]}").map(UnitSystem.SI());

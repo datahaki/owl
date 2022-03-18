@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
@@ -12,9 +16,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
-import junit.framework.TestCase;
 
-public class ScaledLateralAccelerationTest extends TestCase {
+public class ScaledLateralAccelerationTest {
+  @Test
   public void testCar() {
     final Scalar ms = Quantity.of(2, "m*s^-1");
     final Scalar mr = Scalars.fromString("3[rad*m^-1]");
@@ -26,6 +30,7 @@ public class ScaledLateralAccelerationTest extends TestCase {
     assertEquals(QuantityUnit.of(cost), Unit.of("CHF"));
   }
 
+  @Test
   public void testTwd() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
@@ -37,6 +42,7 @@ public class ScaledLateralAccelerationTest extends TestCase {
     assertEquals(QuantityUnit.of(cost), Unit.of("rad^2*s^-1"));
   }
 
+  @Test
   public void testTwdDouble() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");

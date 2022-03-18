@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
@@ -21,11 +25,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
-import junit.framework.TestCase;
 
-public class RnRrtsNodeCollectionTest extends TestCase {
+public class RnRrtsNodeCollectionTest {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
 
+  @Test
   public void testSimple() {
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
@@ -44,6 +48,7 @@ public class RnRrtsNodeCollectionTest extends TestCase {
     assertEquals(n2.costFromRoot(), RealScalar.of(2));
   }
 
+  @Test
   public void testQuantity() {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);

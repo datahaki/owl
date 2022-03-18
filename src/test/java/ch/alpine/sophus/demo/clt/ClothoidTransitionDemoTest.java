@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.clt;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ClothoidTransitionDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class ClothoidTransitionDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new ClothoidTransitionDemo());
   }

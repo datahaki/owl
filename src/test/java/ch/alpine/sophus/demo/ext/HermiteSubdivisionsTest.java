@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.sophus.demo.ext;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.ext.api.HermiteSubdivisions;
 import ch.alpine.sophus.lie.LieTransport;
@@ -21,9 +23,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class HermiteSubdivisionsTest extends TestCase {
+public class HermiteSubdivisionsTest {
+  @Test
   public void testStringReverseRn() {
     Tensor cp1 = RandomVariate.of(NormalDistribution.standard(), 7, 2, 3);
     Tensor cp2 = cp1.copy();
@@ -44,6 +46,7 @@ public class HermiteSubdivisionsTest extends TestCase {
     }
   }
 
+  @Test
   public void testStringReverseSe2() {
     Tensor cp1 = RandomVariate.of(UniformDistribution.unit(), 7, 2, 3);
     Tensor cp2 = cp1.copy();
@@ -64,6 +67,7 @@ public class HermiteSubdivisionsTest extends TestCase {
     }
   }
 
+  @Test
   public void testSe2ConstantReproduction() {
     Tensor control = ConstantArray.of(Tensors.fromString("{{2, 3, 1}, {0, 0, 0}}"), 10);
     for (HermiteSubdivisions hermiteSubdivisions : HermiteSubdivisions.values()) {
@@ -77,6 +81,7 @@ public class HermiteSubdivisionsTest extends TestCase {
     }
   }
 
+  @Test
   public void testSe2LinearReproduction() {
     Tensor pg = Tensors.vector(1, 2, 3);
     Tensor pv = Tensors.vector(0.3, -0.2, -0.1);

@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.sophus.demo.lev;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class OrderingHoverDemoTest extends TestCase {
+public class OrderingHoverDemoTest {
+  @Test
   public void testSimple() {
     // AbstractDemoHelper.offscreen(new OrderingHoverDemo());
   }

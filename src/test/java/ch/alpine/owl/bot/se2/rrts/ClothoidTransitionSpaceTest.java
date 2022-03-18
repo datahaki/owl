@@ -1,7 +1,13 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionWrap;
@@ -17,9 +23,9 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class ClothoidTransitionSpaceTest extends TestCase {
+public class ClothoidTransitionSpaceTest {
+  @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1[m], 1[m], 0}");
     Tensor end = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF);
@@ -29,6 +35,7 @@ public class ClothoidTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testSamples() {
     Tensor start = Tensors.fromString("{1[m], 2[m], 1}");
     Tensor end = Tensors.fromString("{1[m], 6[m], 3}");
@@ -50,6 +57,7 @@ public class ClothoidTransitionSpaceTest extends TestCase {
     // }
   }
 
+  @Test
   public void testWrap() {
     Tensor start = Tensors.fromString("{1[m], 2[m], 1}");
     Tensor end = Tensors.fromString("{1[m], 6[m], 3}");

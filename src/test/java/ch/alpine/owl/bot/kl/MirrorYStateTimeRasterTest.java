@@ -1,10 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MirrorYStateTimeRasterTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.Tensors;
+
+public class MirrorYStateTimeRasterTest {
+  @Test
   public void testSimple() {
     MirrorYStateTimeRaster mirrorYStateTimeRaster = new MirrorYStateTimeRaster(4);
     assertEquals(mirrorYStateTimeRaster.mirrorStone(Tensors.vector(0, 9, 0)), Tensors.vector(0, 9, 2));

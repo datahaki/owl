@@ -1,8 +1,12 @@
 // code by ynager
 package ch.alpine.owl.glc.rl;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.AssertFail;
@@ -14,9 +18,9 @@ import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
-import junit.framework.TestCase;
 
-public class RLQueueTest extends TestCase {
+public class RLQueueTest {
+  @Test
   public void testSimple() {
     Tensor slack = Tensors.vector(1, 0, 0);
     RLQueue rlQueue = new RLQueue(slack);
@@ -50,6 +54,7 @@ public class RLQueueTest extends TestCase {
     assertTrue(rlQueue.isEmpty());
   }
 
+  @Test
   public void testSpeed() {
     Tensor slack = Tensors.vector(1, 1, 1);
     RLQueue rlQueue = new RLQueue(slack);
@@ -74,6 +79,7 @@ public class RLQueueTest extends TestCase {
     }
   }
 
+  @Test
   public void testFailCollectionsMinEmpty() {
     AssertFail.of(() -> Collections.min(Arrays.asList()));
   }

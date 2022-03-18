@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.sophus.sym;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SymLinkTest extends TestCase {
+public class SymLinkTest {
+  @Test
   public void testNodeNull() {
     new SymLink(null, null, null);
   }

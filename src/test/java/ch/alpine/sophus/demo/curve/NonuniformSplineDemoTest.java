@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.curve;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class NonuniformSplineDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class NonuniformSplineDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new NonuniformSplineDemo());
   }

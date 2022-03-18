@@ -1,9 +1,10 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ApTrajectoryPlannerTest extends TestCase {
+public class ApTrajectoryPlannerTest {
+  @Test
   public void testIsStandardTrajectoryPlanner() {
     ApTrajectoryPlanner.apStandardTrajectoryPlanner();
   }

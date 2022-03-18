@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.math.AssertFail;
@@ -14,9 +18,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class FixedStateIntegratorTest extends TestCase {
+public class FixedStateIntegratorTest {
+  @Test
   public void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     FixedStateIntegrator fsi = //
@@ -29,6 +33,7 @@ public class FixedStateIntegratorTest extends TestCase {
     assertEquals(fsi.getTimeStepTrajectory(), RationalScalar.of(3, 2));
   }
 
+  @Test
   public void testCarEx() {
     Scalar dt = RationalScalar.of(1, 10);
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
@@ -37,10 +42,12 @@ public class FixedStateIntegratorTest extends TestCase {
     assertEquals(r, dt.multiply(RealScalar.of(4)));
   }
 
+  @Test
   public void testFail1() {
     AssertFail.of(() -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(-.1), 3));
   }
 
+  @Test
   public void testFail2() {
     AssertFail.of(() -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(0), 3));
   }

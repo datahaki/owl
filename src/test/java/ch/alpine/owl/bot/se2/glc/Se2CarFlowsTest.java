@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.Collection;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
@@ -15,9 +17,9 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2CarFlowsTest extends TestCase {
+public class Se2CarFlowsTest {
+  @Test
   public void testRadUnits() {
     Scalar speed = Quantity.of(2, "m*s^-1");
     Scalar rate_max = UnitSystem.SI().apply(Quantity.of(1, "rad*m^-1"));
@@ -30,6 +32,7 @@ public class Se2CarFlowsTest extends TestCase {
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
   }
 
+  @Test
   public void testRadRadius() {
     Scalar speed = Quantity.of(1.423, "m*s^-1");
     Scalar rate = UnitSystem.SI().apply(Quantity.of(2.384, "rad*m^-1"));
@@ -43,6 +46,7 @@ public class Se2CarFlowsTest extends TestCase {
     Chop._12.requireClose(radius.reciprocal(), rate);
   }
 
+  @Test
   public void testUnits() {
     Scalar speed = Quantity.of(2, "m*s^-1");
     Scalar rate_max = UnitSystem.SI().apply(Quantity.of(1, "m^-1"));
@@ -55,6 +59,7 @@ public class Se2CarFlowsTest extends TestCase {
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
   }
 
+  @Test
   public void testRadius() {
     Scalar speed = Quantity.of(1.423, "m*s^-1");
     Scalar rate = UnitSystem.SI().apply(Quantity.of(2.384, "m^-1"));

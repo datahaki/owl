@@ -1,6 +1,10 @@
 // code by jph
 package ch.alpine.owl.math.flow;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.model.DoubleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -12,11 +16,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityTensor;
 import ch.alpine.tensor.qty.Unit;
-import junit.framework.TestCase;
 
-public class EulerIntegratorTest extends TestCase {
+public class EulerIntegratorTest {
   private final Integrator integrator = EulerLieIntegrator.of(RnGroup.INSTANCE, RnExponential.INSTANCE);
 
+  @Test
   public void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-1"));
@@ -27,6 +31,7 @@ public class EulerIntegratorTest extends TestCase {
     assertEquals(r, integrator.step(stateSpaceModel, x, u, h));
   }
 
+  @Test
   public void testDouble() {
     StateSpaceModel stateSpaceModel = DoubleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-2"));

@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.ani.api;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -9,9 +11,10 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ProviderRankTest extends TestCase {
+public class ProviderRankTest {
+  @Test
   public void testProviderRank() {
     Set<ProviderRank> set = new ConcurrentSkipListSet<>();
     set.add(ProviderRank.FALLBACK);
@@ -25,6 +28,7 @@ public class ProviderRankTest extends TestCase {
     assertEquals(it.next(), ProviderRank.FALLBACK);
   }
 
+  @Test
   public void testSimple() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.EMERGENCY);
@@ -33,6 +37,7 @@ public class ProviderRankTest extends TestCase {
     assertEquals(queue.poll(), ProviderRank.GODMODE);
   }
 
+  @Test
   public void testSet() {
     Set<Integer> csls = new ConcurrentSkipListSet<>();
     csls.add(10);
@@ -44,6 +49,7 @@ public class ProviderRankTest extends TestCase {
     assertEquals(new ArrayList<>(csls), Arrays.asList(0, 2, 5, 10));
   }
 
+  @Test
   public void testMorePriority() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.CALIBRATION);

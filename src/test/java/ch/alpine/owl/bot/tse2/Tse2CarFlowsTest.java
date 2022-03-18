@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.AssertFail;
@@ -11,9 +15,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Round;
-import junit.framework.TestCase;
 
-public class Tse2CarFlowsTest extends TestCase {
+public class Tse2CarFlowsTest {
+  @Test
   public void testSimple() {
     FlowsInterface flowsInterface = Tse2CarFlows.of(RealScalar.of(3), Tensors.vector(-2, 0, 1));
     Collection<Tensor> flows = flowsInterface.getFlows(10);
@@ -22,6 +26,7 @@ public class Tse2CarFlowsTest extends TestCase {
     assertEquals(Tse2Controls.maxTurning(flows), RealScalar.of(3));
   }
 
+  @Test
   public void testQuantity() {
     FlowsInterface flowsInterface = //
         Tse2CarFlows.of(Quantity.of(3, "m^-1"), Tensors.fromString("{-2[m*s^-2], 0[m*s^-2], 2[m*s^-2]}"));
@@ -47,6 +52,7 @@ public class Tse2CarFlowsTest extends TestCase {
     }
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> Tse2CarFlows.of(Quantity.of(1, "m^-1"), Quantity.of(2, "m*s^-2")));
   }

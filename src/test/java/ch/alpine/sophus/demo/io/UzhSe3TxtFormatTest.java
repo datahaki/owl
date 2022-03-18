@@ -1,17 +1,22 @@
 // code by jph
 package ch.alpine.sophus.demo.io;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.io.StringScalarQ;
-import junit.framework.TestCase;
 
-public class UzhSe3TxtFormatTest extends TestCase {
+public class UzhSe3TxtFormatTest {
+  @Test
   public void testSimple() throws FileNotFoundException, IOException {
     File file = new File("/media/datahaki/media/resource/uzh/groundtruth", "outdoor_forward_5_davis.txt");
     if (file.isFile()) {

@@ -1,14 +1,19 @@
 // code by jph
 package ch.alpine.owl.math.region;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RegionIntersectionTest extends TestCase {
+public class RegionIntersectionTest {
+  @Test
   public void testSimple() {
     Region<Tensor> intersection = RegionIntersection.wrap( //
         Arrays.asList( //

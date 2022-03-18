@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.TransitionWrap;
@@ -24,11 +29,11 @@ import ch.alpine.tensor.qty.Unit;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class ClothoidTransitionTest extends TestCase {
+public class ClothoidTransitionTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(4, 1, 5);
@@ -38,12 +43,14 @@ public class ClothoidTransitionTest extends TestCase {
     Clips.interval(2.5, 2.6).requireInside(head);
   }
 
+  @Test
   public void testLog2Int() {
     int value = 1024;
     int bit = 31 - Integer.numberOfLeadingZeros(value);
     assertEquals(bit, 10);
   }
 
+  @Test
   public void testWrapped() {
     Tensor start = Tensors.vector(2, 3, 3);
     Tensor end = Tensors.vector(4, 1, 5);
@@ -53,6 +60,7 @@ public class ClothoidTransitionTest extends TestCase {
     assertTrue(transitionWrap.spacing().stream().map(Scalar.class::cast).allMatch(Sign::isPositive));
   }
 
+  @Test
   public void testSingularPoint() {
     Tensor start = Tensors.vector(0, 0, 0);
     Tensor end = Tensors.vector(0, 0, 0);
@@ -67,6 +75,7 @@ public class ClothoidTransitionTest extends TestCase {
     assertEquals(clothoidTransition.linearized(RealScalar.of(0.1)), Array.zeros(2, 3));
   }
 
+  @Test
   public void testSamples2() {
     Tensor start = Tensors.vector(0, 0, 0);
     Tensor end = Tensors.vector(4, 0, 0);
@@ -76,6 +85,7 @@ public class ClothoidTransitionTest extends TestCase {
     assertEquals(clothoidTransition.sampled(RealScalar.of(1.9)).length(), 3);
   }
 
+  @Test
   public void testSamplesSteps() {
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(4, 1, 5);
@@ -94,6 +104,7 @@ public class ClothoidTransitionTest extends TestCase {
     }
   }
 
+  @Test
   public void testLinearize() {
     Clothoid clothoid = CLOTHOID_BUILDER.curve( //
         Tensors.fromString("{0.3[m], 1[m], 0}"), Tensors.fromString("{2[m], 2[m], .3}"));
@@ -102,6 +113,7 @@ public class ClothoidTransitionTest extends TestCase {
     clothoidTransition.linearized(Quantity.of(0.2, "m"));
   }
 
+  @Test
   public void testFails() {
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(4, 1, 5);

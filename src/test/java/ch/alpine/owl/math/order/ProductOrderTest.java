@@ -1,15 +1,19 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
-import ch.alpine.owl.math.AssertFail;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProductOrderTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.owl.math.AssertFail;
+
+public class ProductOrderTest {
   private static void _checkSym(OrderComparison a, OrderComparison b, OrderComparison ab) {
     assertEquals(ProductOrder.intersect(a, b), ab);
     assertEquals(ProductOrder.intersect(b, a), ab);
   }
 
+  @Test
   public void testSimple() {
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.STRICTLY_PRECEDES, OrderComparison.STRICTLY_PRECEDES);
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE);
@@ -19,6 +23,7 @@ public class ProductOrderTest extends TestCase {
     _checkSym(OrderComparison.STRICTLY_SUCCEEDS, OrderComparison.STRICTLY_SUCCEEDS, OrderComparison.STRICTLY_SUCCEEDS);
   }
 
+  @Test
   public void testNullFail() {
     for (OrderComparison orderComparison : OrderComparison.values()) {
       AssertFail.of(() -> ProductOrder.intersect(orderComparison, null));

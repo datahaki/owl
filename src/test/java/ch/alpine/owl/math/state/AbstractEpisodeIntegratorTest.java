@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rice.Duncan1StateSpaceModel;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
@@ -20,9 +25,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class AbstractEpisodeIntegratorTest extends TestCase {
+public class AbstractEpisodeIntegratorTest {
+  @Test
   public void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
@@ -38,6 +43,7 @@ public class AbstractEpisodeIntegratorTest extends TestCase {
     Chop._04.requireClose(init.state(), stateTime.state());
   }
 
+  @Test
   public void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3));
@@ -53,6 +59,7 @@ public class AbstractEpisodeIntegratorTest extends TestCase {
     Chop._13.requireClose(stateTime.state(), Tensors.vector(0.7011342979097925, 1.9974872733093685, 3.3));
   }
 
+  @Test
   public void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
@@ -63,6 +70,7 @@ public class AbstractEpisodeIntegratorTest extends TestCase {
     AssertFail.of(() -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
   }
 
+  @Test
   public void testRice1Units() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(3, "s^-1"));
     Tensor x = Tensors.fromString("{1[m*s^-1], 2[m*s^-1]}");

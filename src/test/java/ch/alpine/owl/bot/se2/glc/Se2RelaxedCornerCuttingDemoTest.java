@@ -1,6 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
@@ -10,9 +14,9 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class Se2RelaxedCornerCuttingDemoTest extends TestCase {
+public class Se2RelaxedCornerCuttingDemoTest {
+  @Test
   public void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);
     Tensor slacks = Tensors.vector(2, 0);

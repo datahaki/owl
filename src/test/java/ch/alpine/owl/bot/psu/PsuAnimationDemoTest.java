@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class PsuAnimationDemoTest extends TestCase {
+import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+
+public class PsuAnimationDemoTest {
+  @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new PsuAnimationDemo());
   }

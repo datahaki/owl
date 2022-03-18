@@ -1,14 +1,19 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.HeuristicQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class ImageCostFunctionTest extends TestCase {
+public class ImageCostFunctionTest {
+  @Test
   public void testSimple() {
     ImageCostFunction costFunction = //
         new DenseImageCostFunction(Tensors.fromString("{{1, 2}, {3, 4}}"), Tensors.vector(10, 10), RealScalar.ZERO);
@@ -19,6 +24,7 @@ public class ImageCostFunctionTest extends TestCase {
     assertEquals(costFunction.flipYXTensorInterp.at(Tensors.vector(9, 1)), RealScalar.of(4));
   }
 
+  @Test
   public void testSerializable() throws Exception {
     CostFunction costFunction = //
         new DenseImageCostFunction(Tensors.fromString("{{1, 2}, {3, 4}}"), Tensors.vector(10, 10), RealScalar.ZERO);

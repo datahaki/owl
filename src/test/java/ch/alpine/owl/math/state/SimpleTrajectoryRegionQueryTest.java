@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
-import ch.alpine.owl.math.AssertFail;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SimpleTrajectoryRegionQueryTest extends TestCase {
+import ch.alpine.owl.math.AssertFail;
+
+public class SimpleTrajectoryRegionQueryTest {
+  @Test
   public void testSimple() {
     AssertFail.of(() -> new SimpleTrajectoryRegionQuery(null));
   }

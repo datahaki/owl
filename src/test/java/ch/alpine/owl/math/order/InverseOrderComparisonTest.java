@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.order;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InverseOrderComparisonTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class InverseOrderComparisonTest {
+  @Test
   public void testSimple() {
     assertEquals(InverseOrderComparison.of(OrderComparison.STRICTLY_PRECEDES), OrderComparison.STRICTLY_SUCCEEDS);
     assertEquals(InverseOrderComparison.of(OrderComparison.INDIFFERENT), OrderComparison.INDIFFERENT);

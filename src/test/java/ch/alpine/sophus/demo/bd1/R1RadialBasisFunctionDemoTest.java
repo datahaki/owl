@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.bd1;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class R1RadialBasisFunctionDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class R1RadialBasisFunctionDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new R1RadialBasisFunctionDemo());
   }

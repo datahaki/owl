@@ -1,7 +1,13 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
@@ -11,9 +17,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class ConstraintViolationCostTest extends TestCase {
+public class ConstraintViolationCostTest {
+  @Test
   public void testSimple() {
     Tensor polygon = Tensors.matrixInt(new int[][] { { 1, 0 }, { 4, 0 }, { 4, 3 } });
     PolygonRegion polygonRegion = new PolygonRegion(polygon);

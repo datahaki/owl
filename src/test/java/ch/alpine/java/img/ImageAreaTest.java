@@ -1,6 +1,10 @@
 // code by jph
 package ch.alpine.java.img;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.geom.Point2D;
@@ -10,13 +14,15 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class ImageAreaTest extends TestCase {
+public class ImageAreaTest {
+  @Test
   public void testBlackWhite() throws IOException {
     BufferedImage bufferedImage = image("/dubilab/obstacles/20180423.png");
     Area area = ImageArea.fromImage(bufferedImage); // takes ~6[s]
@@ -33,6 +39,7 @@ public class ImageAreaTest extends TestCase {
     }
   }
 
+  @Test
   public void testTensorArea() {
     Tensor image = Tensors.fromString("{{1, 0, 0, 1, 0}}");
     ImageRegion imageRegion = new ImageRegion(image, Tensors.vector(5, 1), true);
@@ -51,6 +58,7 @@ public class ImageAreaTest extends TestCase {
     assertFalse(area.contains(new Point2D.Double(5.5, 0.5)));
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> ImageArea.fromImage(null));
   }

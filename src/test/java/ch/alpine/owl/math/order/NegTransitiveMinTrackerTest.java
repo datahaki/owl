@@ -1,8 +1,14 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.TensorNormTotalPreorder;
 import ch.alpine.sophus.math.TensorShuffle;
@@ -14,9 +20,9 @@ import ch.alpine.tensor.nrm.VectorInfinityNorm;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
-import junit.framework.TestCase;
 
-public class NegTransitiveMinTrackerTest extends TestCase {
+public class NegTransitiveMinTrackerTest {
+  @Test
   public void testDigestNotEmpty() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -25,6 +31,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 1);
   }
 
+  @Test
   public void testDigestFunction() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -43,6 +50,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 3);
   }
 
+  @Test
   public void testDuplicateEntries() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -61,6 +69,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 2);
   }
 
+  @Test
   public void testWithSet() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -72,6 +81,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 2);
   }
 
+  @Test
   public void testSerializable() throws ClassNotFoundException, IOException {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -79,6 +89,7 @@ public class NegTransitiveMinTrackerTest extends TestCase {
     minTracker.digest(Tensors.vector(0, 1, 2));
   }
 
+  @Test
   public void testPermutations() {
     Distribution distribution = DiscreteUniformDistribution.of(0, 10);
     final Tensor tensor = RandomVariate.of(distribution, 100, 3);

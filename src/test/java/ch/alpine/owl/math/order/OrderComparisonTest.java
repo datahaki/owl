@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.order;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OrderComparisonTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class OrderComparisonTest {
+  @Test
   public void testSimple() {
     assertEquals(OrderComparison.values().length, 4);
   }

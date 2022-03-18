@@ -1,17 +1,20 @@
 // code by astoll, jph
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class TensorProductOrderTest extends TestCase {
+public class TensorProductOrderTest {
   private static void _check(Tensor x, Tensor y, OrderComparison orderComparison) {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(x.length());
     assertEquals(productOrderComparator.compare(x, y), orderComparison);
@@ -20,6 +23,7 @@ public class TensorProductOrderTest extends TestCase {
     assertEquals(productOrderComparator.compare(y, y), OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testSimple() {
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
     Tensor tensorY = Tensors.fromString("{2, 3, 4}");
@@ -32,6 +36,7 @@ public class TensorProductOrderTest extends TestCase {
     _check(tensorA, tensorX, OrderComparison.INCOMPARABLE);
   }
 
+  @Test
   public void testDimOne() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(2);
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
@@ -40,6 +45,7 @@ public class TensorProductOrderTest extends TestCase {
     assertEquals(orderComparison1, OrderComparison.STRICTLY_PRECEDES);
   }
 
+  @Test
   public void testTotalProduct() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     List<Scalar> x = new LinkedList<>();
@@ -63,6 +69,7 @@ public class TensorProductOrderTest extends TestCase {
     assertEquals(OrderComparison.INDIFFERENT, productOrderComparator.compare(z, z));
   }
 
+  @Test
   public void testFailLength() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     Tensor tensorX = Tensors.fromString("{1, 2}");
@@ -70,10 +77,12 @@ public class TensorProductOrderTest extends TestCase {
     AssertFail.of(() -> productOrderComparator.compare(tensorX, tensorY));
   }
 
+  @Test
   public void testZero() {
     assertEquals(TensorProductOrder.comparator(0).compare(Tensors.empty(), Tensors.empty()), OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testFailNegative() {
     AssertFail.of(() -> TensorProductOrder.comparator(-1));
   }

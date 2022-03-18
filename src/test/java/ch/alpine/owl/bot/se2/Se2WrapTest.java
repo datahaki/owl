@@ -1,6 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.lie.so2.So2;
@@ -15,18 +19,19 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Floor;
-import junit.framework.TestCase;
 
-public class Se2WrapTest extends TestCase {
+public class Se2WrapTest {
   static Tensor convertToKey(Tensor eta, TensorUnaryOperator represent, Tensor x) {
     return Times.of(eta, represent.apply(x)).map(Floor.FUNCTION);
   }
 
+  @Test
   public void testSe2xT_represent() {
     Tensor res = Se2Wrap.INSTANCE.represent(Tensors.vector(1, 1, 2 * Math.PI, 1));
     assertEquals(res, Tensors.vector(1, 1, 0, 1));
   }
 
+  @Test
   public void testMod2Pi_1() {
     Tensor p = Tensors.vector(20, -43, -2 * Math.PI * 8);
     Tensor q = Tensors.vector(20, -43, +2 * Math.PI + 0.1);
@@ -34,6 +39,7 @@ public class Se2WrapTest extends TestCase {
     Chop._10.requireClose(distance, Tensors.vector(0, 0, 0.1));
   }
 
+  @Test
   public void testMod2Pi_2() {
     Tensor p = Tensors.vector(0, 0, -2 * Math.PI * 3);
     Tensor q = Tensors.vector(0, 0, +2 * Math.PI + 0.1);
@@ -41,6 +47,7 @@ public class Se2WrapTest extends TestCase {
     Chop._13.requireClose(difference, Tensors.vector(0, 0, 0.1));
   }
 
+  @Test
   public void testMod2PiUnits() {
     Tensor p1 = Tensors.fromString("{20[m], -43[m]}").append(RealScalar.of(-2 * Math.PI * 3));
     Tensor p2 = Tensors.fromString("{20[m], -43[m]}").append(RealScalar.of(-2 * Math.PI * 8));
@@ -50,6 +57,7 @@ public class Se2WrapTest extends TestCase {
     Chop._08.requireClose(d1, d2);
   }
 
+  @Test
   public void testEndPoints() {
     Distribution distribution = NormalDistribution.of(0, 10);
     for (int index = 0; index < 100; ++index) {
@@ -64,10 +72,12 @@ public class Se2WrapTest extends TestCase {
     }
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> Se2Wrap.INSTANCE.represent(Tensors.vector(1, 2)));
   }
 
+  @Test
   public void testFailMatrix() {
     AssertFail.of(() -> Se2Wrap.INSTANCE.represent(IdentityMatrix.of(3)));
   }

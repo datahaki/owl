@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.se2;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.pursuit.PurePursuit;
 import ch.alpine.sophus.lie.se2c.Se2CoveringIntegrator;
 import ch.alpine.tensor.RealScalar;
@@ -15,9 +17,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2CarLieIntegratorTest extends TestCase {
+public class Se2CarLieIntegratorTest {
+  @Test
   public void testCombine() {
     for (int index = 0; index < 20; ++index) {
       Tensor g = RandomVariate.of(NormalDistribution.standard(), 3);
@@ -29,6 +31,7 @@ public class Se2CarLieIntegratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testRatioPositiveX() {
     for (Tensor lookAhead : Tensors.of(Tensors.vector(3, 1), Tensors.vector(3, -1))) {
       Optional<Scalar> optional = PurePursuit.ratioPositiveX(lookAhead);
@@ -40,6 +43,7 @@ public class Se2CarLieIntegratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testCreateLookAhead() {
     Distribution distribution = UniformDistribution.of(-0.3, +0.3);
     Distribution speeds = UniformDistribution.of(0, 3);
@@ -54,6 +58,7 @@ public class Se2CarLieIntegratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testRatioNegativeX() {
     for (Tensor lookAhead : Tensors.of(Tensors.vector(-3, 1), Tensors.vector(-3, -1))) {
       Optional<Scalar> optional = PurePursuit.ratioNegativeX(lookAhead);

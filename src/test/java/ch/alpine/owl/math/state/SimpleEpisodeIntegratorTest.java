@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
@@ -15,9 +19,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class SimpleEpisodeIntegratorTest extends TestCase {
+public class SimpleEpisodeIntegratorTest {
+  @Test
   public void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.vector(1, 2);
@@ -43,6 +47,7 @@ public class SimpleEpisodeIntegratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testUnits1() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.fromString("{1[m], 2[m]}");
@@ -68,6 +73,7 @@ public class SimpleEpisodeIntegratorTest extends TestCase {
     }
   }
 
+  @Test
   public void testUnits2() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.fromString("{1[m], 2[m]}");

@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.avg;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ExtrapolationSplitsDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class ExtrapolationSplitsDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new ExtrapolationSplitsDemo());
   }

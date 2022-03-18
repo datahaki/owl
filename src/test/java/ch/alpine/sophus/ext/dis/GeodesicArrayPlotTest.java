@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dot;
 import ch.alpine.tensor.mat.DiagonalMatrix;
@@ -9,9 +11,9 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class GeodesicArrayPlotTest extends TestCase {
+public class GeodesicArrayPlotTest {
+  @Test
   public void testSimple() {
     Distribution distribution = NormalDistribution.standard();
     Tensor a = RandomVariate.of(distribution, 3, 3);

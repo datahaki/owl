@@ -37,6 +37,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** class is used in other projects outside of owl */
 @ReflectionMarker
+// TODO OWL possibly create TABs for each Manifold Display (in order to leave ctrl points)
 public abstract class ControlPointsDemo extends AbstractGeodesicDisplayDemo {
   /** mouse snaps 20 pixel to control points */
   private static final Scalar PIXEL_THRESHOLD = RealScalar.of(20.0);

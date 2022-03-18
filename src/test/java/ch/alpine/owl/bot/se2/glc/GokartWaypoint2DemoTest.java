@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class GokartWaypoint2DemoTest extends TestCase {
+import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+
+public class GokartWaypoint2DemoTest {
+  @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new GokartWaypoint2Demo());
   }

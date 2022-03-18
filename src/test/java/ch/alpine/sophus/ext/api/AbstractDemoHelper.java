@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.ext.api.AbstractGeodesicDisplayDemo;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 
 public enum AbstractDemoHelper {

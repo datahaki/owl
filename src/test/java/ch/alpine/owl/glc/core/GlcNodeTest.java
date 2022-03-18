@@ -1,9 +1,15 @@
 // code by jph and jl
 package ch.alpine.owl.glc.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -22,9 +28,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class GlcNodeTest extends TestCase {
+public class GlcNodeTest {
+  @Test
   public void testCompare() {
     StateTime state1 = new StateTime(Tensors.vector(3, 0), RealScalar.of(3));
     StateTime state2 = new StateTime(Tensors.vector(3, 0), RealScalar.of(3));
@@ -56,6 +62,7 @@ public class GlcNodeTest extends TestCase {
     // assertFalse(test1.equals(test4));
   }
 
+  @Test
   public void testMakeRoot() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);

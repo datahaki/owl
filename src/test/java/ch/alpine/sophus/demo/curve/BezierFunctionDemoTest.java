@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.curve;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class BezierFunctionDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class BezierFunctionDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new BezierFunctionDemo());
   }

@@ -1,17 +1,22 @@
 // code by jph
 package ch.alpine.java.img;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import junit.framework.TestCase;
 
-public class FloodFill2DTest extends TestCase {
+public class FloodFill2DTest {
+  @Test
   public void testSimple() {
     Tensor tensor = Array.zeros(5, 6);
     Tensor seeds = Tensors.fromString("{{2, 2}, {4, 3}}");
@@ -22,6 +27,7 @@ public class FloodFill2DTest extends TestCase {
     ExactTensorQ.require(manh);
   }
 
+  @Test
   public void testObstacles() {
     Tensor tensor = Array.zeros(5, 6);
     tensor.set(Tensors.vector(0, 1, 1, 1, 1), Tensor.ALL, 1);
@@ -33,6 +39,7 @@ public class FloodFill2DTest extends TestCase {
     ExactTensorQ.require(manh);
   }
 
+  @Test
   public void testSeeds() {
     Tensor tensor = Tensors.matrixInt(new int[][] { //
         { 0, 0, 0, 0, 0 }, //
@@ -54,6 +61,7 @@ public class FloodFill2DTest extends TestCase {
     ExactTensorQ.require(manh);
   }
 
+  @Test
   public void testInvalid() {
     Tensor tensor = Array.zeros(5, 6);
     int ttl = -1;

@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class KlotskiDemoTest extends TestCase {
+public class KlotskiDemoTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     KlotskiProblem klotskiProblem = Serialization.copy(Huarong.ONLY_18_STEPS.create());
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
@@ -17,6 +21,7 @@ public class KlotskiDemoTest extends TestCase {
     klotskiDemo.close();
   }
 
+  @Test
   public void testPennant() throws ClassNotFoundException, IOException {
     KlotskiProblem klotskiProblem = Serialization.copy(Pennant.PUZZLE.create());
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);

@@ -1,19 +1,21 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.Spd2Display;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.PositiveDefiniteMatrixQ;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Spd2DisplayTest extends TestCase {
+public class Spd2DisplayTest {
   private static final ManifoldDisplay GEODESIC_DISPLAY = Spd2Display.INSTANCE;
 
+  @Test
   public void testSimple() {
     Tensor tensor = GEODESIC_DISPLAY.project(Tensors.vector(1, 0.2, -1));
     assertTrue(PositiveDefiniteMatrixQ.ofHermitian(tensor));

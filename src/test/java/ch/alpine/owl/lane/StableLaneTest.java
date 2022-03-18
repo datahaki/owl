@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.lane;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
@@ -13,11 +17,11 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class StableLaneTest extends TestCase {
+public class StableLaneTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}"), //
@@ -29,6 +33,7 @@ public class StableLaneTest extends TestCase {
     VectorQ.require(laneInterface.margins());
   }
 
+  @Test
   public void testStraight() throws ClassNotFoundException, IOException {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 0[m], 0}, {2[m], 0[m], 0}}"), //

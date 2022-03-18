@@ -4,6 +4,8 @@ package ch.alpine.owl.glc.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
@@ -17,9 +19,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class VectorCostGoalAdapterTest extends TestCase {
+public class VectorCostGoalAdapterTest {
+  @Test
   public void testSimple() {
     List<CostFunction> costs = new ArrayList<>();
     costs.add(new Se2MinTimeGoalManager( //

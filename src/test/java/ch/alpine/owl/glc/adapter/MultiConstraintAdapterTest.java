@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
-import ch.alpine.owl.math.AssertFail;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class MultiConstraintAdapterTest extends TestCase {
+import ch.alpine.owl.math.AssertFail;
+
+public class MultiConstraintAdapterTest {
+  @Test
   public void testFailNull() {
     AssertFail.of(() -> MultiConstraintAdapter.of(null));
   }

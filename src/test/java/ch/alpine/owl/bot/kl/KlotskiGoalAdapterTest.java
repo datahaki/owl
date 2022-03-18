@@ -1,11 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import junit.framework.TestCase;
 
-public class KlotskiGoalAdapterTest extends TestCase {
+public class KlotskiGoalAdapterTest {
+  @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
@@ -15,6 +19,7 @@ public class KlotskiGoalAdapterTest extends TestCase {
     }
   }
 
+  @Test
   public void testPennant() {
     for (Pennant pennant : Pennant.values()) {
       KlotskiProblem klotskiProblem = pennant.create();
@@ -24,6 +29,7 @@ public class KlotskiGoalAdapterTest extends TestCase {
     }
   }
 
+  @Test
   public void testTrafficJam() {
     for (TrafficJam trafficJam : TrafficJam.values()) {
       KlotskiProblem klotskiProblem = trafficJam.create();

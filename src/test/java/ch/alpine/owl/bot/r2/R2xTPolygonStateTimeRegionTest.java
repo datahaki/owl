@@ -1,6 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.api.BijectionFamily;
 import ch.alpine.sophus.api.Region;
@@ -9,9 +14,9 @@ import ch.alpine.sophus.hs.r2.So2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class R2xTPolygonStateTimeRegionTest extends TestCase {
+public class R2xTPolygonStateTimeRegionTest {
+  @Test
   public void testSimple() {
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));
     // ---

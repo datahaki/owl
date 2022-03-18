@@ -1,8 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -15,9 +19,9 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class R2EntityTest extends TestCase {
+public class R2EntityTest {
+  @Test
   public void testSimple() {
     Tensor ux = Tensors.vector(1, 0);
     List<TrajectorySample> trajectory = new ArrayList<>();
@@ -63,6 +67,7 @@ public class R2EntityTest extends TestCase {
      * } */
   }
 
+  @Test
   public void testTail() {
     Tensor state = Tensors.vector(0.7, 0);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

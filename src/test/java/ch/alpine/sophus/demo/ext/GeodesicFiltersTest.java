@@ -5,6 +5,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.demo.io.GokartPoseData;
@@ -23,9 +25,8 @@ import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.nrm.MatrixInfinityNorm;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.win.WindowFunctions;
-import junit.framework.TestCase;
 
-public class GeodesicFiltersTest extends TestCase {
+public class GeodesicFiltersTest {
   private static void _check(GokartPoseData gokartPoseData) {
     List<String> lines = gokartPoseData.list();
     Tensor control = gokartPoseData.getPose(lines.get(0), 250);
@@ -49,11 +50,13 @@ public class GeodesicFiltersTest extends TestCase {
     }
   }
 
+  @Test
   public void testSimple() {
     _check(GokartPoseDataV1.INSTANCE);
     _check(GokartPoseDataV2.INSTANCE);
   }
 
+  @Test
   public void testTiming() {
     String name = "20190701T170957_06";
     Tensor control = GokartPoseDataV2.RACING_DAY.getPose(name, 1_000_000);

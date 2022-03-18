@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.bd2;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class PlanarScatteredSetCoordinateDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class PlanarScatteredSetCoordinateDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new PlanarScatteredSetCoordinateDemo());
   }

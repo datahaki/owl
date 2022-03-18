@@ -1,12 +1,16 @@
 // code by jph
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import junit.framework.TestCase;
 
-public class ProductOrderTrackerTest extends TestCase {
+public class ProductOrderTrackerTest {
+  @Test
   public void testSimple() {
     ProductOrderTracker<Scalar> productOrderTracker = new ProductOrderTracker<>(ScalarTotalOrder.INSTANCE);
     assertEquals(productOrderTracker.digest(RealScalar.of(0), RealScalar.of(0)), OrderComparison.INDIFFERENT);

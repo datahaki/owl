@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.TransitionWrap;
@@ -12,9 +16,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Differences;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import junit.framework.TestCase;
 
-public class RnTransitionTest extends TestCase {
+public class RnTransitionTest {
+  @Test
   public void testSampled() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.vector(1, 2);
     Tensor end = Tensors.vector(10, 2);
@@ -24,6 +28,7 @@ public class RnTransitionTest extends TestCase {
     assertEquals(tensor.length(), 90);
   }
 
+  @Test
   public void testLinearized() {
     Tensor start = Tensors.vector(1, 2);
     Tensor end = Tensors.vector(10, 2);
@@ -32,6 +37,7 @@ public class RnTransitionTest extends TestCase {
     assertEquals(linearized, Tensors.fromString("{{1, 2}, {10, 2}}"));
   }
 
+  @Test
   public void testWrapped() {
     Tensor start = Tensors.vector(1, 2);
     Tensor end = Tensors.vector(10, 2);
@@ -45,6 +51,7 @@ public class RnTransitionTest extends TestCase {
     assertEquals(spacing.extract(0, diffnor.length()), diffnor);
   }
 
+  @Test
   public void testFail() {
     Tensor start = Tensors.vector(1, 2);
     Tensor end = Tensors.vector(10, 2);

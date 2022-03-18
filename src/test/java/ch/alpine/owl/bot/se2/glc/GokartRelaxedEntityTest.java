@@ -1,6 +1,11 @@
 // code by ynager, jph
 package ch.alpine.owl.bot.se2.glc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
@@ -9,9 +14,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class GokartRelaxedEntityTest extends TestCase {
+public class GokartRelaxedEntityTest {
+  @Test
   public void testSimple() {
     final StateTime initial = new StateTime(Tensors.vector(0, 10, 0), RealScalar.ZERO);
     // define region costs

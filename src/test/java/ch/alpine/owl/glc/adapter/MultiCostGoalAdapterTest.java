@@ -1,9 +1,15 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -17,9 +23,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class MultiCostGoalAdapterTest extends TestCase {
+public class MultiCostGoalAdapterTest {
+  @Test
   public void testSimple() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
@@ -41,6 +47,7 @@ public class MultiCostGoalAdapterTest extends TestCase {
     assertEquals(minCostToGoal, RealScalar.of(9).divide(speed));
   }
 
+  @Test
   public void testMembers() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
@@ -54,6 +61,7 @@ public class MultiCostGoalAdapterTest extends TestCase {
     assertFalse(mcga.test(new StateTime(Tensors.vector(10, 5, 3.1), RealScalar.ZERO)));
   }
 
+  @Test
   public void testTrivial() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);

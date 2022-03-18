@@ -1,18 +1,24 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.Permutations;
-import junit.framework.TestCase;
 
-public class SetEboTrackerTest extends TestCase {
+public class SetEboTrackerTest {
+  @Test
   public void testDigestSimple() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //
@@ -30,6 +36,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT2.getCandidateSet().size() > 1);
   }
 
+  @Test
   public void testDigest() {
     Tensor slackVector = Tensors.fromString("{2}");
     AbstractEboTracker<Integer> LSMT1 = //
@@ -47,6 +54,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT1.digest(4, w).containsAll(list));
   }
 
+  @Test
   public void testCandidateSet() {
     Tensor slackVector = Tensors.fromString("{2, 2, 2}");
     AbstractEboTracker<Integer> LSMT1 = //
@@ -87,6 +95,7 @@ public class SetEboTrackerTest extends TestCase {
     assertFalse(LSMT1.getCandidateKeys().contains(1) && LSMT1.getCandidateKeys().contains(1) && LSMT1.getCandidateKeys().contains(3));
   }
 
+  @Test
   public void testDigestFalseDim() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     EboTracker<Integer> lexSemiMinTracker = SetEboTracker.withList(slacks);
@@ -94,6 +103,7 @@ public class SetEboTrackerTest extends TestCase {
     AssertFail.of(() -> lexSemiMinTracker.digest(1, x));
   }
 
+  @Test
   public void testGetMinElements() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
@@ -117,6 +127,7 @@ public class SetEboTrackerTest extends TestCase {
     assertEquals(LSMT1.getMinElements().size(), 2);
   }
 
+  @Test
   public void testGetMinKeys() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
@@ -137,6 +148,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT1.getMinKeys().contains(3) && LSMT1.getMinKeys().contains(1));
   }
 
+  @Test
   public void testGetMinValues() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
@@ -153,6 +165,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT1.getMinValues().contains(x) && LSMT1.getMinValues().contains(z));
   }
 
+  @Test
   public void testReverseSequencewithList() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
@@ -191,6 +204,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT3.getCandidateSet().containsAll(LSMT3.getMinElements()));
   }
 
+  @Test
   public void testPermutations() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //
@@ -211,6 +225,7 @@ public class SetEboTrackerTest extends TestCase {
     assertTrue(LSMT1.getCandidateValues().contains(y) && LSMT1.getMinValues().contains(z));
   }
 
+  @Test
   public void testGetBest() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<String> LSMT1 = //
@@ -238,6 +253,7 @@ public class SetEboTrackerTest extends TestCase {
     // assertTrue(LSMT1.peekBestValue() == y);
   }
 
+  @Test
   public void testExtractBest() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //

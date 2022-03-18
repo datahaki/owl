@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.curve;
 
-import ch.alpine.sophus.ext.api.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class DubinsPathDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class DubinsPathDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new DubinsPathDemo());
   }

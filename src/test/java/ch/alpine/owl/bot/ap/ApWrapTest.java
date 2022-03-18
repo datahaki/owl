@@ -1,12 +1,14 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class ApWrapTest extends TestCase {
+public class ApWrapTest {
+  @Test
   public void testWrap() {
     double pa = 2 * Math.PI;
     Tensor toBeTested = Tensors.vector(100, 20, -30, 6.6);

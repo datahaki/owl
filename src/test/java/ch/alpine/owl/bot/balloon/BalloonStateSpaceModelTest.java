@@ -1,7 +1,11 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
@@ -9,9 +13,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
-import junit.framework.TestCase;
 
-public class BalloonStateSpaceModelTest extends TestCase {
+public class BalloonStateSpaceModelTest {
+  @Test
   public void testValidity() throws ClassNotFoundException, IOException {
     Tensor xWithUnits = Tensors.fromString("{2[m], 2[m], 2[m*s^-1], 4[K]}");
     Tensor uWithUnits = Tensors.fromString("{3[K*s^-1]}");

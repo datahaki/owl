@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -20,9 +22,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import junit.framework.TestCase;
 
-public class LvEntityTest extends TestCase {
+public class LvEntityTest {
+  @Test
   public void testVectorField() {
     Tensor fallback_u = Array.zeros(1);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);

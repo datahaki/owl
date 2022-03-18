@@ -1,14 +1,20 @@
 // code by jph
 package ch.alpine.owl.glc.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.alpine.tensor.RealScalar;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class DomainQueueTest extends TestCase {
+import ch.alpine.tensor.RealScalar;
+
+public class DomainQueueTest {
+  @Test
   public void testQueue() {
     GlcNode first = GlcNode.of(null, null, RealScalar.of(1), RealScalar.ZERO);
     DomainQueue dq = DomainQueue.singleton(first);
@@ -26,6 +32,7 @@ public class DomainQueueTest extends TestCase {
   /** the test shows that removing elements
    * from the collection Map::values
    * also removes the entry in the map */
+  @Test
   public void testMap() {
     Map<Integer, String> map = new HashMap<>();
     map.put(1, "one");

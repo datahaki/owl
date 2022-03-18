@@ -1,22 +1,27 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Arrays;
 
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class ManifoldDisplaysTest extends TestCase {
+public class ManifoldDisplaysTest {
+  @Test
   public void testSimple() {
     assertTrue(12 <= ManifoldDisplays.ALL.size());
   }
 
+  @Test
   public void testToPoint() {
     for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.ALL)
       try {

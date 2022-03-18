@@ -1,10 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
@@ -13,9 +18,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Round;
-import junit.framework.TestCase;
 
-public class TwdDuckieFlowsTest extends TestCase {
+public class TwdDuckieFlowsTest {
+  @Test
   public void testRadNoDuplicates() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
@@ -30,6 +35,7 @@ public class TwdDuckieFlowsTest extends TestCase {
     }
   }
 
+  @Test
   public void testNoDuplicates() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m");
@@ -44,6 +50,7 @@ public class TwdDuckieFlowsTest extends TestCase {
     }
   }
 
+  @Test
   public void testSize() throws ClassNotFoundException, IOException {
     FlowsInterface flowsInterface = Serialization.copy(new TwdDuckieFlows(RealScalar.of(3), RealScalar.of(0.567)));
     assertEquals(flowsInterface.getFlows(5).size(), 20);

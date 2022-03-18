@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.math.AssertFail;
@@ -11,9 +15,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class EtaRasterTest extends TestCase {
+public class EtaRasterTest {
+  @Test
   public void testState() {
     StateTimeRaster stateTimeRaster = EtaRaster.state(Tensors.vector(2., 3.));
     Tensor tensor = stateTimeRaster.convertToKey(new StateTime(Tensors.vector(100, 100), RealScalar.of(978667)));
@@ -21,6 +25,7 @@ public class EtaRasterTest extends TestCase {
     ExactTensorQ.require(tensor);
   }
 
+  @Test
   public void testJoined() throws ClassNotFoundException, IOException {
     StateTimeRaster stateTimeRaster = EtaRaster.joined(Tensors.vector(2., 3., 4.));
     Tensor tensor = stateTimeRaster.convertToKey(new StateTime(Tensors.vector(100, 100), RealScalar.of(97)));
@@ -30,6 +35,7 @@ public class EtaRasterTest extends TestCase {
     assertEquals(etaRaster.eta(), Tensors.vector(2, 3, 4));
   }
 
+  @Test
   public void testExtract() {
     StateTimeRaster stateTimeRaster = new EtaRaster(Tensors.vector(1.5), st -> st.state().extract(1, 2));
     Tensor tensor = stateTimeRaster.convertToKey(new StateTime(Tensors.vector(100, 100), RealScalar.of(97)));
@@ -37,6 +43,7 @@ public class EtaRasterTest extends TestCase {
     ExactTensorQ.require(tensor);
   }
 
+  @Test
   public void testFail() {
     EtaRaster.timeDependent(Tensors.vector(1, 2), RealScalar.of(1), StateTime::joined);
     AssertFail.of(() -> EtaRaster.timeDependent(Tensors.vector(1, 2), RealScalar.of(1.), StateTime::joined));

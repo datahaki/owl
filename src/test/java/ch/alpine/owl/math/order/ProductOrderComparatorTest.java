@@ -1,8 +1,12 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.EqualityOrder;
 import ch.alpine.owl.demo.order.IntegerTotalOrder;
@@ -12,9 +16,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class ProductOrderComparatorTest extends TestCase {
+public class ProductOrderComparatorTest {
+  @Test
   public void testSimple() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         ScalarTotalOrder.INSTANCE, //
@@ -25,6 +29,7 @@ public class ProductOrderComparatorTest extends TestCase {
     assertEquals(orderComparison, OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testMixed() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //
@@ -45,6 +50,7 @@ public class ProductOrderComparatorTest extends TestCase {
     assertEquals(productOrderComparator.compare(listZ, listZ), OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testTensor() {
     BinaryRelation<Tensor> relation1 = (x, y) -> x.length() <= y.length();
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //

@@ -1,7 +1,13 @@
 // code by jph, gjoel
 package ch.alpine.owl.rrts.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.rrts.core.Transition;
@@ -17,9 +23,9 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class ReversalTransitionSpaceTest extends TestCase {
+public class ReversalTransitionSpaceTest {
+  @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1[m], 1[m]}").append(Pi.VALUE);
     Tensor end = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF.negate());
@@ -29,6 +35,7 @@ public class ReversalTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testSamples() {
     Tensor se2pi = Tensors.of(Quantity.of(0, "m"), Quantity.of(0, "m"), Pi.VALUE);
     Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(se2pi);
@@ -51,6 +58,7 @@ public class ReversalTransitionSpaceTest extends TestCase {
     // }
   }
 
+  @Test
   public void testWrap() {
     Tensor se2pi = Tensors.of(Quantity.of(0, "m"), Quantity.of(0, "m"), Pi.VALUE);
     Tensor start = Tensors.fromString("{1[m], 2[m], 1}").add(se2pi);

@@ -1,6 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.region.Regions;
@@ -10,18 +15,20 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
-import junit.framework.TestCase;
 
-public class Se2PointsVsRegionsTest extends TestCase {
+public class Se2PointsVsRegionsTest {
+  @Test
   public void testSimple() {
     Region<Tensor> region = Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), Regions.emptyRegion());
     assertFalse(region.test(Tensors.vector(1, 2, 3, 4))); // interpretation as xya
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), null));
   }
 
+  @Test
   public void testFootprint() {
     Tensor SHAPE = ResourceData.of("/gokart/footprint/20171201.csv");
     ScalarSummaryStatistics scalarSummaryStatistics = //

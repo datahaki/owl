@@ -1,17 +1,23 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.mat.MatrixQ;
-import junit.framework.TestCase;
 
-public class ImageRegionsTest extends TestCase {
+public class ImageRegionsTest {
+  @Test
   public void testSimple() {
     Tensor tensor = ResourceData.of("/io/track0_100.png");
     assertEquals(Dimensions.of(tensor), Arrays.asList(100, 100, 4));
@@ -19,6 +25,7 @@ public class ImageRegionsTest extends TestCase {
     assertTrue(MatrixQ.of(matrix));
   }
 
+  @Test
   public void testDubendorf() {
     BufferedImage bufferedImage = ResourceData.bufferedImage("/dubilab/localization/20180122.png");
     // Region<Tensor> ir = ImageRegions.loadFromRepository( //
@@ -28,12 +35,14 @@ public class ImageRegionsTest extends TestCase {
     assertEquals(bufferedImage.getHeight(), 640);
   }
 
+  @Test
   public void testGrayscale() {
     Tensor image = Tensors.fromString("{{0, 1}, {0, 0}}");
     Tensor output = ImageRegions.grayscale(image);
     assertEquals(image, output);
   }
 
+  @Test
   public void testFail() {
     try {
       ImageRegions.loadFromRepository( //

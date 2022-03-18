@@ -1,13 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2CoveringWrapTest extends TestCase {
+public class Se2CoveringWrapTest {
+  @Test
   public void testMod2Pi() {
     double pa = -2 * Math.PI * 8;
     double qa = +2 * Math.PI + 0.1;

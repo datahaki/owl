@@ -1,7 +1,12 @@
 // code by gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.Transition;
@@ -17,9 +22,9 @@ import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class DubinsTransitionSpaceTest extends TestCase {
+public class DubinsTransitionSpaceTest {
+  @Test
   public void testLengthUnitless() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1, 2}").append(Pi.HALF);
     Tensor end = Tensors.fromString("{2, 6, 0}");
@@ -29,6 +34,7 @@ public class DubinsTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testLengthUnits() {
     Tensor start = Tensors.fromString("{1[m], 2[m]}").append(Pi.HALF);
     Tensor end = Tensors.fromString("{2[m], 6[m], 0}");
@@ -38,6 +44,7 @@ public class DubinsTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testSamples() {
     Tensor start = Tensors.fromString("{2, 1, 0}");
     Tensor end = Tensors.fromString("{6, 1, 0}");
@@ -58,6 +65,7 @@ public class DubinsTransitionSpaceTest extends TestCase {
     // }
   }
 
+  @Test
   public void testWrap() {
     Tensor start = Tensors.fromString("{2, 1, 0}");
     Tensor end = Tensors.fromString("{6, 1, 0}");
@@ -80,11 +88,13 @@ public class DubinsTransitionSpaceTest extends TestCase {
     // }
   }
 
+  @Test
   public void testRadiusFail() {
     AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(0.0), DubinsPathComparators.LENGTH));
     AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(-0.1), DubinsPathComparators.LENGTH));
   }
 
+  @Test
   public void testComparatorFail() {
     DubinsTransitionSpace.of(RealScalar.of(1.0), DubinsPathComparators.LENGTH);
     AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(1.0), null));

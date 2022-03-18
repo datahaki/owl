@@ -1,14 +1,19 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class BalloonMinTimeGoalManagerTest extends TestCase {
+public class BalloonMinTimeGoalManagerTest {
+  @Test
   public void testWithoutUnits() {
     Tensor goal = Tensors.vector(0, 0);
     Scalar goalRadius = RealScalar.of(1);
@@ -21,6 +26,7 @@ public class BalloonMinTimeGoalManagerTest extends TestCase {
     assertTrue(balloonMinTimeGoalManager.test(element));
   }
 
+  @Test
   public void testWithUnits() {
     Tensor goal = Tensors.fromString("{5[m], 0[m]}");
     Scalar maxSpeed = Quantity.of(10, "m*s^-1");
