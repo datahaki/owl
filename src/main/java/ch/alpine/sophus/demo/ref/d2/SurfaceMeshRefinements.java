@@ -20,7 +20,7 @@ public enum SurfaceMeshRefinements {
   SurfaceMeshRefinements(Function<BiinvariantMean, SurfaceMeshRefinement> function) {
     this.function = function;
   }
-  
+
   public SurfaceMeshRefinement operator(BiinvariantMean biinvariantMean) {
     return function.apply(biinvariantMean);
   }

@@ -2,6 +2,7 @@
 package ch.alpine.java.img;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
@@ -9,7 +10,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -65,6 +65,6 @@ public class FloodFill2DTest {
   public void testInvalid() {
     Tensor tensor = Array.zeros(5, 6);
     int ttl = -1;
-    AssertFail.of(() -> FloodFill2D.of(tensor, ttl));
+    assertThrows(Exception.class, () -> FloodFill2D.of(tensor, ttl));
   }
 }

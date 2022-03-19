@@ -2,13 +2,13 @@
 package ch.alpine.owl.bot.rice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -73,6 +73,6 @@ public class Duncan1StateSpaceModelTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
+    assertThrows(Exception.class, () -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }
 }

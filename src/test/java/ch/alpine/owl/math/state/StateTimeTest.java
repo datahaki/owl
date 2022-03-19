@@ -3,10 +3,10 @@ package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
@@ -38,7 +38,7 @@ public class StateTimeTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new StateTime(Tensors.vector(1, 2), null));
-    AssertFail.of(() -> new StateTime(null, RealScalar.ZERO));
+    assertThrows(Exception.class, () -> new StateTime(Tensors.vector(1, 2), null));
+    assertThrows(Exception.class, () -> new StateTime(null, RealScalar.ZERO));
   }
 }

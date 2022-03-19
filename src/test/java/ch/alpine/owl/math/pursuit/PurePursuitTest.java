@@ -3,13 +3,13 @@ package ch.alpine.owl.math.pursuit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -35,7 +35,7 @@ public class PurePursuitTest {
   @Test
   public void testMatch2() {
     Tensor curve = Tensors.fromString("{{-0.4}, {0.6}, {1.4}, {2.2}}");
-    AssertFail.of(() -> PurePursuit.fromTrajectory(curve, RealScalar.ONE));
+    assertThrows(Exception.class, () -> PurePursuit.fromTrajectory(curve, RealScalar.ONE));
   }
 
   @Test

@@ -2,11 +2,11 @@
 package ch.alpine.owl.bot.ap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.LinearRegion;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.tensor.RealScalar;
@@ -36,6 +36,6 @@ public class ApComboRegionTest {
 
   @Test
   public void testRequireNonNull() {
-    AssertFail.of(() -> ApComboRegion.createApRegion(null, null));
+    assertThrows(Exception.class, () -> ApComboRegion.createApRegion(null, null));
   }
 }

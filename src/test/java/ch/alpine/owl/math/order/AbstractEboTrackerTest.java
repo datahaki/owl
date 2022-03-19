@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +14,6 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.HilbertMatrix;
@@ -55,16 +55,16 @@ public class AbstractEboTrackerTest {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     EboTracker<Integer> lexicographicSemiorderMinTracker = //
         SetEboTracker.<Integer>withList(slackVector);
-    AssertFail.of(() -> lexicographicSemiorderMinTracker.pollBestKey());
+    assertThrows(Exception.class, () -> lexicographicSemiorderMinTracker.pollBestKey());
   }
 
   @Test
   public void testMatrixSlackFail() {
-    AssertFail.of(() -> SetEboTracker.withList(HilbertMatrix.of(3)));
+    assertThrows(Exception.class, () -> SetEboTracker.withList(HilbertMatrix.of(3)));
   }
 
   @Test
   public void testScalarSlackFail() {
-    AssertFail.of(() -> SetEboTracker.withList(Pi.VALUE));
+    assertThrows(Exception.class, () -> SetEboTracker.withList(Pi.VALUE));
   }
 }

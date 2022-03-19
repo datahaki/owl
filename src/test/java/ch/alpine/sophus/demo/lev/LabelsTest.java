@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.sophus.demo.lev;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.pdf.Distribution;
@@ -18,7 +19,7 @@ public class LabelsTest {
       Tensor vector = Tensors.vector(3, 1, 0, 2, 0, 1, 3);
       Classification classification = labels.apply(vector);
       classification.result(RandomVariate.of(distribution, vector.length()));
-      AssertFail.of(() -> classification.result(RandomVariate.of(distribution, vector.length() - 1)));
+      assertThrows(Exception.class, () -> classification.result(RandomVariate.of(distribution, vector.length() - 1)));
     }
   }
 }

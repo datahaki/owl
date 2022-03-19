@@ -2,12 +2,12 @@
 package ch.alpine.owl.bot.rn;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.TransitionWrap;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RealScalar;
@@ -57,7 +57,7 @@ public class RnTransitionTest {
     Tensor end = Tensors.vector(10, 2);
     RnTransition rnTransition = RnTransitionSpace.INSTANCE.connect(start, end);
     rnTransition.sampled(RealScalar.of(100));
-    AssertFail.of(() -> rnTransition.sampled(RealScalar.ZERO));
-    AssertFail.of(() -> rnTransition.sampled(RealScalar.of(-0.1)));
+    assertThrows(Exception.class, () -> rnTransition.sampled(RealScalar.ZERO));
+    assertThrows(Exception.class, () -> rnTransition.sampled(RealScalar.of(-0.1)));
   }
 }

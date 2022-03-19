@@ -2,10 +2,10 @@
 package ch.alpine.owl.math.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -21,7 +21,7 @@ public class DoubleIntegratorStateSpaceModelTest {
   @Test
   public void testFail() {
     Tensor x = Tensors.vector(1, 2, 3, 4);
-    AssertFail.of(() -> DoubleIntegratorStateSpaceModel.INSTANCE.f(x, Tensors.vector(3)));
-    AssertFail.of(() -> DoubleIntegratorStateSpaceModel.INSTANCE.f(x, Tensors.vector(3, 4, 3)));
+    assertThrows(Exception.class, () -> DoubleIntegratorStateSpaceModel.INSTANCE.f(x, Tensors.vector(3)));
+    assertThrows(Exception.class, () -> DoubleIntegratorStateSpaceModel.INSTANCE.f(x, Tensors.vector(3, 4, 3)));
   }
 }

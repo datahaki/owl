@@ -2,12 +2,12 @@
 package ch.alpine.owl.demo.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.order.OrderComparator;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.Tensor;
@@ -52,6 +52,6 @@ public class TensorNormTotalPreorderTest {
 
   @Test
   public void testNullFail() {
-    AssertFail.of(() -> new TensorNormTotalPreorder(null));
+    assertThrows(Exception.class, () -> new TensorNormTotalPreorder(null));
   }
 }

@@ -2,12 +2,12 @@
 package ch.alpine.sophus.ext.dis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -53,6 +53,6 @@ public class S2DisplayTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> S2Display.tangentSpace(Tensors.vector(1, 1, 1)));
+    assertThrows(Exception.class, () -> S2Display.tangentSpace(Tensors.vector(1, 1, 1)));
   }
 }

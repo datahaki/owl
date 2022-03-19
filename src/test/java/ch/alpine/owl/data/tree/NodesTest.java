@@ -3,6 +3,7 @@ package ch.alpine.owl.data.tree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.HeuristicFunction;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -44,8 +44,8 @@ public class NodesTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> Nodes.rootFrom(null));
-    AssertFail.of(() -> Nodes.listFromRoot(null));
-    AssertFail.of(() -> Nodes.listToRoot(null));
+    assertThrows(Exception.class, () -> Nodes.rootFrom(null));
+    assertThrows(Exception.class, () -> Nodes.listFromRoot(null));
+    assertThrows(Exception.class, () -> Nodes.listToRoot(null));
   }
 }

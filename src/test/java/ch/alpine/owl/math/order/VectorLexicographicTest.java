@@ -2,10 +2,10 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -47,23 +47,23 @@ public class VectorLexicographicTest {
   public void testLengthFail() {
     Tensor x = Tensors.vector(0, 1, 2, 3);
     Tensor y = Tensors.vector(0, 1, 2, 4, 2);
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(x, y));
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(y, x));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(x, y));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(y, x));
   }
 
   @Test
   public void testMatrixFail() {
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(HilbertMatrix.of(3), HilbertMatrix.of(3)));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(HilbertMatrix.of(3), HilbertMatrix.of(3)));
   }
 
   @Test
   public void testScalarFail() {
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(RealScalar.ONE, RealScalar.ZERO));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(RealScalar.ONE, RealScalar.ZERO));
   }
 
   @Test
   public void testScalarVectorFail() {
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(RealScalar.ONE, Tensors.vector(0, 2, 3)));
-    AssertFail.of(() -> VectorLexicographic.COMPARATOR.compare(Tensors.vector(0, 2, 3), RealScalar.ONE));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(RealScalar.ONE, Tensors.vector(0, 2, 3)));
+    assertThrows(Exception.class, () -> VectorLexicographic.COMPARATOR.compare(Tensors.vector(0, 2, 3), RealScalar.ONE));
   }
 }

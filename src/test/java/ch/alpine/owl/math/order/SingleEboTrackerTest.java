@@ -3,13 +3,13 @@ package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -95,6 +95,6 @@ public class SingleEboTrackerTest {
 
   @Test
   public void testFailNull() {
-    AssertFail.of(() -> SingleEboTracker.withList(null));
+    assertThrows(Exception.class, () -> SingleEboTracker.withList(null));
   }
 }

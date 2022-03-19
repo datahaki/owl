@@ -2,6 +2,7 @@
 package ch.alpine.owl.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +29,11 @@ public class IntegerLog2Test {
 
   @Test
   public void testFailZero() {
-    AssertFail.of(() -> IntegerLog2.ceiling(0));
+    assertThrows(Exception.class, () -> IntegerLog2.ceiling(0));
   }
 
   @Test
   public void testFailNegative() {
-    AssertFail.of(() -> IntegerLog2.ceiling(-1));
+    assertThrows(Exception.class, () -> IntegerLog2.ceiling(-1));
   }
 }

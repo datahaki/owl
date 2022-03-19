@@ -59,9 +59,8 @@ public class ColoredNoiseDemo extends AbstractGeodesicDisplayDemo {
     Tensor domain = Range.of(0, values.length());
     {
       VisualSet visualSet = new VisualSet();
-      
       visualSet.add(domain, values);
-      visualSet.getAxisX().setClip(Clips.interval(0, values.length()-1));
+      visualSet.getAxisX().setClip(Clips.interval(0, values.length() - 1));
       jFreeChart = ListPlot.of(visualSet, true);
     }
     {

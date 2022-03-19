@@ -2,13 +2,13 @@
 package ch.alpine.owl.glc.adapter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.StateTimeRaster;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RealScalar;
@@ -46,6 +46,6 @@ public class EtaRasterTest {
   @Test
   public void testFail() {
     EtaRaster.timeDependent(Tensors.vector(1, 2), RealScalar.of(1), StateTime::joined);
-    AssertFail.of(() -> EtaRaster.timeDependent(Tensors.vector(1, 2), RealScalar.of(1.), StateTime::joined));
+    assertThrows(Exception.class, () -> EtaRaster.timeDependent(Tensors.vector(1, 2), RealScalar.of(1.), StateTime::joined));
   }
 }

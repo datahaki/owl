@@ -2,6 +2,7 @@
 package ch.alpine.owl.math;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,6 @@ public class ParetoTest {
   public void testFail() {
     Tensor a = Tensors.vector(1, 1);
     Tensor b = Tensors.vector(2, 2, 3);
-    AssertFail.of(() -> Pareto.isDominated(a, b));
+    assertThrows(Exception.class, () -> Pareto.isDominated(a, b));
   }
 }

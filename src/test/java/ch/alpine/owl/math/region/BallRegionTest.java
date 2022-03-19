@@ -3,13 +3,13 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
@@ -68,7 +68,7 @@ public class BallRegionTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new BallRegion(RealScalar.ZERO, RealScalar.ONE));
-    AssertFail.of(() -> new BallRegion(Tensors.vector(1, 2), RealScalar.ONE.negate()));
+    assertThrows(Exception.class, () -> new BallRegion(RealScalar.ZERO, RealScalar.ONE));
+    assertThrows(Exception.class, () -> new BallRegion(Tensors.vector(1, 2), RealScalar.ONE.negate()));
   }
 }

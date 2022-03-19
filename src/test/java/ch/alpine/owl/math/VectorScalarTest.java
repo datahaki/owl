@@ -3,6 +3,7 @@ package ch.alpine.owl.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class VectorScalarTest {
   public void testMultiply() {
     Scalar a = VectorScalar.of(1, 2, 3);
     Scalar b = VectorScalar.of(0, 3, 6);
-    AssertFail.of(() -> a.multiply(b));
+    assertThrows(Exception.class, () -> a.multiply(b));
     Scalar c = Quantity.of(2, "Apples");
     Scalar d = a.multiply(c);
     assertEquals(d.toString(), "[2[Apples], 4[Apples], 6[Apples]]");
@@ -110,18 +111,18 @@ public class VectorScalarTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> VectorScalar.of(Tensors.empty()).number());
-    AssertFail.of(() -> VectorScalar.of(Tensors.empty().add(RealScalar.ONE)));
+    assertThrows(Exception.class, () -> VectorScalar.of(Tensors.empty()).number());
+    assertThrows(Exception.class, () -> VectorScalar.of(Tensors.empty().add(RealScalar.ONE)));
   }
 
   @Test
   public void testFailNested() {
     Scalar a = VectorScalar.of(Tensors.vector(1, -1, 2));
-    AssertFail.of(() -> VectorScalar.of(Tensors.of(RealScalar.ONE, a)));
+    assertThrows(Exception.class, () -> VectorScalar.of(Tensors.of(RealScalar.ONE, a)));
   }
 
   @Test
   public void testFailScalar() {
-    AssertFail.of(() -> VectorScalar.of(RealScalar.ONE));
+    assertThrows(Exception.class, () -> VectorScalar.of(RealScalar.ONE));
   }
 }

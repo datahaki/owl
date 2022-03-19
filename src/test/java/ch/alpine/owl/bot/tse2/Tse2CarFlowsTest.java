@@ -2,13 +2,13 @@
 package ch.alpine.owl.bot.tse2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -54,6 +54,6 @@ public class Tse2CarFlowsTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> Tse2CarFlows.of(Quantity.of(1, "m^-1"), Quantity.of(2, "m*s^-2")));
+    assertThrows(Exception.class, () -> Tse2CarFlows.of(Quantity.of(1, "m^-1"), Quantity.of(2, "m*s^-2")));
   }
 }

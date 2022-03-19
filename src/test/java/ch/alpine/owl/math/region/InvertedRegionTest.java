@@ -2,11 +2,10 @@
 package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import ch.alpine.owl.math.AssertFail;
 
 public class InvertedRegionTest {
   @Test
@@ -17,6 +16,6 @@ public class InvertedRegionTest {
 
   @Test
   public void testNullFail() {
-    AssertFail.of(() -> new InvertedRegion<>(null));
+    assertThrows(Exception.class, () -> new InvertedRegion<>(null));
   }
 }

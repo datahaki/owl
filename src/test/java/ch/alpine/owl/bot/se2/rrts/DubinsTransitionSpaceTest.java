@@ -3,12 +3,12 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.owl.rrts.core.TransitionWrap;
@@ -90,13 +90,13 @@ public class DubinsTransitionSpaceTest {
 
   @Test
   public void testRadiusFail() {
-    AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(0.0), DubinsPathComparators.LENGTH));
-    AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(-0.1), DubinsPathComparators.LENGTH));
+    assertThrows(Exception.class, () -> DubinsTransitionSpace.of(RealScalar.of(0.0), DubinsPathComparators.LENGTH));
+    assertThrows(Exception.class, () -> DubinsTransitionSpace.of(RealScalar.of(-0.1), DubinsPathComparators.LENGTH));
   }
 
   @Test
   public void testComparatorFail() {
     DubinsTransitionSpace.of(RealScalar.of(1.0), DubinsPathComparators.LENGTH);
-    AssertFail.of(() -> DubinsTransitionSpace.of(RealScalar.of(1.0), null));
+    assertThrows(Exception.class, () -> DubinsTransitionSpace.of(RealScalar.of(1.0), null));
   }
 }

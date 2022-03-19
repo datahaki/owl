@@ -2,12 +2,12 @@
 package ch.alpine.owl.bot.r2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
@@ -28,6 +28,6 @@ public class R2FlowsTest {
   @Test
   public void testFail() {
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
-    AssertFail.of(() -> r2Flows.getFlows(2));
+    assertThrows(Exception.class, () -> r2Flows.getFlows(2));
   }
 }

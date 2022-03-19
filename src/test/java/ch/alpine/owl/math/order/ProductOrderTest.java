@@ -2,10 +2,9 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import ch.alpine.owl.math.AssertFail;
 
 public class ProductOrderTest {
   private static void _checkSym(OrderComparison a, OrderComparison b, OrderComparison ab) {
@@ -26,8 +25,8 @@ public class ProductOrderTest {
   @Test
   public void testNullFail() {
     for (OrderComparison orderComparison : OrderComparison.values()) {
-      AssertFail.of(() -> ProductOrder.intersect(orderComparison, null));
-      AssertFail.of(() -> ProductOrder.intersect(null, orderComparison));
+      assertThrows(Exception.class, () -> ProductOrder.intersect(orderComparison, null));
+      assertThrows(Exception.class, () -> ProductOrder.intersect(null, orderComparison));
     }
   }
 }

@@ -2,6 +2,7 @@
 package ch.alpine.owl.glc.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,6 @@ import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.bot.rn.RnNoHeuristicCircleGoalManager;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -58,7 +58,7 @@ public class GlcNodesTest {
 
   @Test
   public void testRootFail() {
-    AssertFail.of(() -> GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), null));
+    assertThrows(Exception.class, () -> GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), null));
   }
 
   @Test
@@ -71,6 +71,6 @@ public class GlcNodesTest {
 
   @Test
   public void testSimple() {
-    AssertFail.of(() -> GlcNodes.getPathFromRootTo(null));
+    assertThrows(Exception.class, () -> GlcNodes.getPathFromRootTo(null));
   }
 }

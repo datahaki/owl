@@ -3,6 +3,7 @@ package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -11,7 +12,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
@@ -100,7 +100,7 @@ public class SetEboTrackerTest {
     Tensor slacks = Tensors.vector(1, 1, 1);
     EboTracker<Integer> lexSemiMinTracker = SetEboTracker.withList(slacks);
     Tensor x = Tensors.vector(1, 2, 2, 3);
-    AssertFail.of(() -> lexSemiMinTracker.digest(1, x));
+    assertThrows(Exception.class, () -> lexSemiMinTracker.digest(1, x));
   }
 
   @Test

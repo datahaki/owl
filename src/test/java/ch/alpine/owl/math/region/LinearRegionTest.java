@@ -2,11 +2,11 @@
 package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.qty.Quantity;
@@ -48,7 +48,7 @@ public class LinearRegionTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new LinearRegion(null, RealScalar.of(2)));
-    AssertFail.of(() -> new LinearRegion(RealScalar.of(2), RealScalar.of(-3)));
+    assertThrows(Exception.class, () -> new LinearRegion(null, RealScalar.of(2)));
+    assertThrows(Exception.class, () -> new LinearRegion(RealScalar.of(2), RealScalar.of(-3)));
   }
 }

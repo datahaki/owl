@@ -3,12 +3,12 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.tensor.RealScalar;
@@ -36,7 +36,7 @@ public class FreeBoundedIntervalRegionTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new FreeBoundedIntervalRegion(-1, Clips.unit()));
-    AssertFail.of(() -> new FreeBoundedIntervalRegion(0, null));
+    assertThrows(Exception.class, () -> new FreeBoundedIntervalRegion(-1, Clips.unit()));
+    assertThrows(Exception.class, () -> new FreeBoundedIntervalRegion(0, null));
   }
 }

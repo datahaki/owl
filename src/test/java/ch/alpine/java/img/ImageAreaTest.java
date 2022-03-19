@@ -3,6 +3,7 @@ package ch.alpine.java.img;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Rectangle;
@@ -16,7 +17,6 @@ import javax.imageio.ImageIO;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -60,6 +60,6 @@ public class ImageAreaTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> ImageArea.fromImage(null));
+    assertThrows(Exception.class, () -> ImageArea.fromImage(null));
   }
 }

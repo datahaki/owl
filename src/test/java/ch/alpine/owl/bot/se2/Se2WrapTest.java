@@ -2,10 +2,10 @@
 package ch.alpine.owl.bot.se2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.RealScalar;
@@ -74,11 +74,11 @@ public class Se2WrapTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> Se2Wrap.INSTANCE.represent(Tensors.vector(1, 2)));
+    assertThrows(Exception.class, () -> Se2Wrap.INSTANCE.represent(Tensors.vector(1, 2)));
   }
 
   @Test
   public void testFailMatrix() {
-    AssertFail.of(() -> Se2Wrap.INSTANCE.represent(IdentityMatrix.of(3)));
+    assertThrows(Exception.class, () -> Se2Wrap.INSTANCE.represent(IdentityMatrix.of(3)));
   }
 }

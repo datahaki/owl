@@ -43,14 +43,14 @@ public abstract class LogWeightingDemo extends LogWeightingBase {
       }
       if ( //
       logWeighting.equals(LogWeightings.WEIGHTING) || //
-      logWeighting.equals(LogWeightings.COORDINATE) || //
-      logWeighting.equals(LogWeightings.LAGRAINATE)) {
+          logWeighting.equals(LogWeightings.COORDINATE) || //
+          logWeighting.equals(LogWeightings.LAGRAINATE)) {
         spinnerVariogram.setValue(VariogramFunctions.INVERSE_POWER);
         spinnerBeta.setValueSafe(RealScalar.of(2));
       }
       if ( //
       logWeighting.equals(LogWeightings.KRIGING) || //
-      logWeighting.equals(LogWeightings.KRIGING_COORDINATE)) {
+          logWeighting.equals(LogWeightings.KRIGING_COORDINATE)) {
         spinnerVariogram.setValue(VariogramFunctions.POWER);
         setBitype(Bitype.HARBOR);
         spinnerBeta.setValueSafe(RationalScalar.of(3, 2));

@@ -40,7 +40,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
           else
             if ( //
             logWeighting.equals(LogWeightings.WEIGHTING) || //
-            logWeighting.equals(LogWeightings.COORDINATE))
+                logWeighting.equals(LogWeightings.COORDINATE))
               spinnerLabels.setValue(Labels.ARG_MAX);
         }
       };

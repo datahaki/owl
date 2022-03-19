@@ -2,13 +2,13 @@
 package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
@@ -20,8 +20,8 @@ public class TrajectoryWrapTest {
     TrajectoryWrap trajectoryWrap = TrajectoryWrap.of(Collections.singletonList(trajectorySample));
     assertTrue(trajectoryWrap.isRelevant(RealScalar.of(3)));
     assertFalse(trajectoryWrap.isDefined(RealScalar.of(4)));
-    AssertFail.of(() -> trajectoryWrap.getControl(RealScalar.of(3)));
-    AssertFail.of(() -> trajectoryWrap.getSample(RealScalar.of(3)));
-    AssertFail.of(() -> trajectoryWrap.getSample(RealScalar.of(4)));
+    assertThrows(Exception.class, () -> trajectoryWrap.getControl(RealScalar.of(3)));
+    assertThrows(Exception.class, () -> trajectoryWrap.getSample(RealScalar.of(3)));
+    assertThrows(Exception.class, () -> trajectoryWrap.getSample(RealScalar.of(4)));
   }
 }

@@ -2,13 +2,13 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -74,7 +74,7 @@ public class TensorProductOrderTest {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     Tensor tensorX = Tensors.fromString("{1, 2}");
     Tensor tensorY = Tensors.fromString("{2, 3}");
-    AssertFail.of(() -> productOrderComparator.compare(tensorX, tensorY));
+    assertThrows(Exception.class, () -> productOrderComparator.compare(tensorX, tensorY));
   }
 
   @Test
@@ -84,6 +84,6 @@ public class TensorProductOrderTest {
 
   @Test
   public void testFailNegative() {
-    AssertFail.of(() -> TensorProductOrder.comparator(-1));
+    assertThrows(Exception.class, () -> TensorProductOrder.comparator(-1));
   }
 }

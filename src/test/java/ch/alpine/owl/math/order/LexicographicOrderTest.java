@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -87,8 +87,8 @@ public class LexicographicOrderTest {
     List<Scalar> y = Tensors.vector(6, 2).stream().map(Scalar.class::cast).collect(Collectors.toList());
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(x, x));
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(y, y));
-    AssertFail.of(() -> lexicographicOrder.compare(x, y));
-    AssertFail.of(() -> lexicographicOrder.compare(y, x));
+    assertThrows(Exception.class, () -> lexicographicOrder.compare(x, y));
+    assertThrows(Exception.class, () -> lexicographicOrder.compare(y, x));
   }
 
   @Test

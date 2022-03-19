@@ -2,11 +2,11 @@
 package ch.alpine.owl.bot.rn;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -49,11 +49,11 @@ public class RnPointcloudRegionTest {
   @Test
   public void testRadiusFail() {
     RnPointcloudRegion.of(Tensors.empty(), RealScalar.of(1.0));
-    AssertFail.of(() -> RnPointcloudRegion.of(Tensors.empty(), RealScalar.of(-1.0)));
+    assertThrows(Exception.class, () -> RnPointcloudRegion.of(Tensors.empty(), RealScalar.of(-1.0)));
   }
 
   @Test
   public void testNonMatrix() {
-    AssertFail.of(() -> RnPointcloudRegion.of(Array.zeros(3, 3, 3), RealScalar.of(1.0)));
+    assertThrows(Exception.class, () -> RnPointcloudRegion.of(Array.zeros(3, 3, 3), RealScalar.of(1.0)));
   }
 }

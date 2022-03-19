@@ -2,14 +2,13 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import ch.alpine.owl.math.AssertFail;
 
 public class ProductTotalOrderTest {
   @SuppressWarnings("rawtypes")
@@ -68,13 +67,13 @@ public class ProductTotalOrderTest {
   public void testSizeException() {
     List<Comparable> x = Arrays.asList("zwei", 'a');
     List<Comparable> y = Arrays.asList("drei");
-    AssertFail.of(() -> ProductTotalOrder.INSTANCE.compare(x, y));
-    AssertFail.of(() -> ProductTotalOrder.INSTANCE.compare(y, x));
+    assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(x, y));
+    assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(y, x));
   }
 
   @Test
   public void testNullException() {
-    AssertFail.of(() -> ProductTotalOrder.INSTANCE.compare(Arrays.asList(2), null));
-    AssertFail.of(() -> ProductTotalOrder.INSTANCE.compare(null, Arrays.asList(2)));
+    assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(Arrays.asList(2), null));
+    assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(null, Arrays.asList(2)));
   }
 }

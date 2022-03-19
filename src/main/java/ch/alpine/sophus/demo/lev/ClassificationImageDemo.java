@@ -79,7 +79,7 @@ import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
         else
           if ( //
           logWeighting.equals(LogWeightings.WEIGHTING) || //
-          logWeighting.equals(LogWeightings.COORDINATE))
+              logWeighting.equals(LogWeightings.COORDINATE))
             spinnerLabels.setValue(Labels.ARG_MAX);
       });
       spinnerLogWeighting.addSpinnerListener(v -> recompute());

@@ -2,12 +2,12 @@
 package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Serialization;
@@ -69,6 +69,6 @@ public class So2RegionTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> So2Region.periodic(RealScalar.of(2), RealScalar.of(-1)));
+    assertThrows(Exception.class, () -> So2Region.periodic(RealScalar.of(2), RealScalar.of(-1)));
   }
 }

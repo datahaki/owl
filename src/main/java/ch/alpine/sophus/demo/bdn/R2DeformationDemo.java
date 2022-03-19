@@ -33,7 +33,6 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
   private final RenderInterface renderInterface = new RenderInterface() {
     @Override
     public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-      
       Tensor box = Box2D.SQUARE.multiply(RealScalar.of(EXTENT));
       Path2D path2d = geometricLayer.toPath2D(box, true);
       graphics.setColor(Color.LIGHT_GRAY);

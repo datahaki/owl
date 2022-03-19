@@ -3,6 +3,7 @@ package ch.alpine.owl.glc.rl2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -42,6 +42,6 @@ public class RelaxedPriorityQueueTest {
   @Test
   public void testPollThrows() {
     RelaxedPriorityQueue relaxedPriorityQueue = RelaxedDomainQueue.empty(Tensors.vector(1, 2, 3));
-    AssertFail.of(() -> relaxedPriorityQueue.pollBest());
+    assertThrows(Exception.class, () -> relaxedPriorityQueue.pollBest());
   }
 }

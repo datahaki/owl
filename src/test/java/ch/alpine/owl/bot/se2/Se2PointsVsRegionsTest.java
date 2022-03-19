@@ -2,11 +2,11 @@
 package ch.alpine.owl.bot.se2;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.region.Regions;
 import ch.alpine.sophus.api.Region;
@@ -25,7 +25,7 @@ public class Se2PointsVsRegionsTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), null));
+    assertThrows(Exception.class, () -> Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), null));
   }
 
   @Test

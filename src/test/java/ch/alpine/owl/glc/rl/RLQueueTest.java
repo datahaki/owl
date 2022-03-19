@@ -1,6 +1,7 @@
 // code by ynager
 package ch.alpine.owl.glc.rl;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -9,7 +10,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -81,6 +81,6 @@ public class RLQueueTest {
 
   @Test
   public void testFailCollectionsMinEmpty() {
-    AssertFail.of(() -> Collections.min(Arrays.asList()));
+    assertThrows(Exception.class, () -> Collections.min(Arrays.asList()));
   }
 }

@@ -1,11 +1,11 @@
 // code by astoll
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.RealScalar;
 
@@ -66,7 +66,7 @@ public class DigitSumDivisibilityPreorderTest {
 
   @Test
   public void testNegativeAndZeroCase() {
-    AssertFail.of(() -> DigitSumDivisibilityPreorder.INTEGER.compare(0, 3));
-    AssertFail.of(() -> DigitSumDivisibilityPreorder.INTEGER.compare(-3, 3));
+    assertThrows(Exception.class, () -> DigitSumDivisibilityPreorder.INTEGER.compare(0, 3));
+    assertThrows(Exception.class, () -> DigitSumDivisibilityPreorder.INTEGER.compare(-3, 3));
   }
 }

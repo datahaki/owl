@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -9,8 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import ch.alpine.owl.math.AssertFail;
 
 public class LexicographicTotalOrderTest {
   @SuppressWarnings("rawtypes")
@@ -70,8 +69,8 @@ public class LexicographicTotalOrderTest {
     y.add("drei");
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
-    AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(x, y));
-    AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(y, x));
+    assertThrows(Exception.class, () -> LexicographicTotalOrder.INSTANCE.compare(x, y));
+    assertThrows(Exception.class, () -> LexicographicTotalOrder.INSTANCE.compare(y, x));
   }
 
   @Test

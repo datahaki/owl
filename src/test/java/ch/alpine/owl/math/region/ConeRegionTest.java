@@ -3,11 +3,11 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -107,6 +107,6 @@ public class ConeRegionTest {
 
   @Test
   public void testNegativeFail() {
-    AssertFail.of(() -> new ConeRegion(Tensors.vector(5, 0, Math.PI / 2), RealScalar.of(-Math.PI)));
+    assertThrows(Exception.class, () -> new ConeRegion(Tensors.vector(5, 0, Math.PI / 2), RealScalar.of(-Math.PI)));
   }
 }

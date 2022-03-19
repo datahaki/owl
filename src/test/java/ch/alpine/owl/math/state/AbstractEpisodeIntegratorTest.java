@@ -3,6 +3,7 @@ package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rice.Duncan1StateSpaceModel;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
@@ -67,7 +67,7 @@ public class AbstractEpisodeIntegratorTest {
         Se2StateSpaceModel.INSTANCE, integrator, //
         init);
     assertEquals(episodeIntegrator.tail(), init);
-    AssertFail.of(() -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
+    assertThrows(Exception.class, () -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
   }
 
   @Test

@@ -2,10 +2,10 @@
 package ch.alpine.owl.demo.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.RealScalar;
 
@@ -20,7 +20,7 @@ public class DivisibilityPreorderTest {
 
   @Test
   public void testZeroFail() {
-    AssertFail.of(() -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ZERO, RealScalar.ONE));
-    AssertFail.of(() -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ONE, RealScalar.ZERO));
+    assertThrows(Exception.class, () -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ZERO, RealScalar.ONE));
+    assertThrows(Exception.class, () -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ONE, RealScalar.ZERO));
   }
 }

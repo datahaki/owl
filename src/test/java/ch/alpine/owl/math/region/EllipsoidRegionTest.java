@@ -3,13 +3,13 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -71,17 +71,17 @@ public class EllipsoidRegionTest {
 
   @Test
   public void testLengthFail() {
-    AssertFail.of(() -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0, 3)));
+    assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0, 3)));
   }
 
   @Test
   public void testNegativeFail() {
-    AssertFail.of(() -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, -2)));
+    assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, -2)));
   }
 
   @Test
   public void testZeroFail() {
-    AssertFail.of(() -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0)));
-    AssertFail.of(() -> new EllipsoidRegion(Tensors.vector(10, 2, 3), Tensors.vector(1, 0.0, 3)));
+    assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0)));
+    assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 2, 3), Tensors.vector(1, 0.0, 3)));
   }
 }

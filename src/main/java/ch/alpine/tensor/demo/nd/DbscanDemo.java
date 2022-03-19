@@ -97,7 +97,6 @@ public class DbscanDemo extends AbstractDemo {
     double seconds = timing.seconds();
     graphics.drawString(String.format("%6.4f", seconds), 0, 40);
     {
-      
       Map<Integer, Tensor> map = new HashMap<>();
       IntStream.range(0, labels.length) //
           .forEach(index -> map.computeIfAbsent(labels[index], i -> Tensors.empty()).append(points.get(index)));

@@ -2,13 +2,13 @@
 package ch.alpine.owl.bot.se2.rrts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.rrts.core.TransitionWrap;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
@@ -118,9 +118,9 @@ public class ClothoidTransitionTest {
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(4, 1, 5);
     ClothoidTransition clothoidTransition = ClothoidTransition.of(CLOTHOID_BUILDER, start, end);
-    AssertFail.of(() -> clothoidTransition.sampled(RealScalar.of(-0.1)));
-    AssertFail.of(() -> clothoidTransition.sampled(RealScalar.ZERO));
-    AssertFail.of(() -> clothoidTransition.wrapped(RealScalar.ZERO));
-    AssertFail.of(() -> clothoidTransition.linearized(RealScalar.ZERO));
+    assertThrows(Exception.class, () -> clothoidTransition.sampled(RealScalar.of(-0.1)));
+    assertThrows(Exception.class, () -> clothoidTransition.sampled(RealScalar.ZERO));
+    assertThrows(Exception.class, () -> clothoidTransition.wrapped(RealScalar.ZERO));
+    assertThrows(Exception.class, () -> clothoidTransition.linearized(RealScalar.ZERO));
   }
 }

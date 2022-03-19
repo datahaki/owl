@@ -2,10 +2,10 @@
 package ch.alpine.owl.bot.rice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -32,6 +32,6 @@ public class Duncan2StateSpaceModelTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> new Duncan2StateSpaceModel(Quantity.of(-1.0, "s^-1")));
+    assertThrows(Exception.class, () -> new Duncan2StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }
 }

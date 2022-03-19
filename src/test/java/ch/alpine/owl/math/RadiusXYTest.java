@@ -2,6 +2,7 @@
 package ch.alpine.owl.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ public class RadiusXYTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> RadiusXY.requireSame(Tensors.vector(1, 2)));
-    AssertFail.of(() -> RadiusXY.requireSame(Tensors.vector(1, 2, 1)));
+    assertThrows(Exception.class, () -> RadiusXY.requireSame(Tensors.vector(1, 2)));
+    assertThrows(Exception.class, () -> RadiusXY.requireSame(Tensors.vector(1, 2, 1)));
   }
 }

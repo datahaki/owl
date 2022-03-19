@@ -2,12 +2,12 @@
 package ch.alpine.owl.glc.core;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.ScaledLateralAcceleration;
 import ch.alpine.owl.bot.se2.Se2LateralAcceleration;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 
 public class HeuristicQTest {
@@ -19,6 +19,6 @@ public class HeuristicQTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> HeuristicQ.of(null));
+    assertThrows(Exception.class, () -> HeuristicQ.of(null));
   }
 }

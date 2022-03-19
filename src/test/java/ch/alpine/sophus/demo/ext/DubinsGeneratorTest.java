@@ -2,11 +2,11 @@
 package ch.alpine.sophus.demo.ext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.ext.api.DubinsGenerator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -38,6 +38,6 @@ public class DubinsGeneratorTest {
 
   @Test
   public void testFail() {
-    AssertFail.of(() -> DubinsGenerator.of(Tensors.vector(1, 2, 3, 4), Tensors.fromString("{{1, 0, 0}, {1, 0, 0.3}}")));
+    assertThrows(Exception.class, () -> DubinsGenerator.of(Tensors.vector(1, 2, 3, 4), Tensors.fromString("{{1, 0, 0}, {1, 0, 0.3}}")));
   }
 }

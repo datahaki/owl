@@ -2,10 +2,10 @@
 package ch.alpine.owl.bot.se2.rl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -23,6 +23,6 @@ public class CarDiscreteModelTest {
 
   @Test
   public void testZeroFail() {
-    AssertFail.of(() -> new CarDiscreteModel(0, 2));
+    assertThrows(Exception.class, () -> new CarDiscreteModel(0, 2));
   }
 }

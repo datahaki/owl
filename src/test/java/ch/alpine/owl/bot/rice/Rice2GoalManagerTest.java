@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import ch.alpine.owl.math.AssertFail;
+import org.junit.jupiter.api.Test;
 
 public class Rice2GoalManagerTest {
   @Test
   public void testSimple() {
-    AssertFail.of(() -> new Rice2GoalManager(null));
+    assertThrows(Exception.class, () -> new Rice2GoalManager(null));
   }
 }

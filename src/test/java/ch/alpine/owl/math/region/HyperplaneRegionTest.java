@@ -3,11 +3,11 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
@@ -67,6 +67,6 @@ public class HyperplaneRegionTest {
   @Test
   public void testDistanceFail() {
     ImplicitFunctionRegion ifr = HyperplaneRegion.normalize(Tensors.vector(2, 0), RealScalar.of(-10));
-    AssertFail.of(() -> ifr.signedDistance(Array.zeros(3)));
+    assertThrows(Exception.class, () -> ifr.signedDistance(Array.zeros(3)));
   }
 }

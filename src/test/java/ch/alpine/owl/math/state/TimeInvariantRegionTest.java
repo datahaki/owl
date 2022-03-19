@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import ch.alpine.owl.math.AssertFail;
+import org.junit.jupiter.api.Test;
 
 public class TimeInvariantRegionTest {
   @Test
   public void testFailNull() {
-    AssertFail.of(() -> new TimeInvariantRegion(null));
+    assertThrows(Exception.class, () -> new TimeInvariantRegion(null));
   }
 }

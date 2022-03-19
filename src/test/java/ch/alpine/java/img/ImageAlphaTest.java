@@ -2,12 +2,12 @@
 package ch.alpine.java.img;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ImageFormat;
@@ -26,7 +26,7 @@ public class ImageAlphaTest {
   public void testFailGray() {
     Tensor tensor = Tensors.fromString("{{255, 255, 255, 255}, {128, 0, 255, 128}}");
     BufferedImage bufferedImage = ImageFormat.of(tensor);
-    AssertFail.of(() -> ImageAlpha.scale(bufferedImage, 0.5f));
+    assertThrows(Exception.class, () -> ImageAlpha.scale(bufferedImage, 0.5f));
   }
 
   @Test

@@ -2,6 +2,7 @@
 package ch.alpine.owl.glc.rl;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -9,7 +10,6 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 
 public class StaticHelperTest {
@@ -21,6 +21,6 @@ public class StaticHelperTest {
 
   @Test
   public void testFailGetMinEmpty() {
-    AssertFail.of(() -> StaticHelper.getMin(Collections.emptyList(), 2));
+    assertThrows(Exception.class, () -> StaticHelper.getMin(Collections.emptyList(), 2));
   }
 }
