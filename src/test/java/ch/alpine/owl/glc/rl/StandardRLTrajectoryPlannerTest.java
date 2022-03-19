@@ -1,10 +1,15 @@
 // code by ynager
 package ch.alpine.owl.glc.rl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
@@ -40,9 +45,8 @@ import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class StandardRLTrajectoryPlannerTest extends TestCase {
+public class StandardRLTrajectoryPlannerTest {
   private static GlcNode _withSlack(Tensor slacks) {
     final Tensor stateRoot = Tensors.vector(0, 0);
     final Tensor stateGoal = Tensors.vector(5, 0);
@@ -107,24 +111,28 @@ public class StandardRLTrajectoryPlannerTest extends TestCase {
     return goalNode;
   }
 
+  @Test
   public void testFour() {
     GlcNode goalNode = _withSlack(Tensors.vector(4, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(9, 2, 9));
   }
 
+  @Test
   public void testTwo() {
     GlcNode goalNode = _withSlack(Tensors.vector(2, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(7, 3, 7));
   }
 
+  @Test
   public void testZeroEbbes() {
     GlcNode goalNode = _withSlack(Tensors.vector(1.3, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(5, 4, 5));
   }
 
+  @Test
   public void testZero() {
     GlcNode bestNode = _withSlack(Tensors.vector(0, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(bestNode.costFromRoot());

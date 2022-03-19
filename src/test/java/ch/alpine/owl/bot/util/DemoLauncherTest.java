@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.util;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class DemoLauncherTest extends TestCase {
+public class DemoLauncherTest {
+  @Test
   public void testSimple() {
     // for (Class<?> cls : DemoLauncher.detect())
     // try {

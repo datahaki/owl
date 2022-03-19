@@ -1,6 +1,10 @@
 // code by gjoel
 package ch.alpine.owl.rrts.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -9,9 +13,9 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
-import junit.framework.TestCase;
 
-public class LengthCostFunctionTest extends TestCase {
+public class LengthCostFunctionTest {
+  @Test
   public void testSingle() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
@@ -22,6 +26,7 @@ public class LengthCostFunctionTest extends TestCase {
     assertEquals(RealScalar.ONE, n1.costFromRoot());
   }
 
+  @Test
   public void testMultiple() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //

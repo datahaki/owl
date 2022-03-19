@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.java.win;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class BaseFrameTest extends TestCase {
+public class BaseFrameTest {
+  @Test
   public void testQuick() {
     BaseFrame bf = new BaseFrame();
     bf.jFrame.setVisible(true);

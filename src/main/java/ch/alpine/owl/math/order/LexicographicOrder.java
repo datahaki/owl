@@ -6,9 +6,7 @@ import java.util.List;
 
 import ch.alpine.tensor.ext.Integers;
 
-/*
- * See Chapter 2.7.5 in "Multi-Objective Optimization Using Preference Structures"
- */
+/* See Chapter 2.7.5 in "Multi-Objective Optimization Using Preference Structures" */
 public class LexicographicOrder<T> implements OrderComparator<List<T>>, Serializable {
   private final List<OrderComparator<T>> comparatorList;
 

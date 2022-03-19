@@ -17,8 +17,8 @@ import ch.alpine.java.fig.VisualSet;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.LieDifferences;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.tensor.RealScalar;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   protected final SpinnerLabel<String> spinnerLabelString = new SpinnerLabel<>();
   protected final SpinnerLabel<Integer> spinnerLabelLimit = new SpinnerLabel<>();
   protected final SpinnerLabel<WindowFunctions> spinnerKernel = new SpinnerLabel<>();
-  // TODO JPH refactor
+  // TODO OWL ALG refactor
   protected Tensor _control = null;
   // protected final SpinnerLabel<ColorDataGradients> spinnerLabelCDG = new SpinnerLabel<>();
 
@@ -86,7 +86,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
   protected abstract String plotLabel();
 
   private static final ColorDataGradient COLOR_DATA_GRADIENT = //
-      ColorDataGradients.VISIBLESPECTRUM.deriveWithOpacity(RealScalar.of(0.75));
+      ColorDataGradients.VISIBLE_SPECTRUM.deriveWithOpacity(RealScalar.of(0.75));
   private static final int MAGNIFY = 4;
 
   @Override

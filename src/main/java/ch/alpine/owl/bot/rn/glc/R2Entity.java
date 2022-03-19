@@ -30,7 +30,7 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -82,7 +82,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 
   @Override
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
-    Collection<Tensor> controls = createControls(); // TODO design no good
+    Collection<Tensor> controls = createControls(); // TODO OWL API design no good
     goalRegion = getGoalRegionWithDistance(goal);
     GoalInterface goalInterface = MultiCostGoalAdapter.of( //
         RnMinTimeGoalManager.create(goalRegion, controls), //

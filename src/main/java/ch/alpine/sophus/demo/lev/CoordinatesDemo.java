@@ -4,7 +4,7 @@ package ch.alpine.sophus.demo.lev;
 import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.demo.opt.LogWeightings;
+import ch.alpine.sophus.ext.api.LogWeightings;
 import ch.alpine.tensor.Tensor;
 
 /* package */ class CoordinatesDemo extends AbstractHoverDemo {

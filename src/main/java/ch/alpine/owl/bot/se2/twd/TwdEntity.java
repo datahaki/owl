@@ -25,14 +25,14 @@ import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.sophus.crv.d2.Arrowhead;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Degree;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ class TwdEntity extends Se2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //

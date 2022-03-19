@@ -1,15 +1,20 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class LinearVelocity2MinTimeTest extends TestCase {
+public class LinearVelocity2MinTimeTest {
+  @Test
   public void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(1, "m*s^-2");
@@ -26,6 +31,7 @@ public class LinearVelocity2MinTimeTest extends TestCase {
     assertTrue(Scalars.lessEquals(minTime, Scalars.fromString("66/5[s]")));
   }
 
+  @Test
   public void testMore() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(3, "m*s^-2");
@@ -37,6 +43,7 @@ public class LinearVelocity2MinTimeTest extends TestCase {
     assertEquals(minTime, Scalars.fromString("166/15[s]"));
   }
 
+  @Test
   public void testExactDist() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");
@@ -67,6 +74,7 @@ public class LinearVelocity2MinTimeTest extends TestCase {
     }
   }
 
+  @Test
   public void testFail() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");

@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.lev;
 
 import java.util.Optional;
 
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.Biinvariants;
 

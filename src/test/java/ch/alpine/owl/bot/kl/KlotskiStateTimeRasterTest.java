@@ -1,12 +1,16 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import junit.framework.TestCase;
 
-public class KlotskiStateTimeRasterTest extends TestCase {
+public class KlotskiStateTimeRasterTest {
+  @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();

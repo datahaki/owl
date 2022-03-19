@@ -6,9 +6,9 @@ import java.util.List;
 
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
 import ch.alpine.sophus.hs.r2.R2TranslationFamily;
-import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -41,7 +41,7 @@ public class TrajectoryR2TranslationFamily extends R2TranslationFamily {
     delta = trajectory.get(0).time().subtract(ofs);
     limit = list.size() - 1;
     // ---
-    { // TODO consistency check belongs into test
+    { // TODO OWL ALG consistency check belongs into test
       Tensor times = Tensor.of(trajectory.stream().map(StateTime::time).map(this::index));
       Chop._10.requireClose(times, Range.of(1, times.length() + 1));
     }

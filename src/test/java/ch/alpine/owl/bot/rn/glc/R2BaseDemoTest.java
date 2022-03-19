@@ -1,10 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -25,15 +30,14 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import junit.framework.TestCase;
 
-public class R2BaseDemoTest extends TestCase {
+public class R2BaseDemoTest {
   private static final StateSpaceModel SINGLE_INTEGRATOR = SingleIntegratorStateSpaceModel.INSTANCE;
   // static final StateIntegrator STATE_INTEGRATOR = //
   // FixedStateIntegrator.create(EulerIntegrator.INSTANCE, RealScalar.ONE, 1);
@@ -72,6 +76,7 @@ public class R2BaseDemoTest extends TestCase {
     return trajectoryPlanner;
   }
 
+  @Test
   public void testSimple() {
     TrajectoryPlanner trajectoryPlanner = create();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);

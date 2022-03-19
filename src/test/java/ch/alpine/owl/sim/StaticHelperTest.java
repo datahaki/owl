@@ -1,10 +1,14 @@
 // code by jph
 package ch.alpine.owl.sim;
 
-import ch.alpine.tensor.Tensor;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StaticHelperTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.Tensor;
+
+public class StaticHelperTest {
+  @Test
   public void testSimple() {
     for (int resolution = 2; resolution < 10; ++resolution) {
       Tensor localPoints = StaticHelper.create(resolution);

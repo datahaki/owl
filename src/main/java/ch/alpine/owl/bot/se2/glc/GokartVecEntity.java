@@ -62,6 +62,7 @@ public class GokartVecEntity extends GokartEntity {
   }
 
   /** Sets the cost vector and their respective slacks. Lower indices have higher priority.
+   * 
    * @param costVector
    * @param slackVector */
   public void setCostVector(List<CostFunction> costVector, List<Double> slackVector) {
@@ -71,6 +72,7 @@ public class GokartVecEntity extends GokartEntity {
   }
 
   /** Add time cost to the cost vector
+   * 
    * @param priority
    * @param slack */
   public void addTimeCost(int priority, Double slack) {

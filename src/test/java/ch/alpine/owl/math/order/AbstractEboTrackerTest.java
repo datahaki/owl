@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,6 +11,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -16,10 +20,10 @@ import ch.alpine.tensor.mat.HilbertMatrix;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class AbstractEboTrackerTest extends TestCase {
+public class AbstractEboTrackerTest {
+  @Test
   public void testPermutations() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     Distribution distribution = UniformDistribution.of(0, 3);
@@ -46,6 +50,7 @@ public class AbstractEboTrackerTest extends TestCase {
     }
   }
 
+  @Test
   public void testEmptyPollFail() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     EboTracker<Integer> lexicographicSemiorderMinTracker = //
@@ -53,10 +58,12 @@ public class AbstractEboTrackerTest extends TestCase {
     AssertFail.of(() -> lexicographicSemiorderMinTracker.pollBestKey());
   }
 
+  @Test
   public void testMatrixSlackFail() {
     AssertFail.of(() -> SetEboTracker.withList(HilbertMatrix.of(3)));
   }
 
+  @Test
   public void testScalarSlackFail() {
     AssertFail.of(() -> SetEboTracker.withList(Pi.VALUE));
   }

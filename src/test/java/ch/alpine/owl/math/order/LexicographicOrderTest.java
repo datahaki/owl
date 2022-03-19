@@ -1,6 +1,8 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collections;
@@ -8,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
 import ch.alpine.owl.math.AssertFail;
@@ -17,9 +21,9 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.Abs;
-import junit.framework.TestCase;
 
-public class LexicographicOrderTest extends TestCase {
+public class LexicographicOrderTest {
+  @Test
   public void testTotalLexciographic() {
     OrderComparator<Scalar> comparator1 = ScalarTotalOrder.INSTANCE;
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
@@ -41,6 +45,7 @@ public class LexicographicOrderTest extends TestCase {
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(x, x));
   }
 
+  @Test
   public void testPartialLexicographic() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
@@ -70,6 +75,7 @@ public class LexicographicOrderTest extends TestCase {
     assertEquals(OrderComparison.INCOMPARABLE, lexicographicOrder.compare(z, y));
   }
 
+  @Test
   public void testException() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
@@ -85,6 +91,7 @@ public class LexicographicOrderTest extends TestCase {
     AssertFail.of(() -> lexicographicOrder.compare(y, x));
   }
 
+  @Test
   public void testSerializable() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
     OrderComparator<Scalar> comparator1 = new Order<>( //
@@ -101,6 +108,7 @@ public class LexicographicOrderTest extends TestCase {
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(y, y));
   }
 
+  @Test
   public void testEmpty() {
     LexicographicOrder<Object> lexicographicOrder = new LexicographicOrder<>(Collections.emptyList());
     OrderComparison orderComparison = lexicographicOrder.compare(Collections.emptyList(), Collections.emptyList());

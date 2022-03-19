@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.order.OrderComparator;
@@ -11,9 +15,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.MatrixInfinityNorm;
 import ch.alpine.tensor.nrm.VectorInfinityNorm;
-import junit.framework.TestCase;
 
-public class TensorNormTotalPreorderTest extends TestCase {
+public class TensorNormTotalPreorderTest {
+  @Test
   public void testSimple() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
@@ -23,12 +27,14 @@ public class TensorNormTotalPreorderTest extends TestCase {
     assertEquals(weakOrderComparator.compare(Tensors.vector(100, 3), Tensors.vector(3, 12)), OrderComparison.STRICTLY_SUCCEEDS);
   }
 
+  @Test
   public void testVector() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparison weakOrderComparison = tensorNormWeakOrder.comparator().compare(Tensors.vector(0, 1, 2), Tensors.vector(0, 2, 1));
     assertEquals(weakOrderComparison, OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testMatrix() throws ClassNotFoundException, IOException {
     TensorNormTotalPreorder tensorNormWeakOrder = //
         Serialization.copy(new TensorNormTotalPreorder(MatrixInfinityNorm::of));
@@ -44,6 +50,7 @@ public class TensorNormTotalPreorderTest extends TestCase {
     assertEquals(tensorNormWeakOrder.comparator().compare(m3, m4), OrderComparison.STRICTLY_SUCCEEDS);
   }
 
+  @Test
   public void testNullFail() {
     AssertFail.of(() -> new TensorNormTotalPreorder(null));
   }

@@ -1,14 +1,20 @@
 // code by jph
 package ch.alpine.sophus.demo.io;
 
-import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class GokartPoseDataV1Test extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.qty.Quantity;
+
+public class GokartPoseDataV1Test {
+  @Test
   public void testSampleRate() {
     assertEquals(GokartPoseDataV1.INSTANCE.getSampleRate(), Quantity.of(20, "s^-1"));
   }
 
+  @Test
   public void testListUnmodifiable() {
     try {
       GokartPoseDataV1.INSTANCE.list().clear();

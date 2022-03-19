@@ -24,10 +24,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.img.ColorDataGradients;
-import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 
 public class UbongoBackground extends AbstractDemo {
   @FieldInteger
@@ -57,7 +58,7 @@ public class UbongoBackground extends AbstractDemo {
     int res = resol.number().intValue();
     Tensor dx = Subdivide.of(0.0, 2.0, 2 * res - 1);
     Tensor dy = Subdivide.of(0.0, 1.0, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> Tensors.of(dx.get(cx), dy.get(cy)), dx.length(), dy.length());
+    Tensor domain = Outer.of(Tensors::of, dx, dy);
     Tensor random = RandomVariate.of(NormalDistribution.of(0, 0.01), new Random(3), Dimensions.of(domain));
     random = Array.of(this::noise, dx.length(), dy.length());
     // System.out.println("d=" + Dimensions.of(domain));

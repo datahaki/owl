@@ -3,13 +3,13 @@ package ch.alpine.sophus.demo.bd2;
 
 import java.util.stream.Stream;
 
+import ch.alpine.sophus.api.Genesis;
 import ch.alpine.sophus.gbc.AffineCoordinate;
 import ch.alpine.sophus.gbc.d2.Barycenter;
 import ch.alpine.sophus.gbc.d2.IterativeCoordinateLevel;
 import ch.alpine.sophus.gbc.d2.ThreePointWeighting;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;

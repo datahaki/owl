@@ -18,11 +18,11 @@ import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
+import ch.alpine.sophus.ext.api.AbstractGeodesicDisplayDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.red.Nest;
 import ch.alpine.tensor.sca.Round;
 import ch.alpine.tensor.sca.win.GaussianWindow;
 
-/* package */ class ApproximationDemo extends GeodesicDisplayDemo {
+/* package */ class ApproximationDemo extends AbstractGeodesicDisplayDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
   private static final Color COLOR_SHAPE = new Color(160, 160, 160, 192);
   private static final Scalar MARKER_SCALE = RealScalar.of(0.1);

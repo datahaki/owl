@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.flow.EulerIntegrator;
@@ -10,14 +14,15 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Tse2StateSpaceModelTest extends TestCase {
+public class Tse2StateSpaceModelTest {
+  @Test
   public void testSimple() {
     Tensor tensor = Tse2StateSpaceModel.INSTANCE.f(Tensors.vector(1, 2, Math.PI, 5), Tensors.vector(3, 4));
     Chop._13.requireClose(tensor, Tensors.vector(-5, 0, 5 * 3, 4));
   }
 
+  @Test
   public void testQuantity() {
     FlowsInterface flowsInterface = //
         Tse2CarFlows.of(Quantity.of(1, "m^-1"), Tensors.of(Quantity.of(-2, "m*s^-2"), Quantity.of(0, "m*s^-2"), Quantity.of(2, "m*s^-2")));

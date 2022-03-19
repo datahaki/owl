@@ -4,7 +4,7 @@ package ch.alpine.owl.math.state;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** StateTimeRegion, which is independent of time.

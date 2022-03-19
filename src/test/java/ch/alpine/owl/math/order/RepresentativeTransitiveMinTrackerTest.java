@@ -1,19 +1,25 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
 import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.DigitSumDivisibilityPreorder;
 import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.pdf.DiscreteUniformDistribution;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
-public class RepresentativeTransitiveMinTrackerTest extends TestCase {
+public class RepresentativeTransitiveMinTrackerTest {
+  @Test
   public void testDigestNotEmptyList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -21,6 +27,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(minTracker.getMinElements().isEmpty());
   }
 
+  @Test
   public void testDigestNotEmptySet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -28,6 +35,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertFalse(minTracker.getMinElements().isEmpty());
   }
 
+  @Test
   public void testWithList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -43,6 +51,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 1);
   }
 
+  @Test
   public void testWithSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -58,6 +67,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(digitSumDivisibility.getMinElements().size(), 1);
   }
 
+  @Test
   public void testDuplicateEntriesList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -67,6 +77,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 1);
   }
 
+  @Test
   public void testDuplicateEntriesSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -76,6 +87,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 1);
   }
 
+  @Test
   public void testOnlyPreoneRepresentativeList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -92,6 +104,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(minTracker.getMinElements().size(), 1);
   }
 
+  @Test
   public void testOnlyPreoneRepresentativeSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
@@ -129,6 +142,7 @@ public class RepresentativeTransitiveMinTrackerTest extends TestCase {
     assertEquals(collection1.size(), collection2.size());
   }
 
+  @Test
   public void testPermutations() {
     _checkPermutations(() -> RepresentativeTransitiveMinTracker.withList(DigitSumDivisibilityPreorder.SCALAR));
   }

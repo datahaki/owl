@@ -20,7 +20,7 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** several magic constants are hard-coded in the implementation.
  * that means, the functionality does not apply to all examples universally. */
@@ -70,9 +70,10 @@ public class Tse2CarEntity extends Tse2Entity {
   protected final Tensor goalRadius;
   final Tensor partitionScale;
   private final Tensor shape;
-  protected final TrajectoryControl trajectoryControl; // TODO JPH design is despicable
+  protected final TrajectoryControl trajectoryControl; // TODO OWL API design is despicable
 
   /** extra cost functions, for instance
+   * 
    * @param stateTime initial position */
   public Tse2CarEntity(StateTime stateTime, TrajectoryControl trajectoryControl, Tensor partitionScale, FlowsInterface carFlows, Tensor shape) {
     super(v_range, stateTime, trajectoryControl);

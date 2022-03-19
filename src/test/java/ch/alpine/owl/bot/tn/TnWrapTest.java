@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.owl.bot.tn;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import junit.framework.TestCase;
 
-public class TnWrapTest extends TestCase {
+public class TnWrapTest {
+  @Test
   public void testSimple() {
     TnWrap tnWrap = new TnWrap(Tensors.vector(3, 7));
     Tensor r = tnWrap.represent(Tensors.vector(11, 20));
@@ -22,6 +26,7 @@ public class TnWrapTest extends TestCase {
     return d1;
   }
 
+  @Test
   public void testDistance() {
     TnWrap tnWrap = new TnWrap(Tensors.vector(3, 7));
     assertEquals(_distance(tnWrap, Tensors.vector(0, 0), Tensors.vector(3, 7)), RealScalar.ZERO);

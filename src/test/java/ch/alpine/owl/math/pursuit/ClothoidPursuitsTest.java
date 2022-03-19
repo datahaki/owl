@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.owl.math.pursuit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class ClothoidPursuitsTest extends TestCase {
+public class ClothoidPursuitsTest {
+  @Test
   public void testCurve() {
     for (int depth = 0; depth < 5; ++depth) {
       Tensor tensor = ClothoidPursuits.curve(Tensors.fromString("{10, 1, 1}"), depth);
@@ -16,6 +20,7 @@ public class ClothoidPursuitsTest extends TestCase {
     }
   }
 
+  @Test
   public void testFromTrajectory() {
     PursuitInterface pursuitInterface;
     Tensor trajectory = Tensors.of( //

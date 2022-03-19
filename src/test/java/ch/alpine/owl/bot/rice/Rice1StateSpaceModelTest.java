@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import ch.alpine.tensor.RealScalar;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class Rice1StateSpaceModelTest extends TestCase {
+import ch.alpine.tensor.RealScalar;
+
+public class Rice1StateSpaceModelTest {
+  @Test
   public void testFormerFails() {
     Rice1StateSpaceModel.of(RealScalar.ZERO);
     Rice1StateSpaceModel.of(RealScalar.of(-1));

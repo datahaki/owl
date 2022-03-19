@@ -3,6 +3,8 @@ package ch.alpine.sophus.demo.bdn;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.Tensor;
@@ -10,12 +12,12 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class HnMeansTest extends TestCase {
+public class HnMeansTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Distribution distribution = NormalDistribution.standard();
     for (HnMeans hnMeans : HnMeans.values()) {

@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.bdn;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class R2DeformationDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class R2DeformationDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new R2DeformationDemo());
   }

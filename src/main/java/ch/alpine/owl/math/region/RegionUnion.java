@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 
 /** RegionUnion is a region that defines membership
  * to be member in either of a collection of {@link Region}s

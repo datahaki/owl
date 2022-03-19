@@ -1,14 +1,19 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class SimpleRelabelDecisionTest extends TestCase {
+public class SimpleRelabelDecisionTest {
   private static boolean doRelabel(Scalar newMerit, Scalar oldMerit, Scalar slack) {
     return ((SimpleRelabelDecision) SimpleRelabelDecision.with(slack)).doRelabel(newMerit, oldMerit);
   }
@@ -19,6 +24,7 @@ public class SimpleRelabelDecisionTest extends TestCase {
     assertEquals(r1, r2);
   }
 
+  @Test
   public void testSimple() {
     check(true, true, true);
     check(true, true, false);
@@ -30,6 +36,7 @@ public class SimpleRelabelDecisionTest extends TestCase {
     check(false, false, false);
   }
 
+  @Test
   public void testStatic() {
     assertTrue(doRelabel(RealScalar.of(1), RealScalar.of(2), DoubleScalar.of(2)));
     assertFalse(doRelabel(RealScalar.of(3), RealScalar.of(2), DoubleScalar.of(2)));
@@ -39,11 +46,13 @@ public class SimpleRelabelDecisionTest extends TestCase {
     assertFalse(doRelabel(RealScalar.of(2.1), RealScalar.of(2), DoubleScalar.of(0.5)));
   }
 
+  @Test
   public void testQuantity() {
     assertTrue(doRelabel(Quantity.of(1, "USD"), Quantity.of(2, "USD"), DoubleScalar.of(0.01)));
     assertFalse(doRelabel(Quantity.of(3, "USD"), Quantity.of(2, "USD"), DoubleScalar.of(0.01)));
   }
 
+  @Test
   public void testChop() {
     Chop._05.requireZero(Quantity.of(1e-7, "USD"));
   }

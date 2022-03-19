@@ -1,9 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
@@ -25,9 +31,9 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2MinTimeGoalManagerTest extends TestCase {
+public class Se2MinTimeGoalManagerTest {
+  @Test
   public void testIsMember() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
@@ -39,6 +45,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     assertFalse(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.of(3))));
   }
 
+  @Test
   public void testGoalAdapter() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
@@ -50,6 +57,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     assertFalse(goalInterface.test(new StateTime(Tensors.vector(1, 2, 3.2), RealScalar.ZERO)));
   }
 
+  @Test
   public void testQuantity() {
     FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "m*s^-1"), Quantity.of(0.5, "m^-1"));
     Collection<Tensor> controls = carFlows.getFlows(3);
@@ -71,6 +79,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     }
   }
 
+  @Test
   public void testSimple() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
@@ -85,6 +94,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     assertFalse(se2MinTimeGoalManager.test(Tensors.vector(10, 0, Math.PI + 2 * Math.PI + 1.1)));
   }
 
+  @Test
   public void testAllAngles() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
@@ -96,6 +106,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     }
   }
 
+  @Test
   public void testSerializable() throws ClassNotFoundException, IOException {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Serialization.copy(carFlows);
@@ -107,6 +118,7 @@ public class Se2MinTimeGoalManagerTest extends TestCase {
     Serialization.copy(se2MinTimeGoalManager);
   }
 
+  @Test
   public void testWrapSuccessor() {
     FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(10));
     Collection<Tensor> controls = carFlows.getFlows(6);

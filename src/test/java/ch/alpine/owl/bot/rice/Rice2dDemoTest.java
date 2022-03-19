@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
@@ -21,9 +25,9 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Timing;
-import junit.framework.TestCase;
 
-public class Rice2dDemoTest extends TestCase {
+public class Rice2dDemoTest {
+  @Test
   public void testExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
@@ -48,6 +52,7 @@ public class Rice2dDemoTest extends TestCase {
     owlFrame.jFrame.setVisible(false);
   }
 
+  @Test
   public void testGlcExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);

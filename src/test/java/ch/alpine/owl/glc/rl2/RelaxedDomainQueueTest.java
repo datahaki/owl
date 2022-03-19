@@ -1,8 +1,14 @@
 // code by astoll
 package ch.alpine.owl.glc.rl2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.VectorScalar;
@@ -13,10 +19,10 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class RelaxedDomainQueueTest extends TestCase {
+public class RelaxedDomainQueueTest {
+  @Test
   public void testAdd() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
@@ -43,6 +49,7 @@ public class RelaxedDomainQueueTest extends TestCase {
     assertFalse(rlQueue.collection().contains(node1) && rlQueue.collection().contains(node3) && rlQueue.collection().contains(node4));
   }
 
+  @Test
   public void testPeek() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
@@ -68,6 +75,7 @@ public class RelaxedDomainQueueTest extends TestCase {
     assertEquals(rlQueue.collection().size(), 2);
   }
 
+  @Test
   public void testPoll() throws ClassNotFoundException, IOException {
     Tensor slacks = Tensors.vector(3, 3, 3);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -98,12 +106,14 @@ public class RelaxedDomainQueueTest extends TestCase {
     assertTrue(rlQueue.collection().isEmpty());
   }
 
+  @Test
   public void testEmpty() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedPriorityQueue rlQueue = RelaxedDomainQueue.empty(slacks);
     assertTrue(rlQueue.collection().isEmpty());
   }
 
+  @Test
   public void testSpeed() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     Distribution distribution = UniformDistribution.of(1, 2);

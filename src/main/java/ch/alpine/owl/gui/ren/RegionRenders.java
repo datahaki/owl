@@ -17,8 +17,8 @@ import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.sophus.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.MatrixQ;
 
-// TODO implement this as an interface
+// TODO OWL API implement this as an interface
 public enum RegionRenders {
   ;
   /** raster value 230 get's mapped to color {244, 244, 244, 255}

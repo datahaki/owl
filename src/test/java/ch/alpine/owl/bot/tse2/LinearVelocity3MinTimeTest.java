@@ -1,11 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class LinearVelocity3MinTimeTest extends TestCase {
+public class LinearVelocity3MinTimeTest {
+  @Test
   public void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(1, "m*s^-2");

@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
@@ -19,9 +24,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Duncan1StateSpaceModelTest extends TestCase {
+public class Duncan1StateSpaceModelTest {
+  @Test
   public void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.1, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
@@ -30,6 +35,7 @@ public class Duncan1StateSpaceModelTest extends TestCase {
     assertEquals(fxu, Tensors.fromString("{-2[m*s^-1], -3[m*s^-1]}"));
   }
 
+  @Test
   public void testZero() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.0, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
@@ -38,6 +44,7 @@ public class Duncan1StateSpaceModelTest extends TestCase {
     assertEquals(fxu, Tensors.fromString("{-1[m*s^-1], -1[m*s^-1]}"));
   }
 
+  @Test
   public void testLimit() {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
@@ -51,6 +58,7 @@ public class Duncan1StateSpaceModelTest extends TestCase {
     Chop._12.requireClose(last.state().get(0), push.divide(lambda));
   }
 
+  @Test
   public void testSimple() {
     Tensor speed = Tensors.fromString("{10[m*s^-1]}");
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -63,6 +71,7 @@ public class Duncan1StateSpaceModelTest extends TestCase {
     assertTrue(Scalars.lessThan(speed.Get(0), stateTime.state().Get(0)));
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }

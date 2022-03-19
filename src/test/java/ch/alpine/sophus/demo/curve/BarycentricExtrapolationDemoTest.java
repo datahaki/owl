@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.curve;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class BarycentricExtrapolationDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class BarycentricExtrapolationDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new BarycentricExtrapolationDemo());
   }

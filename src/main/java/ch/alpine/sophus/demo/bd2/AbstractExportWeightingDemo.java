@@ -13,10 +13,10 @@ import javax.swing.JButton;
 
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.sophus.demo.bdn.AbstractScatteredSetWeightingDemo;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.arp.HsArrayPlot;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.Biinvariants;
 import ch.alpine.sophus.hs.MetricBiinvariant;
@@ -69,7 +69,7 @@ public abstract class AbstractExportWeightingDemo extends AbstractScatteredSetWe
   }
 
   protected final ArrayPlotRender arrayPlotRender(Tensor sequence, int refinement, TensorUnaryOperator tensorUnaryOperator, int magnification) {
-    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
+    HsArrayPlot geodesicArrayPlot = manifoldDisplay().geodesicArrayPlot();
     Tensor fallback = ConstantArray.of(DoubleScalar.INDETERMINATE, sequence.length());
     Tensor wgs = geodesicArrayPlot.raster(refinement, tensorUnaryOperator, fallback);
     return StaticHelper.arrayPlotFromTensor(wgs, magnification, logWeighting().equals(LogWeightings.DISTANCES), colorDataGradient());
@@ -77,7 +77,7 @@ public abstract class AbstractExportWeightingDemo extends AbstractScatteredSetWe
 
   private static List<Biinvariant> distinct() {
     return Arrays.asList( //
-        MetricBiinvariant.EUCLIDEAN, // FIXME should be retrieved from bitype
+        MetricBiinvariant.EUCLIDEAN, // FIXME OWL ALG should be retrieved from bitype
         Biinvariants.LEVERAGES, //
         Biinvariants.GARDEN, //
         Biinvariants.HARBOR);

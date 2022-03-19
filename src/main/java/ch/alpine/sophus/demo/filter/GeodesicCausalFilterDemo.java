@@ -9,18 +9,18 @@ import javax.swing.JSlider;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
-import ch.alpine.sophus.demo.opt.GeodesicCausalFilters;
+import ch.alpine.sophus.ext.api.GeodesicCausalFilters;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.WindowSideExtrapolation;
 import ch.alpine.sophus.flt.bm.BiinvariantMeanFIRnFilter;
 import ch.alpine.sophus.flt.bm.BiinvariantMeanIIRnFilter;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicFIRnFilter;
 import ch.alpine.sophus.flt.ga.GeodesicIIRnFilter;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
-import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
       // ---
       GeodesicCausalFilters geodesicCausalFilters = spinnerCausalFilter.getValue();
       // System.out.println(geodesicCausalFilters);
-      // TODO should be able to do with geodesicCausalFilters.supply, but doesn't
+      // TODO OWL ALG should be able to do with geodesicCausalFilters.supply, but doesn't
       TensorUnaryOperator tensorUnaryOperator = geodesicCausalFilters.supply(manifoldDisplay(), windowFunctions, radius, alpha());
       tensorUnaryOperator = switch (geodesicCausalFilters) {
       case GEODESIC_FIR -> GeodesicFIRnFilter.of(geodesicExtrapolation, geodesicInterface, radius, alpha());

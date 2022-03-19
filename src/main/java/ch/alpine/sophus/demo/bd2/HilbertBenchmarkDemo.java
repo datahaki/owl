@@ -14,14 +14,15 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.crv.d2.HilbertPolygon;
-import ch.alpine.sophus.demo.ControlPointsDemo;
 import ch.alpine.sophus.demo.lev.LeversRender;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.Box2D;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.PadRight;
 import ch.alpine.tensor.img.ColorDataGradients;
-import ch.alpine.tensor.sca.Power;
+import ch.alpine.tensor.sca.pow.Power;
 
 /** References:
  * "Iterative coordinates"
@@ -64,7 +65,7 @@ import ch.alpine.tensor.sca.Power;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     graphics.setColor(Color.LIGHT_GRAY);
-    graphics.draw(geometricLayer.toPath2D(CheckerBoardDemo.BOX, true));
+    graphics.draw(geometricLayer.toPath2D(Box2D.CORNERS, true));
     // ---
     RenderQuality.setQuality(graphics);
     final Tensor sequence = getGeodesicControlPoints();

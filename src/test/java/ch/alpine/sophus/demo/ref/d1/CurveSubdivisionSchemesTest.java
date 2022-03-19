@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d1;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CurveSubdivisionSchemesTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class CurveSubdivisionSchemesTest {
+  @Test
   public void testSimple() {
     int count = 0;
     for (CurveSubdivisionSchemes curveSubdivisionSchemes : CurveSubdivisionSchemes.values())

@@ -1,7 +1,13 @@
 // code by jph, gjoel
 package ch.alpine.owl.rrts.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.owl.rrts.core.Transition;
@@ -16,9 +22,9 @@ import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class DirectionalTransitionSpaceTest extends TestCase {
+public class DirectionalTransitionSpaceTest {
+  @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor a = Tensors.fromString("{1[m], 1[m], 0}");
     Tensor b = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF);
@@ -34,6 +40,7 @@ public class DirectionalTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testSamples() {
     Tensor a = Tensors.fromString("{1[m], 2[m], 1}");
     Tensor b = Tensors.fromString("{1[m], 6[m], 3}");

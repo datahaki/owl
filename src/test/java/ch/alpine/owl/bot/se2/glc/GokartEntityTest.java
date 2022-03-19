@@ -1,10 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.tensor.mat.MatrixQ;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GokartEntityTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.mat.MatrixQ;
+
+public class GokartEntityTest {
+  @Test
   public void testFootprint() {
     assertTrue(MatrixQ.of(GokartEntity.SHAPE));
   }

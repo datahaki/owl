@@ -7,16 +7,16 @@ import ch.alpine.tensor.AbstractScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.api.AbsInterface;
-import ch.alpine.tensor.api.ArcTanInterface;
 import ch.alpine.tensor.api.ArgInterface;
 import ch.alpine.tensor.api.ComplexEmbedding;
 import ch.alpine.tensor.api.ConjugateInterface;
 import ch.alpine.tensor.api.ExactScalarQInterface;
-import ch.alpine.tensor.api.ExpInterface;
-import ch.alpine.tensor.api.LogInterface;
 import ch.alpine.tensor.api.MachineNumberQInterface;
 import ch.alpine.tensor.api.RoundingInterface;
-import ch.alpine.tensor.api.TrigonometryInterface;
+import ch.alpine.tensor.sca.exp.ExpInterface;
+import ch.alpine.tensor.sca.exp.LogInterface;
+import ch.alpine.tensor.sca.tri.ArcTanInterface;
+import ch.alpine.tensor.sca.tri.TrigonometryInterface;
 
 /** any scalar tracks whether a scalar in a tensor has any effect within a computation */
 public final class AnyScalar extends AbstractScalar implements //

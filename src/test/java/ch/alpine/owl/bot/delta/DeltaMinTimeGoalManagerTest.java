@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -15,9 +19,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class DeltaMinTimeGoalManagerTest extends TestCase {
+public class DeltaMinTimeGoalManagerTest {
+  @Test
   public void testConstructors() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //
         ResourceData.of("/io/delta_uxy.png"), Tensors.vector(10, 10), RealScalar.of(0.1));

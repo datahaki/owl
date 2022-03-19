@@ -1,20 +1,27 @@
 // code by jph
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import junit.framework.TestCase;
 
-public class TypeStrictPartialOrderTest extends TestCase {
+public class TypeStrictPartialOrderTest {
+  @Test
   public void testSimple() {
     assertFalse(Scalar.class.isAssignableFrom(Tensor.class));
     assertTrue(Scalar.class.isAssignableFrom(Scalar.class));
     assertTrue(Tensor.class.isAssignableFrom(Scalar.class));
   }
 
+  @Test
   public void testCompare() {
     assertEquals(TypeStrictPartialOrder.INSTANCE.compare(Tensor.class, Scalar.class), OrderComparison.STRICTLY_PRECEDES);
     assertEquals(TypeStrictPartialOrder.INSTANCE.compare(Object.class, Scalar.class), OrderComparison.STRICTLY_PRECEDES);

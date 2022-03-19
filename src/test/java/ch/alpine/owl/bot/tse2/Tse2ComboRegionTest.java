@@ -1,10 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
-import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Tse2ComboRegionTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.tensor.Tensors;
+
+public class Tse2ComboRegionTest {
+  @Test
   public void testIsMember() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical(Tensors.vector(1, 2, 3, 1), Tensors.vector(1, 1, 0.1, 1));
     assertTrue(tse2ComboRegion.test(Tensors.vector(1, 2, 3, 1)));

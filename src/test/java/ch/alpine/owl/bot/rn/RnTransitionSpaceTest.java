@@ -1,7 +1,12 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.rn;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionWrap;
@@ -13,9 +18,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class RnTransitionSpaceTest extends TestCase {
+public class RnTransitionSpaceTest {
+  @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1[m], 2[m]}");
     Tensor end = Tensors.fromString("{1[m], 6[m]}");
@@ -26,6 +31,7 @@ public class RnTransitionSpaceTest extends TestCase {
     assertEquals(end, transition.end());
   }
 
+  @Test
   public void testSamples() {
     Tensor start = Tensors.fromString("{1[m], 2[m]}");
     Tensor end = Tensors.fromString("{1[m], 6[m]}");
@@ -46,6 +52,7 @@ public class RnTransitionSpaceTest extends TestCase {
     // }
   }
 
+  @Test
   public void testWrap() {
     Tensor start = Tensors.fromString("{1[m], 2[m]}");
     Tensor end = Tensors.fromString("{1[m], 6[m]}");

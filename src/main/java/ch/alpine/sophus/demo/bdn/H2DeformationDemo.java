@@ -5,16 +5,18 @@ import java.awt.Dimension;
 
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.hs.hn.HnWeierstrassCoordinate;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 
+// TODO OWL ugly when computation fails (probably for accuracy reasons)
 /* package */ class H2DeformationDemo extends AbstractDeformationDemo {
   private static final Tensor TRIANGLE = CirclePoints.of(3).multiply(RealScalar.of(0.05));
   // ---
@@ -40,7 +42,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
     double rad = 1.0;
     Tensor dx = Subdivide.of(-rad, rad, res - 1);
     Tensor dy = Subdivide.of(-rad, rad, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> HnWeierstrassCoordinate.toPoint(Tensors.of(dx.get(cx), dy.get(cy))), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> HnWeierstrassCoordinate.toPoint(Tensors.of(cx, cy)), dx, dy);
     TensorUnaryOperator tensorUnaryOperator = operator(movingOrigin);
     return AveragedMovingDomain2D.of(movingOrigin, tensorUnaryOperator, domain);
   }

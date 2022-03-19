@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
-import ch.alpine.owl.math.AssertFail;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class GlcExpandTest extends TestCase {
+import ch.alpine.owl.math.AssertFail;
+
+public class GlcExpandTest {
+  @Test
   public void testFailNull() {
     AssertFail.of(() -> new GlcExpand(null));
   }

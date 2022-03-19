@@ -1,8 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.EqualityOrder;
 import ch.alpine.owl.demo.order.IntegerTotalOrder;
@@ -12,15 +16,16 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class LexicographicComparatorTest extends TestCase {
+public class LexicographicComparatorTest {
+  @Test
   public void testEmpty() {
     LexicographicComparator genericLexicographicOrder = new LexicographicComparator(Arrays.asList());
     List<Scalar> list = Arrays.asList();
     assertEquals(genericLexicographicOrder.compare(list, list), OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testSimple() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         ScalarTotalOrder.INSTANCE, //
@@ -31,6 +36,7 @@ public class LexicographicComparatorTest extends TestCase {
     assertEquals(orderComparison, OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testMixed2() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //
@@ -44,6 +50,7 @@ public class LexicographicComparatorTest extends TestCase {
     assertEquals(genericLexicographicOrder.compare(listY, listY), OrderComparison.INDIFFERENT);
   }
 
+  @Test
   public void testTensorAsIterable() {
     BinaryRelation<Tensor> relation1 = (x, y) -> x.length() <= y.length();
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
@@ -56,6 +63,7 @@ public class LexicographicComparatorTest extends TestCase {
     assertEquals(orderComparison, OrderComparison.STRICTLY_PRECEDES);
   }
 
+  @Test
   public void testEquality() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //

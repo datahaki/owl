@@ -29,7 +29,7 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -89,7 +89,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
         supplier);
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new DeltaxTAnimationDemo().start().jFrame.setVisible(true);
   }
 }

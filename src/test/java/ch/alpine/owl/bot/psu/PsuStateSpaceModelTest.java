@@ -1,6 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
@@ -20,9 +26,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class PsuStateSpaceModelTest extends TestCase {
+public class PsuStateSpaceModelTest {
+  @Test
   public void testNonTrivial() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
@@ -33,6 +39,7 @@ public class PsuStateSpaceModelTest extends TestCase {
     assertFalse(res.equals(eul));
   }
 
+  @Test
   public void testReference() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
@@ -43,6 +50,7 @@ public class PsuStateSpaceModelTest extends TestCase {
     assertEquals(res, ref);
   }
 
+  @Test
   public void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
@@ -58,6 +66,7 @@ public class PsuStateSpaceModelTest extends TestCase {
     Chop._04.requireClose(init.state(), stateTime.state());
   }
 
+  @Test
   public void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
@@ -73,6 +82,7 @@ public class PsuStateSpaceModelTest extends TestCase {
     Chop._13.requireClose(stateTime.state(), Tensors.vector(1.6034722573306643, 2.015192617032934));
   }
 
+  @Test
   public void testVectorField() {
     Tensor range = Tensors.vector(Math.PI, 3);
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
@@ -80,6 +90,7 @@ public class PsuStateSpaceModelTest extends TestCase {
     new VectorFieldRender().setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
   }
 
+  @Test
   public void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));

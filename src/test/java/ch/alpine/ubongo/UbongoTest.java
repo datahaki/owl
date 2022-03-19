@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.ubongo;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UbongoTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class UbongoTest {
+  @Test
   public void testSimple() {
     assertEquals(Ubongo.values().length, 12);
     assertEquals(Ubongo.C2.count(), 5);
   }
 
+  @Test
   public void testStamps() {
     for (Ubongo ubongo : Ubongo.values()) {
       // System.out.println();

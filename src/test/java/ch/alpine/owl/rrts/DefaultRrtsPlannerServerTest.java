@@ -1,7 +1,11 @@
 // code by gjoel
 package ch.alpine.owl.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
@@ -36,9 +40,9 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class DefaultRrtsPlannerServerTest extends TestCase {
+public class DefaultRrtsPlannerServerTest {
+  @Test
   public void testRn() {
     Tensor goal = Tensors.vector(10, 10);
     Tensor state = Tensors.vector(0, 0);
@@ -84,6 +88,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
+  @Test
   public void testDubins() {
     CoordinateBoundingBox box = CoordinateBounds.of( //
         Tensors.vector(0, 0, -Math.PI), //
@@ -127,6 +132,7 @@ public class DefaultRrtsPlannerServerTest extends TestCase {
     Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
   }
 
+  @Test
   public void testClothoid() {
     Tensor lbounds = Tensors.vector(0, 0);
     Tensor ubounds = Tensors.vector(10, 10);

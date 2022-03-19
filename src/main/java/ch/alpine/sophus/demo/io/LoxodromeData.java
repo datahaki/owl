@@ -3,11 +3,11 @@ package ch.alpine.sophus.demo.io;
 
 import java.io.IOException;
 
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.ext.dis.S2Display;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
-import ch.alpine.sophus.gds.S2Display;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
-import ch.alpine.sophus.math.Geodesic;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
@@ -17,8 +17,8 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.AbsSquared;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 

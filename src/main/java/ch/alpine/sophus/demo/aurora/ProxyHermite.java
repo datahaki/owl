@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.Function;
 
+import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.HsTransport;
@@ -13,7 +14,6 @@ import ch.alpine.sophus.lie.LieTransport;
 import ch.alpine.sophus.lie.se2c.Se2CoveringManifold;
 import ch.alpine.sophus.lie.so2.So2Lift;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -42,9 +42,8 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
   private final Tensor matrix;
 
   /** @param name "20190701T163225_01"
-   * @param levels 2
-   * @throws IOException */
-  public ProxyHermite(String name, int levels) throws IOException {
+   * @param levels 2 */
+  public ProxyHermite(String name, int levels) {
     this.levels = levels;
     folder = HomeDirectory.Documents(name);
     folder.mkdir();
@@ -67,7 +66,7 @@ import ch.alpine.tensor.qty.QuantityMagnitude;
   final Scalar process(HermiteSubdivision hermiteSubdivision) {
     TensorIteration tensorIteration = hermiteSubdivision.string(delta, control);
     Tensor refined = Do.of(control, tensorIteration::iterate, levels);
-    // TODO not a distance
+    // TODO OWL ALG not a distance
     if (refined.length() != data.length())
       System.err.println("nonono");
     Scalar total = RealScalar.ZERO;

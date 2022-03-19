@@ -9,8 +9,8 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

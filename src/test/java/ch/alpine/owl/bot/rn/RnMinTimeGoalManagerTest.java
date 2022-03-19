@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -12,9 +16,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class RnMinTimeGoalManagerTest extends TestCase {
+public class RnMinTimeGoalManagerTest {
+  @Test
   public void testSimple() {
     R2Flows r2Flows = new R2Flows(Quantity.of(2, "m*s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(10);

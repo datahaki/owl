@@ -16,6 +16,7 @@ public interface ObservingExpandInterface<T extends StateCostNode> extends Expan
   }
 
   /** dump observation log of current expand
+   * 
    * @param observations (current time, current best node's {@link StateCostNode#costFromRoot()})
    * DEFAULT: print short summary */
   default void process(Map<Double, Scalar> observations) {

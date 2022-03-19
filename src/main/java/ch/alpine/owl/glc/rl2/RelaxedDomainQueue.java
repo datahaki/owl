@@ -35,6 +35,7 @@ import ch.alpine.tensor.Tensor;
 
   /** Checks whether glcNode's merit precedes or is equally good than any other. If yes, it will be added to the domain map and all
    * nodes whose merits is preceded by the glcNode's merit will be discarded.
+   * 
    * @param glcNode node which is potentially add
    * @return empty nodes which were discarded due to insertion of glcNode */
   @Override // from RelaxedPriorityQueue

@@ -16,14 +16,14 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidSampler;
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.gds.Se2Display;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.Geodesic;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.Se2Display;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.lie.r2.AngleVector;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 public class ClothoidTransitionDemo extends ControlPointsDemo {
   public Boolean ctrl = true;

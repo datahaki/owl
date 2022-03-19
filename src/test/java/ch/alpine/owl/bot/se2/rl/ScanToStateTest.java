@@ -1,29 +1,36 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Random;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.ExponentialDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.c.ExponentialDistribution;
 
-public class ScanToStateTest extends TestCase {
+public class ScanToStateTest {
+  @Test
   public void testSimple() {
     Tensor res = ScanToState.of(Tensors.vector(1, 2, 3));
     assertEquals(res.length(), 2);
   }
 
+  @Test
   public void testCollision() {
     Tensor res = ScanToState.of(Tensors.vector(0, 0, 0));
     assertEquals(res.length(), 2);
     assertTrue(res.get(0).length() < 2);
   }
 
+  @Test
   public void testUnique() {
     Random random = new Random();
     Distribution distribution = ExponentialDistribution.standard();

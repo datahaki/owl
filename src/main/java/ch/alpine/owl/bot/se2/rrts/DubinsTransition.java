@@ -52,7 +52,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from RenderTransition
   public Tensor linearized(Scalar minResolution) {
-    // TODO JPH check if this works with units
+    // TODO OWL API check if this works with units
     if (dubinsPath.type().containsStraight() && //
         Scalars.lessThan(minResolution, dubinsPath.length(1))) {
       ScalarTensorFunction scalarTensorFunction = dubinsPath.unit(start());

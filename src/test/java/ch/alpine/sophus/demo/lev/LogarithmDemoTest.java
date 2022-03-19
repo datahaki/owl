@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.lev;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class LogarithmDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class LogarithmDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new LogarithmDemo());
   }

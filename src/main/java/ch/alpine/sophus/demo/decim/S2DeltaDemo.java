@@ -15,16 +15,16 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.sophus.ext.api.AbstractGeodesicDisplayDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
-import ch.alpine.sophus.gds.GeodesicDisplayDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.hs.sn.S2Loxodrome;
 import ch.alpine.sophus.hs.sn.SnGeodesic;
-import ch.alpine.sophus.hs.sn.SnManifold;
 import ch.alpine.sophus.hs.sn.SnMetric;
 import ch.alpine.sophus.hs.sn.SnPerturbation;
+import ch.alpine.sophus.hs.sn.SnRotationMatrix;
 import ch.alpine.sophus.itp.UniformResample;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
@@ -36,10 +36,10 @@ import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.pdf.NormalDistribution;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-/* package */ class S2DeltaDemo extends GeodesicDisplayDemo {
+/* package */ class S2DeltaDemo extends AbstractGeodesicDisplayDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 128 + 64);
   private static final Color COLOR_SHAPE = new Color(128, 255, 128, 128 + 64);
   private static final int WIDTH = 360;
@@ -123,7 +123,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
           geometricLayer.popMatrix();
         }
         Tensor q = snDeltaRaw.sequence.get(index - 0);
-        v0 = SnManifold.INSTANCE.endomorphism(p, q).dot(v0);
+        v0 = SnRotationMatrix.of(p, q).dot(v0);
       }
     }
     int mag = 4;

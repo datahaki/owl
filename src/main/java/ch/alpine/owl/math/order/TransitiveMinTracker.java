@@ -39,9 +39,9 @@ public class TransitiveMinTracker<T> implements MinTracker<T>, Serializable {
       OrderComparison orderComparison = orderComparator.compare(x, b);
       if (orderComparison.equals(OrderComparison.STRICTLY_PRECEDES))
         iterator.remove();
-      else //
-      if (discardCriterion(orderComparison))
-        return;
+      else
+        if (discardCriterion(orderComparison))
+          return;
     }
     if (!collection.contains(x)) // inefficient if collection is a list
       collection.add(x);

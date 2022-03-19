@@ -6,9 +6,9 @@ import java.util.Optional;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.sca.ArcTan;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.ArcTan;
+import ch.alpine.tensor.sca.tri.Sin;
 
 public class PurePursuit implements PursuitInterface {
   /** @param lookAhead {x, y, ...} where x is positive

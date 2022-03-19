@@ -9,8 +9,8 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.red.Times;
     Tensor control = getGeodesicControlPoints();
     final Tensor shape = getControlPointShape(); // .multiply(RealScalar.of(0.3));
     if (0 < control.length()) {
-      // TODO check for zero norm below
+      // TODO OWL ALG check for zero norm below
       Tensor sequence = Tensor.of(control.stream().map(Vector2Norm.NORMALIZE));
       Tensor target = sequence;
       graphics.setColor(Color.GREEN);

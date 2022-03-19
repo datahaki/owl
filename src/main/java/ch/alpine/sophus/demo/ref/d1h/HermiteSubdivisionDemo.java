@@ -15,17 +15,17 @@ import ch.alpine.java.ref.ann.FieldSlider;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
+import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.clt.ClothoidDistance;
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.demo.Curvature2DRender;
-import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.gds.Se2Display;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.api.Curvature2DRender;
+import ch.alpine.sophus.ext.api.HermiteSubdivisions;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.Se2Display;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.AdjacentDistances;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -72,11 +72,11 @@ public class HermiteSubdivisionDemo extends ControlPointsDemo {
       switch (manifoldDisplay.toString()) {
       case "SE2C":
       case "SE2":
-        // TODO use various options: unit vector, scaled by parametric distance, ...
+        // TODO OWL ALG use various options: unit vector, scaled by parametric distance, ...
         control = Tensor.of(tensor.stream().map(xya -> Tensors.of(xya, UnitVector.of(3, 0))));
         break;
       case "R2":
-        // TODO use various options: unit vector, scaled by parametric distance, ...
+        // TODO OWL ALG use various options: unit vector, scaled by parametric distance, ...
         control = Tensor.of(tensor.stream().map(xya -> Tensors.of(xya.extract(0, 2), AngleVector.of(xya.Get(2)))));
         break;
       default:

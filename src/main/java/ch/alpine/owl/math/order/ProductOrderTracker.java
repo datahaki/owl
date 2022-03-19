@@ -6,6 +6,7 @@ package ch.alpine.owl.math.order;
  * ProductOrderTracker uses one comparator for each comparison
  * 
  * for a more general product order comparator
+ * 
  * @see ProductOrderComparator
  * See Chapter 2.7.4 in "Multi-Objective Optimization Using Preference Structures" */
 public class ProductOrderTracker<T> {

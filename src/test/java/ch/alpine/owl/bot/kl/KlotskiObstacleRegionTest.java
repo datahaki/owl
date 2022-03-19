@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class KlotskiObstacleRegionTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class KlotskiObstacleRegionTest {
+  @Test
   public void testHuarong() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
@@ -11,6 +14,7 @@ public class KlotskiObstacleRegionTest extends TestCase {
     }
   }
 
+  @Test
   public void testPennant() {
     for (Pennant pennant : Pennant.values()) {
       KlotskiProblem klotskiProblem = pennant.create();
@@ -18,6 +22,7 @@ public class KlotskiObstacleRegionTest extends TestCase {
     }
   }
 
+  @Test
   public void testSolomon() {
     for (Solomon solomon : Solomon.values()) {
       KlotskiProblem klotskiProblem = solomon.create();
@@ -25,6 +30,7 @@ public class KlotskiObstacleRegionTest extends TestCase {
     }
   }
 
+  @Test
   public void testTrafficJam() {
     for (TrafficJam trafficJam : TrafficJam.values()) {
       KlotskiProblem klotskiProblem = trafficJam.create();
@@ -32,6 +38,7 @@ public class KlotskiObstacleRegionTest extends TestCase {
     }
   }
 
+  @Test
   public void testSunshine() {
     for (Sunshine sunshine : Sunshine.values()) {
       KlotskiProblem klotskiProblem = sunshine.create();

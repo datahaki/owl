@@ -33,12 +33,12 @@ import ch.alpine.tensor.mat.DiagonalMatrix;
 import ch.alpine.tensor.mat.re.Det;
 import ch.alpine.tensor.mat.re.LinearSolve;
 import ch.alpine.tensor.qty.Degree;
-import ch.alpine.tensor.sca.ArcTan;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.Power;
 import ch.alpine.tensor.sca.Round;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Power;
+import ch.alpine.tensor.sca.pow.Sqrt;
+import ch.alpine.tensor.sca.tri.ArcTan;
 
 public final class GeometricComponent {
   private static final Scalar SCALE_FACTOR = Sqrt.FUNCTION.apply(RealScalar.TWO);
@@ -83,16 +83,16 @@ public final class GeometricComponent {
       final int mask = InputEvent.CTRL_DOWN_MASK; // 128 = 2^7
       if ((mods & mask) == 0) // ctrl pressed?
         mouseWheel += delta;
-      else //
-      if (isZoomable) {
-        Scalar factor = Power.of(SCALE_FACTOR, delta);
-        Tensor scale = DiagonalMatrix.of(factor, factor, RealScalar.ONE);
-        Tensor shift = Tensors.vector(event.getX(), event.getY());
-        shift = shift.subtract(shift.multiply(factor));
-        scale.set(shift.Get(0), 0, 2);
-        scale.set(shift.Get(1), 1, 2);
-        model2pixel = scale.dot(model2pixel);
-      }
+      else
+        if (isZoomable) {
+          Scalar factor = Power.of(SCALE_FACTOR, delta);
+          Tensor scale = DiagonalMatrix.of(factor, factor, RealScalar.ONE);
+          Tensor shift = Tensors.vector(event.getX(), event.getY());
+          shift = shift.subtract(shift.multiply(factor));
+          scale.set(shift.Get(0), 0, 2);
+          scale.set(shift.Get(1), 1, 2);
+          model2pixel = scale.dot(model2pixel);
+        }
       jComponent.repaint();
     });
     {

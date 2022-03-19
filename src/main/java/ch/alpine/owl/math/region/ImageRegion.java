@@ -6,7 +6,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -21,7 +22,7 @@ import ch.alpine.tensor.red.Times;
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
-public class ImageRegion implements Region<Tensor>, Serializable {
+public class ImageRegion implements Region<Tensor>, RegionBoundsInterface, Serializable {
   /** @param bufferedImage
    * @param range
    * @param outside
@@ -75,7 +76,8 @@ public class ImageRegion implements Region<Tensor>, Serializable {
     return range.map(Scalar::zero);
   }
 
-  public CoordinateBoundingBox box() {
+  @Override
+  public CoordinateBoundingBox coordinateBounds() {
     return CoordinateBounds.of(origin(), range());
   }
 }

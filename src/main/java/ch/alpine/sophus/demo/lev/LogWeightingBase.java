@@ -7,9 +7,9 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import ch.alpine.javax.swing.SpinnerLabel;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;

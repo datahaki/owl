@@ -141,7 +141,7 @@ public abstract class RLTrajectoryPlanner implements TrajectoryPlanner, Serializ
 
   @Override // from TrajectoryPlanner
   public final Map<Tensor, GlcNode> getDomainMap() {
-    // TODO investigate unified design
+    // TODO OWL API investigate unified design
     throw new UnsupportedOperationException();
   }
 

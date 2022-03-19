@@ -9,8 +9,8 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.math.Geodesic;
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.sym.SymLink;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

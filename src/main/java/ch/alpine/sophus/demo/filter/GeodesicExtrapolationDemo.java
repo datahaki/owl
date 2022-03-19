@@ -6,11 +6,11 @@ import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
 import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
+import ch.alpine.sophus.ext.api.BufferedImageSupplier;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophus.flt.ga.GeodesicExtrapolationFilter;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.sym.SymGeodesic;
 import ch.alpine.sophus.sym.SymLinkImage;
 import ch.alpine.sophus.sym.SymScalar;

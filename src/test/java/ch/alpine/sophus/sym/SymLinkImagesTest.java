@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.sym;
 
-import ch.alpine.tensor.sca.win.WindowFunctions;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SymLinkImagesTest extends TestCase {
+import ch.alpine.tensor.sca.win.WindowFunctions;
+
+public class SymLinkImagesTest {
+  @Test
   public void testSmoothingKernel() {
     for (WindowFunctions smoothingKernel : WindowFunctions.values())
       for (int radius = 0; radius < 5; ++radius)

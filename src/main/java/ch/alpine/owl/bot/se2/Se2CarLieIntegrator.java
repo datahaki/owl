@@ -1,15 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.lie.LieIntegrator;
-import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.r2.RotationMatrix;
-import ch.alpine.tensor.sca.Cos;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Cos;
+import ch.alpine.tensor.sca.tri.Sin;
 
 /** kinematic car model */
 public enum Se2CarLieIntegrator implements LieIntegrator {

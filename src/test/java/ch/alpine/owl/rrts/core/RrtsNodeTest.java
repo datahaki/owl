@@ -1,12 +1,16 @@
 // code by jph
 package ch.alpine.owl.rrts.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RrtsNodeTest extends TestCase {
+public class RrtsNodeTest {
+  @Test
   public void testSome() {
     RrtsNode root = RrtsNode.createRoot(Tensors.vector(0), RealScalar.ZERO);
     RrtsNode n1 = root.connectTo(Tensors.vector(1), RealScalar.of(10));
@@ -27,6 +31,7 @@ public class RrtsNodeTest extends TestCase {
     // assertEquals(nm.costFromRoot(), RealScalar.of(0.5));
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> RrtsNode.createRoot(null, RealScalar.ZERO));
     AssertFail.of(() -> RrtsNode.createRoot(Tensors.vector(1, 2, 3), null));

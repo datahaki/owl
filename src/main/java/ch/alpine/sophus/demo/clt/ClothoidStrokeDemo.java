@@ -26,7 +26,7 @@ import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.sca.Exp;
+import ch.alpine.tensor.sca.exp.Exp;
 
 /** The demo shows that when using LaneRiesenfeldCurveSubdivision(Clothoid.INSTANCE, degree)
  * in order to connect two points p and q, then the (odd) degree has little influence on the

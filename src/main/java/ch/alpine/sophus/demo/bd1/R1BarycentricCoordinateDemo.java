@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.bd1;
 
-import ch.alpine.sophus.demo.opt.MixedLogWeightings;
+import ch.alpine.sophus.ext.api.MixedLogWeightings;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

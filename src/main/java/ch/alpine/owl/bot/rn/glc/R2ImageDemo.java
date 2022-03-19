@@ -28,7 +28,7 @@ import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.ext.Timing;
 
 /* package */ enum R2ImageDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     Tensor partitionScale = Tensors.vector(6, 6);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);

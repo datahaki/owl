@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 

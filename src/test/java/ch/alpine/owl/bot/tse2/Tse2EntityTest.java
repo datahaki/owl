@@ -1,9 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.AbstractMinTimeGoalManager;
@@ -27,9 +32,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
-import junit.framework.TestCase;
 
-public class Tse2EntityTest extends TestCase {
+public class Tse2EntityTest {
+  @Test
   public void testForward() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //
@@ -67,6 +72,7 @@ public class Tse2EntityTest extends TestCase {
   }
 
   @SuppressWarnings("unused")
+  @Test
   public void testGeneral() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //

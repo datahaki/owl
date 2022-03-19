@@ -1,18 +1,24 @@
 // code by jph
 package ch.alpine.owl.bot.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.awt.Color;
 import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.java.img.ImageArea;
 import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RegionRendersTest extends TestCase {
+public class RegionRendersTest {
+  @Test
   public void testSimple() {
     Tensor image = Tensors.fromString("{{1, 0, 1}}");
     BufferedImage bufferedImage = RegionRenders.image(image);

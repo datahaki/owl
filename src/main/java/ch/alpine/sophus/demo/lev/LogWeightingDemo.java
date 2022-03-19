@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.math.var.Variograms;
+import ch.alpine.sophus.math.var.VariogramFunctions;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -25,8 +25,9 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 public abstract class LogWeightingDemo extends LogWeightingBase {
   private static final Tensor BETAS = Tensors.fromString("{0, 1/2, 1, 3/2, 7/4, 2, 5/2, 3}");
   // ---
+  // TODO SOPHUS DEMO manage by reflection
   private final SpinnerLabel<Bitype> spinnerBiinvariant = new SpinnerLabel<>();
-  private final SpinnerLabel<Variograms> spinnerVariogram = SpinnerLabel.of(Variograms.values());
+  private final SpinnerLabel<VariogramFunctions> spinnerVariogram = SpinnerLabel.of(VariogramFunctions.values());
   private final SpinnerLabel<Scalar> spinnerBeta = new SpinnerLabel<>();
   private final SpinnerListener<LogWeighting> spinnerListener = new SpinnerListener<>() {
     @Override
@@ -37,20 +38,20 @@ public abstract class LogWeightingDemo extends LogWeightingBase {
         spinnerBeta.setEnabled(enabled);
       }
       if (logWeighting.equals(LogWeightings.DISTANCES)) {
-        spinnerVariogram.setValue(Variograms.POWER);
+        spinnerVariogram.setValue(VariogramFunctions.POWER);
         spinnerBeta.setValueSafe(RealScalar.of(1));
       }
       if ( //
       logWeighting.equals(LogWeightings.WEIGHTING) || //
       logWeighting.equals(LogWeightings.COORDINATE) || //
       logWeighting.equals(LogWeightings.LAGRAINATE)) {
-        spinnerVariogram.setValue(Variograms.INVERSE_POWER);
+        spinnerVariogram.setValue(VariogramFunctions.INVERSE_POWER);
         spinnerBeta.setValueSafe(RealScalar.of(2));
       }
       if ( //
       logWeighting.equals(LogWeightings.KRIGING) || //
       logWeighting.equals(LogWeightings.KRIGING_COORDINATE)) {
-        spinnerVariogram.setValue(Variograms.POWER);
+        spinnerVariogram.setValue(VariogramFunctions.POWER);
         setBitype(Bitype.HARBOR);
         spinnerBeta.setValueSafe(RationalScalar.of(3, 2));
       }

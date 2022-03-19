@@ -1,8 +1,13 @@
 // code by jph
 package ch.alpine.owl.glc.std;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -31,9 +36,9 @@ import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
-import junit.framework.TestCase;
 
-public class StandardTrajectoryPlannerTest extends TestCase {
+public class StandardTrajectoryPlannerTest {
+  @Test
   public void testSimple() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);
@@ -57,7 +62,7 @@ public class StandardTrajectoryPlannerTest extends TestCase {
     if (optional.isPresent()) {
       GlcNode goalNode = optional.get(); // <- throws exception if
       Scalar cost = goalNode.costFromRoot();
-      // FIXME abs!?
+      // FIXME OWL TEST abs!?
       Scalar lowerBound = Ramp.of(Vector2Norm.of(stateGoal.subtract(stateRoot)).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
         throw TensorRuntimeException.of(cost, lowerBound);
@@ -67,6 +72,7 @@ public class StandardTrajectoryPlannerTest extends TestCase {
     assertTrue(glcExpand.getExpandCount() < 100);
   }
 
+  @Test
   public void testSimple2() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);

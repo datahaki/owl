@@ -1,11 +1,16 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.DigitSumDivisibilityPreorder;
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
@@ -16,12 +21,12 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import ch.alpine.tensor.pdf.DiscreteUniformDistribution;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import junit.framework.TestCase;
+import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
-public class TransitiveMinTrackerTest extends TestCase {
+public class TransitiveMinTrackerTest {
+  @Test
   public void testDigestNotEmptyList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
@@ -29,6 +34,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertFalse(digitSumDivisibility.getMinElements().isEmpty());
   }
 
+  @Test
   public void testDigestNotEmptySet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
@@ -36,6 +42,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertFalse(digitSumDivisibility.getMinElements().isEmpty());
   }
 
+  @Test
   public void testPartial() {
     OrderComparator<Scalar> universalComparator = new Order<>(Scalars::divides);
     MinTracker<Scalar> divisibility = TransitiveMinTracker.of(universalComparator);
@@ -55,6 +62,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertFalse(divisibility.getMinElements().contains(RealScalar.of(6)));
   }
 
+  @Test
   public void testTotal() {
     OrderComparator<Scalar> universalComparator = ScalarTotalOrder.INSTANCE;
     MinTracker<Scalar> lessEquals = TransitiveMinTracker.of(universalComparator);
@@ -75,6 +83,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(lessEquals.getMinElements().size() == 1);
   }
 
+  @Test
   public void testWithList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
@@ -90,6 +99,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(digitSumDivisibility.getMinElements().size() == 1);
   }
 
+  @Test
   public void testWithSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
@@ -105,6 +115,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(digitSumDivisibility.getMinElements().size() == 1);
   }
 
+  @Test
   public void testDuplicateEntriesList() throws ClassNotFoundException, IOException {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = //
@@ -115,6 +126,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(digitSumDivisibility.getMinElements().size() == 1);
   }
 
+  @Test
   public void testDuplicateEntriesSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
@@ -124,6 +136,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(digitSumDivisibility.getMinElements().size() == 1);
   }
 
+  @Test
   public void testLexicographic() throws ClassNotFoundException, IOException {
     List<OrderComparator<? extends Object>> comparators = Collections.nCopies(2, ScalarTotalOrder.INSTANCE);
     Tensor tensorX = Tensors.fromString("{1, 2}");
@@ -157,6 +170,7 @@ public class TransitiveMinTrackerTest extends TestCase {
     assertTrue(collection2.containsAll(collection1));
   }
 
+  @Test
   public void testPermutations() {
     _checkPermutations(() -> TransitiveMinTracker.of(DigitSumDivisibilityPreorder.SCALAR));
   }

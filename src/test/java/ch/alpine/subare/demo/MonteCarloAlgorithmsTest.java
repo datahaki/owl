@@ -4,14 +4,16 @@ package ch.alpine.subare.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.subare.analysis.DiscreteModelErrorAnalysis;
 import ch.alpine.subare.analysis.MonteCarloAlgorithms;
 import ch.alpine.subare.analysis.MonteCarloExamples;
 import ch.alpine.subare.core.MonteCarloInterface;
 import ch.alpine.subare.core.util.DiscreteQsa;
-import junit.framework.TestCase;
 
-public class MonteCarloAlgorithmsTest extends TestCase {
+public class MonteCarloAlgorithmsTest {
+  @Test
   public void testExamplesWithSarsa() {
     checkExampleWithSarsa(MonteCarloExamples.AIRPORT, true);
     checkExampleWithSarsa(MonteCarloExamples.CLIFFWALK, false);
@@ -49,6 +51,7 @@ public class MonteCarloAlgorithmsTest extends TestCase {
       monteCarloAlgorithms.analyseNTimes(monteCarloInterface, batches, optimalQsa, errorAnalysis, 1);
   }
 
+  @Test
   public void testExamplesWithSeveralTrials() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
@@ -69,6 +72,7 @@ public class MonteCarloAlgorithmsTest extends TestCase {
     }
   }
 
+  @Test
   public void testExamplesWithSeveralErrorAnalysis() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
@@ -89,6 +93,7 @@ public class MonteCarloAlgorithmsTest extends TestCase {
       monteCarloAlgorithms.analyseNTimes(monteCarloInterface, batches, optimalQsa, errorAnalysis, 2);
   }
 
+  @Test
   public void testExamplesWithMC() {
     checkExampleWithMC(MonteCarloExamples.AIRPORT);
     checkExampleWithMC(MonteCarloExamples.GAMBLER_20);
@@ -113,6 +118,7 @@ public class MonteCarloAlgorithmsTest extends TestCase {
       monteCarloAlgorithms.analyseNTimes(monteCarloInterface, batches, optimalQsa, errorAnalysis, 1);
   }
 
+  @Test
   public void testVirtualStationExample() {
     MonteCarloExamples example = MonteCarloExamples.VIRTUALSTATIONS;
     System.out.println("Testing: " + example.toString());

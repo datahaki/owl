@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.math.flow;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
@@ -8,9 +10,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class RungeKutta4IntegratorTest extends TestCase {
+public class RungeKutta4IntegratorTest {
+  @Test
   public void testSe2Rk() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor u = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").map(UnitSystem.SI());

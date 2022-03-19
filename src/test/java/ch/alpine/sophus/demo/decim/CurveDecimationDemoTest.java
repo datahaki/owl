@@ -1,16 +1,19 @@
 // code by jph
 package ch.alpine.sophus.demo.decim;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
-import junit.framework.TestCase;
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class CurveDecimationDemoTest extends TestCase {
+public class CurveDecimationDemoTest {
+  @Test
   public void testSimpleV1() {
     AbstractDemoHelper.offscreen(new CurveDecimationDemo(GokartPoseDataV1.INSTANCE));
   }
 
+  @Test
   public void testSimpleV2() {
     AbstractDemoHelper.offscreen(new CurveDecimationDemo(GokartPoseDataV2.INSTANCE));
   }

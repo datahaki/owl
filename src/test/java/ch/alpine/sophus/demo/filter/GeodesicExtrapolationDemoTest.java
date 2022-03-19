@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.filter;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class GeodesicExtrapolationDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class GeodesicExtrapolationDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new GeodesicExtrapolationDemo());
   }

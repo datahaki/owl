@@ -1,6 +1,12 @@
 // code by jph
 package ch.alpine.owl.data.tree;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.HeuristicFunction;
@@ -10,9 +16,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class NodesTest extends TestCase {
+public class NodesTest {
+  @Test
   public void testGetParent() {
     HeuristicFunction heuristicFunction = new HeuristicFunction() {
       @Override
@@ -28,6 +34,7 @@ public class NodesTest extends TestCase {
     assertEquals(Nodes.getParent(node2, 2), node1);
   }
 
+  @Test
   public void testNotConnected() {
     GlcNode root1 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     assertTrue(Nodes.areConnected(root1, root1));
@@ -35,6 +42,7 @@ public class NodesTest extends TestCase {
     assertFalse(Nodes.areConnected(root1, root2));
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> Nodes.rootFrom(null));
     AssertFail.of(() -> Nodes.listFromRoot(null));

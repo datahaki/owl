@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.misc;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class PolygonClipDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class PolygonClipDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new PolygonClipDemo());
   }

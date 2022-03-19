@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Sin;
 
 /** ApPlannerConstraint sets the constraints for the airplane simulation.
  * 

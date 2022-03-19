@@ -1,8 +1,15 @@
 // code by jph, gjoel
 package ch.alpine.owl.math.pursuit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Optional;
 
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -15,11 +22,11 @@ import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class SphereCurveIntersectionTest extends TestCase {
+public class SphereCurveIntersectionTest {
+  @Test
   public void testString() {
-    Tensor curve = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}").unmodifiable();
+    Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.string(RotateLeft.of(curve, index));
@@ -32,8 +39,9 @@ public class SphereCurveIntersectionTest extends TestCase {
     }
   }
 
+  @Test
   public void testCyclic() {
-    Tensor curve = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}").unmodifiable();
+    Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));
@@ -44,6 +52,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     }
   }
 
+  @Test
   public void testQuantity() {
     Tensor curve = Tensors.fromString("{{0[m], 0[m]}, {1[m], 0[m]}, {1[m], 1[m]}, {0[m], 1[m]}}").unmodifiable();
     CurveIntersection curveIntersection = new SphereCurveIntersection(Quantity.of(RationalScalar.HALF, "m"));
@@ -56,6 +65,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     }
   }
 
+  @Test
   public void testPoint() {
     Tensor curve = Tensors.fromString("{{1, 0}}").unmodifiable();
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
@@ -63,6 +73,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     assertFalse(curveIntersection.string(curve).isPresent());
   }
 
+  @Test
   public void testEmpty() {
     Tensor curve = Tensors.empty().unmodifiable();
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
@@ -70,6 +81,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     assertFalse(curveIntersection.string(curve).isPresent());
   }
 
+  @Test
   public void testOne() {
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     Tensor curve = Tensors.fromString("{{-1}, {0}, {1}, {2}, {3}}").unmodifiable();
@@ -82,6 +94,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     }
   }
 
+  @Test
   public void testThree() {
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     Tensor curve = Tensors.fromString("{{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {0, 1, 0}}").unmodifiable();
@@ -94,6 +107,7 @@ public class SphereCurveIntersectionTest extends TestCase {
     }
   }
 
+  @Test
   public void testAssisted() {
     Tensor base = UnitVector.of(3, 0);
     Tensor curve = TensorProduct.of(Range.of(0, 500), base);

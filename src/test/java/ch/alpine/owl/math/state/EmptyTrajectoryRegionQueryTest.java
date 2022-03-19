@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.math.state;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class EmptyTrajectoryRegionQueryTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class EmptyTrajectoryRegionQueryTest {
+  @Test
   public void testSimple() {
     assertFalse(EmptyTrajectoryRegionQuery.INSTANCE.firstMember(null).isPresent());
     assertFalse(EmptyTrajectoryRegionQuery.INSTANCE.test(null));

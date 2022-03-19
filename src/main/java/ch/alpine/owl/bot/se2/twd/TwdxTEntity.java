@@ -10,7 +10,7 @@ import ch.alpine.tensor.Scalar;
 /** two wheel drive entity with state space augmented with time */
 /* package */ class TwdxTEntity extends TwdEntity {
   public TwdxTEntity(TwdDuckieFlows twdConfig, StateTime stateTime) {
-    super(stateTime, new TwdTrajectoryControl(), twdConfig); // TODO choice of traj ctrl was not thorough
+    super(stateTime, new TwdTrajectoryControl(), twdConfig); // TODO OWL API choice of traj ctrl was not thorough
   }
 
   @Override

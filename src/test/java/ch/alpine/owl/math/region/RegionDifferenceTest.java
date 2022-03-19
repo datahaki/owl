@@ -1,13 +1,18 @@
 // code by jph
 package ch.alpine.owl.math.region;
 
-import ch.alpine.sophus.math.Region;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RegionDifferenceTest extends TestCase {
+public class RegionDifferenceTest {
+  @Test
   public void testSimple() {
     Region<Tensor> region = RegionDifference.of( //
         new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), //

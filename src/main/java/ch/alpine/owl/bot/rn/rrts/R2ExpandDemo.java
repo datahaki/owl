@@ -28,13 +28,13 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
   ;
   public static void main(String[] args) throws Exception {
     int wid = 7;
-    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures("r2rrts.gif"), 250, TimeUnit.MILLISECONDS)) {
       OwlFrame owlFrame = OwlGui.start();

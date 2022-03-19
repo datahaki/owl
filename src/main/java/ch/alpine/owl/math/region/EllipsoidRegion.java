@@ -3,7 +3,7 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.math.RegionBoundsInterface;
+import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

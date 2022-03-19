@@ -1,20 +1,26 @@
 // code by astoll, jph
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class SingleEboTrackerTest extends TestCase {
+public class SingleEboTrackerTest {
   private static void _checkSimple(AbstractEboTracker<Integer> LSMT1) {
     Tensor x = Tensors.fromString("{1, 2, 2}");
     LSMT1.digest(1, x);
     assertFalse(LSMT1.getCandidateSet().isEmpty());
   }
 
+  @Test
   public void testDigestSimple() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     _checkSimple((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
@@ -34,6 +40,7 @@ public class SingleEboTrackerTest extends TestCase {
     assertTrue(LSMT1.digest(5, w).contains(5));
   }
 
+  @Test
   public void testDigest() {
     Tensor slacks = Tensors.fromString("{2}");
     _checkDigest((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
@@ -80,11 +87,13 @@ public class SingleEboTrackerTest extends TestCase {
         && lexSemiMinTracker.getCandidateKeys().contains(3));
   }
 
+  @Test
   public void testCandidateSet() {
     Tensor slacks = Tensors.vector(2, 2, 2);
     _checkCS((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
 
+  @Test
   public void testFailNull() {
     AssertFail.of(() -> SingleEboTracker.withList(null));
   }

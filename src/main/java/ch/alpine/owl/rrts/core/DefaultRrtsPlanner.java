@@ -48,7 +48,7 @@ public class DefaultRrtsPlanner implements RrtsPlanner {
   @Override // from ExpandInterface
   public void expand(RrtsNode node) { // node is not used, instead new random sample
     rrts.insertAsNode(RandomSample.of(spaceSample), K_NEAREST);
-    if (queue.isEmpty()) { // TODO RRTS logic not final
+    if (queue.isEmpty()) { // TODO OWL ALG RRTS logic not final
       rrts.insertAsNode(RandomSample.of(goalSample), K_NEAREST).ifPresent(queue::add);
     }
   }

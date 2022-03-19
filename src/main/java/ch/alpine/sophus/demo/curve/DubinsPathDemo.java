@@ -26,7 +26,7 @@ import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
 import ch.alpine.sophus.crv.dubins.DubinsRadius;
 import ch.alpine.sophus.crv.dubins.DubinsType;
 import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;
-import ch.alpine.sophus.gds.Se2CoveringDisplay;
+import ch.alpine.sophus.ext.dis.Se2CoveringDisplay;
 import ch.alpine.sophus.lie.se2c.Se2CoveringGeodesic;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.tensor.DeterminateScalarQ;
@@ -117,7 +117,7 @@ import ch.alpine.tensor.sca.Clips;
           ClothoidTransition.of(CLOTHOID_BUILDER, START, mouse);
       Tensor tensor = clothoidTransition.linearized(RealScalar.of(0.1));
       pathRenderClothoid.setCurve(tensor, false).render(geometricLayer, graphics);
-      // TODO
+      // TODO OWL ALG
     }
     { // draw least curved path
       graphics.setColor(COLOR_DATA_INDEXED.getColor(2));

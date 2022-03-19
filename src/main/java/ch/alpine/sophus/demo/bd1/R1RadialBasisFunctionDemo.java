@@ -8,7 +8,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.gds.R2Display;
+import ch.alpine.sophus.ext.dis.R2Display;
 import ch.alpine.sophus.itp.CrossAveraging;
 import ch.alpine.sophus.itp.RadialBasisFunctionInterpolation;
 import ch.alpine.sophus.lie.rn.RnBiinvariantMean;
@@ -18,7 +18,7 @@ import ch.alpine.tensor.alg.Sort;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-/** TODO investigate, this produces some nice results for kriging+metric+power */
+/** TODO OWL ALG investigate, this produces some nice results for kriging+metric+power */
 /* package */ class R1RadialBasisFunctionDemo extends A1AveragingDemo {
   public R1RadialBasisFunctionDemo() {
     super(R2Display.INSTANCE);
@@ -51,7 +51,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
         try {
           TensorUnaryOperator weightingInterface = operator(sequence);
           TensorUnaryOperator operator = //
-              CrossAveraging.of(p -> weightingInterface.apply(p), RnBiinvariantMean.INSTANCE, funceva);
+              new CrossAveraging(weightingInterface, RnBiinvariantMean.INSTANCE, funceva);
           Tensor result = Tensor.of(domain.stream().map(Tensors::of).map(operator));
           new PathRender(Color.RED, 1.25f) //
               .setCurve(Transpose.of(Tensors.of(domain, result)), false) //

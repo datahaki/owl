@@ -3,7 +3,7 @@ package ch.alpine.sophus.demo.usr;
 
 import java.io.IOException;
 
-import ch.alpine.sophus.fit.RigidMotionFit;
+import ch.alpine.sophus.lie.se.RigidMotionFit;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -16,12 +16,12 @@ import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.NormalDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.red.Mean;
-import ch.alpine.tensor.sca.ArcTan;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
+import ch.alpine.tensor.sca.tri.ArcTan;
 
 /* package */ class RigidMotionFitImage {
   private static Tensor shufflePoints(int n) {

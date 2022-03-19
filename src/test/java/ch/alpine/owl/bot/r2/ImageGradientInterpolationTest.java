@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -11,9 +15,9 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.io.ResourceData;
-import junit.framework.TestCase;
 
-public class ImageGradientInterpolationTest extends TestCase {
+public class ImageGradientInterpolationTest {
+  @Test
   public void testLinear() {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
@@ -35,6 +39,7 @@ public class ImageGradientInterpolationTest extends TestCase {
     }
   }
 
+  @Test
   public void testNearest() {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
@@ -57,6 +62,7 @@ public class ImageGradientInterpolationTest extends TestCase {
     }
   }
 
+  @Test
   public void testSerialize() throws Exception {
     Tensor range = Tensors.vector(9, 6.5);
     final Tensor image = ResourceData.of("/io/delta_uxy.png");

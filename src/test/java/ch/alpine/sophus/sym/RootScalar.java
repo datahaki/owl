@@ -19,7 +19,7 @@ import ch.alpine.tensor.api.NInterface;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.N;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** Q[Sqrt[n]] */
 public class RootScalar extends AbstractScalar implements //
@@ -54,7 +54,7 @@ public class RootScalar extends AbstractScalar implements //
   @Override // from Scalar
   public Scalar multiply(Scalar scalar) {
     if (scalar instanceof RealScalar)
-      // TODO check for exact precision
+      // TODO OWL ALG check for exact precision
       return new RootScalar(re.multiply(scalar), im.multiply(scalar), ba);
     if (scalar instanceof RootScalar) {
       RootScalar rootScalar = (RootScalar) scalar;

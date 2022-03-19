@@ -17,10 +17,10 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.api.BijectionFamily;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
-import ch.alpine.sophus.math.BijectionFamily;
-import ch.alpine.sophus.math.Region;
 import ch.alpine.sophus.math.noise.NativeContinuousNoise;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
@@ -29,8 +29,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.lie.r2.AngleVector;
-import ch.alpine.tensor.sca.Cos;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Cos;
+import ch.alpine.tensor.sca.tri.Sin;
 
 public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(1.2);

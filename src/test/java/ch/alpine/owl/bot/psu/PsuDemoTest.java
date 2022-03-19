@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.data.tree.NodesAssert;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -14,9 +19,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import junit.framework.TestCase;
 
-public class PsuDemoTest extends TestCase {
+public class PsuDemoTest {
+  @Test
   public void testFindGoal() {
     GoalInterface goalInterface = PsuGoalManager.of( //
         PsuMetric.INSTANCE, Tensors.vector(Math.PI * 0.7, 0.5), RealScalar.of(0.3));

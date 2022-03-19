@@ -9,18 +9,18 @@ import javax.swing.JToggleButton;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.api.TensorMapping;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.LieGroupOps;
-import ch.alpine.sophus.math.TensorMapping;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Timing;
 
-// TODO refactor with S2AnimationDemo
+// TODO OWL ALG refactor with S2AnimationDemo
 /* package */ class Se2CoveringAnimationDemo extends LogWeightingDemo {
   private final JToggleButton jToggleAxes = new JToggleButton("axes");
   private final JToggleButton jToggleAnimate = new JToggleButton("animate");

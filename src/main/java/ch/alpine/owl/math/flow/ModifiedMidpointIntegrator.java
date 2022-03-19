@@ -36,6 +36,6 @@ public class ModifiedMidpointIntegrator implements Integrator, Serializable {
       x0 = xm;
       xm = x1;
     }
-    return x0.add(stateSpaceModel.f(xm, u).multiply(h)); // TODO line almost identical with MidpointIntegrator !?
+    return x0.add(stateSpaceModel.f(xm, u).multiply(h)); // TODO OWL ALG line almost identical with MidpointIntegrator !?
   }
 }

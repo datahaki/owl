@@ -15,14 +15,14 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.javax.swing.SpinnerLabel;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.gds.Se2Display;
+import ch.alpine.sophus.api.TensorMapping;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.ext.dis.Se2Display;
 import ch.alpine.sophus.hs.VectorLogManifold;
 import ch.alpine.sophus.lie.LieGroupOps;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.sophus.math.TensorMapping;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -31,7 +31,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Clips;
 
 /* package */ class KNearestDemo extends LogWeightingDemo {

@@ -1,22 +1,29 @@
 // code astoll
 package ch.alpine.owl.glc.rl2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class RelaxedGlobalQueueTest extends TestCase {
+public class RelaxedGlobalQueueTest {
+  @Test
   public void testSimple() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
     assertTrue(rlQueue.collection().isEmpty());
   }
 
+  @Test
   public void testAdd() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
@@ -42,6 +49,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
     assertTrue(rlQueue.collection().contains(node5));
   }
 
+  @Test
   public void testPeek() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
@@ -63,6 +71,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
     assertEquals(rlQueue.collection().size(), 5);
   }
 
+  @Test
   public void testPoll() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
@@ -89,6 +98,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
     assertTrue(rlQueue.collection().isEmpty());
   }
 
+  @Test
   public void testRemoveAll() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue relaxedGlobalQueue = new RelaxedGlobalQueue(slacks);
@@ -121,6 +131,7 @@ public class RelaxedGlobalQueueTest extends TestCase {
   }
 
   // -------------- Test for abstract class RelaxedPriorityQueue --------------------
+  @Test
   public void testRemove() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue relaxedGlobalQueue = new RelaxedGlobalQueue(slacks);

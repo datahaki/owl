@@ -1,16 +1,20 @@
 // code by gjoel, jph
 package ch.alpine.owl.math.pursuit;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Optional;
 
-import ch.alpine.sophus.math.Extract2D;
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class IntersectionEntryFinderTest extends TestCase {
+public class IntersectionEntryFinderTest {
+  @Test
   public void testSE2() {
     Tensor goalSE2 = Tensors.vector(3, 1, 0);
     Tensor goal2D = Extract2D.FUNCTION.apply(goalSE2);
@@ -20,6 +24,7 @@ public class IntersectionEntryFinderTest extends TestCase {
     Chop._01.requireClose(goalSE2, waypointSE2.get());
   }
 
+  @Test
   public void test2D() {
     Tensor goalSE2 = Tensors.vector(3, 1, 0);
     Tensor goal2D = Extract2D.FUNCTION.apply(goalSE2);
@@ -30,8 +35,9 @@ public class IntersectionEntryFinderTest extends TestCase {
     Chop._01.requireClose(goal2D, waypoint2D.get());
   }
 
+  @Test
   public void testSweep1() {
-    // TODO
+    // TODO OWL TEST
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_SE2;
     // Tensor points = Tensor.of(finder.sweep(TrajectoryEntryFinderTest.WAYPOINTS).map(TrajectoryEntry::point).map(Optional::get));
     // Tensor distances = Tensor.of(TrajectoryEntryFinderTest.WAYPOINTS.stream().map(Extract2D.FUNCTION).map(Vector2Norm::of));
@@ -41,8 +47,9 @@ public class IntersectionEntryFinderTest extends TestCase {
     // assertEquals(TrajectoryEntryFinderTest.WAYPOINTS.length(), uniques.size());
   }
 
+  @Test
   public void testSweep2() {
-    // TODO
+    // TODO OWL TEST
     // Tensor waypoints = Tensors.fromString("{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}}");
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_RN;
     // Tensor swept = Tensor.of(finder.sweep(waypoints).map(TrajectoryEntry::point).map(Optional::get));

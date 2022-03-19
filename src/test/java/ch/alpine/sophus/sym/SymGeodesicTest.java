@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.sophus.sym;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.stream.IntStream;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
 import ch.alpine.tensor.RationalScalar;
@@ -11,9 +15,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.win.WindowFunctions;
-import junit.framework.TestCase;
 
-public class SymGeodesicTest extends TestCase {
+public class SymGeodesicTest {
+  @Test
   public void testSimple() {
     Scalar s1 = SymScalar.leaf(1);
     Scalar s2 = SymScalar.leaf(2);

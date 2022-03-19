@@ -22,11 +22,11 @@ import ch.alpine.sophus.decim.LineDistances;
 import ch.alpine.sophus.demo.io.GokartPoseData;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
+import ch.alpine.sophus.ext.api.AbstractGeodesicDatasetDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.CenterFilter;
 import ch.alpine.sophus.flt.ga.GeodesicCenter;
-import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.RationalScalar;
@@ -38,10 +38,10 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.red.Nest;
-import ch.alpine.tensor.sca.Power;
+import ch.alpine.tensor.sca.pow.Power;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-/* package */ class CurveDecimationDemo extends GeodesicDatasetDemo {
+/* package */ class CurveDecimationDemo extends AbstractGeodesicDatasetDemo {
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);
   private static final Color COLOR_SHAPE = new Color(160, 160, 160, 160);
   private static final Color COLOR_RECON = new Color(128, 128, 128, 255);

@@ -13,12 +13,12 @@ import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 
-// TODO the visualization of the demo is poor
+// TODO OWL ALG the visualization of the demo is poor
 public class R2xTNoiseAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(0.5);
 

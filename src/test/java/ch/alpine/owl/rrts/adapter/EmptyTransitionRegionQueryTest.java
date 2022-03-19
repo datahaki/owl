@@ -1,9 +1,12 @@
 // code by jph
 package ch.alpine.owl.rrts.adapter;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EmptyTransitionRegionQueryTest extends TestCase {
+import org.junit.jupiter.api.Test;
+
+public class EmptyTransitionRegionQueryTest {
+  @Test
   public void testSimple() {
     assertTrue(EmptyTransitionRegionQuery.INSTANCE.isDisjoint(null));
   }

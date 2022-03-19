@@ -1,11 +1,16 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class KlotskiModelTest extends TestCase {
+public class KlotskiModelTest {
+  @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
@@ -24,6 +29,7 @@ public class KlotskiModelTest extends TestCase {
     }
   }
 
+  @Test
   public void testMove() {
     KlotskiProblem klotskiProblem = Huarong.SNOWDROP.create();
     Tensor board = klotskiProblem.startState();

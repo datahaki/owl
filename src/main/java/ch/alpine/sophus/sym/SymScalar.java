@@ -6,7 +6,6 @@ import java.io.Serializable;
 import ch.alpine.sophus.lie.rn.RnGeodesic;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.ScalarQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
@@ -44,7 +43,7 @@ public class SymScalar extends ScalarAdapter implements Serializable {
   }
 
   public boolean isScalar() {
-    return ScalarQ.of(tensor);
+    return tensor instanceof Scalar;
   }
 
   public SymScalar getP() {

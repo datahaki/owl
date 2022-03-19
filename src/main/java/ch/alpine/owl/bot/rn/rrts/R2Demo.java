@@ -23,13 +23,13 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
   ;
   static OwlFrame show() {
     int wid = 7;
-    CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
-    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
+    RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.polygon1();
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
     for (int count = 0; count < 1000; ++count)
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());

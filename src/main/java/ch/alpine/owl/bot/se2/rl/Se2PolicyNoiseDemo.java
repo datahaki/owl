@@ -7,7 +7,7 @@ import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.subare.core.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

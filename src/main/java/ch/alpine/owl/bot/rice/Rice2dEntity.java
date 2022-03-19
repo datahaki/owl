@@ -21,7 +21,7 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -73,7 +73,7 @@ import ch.alpine.tensor.lie.r2.AngleVector;
     super.render(geometricLayer, graphics);
     treeRender.render(geometricLayer, graphics);
     {
-      // FIXME this is the wrong place to draw the mouse
+      // FIXME OWL API this is the wrong place to draw the mouse
       // Tensor xya = geometricLayer.getMouseSe2State();
       // geometricLayer.pushMatrix(Se2Matrix.of(xya));
       // graphics.setColor(new Color(0, 128, 255, 192));

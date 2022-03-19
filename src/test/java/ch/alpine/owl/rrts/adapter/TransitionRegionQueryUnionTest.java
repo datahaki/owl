@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.rrts.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.math.region.BallRegion;
@@ -10,9 +15,9 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class TransitionRegionQueryUnionTest extends TestCase {
+public class TransitionRegionQueryUnionTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     TransitionRegionQuery trq1 = //
         new SampledTransitionRegionQuery(new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), RealScalar.of(0.1));

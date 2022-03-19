@@ -22,11 +22,11 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ImageRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.javax.swing.SpinnerLabel;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.GeodesicArrayPlot;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.arp.HsArrayPlot;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.hs.Biinvariant;
 import ch.alpine.sophus.hs.Biinvariants;
 import ch.alpine.sophus.hs.MetricBiinvariant;
@@ -42,8 +42,8 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.re.Inverse;
-import ch.alpine.tensor.pdf.DiscreteUniformDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
 /* package */ class ClassificationImageDemo extends LogWeightingDemo implements ActionListener {
   private static final int REFINEMENT = 160;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 
   private static List<Biinvariant> distinct() {
     return Arrays.asList( //
-        MetricBiinvariant.EUCLIDEAN, // FIXME should be retrieved from bitype
+        MetricBiinvariant.EUCLIDEAN, // FIXME OWL ALG should be retrieved from bitype
         Biinvariants.LEVERAGES, //
         Biinvariants.GARDEN);
   }
@@ -76,11 +76,11 @@ import ch.alpine.tensor.pdf.RandomVariate;
       spinnerLogWeighting.addSpinnerListener(logWeighting -> {
         if (logWeighting.equals(LogWeightings.DISTANCES))
           spinnerLabels.setValue(Labels.ARG_MIN);
-        else //
-        if ( //
-        logWeighting.equals(LogWeightings.WEIGHTING) || //
-        logWeighting.equals(LogWeightings.COORDINATE))
-          spinnerLabels.setValue(Labels.ARG_MAX);
+        else
+          if ( //
+          logWeighting.equals(LogWeightings.WEIGHTING) || //
+          logWeighting.equals(LogWeightings.COORDINATE))
+            spinnerLabels.setValue(Labels.ARG_MAX);
       });
       spinnerLogWeighting.addSpinnerListener(v -> recompute());
     }
@@ -152,7 +152,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
   public void recompute() {
     System.out.println("recomp");
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
+    HsArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
     Labels labels = Objects.requireNonNull(spinnerLabels.getValue());
     Objects.requireNonNull(vector);
     Classification classification = labels.apply(vector);
@@ -206,7 +206,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
           sequence);
       System.out.print("computing " + biinvariant);
       ManifoldDisplay manifoldDisplay = manifoldDisplay();
-      GeodesicArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
+      HsArrayPlot geodesicArrayPlot = manifoldDisplay.geodesicArrayPlot();
       Classification classification = spinnerLabels.getValue().apply(vector);
       ColorDataLists colorDataLists = spinnerColor.getValue();
       ColorDataIndexed colorDataIndexed = colorDataLists.strict();

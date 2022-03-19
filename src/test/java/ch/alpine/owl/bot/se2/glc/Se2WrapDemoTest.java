@@ -1,6 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.se2.Se2CoveringWrap;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -11,9 +16,9 @@ import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class Se2WrapDemoTest extends TestCase {
+public class Se2WrapDemoTest {
+  @Test
   public void testSe2Wrap() {
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap( //
         Se2WrapDemo.createPlanner(Se2Wrap.INSTANCE, So2Region.periodic(RealScalar.ZERO, RealScalar.of(0.3))));
@@ -27,6 +32,7 @@ public class Se2WrapDemoTest extends TestCase {
     HeuristicAssert.check(trajectoryPlanner);
   }
 
+  @Test
   public void testSe2CoveringWrap() {
     TrajectoryPlanner trajectoryPlanner = //
         CheckedTrajectoryPlanner.wrap(Se2WrapDemo.createPlanner(Se2CoveringWrap.INSTANCE, So2Region.covering(RealScalar.ZERO, RealScalar.of(0.3))));

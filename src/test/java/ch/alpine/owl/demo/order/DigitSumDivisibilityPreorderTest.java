@@ -1,12 +1,16 @@
 // code by astoll
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.RealScalar;
-import junit.framework.TestCase;
 
-public class DigitSumDivisibilityPreorderTest extends TestCase {
+public class DigitSumDivisibilityPreorderTest {
+  @Test
   public void testEquals() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(321, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 10001);
@@ -18,11 +22,13 @@ public class DigitSumDivisibilityPreorderTest extends TestCase {
     assertTrue(preorderComparison4.equals(OrderComparison.INDIFFERENT));
   }
 
+  @Test
   public void testEqualsScalar() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.SCALAR.compare(RealScalar.of(321), RealScalar.of(6));
     assertTrue(preorderComparison1.equals(OrderComparison.INDIFFERENT));
   }
 
+  @Test
   public void testGreaterEqualsOnly() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(372, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(44, 10001);
@@ -34,6 +40,7 @@ public class DigitSumDivisibilityPreorderTest extends TestCase {
     assertTrue(preorderComparison4.equals(OrderComparison.STRICTLY_SUCCEEDS));
   }
 
+  @Test
   public void testLessEqualsOnly() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(1, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(4, 70001);
@@ -45,6 +52,7 @@ public class DigitSumDivisibilityPreorderTest extends TestCase {
     assertTrue(preorderComparison4.equals(OrderComparison.STRICTLY_PRECEDES));
   }
 
+  @Test
   public void testIncomparable() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 3);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(4, 80001);
@@ -56,6 +64,7 @@ public class DigitSumDivisibilityPreorderTest extends TestCase {
     assertTrue(preorderComparison4.equals(OrderComparison.INCOMPARABLE));
   }
 
+  @Test
   public void testNegativeAndZeroCase() {
     AssertFail.of(() -> DigitSumDivisibilityPreorder.INTEGER.compare(0, 3));
     AssertFail.of(() -> DigitSumDivisibilityPreorder.INTEGER.compare(-3, 3));

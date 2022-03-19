@@ -16,16 +16,16 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
-import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.AbstractGeodesicDatasetDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2c.Se2CoveringExponential;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.Hermite3Filter;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ class HermiteDatasetFilterDemo extends GeodesicDatasetDemo {
+/* package */ class HermiteDatasetFilterDemo extends AbstractGeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);

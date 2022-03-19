@@ -1,9 +1,15 @@
 // code by astoll
 package ch.alpine.owl.glc.rl2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.VectorScalar;
@@ -12,9 +18,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import junit.framework.TestCase;
 
-public class StandardRelaxedLexicographicPlannerTest extends TestCase {
+public class StandardRelaxedLexicographicPlannerTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = Serialization.copy(TestHelper.createPlanner());
     Objects.requireNonNull(relaxedTrajectoryPlanner.getStateIntegrator());
@@ -30,6 +36,7 @@ public class StandardRelaxedLexicographicPlannerTest extends TestCase {
     assertFalse(RelaxedDebugUtils.allNodes(relaxedTrajectoryPlanner).isEmpty());
   }
 
+  @Test
   public void testAddToGlobal() {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = TestHelper.createPlanner();
     Tensor state = Tensors.vector(10, 10);
@@ -41,6 +48,7 @@ public class StandardRelaxedLexicographicPlannerTest extends TestCase {
     assertTrue(relaxedTrajectoryPlanner.getQueue().contains(node2));
   }
 
+  @Test
   public void testRemoveChildren() {
     StandardRelaxedLexicographicPlanner relaxedTrajectoryPlanner = (StandardRelaxedLexicographicPlanner) TestHelper.createPlanner();
     Tensor state = Tensors.vector(10, 10);

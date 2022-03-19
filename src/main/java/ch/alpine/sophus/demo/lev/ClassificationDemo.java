@@ -11,17 +11,17 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
-import ch.alpine.sophus.demo.opt.LogWeighting;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.LogWeighting;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
-import ch.alpine.tensor.pdf.DiscreteUniformDistribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.sca.Sqrt;
+import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ class ClassificationDemo extends AbstractHoverDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED_O = ColorDataLists._097.cyclic();
@@ -37,11 +37,11 @@ import ch.alpine.tensor.sca.Sqrt;
         public void actionPerformed(LogWeighting logWeighting) {
           if (logWeighting.equals(LogWeightings.DISTANCES))
             spinnerLabels.setValue(Labels.ARG_MIN);
-          else //
-          if ( //
-          logWeighting.equals(LogWeightings.WEIGHTING) || //
-          logWeighting.equals(LogWeightings.COORDINATE))
-            spinnerLabels.setValue(Labels.ARG_MAX);
+          else
+            if ( //
+            logWeighting.equals(LogWeightings.WEIGHTING) || //
+            logWeighting.equals(LogWeightings.COORDINATE))
+              spinnerLabels.setValue(Labels.ARG_MAX);
         }
       };
       spinnerLogWeighting.addSpinnerListener(spinnerListener);

@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class DeltaxTAnimationDemoTest extends TestCase {
+import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+
+public class DeltaxTAnimationDemoTest {
+  @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new DeltaxTAnimationDemo());
   }

@@ -1,11 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.util;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.MatrixQ;
-import junit.framework.TestCase;
 
-public class StreetScenarioDataTest extends TestCase {
+public class StreetScenarioDataTest {
+  @Test
   public void testLoad() {
     for (StreetScenario streetScenario : StreetScenario.values())
       try {

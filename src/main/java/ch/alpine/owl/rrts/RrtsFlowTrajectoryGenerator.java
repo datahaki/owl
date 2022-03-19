@@ -17,8 +17,8 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
 import ch.alpine.owl.rrts.core.TransitionWrap;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.math.AdjacentDistances;
-import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -75,7 +75,7 @@ import ch.alpine.tensor.sca.Sign;
         ti = ti.add(spacing.Get(i));
         StateTime stateTime = new StateTime(samples.get(i), ti);
         StateTime orig = Lists.last(trajectory).stateTime();
-        // TODO GJOEL this boolean expression appears twice => extract to function
+        // TODO OWL ALG this boolean expression appears twice => extract to function
         Tensor u = (transition instanceof DirectedTransition && !((DirectedTransition) transition).isForward) //
             ? uBetween.apply(stateTime, orig) //
             : uBetween.apply(orig, stateTime);

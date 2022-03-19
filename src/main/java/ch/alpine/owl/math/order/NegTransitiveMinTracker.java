@@ -52,7 +52,7 @@ public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
             !keepOnlyRepresentatives())
           collection.add(x);
         break;
-      // TODO ASTOLL justify why this is the same as "case indifferent"
+      // TODO OWL ALG justify why this is the same as "case indifferent"
       // in case of strict weak order or strict total order
       case INCOMPARABLE:
         if (!collection.contains(x) && //

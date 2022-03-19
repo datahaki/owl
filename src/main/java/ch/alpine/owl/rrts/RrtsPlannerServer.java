@@ -25,7 +25,7 @@ import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionPlanner;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.math.TensorMetric;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -54,7 +54,7 @@ public abstract class RrtsPlannerServer implements TransitionPlanner, ObservingE
     this.obstacleQuery = obstacleQuery;
     this.resolution = resolution;
     this.costFunction = costFunction;
-    // TODO GJOEL make uBetween dependent on state space model, or input uBetween as function pointer to planner server
+    // TODO OWL ALG make uBetween dependent on state space model, or input uBetween as function pointer to planner server
     flowTrajectoryGenerator = new RrtsFlowTrajectoryGenerator(stateSpaceModel, this::uBetween);
   }
 
@@ -96,7 +96,7 @@ public abstract class RrtsPlannerServer implements TransitionPlanner, ObservingE
   public final void expand(RrtsNode node) {
     RrtsPlannerProcess rrtsPlannerProcess = _rrtsPlannerProcess;
     if (Objects.nonNull(rrtsPlannerProcess))
-      rrtsPlannerProcess.planner().expand(node); // TODO can get stuck here
+      rrtsPlannerProcess.planner().expand(node); // TODO OWL ALG can get stuck here
   }
 
   @Override // from ExpandInterface
@@ -128,7 +128,7 @@ public abstract class RrtsPlannerServer implements TransitionPlanner, ObservingE
 
   @Override // from RrtsTrajectoryPlanner
   public final void checkConsistency() {
-    // TODO _rrtsPlannerProcess may be null
+    // TODO OWL ALG _rrtsPlannerProcess may be null
     RrtsNodes.costConsistency(_rrtsPlannerProcess.root(), transitionSpace, costFunction);
   }
 

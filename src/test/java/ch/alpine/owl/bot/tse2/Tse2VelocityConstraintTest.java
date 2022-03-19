@@ -1,16 +1,21 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class Tse2VelocityConstraintTest extends TestCase {
+public class Tse2VelocityConstraintTest {
+  @Test
   public void testSimple() {
     PlannerConstraint plannerConstraint = //
         new Tse2VelocityConstraint(Quantity.of(-3, "m*s^-1"), Quantity.of(5, "m*s^-1"));
@@ -20,6 +25,7 @@ public class Tse2VelocityConstraintTest extends TestCase {
         Arrays.asList(new StateTime(Tensors.fromString("{-Infinity, -Infinity, -Infinity, 6[m*s^-1]}"), RealScalar.of(2))), null));
   }
 
+  @Test
   public void testEquals() {
     PlannerConstraint plannerConstraint = //
         new Tse2VelocityConstraint(Quantity.of(5, "m*s^-1"), Quantity.of(5, "m*s^-1"));

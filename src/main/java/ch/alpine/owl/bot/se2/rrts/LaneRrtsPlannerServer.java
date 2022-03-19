@@ -17,8 +17,8 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
@@ -26,10 +26,10 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.NormalDistribution;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Degree;
 
-// TODO don't use magic constants at all. implement via interface, make interface final 
+// TODO OWL API don't use magic constants at all. implement via interface, make interface final
 public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer implements LaneConsumer {
   private static final Distribution DEFAULT_ROT_DIST = NormalDistribution.of(RealScalar.ZERO, Degree.of(5));
   // ---
@@ -57,7 +57,7 @@ public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer imp
 
   @Override // from DefaultRrtsPlannerServer
   protected final RandomSampleInterface spaceSampler(Tensor state) {
-    // TODO document why laneSampler might not be "ready" to be returned
+    // TODO OWL API document why laneSampler might not be "ready" to be returned
     return Objects.nonNull(laneSampler) //
         ? laneSampler
         : new ConstantRandomSample(state);

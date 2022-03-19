@@ -1,13 +1,17 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.function.Function;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import junit.framework.TestCase;
 
-public class SemiorderTest extends TestCase {
+public class SemiorderTest {
+  @Test
   public void testIdentity() {
     OrderComparator<Scalar> semiorder = Semiorder.comparator(Function.identity(), RealScalar.ONE);
     assertTrue(semiorder.compare(RealScalar.ONE, RealScalar.of(1.5)).equals(OrderComparison.INDIFFERENT));
@@ -16,6 +20,7 @@ public class SemiorderTest extends TestCase {
     assertTrue(semiorder.compare(RealScalar.of(3), RealScalar.of(4)).equals(OrderComparison.INDIFFERENT));
   }
 
+  @Test
   public void testString() {
     OrderComparator<String> semiorder = Semiorder.comparator(string -> RealScalar.of(string.length()), RealScalar.ONE);
     assertTrue(semiorder.compare("ewrwer", "ewrwer").equals(OrderComparison.INDIFFERENT));

@@ -6,14 +6,14 @@ import java.awt.Graphics2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.demo.ControlPointsDemo;
+import ch.alpine.sophus.api.Genesis;
 import ch.alpine.sophus.demo.lev.LeversHud;
 import ch.alpine.sophus.demo.lev.LeversRender;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.gbc.AffineCoordinate;
 import ch.alpine.sophus.gbc.d2.Barycenter;
 import ch.alpine.sophus.gbc.d2.ThreePointCoordinate;
-import ch.alpine.sophus.gds.ManifoldDisplays;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -8,12 +8,12 @@ import java.util.Arrays;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.javax.swing.SpinnerLabel;
-import ch.alpine.sophus.demo.BufferedImageSupplier;
 import ch.alpine.sophus.demo.io.GokartPoseDataV1;
-import ch.alpine.sophus.demo.opt.GeodesicFilters;
+import ch.alpine.sophus.ext.api.BufferedImageSupplier;
+import ch.alpine.sophus.ext.api.GeodesicFilters;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.flt.CenterFilter;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
 import ch.alpine.sophus.sym.SymLinkImages;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;

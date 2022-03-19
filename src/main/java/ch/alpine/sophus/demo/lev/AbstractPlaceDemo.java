@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import javax.swing.JButton;
 
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Round;
 

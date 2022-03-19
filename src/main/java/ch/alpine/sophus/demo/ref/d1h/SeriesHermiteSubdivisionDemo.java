@@ -7,22 +7,24 @@ import java.awt.geom.Rectangle2D;
 
 import org.jfree.chart.JFreeChart;
 
+import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.win.LookAndFeels;
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.demo.Curvature2DRender;
-import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.api.TensorIteration;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.api.Curvature2DRender;
+import ch.alpine.sophus.ext.api.HermiteSubdivisions;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.NumberQ;
 import ch.alpine.tensor.RealScalar;
@@ -37,6 +39,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
+@ReflectionMarker
 public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
@@ -64,6 +67,7 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     renderControlPoints(geometricLayer, graphics);
     if (1 < _control.length()) {
@@ -96,8 +100,8 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
     Tensor _coeffs = coeffs;
     if (VectorQ.of(_coeffs) && //
         NumberQ.all(_coeffs)) {
-      ScalarUnaryOperator f0 = Polynomial.of(_coeffs);
-      ScalarUnaryOperator f1 = Polynomial.derivative(_coeffs);
+      Polynomial f0 = Polynomial.of(_coeffs);
+      ScalarUnaryOperator f1 = f0.derivative();
       Tensor vx0 = Range.of(-4, 5);
       Tensor vd0 = vx0.map(f0);
       Tensor vx1 = ConstantArray.of(RealScalar.ONE, vx0.length());

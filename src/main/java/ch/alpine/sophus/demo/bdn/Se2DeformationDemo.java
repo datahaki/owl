@@ -3,18 +3,19 @@ package ch.alpine.sophus.demo.bdn;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.d2.Arrowhead;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-// TODO jToggleArrows does not have effect
+// TODO OWL ALG jToggleArrows does not have effect
 /* package */ class Se2DeformationDemo extends AbstractDeformationDemo {
   private static final Tensor ORIGIN = Arrowhead.of(RealScalar.of(0.2));
 
@@ -39,7 +40,7 @@ import ch.alpine.tensor.pdf.UniformDistribution;
     int res = refinement();
     Tensor dx = Subdivide.of(0, 6, res - 1);
     Tensor dy = Subdivide.of(0, 6, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> Tensors.of(dx.get(cx), dy.get(cy), RealScalar.ZERO), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> Tensors.of(cx, cy, RealScalar.ZERO), dx, dy);
     return AveragedMovingDomain2D.of(movingOrigin, operator(movingOrigin), domain);
   }
 

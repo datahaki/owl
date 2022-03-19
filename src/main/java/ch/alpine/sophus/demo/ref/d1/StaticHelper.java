@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophus.demo.ref.d1;
 
-import ch.alpine.sophus.math.MidpointInterface;
+import ch.alpine.sophus.api.MidpointInterface;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

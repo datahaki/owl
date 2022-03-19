@@ -1,15 +1,19 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.region.LinearRegion;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class ApMinTimeGoalManagerTest extends TestCase {
+public class ApMinTimeGoalManagerTest {
+  @Test
   public void testSimple() {
     Scalar maxSpeed = Quantity.of(83, "m*s^-1");
     ApComboRegion apComboRegion = new ApComboRegion( //

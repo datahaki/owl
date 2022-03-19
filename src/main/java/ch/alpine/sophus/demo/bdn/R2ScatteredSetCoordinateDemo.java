@@ -16,11 +16,11 @@ import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.ArrayRender;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.sophus.demo.lev.LeversRender;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ImageReshape;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.rn.RnManifold;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.DoubleScalar;
@@ -37,7 +37,7 @@ import ch.alpine.tensor.red.Entrywise;
 
 /** transfer weights from barycentric coordinates defined by set of control points
  * in the square domain (subset of R^2) to means in non-linear spaces */
-// TODO possibly only recompute when points have changed
+// TODO OWL ALG possibly only recompute when points have changed
 /* package */ class R2ScatteredSetCoordinateDemo extends AbstractScatteredSetWeightingDemo {
   private static final double RANGE = 5;
   // ---

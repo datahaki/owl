@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.sophus.demo.bd1;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class S1KrigingDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class S1KrigingDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new S1KrigingDemo());
   }

@@ -22,6 +22,7 @@ import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -35,7 +36,6 @@ import ch.alpine.tensor.sca.Floor;
 
 /* package */ class UbongoDesigner extends AbstractDemo implements ActionListener {
   public static final Scalar FREE = UbongoBoard.FREE;
-  private static final Tensor SQUARE = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}");
   // ---
   private final SpinnerLabel<Integer> spinnerUse = SpinnerLabel.of(2, 3, 4, 5, 6, 7, 8);
   private final GridRender gridRender;
@@ -95,7 +95,7 @@ import ch.alpine.tensor.sca.Floor;
         Scalar scalar = template.Get(row, col);
         if (!scalar.equals(FREE)) {
           geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(row, col)));
-          Path2D path2d = geometricLayer.toPath2D(SQUARE, true);
+          Path2D path2d = geometricLayer.toPath2D(Box2D.SQUARE, true);
           graphics.fill(path2d);
           geometricLayer.popMatrix();
         }

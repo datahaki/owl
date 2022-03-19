@@ -16,17 +16,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.MatrixRender;
 import ch.alpine.java.ren.PointsRender;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.R2Display;
-import ch.alpine.sophus.gds.S2Display;
-import ch.alpine.sophus.gds.Se2AbstractDisplay;
+import ch.alpine.sophus.api.Exponential;
+import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.TensorMetric;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.R2Display;
+import ch.alpine.sophus.ext.dis.S2Display;
+import ch.alpine.sophus.ext.dis.Se2AbstractDisplay;
 import ch.alpine.sophus.hs.Biinvariants;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.HsManifold;
 import ch.alpine.sophus.hs.VectorLogManifold;
-import ch.alpine.sophus.math.Exponential;
-import ch.alpine.sophus.math.Geodesic;
-import ch.alpine.sophus.math.TensorMetric;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -395,13 +395,13 @@ public class LeversRender {
     Tensor vs = null;
     if (manifoldDisplay.equals(R2Display.INSTANCE))
       vs = CIRCLE;
-    else //
-    if (manifoldDisplay.equals(S2Display.INSTANCE))
-      vs = CIRCLE; // .dot(TSnProjection.of(p));
-    else //
-    if (manifoldDisplay instanceof Se2AbstractDisplay) {
-      vs = Tensor.of(CIRCLE.stream().map(PadRight.zeros(3)));
-    }
+    else
+      if (manifoldDisplay.equals(S2Display.INSTANCE))
+        vs = CIRCLE; // .dot(TSnProjection.of(p));
+      else //
+        if (manifoldDisplay instanceof Se2AbstractDisplay) {
+          vs = Tensor.of(CIRCLE.stream().map(PadRight.zeros(3)));
+        }
     // ---
     if (Objects.nonNull(vs)) {
       vs = Tensor.of(vs.stream().map(sigma_inverse::dot));

@@ -35,6 +35,7 @@ public final class RelaxedDomainQueueMap implements Serializable {
   }
 
   /** Removes given glcNode from domain queue at the location determined by domainKey.
+   * 
    * @throws RunTimeException if domain queue does not exist at the location determined by domainKey
    * @param domainKey
    * @param glcNode

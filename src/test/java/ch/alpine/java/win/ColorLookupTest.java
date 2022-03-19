@@ -1,13 +1,17 @@
 // code by jph
 package ch.alpine.java.win;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.awt.Color;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
-import junit.framework.TestCase;
 
-public class ColorLookupTest extends TestCase {
+public class ColorLookupTest {
+  @Test
   public void testSimple() {
     ColorDataIndexed colorDataIndexed = ColorLookup.hsluv_lightness(128, .5).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 128);
@@ -23,6 +27,7 @@ public class ColorLookupTest extends TestCase {
     assertEquals(color1.getAlpha(), 76);
   }
 
+  @Test
   public void testGrayIncr() {
     ColorDataIndexed colorDataIndexed = ColorLookup.increasing(3, ColorDataGradients.GRAYSCALE).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 3);
@@ -43,6 +48,7 @@ public class ColorLookupTest extends TestCase {
     assertEquals(color2.getAlpha(), 76);
   }
 
+  @Test
   public void testGrayDecr() {
     ColorDataIndexed colorDataIndexed = ColorLookup.decreasing(3, ColorDataGradients.GRAYSCALE).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 3);

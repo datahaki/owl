@@ -1,7 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
@@ -14,9 +19,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
-import junit.framework.TestCase;
 
-public class DubinsTransitionTest extends TestCase {
+public class DubinsTransitionTest {
+  @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     TransitionSpace transitionSpace = Serialization.copy(DubinsTransitionSpace.of(RealScalar.of(2), DubinsPathComparators.LENGTH));
     Tensor start = Tensors.vector(1, 2, 3);
@@ -27,6 +32,7 @@ public class DubinsTransitionTest extends TestCase {
     assertTrue(transitionWrap.spacing().stream().map(Scalar.class::cast).allMatch(Sign::isPositive));
   }
 
+  @Test
   public void testTrivial() {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.of(1), DubinsPathComparators.LENGTH);
     Tensor start = Tensors.vector(0, 0, 0);
@@ -36,6 +42,7 @@ public class DubinsTransitionTest extends TestCase {
     Chop._12.requireClose(sampled, Tensors.fromString("{{2, 0, 0}, {4, 0, 0}}"));
   }
 
+  @Test
   public void testTrivial2() {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.of(1), DubinsPathComparators.LENGTH);
     Tensor start = Tensors.vector(0, 0, 0);

@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.tensor.demo;
 
-import ch.alpine.sophus.demo.AbstractDemoHelper;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class BipartiteMatchingDemoTest extends TestCase {
+import ch.alpine.sophus.ext.api.AbstractDemoHelper;
+
+public class BipartiteMatchingDemoTest {
+  @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new BipartiteMatchingDemo());
   }

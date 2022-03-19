@@ -1,20 +1,26 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collections;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class CatchyTrajectoryRegionQueryTest extends TestCase {
+public class CatchyTrajectoryRegionQueryTest {
+  @Test
   public void testSimple() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
@@ -24,6 +30,7 @@ public class CatchyTrajectoryRegionQueryTest extends TestCase {
     assertEquals(optional.get(), stateTime);
   }
 
+  @Test
   public void testMembers1d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
@@ -36,6 +43,7 @@ public class CatchyTrajectoryRegionQueryTest extends TestCase {
     assertFalse(stc.getMembers().isEmpty());
   }
 
+  @Test
   public void testMembers2d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2, 3), Tensors.vector(3, 4, 8));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);

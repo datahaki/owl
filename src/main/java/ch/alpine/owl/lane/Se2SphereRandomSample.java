@@ -5,15 +5,15 @@ import java.io.Serializable;
 import java.util.Random;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
-import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Clips;
 
 /** @see Se2ComboRegion */

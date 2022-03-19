@@ -7,8 +7,8 @@ import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Join;
-import ch.alpine.tensor.sca.Exp;
 import ch.alpine.tensor.sca.Sign;
+import ch.alpine.tensor.sca.exp.Exp;
 
 /** Important:
  * The use of {@link Duncan2StateSpaceModel} is preferred and

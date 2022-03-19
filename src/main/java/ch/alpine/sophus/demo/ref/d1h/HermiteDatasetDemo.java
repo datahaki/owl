@@ -20,17 +20,18 @@ import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldPreferredWidth;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
 import ch.alpine.java.ref.ann.FieldSlider;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
+import ch.alpine.sophus.api.TensorIteration;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.demo.io.GokartPoseDatas;
-import ch.alpine.sophus.demo.opt.HermiteSubdivisions;
-import ch.alpine.sophus.gds.GeodesicDatasetDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.AbstractGeodesicDatasetDemo;
+import ch.alpine.sophus.ext.api.HermiteSubdivisions;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.so2.So2Lift;
 import ch.alpine.sophus.math.Do;
-import ch.alpine.sophus.math.TensorIteration;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.NumberQ;
 import ch.alpine.tensor.RationalScalar;
@@ -40,7 +41,8 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class HermiteDatasetDemo extends GeodesicDatasetDemo {
+@ReflectionMarker
+public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
   private static final int WIDTH = 640;
   private static final int HEIGHT = 360;
   private static final Color COLOR_CURVE = new Color(255, 128, 128, 255);

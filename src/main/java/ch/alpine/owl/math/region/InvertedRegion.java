@@ -4,7 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 
 public class InvertedRegion<T> implements Region<T>, Serializable {
   private final Region<T> region;

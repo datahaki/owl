@@ -9,13 +9,13 @@ import java.awt.image.BufferedImage;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
+import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.crv.spline.GeodesicBSplineFunction;
-import ch.alpine.sophus.demo.BufferedImageSupplier;
-import ch.alpine.sophus.demo.Curvature2DRender;
-import ch.alpine.sophus.demo.opt.DubinsGenerator;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.Se2CoveringDisplay;
-import ch.alpine.sophus.math.Geodesic;
+import ch.alpine.sophus.ext.api.BufferedImageSupplier;
+import ch.alpine.sophus.ext.api.Curvature2DRender;
+import ch.alpine.sophus.ext.api.DubinsGenerator;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.Se2CoveringDisplay;
 import ch.alpine.sophus.sym.SymLinkImages;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.itp.DeBoor;
 import ch.alpine.tensor.red.Times;
 
-// TODO JPH demo does not seem correct
+// TODO OWL ALG demo does not seem correct
 public class GeodesicDeBoorDemo extends AbstractCurveDemo implements BufferedImageSupplier {
   private BufferedImage bufferedImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 

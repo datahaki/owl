@@ -14,11 +14,11 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.ArrayPlotRender;
 import ch.alpine.java.ren.AxesRender;
-import ch.alpine.sophus.demo.ImageReshape;
 import ch.alpine.sophus.demo.bd2.AbstractExportWeightingDemo;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ImageReshape;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -89,7 +89,7 @@ import ch.alpine.tensor.num.Pi;
     Tensor sY = Subdivide.of(+RANGE, -RANGE, refinement);
     Tensor sA = Drop.tail(Subdivide.of(Pi.VALUE.negate(), Pi.VALUE, 6), 1);
     int n = sX.length();
-    Tensor origin = getGeodesicControlPoints(); // TODO
+    Tensor origin = getGeodesicControlPoints(); // TODO OWL ALG
     Tensor wgs = Array.of(l -> DoubleScalar.INDETERMINATE, n * sA.length(), n, origin.length());
     IntStream.range(0, n).parallel().forEach(c0 -> {
       Scalar x = sX.Get(c0);

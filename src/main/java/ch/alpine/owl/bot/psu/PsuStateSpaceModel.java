@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.psu;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.sca.Sin;
+import ch.alpine.tensor.sca.tri.Sin;
 
 /** Pendulum Swing-up state space model
  * 

@@ -8,16 +8,16 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.crv.spline.BSplineLimitMatrix;
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.gds.ManifoldDisplay;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.red.Nest;
 
-// TODO functionality/purpose is not clear
+// TODO OWL ALG functionality/purpose is not clear
 /* package */ class InterpolationDemo extends ControlPointsDemo {
   public InterpolationDemo() {
     super(true, ManifoldDisplays.SE2C_SE2_R2);

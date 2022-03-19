@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.owl.math;
 
-import java.util.Objects;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import junit.framework.Assert;
+import java.util.Objects;
 
 public enum AssertFail {
   ;
@@ -11,7 +11,7 @@ public enum AssertFail {
     Objects.requireNonNull(runnable);
     try {
       runnable.run();
-      Assert.fail();
+      fail();
     } catch (Exception exception) {
       // ---
     }

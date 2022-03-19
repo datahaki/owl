@@ -6,7 +6,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import ch.alpine.sophus.math.SplitInterface;
+import ch.alpine.sophus.api.SplitInterface;
 import ch.alpine.sophus.ref.d1.BSpline4CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.ref.d1.FourPointCurveSubdivision;
@@ -38,6 +38,7 @@ import ch.alpine.tensor.Scalar;
   }
 
   // ---
+  // TODO OWL bad design
   static Scalar MAGIC_C = RationalScalar.of(1, 6);
 
   static CurveSubdivision of(SplitInterface splitInterface) {

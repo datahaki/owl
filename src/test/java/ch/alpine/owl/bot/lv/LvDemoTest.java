@@ -1,7 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.lv;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -22,10 +26,10 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.sca.Log;
-import junit.framework.TestCase;
+import ch.alpine.tensor.sca.exp.Log;
 
-public class LvDemoTest extends TestCase {
+public class LvDemoTest {
+  @Test
   public void testPlan() {
     for (int index = 0; index < 5; ++index) {
       Tensor eta = Tensors.vector(10, 10);

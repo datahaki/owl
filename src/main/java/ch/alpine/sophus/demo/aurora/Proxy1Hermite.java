@@ -12,11 +12,11 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.sca.Log;
 import ch.alpine.tensor.sca.N;
+import ch.alpine.tensor.sca.exp.Log;
 
 /* package */ class Proxy1Hermite extends ProxyHermite {
-  public Proxy1Hermite(String name, int levels) throws IOException {
+  public Proxy1Hermite(String name, int levels) {
     super(name, levels);
   }
 

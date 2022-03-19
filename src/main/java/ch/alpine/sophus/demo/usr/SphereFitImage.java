@@ -21,7 +21,7 @@ import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 // 4 _41_
 /* package */ enum SphereFitImage {

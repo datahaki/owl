@@ -5,21 +5,23 @@ import java.awt.Dimension;
 
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.demo.opt.LogWeightings;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.LogWeightings;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.UniformDistribution;
+import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.red.Times;
 
+// TODO OWL recomputes every frame right now
 /* package */ class S2DeformationDemo extends AbstractDeformationDemo {
   private static final Tensor TRIANGLE = CirclePoints.of(3).multiply(RealScalar.of(0.05));
   private static final Scalar ZHEIGHT = RealScalar.of(1.0); // 1.8 for initial pics
@@ -58,7 +60,7 @@ import ch.alpine.tensor.red.Times;
     int res = refinement();
     Tensor dx = Subdivide.of(-1, 1, res - 1);
     Tensor dy = Subdivide.of(-1, 1, res - 1);
-    Tensor domain = Tensors.matrix((cx, cy) -> Vector2Norm.NORMALIZE.apply(Tensors.of(dx.get(cx), dy.get(cy), ZHEIGHT)), dx.length(), dy.length());
+    Tensor domain = Outer.of((cx, cy) -> Vector2Norm.NORMALIZE.apply(Tensors.of(cx, cy, ZHEIGHT)), dx, dy);
     TensorUnaryOperator tensorUnaryOperator = operator(movingOrigin);
     return AveragedMovingDomain2D.of(movingOrigin, tensorUnaryOperator, domain);
   }

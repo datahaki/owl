@@ -9,7 +9,7 @@ import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.sophus.crv.d2.EllipsePoints;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

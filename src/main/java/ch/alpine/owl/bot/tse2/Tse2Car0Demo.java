@@ -11,7 +11,7 @@ import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -25,7 +25,7 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     Region<Tensor> region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);
     owlAnimationFrame.add(tse2CarEntity);
-    // TODO add option to select goal velocity / range
+    // TODO OWL API add option to select goal velocity / range
     MouseGoal.simple(owlAnimationFrame, tse2CarEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenders.create(region));
     {

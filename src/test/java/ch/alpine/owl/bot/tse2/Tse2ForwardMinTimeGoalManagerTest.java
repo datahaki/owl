@@ -1,7 +1,13 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Collection;
+
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.AssertFail;
@@ -11,9 +17,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
-import junit.framework.TestCase;
 
-public class Tse2ForwardMinTimeGoalManagerTest extends TestCase {
+public class Tse2ForwardMinTimeGoalManagerTest {
+  @Test
   public void testSimple() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}"), //
@@ -40,6 +46,7 @@ public class Tse2ForwardMinTimeGoalManagerTest extends TestCase {
     assertFalse(tse2ForwardMinTimeGoalManager.test(Tensors.fromString("{10[m], 0[m], 0, 9[m*s^-1]}")));
   }
 
+  @Test
   public void testFail() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}"), //

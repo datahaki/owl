@@ -7,7 +7,7 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.gds.ManifoldDisplay;
+import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

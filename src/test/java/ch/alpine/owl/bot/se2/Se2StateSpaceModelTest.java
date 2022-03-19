@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.tensor.Scalar;
@@ -8,9 +10,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
-import junit.framework.TestCase;
 
-public class Se2StateSpaceModelTest extends TestCase {
+public class Se2StateSpaceModelTest {
+  @Test
   public void testQuantity() {
     Tensor x = Tensors.fromString("{-1[m], -2[m], 3}");
     Scalar h = Quantity.of(1, "s");

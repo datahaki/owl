@@ -5,7 +5,7 @@ import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

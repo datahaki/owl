@@ -28,7 +28,7 @@ import ch.alpine.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -53,13 +53,13 @@ import ch.alpine.tensor.sca.Clips;
         new SampledTransitionRegionQuery(region, RealScalar.of(0.05)), //
         new ClothoidCurvatureQuery(Clips.absolute(5.)));
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, Math.PI / 4), RealScalar.ZERO);
-    ClothoidLaneRrtsEntity entity = new ClothoidLaneRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.box(), true);
+    ClothoidLaneRrtsEntity entity = new ClothoidLaneRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds(), true);
     LaneConsumer laneConsumer = new SimpleLaneConsumer(entity, null, Collections.singleton(entity));
     laneConsumptionDemo = new LaneConsumptionDemo(laneConsumer);
     laneConsumptionDemo.setControlPointsSe2(Tensors.of(stateTime.state()));
     laneConsumptionDemo.timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
     laneConsumptionDemo.timerFrame.geometricComponent.addRenderInterface(entity);
-    /** TODO GJOEL rework; currently taken over from {@link OwlyAnimationFrame}
+    /** TODO OWL API rework; currently taken over from {@link OwlyAnimationFrame}
      * shorter variant, that does not close properly
      * OwlyAnimationFrame owlyAnimationFrame = new OwlyAnimationFrame();
      * owlyAnimationFrame.add(entity); */

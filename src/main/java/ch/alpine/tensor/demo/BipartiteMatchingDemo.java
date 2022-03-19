@@ -8,11 +8,12 @@ import java.awt.geom.Path2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.demo.ControlPointsDemo;
-import ch.alpine.sophus.gds.ManifoldDisplays;
+import ch.alpine.sophus.ext.api.ControlPointsDemo;
+import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Outer;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.opt.hun.BipartiteMatching;
@@ -32,8 +33,7 @@ import ch.alpine.tensor.opt.hun.BipartiteMatching;
     Tensor control = getGeodesicControlPoints();
     if (0 < control.length()) {
       new PathRender(Color.GRAY).setCurve(CIRCLE, true).render(geometricLayer, graphics);
-      Tensor matrix = Tensors.matrix((i, j) -> //
-      Vector2Norm.between(control.get(i), CIRCLE.get(j)), control.length(), CIRCLE.length());
+      Tensor matrix = Outer.of(Vector2Norm::between, control, CIRCLE);
       BipartiteMatching bipartiteMatching = BipartiteMatching.of(matrix);
       int[] matching = bipartiteMatching.matching();
       graphics.setColor(Color.RED);

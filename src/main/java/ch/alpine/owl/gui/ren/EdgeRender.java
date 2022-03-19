@@ -15,7 +15,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.EmptyRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.sca.Chop;

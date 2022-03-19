@@ -1,9 +1,10 @@
 // code by jph
 package ch.alpine.owl.gui.ren;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class TrajectoryRenderTest extends TestCase {
+public class TrajectoryRenderTest {
+  @Test
   public void testNull() {
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(null);

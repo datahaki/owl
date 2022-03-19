@@ -16,7 +16,7 @@ import ch.alpine.java.ren.EmptyRender;
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.math.VectorScalar;
-import ch.alpine.sophus.math.Extract2D;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.DeterminateScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -32,6 +32,7 @@ import ch.alpine.tensor.sca.Clip;
  * 
  * only real-valued costs are supported
  * in particular costs of type {@link VectorScalar} are not supported
+ * 
  * @see EdgeRender */
 public class TreeRender implements RenderInterface {
   public static final int LIMIT_DEFAULT = 2500;

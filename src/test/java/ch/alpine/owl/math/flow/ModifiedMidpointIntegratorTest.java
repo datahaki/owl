@@ -10,7 +10,7 @@ package ch.alpine.owl.math.flow;
 // import ch.ethz.idsc.tensor.qty.Quantity;
 // import junit.framework.TestCase;
 //
-// public class ModifiedMidpointIntegratorTest extends TestCase {
+// public class ModifiedMidpointIntegratorTest {
 // public void testSimple() {
 // for (int n = 1; n < 10; ++n) {
 // Integrator integrator = ModifiedMidpointIntegrator.of(n);

@@ -1,14 +1,18 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
-import junit.framework.TestCase;
 
-public class Duncan2StateSpaceModelTest extends TestCase {
+public class Duncan2StateSpaceModelTest {
+  @Test
   public void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan2StateSpaceModel(Quantity.of(0.1, "s^-1"));
     Tensor x = Tensors.fromString("{10[m], 5[m*s^-1]}");
@@ -17,6 +21,7 @@ public class Duncan2StateSpaceModelTest extends TestCase {
     assertEquals(x_fxu, Tensors.fromString("{15[m], 3.5[m*s^-1]}"));
   }
 
+  @Test
   public void testZero() {
     StateSpaceModel stateSpaceModel = new Duncan2StateSpaceModel(Quantity.of(0, "s^-1"));
     Tensor x = Tensors.fromString("{10[m], 5[m*s^-1]}");
@@ -25,6 +30,7 @@ public class Duncan2StateSpaceModelTest extends TestCase {
     assertEquals(x_fxu, Tensors.fromString("{15[m], 4[m*s^-1]}"));
   }
 
+  @Test
   public void testFail() {
     AssertFail.of(() -> new Duncan2StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }

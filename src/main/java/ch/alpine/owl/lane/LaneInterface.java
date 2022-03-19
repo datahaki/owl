@@ -5,7 +5,7 @@ import ch.alpine.tensor.Tensor;
 
 public interface LaneInterface {
   /** @return points used to generate/describe lane, may return null */
-  // TODO longterm design: lane should not have to provide control points
+  // TODO OWL API longterm design: lane should not have to provide control points
   Tensor controlPoints();
 
   /** @return points of center line of lane */

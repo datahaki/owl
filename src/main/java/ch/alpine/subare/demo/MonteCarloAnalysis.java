@@ -27,7 +27,7 @@ import ch.alpine.tensor.ext.Timing;
 /* package */ enum MonteCarloAnalysis {
   ;
   public static void analyse(MonteCarloInterface monteCarloInterface, int trials, int batches, List<MonteCarloAlgorithms> algorithmList,
-      List<DiscreteModelErrorAnalysis> errorAnalysisList) throws Exception {
+      List<DiscreteModelErrorAnalysis> errorAnalysisList) {
     DiscreteQsa optimalQsa = getOptimalQsa(monteCarloInterface, batches);
     Map<String, Tensor> algorithmResults = new LinkedHashMap<>();
     // ---
@@ -58,7 +58,7 @@ import ch.alpine.tensor.ext.Timing;
     return optimalQsa;
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     MonteCarloInterface monteCarloInterface = MonteCarloExamples.AIRPORT.get();
     // ---
     List<MonteCarloAlgorithms> list = new ArrayList<>();

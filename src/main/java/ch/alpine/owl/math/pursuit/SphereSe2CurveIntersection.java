@@ -1,8 +1,8 @@
 // code by gjoel
 package ch.alpine.owl.math.pursuit;
 
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;
-import ch.alpine.sophus.math.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;

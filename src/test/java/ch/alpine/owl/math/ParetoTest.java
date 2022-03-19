@@ -1,11 +1,16 @@
 // code by ynager
 package ch.alpine.owl.math;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import junit.framework.TestCase;
 
-public class ParetoTest extends TestCase {
+public class ParetoTest {
+  @Test
   public void testSimple() {
     Tensor a = Tensors.vector(1, 1);
     Tensor b = Tensors.vector(2, 2);
@@ -15,6 +20,7 @@ public class ParetoTest extends TestCase {
     assertFalse(Pareto.isDominated(a, c));
   }
 
+  @Test
   public void testFail() {
     Tensor a = Tensors.vector(1, 1);
     Tensor b = Tensors.vector(2, 2, 3);

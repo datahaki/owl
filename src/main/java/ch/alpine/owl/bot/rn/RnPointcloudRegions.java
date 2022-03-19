@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.rn;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
-import ch.alpine.sophus.math.Extract2D;
-import ch.alpine.sophus.math.Region;
+import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
