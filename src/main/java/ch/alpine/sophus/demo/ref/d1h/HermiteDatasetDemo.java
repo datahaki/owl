@@ -33,13 +33,14 @@ import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.lie.so2.So2Lift;
 import ch.alpine.sophus.math.Do;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
-import ch.alpine.tensor.NumberQ;
+import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.io.StringScalar;
 
 @ReflectionMarker
 public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
@@ -78,7 +79,7 @@ public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
       jTextField.addActionListener(e -> {
         try {
           Scalar scalar = Scalars.fromString(jTextField.getText());
-          if (NumberQ.of(scalar))
+          if (!(scalar instanceof StringScalar) && FiniteQ.of(scalar))
             HermiteSubdivisions.LAMBDA = scalar;
         } catch (Exception exception) {
           exception.printStackTrace();
@@ -93,7 +94,7 @@ public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
       jTextField.addActionListener(e -> {
         try {
           Scalar scalar = Scalars.fromString(jTextField.getText());
-          if (NumberQ.of(scalar))
+          if (!(scalar instanceof StringScalar) && FiniteQ.of(scalar))
             HermiteSubdivisions.MU = scalar;
         } catch (Exception exception) {
           exception.printStackTrace();
@@ -108,7 +109,7 @@ public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
       jTextField.addActionListener(e -> {
         try {
           Scalar scalar = Scalars.fromString(jTextField.getText());
-          if (NumberQ.of(scalar))
+          if (!(scalar instanceof StringScalar) && FiniteQ.of(scalar))
             HermiteSubdivisions.THETA = scalar;
         } catch (Exception exception) {
           exception.printStackTrace();
@@ -123,7 +124,7 @@ public class HermiteDatasetDemo extends AbstractGeodesicDatasetDemo {
       jTextField.addActionListener(e -> {
         try {
           Scalar scalar = Scalars.fromString(jTextField.getText());
-          if (NumberQ.of(scalar))
+          if (!(scalar instanceof StringScalar) && FiniteQ.of(scalar))
             HermiteSubdivisions.OMEGA = scalar;
         } catch (Exception exception) {
           exception.printStackTrace();

@@ -2,28 +2,23 @@
 package ch.alpine.owl.math;
 
 import java.io.Serializable;
-import java.math.MathContext;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ch.alpine.owl.math.order.VectorLexicographic;
-import ch.alpine.tensor.AbstractScalar;
-import ch.alpine.tensor.ExactTensorQ;
+import ch.alpine.tensor.MultiplexScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.api.ChopInterface;
 import ch.alpine.tensor.api.ComplexEmbedding;
 import ch.alpine.tensor.api.ConjugateInterface;
-import ch.alpine.tensor.api.ExactScalarQInterface;
-import ch.alpine.tensor.api.NInterface;
 import ch.alpine.tensor.qty.Quantity;
-import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Conjugate;
 import ch.alpine.tensor.sca.Imag;
-import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.Real;
 
 /** immutable as required by {@link Scalar} interface
@@ -43,9 +38,8 @@ import ch.alpine.tensor.sca.Real;
  * to prevent confusion with standard vectors that are formatted as {1, 2, 3}.
  * 
  * <p>Hint: a {@link VectorScalar} may also have zero entries */
-public class VectorScalar extends AbstractScalar implements //
-    ChopInterface, ComplexEmbedding, ConjugateInterface, ExactScalarQInterface, //
-    NInterface, Comparable<Scalar>, Serializable {
+public class VectorScalar extends MultiplexScalar implements //
+    ComplexEmbedding, ConjugateInterface, Comparable<Scalar>, Serializable {
   // TODO API not finalized: should VectorScalar allow entries with other VectorScalar's?
   /** @param vector
    * @return
@@ -111,11 +105,6 @@ public class VectorScalar extends AbstractScalar implements //
     throw TensorRuntimeException.of(this);
   }
 
-  @Override // from Scalar
-  public Number number() {
-    throw TensorRuntimeException.of(this);
-  }
-
   // ---
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
@@ -124,12 +113,6 @@ public class VectorScalar extends AbstractScalar implements //
       return new VectorScalar(vector.add(vectorScalar.vector));
     }
     throw TensorRuntimeException.of(this, scalar);
-  }
-
-  // ---
-  @Override // from ChopInterface
-  public Scalar chop(Chop chop) {
-    return new VectorScalar(chop.of(vector));
   }
 
   @Override // from ComplexEmbedding
@@ -147,19 +130,14 @@ public class VectorScalar extends AbstractScalar implements //
     return new VectorScalar(Imag.of(vector));
   }
 
-  @Override // from ExactScalarQInterface
-  public boolean isExactScalar() {
-    return ExactTensorQ.of(vector);
+  @Override
+  public Scalar eachMap(UnaryOperator<Scalar> unaryOperator) {
+    return of(vector.stream().map(Scalar.class::cast).map(unaryOperator));
   }
 
-  @Override // from NInterface
-  public Scalar n() {
-    return new VectorScalar(N.DOUBLE.of(vector));
-  }
-
-  @Override // from NInterface
-  public Scalar n(MathContext mathContext) {
-    return new VectorScalar(N.in(mathContext.getPrecision()).of(vector));
+  @Override
+  public boolean allMatch(Predicate<Scalar> predicate) {
+    return vector.stream().map(Scalar.class::cast).allMatch(predicate);
   }
 
   // ---

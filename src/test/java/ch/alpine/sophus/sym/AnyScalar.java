@@ -10,8 +10,6 @@ import ch.alpine.tensor.api.AbsInterface;
 import ch.alpine.tensor.api.ArgInterface;
 import ch.alpine.tensor.api.ComplexEmbedding;
 import ch.alpine.tensor.api.ConjugateInterface;
-import ch.alpine.tensor.api.ExactScalarQInterface;
-import ch.alpine.tensor.api.MachineNumberQInterface;
 import ch.alpine.tensor.api.RoundingInterface;
 import ch.alpine.tensor.sca.exp.ExpInterface;
 import ch.alpine.tensor.sca.exp.LogInterface;
@@ -21,7 +19,7 @@ import ch.alpine.tensor.sca.tri.TrigonometryInterface;
 /** any scalar tracks whether a scalar in a tensor has any effect within a computation */
 public final class AnyScalar extends AbstractScalar implements //
     AbsInterface, ArcTanInterface, ArgInterface, ComplexEmbedding, ConjugateInterface, //
-    ExactScalarQInterface, ExpInterface, LogInterface, MachineNumberQInterface, RoundingInterface, //
+    ExpInterface, LogInterface, RoundingInterface, //
     TrigonometryInterface, Serializable {
   public static final Scalar INSTANCE = new AnyScalar();
 
@@ -103,11 +101,6 @@ public final class AnyScalar extends AbstractScalar implements //
     return this;
   }
 
-  @Override // from ExactScalarQInterface
-  public boolean isExactScalar() {
-    return true;
-  }
-
   @Override // from ExpInterface
   public Scalar exp() {
     return this;
@@ -116,11 +109,6 @@ public final class AnyScalar extends AbstractScalar implements //
   @Override // from LogInterface
   public Scalar log() {
     return this;
-  }
-
-  @Override // from MachineNumberQInterface
-  public boolean isMachineNumber() {
-    return true;
   }
 
   @Override // from RoundingInterface

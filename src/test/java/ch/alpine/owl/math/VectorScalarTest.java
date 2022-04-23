@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.ExactScalarQ;
-import ch.alpine.tensor.MachineNumberQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -34,10 +33,9 @@ public class VectorScalarTest {
     assertEquals(((VectorScalar) a).vector().length(), 3);
     // ---
     a = VectorScalar.of(Tensors.vector(0.00001, 0.00005, 0));
-    assertEquals(((VectorScalar) a).chop(Chop._04), VectorScalar.of(Tensors.vector(0, 0, 0)));
+    assertEquals(Chop._04.apply(a), VectorScalar.of(Tensors.vector(0, 0, 0)));
     // ---
     a = VectorScalar.of(Tensors.of(RealScalar.ONE, DoubleScalar.NEGATIVE_INFINITY));
-    assertFalse(MachineNumberQ.of(a));
     assertFalse(ExactScalarQ.of(a));
     a = VectorScalar.of(Tensors.of(RealScalar.ONE, RealScalar.ONE));
     assertTrue(ExactScalarQ.of(a));

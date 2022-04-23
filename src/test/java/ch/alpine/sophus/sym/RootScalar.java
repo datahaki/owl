@@ -2,28 +2,23 @@
 package ch.alpine.sophus.sym;
 
 import java.io.Serializable;
-import java.math.MathContext;
 import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
-import ch.alpine.tensor.AbstractScalar;
 import ch.alpine.tensor.ComplexScalar;
-import ch.alpine.tensor.ExactScalarQ;
-import ch.alpine.tensor.MachineNumberQ;
+import ch.alpine.tensor.MultiplexScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.api.AbsInterface;
-import ch.alpine.tensor.api.ExactScalarQInterface;
-import ch.alpine.tensor.api.MachineNumberQInterface;
-import ch.alpine.tensor.api.NInterface;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Abs;
-import ch.alpine.tensor.sca.N;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** Q[Sqrt[n]] */
-public class RootScalar extends AbstractScalar implements //
-    AbsInterface, ExactScalarQInterface, MachineNumberQInterface, NInterface, Serializable {
+public class RootScalar extends MultiplexScalar implements //
+    AbsInterface, Serializable {
   /** creator with package visibility
    * 
    * @param re neither a {@link ComplexScalar}, or {@link Quantity}
@@ -84,11 +79,6 @@ public class RootScalar extends AbstractScalar implements //
     return re.one();
   }
 
-  @Override // from Scalar
-  public Number number() {
-    return n().number();
-  }
-
   // ---
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
@@ -116,29 +106,16 @@ public class RootScalar extends AbstractScalar implements //
     return Abs.FUNCTION.apply(multiply(this));
   }
 
-  @Override // from ExactNumberInterface
-  public boolean isExactScalar() {
-    return ExactScalarQ.of(re) //
-        && ExactScalarQ.of(im) //
-        && ExactScalarQ.of(ba);
+  @Override
+  public Scalar eachMap(UnaryOperator<Scalar> unaryOperator) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  @Override // MachineNumberQInterface
-  public boolean isMachineNumber() {
-    return MachineNumberQ.of(re) //
-        && MachineNumberQ.of(im);
-  }
-
-  @Override // from NInterface
-  public Scalar n() {
-    return re.add(im.multiply(Sqrt.of(ba)));
-    // return RealScalar.of(N.DOUBLE.apply(re), N.DOUBLE.apply(im));
-  }
-
-  @Override // from NInterface
-  public Scalar n(MathContext mathContext) {
-    N n = N.in(mathContext.getPrecision());
-    return n.apply(re).add(n.apply(im).multiply(Sqrt.of(n.apply(ba))));
+  @Override
+  public boolean allMatch(Predicate<Scalar> predicate) {
+    // TODO Auto-generated method stub
+    return false;
   }
 
   // ---

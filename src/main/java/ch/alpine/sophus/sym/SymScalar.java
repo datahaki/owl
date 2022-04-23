@@ -2,6 +2,8 @@
 package ch.alpine.sophus.sym;
 
 import java.io.Serializable;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 import ch.alpine.sophus.lie.rn.RnGeodesic;
 import ch.alpine.tensor.RealScalar;
@@ -65,6 +67,20 @@ public class SymScalar extends ScalarAdapter implements Serializable {
             getP().evaluate(), //
             getQ().evaluate(), //
             ratio());
+  }
+
+  @Override
+  public Scalar eachMap(UnaryOperator<Scalar> unaryOperator) {
+    return isScalar() //
+        ? unaryOperator.apply((Scalar) tensor)
+        : of(getP(), getQ(), unaryOperator.apply(ratio()));
+  }
+
+  @Override
+  public boolean allMatch(Predicate<Scalar> predicate) {
+    return predicate.test(isScalar() //
+        ? (Scalar) tensor
+        : ratio());
   }
 
   @Override

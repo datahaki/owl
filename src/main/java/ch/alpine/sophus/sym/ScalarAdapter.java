@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.sophus.sym;
 
-import ch.alpine.tensor.AbstractScalar;
+import ch.alpine.tensor.MultiplexScalar;
 import ch.alpine.tensor.Scalar;
 
-public class ScalarAdapter extends AbstractScalar {
+public abstract class ScalarAdapter extends MultiplexScalar {
   @Override
   public Scalar multiply(Scalar scalar) {
     throw new UnsupportedOperationException();
@@ -27,11 +27,6 @@ public class ScalarAdapter extends AbstractScalar {
 
   @Override
   public Scalar one() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Number number() {
     throw new UnsupportedOperationException();
   }
 

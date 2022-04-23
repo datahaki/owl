@@ -16,7 +16,7 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.ext.api.LogWeightings;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.tensor.DeterminateScalarQ;
+import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
   }
 
   final boolean isDeterminate() {
-    return DeterminateScalarQ.of(variogram().apply(RealScalar.ZERO));
+    return FiniteQ.of(variogram().apply(RealScalar.ZERO));
   }
 
   @Override

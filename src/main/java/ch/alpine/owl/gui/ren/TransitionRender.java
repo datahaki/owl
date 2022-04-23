@@ -14,7 +14,7 @@ import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.tensor.DeterminateScalarQ;
+import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.img.ColorDataIndexed;
@@ -58,7 +58,7 @@ public class TransitionRender implements RenderInterface {
       this.collection = collection;
       ScalarSummaryStatistics scalarSummaryStatistics = collection.stream() //
           .map(StateCostNode::costFromRoot) //
-          .filter(DeterminateScalarQ::of) //
+          .filter(FiniteQ::of) //
           .collect(ScalarSummaryStatistics.collector());
       clip = scalarSummaryStatistics.getClip();
       inverse = RealScalar.of(colorDataIndexed.length() - 1);

@@ -3,7 +3,6 @@ package ch.alpine.sophus.demo.misc;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Point2D;
 import java.util.Arrays;
 
 import org.jfree.chart.JFreeChart;

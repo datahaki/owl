@@ -12,7 +12,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 public class R2ArrayPlot implements HsArrayPlot, Serializable {
   private final Scalar radius;
