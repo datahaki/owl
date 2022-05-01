@@ -10,6 +10,9 @@ import java.awt.geom.Path2D;
 
 import javax.swing.JScrollPane;
 
+import ch.alpine.ascona.api.ControlPointsDemo;
+import ch.alpine.ascona.dis.ManifoldDisplay;
+import ch.alpine.ascona.dis.ManifoldDisplays;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldClip;
 import ch.alpine.java.ref.ann.FieldInteger;
@@ -17,9 +20,6 @@ import ch.alpine.java.ref.util.PanelFieldsEditor;
 import ch.alpine.java.ren.AxesRender;
 import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.sophus.clt.Clothoid;
-import ch.alpine.sophus.ext.api.ControlPointsDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

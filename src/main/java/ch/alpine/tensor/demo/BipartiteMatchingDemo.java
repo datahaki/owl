@@ -5,11 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
+import ch.alpine.ascona.api.ControlPointsDemo;
+import ch.alpine.ascona.dis.ManifoldDisplays;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.PathRender;
-import ch.alpine.sophus.ext.api.ControlPointsDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

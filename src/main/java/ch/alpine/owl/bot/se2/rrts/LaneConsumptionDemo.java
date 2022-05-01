@@ -10,16 +10,16 @@ import java.util.function.Consumer;
 
 import javax.swing.JButton;
 
+import ch.alpine.ascona.curve.AbstractCurveDemo;
+import ch.alpine.ascona.dis.Se2ClothoidDisplay;
+import ch.alpine.ascona.dis.Se2CoveringClothoidDisplay;
+import ch.alpine.ascona.dis.Se2CoveringDisplay;
+import ch.alpine.ascona.dis.Se2Display;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
-import ch.alpine.sophus.demo.curve.AbstractCurveDemo;
-import ch.alpine.sophus.ext.dis.Se2ClothoidDisplay;
-import ch.alpine.sophus.ext.dis.Se2CoveringClothoidDisplay;
-import ch.alpine.sophus.ext.dis.Se2CoveringDisplay;
-import ch.alpine.sophus.ext.dis.Se2Display;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;

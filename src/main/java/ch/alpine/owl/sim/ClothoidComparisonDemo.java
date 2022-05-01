@@ -10,6 +10,9 @@ import java.awt.geom.Rectangle2D;
 
 import org.jfree.chart.JFreeChart;
 
+import ch.alpine.ascona.api.CurveVisualSet;
+import ch.alpine.ascona.dis.ManifoldDisplay;
+import ch.alpine.ascona.dis.Se2CoveringClothoidDisplay;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
@@ -24,9 +27,6 @@ import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
-import ch.alpine.sophus.ext.api.CurveVisualSet;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.Se2CoveringClothoidDisplay;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import ch.alpine.ascona.dis.Se2CoveringDisplay;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
@@ -26,7 +27,6 @@ import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
 import ch.alpine.sophus.crv.dubins.DubinsRadius;
 import ch.alpine.sophus.crv.dubins.DubinsType;
 import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;
-import ch.alpine.sophus.ext.dis.Se2CoveringDisplay;
 import ch.alpine.sophus.lie.se2c.Se2CoveringGeodesic;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.tensor.RealScalar;

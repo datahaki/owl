@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 
+import ch.alpine.ascona.api.Box2D;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.gfx.GfxMatrix;
@@ -22,7 +23,6 @@ import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.GridRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.javax.swing.SpinnerLabel;
-import ch.alpine.sophus.ext.api.Box2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -3,9 +3,10 @@ package ch.alpine.sophus.ext.api;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.ascona.api.AbstractGeodesicDisplayDemo;
+import ch.alpine.ascona.dis.ManifoldDisplay;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 
 public enum AbstractDemoHelper {
   ;

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.ext.api.Box2D;
+import ch.alpine.ascona.api.Box2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

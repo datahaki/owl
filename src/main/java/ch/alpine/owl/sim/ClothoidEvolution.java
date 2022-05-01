@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import javax.swing.JToggleButton;
 
+import ch.alpine.ascona.dis.ManifoldDisplays;
+import ch.alpine.ascona.lev.AbstractPlaceDemo;
 import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ren.AxesRender;
@@ -19,8 +21,6 @@ import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidComparators;
 import ch.alpine.sophus.clt.PriorityClothoid;
-import ch.alpine.sophus.demo.lev.AbstractPlaceDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
