@@ -11,6 +11,7 @@ import ch.alpine.tensor.MultiplexScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.api.AbsInterface;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Abs;
@@ -24,7 +25,11 @@ public class RootScalar extends MultiplexScalar implements //
    * @param re neither a {@link ComplexScalar}, or {@link Quantity}
    * @param im neither a {@link ComplexScalar}, or {@link Quantity}
    * @return */
-  /* package */ static Scalar of(Scalar re, Scalar im, Scalar ba) {
+  public static Scalar of(Scalar re, Scalar im, Scalar ba) {
+    if (re instanceof MultiplexScalar || //
+        im instanceof MultiplexScalar || //
+        ba instanceof MultiplexScalar)
+      throw TensorRuntimeException.of(re, im, ba);
     return Scalars.isZero(im) || Scalars.isZero(ba) //
         ? re
         : new RootScalar(re, im, ba);
@@ -53,12 +58,11 @@ public class RootScalar extends MultiplexScalar implements //
       return new RootScalar(re.multiply(scalar), im.multiply(scalar), ba);
     if (scalar instanceof RootScalar) {
       RootScalar rootScalar = (RootScalar) scalar;
-      if (ba.equals(rootScalar.ba)) {
+      if (ba.equals(rootScalar.ba))
         return of( //
             re.multiply(rootScalar.re).add(im.multiply(rootScalar.im).multiply(ba)), //
             re.multiply(rootScalar.im).add(im.multiply(rootScalar.re)), //
             ba);
-      }
     }
     throw new UnsupportedOperationException();
   }
@@ -98,7 +102,7 @@ public class RootScalar extends MultiplexScalar implements //
   // ---
   @Override // from AbsInterface
   public Scalar abs() { // "complex modulus"
-    return Abs.FUNCTION.apply(re.add(im.multiply(Sqrt.of(ba))));
+    return Abs.FUNCTION.apply(explicit());
   }
 
   @Override // from AbsInterface
@@ -116,6 +120,10 @@ public class RootScalar extends MultiplexScalar implements //
   public boolean allMatch(Predicate<Scalar> predicate) {
     // TODO Auto-generated method stub
     return false;
+  }
+
+  public Scalar explicit() {
+    return re.add(im.multiply(Sqrt.FUNCTION.apply(ba)));
   }
 
   // ---

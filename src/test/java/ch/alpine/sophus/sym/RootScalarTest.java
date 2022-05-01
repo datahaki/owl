@@ -2,6 +2,7 @@
 package ch.alpine.sophus.sym;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,15 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.IdentityMatrix;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.mat.re.LinearSolve;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
-import ch.alpine.tensor.sca.Chop;
 
 class RootScalarTest {
   @Test
@@ -37,9 +39,15 @@ class RootScalarTest {
   @Test
   public void testNumber() {
     RootScalar rootScalar = new RootScalar(RationalScalar.of(-7, 5), RationalScalar.of(-3, 17), RealScalar.of(3));
-    Number number = rootScalar.number();
+    assertThrows(TensorRuntimeException.class, () -> rootScalar.number());
+  }
+
+  @Test
+  public void testReal() {
+    RootScalar rootScalar = new RootScalar(RationalScalar.of(-7, 5), RationalScalar.of(-3, 17), RealScalar.of(3));
+    Number number = rootScalar.explicit().number();
     double value = -7 / 5.0 - 3 / 17.0 * Math.sqrt(3);
-    Chop._10.requireClose(RealScalar.of(number), RealScalar.of(value));
+    Tolerance.CHOP.requireClose(RealScalar.of(number), RealScalar.of(value));
   }
 
   @Test

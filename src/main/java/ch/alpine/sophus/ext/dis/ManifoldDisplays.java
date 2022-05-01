@@ -12,6 +12,8 @@ public enum ManifoldDisplays {
       Se2ClothoidDisplay.LEGENDRE, //
       Se2CoveringClothoidDisplay.INSTANCE, //
       Se2CoveringDisplay.INSTANCE, //
+      R2S1ADisplay.INSTANCE, //
+      R2S1BDisplay.INSTANCE, //
       Se2Display.INSTANCE, //
       Spd2Display.INSTANCE, //
       R2Display.INSTANCE, //
