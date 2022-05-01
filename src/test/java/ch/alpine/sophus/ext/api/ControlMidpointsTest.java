@@ -10,7 +10,7 @@ import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ControlMidpointsTest {
+class ControlMidpointsTest {
   @Test
   public void testSimple() {
     CurveSubdivision curveSubdivision = ControlMidpoints.of(RnGeodesic.INSTANCE);

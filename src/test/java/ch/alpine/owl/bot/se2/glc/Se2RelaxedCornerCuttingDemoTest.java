@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class Se2RelaxedCornerCuttingDemoTest {
+class Se2RelaxedCornerCuttingDemoTest {
   @Test
   public void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);

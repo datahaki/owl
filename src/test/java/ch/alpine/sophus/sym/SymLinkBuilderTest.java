@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 
-public class SymLinkBuilderTest {
+class SymLinkBuilderTest {
   @Test
   public void testSimple() {
     Tensor control = Tensors.vector(1, 2, 3);

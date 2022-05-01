@@ -9,15 +9,15 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.rrts.core.TransitionWrap;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Differences;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-public class RnTransitionTest {
+class RnTransitionTest {
   @Test
   public void testSampled() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.vector(1, 2);

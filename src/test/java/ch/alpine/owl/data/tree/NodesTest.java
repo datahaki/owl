@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class NodesTest {
+class NodesTest {
   @Test
   public void testGetParent() {
     HeuristicFunction heuristicFunction = new HeuristicFunction() {

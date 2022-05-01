@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class ApPlannerConstraintTest {
+class ApPlannerConstraintTest {
   private static final Tensor valid = Tensors.vector(1, 21, 70, -0.05);
   private static final Tensor xUnvalid = Tensors.vector(-1, 0, 70, -0.1);
   private static final Tensor zUnvalid = Tensors.vector(0, -1, 70, -0.1);

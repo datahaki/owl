@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Subdivide;
 
-public class LidarRaytracerTest {
+class LidarRaytracerTest {
   @Test
   public void testSimple() {
     LidarRaytracer lidarRaytracer = new LidarRaytracer(Subdivide.of(-1, 1, 10), Subdivide.of(0., 5., 30));

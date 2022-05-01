@@ -16,7 +16,7 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.MatrixInfinityNorm;
 import ch.alpine.tensor.nrm.VectorInfinityNorm;
 
-public class TensorNormTotalPreorderTest {
+class TensorNormTotalPreorderTest {
   @Test
   public void testSimple() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);

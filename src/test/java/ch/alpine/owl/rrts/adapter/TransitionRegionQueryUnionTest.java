@@ -16,7 +16,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class TransitionRegionQueryUnionTest {
+class TransitionRegionQueryUnionTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     TransitionRegionQuery trq1 = //

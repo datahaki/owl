@@ -14,7 +14,7 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
 
-public class BalloonStateSpaceModelTest {
+class BalloonStateSpaceModelTest {
   @Test
   public void testValidity() throws ClassNotFoundException, IOException {
     Tensor xWithUnits = Tensors.fromString("{2[m], 2[m], 2[m*s^-1], 4[K]}");

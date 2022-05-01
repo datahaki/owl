@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 
-public class ClothoidFixedControlTest {
+class ClothoidFixedControlTest {
   @Test
   public void testNullFail() {
     assertThrows(Exception.class, () -> new ClothoidFixedControl(null, RealScalar.of(2)));

@@ -16,7 +16,7 @@ import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 
-public class DeltaControlsTest {
+class DeltaControlsTest {
   @Test
   public void testFlows() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //

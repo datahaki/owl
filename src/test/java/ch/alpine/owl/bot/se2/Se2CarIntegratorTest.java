@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2CarIntegratorTest {
+class Se2CarIntegratorTest {
   @Test
   public void testStraight() {
     Tensor x = Tensors.vector(-1, -2, 1);

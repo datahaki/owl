@@ -12,7 +12,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class NodeCostComparatorTest {
+class NodeCostComparatorTest {
   @Test
   public void testSimple() {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);

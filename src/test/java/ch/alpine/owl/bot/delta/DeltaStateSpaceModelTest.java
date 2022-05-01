@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 
-public class DeltaStateSpaceModelTest {
+class DeltaStateSpaceModelTest {
   @Test
   public void testConstructors() {
     Scalar amp = RealScalar.of(-.05);

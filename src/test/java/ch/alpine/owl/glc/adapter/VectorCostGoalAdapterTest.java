@@ -20,7 +20,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Chop;
 
-public class VectorCostGoalAdapterTest {
+class VectorCostGoalAdapterTest {
   @Test
   public void testSimple() {
     List<CostFunction> costs = new ArrayList<>();

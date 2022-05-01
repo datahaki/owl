@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.lie.r2.ConvexHull;
 
-public class R2FlowsTest {
+class R2FlowsTest {
   @Test
   public void testSimple() {
     int n = 100;

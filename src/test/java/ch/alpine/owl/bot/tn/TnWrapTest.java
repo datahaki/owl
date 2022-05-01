@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-public class TnWrapTest {
+class TnWrapTest {
   @Test
   public void testSimple() {
     TnWrap tnWrap = new TnWrap(Tensors.vector(3, 7));

@@ -7,7 +7,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class ApWrapTest {
+class ApWrapTest {
   @Test
   public void testWrap() {
     double pa = 2 * Math.PI;

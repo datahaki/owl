@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.order.OrderComparison;
 
-public class SetPartialOrderTest {
+class SetPartialOrderTest {
   static Collection<Integer> create(Integer... integers) {
     return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(integers)));
   }

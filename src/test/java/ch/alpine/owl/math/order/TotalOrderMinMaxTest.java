@@ -9,7 +9,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class TotalOrderMinMaxTest {
+class TotalOrderMinMaxTest {
   @Test
   public void testMin() {
     Tensor test = Tensors.vector(1, 2, 3, 4, 0.2).unmodifiable();

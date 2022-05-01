@@ -18,7 +18,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class ConstraintViolationCostTest {
+class ConstraintViolationCostTest {
   @Test
   public void testSimple() {
     Tensor polygon = Tensors.matrixInt(new int[][] { { 1, 0 }, { 4, 0 }, { 4, 3 } });

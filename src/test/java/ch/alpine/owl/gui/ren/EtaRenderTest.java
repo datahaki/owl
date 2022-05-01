@@ -11,7 +11,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.IdentityMatrix;
 
-public class EtaRenderTest {
+class EtaRenderTest {
   @Test
   public void testSimple() {
     EtaRender etaRender = new EtaRender(Tensors.vector(1, 2));

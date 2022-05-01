@@ -11,7 +11,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.gam.Factorial;
 
-public class CarDiscreteModelTest {
+class CarDiscreteModelTest {
   @Test
   public void testStateCount() {
     for (int n = 2; n < 7; ++n) {

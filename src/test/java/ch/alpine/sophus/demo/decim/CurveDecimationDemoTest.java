@@ -7,7 +7,7 @@ import ch.alpine.sophus.demo.io.GokartPoseDataV1;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class CurveDecimationDemoTest {
+class CurveDecimationDemoTest {
   @Test
   public void testSimpleV1() {
     AbstractDemoHelper.offscreen(new CurveDecimationDemo(GokartPoseDataV1.INSTANCE));

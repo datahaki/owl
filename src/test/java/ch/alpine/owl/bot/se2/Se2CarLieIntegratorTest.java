@@ -18,7 +18,7 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2CarLieIntegratorTest {
+class Se2CarLieIntegratorTest {
   @Test
   public void testCombine() {
     for (int index = 0; index < 20; ++index) {

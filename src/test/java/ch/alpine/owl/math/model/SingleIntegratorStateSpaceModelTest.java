@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class SingleIntegratorStateSpaceModelTest {
+class SingleIntegratorStateSpaceModelTest {
   @Test
   public void testSimple() {
     Tensor u = Tensors.vector(1, 2, 3);

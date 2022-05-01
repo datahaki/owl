@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class AbstractEpisodeIntegratorTest {
+class AbstractEpisodeIntegratorTest {
   @Test
   public void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;

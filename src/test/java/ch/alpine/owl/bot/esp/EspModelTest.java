@@ -10,7 +10,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class EspModelTest {
+class EspModelTest {
   @Test
   public void testSimple() {
     Tensor board = EspDemo.START;

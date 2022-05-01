@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class DeltaxTAnimationDemoTest {
+class DeltaxTAnimationDemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new DeltaxTAnimationDemo());

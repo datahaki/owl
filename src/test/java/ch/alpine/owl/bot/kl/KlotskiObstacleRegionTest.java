@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-public class KlotskiObstacleRegionTest {
+class KlotskiObstacleRegionTest {
   @Test
   public void testHuarong() {
     for (Huarong huarong : Huarong.values()) {

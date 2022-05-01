@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensors;
 
-public class MirrorYStateTimeRasterTest {
+class MirrorYStateTimeRasterTest {
   @Test
   public void testSimple() {
     MirrorYStateTimeRaster mirrorYStateTimeRaster = new MirrorYStateTimeRaster(4);

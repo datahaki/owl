@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class BalloonPlannerConstraintTest {
+class BalloonPlannerConstraintTest {
   private static final PlannerConstraint PLANNER_CONSTRAINT = //
       new BalloonPlannerConstraint(Quantity.of(5, "m*s^-1"));
   private static final Scalar TIME = Quantity.of(2, "s");

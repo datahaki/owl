@@ -12,7 +12,7 @@ import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class BoundedEpisodeIntegratorTest {
+class BoundedEpisodeIntegratorTest {
   @Test
   public void testSimple() {
     BoundedEpisodeIntegrator boundedEpisodeIntegrator = new BoundedEpisodeIntegrator( //

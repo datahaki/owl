@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
 
-public class NaiveEntryFinderTest {
+class NaiveEntryFinderTest {
   private static final int DEPTH = 5;
 
   @Test

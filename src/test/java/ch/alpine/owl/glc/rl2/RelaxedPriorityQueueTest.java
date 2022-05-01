@@ -18,7 +18,7 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.SquareMatrixQ;
 
-public class RelaxedPriorityQueueTest {
+class RelaxedPriorityQueueTest {
   @Test
   public void testSTOSerializable() throws ClassNotFoundException, IOException {
     Serialization.copy(ScalarTotalOrder.INSTANCE);

@@ -17,7 +17,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityTensor;
 import ch.alpine.tensor.qty.Unit;
 
-public class EulerIntegratorTest {
+class EulerIntegratorTest {
   private final Integrator integrator = EulerLieIntegrator.of(RnGroup.INSTANCE, RnExponential.INSTANCE);
 
   @Test

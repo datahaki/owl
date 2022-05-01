@@ -9,7 +9,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 
-public class KlotskiStateTimeRasterTest {
+class KlotskiStateTimeRasterTest {
   @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {

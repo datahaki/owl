@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.java.ren.ImageRender;
 import ch.alpine.tensor.Tensors;
 
-public class ImageRenderTest {
+class ImageRenderTest {
   @Test
   public void testRangeFail1() {
     assertThrows(Exception.class, () -> ImageRender.range(new BufferedImage(50, 20, BufferedImage.TYPE_BYTE_GRAY), Tensors.vector(1, 2, 3)));

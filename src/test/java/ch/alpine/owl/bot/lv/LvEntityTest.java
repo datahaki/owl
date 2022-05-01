@@ -23,7 +23,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 
-public class LvEntityTest {
+class LvEntityTest {
   @Test
   public void testVectorField() {
     Tensor fallback_u = Array.zeros(1);

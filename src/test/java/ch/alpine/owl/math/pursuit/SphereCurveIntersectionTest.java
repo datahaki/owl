@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.Box2D;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -19,11 +18,12 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.RotateLeft;
 import ch.alpine.tensor.alg.UnitVector;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.qty.Quantity;
 
-public class SphereCurveIntersectionTest {
+class SphereCurveIntersectionTest {
   @Test
   public void testString() {
     Tensor curve = Box2D.SQUARE;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class PursuitSimulationTest {
+class PursuitSimulationTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new PursuitSimulation());

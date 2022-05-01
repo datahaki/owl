@@ -10,7 +10,7 @@ import ch.alpine.owl.demo.order.JassCard.Farbe;
 import ch.alpine.owl.demo.order.JassCard.Type;
 import ch.alpine.owl.math.order.OrderComparison;
 
-public class JassCardPartialOrderTest {
+class JassCardPartialOrderTest {
   final JassCard A = new JassCard(Farbe.ROSEN, Type.ACE, true);
   final JassCard B = new JassCard(Farbe.ROSEN, Type.JACK, true);
   final JassCard C = new JassCard(Farbe.EICHEL, Type.QUEEN, false);

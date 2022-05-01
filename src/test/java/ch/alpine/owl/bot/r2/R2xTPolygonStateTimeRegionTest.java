@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class R2xTPolygonStateTimeRegionTest {
+class R2xTPolygonStateTimeRegionTest {
   @Test
   public void testSimple() {
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));

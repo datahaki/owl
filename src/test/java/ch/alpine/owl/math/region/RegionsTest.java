@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.ext.Serialization;
 
-public class RegionsTest {
+class RegionsTest {
   @Test
   public void testSimple() {
     assertTrue(Regions.completeRegion().test(null));

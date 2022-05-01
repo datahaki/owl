@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class StateTimeTest {
+class StateTimeTest {
   @Test
   public void testSimple() {
     StateTime s1 = new StateTime(Tensors.vector(1, 0, 1), RealScalar.of(2));

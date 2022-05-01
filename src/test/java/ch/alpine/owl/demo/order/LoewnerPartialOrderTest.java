@@ -9,7 +9,7 @@ import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.DiagonalMatrix;
 
-public class LoewnerPartialOrderTest {
+class LoewnerPartialOrderTest {
   @Test
   public void testDyn() {
     Tensor x = DiagonalMatrix.of(1, 2);

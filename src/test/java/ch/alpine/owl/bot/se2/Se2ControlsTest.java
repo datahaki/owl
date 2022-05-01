@@ -25,7 +25,7 @@ import ch.alpine.tensor.qty.Unit;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2ControlsTest {
+class Se2ControlsTest {
   @Test
   public void testSimple() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));

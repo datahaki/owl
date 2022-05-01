@@ -12,7 +12,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2FlowIntegratorTest {
+class Se2FlowIntegratorTest {
   @Test
   public void testSe2Exact() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;

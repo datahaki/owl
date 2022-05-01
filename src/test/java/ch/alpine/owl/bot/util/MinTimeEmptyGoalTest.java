@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 
-public class MinTimeEmptyGoalTest {
+class MinTimeEmptyGoalTest {
   @Test
   public void testSimple() {
     assertEquals(MinTimeEmptyGoal.INSTANCE.minCostToGoal(null), RealScalar.ZERO);

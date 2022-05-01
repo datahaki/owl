@@ -10,7 +10,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class ClassificationTest {
+class ClassificationTest {
   @Test
   public void testSimple() {
     Classification classification = Classifier.accMax(Tensors.vector(3, 3, 2, 4));

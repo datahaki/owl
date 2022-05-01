@@ -17,7 +17,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.io.ResourceData;
 
-public class ImageRegionTest {
+class ImageRegionTest {
   @Test
   public void testSimple() {
     Tensor image = ResourceData.of("/io/delta_free.png");

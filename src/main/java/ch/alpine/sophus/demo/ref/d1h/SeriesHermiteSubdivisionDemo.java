@@ -26,7 +26,6 @@ import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.Do;
 import ch.alpine.sophus.ref.d1h.HermiteSubdivision;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -36,6 +35,7 @@ import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.chq.FiniteTensorQ;
 import ch.alpine.tensor.num.Polynomial;
 import ch.alpine.tensor.sca.N;
 
@@ -99,7 +99,7 @@ public class SeriesHermiteSubdivisionDemo extends ControlPointsDemo {
   private void compute() {
     Tensor _coeffs = coeffs;
     if (VectorQ.of(_coeffs) && //
-        FiniteQ.all(_coeffs)) {
+        FiniteTensorQ.of(_coeffs)) {
       Polynomial f0 = Polynomial.of(_coeffs);
       ScalarUnaryOperator f1 = f0.derivative();
       Tensor vx0 = Range.of(-4, 5);

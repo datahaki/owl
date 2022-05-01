@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class Se2Letter2DemoTest {
+class Se2Letter2DemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new Se2Letter2Demo());

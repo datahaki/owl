@@ -9,7 +9,7 @@ import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.qty.Degree;
 
-public class Se2Letter3DemoTest {
+class Se2Letter3DemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new Se2Letter3Demo());

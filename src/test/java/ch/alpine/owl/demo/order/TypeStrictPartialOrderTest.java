@@ -13,7 +13,7 @@ import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-public class TypeStrictPartialOrderTest {
+class TypeStrictPartialOrderTest {
   @Test
   public void testSimple() {
     assertFalse(Scalar.class.isAssignableFrom(Tensor.class));

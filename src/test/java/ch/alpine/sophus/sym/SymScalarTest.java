@@ -11,7 +11,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.ext.Serialization;
 
-public class SymScalarTest {
+class SymScalarTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Serialization.copy(SymScalar.leaf(3)).hashCode();

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class Se2CoveringInvarianceDemoTest {
+class Se2CoveringInvarianceDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new Se2CoveringInvarianceDemo());

@@ -15,7 +15,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 
-public class ClothoidPursuitTest {
+class ClothoidPursuitTest {
   @Test
   public void testPointRadius1() throws ClassNotFoundException, IOException {
     PursuitInterface pursuitInterface = //

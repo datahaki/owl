@@ -13,7 +13,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class SimpleRelabelDecisionTest {
+class SimpleRelabelDecisionTest {
   private static boolean doRelabel(Scalar newMerit, Scalar oldMerit, Scalar slack) {
     return ((SimpleRelabelDecision) SimpleRelabelDecision.with(slack)).doRelabel(newMerit, oldMerit);
   }

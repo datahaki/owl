@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.balloon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class BalloonEntityTest {
+class BalloonEntityTest {
   private static final BalloonStateSpaceModel BALLOON_STATE_SPACE_MODEL = BalloonStateSpaceModels.defaultWithoutUnits();
   private static final StateTime START = new StateTime(Tensors.vector(0, 10, 0, 0.5), RealScalar.ZERO);
   private static final EpisodeIntegrator EPISODE_INTEGRATOR = new SimpleEpisodeIntegrator( //
@@ -70,7 +70,7 @@ public class BalloonEntityTest {
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(vertSpeedMax);
     BalloonEntity balloonEntity = createEntity();
     TrajectoryPlanner trajectoryPlanner = balloonEntity.createTreePlanner(plannerConstraint, goal);
-    assertTrue(trajectoryPlanner instanceof StandardTrajectoryPlanner);
+    assertInstanceOf(StandardTrajectoryPlanner.class, trajectoryPlanner);
     trajectoryPlanner.insertRoot(START);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(10_000);
@@ -87,6 +87,6 @@ public class BalloonEntityTest {
   public void testStateTimeRaster() {
     BalloonEntity balloonEntity = createEntity();
     StateTimeRaster stateTimeRaster = balloonEntity.stateTimeRaster();
-    assertTrue(stateTimeRaster instanceof EtaRaster);
+    assertInstanceOf(EtaRaster.class, stateTimeRaster);
   }
 }

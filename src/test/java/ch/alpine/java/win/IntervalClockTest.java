@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class IntervalClockTest {
+class IntervalClockTest {
   @Test
   public void testHertz() {
     IntervalClock intervalClock = new IntervalClock();

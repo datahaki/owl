@@ -19,7 +19,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class RLQueueTest {
+class RLQueueTest {
   @Test
   public void testSimple() {
     Tensor slack = Tensors.vector(1, 0, 0);

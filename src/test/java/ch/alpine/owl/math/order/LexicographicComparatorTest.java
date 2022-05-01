@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class LexicographicComparatorTest {
+class LexicographicComparatorTest {
   @Test
   public void testEmpty() {
     LexicographicComparator genericLexicographicOrder = new LexicographicComparator(Arrays.asList());

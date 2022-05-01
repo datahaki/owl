@@ -23,7 +23,7 @@ class Some implements TensorUnaryOperator {
   }
 }
 
-public class LogWeightingsTest {
+class LogWeightingsTest {
   @Test
   public void testDoubleColon() {
     List<Integer> list = new ArrayList<>();

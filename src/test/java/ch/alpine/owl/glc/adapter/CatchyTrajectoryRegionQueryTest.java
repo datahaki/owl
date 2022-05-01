@@ -19,7 +19,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class CatchyTrajectoryRegionQueryTest {
+class CatchyTrajectoryRegionQueryTest {
   @Test
   public void testSimple() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));

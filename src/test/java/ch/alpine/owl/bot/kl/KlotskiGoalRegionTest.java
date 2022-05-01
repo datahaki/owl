@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensors;
 
-public class KlotskiGoalRegionTest {
+class KlotskiGoalRegionTest {
   @Test
   public void testSimple() {
     KlotskiGoalRegion klotskiGoalRegion = new KlotskiGoalRegion(Tensors.vector(0, 4, 2));

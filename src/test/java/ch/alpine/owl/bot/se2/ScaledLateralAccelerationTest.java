@@ -17,7 +17,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
 
-public class ScaledLateralAccelerationTest {
+class ScaledLateralAccelerationTest {
   @Test
   public void testCar() {
     final Scalar ms = Quantity.of(2, "m*s^-1");

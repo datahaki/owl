@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensors;
 
-public class PathRenderTest {
+class PathRenderTest {
   @Test
   public void testFail() {
     PathRender pathRender = new PathRender(Color.BLACK);

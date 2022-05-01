@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 import org.junit.jupiter.api.Test;
 
-public class ProviderRankTest {
+class ProviderRankTest {
   @Test
   public void testProviderRank() {
     Set<ProviderRank> set = new ConcurrentSkipListSet<>();

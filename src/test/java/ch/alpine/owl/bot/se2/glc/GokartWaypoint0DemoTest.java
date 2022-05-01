@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class GokartWaypoint0DemoTest {
+class GokartWaypoint0DemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new GokartWaypoint0Demo());

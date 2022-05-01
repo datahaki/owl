@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.sca.Clips;
 
-public class ClipStrictPartialOrderTest {
+class ClipStrictPartialOrderTest {
   @Test
   public void testIncomparable() {
     OrderComparison orderComparison1 = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(0, 1), Clips.interval(0, 1));

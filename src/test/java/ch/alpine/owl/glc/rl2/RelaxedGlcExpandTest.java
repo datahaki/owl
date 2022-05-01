@@ -13,7 +13,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RelaxedGlcExpandTest {
+class RelaxedGlcExpandTest {
   @Test
   public void testExpand() {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = TestHelper.createPlanner();

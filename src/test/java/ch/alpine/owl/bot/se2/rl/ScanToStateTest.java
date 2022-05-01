@@ -16,7 +16,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.ExponentialDistribution;
 
-public class ScanToStateTest {
+class ScanToStateTest {
   @Test
   public void testSimple() {
     Tensor res = ScanToState.of(Tensors.vector(1, 2, 3));

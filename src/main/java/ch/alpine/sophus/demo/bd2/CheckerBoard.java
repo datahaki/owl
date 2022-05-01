@@ -4,12 +4,12 @@ package ch.alpine.sophus.demo.bd2;
 import java.util.Objects;
 
 import ch.alpine.tensor.DoubleScalar;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.red.Total;
 import ch.alpine.tensor.sca.Floor;
 
@@ -23,7 +23,7 @@ import ch.alpine.tensor.sca.Floor;
   @Override
   public Scalar apply(Tensor point) {
     Scalar scalar = Total.ofVector(tensorUnaryOperator.apply(point).map(Floor.FUNCTION));
-    if (FiniteQ.of(scalar))
+    if (FiniteScalarQ.of(scalar))
       return RealScalar.of(Math.floorMod(scalar.number().intValue(), 2));
     return DoubleScalar.INDETERMINATE;
   }

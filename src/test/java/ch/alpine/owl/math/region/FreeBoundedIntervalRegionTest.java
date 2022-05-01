@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Clips;
 
-public class FreeBoundedIntervalRegionTest {
+class FreeBoundedIntervalRegionTest {
   @Test
   public void testSimple() {
     FreeBoundedIntervalRegion bir = new FreeBoundedIntervalRegion(0, Clips.interval(10, 20));

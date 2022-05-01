@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class TwdxTImageAnimationDemoTest {
+class TwdxTImageAnimationDemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new TwdxTImageAnimationDemo());

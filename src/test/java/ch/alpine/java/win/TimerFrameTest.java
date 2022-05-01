@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
-public class TimerFrameTest {
+class TimerFrameTest {
   @Test
   public void testSimple() {
     long convert = TimeUnit.MILLISECONDS.convert(1, TimeUnit.SECONDS);

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.MatrixQ;
 
-public class StreetScenarioDataTest {
+class StreetScenarioDataTest {
   @Test
   public void testLoad() {
     for (StreetScenario streetScenario : StreetScenario.values())

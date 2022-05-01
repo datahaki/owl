@@ -24,7 +24,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 
-public class ClothoidTransitionSpaceTest {
+class ClothoidTransitionSpaceTest {
   @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1[m], 1[m], 0}");

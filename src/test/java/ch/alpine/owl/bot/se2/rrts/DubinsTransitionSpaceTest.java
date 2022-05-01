@@ -23,7 +23,7 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 
-public class DubinsTransitionSpaceTest {
+class DubinsTransitionSpaceTest {
   @Test
   public void testLengthUnitless() throws ClassNotFoundException, IOException {
     Tensor start = Tensors.fromString("{1, 2}").append(Pi.HALF);

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 
-public class ColorLookupTest {
+class ColorLookupTest {
   @Test
   public void testSimple() {
     ColorDataIndexed colorDataIndexed = ColorLookup.hsluv_lightness(128, .5).deriveWithAlpha(76);

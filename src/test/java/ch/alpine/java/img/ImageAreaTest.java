@@ -21,7 +21,7 @@ import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ImageAreaTest {
+class ImageAreaTest {
   @Test
   public void testBlackWhite() throws IOException {
     BufferedImage bufferedImage = image("/dubilab/obstacles/20180423.png");

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.java.win.OwlFrame;
 
-public class R2DemoTest {
+class R2DemoTest {
   @Test
   public void testSimple() throws InterruptedException {
     OwlFrame owlFrame = R2Demo.show();

@@ -18,7 +18,7 @@ import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class StableLaneTest {
+class StableLaneTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
   @Test

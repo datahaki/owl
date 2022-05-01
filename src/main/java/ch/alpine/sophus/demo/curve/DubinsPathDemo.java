@@ -29,7 +29,6 @@ import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;
 import ch.alpine.sophus.ext.dis.Se2CoveringDisplay;
 import ch.alpine.sophus.lie.se2c.Se2CoveringGeodesic;
 import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -37,6 +36,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.PadLeft;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
+import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.red.Nest;
@@ -76,7 +76,7 @@ import ch.alpine.tensor.sca.Clips;
       if (param.relax) { // draw shortest path
         for (DubinsType dubinsType : DubinsType.values()) {
           Scalar maxRadius = DubinsRadius.getMax(mouse, dubinsType, Clips.interval(0.5, 2));
-          if (FiniteQ.of(maxRadius)) {
+          if (FiniteScalarQ.of(maxRadius)) {
             Optional<DubinsPath> optional = FixedRadiusDubins.of(mouse, dubinsType, maxRadius);
             if (optional.isPresent()) {
               graphics.draw(geometricLayer.toPath2D(sample(optional.get())));

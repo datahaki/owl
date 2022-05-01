@@ -18,7 +18,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class Se2ConeRandomSampleTest {
+class Se2ConeRandomSampleTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Tensor apex = Tensors.vector(-10, -92, -3);

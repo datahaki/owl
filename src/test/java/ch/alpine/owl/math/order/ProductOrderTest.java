@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class ProductOrderTest {
+class ProductOrderTest {
   private static void _checkSym(OrderComparison a, OrderComparison b, OrderComparison ab) {
     assertEquals(ProductOrder.intersect(a, b), ab);
     assertEquals(ProductOrder.intersect(b, a), ab);

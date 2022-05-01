@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class HeadTailGeodesicDemoTest {
+class HeadTailGeodesicDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new HeadTailGeodesicDemo());

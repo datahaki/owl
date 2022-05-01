@@ -46,7 +46,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
 
-public class StandardRLTrajectoryPlannerTest {
+class StandardRLTrajectoryPlannerTest {
   private static GlcNode _withSlack(Tensor slacks) {
     final Tensor stateRoot = Tensors.vector(0, 0);
     final Tensor stateGoal = Tensors.vector(5, 0);

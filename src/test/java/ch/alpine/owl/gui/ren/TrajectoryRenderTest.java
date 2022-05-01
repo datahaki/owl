@@ -3,7 +3,7 @@ package ch.alpine.owl.gui.ren;
 
 import org.junit.jupiter.api.Test;
 
-public class TrajectoryRenderTest {
+class TrajectoryRenderTest {
   @Test
   public void testNull() {
     TrajectoryRender trajectoryRender = new TrajectoryRender();

@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ProductOrderComparatorTest {
+class ProductOrderComparatorTest {
   @Test
   public void testSimple() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //

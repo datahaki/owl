@@ -18,7 +18,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2CarFlowsTest {
+class Se2CarFlowsTest {
   @Test
   public void testRadUnits() {
     Scalar speed = Quantity.of(2, "m*s^-1");

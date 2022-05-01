@@ -16,11 +16,11 @@ import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.sophus.demo.lev.LogWeightingDemo;
 import ch.alpine.sophus.ext.api.LogWeightings;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.chq.FiniteScalarQ;
 
 /* package */ abstract class AnAveragingDemo extends LogWeightingDemo {
   private static final int WIDTH = 480;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
   }
 
   final boolean isDeterminate() {
-    return FiniteQ.of(variogram().apply(RealScalar.ZERO));
+    return FiniteScalarQ.of(variogram().apply(RealScalar.ZERO));
   }
 
   @Override

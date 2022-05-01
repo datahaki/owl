@@ -11,7 +11,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class LabelsTest {
+class LabelsTest {
   @Test
   public void testSimple() {
     Distribution distribution = UniformDistribution.unit();

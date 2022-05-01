@@ -37,7 +37,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 
-public class R2BaseDemoTest {
+class R2BaseDemoTest {
   private static final StateSpaceModel SINGLE_INTEGRATOR = SingleIntegratorStateSpaceModel.INSTANCE;
   // static final StateIntegrator STATE_INTEGRATOR = //
   // FixedStateIntegrator.create(EulerIntegrator.INSTANCE, RealScalar.ONE, 1);

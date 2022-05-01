@@ -7,7 +7,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class CarxTEntityTest {
+class CarxTEntityTest {
   @Test
   public void testSimple() {
     // CarxTEntity carxt =

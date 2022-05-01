@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.mat.MatrixQ;
 
-public class GokartEntityTest {
+class GokartEntityTest {
   @Test
   public void testFootprint() {
     assertTrue(MatrixQ.of(GokartEntity.SHAPE));

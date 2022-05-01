@@ -12,7 +12,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class ImageCostFunctionTest {
+class ImageCostFunctionTest {
   @Test
   public void testSimple() {
     ImageCostFunction costFunction = //

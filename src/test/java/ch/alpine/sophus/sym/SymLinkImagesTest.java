@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-public class SymLinkImagesTest {
+class SymLinkImagesTest {
   @Test
   public void testSmoothingKernel() {
     for (WindowFunctions smoothingKernel : WindowFunctions.values())

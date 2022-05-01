@@ -23,7 +23,7 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-public class PurePursuitTest {
+class PurePursuitTest {
   @Test
   public void testRatioForwardLeftPositiveXUnit() {
     Tensor tensor = Tensors.fromString("{{.2[m], 0[m]}, {1[m], 1[m]}}");

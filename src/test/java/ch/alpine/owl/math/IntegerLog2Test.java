@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class IntegerLog2Test {
+class IntegerLog2Test {
   @Test
   public void testFloor() {
     assertEquals(IntegerLog2.floor(1), 0);

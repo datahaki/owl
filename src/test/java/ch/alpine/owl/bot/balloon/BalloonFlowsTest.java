@@ -12,7 +12,7 @@ import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 
-public class BalloonFlowsTest {
+class BalloonFlowsTest {
   @Test
   public void testSimple() {
     FlowsInterface flowsInterface = BalloonFlows.of(RealScalar.of(10));

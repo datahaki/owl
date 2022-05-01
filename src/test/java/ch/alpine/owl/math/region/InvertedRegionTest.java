@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class InvertedRegionTest {
+class InvertedRegionTest {
   @Test
   public void testSimple() {
     assertTrue(new InvertedRegion<>(Regions.emptyRegion()).test(null));

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class DeBoorDemoTest {
+class DeBoorDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new DeBoorDemo());

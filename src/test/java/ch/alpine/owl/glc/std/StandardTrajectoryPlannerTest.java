@@ -37,7 +37,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
-public class StandardTrajectoryPlannerTest {
+class StandardTrajectoryPlannerTest {
   @Test
   public void testSimple() {
     final Tensor stateRoot = Tensors.vector(-2, -2);

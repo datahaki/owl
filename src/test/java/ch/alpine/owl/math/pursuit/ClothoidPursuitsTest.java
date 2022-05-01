@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class ClothoidPursuitsTest {
+class ClothoidPursuitsTest {
   @Test
   public void testCurve() {
     for (int depth = 0; depth < 5; ++depth) {

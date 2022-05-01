@@ -29,7 +29,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class GlcNodeTest {
+class GlcNodeTest {
   @Test
   public void testCompare() {
     StateTime state1 = new StateTime(Tensors.vector(3, 0), RealScalar.of(3));

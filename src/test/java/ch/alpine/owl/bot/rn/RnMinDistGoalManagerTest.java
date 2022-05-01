@@ -20,7 +20,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
-public class RnMinDistGoalManagerTest {
+class RnMinDistGoalManagerTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     GoalInterface goalInterface = Serialization.copy(RnMinDistGoalManager.sperical(Tensors.vector(10, 10, 10), RealScalar.of(2)));

@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.ArrayQ;
 import ch.alpine.tensor.io.ResourceData;
 
-public class GokartPoseDataTest {
+class GokartPoseDataTest {
   @Test
   public void testSimple() {
     List<String> list = GokartPoseDataV2.INSTANCE.list();

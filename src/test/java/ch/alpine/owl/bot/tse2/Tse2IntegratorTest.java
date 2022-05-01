@@ -19,7 +19,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 
-public class Tse2IntegratorTest {
+class Tse2IntegratorTest {
   @Test
   public void testQuantity() throws ClassNotFoundException, IOException {
     FlowsInterface flowsInterface = //

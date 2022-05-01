@@ -3,7 +3,7 @@ package ch.alpine.java.win;
 
 import org.junit.jupiter.api.Test;
 
-public class BaseFrameTest {
+class BaseFrameTest {
   @Test
   public void testQuick() {
     BaseFrame bf = new BaseFrame();

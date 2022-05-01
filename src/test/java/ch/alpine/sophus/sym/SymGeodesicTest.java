@@ -16,7 +16,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-public class SymGeodesicTest {
+class SymGeodesicTest {
   @Test
   public void testSimple() {
     Scalar s1 = SymScalar.leaf(1);

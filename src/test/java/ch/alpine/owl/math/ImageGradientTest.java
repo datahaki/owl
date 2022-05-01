@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 
-public class ImageGradientTest {
+class ImageGradientTest {
   @Test
   public void testSimple() {
     Tensor image = Tensors.fromString("{{1, 5}, {2, 3}, {4, 5}}");

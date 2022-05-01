@@ -12,7 +12,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-public class GeodesicCausalFiltersTest {
+class GeodesicCausalFiltersTest {
   @Test
   public void testSimple() {
     for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.LIE_GROUPS)

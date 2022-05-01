@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class GeodesicMeanFilterDemoTest {
+class GeodesicMeanFilterDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new GeodesicMeanFilterDemo());

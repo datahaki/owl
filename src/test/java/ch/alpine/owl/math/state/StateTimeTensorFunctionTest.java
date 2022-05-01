@@ -11,7 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class StateTimeTensorFunctionTest {
+class StateTimeTensorFunctionTest {
   @Test
   public void testWithTime() {
     Function<StateTime, Tensor> sttf = StateTime::joined;

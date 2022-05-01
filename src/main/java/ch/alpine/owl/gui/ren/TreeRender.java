@@ -17,10 +17,10 @@ import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.sophus.hs.r2.Extract2D;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.sca.Chop;
@@ -75,7 +75,7 @@ public class TreeRender implements RenderInterface {
       treeColor = TreeColor.ofDimensions(collection.iterator().next().state().length());
       ScalarSummaryStatistics scalarSummaryStatistics = collection.stream() //
           .map(StateCostNode::costFromRoot) //
-          .filter(FiniteQ::of) //
+          .filter(FiniteScalarQ::of) //
           .collect(ScalarSummaryStatistics.collector());
       clip = scalarSummaryStatistics.getClip();
       count = scalarSummaryStatistics.getCount();

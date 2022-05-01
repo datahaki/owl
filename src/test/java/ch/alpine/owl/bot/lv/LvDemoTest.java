@@ -28,7 +28,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.exp.Log;
 
-public class LvDemoTest {
+class LvDemoTest {
   @Test
   public void testPlan() {
     for (int index = 0; index < 5; ++index) {

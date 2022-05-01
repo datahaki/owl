@@ -9,7 +9,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.mat.HilbertMatrix;
 
-public class GridRenderTest {
+class GridRenderTest {
   @Test
   public void testFailMatrix() {
     assertThrows(Exception.class, () -> new GridRender(HilbertMatrix.of(3), HilbertMatrix.of(4)));

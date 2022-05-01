@@ -19,7 +19,7 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Round;
 
-public class TwdDuckieFlowsTest {
+class TwdDuckieFlowsTest {
   @Test
   public void testRadNoDuplicates() {
     Scalar ms = Quantity.of(3, "m*s^-1");

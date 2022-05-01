@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 
-public class Rice1StateSpaceModelTest {
+class Rice1StateSpaceModelTest {
   @Test
   public void testFormerFails() {
     Rice1StateSpaceModel.of(RealScalar.ZERO);

@@ -43,7 +43,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
 
-public class RrtsFlowTrajectoryGeneratorTest {
+class RrtsFlowTrajectoryGeneratorTest {
   @Test
   public void testRn() {
     Rrts rrts = new DefaultRrts( //

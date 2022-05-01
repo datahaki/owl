@@ -18,8 +18,38 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Set up env
-        run: sudo apt-get install xvfb
+      - name: mvn install tensor 106
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/tensor.git
+          cd tensor
+          git checkout v106
+          mvn clean install -DskipTests=true
+      - name: mvn install sophus 010
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/sophus.git
+          cd sophus
+          git checkout v010
+          mvn clean install -DskipTests=true
+      - name: mvn install subare 044
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/subare.git
+          cd subare
+          git checkout v044
+          mvn clean install -DskipTests=true
+      - name: mvn install java 032
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/java.git
+          cd java
+          git checkout v032
+          mvn clean install -DskipTests=true
       - name: mvn test
         working-directory: .
         run: xvfb-run --auto-servernum mvn test -B

@@ -17,7 +17,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 
-public class S2DisplayTest {
+class S2DisplayTest {
   @Test
   public void testSimple() {
     Tensor tensor = S2Display.tangentSpace(Tensors.vector(0, 1, 0));

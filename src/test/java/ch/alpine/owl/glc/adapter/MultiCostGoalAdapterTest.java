@@ -24,7 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class MultiCostGoalAdapterTest {
+class MultiCostGoalAdapterTest {
   @Test
   public void testSimple() {
     Scalar speed = RealScalar.of(2);

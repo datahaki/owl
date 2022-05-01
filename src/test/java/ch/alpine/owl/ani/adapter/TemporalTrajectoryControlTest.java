@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class TemporalTrajectoryControlTest {
+class TemporalTrajectoryControlTest {
   @Test
   public void testFallback() {
     EntityControl entityControl = FallbackControl.of(Tensors.vector(1, 2));

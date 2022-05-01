@@ -11,7 +11,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.sca.Abs;
 
-public class OrderTest {
+class OrderTest {
   @Test
   public void testTotalOrderIntegers() {
     OrderComparator<Integer> totalScalarComparator = new Order<>((x, y) -> x <= y);

@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 
-public class LinearRegionTest {
+class LinearRegionTest {
   @Test
   public void testSimple() {
     LinearRegion linearRegion = new LinearRegion(RealScalar.of(10), RealScalar.of(2));

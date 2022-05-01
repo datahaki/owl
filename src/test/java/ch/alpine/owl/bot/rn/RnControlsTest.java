@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class RnControlsTest {
+class RnControlsTest {
   @Test
   public void testMaxSpeed() {
     int n = 10;

@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RegionUnionTest {
+class RegionUnionTest {
   @Test
   public void testSimple() {
     List<StateTime> stateList = new ArrayList<>();

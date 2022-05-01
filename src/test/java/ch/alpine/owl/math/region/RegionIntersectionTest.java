@@ -12,7 +12,7 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RegionIntersectionTest {
+class RegionIntersectionTest {
   @Test
   public void testSimple() {
     Region<Tensor> intersection = RegionIntersection.wrap( //

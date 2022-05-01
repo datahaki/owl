@@ -9,7 +9,7 @@ import ch.alpine.owl.demo.order.ScalarTotalOrder;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
-public class ProductOrderTrackerTest {
+class ProductOrderTrackerTest {
   @Test
   public void testSimple() {
     ProductOrderTracker<Scalar> productOrderTracker = new ProductOrderTracker<>(ScalarTotalOrder.INSTANCE);

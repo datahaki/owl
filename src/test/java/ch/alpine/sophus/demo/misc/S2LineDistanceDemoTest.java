@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class S2LineDistanceDemoTest {
+class S2LineDistanceDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new S2LineDistanceDemo());

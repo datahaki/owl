@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.ExactScalarQ;
 
-public class AbstractShadowConstraintTest {
+class AbstractShadowConstraintTest {
   @Test
   public void testNumeric() {
     Tensor tensor = AbstractShadowConstraint.DIR;

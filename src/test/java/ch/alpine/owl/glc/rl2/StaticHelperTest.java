@@ -16,7 +16,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class StaticHelperTest {
+class StaticHelperTest {
   @Test
   public void testIsSimilar() {
     Tensor slacks = Tensors.vector(1, 1, 1);

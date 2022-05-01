@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 
-public class RnPointcloudRegionTest {
+class RnPointcloudRegionTest {
   @Test
   public void testEmpty() {
     Region<Tensor> region = RnPointcloudRegion.of(Tensors.empty(), RealScalar.ONE);

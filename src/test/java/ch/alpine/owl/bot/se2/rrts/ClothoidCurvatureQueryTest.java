@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-public class ClothoidCurvatureQueryTest {
+class ClothoidCurvatureQueryTest {
   @Test
   public void testWidthZeroFail() {
     assertThrows(Exception.class, () -> new ClothoidCurvatureQuery(Clips.interval(3, 3)));

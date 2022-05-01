@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.order.OrderComparison;
 
-public class EqualityOrderTest {
+class EqualityOrderTest {
   @Test
   public void testInteger() {
     assertEquals(EqualityOrder.INSTANCE.compare(2, 3), OrderComparison.INCOMPARABLE);

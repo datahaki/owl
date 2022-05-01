@@ -14,7 +14,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.mat.MatrixQ;
 
-public class DubinsGeneratorTest {
+class DubinsGeneratorTest {
   @Test
   public void testSimple() {
     Tensor tensor = DubinsGenerator.of(Array.zeros(3), Tensors.fromString("{{1, 0, 0}, {1, 0, .3}}"));

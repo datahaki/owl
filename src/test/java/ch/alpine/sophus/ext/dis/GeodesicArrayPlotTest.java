@@ -12,7 +12,7 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 
-public class GeodesicArrayPlotTest {
+class GeodesicArrayPlotTest {
   @Test
   public void testSimple() {
     Distribution distribution = NormalDistribution.standard();

@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2StateSpaceModelTest {
+class Se2StateSpaceModelTest {
   @Test
   public void testQuantity() {
     Tensor x = Tensors.fromString("{-1[m], -2[m], 3}");

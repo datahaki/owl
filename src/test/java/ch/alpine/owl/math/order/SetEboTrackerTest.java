@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.Permutations;
 
-public class SetEboTrackerTest {
+class SetEboTrackerTest {
   @Test
   public void testDigestSimple() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");

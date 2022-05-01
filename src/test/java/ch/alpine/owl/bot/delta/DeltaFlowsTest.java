@@ -10,7 +10,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Chop;
 
-public class DeltaFlowsTest {
+class DeltaFlowsTest {
   /** the constants define the control */
   private static final Scalar U_NORM = RealScalar.of(0.6);
   /** resolution of radial controls */

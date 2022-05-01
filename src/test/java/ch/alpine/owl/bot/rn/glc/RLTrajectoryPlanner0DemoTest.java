@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class RLTrajectoryPlanner0DemoTest {
+class RLTrajectoryPlanner0DemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new RLTrajectoryPlanner0Demo());

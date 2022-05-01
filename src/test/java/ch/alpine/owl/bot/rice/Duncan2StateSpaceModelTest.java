@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class Duncan2StateSpaceModelTest {
+class Duncan2StateSpaceModelTest {
   @Test
   public void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan2StateSpaceModel(Quantity.of(0.1, "s^-1"));

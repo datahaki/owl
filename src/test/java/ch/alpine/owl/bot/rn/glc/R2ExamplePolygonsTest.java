@@ -13,7 +13,7 @@ import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class R2ExamplePolygonsTest {
+class R2ExamplePolygonsTest {
   @Test
   public void testPolygon() throws ClassNotFoundException, IOException {
     PolygonRegion polygonRegion = Serialization.copy(new PolygonRegion(R2ExamplePolygons.BULKY_TOP_LEFT));

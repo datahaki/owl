@@ -17,7 +17,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class Se2WrapDemoTest {
+class Se2WrapDemoTest {
   @Test
   public void testSe2Wrap() {
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap( //

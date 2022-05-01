@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class FallbackControlTest {
+class FallbackControlTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     EntityControl fallbackControl = Serialization.copy(FallbackControl.of(Tensors.vector(1, 2, 3)));

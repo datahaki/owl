@@ -25,7 +25,7 @@ import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class Duncan1StateSpaceModelTest {
+class Duncan1StateSpaceModelTest {
   @Test
   public void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.1, "s^-1"));

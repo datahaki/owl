@@ -10,7 +10,7 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class Se2PointsVsRegionTest {
+class Se2PointsVsRegionTest {
   @Test
   public void testSimple() {
     Tensor center = Tensors.vector(1, 2);

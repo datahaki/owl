@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class S1BarycentricCoordinateDemoTest {
+class S1BarycentricCoordinateDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new S1BarycentricCoordinateDemo());

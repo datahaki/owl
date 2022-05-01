@@ -9,7 +9,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensors;
 
-public class ArgMinComparatorTest {
+class ArgMinComparatorTest {
   @Test
   public void testSimple() {
     int r1 = ArgMinComparator.INSTANCE.compare(Tensors.vector(1), Tensors.vector(2));

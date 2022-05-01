@@ -11,7 +11,7 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class TimeDependentRegionTest {
+class TimeDependentRegionTest {
   @Test
   public void testSimple() {
     Region<StateTime> region = //

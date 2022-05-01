@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class StandardRelaxedLexicographicPlannerTest {
+class StandardRelaxedLexicographicPlannerTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = Serialization.copy(TestHelper.createPlanner());

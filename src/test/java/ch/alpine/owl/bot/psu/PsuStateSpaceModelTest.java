@@ -27,7 +27,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.sca.Chop;
 
-public class PsuStateSpaceModelTest {
+class PsuStateSpaceModelTest {
   @Test
   public void testNonTrivial() {
     Tensor u = Tensors.of(RationalScalar.HALF);

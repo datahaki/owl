@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.Abs;
 
-public class LexicographicOrderTest {
+class LexicographicOrderTest {
   @Test
   public void testTotalLexciographic() {
     OrderComparator<Scalar> comparator1 = ScalarTotalOrder.INSTANCE;

@@ -10,7 +10,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.IdentityMatrix;
 
-public class AxesRenderTest {
+class AxesRenderTest {
   @Test
   public void testSimple() {
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));

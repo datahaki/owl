@@ -19,7 +19,7 @@ import ch.alpine.tensor.nrm.VectorInfinityNorm;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-public class RepresentativeNegTransitiveMinTrackerTest {
+class RepresentativeNegTransitiveMinTrackerTest {
   @Test
   public void testDigestNotEmpty() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class UbongoTest {
+class UbongoTest {
   @Test
   public void testSimple() {
     assertEquals(Ubongo.values().length, 12);

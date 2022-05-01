@@ -17,7 +17,7 @@ import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RegionRendersTest {
+class RegionRendersTest {
   @Test
   public void testSimple() {
     Tensor image = Tensors.fromString("{{1, 0, 1}}");

@@ -14,7 +14,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
-public class LengthCostFunctionTest {
+class LengthCostFunctionTest {
   @Test
   public void testSingle() {
     Rrts rrts = new DefaultRrts( //

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 
-public class DomainQueueTest {
+class DomainQueueTest {
   @Test
   public void testQueue() {
     GlcNode first = GlcNode.of(null, null, RealScalar.of(1), RealScalar.ZERO);

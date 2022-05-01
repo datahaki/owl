@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
 
-public class IntersectionEntryFinderTest {
+class IntersectionEntryFinderTest {
   @Test
   public void testSE2() {
     Tensor goalSE2 = Tensors.vector(3, 1, 0);

@@ -22,7 +22,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class AbstractEboTrackerTest {
+class AbstractEboTrackerTest {
   @Test
   public void testPermutations() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);

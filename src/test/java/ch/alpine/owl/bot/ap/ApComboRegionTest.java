@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class ApComboRegionTest {
+class ApComboRegionTest {
   @Test
   public void testSimple() {
     ApComboRegion apComboRegion = new ApComboRegion( //

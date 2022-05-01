@@ -20,7 +20,7 @@ import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Floor;
 
-public class Se2WrapTest {
+class Se2WrapTest {
   static Tensor convertToKey(Tensor eta, TensorUnaryOperator represent, Tensor x) {
     return Times.of(eta, represent.apply(x)).map(Floor.FUNCTION);
   }

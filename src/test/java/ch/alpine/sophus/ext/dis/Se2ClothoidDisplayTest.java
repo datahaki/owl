@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.sca.Clips;
 
-public class Se2ClothoidDisplayTest {
+class Se2ClothoidDisplayTest {
   @Test
   public void testSimple() {
     // 1 2.5180768787131558

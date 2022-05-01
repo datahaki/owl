@@ -13,7 +13,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2ComboRegionTest {
+class Se2ComboRegionTest {
   @Test
   public void testSimple() {
     Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 3));

@@ -12,7 +12,7 @@ import ch.alpine.subare.analysis.MonteCarloExamples;
 import ch.alpine.subare.core.MonteCarloInterface;
 import ch.alpine.subare.core.util.DiscreteQsa;
 
-public class MonteCarloAlgorithmsTest {
+class MonteCarloAlgorithmsTest {
   @Test
   public void testExamplesWithSarsa() {
     checkExampleWithSarsa(MonteCarloExamples.AIRPORT, true);

@@ -10,7 +10,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class ArgMinValueTest {
+class ArgMinValueTest {
   @Test
   public void testSimple() {
     ArgMinValue argMinValue = ArgMinValue.of(Tensors.vector(3, 2, 3, 4, 5, 1, 2, 3, 4));

@@ -14,7 +14,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
-public class GeodesicBSplineFunctionDemoTest {
+class GeodesicBSplineFunctionDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new GeodesicBSplineFunctionDemo());

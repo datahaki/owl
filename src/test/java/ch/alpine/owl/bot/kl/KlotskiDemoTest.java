@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.ext.Serialization;
 
-public class KlotskiDemoTest {
+class KlotskiDemoTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     KlotskiProblem klotskiProblem = Serialization.copy(Huarong.ONLY_18_STEPS.create());

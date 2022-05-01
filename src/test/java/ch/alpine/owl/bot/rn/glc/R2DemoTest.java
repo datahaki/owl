@@ -11,7 +11,7 @@ import ch.alpine.owl.glc.adapter.GlcTrajectories;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.state.TrajectorySample;
 
-public class R2DemoTest {
+class R2DemoTest {
   @Test
   public void testSimpleEmpty() {
     GlcNode glcNode = R2Demo.simpleEmpty().getBest().get();

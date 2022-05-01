@@ -12,7 +12,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.PositiveDefiniteMatrixQ;
 import ch.alpine.tensor.sca.Chop;
 
-public class Spd2DisplayTest {
+class Spd2DisplayTest {
   private static final ManifoldDisplay GEODESIC_DISPLAY = Spd2Display.INSTANCE;
 
   @Test

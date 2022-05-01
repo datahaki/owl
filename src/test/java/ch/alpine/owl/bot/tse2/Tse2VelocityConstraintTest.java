@@ -14,7 +14,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class Tse2VelocityConstraintTest {
+class Tse2VelocityConstraintTest {
   @Test
   public void testSimple() {
     PlannerConstraint plannerConstraint = //

@@ -10,7 +10,7 @@ import ch.alpine.owl.bot.se2.ScaledLateralAcceleration;
 import ch.alpine.owl.bot.se2.Se2LateralAcceleration;
 import ch.alpine.tensor.RealScalar;
 
-public class HeuristicQTest {
+class HeuristicQTest {
   @Test
   public void testSimple() {
     assertFalse(HeuristicQ.of(Se2LateralAcceleration.INSTANCE));

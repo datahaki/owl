@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class R1KrigingDemoTest {
+class R1KrigingDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new R1KrigingDemo());

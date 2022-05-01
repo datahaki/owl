@@ -4,12 +4,12 @@ package ch.alpine.sophus.demo.bd2;
 import java.util.Objects;
 
 import ch.alpine.tensor.DoubleScalar;
-import ch.alpine.tensor.FiniteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Mod;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.Mod;
   public Scalar apply(Tensor point) {
     for (Tensor _scalar : tensorUnaryOperator.apply(point)) {
       Scalar scalar = (Scalar) _scalar;
-      if (FiniteQ.of(scalar)) {
+      if (FiniteScalarQ.of(scalar)) {
         if (CLIP.isInside(MOD.apply(scalar)))
           return RealScalar.ZERO;
       } else

@@ -10,7 +10,7 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class BoxRegionTest {
+class BoxRegionTest {
   @Test
   public void testSimple() {
     Region<Tensor> r = BoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));

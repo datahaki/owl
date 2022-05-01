@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.tri.ArcTan;
 
-public class ConeRegionTest {
+class ConeRegionTest {
   @Test
   public void testSimple() {
     ConeRegion coneRegion = new ConeRegion(Tensors.vector(5, 0, Math.PI / 2), RealScalar.ONE);

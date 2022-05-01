@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class RrtsNodeTest {
+class RrtsNodeTest {
   @Test
   public void testSome() {
     RrtsNode root = RrtsNode.createRoot(Tensors.vector(0), RealScalar.ZERO);

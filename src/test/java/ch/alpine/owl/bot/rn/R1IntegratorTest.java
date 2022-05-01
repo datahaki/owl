@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.qty.Quantity;
 
-public class R1IntegratorTest {
+class R1IntegratorTest {
   @Test
   public void testSimple() {
     Tensor xn = R1Integrator.direct(Tensors.fromString("{3[m], 1[m*s^-1]}"), Quantity.of(2, "m*s^-2"), Quantity.of(10, "s"));

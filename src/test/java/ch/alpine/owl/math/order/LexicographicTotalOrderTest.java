@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class LexicographicTotalOrderTest {
+class LexicographicTotalOrderTest {
   @SuppressWarnings("rawtypes")
   @Test
   public void testEquals() {

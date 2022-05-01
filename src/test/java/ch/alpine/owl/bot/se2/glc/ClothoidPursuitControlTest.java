@@ -12,7 +12,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-public class ClothoidPursuitControlTest {
+class ClothoidPursuitControlTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     Clip clip = Serialization.copy(Clips.absolute(Quantity.of(2, "m^-1")));

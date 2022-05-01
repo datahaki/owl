@@ -20,7 +20,7 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 
-public class DubinsTransitionTest {
+class DubinsTransitionTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     TransitionSpace transitionSpace = Serialization.copy(DubinsTransitionSpace.of(RealScalar.of(2), DubinsPathComparators.LENGTH));

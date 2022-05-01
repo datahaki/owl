@@ -11,7 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RegionDifferenceTest {
+class RegionDifferenceTest {
   @Test
   public void testSimple() {
     Region<Tensor> region = RegionDifference.of( //

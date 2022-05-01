@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 
-public class StaticHelperTest {
+class StaticHelperTest {
   @Test
   public void testEntrywiseMinEmpty() {
     Optional<Tensor> optional = StaticHelper.entrywiseMin(Stream.of());

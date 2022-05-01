@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.RealScalar;
 
-public class DigitSumDivisibilityPreorderTest {
+class DigitSumDivisibilityPreorderTest {
   @Test
   public void testEquals() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(321, 6);

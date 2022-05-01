@@ -6,7 +6,7 @@ import ch.alpine.sophus.lie.rn.RnBiinvariantMean;
 import ch.alpine.sophus.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophus.srf.SurfaceMesh;
 
-public class SurfaceMeshExamplesTest {
+class SurfaceMeshExamplesTest {
   @Test
   public void testMixed7() {
     for (SurfaceMeshRefinements smr : SurfaceMeshRefinements.values()) {

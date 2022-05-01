@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class LvAnimationDemoTest {
+class LvAnimationDemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new LvAnimationDemo());

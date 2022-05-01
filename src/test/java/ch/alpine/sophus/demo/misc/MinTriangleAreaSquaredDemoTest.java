@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class MinTriangleAreaSquaredDemoTest {
+class MinTriangleAreaSquaredDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new MinTriangleAreaSquaredDemo());

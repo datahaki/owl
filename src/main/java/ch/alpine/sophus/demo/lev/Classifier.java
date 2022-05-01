@@ -4,8 +4,8 @@ package ch.alpine.sophus.demo.lev;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.ExactTensorQ;
 
 public abstract class Classifier implements Classification, Serializable {
   /** @param labels

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.demo.order.JassCard.Farbe;
 import ch.alpine.owl.demo.order.JassCard.Type;
 
-public class JassCardTest {
+class JassCardTest {
   @Test
   public void testIsTrumpf() {
     JassCard card = new JassCard(Farbe.EICHEL, Type.ACE, true);

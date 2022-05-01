@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactScalarQ;
 
-public class RnPointRegionTest {
+class RnPointRegionTest {
   @Test
   public void testSimple() {
     RnPointRegion pointRegion = new RnPointRegion(Tensors.vector(1, 2, 3, 4));

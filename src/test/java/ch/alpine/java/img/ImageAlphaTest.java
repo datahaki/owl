@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ImageFormat;
 
-public class ImageAlphaTest {
+class ImageAlphaTest {
   @Test
   public void testRgba() {
     Tensor tensor = Tensors.fromString("{{{255, 255, 255, 255}, {128, 0, 255, 128}}}");

@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.mat.MatrixQ;
 
-public class ImageRegionsTest {
+class ImageRegionsTest {
   @Test
   public void testSimple() {
     Tensor tensor = ResourceData.of("/io/track0_100.png");

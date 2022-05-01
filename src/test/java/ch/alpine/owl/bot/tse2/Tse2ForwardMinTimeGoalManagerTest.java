@@ -18,7 +18,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
 
-public class Tse2ForwardMinTimeGoalManagerTest {
+class Tse2ForwardMinTimeGoalManagerTest {
   @Test
   public void testSimple() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //

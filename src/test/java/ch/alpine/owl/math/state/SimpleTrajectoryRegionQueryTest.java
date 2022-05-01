@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class SimpleTrajectoryRegionQueryTest {
+class SimpleTrajectoryRegionQueryTest {
   @Test
   public void testSimple() {
     assertThrows(Exception.class, () -> new SimpleTrajectoryRegionQuery(null));

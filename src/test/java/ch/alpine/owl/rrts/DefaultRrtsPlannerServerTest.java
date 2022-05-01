@@ -41,7 +41,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 
-public class DefaultRrtsPlannerServerTest {
+class DefaultRrtsPlannerServerTest {
   @Test
   public void testRn() {
     Tensor goal = Tensors.vector(10, 10);

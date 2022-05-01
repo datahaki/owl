@@ -20,7 +20,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 
-public class PsuDemoTest {
+class PsuDemoTest {
   @Test
   public void testFindGoal() {
     GoalInterface goalInterface = PsuGoalManager.of( //

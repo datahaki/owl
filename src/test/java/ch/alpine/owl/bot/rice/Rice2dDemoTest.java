@@ -26,7 +26,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Timing;
 
-public class Rice2dDemoTest {
+class Rice2dDemoTest {
   @Test
   public void testExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);

@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class RnMinTimeGoalManagerTest {
+class RnMinTimeGoalManagerTest {
   @Test
   public void testSimple() {
     R2Flows r2Flows = new R2Flows(Quantity.of(2, "m*s^-1"));

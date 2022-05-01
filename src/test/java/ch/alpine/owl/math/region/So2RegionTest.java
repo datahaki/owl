@@ -15,7 +15,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
 
-public class So2RegionTest {
+class So2RegionTest {
   @Test
   public void testSimple() {
     So2Region ifr = So2Region.periodic(RealScalar.ONE, RealScalar.ONE);

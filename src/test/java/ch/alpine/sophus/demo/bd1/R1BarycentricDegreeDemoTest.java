@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class R1BarycentricDegreeDemoTest {
+class R1BarycentricDegreeDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new R1BarycentricDegreeDemo());

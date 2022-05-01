@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class SingleEboTrackerTest {
+class SingleEboTrackerTest {
   private static void _checkSimple(AbstractEboTracker<Integer> LSMT1) {
     Tensor x = Tensors.fromString("{1, 2, 2}");
     LSMT1.digest(1, x);

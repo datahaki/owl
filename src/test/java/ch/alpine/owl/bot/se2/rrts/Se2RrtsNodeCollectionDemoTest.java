@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class Se2RrtsNodeCollectionDemoTest {
+class Se2RrtsNodeCollectionDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new Se2RrtsNodeCollectionDemo());

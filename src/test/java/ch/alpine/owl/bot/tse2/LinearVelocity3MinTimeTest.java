@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.qty.Quantity;
 
-public class LinearVelocity3MinTimeTest {
+class LinearVelocity3MinTimeTest {
   @Test
   public void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");

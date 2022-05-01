@@ -21,7 +21,7 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class RelaxedDomainQueueTest {
+class RelaxedDomainQueueTest {
   @Test
   public void testAdd() {
     Tensor slacks = Tensors.vector(1, 1, 1);

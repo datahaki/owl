@@ -26,7 +26,7 @@ import ch.alpine.tensor.nrm.MatrixInfinityNorm;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.win.WindowFunctions;
 
-public class GeodesicFiltersTest {
+class GeodesicFiltersTest {
   private static void _check(GokartPoseData gokartPoseData) {
     List<String> lines = gokartPoseData.list();
     Tensor control = gokartPoseData.getPose(lines.get(0), 250);

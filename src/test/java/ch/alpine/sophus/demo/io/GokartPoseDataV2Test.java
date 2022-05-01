@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.qty.Quantity;
 
-public class GokartPoseDataV2Test {
+class GokartPoseDataV2Test {
   @Test
   public void testSampleRate() {
     assertEquals(GokartPoseDataV2.INSTANCE.getSampleRate(), Quantity.of(50, "s^-1"));

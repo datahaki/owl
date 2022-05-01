@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class KlotskiModelTest {
+class KlotskiModelTest {
   @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {

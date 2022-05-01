@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
-public class KlotskiGoalAdapterTest {
+class KlotskiGoalAdapterTest {
   @Test
   public void testSimple() {
     for (Huarong huarong : Huarong.values()) {

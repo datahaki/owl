@@ -10,7 +10,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.mat.Tolerance;
 
-public class Se2DisplayTest {
+class Se2DisplayTest {
   @Test
   public void testSimple() {
     assertEquals(Se2Display.INSTANCE.lieGroup(), Se2Group.INSTANCE);

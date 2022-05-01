@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.io.ResourceData;
 
-public class ImageGradientInterpolationTest {
+class ImageGradientInterpolationTest {
   @Test
   public void testLinear() {
     Tensor range = Tensors.vector(9, 6.5);

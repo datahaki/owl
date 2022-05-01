@@ -14,7 +14,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class TensorProductOrderTest {
+class TensorProductOrderTest {
   private static void _check(Tensor x, Tensor y, OrderComparison orderComparison) {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(x.length());
     assertEquals(productOrderComparator.compare(x, y), orderComparison);

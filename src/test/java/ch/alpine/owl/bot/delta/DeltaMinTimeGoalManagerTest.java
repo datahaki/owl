@@ -20,7 +20,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.sca.Chop;
 
-public class DeltaMinTimeGoalManagerTest {
+class DeltaMinTimeGoalManagerTest {
   @Test
   public void testConstructors() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.util.DemoInterfaceHelper;
 
-public class Rice2dxTGearDemoTest {
+class Rice2dxTGearDemoTest {
   @Test
   public void testSimple() {
     DemoInterfaceHelper.brief(new Rice2dxTGearDemo());

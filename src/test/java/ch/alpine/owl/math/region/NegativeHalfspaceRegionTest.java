@@ -10,7 +10,7 @@ import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class NegativeHalfspaceRegionTest {
+class NegativeHalfspaceRegionTest {
   @Test
   public void testSimple() {
     Region<Tensor> r = new NegativeHalfspaceRegion(1);

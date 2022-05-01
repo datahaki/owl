@@ -20,7 +20,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class R2EntityTest {
+class R2EntityTest {
   @Test
   public void testSimple() {
     Tensor ux = Tensors.vector(1, 0);

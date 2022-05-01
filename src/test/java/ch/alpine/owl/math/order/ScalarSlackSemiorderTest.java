@@ -11,7 +11,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
-public class ScalarSlackSemiorderTest {
+class ScalarSlackSemiorderTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     OrderComparator<Scalar> scalarSlackSemiorder = Serialization.copy(new ScalarSlackSemiorder(Quantity.of(2, "s")));

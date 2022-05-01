@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ParetoTest {
+class ParetoTest {
   @Test
   public void testSimple() {
     Tensor a = Tensors.vector(1, 1);

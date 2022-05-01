@@ -11,7 +11,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Chop;
 
-public class RungeKutta4IntegratorTest {
+class RungeKutta4IntegratorTest {
   @Test
   public void testSe2Rk() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;

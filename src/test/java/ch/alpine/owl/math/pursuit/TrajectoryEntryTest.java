@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.ext.Serialization;
 
-public class TrajectoryEntryTest {
+class TrajectoryEntryTest {
   @Test
   public void testSimple() throws ClassNotFoundException, IOException {
     TrajectoryEntry trajectoryEntry = Serialization.copy(new TrajectoryEntry(null, RealScalar.ONE));

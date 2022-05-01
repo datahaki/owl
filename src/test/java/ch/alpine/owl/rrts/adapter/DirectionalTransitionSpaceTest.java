@@ -23,7 +23,7 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class DirectionalTransitionSpaceTest {
+class DirectionalTransitionSpaceTest {
   @Test
   public void testLength() throws ClassNotFoundException, IOException {
     Tensor a = Tensors.fromString("{1[m], 1[m], 0}");

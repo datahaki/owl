@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophus.demo.io.GokartPoseDataV2;
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class ApproximationDemoTest {
+class ApproximationDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new ApproximationDemo(GokartPoseDataV2.RACING_DAY));

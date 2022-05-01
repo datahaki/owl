@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-public class R1RadialBasisFunctionDemoTest {
+class R1RadialBasisFunctionDemoTest {
   @Test
   public void testSimple() {
     AbstractDemoHelper.offscreen(new R1RadialBasisFunctionDemo());

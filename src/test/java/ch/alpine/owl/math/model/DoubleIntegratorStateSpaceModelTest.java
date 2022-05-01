@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class DoubleIntegratorStateSpaceModelTest {
+class DoubleIntegratorStateSpaceModelTest {
   @Test
   public void testSimple() {
     Tensor x = Tensors.vector(9, 8, 1, 2);

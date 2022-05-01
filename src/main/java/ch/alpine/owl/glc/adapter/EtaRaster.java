@@ -6,10 +6,10 @@ import java.util.function.Function;
 
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Append;
+import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Floor;
 

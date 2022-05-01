@@ -15,7 +15,7 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Serialization;
 
-public class ManifoldDisplaysTest {
+class ManifoldDisplaysTest {
   @Test
   public void testSimple() {
     assertTrue(12 <= ManifoldDisplays.ALL.size());

@@ -15,7 +15,7 @@ import ch.alpine.tensor.sca.exp.Exp;
 import ch.alpine.tensor.sca.exp.Log;
 import ch.alpine.tensor.sca.tri.ArcTan;
 
-public class AnyScalarTest {
+class AnyScalarTest {
   @Test
   public void testSerializable() throws ClassNotFoundException, IOException {
     Serialization.copy(AnyScalar.INSTANCE);

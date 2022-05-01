@@ -14,7 +14,7 @@ import ch.alpine.sophus.srf.MeshStructure;
 import ch.alpine.sophus.srf.SurfaceMesh;
 import ch.alpine.tensor.Tensors;
 
-public class DooSabinDemoTest {
+class DooSabinDemoTest {
   @Test
   public void testSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //

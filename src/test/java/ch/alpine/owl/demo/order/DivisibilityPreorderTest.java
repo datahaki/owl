@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.RealScalar;
 
-public class DivisibilityPreorderTest {
+class DivisibilityPreorderTest {
   @Test
   public void testSimple() {
     assertEquals(DivisibilityPreorder.INSTANCE.compare(RealScalar.of(1), RealScalar.of(6)), OrderComparison.STRICTLY_PRECEDES);

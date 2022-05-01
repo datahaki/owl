@@ -8,7 +8,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-public class ParentFileRelationTest {
+class ParentFileRelationTest {
   @Test
   public void testSimple() {
     assertTrue(ParentFileRelation.INSTANCE.test(new File("/some/blub"), new File("/some/blub/")));

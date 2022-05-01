@@ -11,7 +11,7 @@ import ch.alpine.owl.glc.core.HeuristicQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class RnNoHeuristicCircleGoalManagerTest {
+class RnNoHeuristicCircleGoalManagerTest {
   @Test
   public void testMinCostToGoal1() {
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(Tensors.vector(5, 0), RealScalar.of(2));

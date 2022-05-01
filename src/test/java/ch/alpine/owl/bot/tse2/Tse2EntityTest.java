@@ -33,7 +33,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 
-public class Tse2EntityTest {
+class Tse2EntityTest {
   @Test
   public void testForward() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //

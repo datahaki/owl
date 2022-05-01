@@ -15,7 +15,7 @@ import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RelaxedGlobalQueueTest {
+class RelaxedGlobalQueueTest {
   @Test
   public void testSimple() {
     Tensor slacks = Tensors.vector(3, 3, 3);

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class TrajectoryWrapTest {
+class TrajectoryWrapTest {
   @Test
   public void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(4));

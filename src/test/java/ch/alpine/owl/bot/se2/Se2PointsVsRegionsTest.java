@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 
-public class Se2PointsVsRegionsTest {
+class Se2PointsVsRegionsTest {
   @Test
   public void testSimple() {
     Region<Tensor> region = Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), Regions.emptyRegion());

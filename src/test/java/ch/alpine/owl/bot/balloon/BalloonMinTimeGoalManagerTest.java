@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class BalloonMinTimeGoalManagerTest {
+class BalloonMinTimeGoalManagerTest {
   @Test
   public void testWithoutUnits() {
     Tensor goal = Tensors.vector(0, 0);

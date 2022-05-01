@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class RadiusXYTest {
+class RadiusXYTest {
   @Test
   public void testSimple() {
     assertEquals(RadiusXY.requireSame(Tensors.vector(2, 2, 3)), RealScalar.of(2));
