@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.clt;
+package ch.alpine.owl.sim;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -27,6 +27,8 @@ import ch.alpine.sophus.clt.ClothoidContext;
 import ch.alpine.sophus.clt.ClothoidSolutions;
 import ch.alpine.sophus.clt.mid.MidpointTangentApproximation;
 import ch.alpine.sophus.clt.mid.MidpointTangentOrder2;
+import ch.alpine.sophus.demo.clt.ClothoidDefectContainer;
+import ch.alpine.sophus.demo.clt.CustomClothoidBuilder;
 import ch.alpine.sophus.ext.api.ControlPointsDemo;
 import ch.alpine.sophus.ext.dis.ManifoldDisplays;
 import ch.alpine.tensor.RationalScalar;

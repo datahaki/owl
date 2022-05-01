@@ -1,13 +1,13 @@
 // code by jph
-package ch.alpine.sophus.demo.curve;
+package ch.alpine.owl.sim;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
-class DubinsPathDemoTest {
+class CustomClothoidDemoTest {
   @Test
   public void testSimple() {
-    AbstractDemoHelper.offscreen(new DubinsPathDemo());
+    AbstractDemoHelper.offscreen(new CustomClothoidDemo());
   }
 }

@@ -11,11 +11,11 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.java.ren.RenderInterface;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.lane.LaneConsumer;

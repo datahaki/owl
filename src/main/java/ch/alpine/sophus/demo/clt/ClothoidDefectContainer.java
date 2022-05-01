@@ -23,7 +23,7 @@ import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ class ClothoidDefectContainer implements RenderInterface {
+public class ClothoidDefectContainer implements RenderInterface {
   private static final Clip RANGE = Clips.absolute(15.0);
   private static final Scalar DENOM = RealScalar.of(5.0);
   private static final ClothoidSolutions CLOTHOID_SOLUTIONS = ClothoidSolutions.of(RANGE);

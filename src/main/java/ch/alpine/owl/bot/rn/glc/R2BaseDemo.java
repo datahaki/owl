@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;

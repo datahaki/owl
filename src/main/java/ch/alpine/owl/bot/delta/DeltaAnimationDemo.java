@@ -3,12 +3,12 @@ package ch.alpine.owl.bot.delta;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.ren.RegionRenders;

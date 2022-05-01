@@ -2,10 +2,10 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;

@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.region.RegionUnion;

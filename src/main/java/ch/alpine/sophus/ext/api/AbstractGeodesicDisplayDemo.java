@@ -7,9 +7,9 @@ import java.util.List;
 import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.javax.swing.SpinnerLabel;
 import ch.alpine.javax.swing.SpinnerListener;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.sophus.ext.dis.GeodesicDisplayRender;
 import ch.alpine.sophus.ext.dis.ManifoldDisplay;
 

@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.util;
 
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 
 public enum DemoInterfaceHelper {
   ;

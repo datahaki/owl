@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.data.tree.NodesAssert;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;

@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.se2.twd;
 
 import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.api.Region;

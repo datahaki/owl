@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.curve;
+package ch.alpine.owl.sim;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -15,9 +15,9 @@ import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.LookAndFeels;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.dubins.DubinsPath;

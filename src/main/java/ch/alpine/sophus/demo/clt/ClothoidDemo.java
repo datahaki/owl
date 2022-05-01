@@ -12,7 +12,7 @@ import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.ren.PointsRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
-import ch.alpine.owl.bot.util.DemoInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;

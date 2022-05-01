@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.clt;
+package ch.alpine.owl.sim;
 
 import org.junit.jupiter.api.Test;
 

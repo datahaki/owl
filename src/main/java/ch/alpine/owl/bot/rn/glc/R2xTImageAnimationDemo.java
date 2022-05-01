@@ -2,12 +2,12 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTImageStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;

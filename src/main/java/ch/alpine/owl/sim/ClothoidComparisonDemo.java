@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophus.demo.clt;
+package ch.alpine.owl.sim;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,9 +19,9 @@ import ch.alpine.java.ren.AxesRender;
 import ch.alpine.java.ren.PathRender;
 import ch.alpine.java.win.AbstractDemo;
 import ch.alpine.java.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
 import ch.alpine.sophus.ext.api.CurveVisualSet;
