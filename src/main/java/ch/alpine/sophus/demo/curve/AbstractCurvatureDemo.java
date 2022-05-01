@@ -9,6 +9,7 @@ import java.util.List;
 import ch.alpine.java.fig.ListPlot;
 import ch.alpine.java.fig.VisualSet;
 import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.sophus.ext.api.BufferedImageSupplier;
 import ch.alpine.sophus.ext.api.ControlPointsDemo;
 import ch.alpine.sophus.ext.api.CurveVisualSet;
@@ -19,6 +20,7 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 
 /** class is used in other projects outside of owl */
+@ReflectionMarker
 public abstract class AbstractCurvatureDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED = ColorDataLists._097.cyclic().deriveWithAlpha(192);
   private static final int WIDTH = 640;

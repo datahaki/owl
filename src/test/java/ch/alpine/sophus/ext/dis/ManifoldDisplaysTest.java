@@ -22,11 +22,23 @@ class ManifoldDisplaysTest {
   }
 
   @Test
+  public void testSerializable() {
+    for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.ALL)
+      try {
+        Serialization.copy(manifoldDisplay);
+      } catch (Exception exception) {
+        System.out.println(manifoldDisplay);
+        exception.printStackTrace();
+        fail();
+      }
+  }
+
+  @Test
   public void testToPoint() {
     for (ManifoldDisplay manifoldDisplay : ManifoldDisplays.ALL)
       try {
         Tensor xya = Tensors.vector(1, 2, 3);
-        Tensor p = Serialization.copy(manifoldDisplay).project(xya);
+        Tensor p = manifoldDisplay.project(xya);
         VectorQ.requireLength(manifoldDisplay.toPoint(p), 2);
         Tensor matrix = manifoldDisplay.matrixLift(p);
         assertEquals(Dimensions.of(matrix), Arrays.asList(3, 3));

@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.sophus.ext.dis;
 
+import java.io.Serializable;
+
 import ch.alpine.java.gfx.GfxMatrix;
 import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.bm.BiinvariantMean;
@@ -15,7 +17,7 @@ import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-public abstract class R2S1AbstractDisplay implements ManifoldDisplay {
+public abstract class R2S1AbstractDisplay implements ManifoldDisplay, Serializable {
   private static final Tensor ARROWHEAD = Arrowhead.of(0.2).unmodifiable();
 
   @Override // from GeodesicDisplay

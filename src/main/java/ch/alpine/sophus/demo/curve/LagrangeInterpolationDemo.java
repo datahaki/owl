@@ -13,6 +13,7 @@ import ch.alpine.java.awt.RenderQuality;
 import ch.alpine.java.gfx.GeometricLayer;
 import ch.alpine.java.ref.ann.FieldInteger;
 import ch.alpine.java.ref.ann.FieldSelectionArray;
+import ch.alpine.java.ref.ann.ReflectionMarker;
 import ch.alpine.java.ref.util.ToolbarFieldsEditor;
 import ch.alpine.sophus.crv.spline.LagrangeInterpolation;
 import ch.alpine.sophus.ext.api.Curvature2DRender;
@@ -34,6 +35,7 @@ import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.N;
 
 /** LagrangeInterpolation with extrapolation */
+@ReflectionMarker
 public class LagrangeInterpolationDemo extends AbstractCurvatureDemo {
   @FieldInteger
   @FieldSelectionArray(value = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" })
