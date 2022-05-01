@@ -17,23 +17,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>ch.alpine</groupId>
-			<artifactId>sophus</artifactId>
-			<version>0.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.alpine</groupId>
-			<artifactId>java</artifactId>
-			<version>0.3.2</version>
+			<artifactId>ascona</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.alpine</groupId>
 			<artifactId>subare</artifactId>
 			<version>0.4.4</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.ethz.idsc</groupId>
-			<artifactId>ephemeral</artifactId>
-			<version>0.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.formdev</groupId>
@@ -71,16 +61,8 @@
 
 	<repositories>
 		<repository>
-			<id>sophus-mvn-repo</id>
-			<url>https://raw.github.com/datahaki/sophus/mvn-repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>java-mvn-repo</id>
-			<url>https://raw.github.com/datahaki/java/mvn-repo/</url>
+			<id>ascona-mvn-repo</id>
+			<url>https://raw.github.com/datahaki/ascona/mvn-repo/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
@@ -89,14 +71,6 @@
 		<repository>
 			<id>subare-mvn-repo</id>
 			<url>https://raw.github.com/datahaki/subare/mvn-repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>ephemeral-mvn-repo</id>
-			<url>https://raw.github.com/idsc-frazzoli/ephemeral/mvn-repo/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>

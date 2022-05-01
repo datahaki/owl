@@ -50,6 +50,14 @@ jobs:
           cd java
           git checkout v032
           mvn clean install -DskipTests=true
+      - name: mvn install ascona 001
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/ascona.git
+          cd ascona
+          git checkout v001
+          mvn clean install -DskipTests=true
       - name: mvn test
         working-directory: .
         run: xvfb-run --auto-servernum mvn test -B
