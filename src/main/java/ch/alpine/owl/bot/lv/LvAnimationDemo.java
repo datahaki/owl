@@ -3,15 +3,15 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.ren.VectorFieldRender;
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
+import ch.alpine.owl.gui.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;

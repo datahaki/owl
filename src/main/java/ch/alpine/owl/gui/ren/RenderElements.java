@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.ren.AxesRender;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.win.AxesRender;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcTrajectories;

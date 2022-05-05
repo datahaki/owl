@@ -7,8 +7,8 @@ import java.awt.Shape;
 import java.awt.geom.Path2D;
 import java.util.function.Supplier;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.LidarRaytracer;

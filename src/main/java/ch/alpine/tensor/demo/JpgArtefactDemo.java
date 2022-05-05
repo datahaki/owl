@@ -15,12 +15,12 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.util.ToolbarFieldsEditor;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.java.win.LookAndFeels;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.ref.ann.FieldPreferredWidth;
+import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
+import ch.alpine.bridge.swing.SpinnerLabel;
+import ch.alpine.bridge.win.AbstractDemo;
+import ch.alpine.bridge.win.LookAndFeels;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 

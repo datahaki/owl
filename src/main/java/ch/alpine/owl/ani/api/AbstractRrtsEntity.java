@@ -8,8 +8,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.gui.ren.TrajectoryRender;

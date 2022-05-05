@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.java.gfx.GfxMatrix;
+import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.Scalar;

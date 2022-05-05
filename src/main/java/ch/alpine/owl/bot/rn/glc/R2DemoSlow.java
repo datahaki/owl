@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Bubbles;

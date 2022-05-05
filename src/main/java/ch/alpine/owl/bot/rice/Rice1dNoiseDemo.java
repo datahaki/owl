@@ -3,9 +3,8 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.ren.VectorFieldRender;
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -14,6 +13,7 @@ import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owl.gui.ren.VectorFieldRender;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;

@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.function.Supplier;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.ImageRender;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.ImageRender;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;

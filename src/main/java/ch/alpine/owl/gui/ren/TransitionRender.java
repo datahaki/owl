@@ -6,9 +6,9 @@ import java.awt.geom.Path2D;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.EmptyRender;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.EmptyRender;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.owl.rrts.core.RrtsNode;

@@ -5,7 +5,7 @@ import java.awt.Shape;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.math.pursuit.ArgMinVariable;

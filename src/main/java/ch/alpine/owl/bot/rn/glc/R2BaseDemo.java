@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.BaseFrame;
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.BaseFrame;
+import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;

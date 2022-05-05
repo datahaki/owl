@@ -20,10 +20,10 @@ import org.jfree.chart.axis.LogarithmicAxis;
 
 import ch.alpine.ascona.dis.ManifoldDisplay;
 import ch.alpine.ascona.dis.Se2ClothoidDisplay;
-import ch.alpine.java.fig.ListPlot;
-import ch.alpine.java.fig.VisualRow;
-import ch.alpine.java.fig.VisualSet;
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.fig.ListPlot;
+import ch.alpine.bridge.fig.VisualRow;
+import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.data.tree.Nodes;

@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Queue;
 import java.util.function.Function;
 
-import ch.alpine.java.util.BoundedPriorityQueue;
+import ch.alpine.bridge.util.BoundedPriorityQueue;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;

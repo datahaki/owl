@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import ch.alpine.java.util.BoundedSortedQueue;
+import ch.alpine.bridge.util.BoundedSortedQueue;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;

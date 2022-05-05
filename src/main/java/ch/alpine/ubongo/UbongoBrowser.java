@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.swing.SpinnerLabel;
+import ch.alpine.bridge.win.AbstractDemo;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.img.ImageRotate;

@@ -11,10 +11,10 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.ascona.dis.ManifoldDisplays;
 import ch.alpine.ascona.lev.AbstractPlaceDemo;
-import ch.alpine.java.awt.RenderQuality;
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.AxesRender;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.bridge.awt.RenderQuality;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.swing.SpinnerLabel;
+import ch.alpine.bridge.win.AxesRender;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.api.Geodesic;
 import ch.alpine.sophus.clt.Clothoid;

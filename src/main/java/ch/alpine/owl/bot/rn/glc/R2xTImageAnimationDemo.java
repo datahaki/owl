@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;

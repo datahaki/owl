@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.function.Supplier;
 
-import ch.alpine.java.gfx.AffineTransforms;
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.AffineTransforms;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GfxMatrix;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophus.math.AppendOne;
 import ch.alpine.tensor.Scalar;

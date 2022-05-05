@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.java.win;
 
-import ch.alpine.java.awt.Hsluv;
+import ch.alpine.bridge.awt.Hsluv;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.img.ColorDataGradient;

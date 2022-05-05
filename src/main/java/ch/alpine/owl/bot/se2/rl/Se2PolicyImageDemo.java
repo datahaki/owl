@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rl;
 
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;

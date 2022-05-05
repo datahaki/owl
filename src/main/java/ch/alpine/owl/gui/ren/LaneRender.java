@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.PathRender;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.PathRender;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.tensor.Tensor;
 

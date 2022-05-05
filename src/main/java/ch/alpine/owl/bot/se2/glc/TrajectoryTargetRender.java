@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.awt.Shape;
 import java.util.Optional;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 
 @FunctionalInterface
 /* package */ interface TrajectoryTargetRender {

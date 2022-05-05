@@ -8,8 +8,8 @@ import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;

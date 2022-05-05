@@ -1,8 +1,8 @@
 // code by jph and jl
 package ch.alpine.owl.bot.delta;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.ren.VectorFieldRender;
+import ch.alpine.bridge.win.RenderInterface;
+import ch.alpine.owl.gui.ren.VectorFieldRender;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.sophus.api.Region;

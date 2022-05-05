@@ -8,8 +8,8 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.tensor.Tensor;
 

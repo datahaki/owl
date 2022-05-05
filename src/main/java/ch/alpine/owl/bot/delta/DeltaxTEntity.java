@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.delta;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.EtaRaster;

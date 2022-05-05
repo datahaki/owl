@@ -46,8 +46,8 @@ jobs:
         working-directory: .
         run: |
           cd ..
-          git clone https://github.com/datahaki/java.git
-          cd java
+          git clone https://github.com/datahaki/bridge.git
+          cd bridge
           git checkout v032
           mvn clean install -DskipTests=true
       - name: mvn install ascona 001

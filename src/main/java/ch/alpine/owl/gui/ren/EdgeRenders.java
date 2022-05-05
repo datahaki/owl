@@ -3,7 +3,7 @@ package ch.alpine.owl.gui.ren;
 
 import java.awt.Color;
 
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.owl.glc.rl2.RelaxedDebugUtils;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 

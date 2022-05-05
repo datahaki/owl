@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
-import ch.alpine.java.win.DemoInterface;
+import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.glc.adapter.RegionConstraints;

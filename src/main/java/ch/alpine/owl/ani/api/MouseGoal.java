@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import ch.alpine.java.win.GeometricComponent;
+import ch.alpine.bridge.win.GeometricComponent;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.GoalConsumer;
