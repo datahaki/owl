@@ -3,8 +3,8 @@ package ch.alpine.sophus.ext.api;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.ascona.api.AbstractGeodesicDisplayDemo;
-import ch.alpine.ascona.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.api.AbstractGeodesicDisplayDemo;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.win.AbstractDemo;
 

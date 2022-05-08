@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ch.alpine.ascona.dis.Se2CoveringDisplay;
+import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
 import ch.alpine.bridge.win.AbstractDemo;
 import ch.alpine.bridge.win.BaseFrame;
-import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.bridge.win.LookAndFeels;
 import ch.alpine.bridge.win.PathRender;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;

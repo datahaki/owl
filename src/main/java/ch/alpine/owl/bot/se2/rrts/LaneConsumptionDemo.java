@@ -11,12 +11,14 @@ import java.util.function.Consumer;
 import javax.swing.JButton;
 
 import ch.alpine.ascona.curve.AbstractCurveDemo;
-import ch.alpine.ascona.dis.Se2ClothoidDisplay;
-import ch.alpine.ascona.dis.Se2CoveringClothoidDisplay;
-import ch.alpine.ascona.dis.Se2CoveringDisplay;
-import ch.alpine.ascona.dis.Se2Display;
+import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
+import ch.alpine.ascona.util.dis.Se2CoveringClothoidDisplay;
+import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
+import ch.alpine.ascona.util.dis.Se2Display;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
+import ch.alpine.bridge.win.BaseFrame;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
@@ -27,7 +29,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Serialization;
 
-public class LaneConsumptionDemo extends AbstractCurveDemo {
+public class LaneConsumptionDemo extends AbstractCurveDemo implements DemoInterface {
   private final LaneRender laneRender = new LaneRender();
   private LaneInterface lane = null;
 
@@ -84,5 +86,10 @@ public class LaneConsumptionDemo extends AbstractCurveDemo {
     new LaneConsumptionDemo( //
         lane -> System.out.println("control points: " + lane.controlPoints().length()), //
         lane -> System.out.println("refined points: " + lane.midLane().length())).setVisible(1200, 900);
+  }
+
+  @Override
+  public BaseFrame start() {
+    return timerFrame;
   }
 }

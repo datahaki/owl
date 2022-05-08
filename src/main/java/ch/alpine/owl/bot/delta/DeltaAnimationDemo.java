@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.delta;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;

@@ -20,7 +20,7 @@ import ch.alpine.bridge.lang.ClassDiscovery;
 import ch.alpine.bridge.lang.ClassPaths;
 import ch.alpine.bridge.lang.ClassVisitor;
 import ch.alpine.bridge.win.BaseFrame;
-import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.java.win.DemoInterface;
 
 /** scans repository for classes that implement {@link DemoInterface}
  * DemoLauncher creates a gui that allows to start these classes. */

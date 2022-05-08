@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 
-import ch.alpine.ascona.api.Box2D;
+import ch.alpine.ascona.util.api.Box2D;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;

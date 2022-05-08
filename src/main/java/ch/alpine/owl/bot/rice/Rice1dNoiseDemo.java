@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
-import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.bridge.win.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;

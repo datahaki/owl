@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.util.function.Supplier;
 
-import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.bridge.win.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;

@@ -11,7 +11,7 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.win.AbstractDemo;
 import ch.alpine.bridge.win.AxesRender;
 import ch.alpine.bridge.win.BaseFrame;
-import ch.alpine.bridge.win.DemoInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.sophus.crv.dubins.DubinsPath;
 import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
 import ch.alpine.sophus.crv.dubins.FixedRadiusDubins;

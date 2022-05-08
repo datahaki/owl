@@ -40,7 +40,7 @@ import ch.alpine.tensor.sca.Real;
  * <p>Hint: a {@link VectorScalar} may also have zero entries */
 public class VectorScalar extends MultiplexScalar implements //
     ComplexEmbedding, ConjugateInterface, Comparable<Scalar>, Serializable {
-  // TODO API not finalized: should VectorScalar allow entries with other VectorScalar's?
+  // TODO OWL API not finalized: should VectorScalar allow entries with other VectorScalar's?
   /** @param vector
    * @return
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */

@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.bridge.win.DemoInterface;
 import ch.alpine.bridge.win.RenderInterface;
+import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.gui.ren.MouseShapeRender;
 import ch.alpine.owl.math.state.StateTime;
