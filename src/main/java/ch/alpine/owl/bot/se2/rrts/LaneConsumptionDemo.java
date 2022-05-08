@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 import javax.swing.JButton;
 
-import ch.alpine.ascona.curve.AbstractCurveDemo;
+import ch.alpine.ascona.crv.AbstractCurveDemo;
 import ch.alpine.ascona.lev.LeversRender;
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
