@@ -5,7 +5,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
@@ -15,6 +14,7 @@ import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.lie.se2.Se2Geodesic;

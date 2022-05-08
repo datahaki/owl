@@ -1,5 +1,5 @@
 // code by ynager
-package ch.alpine.java.img;
+package ch.alpine.owl.util.img;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;

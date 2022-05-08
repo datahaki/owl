@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.ext.HomeDirectory;

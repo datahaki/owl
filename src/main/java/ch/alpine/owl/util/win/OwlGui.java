@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.java.win;
+package ch.alpine.owl.util.win;
 
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 

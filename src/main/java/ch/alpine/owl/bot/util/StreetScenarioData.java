@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.util;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.java.img.ImageBlackWhiteQ;
 import ch.alpine.owl.bot.r2.ImageEdges;
+import ch.alpine.owl.util.img.ImageBlackWhiteQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ResourceData;
 

@@ -4,8 +4,6 @@ package ch.alpine.owl.bot.rn.glc;
 import java.util.Arrays;
 
 import ch.alpine.ascona.util.win.RenderInterface;
-import ch.alpine.java.win.DemoInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
@@ -17,6 +15,8 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.api.BijectionFamily;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.CogPoints;

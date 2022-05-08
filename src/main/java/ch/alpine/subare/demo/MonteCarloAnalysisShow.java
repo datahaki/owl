@@ -24,7 +24,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Timing;
 
-/* package */ enum MonteCarloAnalysis {
+/* package */ enum MonteCarloAnalysisShow {
   ;
   public static void analyse(MonteCarloInterface monteCarloInterface, int trials, int batches, List<MonteCarloAlgorithms> algorithmList,
       List<DiscreteModelErrorAnalysis> errorAnalysisList) {

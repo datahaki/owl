@@ -11,7 +11,6 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.ascona.util.win.RenderInterface;
-import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
@@ -28,6 +27,7 @@ import ch.alpine.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
+import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

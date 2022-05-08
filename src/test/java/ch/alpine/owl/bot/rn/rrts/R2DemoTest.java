@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.java.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlFrame;
 
 class R2DemoTest {
   @Test

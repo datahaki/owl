@@ -12,8 +12,8 @@ import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.java.img.ImageArea;
 import ch.alpine.owl.gui.ren.RegionRenders;
+import ch.alpine.owl.util.img.ImageArea;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

@@ -34,7 +34,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.ext.Timing;
 
 /** uses TrueOnlineSarsa */
-/* package */ enum AirportDemo {
+/* package */ enum AirportShow {
   ;
   public static void main(String[] args) throws Exception {
     Tensor XYmc = Tensors.empty();
@@ -98,7 +98,7 @@ import ch.alpine.tensor.ext.Timing;
       JFreeChart jFreeChart = ListPlot.of(visualSet);
       jFreeChart.setBackgroundPaint(Color.WHITE);
       ChartUtils.saveChartAsPNG( //
-          HomeDirectory.Pictures(AirportDemo.class.getSimpleName() + ".png"), jFreeChart, 1280, 720);
+          HomeDirectory.Pictures(AirportShow.class.getSimpleName() + ".png"), jFreeChart, 1280, 720);
     }
     // DiscreteQsa toQsa = toSarsa.qsa();
     // System.out.println(toSarsa.getW());

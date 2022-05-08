@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.java.img;
+package ch.alpine.owl.util.img;
 
 import java.util.List;
 import java.util.stream.Collectors;

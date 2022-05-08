@@ -2,8 +2,6 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import ch.alpine.ascona.util.win.RenderInterface;
-import ch.alpine.java.win.DemoInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -16,6 +14,8 @@ import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
 import ch.alpine.sophus.hs.r2.Se2Family;

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.ascona.util.ren.GridRender;
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.java.win;
+package ch.alpine.owl.util.win;
 
 import ch.alpine.bridge.awt.Hsluv;
 import ch.alpine.tensor.alg.Subdivide;

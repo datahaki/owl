@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.java.win;
+package ch.alpine.owl.util.win;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

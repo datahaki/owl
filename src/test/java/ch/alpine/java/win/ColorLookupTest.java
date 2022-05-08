@@ -7,6 +7,7 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owl.util.win.ColorLookup;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 

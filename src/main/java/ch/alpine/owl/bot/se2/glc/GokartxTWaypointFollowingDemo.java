@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 import ch.alpine.ascona.util.win.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
@@ -20,6 +19,7 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.api.BijectionFamily;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
