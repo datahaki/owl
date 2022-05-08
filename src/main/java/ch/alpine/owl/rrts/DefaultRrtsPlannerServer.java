@@ -18,7 +18,7 @@ import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsPlanner;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.api.TransitionSpace;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

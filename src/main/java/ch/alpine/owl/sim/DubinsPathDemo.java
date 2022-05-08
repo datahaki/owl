@@ -4,11 +4,11 @@ package ch.alpine.owl.sim;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import ch.alpine.ascona.lev.LeversRender;
 import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -18,9 +18,9 @@ import ch.alpine.bridge.win.BaseFrame;
 import ch.alpine.bridge.win.LookAndFeels;
 import ch.alpine.bridge.win.PathRender;
 import ch.alpine.java.win.DemoInterface;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.clt.ClothoidTransition;
 import ch.alpine.sophus.crv.dubins.DubinsPath;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
 import ch.alpine.sophus.crv.dubins.DubinsPathGenerator;
@@ -100,11 +100,10 @@ import ch.alpine.tensor.sca.Clips;
       graphics.setColor(new Color(128, 128, 128, 128));
       // graphics.setColor(COLOR_DATA_INDEXED.getColor(3));
       Tensor map = params.map(scalarTensorFunction);
-      for (Tensor point : map) { // draw control point
-        geometricLayer.pushMatrix(Se2CoveringDisplay.INSTANCE.matrixLift(point));
-        Path2D path2d = geometricLayer.toPath2D(Se2CoveringDisplay.INSTANCE.shape());
-        graphics.fill(path2d);
-        geometricLayer.popMatrix();
+      {
+        LeversRender leversRender = LeversRender.of(Se2CoveringDisplay.INSTANCE, map, null, geometricLayer, graphics);
+        leversRender.renderSequence();
+        leversRender.renderIndexP();
       }
       BSpline3CurveSubdivision bSpline3CurveSubdivision = //
           new BSpline3CurveSubdivision(Se2CoveringGeodesic.INSTANCE);

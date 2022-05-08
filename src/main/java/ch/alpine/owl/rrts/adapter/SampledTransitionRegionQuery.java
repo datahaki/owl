@@ -7,9 +7,9 @@ import java.util.Collections;
 
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
-import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.api.Transition;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

@@ -11,16 +11,17 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.ascona.lev.AbstractPlaceDemo;
 import ch.alpine.ascona.lev.LeversRender;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.ManifoldDisplays;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.swing.SpinnerLabel;
 import ch.alpine.bridge.win.AxesRender;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransition;
-import ch.alpine.sophus.api.Geodesic;
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.sophus.clt.ClothoidBuilder;
 import ch.alpine.sophus.clt.ClothoidComparators;
+import ch.alpine.sophus.clt.ClothoidTransition;
 import ch.alpine.sophus.clt.PriorityClothoid;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
@@ -56,11 +57,12 @@ import ch.alpine.tensor.ext.Timing;
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RenderQuality.setQuality(graphics);
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor sequence = getGeodesicControlPoints();
     graphics.setColor(Color.BLUE);
     graphics.setStroke(new BasicStroke(2));
     Scalar value = spinnerBeta.getValue();
-    Geodesic geodesicInterface = manifoldDisplay().geodesic();
+    GeodesicSpace geodesicInterface = manifoldDisplay.geodesic();
     ClothoidBuilder clothoidBuilder = (ClothoidBuilder) geodesicInterface;
     Tensor beg = sequence.get(0);
     ClothoidBuilder clothoidBuilder2 = PriorityClothoid.of(ClothoidComparators.CURVATURE_HEAD);
@@ -74,7 +76,7 @@ import ch.alpine.tensor.ext.Timing;
       beg = clothoidTransition.clothoid().apply(RealScalar.of(split));
     }
     {
-      LeversRender leversRender = LeversRender.of(manifoldDisplay(), sequence, null, geometricLayer, graphics);
+      LeversRender leversRender = LeversRender.of(manifoldDisplay, sequence, null, geometricLayer, graphics);
       leversRender.renderSequence();
       leversRender.renderIndexP();
     }

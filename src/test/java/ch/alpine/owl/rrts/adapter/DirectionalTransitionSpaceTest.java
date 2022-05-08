@@ -9,8 +9,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.rrts.core.Transition;
+import ch.alpine.sophus.api.Transition;
+import ch.alpine.sophus.clt.ClothoidTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

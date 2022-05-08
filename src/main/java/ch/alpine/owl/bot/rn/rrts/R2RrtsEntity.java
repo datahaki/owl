@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.glc.R2TrajectoryControl;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -15,6 +14,7 @@ import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

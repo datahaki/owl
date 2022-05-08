@@ -2,9 +2,9 @@
 package ch.alpine.owl.rrts.adapter;
 
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.api.Transition;
+import ch.alpine.sophus.api.TransitionSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.sca.Chop;
 

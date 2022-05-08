@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import ch.alpine.java.win.OwlFrame;
 import ch.alpine.java.win.OwlGui;
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -13,7 +12,8 @@ import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

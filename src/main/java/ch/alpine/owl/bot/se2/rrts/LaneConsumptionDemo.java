@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import ch.alpine.ascona.curve.AbstractCurveDemo;
 import ch.alpine.ascona.lev.LeversRender;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
 import ch.alpine.ascona.util.dis.Se2CoveringClothoidDisplay;
 import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
@@ -60,14 +61,15 @@ public class LaneConsumptionDemo extends AbstractCurveDemo implements DemoInterf
 
   @Override
   protected Tensor protected_render(GeometricLayer geometricLayer, Graphics2D graphics, int degree, int levels, Tensor control) {
+    ManifoldDisplay manifoldDisplay = manifoldDisplay();
     {
-      LeversRender leversRender = LeversRender.of(manifoldDisplay(), control, null, geometricLayer, graphics);
+      LeversRender leversRender = LeversRender.of(manifoldDisplay, control, null, geometricLayer, graphics);
       leversRender.renderSequence();
       leversRender.renderIndexP();
     }
     LaneInterface lane = StableLanes.of( //
         control, //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay().geodesic(), degree)::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesic(), degree)::string, //
         levels, width().multiply(RationalScalar.HALF));
     try {
       this.lane = Serialization.copy(lane);

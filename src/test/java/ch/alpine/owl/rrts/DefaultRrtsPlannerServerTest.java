@@ -7,13 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -22,7 +19,10 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
+import ch.alpine.sophus.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
+import ch.alpine.sophus.crv.dubins.DubinsTransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;

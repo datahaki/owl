@@ -12,14 +12,11 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.bot.se2.Se2FlowIntegrator;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -32,8 +29,11 @@ import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
+import ch.alpine.sophus.crv.dubins.DubinsTransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.TensorRuntimeException;

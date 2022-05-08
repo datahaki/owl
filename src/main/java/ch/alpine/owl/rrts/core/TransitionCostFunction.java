@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.rrts.core;
 
+import ch.alpine.sophus.api.Transition;
 import ch.alpine.tensor.Scalar;
 
 @FunctionalInterface
