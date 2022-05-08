@@ -16,6 +16,7 @@ import javax.swing.event.ChangeListener;
 
 import ch.alpine.ascona.clt.ClothoidDefectContainer;
 import ch.alpine.ascona.clt.CustomClothoidBuilder;
+import ch.alpine.ascona.lev.LeversRender;
 import ch.alpine.ascona.util.api.ControlPointsDemo;
 import ch.alpine.ascona.util.dis.ManifoldDisplays;
 import ch.alpine.bridge.awt.RenderQuality;
@@ -166,7 +167,11 @@ import ch.alpine.tensor.sca.Round;
       System.out.println(clothoidContext.q());
     }
     // ---
-    renderControlPoints(geometricLayer, graphics);
+    {
+      LeversRender leversRender = LeversRender.of(manifoldDisplay(), getGeodesicControlPoints(), null, geometricLayer, graphics);
+      leversRender.renderSequence();
+      leversRender.renderIndexP();
+    }
     {
       GridRender gridRender = new GridRender(Subdivide.of(-20, 20, 10), Subdivide.of(-3, 3, 6));
       gridRender.render(plotLayer, graphics);

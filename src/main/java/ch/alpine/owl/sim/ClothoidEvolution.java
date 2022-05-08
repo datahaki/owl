@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.swing.JToggleButton;
 
 import ch.alpine.ascona.lev.AbstractPlaceDemo;
+import ch.alpine.ascona.lev.LeversRender;
 import ch.alpine.ascona.util.dis.ManifoldDisplays;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -73,7 +74,9 @@ import ch.alpine.tensor.ext.Timing;
       beg = clothoidTransition.clothoid().apply(RealScalar.of(split));
     }
     {
-      renderControlPoints(geometricLayer, graphics);
+      LeversRender leversRender = LeversRender.of(manifoldDisplay(), sequence, null, geometricLayer, graphics);
+      leversRender.renderSequence();
+      leversRender.renderIndexP();
     }
   }
 
