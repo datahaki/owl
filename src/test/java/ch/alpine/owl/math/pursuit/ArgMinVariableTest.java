@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.ClothoidBuilder;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

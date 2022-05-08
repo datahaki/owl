@@ -16,10 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
+import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.bridge.lang.ClassDiscovery;
 import ch.alpine.bridge.lang.ClassPaths;
 import ch.alpine.bridge.lang.ClassVisitor;
-import ch.alpine.bridge.win.BaseFrame;
 import ch.alpine.java.win.DemoInterface;
 
 /** scans repository for classes that implement {@link DemoInterface}

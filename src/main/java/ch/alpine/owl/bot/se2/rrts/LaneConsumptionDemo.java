@@ -17,9 +17,9 @@ import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
 import ch.alpine.ascona.util.dis.Se2CoveringClothoidDisplay;
 import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
 import ch.alpine.ascona.util.dis.Se2Display;
+import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
-import ch.alpine.bridge.win.BaseFrame;
 import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.gui.ren.LaneRender;
 import ch.alpine.owl.lane.LaneInterface;
@@ -69,7 +69,7 @@ public class LaneConsumptionDemo extends AbstractCurveDemo implements DemoInterf
     }
     LaneInterface lane = StableLanes.of( //
         control, //
-        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesic(), degree)::string, //
+        LaneRiesenfeldCurveSubdivision.of(manifoldDisplay.geodesicSpace(), degree)::string, //
         levels, width().multiply(RationalScalar.HALF));
     try {
       this.lane = Serialization.copy(lane);

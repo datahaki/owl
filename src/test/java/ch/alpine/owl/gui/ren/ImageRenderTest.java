@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.bridge.win.ImageRender;
+import ch.alpine.ascona.util.ren.ImageRender;
 import ch.alpine.tensor.Tensors;
 
 class ImageRenderTest {

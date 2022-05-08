@@ -30,7 +30,7 @@ import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.sophus.api.TransitionSpace;
-import ch.alpine.sophus.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
 import ch.alpine.sophus.crv.dubins.DubinsTransitionSpace;
 import ch.alpine.sophus.lie.rn.RnTransitionSpace;

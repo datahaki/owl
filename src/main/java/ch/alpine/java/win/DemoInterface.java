@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.java.win;
 
-import ch.alpine.bridge.win.BaseFrame;
+import ch.alpine.ascona.util.win.BaseFrame;
 
 @FunctionalInterface
 public interface DemoInterface {

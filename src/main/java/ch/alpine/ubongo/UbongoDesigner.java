@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 import javax.swing.JButton;
 
 import ch.alpine.ascona.util.api.Box2D;
+import ch.alpine.ascona.util.ren.AxesRender;
+import ch.alpine.ascona.util.ren.GridRender;
+import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.bridge.swing.SpinnerLabel;
-import ch.alpine.bridge.win.AbstractDemo;
-import ch.alpine.bridge.win.AxesRender;
-import ch.alpine.bridge.win.GridRender;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -4,9 +4,9 @@ package ch.alpine.owl.math.pursuit;
 import java.io.Serializable;
 import java.util.Optional;
 
-import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.ClothoidBuilders;
-import ch.alpine.sophus.clt.LagrangeQuadraticD;
+import ch.alpine.sophus.crv.clt.ClothoidBuilder;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.LagrangeQuadraticD;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

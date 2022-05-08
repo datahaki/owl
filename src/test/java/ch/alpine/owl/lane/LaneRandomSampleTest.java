@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.math.sample.RandomSample;

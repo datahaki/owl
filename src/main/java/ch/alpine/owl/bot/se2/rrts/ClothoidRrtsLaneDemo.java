@@ -9,8 +9,8 @@ import java.util.TimerTask;
 
 import javax.swing.JToggleButton;
 
-import ch.alpine.bridge.win.BaseFrame;
-import ch.alpine.bridge.win.RenderInterface;
+import ch.alpine.ascona.util.win.BaseFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.java.win.DemoInterface;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;

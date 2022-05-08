@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.rn.glc;
 import java.awt.Dimension;
 import java.util.Optional;
 
-import ch.alpine.bridge.win.AxesRender;
-import ch.alpine.bridge.win.ImageRender;
+import ch.alpine.ascona.util.ren.AxesRender;
+import ch.alpine.ascona.util.ren.ImageRender;
 import ch.alpine.java.win.DemoInterface;
 import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;

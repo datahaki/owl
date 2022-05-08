@@ -13,7 +13,7 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

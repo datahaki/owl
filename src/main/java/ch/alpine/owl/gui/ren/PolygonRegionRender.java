@@ -3,8 +3,8 @@ package ch.alpine.owl.gui.ren;
 
 import java.awt.Graphics2D;
 
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.Tensor;
 

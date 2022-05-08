@@ -18,7 +18,7 @@ import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophus.api.Region;
-import ch.alpine.sophus.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Objects;
 
+import ch.alpine.ascona.util.ren.ImageRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
-import ch.alpine.bridge.win.ImageRender;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.adapter.EtaRaster;

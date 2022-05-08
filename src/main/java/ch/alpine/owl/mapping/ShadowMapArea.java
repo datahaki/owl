@@ -7,9 +7,9 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.bridge.gfx.AffineTransforms;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.java.img.ImageArea;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.math.region.ImageRegion;

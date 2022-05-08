@@ -19,7 +19,7 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.sophus.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
 import ch.alpine.sophus.crv.dubins.DubinsTransitionSpace;
 import ch.alpine.sophus.lie.rn.RnTransitionSpace;

@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
+import ch.alpine.ascona.util.ren.EmptyRender;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
-import ch.alpine.bridge.win.EmptyRender;
-import ch.alpine.bridge.win.RenderInterface;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

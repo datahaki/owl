@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.util;
 
-import ch.alpine.bridge.win.BaseFrame;
+import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.java.win.DemoInterface;
 
 public enum DemoInterfaceHelper {

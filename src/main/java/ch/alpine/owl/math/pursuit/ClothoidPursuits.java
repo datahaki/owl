@@ -4,7 +4,7 @@ package ch.alpine.owl.math.pursuit;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.Scalar;
