@@ -8,9 +8,9 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

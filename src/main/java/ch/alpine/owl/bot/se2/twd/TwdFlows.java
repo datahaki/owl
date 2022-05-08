@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.twd;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.sophus.lie.se2c.Se2CoveringIntegrator;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

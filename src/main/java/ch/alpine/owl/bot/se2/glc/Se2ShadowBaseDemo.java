@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Color;
 
-import ch.alpine.owl.bot.util.StreetScenario;
-import ch.alpine.owl.bot.util.StreetScenarioData;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.util.bot.StreetScenario;
+import ch.alpine.owl.util.bot.StreetScenarioData;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

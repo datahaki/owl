@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -21,6 +20,7 @@ import ch.alpine.owl.glc.core.HeuristicQ;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

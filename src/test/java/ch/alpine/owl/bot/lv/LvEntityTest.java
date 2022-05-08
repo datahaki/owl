@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.gui.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -15,6 +14,7 @@ import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

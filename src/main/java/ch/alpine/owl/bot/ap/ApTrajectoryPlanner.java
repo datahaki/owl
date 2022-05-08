@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.ap;
 
 import java.util.Collection;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
@@ -14,6 +13,7 @@ import ch.alpine.owl.math.flow.RungeKutta4Integrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

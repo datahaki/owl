@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.se2.rrts;
 
 import ch.alpine.owl.bot.r2.ImageRegions;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -12,6 +11,7 @@ import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.api.Region;
