@@ -42,13 +42,13 @@ jobs:
           cd subare
           git checkout v044
           mvn clean install -DskipTests=true
-      - name: mvn install java 032
+      - name: mvn install bridge 033
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/bridge.git
           cd bridge
-          git checkout v032
+          git checkout v033
           mvn clean install -DskipTests=true
       - name: mvn install ascona 001
         working-directory: .

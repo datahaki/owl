@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -65,8 +65,8 @@ class Se2WrapTest {
       p.set(So2.MOD, 2);
       Tensor q = RandomVariate.of(distribution, 3);
       q.set(So2.MOD, 2);
-      Chop._14.requireClose(p, Se2Geodesic.INSTANCE.split(p, q, RealScalar.ZERO));
-      Tensor r = Se2Geodesic.INSTANCE.split(p, q, RealScalar.ONE);
+      Chop._14.requireClose(p, Se2Group.INSTANCE.split(p, q, RealScalar.ZERO));
+      Tensor r = Se2Group.INSTANCE.split(p, q, RealScalar.ONE);
       if (!Chop._14.isClose(q, r))
         Chop._10.requireAllZero(Se2Wrap.INSTANCE.difference(q, r));
     }

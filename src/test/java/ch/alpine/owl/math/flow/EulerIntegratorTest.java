@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.model.DoubleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.sophus.lie.rn.RnExponential;
 import ch.alpine.sophus.lie.rn.RnGroup;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -18,7 +17,7 @@ import ch.alpine.tensor.qty.QuantityTensor;
 import ch.alpine.tensor.qty.Unit;
 
 class EulerIntegratorTest {
-  private final Integrator integrator = EulerLieIntegrator.of(RnGroup.INSTANCE, RnExponential.INSTANCE);
+  private final Integrator integrator = EulerLieIntegrator.of(RnGroup.INSTANCE);
 
   @Test
   public void testSimple() {

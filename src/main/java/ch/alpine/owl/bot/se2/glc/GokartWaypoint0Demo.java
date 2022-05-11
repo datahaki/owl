@@ -17,7 +17,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -44,7 +44,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     // ---
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
-    waypoints = new BSpline2CurveSubdivision(Se2Geodesic.INSTANCE).cyclic(waypoints);
+    waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
     Region<Tensor> union = RegionUnion.wrap(Arrays.asList(hangarMap.region, polygonRegion));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(union);

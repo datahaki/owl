@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +19,7 @@ class WaypointDistanceImageTest {
   @Test
   public void testSimple() {
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
-    waypoints = new BSpline1CurveSubdivision(Se2Geodesic.INSTANCE).cyclic(waypoints);
+    waypoints = new BSpline1CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     WaypointDistanceImage waypointDistanceImage = //
         new WaypointDistanceImage(waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
     Tensor tensor = waypointDistanceImage.image();

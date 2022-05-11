@@ -17,7 +17,7 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -36,7 +36,7 @@ public class GokartWaypoint2Demo extends GokartDemo {
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
-    waypoints = new BSpline2CurveSubdivision(Se2Geodesic.INSTANCE).cyclic(waypoints);
+    waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     CostFunction costFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
     GokartVecEntity gokartEntity = new GokartVecEntity(initial) {

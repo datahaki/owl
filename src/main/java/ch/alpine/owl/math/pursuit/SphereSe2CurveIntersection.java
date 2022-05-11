@@ -2,7 +2,7 @@
 package ch.alpine.owl.math.pursuit;
 
 import ch.alpine.sophus.hs.r2.Extract2D;
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -12,7 +12,7 @@ public class SphereSe2CurveIntersection extends AssistedCurveIntersection {
   /** @param radius non-negative
    * @throws Exception if given radius is negative */
   public SphereSe2CurveIntersection(Scalar radius) {
-    super(radius, Se2Geodesic.INSTANCE);
+    super(radius, Se2Group.INSTANCE);
   }
 
   @Override // from SimpleCurveIntersection
