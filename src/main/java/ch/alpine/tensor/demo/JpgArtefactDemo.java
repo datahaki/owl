@@ -26,9 +26,9 @@ import ch.alpine.tensor.Scalar;
 
 public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   private static final File ROOT = //
-      new File("/run/media/datahaki/data/public_html/photos/2016_germany/image");
+      new File("/run / 134media/datahaki/data/public_html/photos/2016_germany/image");
   // ---
-  private final SpinnerLabel<String> spinnerLabel = new SpinnerLabel<>();
+  private final SpinnerLabel<String> spinnerLabel;
   private final JSlider jSlider = new JSlider(0, 1231, 0);
   private BufferedImage bufferedImage;
 
@@ -47,8 +47,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(() -> stateChanged(null));
     // ---
     File[] files = ROOT.listFiles();
-    spinnerLabel.setArray(Stream.of(files).map(File::getName).toArray(String[]::new));
-    spinnerLabel.setIndex(0);
+    spinnerLabel = SpinnerLabel.of(Stream.of(files).map(File::getName).toArray(String[]::new));
     spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "file");
     spinnerLabel.addSpinnerListener(s -> stateChanged(null));
     // ---

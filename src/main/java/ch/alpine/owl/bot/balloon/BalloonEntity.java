@@ -8,8 +8,10 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 import ch.alpine.ascona.util.ren.ImageRender;
+import ch.alpine.ascona.util.ren.ImageRenderNew;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
@@ -33,6 +35,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 /* package */ class BalloonEntity extends AbstractCircularEntity {
   private static final Tensor PARTITION_SCALE = Tensors.vector(2, 2, 1, 1).unmodifiable();
@@ -92,15 +96,14 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     }
     { // indicate current position
       Tensor state = getStateTimeNow().state();
+      geometricLayer.pushMatrix(GfxMatrix.translation(state));
+      new ImageRenderNew(bufferedImage, CoordinateBoundingBox.of(Stream.of( //
+          Clips.interval(-5, 5), // 
+          Clips.interval(0, 10)))).render(geometricLayer, graphics);
+      geometricLayer.popMatrix();
       Point2D point = geometricLayer.toPoint2D(state);
       graphics.setColor(new Color(64, 128, 64, 192));
-      graphics.fill(new Ellipse2D.Double(point.getX() - 2, point.getY() - 2, 7, 7));
-      ImageRender imageRender = ImageRender.range(bufferedImage, Tensors.vector(10, 10));
-      geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(-5, 0)));
-      geometricLayer.pushMatrix(GfxMatrix.translation(state));
-      imageRender.render(geometricLayer, graphics);
-      geometricLayer.popMatrix();
-      geometricLayer.popMatrix();
+      graphics.fill(new Ellipse2D.Double(point.getX() - 2, point.getY() - 2, 5, 5));
     }
   }
 }

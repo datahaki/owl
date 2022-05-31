@@ -34,7 +34,7 @@ import ch.alpine.tensor.img.ImageRotate;
   }
 
   // ---
-  private final SpinnerLabel<UbongoPublish> spinnerIndex = SpinnerLabel.of(UbongoPublish.values());
+  private final SpinnerLabel<UbongoPublish> spinnerIndex = SpinnerLabel.of(UbongoPublish.class);
 
   public UbongoViewer() {
     spinnerIndex.addToComponentReduced(timerFrame.jToolBar, new Dimension(200, 28), "index");

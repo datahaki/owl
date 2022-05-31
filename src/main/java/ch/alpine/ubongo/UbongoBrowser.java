@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import ch.alpine.ascona.util.win.AbstractDemo;
@@ -19,13 +18,12 @@ import ch.alpine.tensor.io.ImageFormat;
 /* package */ class UbongoBrowser extends AbstractDemo {
   private final UbongoBoard ubongoBoard;
   private final List<List<UbongoEntry>> list;
-  private final SpinnerLabel<Integer> spinnerIndex = new SpinnerLabel<>();
+  private final SpinnerLabel<Integer> spinnerIndex;
 
   public UbongoBrowser(UbongoBoard ubongoBoard, List<List<UbongoEntry>> list) {
     this.ubongoBoard = ubongoBoard;
     this.list = list;
-    spinnerIndex.setList(IntStream.range(0, list.size()).boxed().collect(Collectors.toList()));
-    spinnerIndex.setIndex(0);
+    spinnerIndex = SpinnerLabel.of(IntStream.range(0, list.size()).boxed().toArray(Integer[]::new));
     spinnerIndex.addToComponentReduced(timerFrame.jToolBar, new Dimension(40, 28), "index");
   }
 
