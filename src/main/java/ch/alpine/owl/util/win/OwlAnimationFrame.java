@@ -102,10 +102,8 @@ public class OwlAnimationFrame extends TimerFrame {
 
   public void add(AnimationInterface animationInterface) {
     animationInterfaces.add(animationInterface);
-    if (animationInterface instanceof RenderInterface) {
-      RenderInterface renderInterface = (RenderInterface) animationInterface;
+    if (animationInterface instanceof RenderInterface renderInterface)
       geometricComponent.addRenderInterface(renderInterface);
-    }
   }
 
   private static double inftyNorm(Point2D p1, Point2D p2) {

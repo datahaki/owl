@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
-import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.ext.Lists;

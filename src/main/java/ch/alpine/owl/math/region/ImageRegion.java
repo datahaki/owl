@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import ch.alpine.sophus.api.Region;
-import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

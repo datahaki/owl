@@ -3,8 +3,8 @@ package ch.alpine.owl.rrts.adapter;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.api.Transition;
-import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 

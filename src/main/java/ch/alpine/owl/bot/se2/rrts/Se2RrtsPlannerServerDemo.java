@@ -25,7 +25,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.api.Region;
-import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.BoxRandomSample;

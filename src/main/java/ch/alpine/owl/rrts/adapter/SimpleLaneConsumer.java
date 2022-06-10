@@ -32,8 +32,8 @@ public class SimpleLaneConsumer implements LaneConsumer {
   public void accept(LaneInterface lane) {
     Tensor goal = Last.of(lane.midLane());
     TreePlanner treePlanner = trajectoryEntity.createTreePlanner(plannerConstraint, goal);
-    if (treePlanner instanceof LaneConsumer)
-      ((LaneConsumer) treePlanner).accept(lane);
+    if (treePlanner instanceof LaneConsumer laneConsumer)
+      laneConsumer.accept(lane);
     goalConsumer.accept(goal);
   }
 }

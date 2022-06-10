@@ -60,8 +60,7 @@ public class Expand<T extends StateCostNode> {
 
   private void expand(int limit, Supplier<Boolean> isFinished) {
     // TODO OWL API probably should be implemented in separate Expand
-    if (expandInterface instanceof ObservingExpandInterface) {
-      ObservingExpandInterface<T> observingExpandInterface = (ObservingExpandInterface<T>) expandInterface;
+    if (expandInterface instanceof ObservingExpandInterface<T> observingExpandInterface) {
       if (observingExpandInterface.isObserving()) {
         final Map<Double, Scalar> observations = new LinkedHashMap<>();
         Timing timing = Timing.started();

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.api.Transition;
+import ch.alpine.sophus.crv.Transition;
 import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;

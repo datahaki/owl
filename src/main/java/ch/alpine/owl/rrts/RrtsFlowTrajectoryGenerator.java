@@ -15,9 +15,9 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.adapter.DirectedTransition;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.sophus.api.TensorMetric;
-import ch.alpine.sophus.api.Transition;
-import ch.alpine.sophus.api.TransitionSpace;
-import ch.alpine.sophus.api.TransitionWrap;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionWrap;
 import ch.alpine.sophus.math.AdjacentDistances;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
@@ -76,7 +76,7 @@ import ch.alpine.tensor.sca.Sign;
         StateTime stateTime = new StateTime(samples.get(i), ti);
         StateTime orig = Lists.last(trajectory).stateTime();
         // TODO OWL ALG this boolean expression appears twice => extract to function
-        Tensor u = (transition instanceof DirectedTransition && !((DirectedTransition) transition).isForward) //
+        Tensor u = (transition instanceof DirectedTransition directedTransition && !directedTransition.isForward) //
             ? uBetween.apply(stateTime, orig) //
             : uBetween.apply(orig, stateTime);
         trajectory.add(new TrajectorySample(stateTime, u));
@@ -98,7 +98,7 @@ import ch.alpine.tensor.sca.Sign;
     while (iterator.hasNext()) {
       RrtsNode node = iterator.next();
       Transition transition = transitionSpace.connect(prev.state(), node.state());
-      boolean direction = (!(transition instanceof DirectedTransition)) || ((DirectedTransition) transition).isForward;
+      boolean direction = (!(transition instanceof DirectedTransition directedTransition)) || directedTransition.isForward;
       if (direction != prevDirection) {
         flush(transitionSpace, trajectory, segment, prevDirection, dt);
         prevDirection = direction;

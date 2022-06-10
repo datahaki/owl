@@ -1,9 +1,9 @@
 // code by gjoel
 package ch.alpine.owl.rrts.adapter;
 
-import ch.alpine.sophus.api.Transition;
-import ch.alpine.sophus.api.TransitionWrap;
 import ch.alpine.sophus.crv.AbstractTransition;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionWrap;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

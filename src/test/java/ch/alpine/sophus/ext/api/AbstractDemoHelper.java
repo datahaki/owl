@@ -45,12 +45,11 @@ public enum AbstractDemoHelper {
     BufferedImage bufferedImage = new BufferedImage(1280, 960, BufferedImage.TYPE_INT_ARGB);
     abstractDemo.render(geometricLayer, bufferedImage.createGraphics());
     boolean success = true;
-    if (abstractDemo instanceof AbstractManifoldDisplayDemo) {
-      AbstractManifoldDisplayDemo geodesicDisplayDemo = (AbstractManifoldDisplayDemo) abstractDemo;
-      for (ManifoldDisplay manifoldDisplay : geodesicDisplayDemo.getManifoldDisplays())
+    if (abstractDemo instanceof AbstractManifoldDisplayDemo abstractManifoldDisplayDemo) {
+      for (ManifoldDisplay manifoldDisplay : abstractManifoldDisplayDemo.getManifoldDisplays())
         try {
-          geodesicDisplayDemo.setManifoldDisplay(manifoldDisplay);
-          geodesicDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
+          abstractManifoldDisplayDemo.setManifoldDisplay(manifoldDisplay);
+          abstractManifoldDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
         } catch (Exception exception) {
           System.err.println(manifoldDisplay);
           success = false;

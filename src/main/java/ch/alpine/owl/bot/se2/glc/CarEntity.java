@@ -143,12 +143,12 @@ public class CarEntity extends Se2Entity {
     // ---
     super.render(geometricLayer, graphics);
     // ---
-    if (trajectoryControl instanceof TrajectoryTargetRender) {
+    if (trajectoryControl instanceof TrajectoryTargetRender trajectoryTargetRender) {
       StateTime stateTime = getStateTimeNow();
       Tensor matrix = GfxMatrix.of(stateTime.state());
       geometricLayer.pushMatrix(matrix);
       graphics.setColor(Color.RED);
-      ((TrajectoryTargetRender) trajectoryControl).toTarget(geometricLayer).ifPresent(graphics::draw);
+      trajectoryTargetRender.toTarget(geometricLayer).ifPresent(graphics::draw);
       geometricLayer.popMatrix();
     }
   }

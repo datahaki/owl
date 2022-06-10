@@ -16,8 +16,9 @@ import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** region in R2 */
-public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Serializable {
+public class BufferedImageRegion implements Region<Tensor>, RegionBoundsInterface, RenderInterface, Serializable {
   private transient final BufferedImage bufferedImage;
+  private final CoordinateBoundingBox coordinateBoundingBox;
   private final ImageRender imageRender;
   private transient final AffineFrame affineFrame;
   private final Tensor pixel2model;
@@ -33,6 +34,7 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
     if (bufferedImage.getType() != BufferedImage.TYPE_BYTE_GRAY)
       throw new IllegalArgumentException("" + bufferedImage.getType());
     this.bufferedImage = bufferedImage;
+    this.coordinateBoundingBox = coordinateBoundingBox;
     imageRender = new ImageRender(bufferedImage, coordinateBoundingBox);
     width = bufferedImage.getWidth();
     height = bufferedImage.getHeight();
@@ -73,5 +75,10 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
 
   public Tensor pixel2model() {
     return pixel2model.unmodifiable();
+  }
+
+  @Override
+  public CoordinateBoundingBox coordinateBounds() {
+    return coordinateBoundingBox;
   }
 }

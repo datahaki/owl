@@ -18,7 +18,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owl.util.ren.TransitionRender;
-import ch.alpine.sophus.api.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.ext.Serialization;
 
 public class OwlFrame extends BaseFrame {

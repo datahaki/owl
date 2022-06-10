@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.api.Transition;
+import ch.alpine.sophus.crv.Transition;
 
 public class TransitionRegionQueryUnion implements TransitionRegionQuery, Serializable {
   /** @param queries

@@ -26,11 +26,9 @@ public enum RenderElements {
     List<RenderInterface> list = new LinkedList<>();
     list.add(AxesRender.INSTANCE);
     // ---
-    if (trajectoryPlanner instanceof CTrajectoryPlanner) {
-      CTrajectoryPlanner cTrajectoryPlanner = (CTrajectoryPlanner) trajectoryPlanner;
+    if (trajectoryPlanner instanceof CTrajectoryPlanner cTrajectoryPlanner) {
       StateTimeRaster stateTimeRaster = cTrajectoryPlanner.stateTimeRaster();
-      if (stateTimeRaster instanceof EtaRaster) {
-        EtaRaster etaRaster = (EtaRaster) stateTimeRaster;
+      if (stateTimeRaster instanceof EtaRaster etaRaster) {
         list.add(new EtaRender(etaRaster.eta()));
         list.add(DomainRender.of(trajectoryPlanner.getDomainMap().keySet(), etaRaster.eta()));
       }
@@ -38,12 +36,10 @@ public enum RenderElements {
     list.add(new QueueRender(trajectoryPlanner.getQueue()));
     if (trajectoryPlanner instanceof CTrajectoryPlanner)
       list.add(new TreeRender().setCollection(trajectoryPlanner.getDomainMap().values()));
-    if (trajectoryPlanner instanceof RelaxedTrajectoryPlanner) {
-      RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = (RelaxedTrajectoryPlanner) trajectoryPlanner;
+    if (trajectoryPlanner instanceof RelaxedTrajectoryPlanner relaxedTrajectoryPlanner) {
       // EdgeRender edgeRender = new EdgeRender();
       StateTimeRaster stateTimeRaster = relaxedTrajectoryPlanner.stateTimeRaster();
-      if (stateTimeRaster instanceof EtaRaster) {
-        EtaRaster etaRaster = (EtaRaster) stateTimeRaster;
+      if (stateTimeRaster instanceof EtaRaster etaRaster) {
         list.add(DomainQueueMapRender.of(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap(), etaRaster.eta()));
       }
       list.add(EdgeRenders.of(relaxedTrajectoryPlanner));
@@ -71,10 +67,8 @@ public enum RenderElements {
   }
 
   public static RenderInterface create(StateTimeRaster stateTimeRaster) {
-    if (stateTimeRaster instanceof EtaRaster) {
-      EtaRaster etaRaster = (EtaRaster) stateTimeRaster;
+    if (stateTimeRaster instanceof EtaRaster etaRaster)
       return new EtaRender(etaRaster.eta());
-    }
     return null;
   }
 
@@ -91,8 +85,8 @@ public enum RenderElements {
       Collection<? extends StateCostNode> collection, TransitionRegionQuery transitionRegionQuery) {
     List<RenderInterface> list = new LinkedList<>();
     list.add(AxesRender.INSTANCE);
-    if (transitionRegionQuery instanceof StateTimeCollector)
-      list.add(new ObstacleRender(((StateTimeCollector) transitionRegionQuery).getMembers()));
+    if (transitionRegionQuery instanceof StateTimeCollector stateTimeCollector)
+      list.add(new ObstacleRender(stateTimeCollector.getMembers()));
     list.add(new TreeRender().setCollection(collection));
     return list;
   }
