@@ -54,21 +54,18 @@ public enum RegionRenders {
    * @return new instance of {@link RenderInterface} that visualizes given region,
    * or null if drawing capability is not available for the region */
   public static RenderInterface create(Region<Tensor> region) {
-    if (region instanceof ImageRegion)
-      return RegionRenders.createImageRegionRender((ImageRegion) region);
-    if (region instanceof BufferedImageRegion) {
-      BufferedImageRegion bufferedImageRegion = (BufferedImageRegion) region;
-      Tensor tensor = ImageFormat.from(bufferedImageRegion.bufferedImage());
-      return ImageRender.of(image(tensor), bufferedImageRegion.pixel2model());
-    }
-    if (region instanceof EllipsoidRegion)
-      return EllipseRegionRender.of((EllipsoidRegion) region);
-    if (region instanceof BallRegion)
-      return EllipseRegionRender.of((BallRegion) region);
-    if (region instanceof PolygonRegion)
-      return new PolygonRegionRender((PolygonRegion) region);
-    if (region instanceof RnPointcloudRegion)
-      return new RnPointcloudRegionRender((RnPointcloudRegion) region);
+    if (region instanceof ImageRegion imageRegion)
+      return RegionRenders.createImageRegionRender(imageRegion);
+    if (region instanceof BufferedImageRegion bufferedImageRegion)
+      return bufferedImageRegion;
+    if (region instanceof EllipsoidRegion ellipsoidRegion)
+      return EllipseRegionRender.of(ellipsoidRegion);
+    if (region instanceof BallRegion ballRegion)
+      return EllipseRegionRender.of(ballRegion);
+    if (region instanceof PolygonRegion polygonRegion)
+      return new PolygonRegionRender(polygonRegion);
+    if (region instanceof RnPointcloudRegion rnPointcloudRegion)
+      return new RnPointcloudRegionRender(rnPointcloudRegion);
     throw new RuntimeException();
   }
 
@@ -86,6 +83,6 @@ public enum RegionRenders {
   }
 
   public static RenderInterface createImageRegionRender(ImageRegion imageRegion) {
-    return ImageRender.scale(image(imageRegion.image()), imageRegion.scale());
+    return new ImageRender(image(imageRegion.image()), imageRegion.coordinateBounds());
   }
 }

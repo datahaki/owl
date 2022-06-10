@@ -29,7 +29,7 @@ import ch.alpine.tensor.io.ImageFormat;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    List<UbongoEntry> solution = list.get(spinnerIndex.getIndex());
+    List<UbongoEntry> solution = list.get(spinnerIndex.getValue());
     {
       int scale = 30;
       List<Integer> size = Dimensions.of(ubongoBoard.mask);

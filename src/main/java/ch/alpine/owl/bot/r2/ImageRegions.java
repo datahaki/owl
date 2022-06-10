@@ -2,13 +2,16 @@
 package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.alg.TensorRank;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 public enum ImageRegions {
   ;
@@ -23,7 +26,9 @@ public enum ImageRegions {
   public static Region<Tensor> from(BufferedImage bufferedImage, Tensor range, boolean strict) {
     if (bufferedImage.getType() != BufferedImage.TYPE_BYTE_GRAY)
       bufferedImage = Binarize.of(bufferedImage);
-    return ImageRegion.of(bufferedImage, range, strict);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    return new BufferedImageRegion(bufferedImage, coordinateBoundingBox, strict);
   }
 
   /** grayscale images that encode free space (as black pixels) and the location of obstacles

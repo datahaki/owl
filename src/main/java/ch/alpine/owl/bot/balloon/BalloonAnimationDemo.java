@@ -1,13 +1,15 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
+import java.util.stream.Stream;
+
 import ch.alpine.ascona.util.ren.AxesRender;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
@@ -19,6 +21,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 public class BalloonAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
@@ -34,7 +38,10 @@ public class BalloonAnimationDemo implements DemoInterface {
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
     MouseGoal.simple(owlAnimationFrame, balloonEntity, plannerConstraint);
     Tensor range = Tensors.vector(500, 100).unmodifiable();
-    Region<Tensor> imageRegion = ImageRegion.of(ResourceData.bufferedImage("/io/mountainChain.png"), range, true);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    Region<Tensor> imageRegion = new BufferedImageRegion( //
+        ResourceData.bufferedImage("/io/mountainChain.png"), coordinateBoundingBox, true);
     owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
     owlAnimationFrame.add(balloonEntity);
     owlAnimationFrame.addBackground(AxesRender.INSTANCE);

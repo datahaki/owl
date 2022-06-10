@@ -11,7 +11,6 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import ch.alpine.ascona.util.ren.ImageRender;
-import ch.alpine.ascona.util.ren.ImageRenderNew;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
@@ -97,8 +96,8 @@ import ch.alpine.tensor.sca.Clips;
     { // indicate current position
       Tensor state = getStateTimeNow().state();
       geometricLayer.pushMatrix(GfxMatrix.translation(state));
-      new ImageRenderNew(bufferedImage, CoordinateBoundingBox.of(Stream.of( //
-          Clips.interval(-5, 5), // 
+      new ImageRender(bufferedImage, CoordinateBoundingBox.of(Stream.of( //
+          Clips.interval(-5, 5), //
           Clips.interval(0, 10)))).render(geometricLayer, graphics);
       geometricLayer.popMatrix();
       Point2D point = geometricLayer.toPoint2D(state);

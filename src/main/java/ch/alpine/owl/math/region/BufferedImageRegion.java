@@ -7,16 +7,18 @@ import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 import java.io.Serializable;
 
+import ch.alpine.ascona.util.ren.ImageRender;
 import ch.alpine.ascona.util.win.RenderInterface;
-import ch.alpine.bridge.gfx.AffineTransforms;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.re.Inverse;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** region in R2 */
 public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Serializable {
   private transient final BufferedImage bufferedImage;
+  private final ImageRender imageRender;
   private transient final AffineFrame affineFrame;
   private final Tensor pixel2model;
   private final int width;
@@ -27,14 +29,15 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
   /** @param bufferedImage of type BufferedImage.TYPE_BYTE_GRAY
    * @param pixel2model with dimension 3 x 3
    * @param outside membership */
-  public BufferedImageRegion(BufferedImage bufferedImage, Tensor pixel2model, boolean outside) {
+  public BufferedImageRegion(BufferedImage bufferedImage, CoordinateBoundingBox coordinateBoundingBox, boolean outside) {
     if (bufferedImage.getType() != BufferedImage.TYPE_BYTE_GRAY)
       throw new IllegalArgumentException("" + bufferedImage.getType());
     this.bufferedImage = bufferedImage;
-    this.pixel2model = pixel2model.copy();
-    affineFrame = new AffineFrame(Inverse.of(pixel2model));
+    imageRender = new ImageRender(bufferedImage, coordinateBoundingBox);
     width = bufferedImage.getWidth();
     height = bufferedImage.getHeight();
+    this.pixel2model = ImageRender.pixel2model(coordinateBoundingBox, width, height);
+    affineFrame = new AffineFrame(Inverse.of(pixel2model));
     WritableRaster writableRaster = bufferedImage.getRaster();
     DataBufferByte dataBufferByte = (DataBufferByte) writableRaster.getDataBuffer();
     data = dataBufferByte.getData();
@@ -60,10 +63,7 @@ public class BufferedImageRegion implements Region<Tensor>, RenderInterface, Ser
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    geometricLayer.pushMatrix(pixel2model);
-    graphics.drawImage(bufferedImage, //
-        AffineTransforms.of(geometricLayer.getMatrix()), null);
-    geometricLayer.popMatrix();
+    imageRender.render(geometricLayer, graphics);
   }
 
   /** @return bufferedImage of type BufferedImage.TYPE_BYTE_GRAY */

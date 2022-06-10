@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.delta;
 
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -11,7 +12,7 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
@@ -24,6 +25,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 public class DeltaAnimationDemo implements DemoInterface {
   @Override
@@ -35,7 +38,9 @@ public class DeltaAnimationDemo implements DemoInterface {
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.nearest(ResourceData.of("/io/delta_uxy.png"), range, amp);
     BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
-    Region<Tensor> region = ImageRegion.of(bufferedImage, range, true);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
