@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import ch.alpine.owl.bot.r2.R2Flows;
@@ -37,7 +36,7 @@ import ch.alpine.tensor.alg.Array;
   private final Region<Tensor> region2 = new EllipsoidRegion(Tensors.vector(2.5, 0), Tensors.vector(2, 1.5));
   private final BallRegion ballRegion = new BallRegion(Tensors.vector(5, 0), RealScalar.of(0.5));
   private final TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-      RegionUnion.wrap(Arrays.asList(region1, region2)));
+      RegionUnion.wrap(region1, region2));
 
   TrajectoryPlanner create() {
     Tensor partitionScale = Tensors.vector(3.5, 4);

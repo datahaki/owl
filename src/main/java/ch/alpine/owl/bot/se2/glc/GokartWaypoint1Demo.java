@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
+import java.util.List;
 
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.WaypointDistanceCost;
@@ -46,7 +47,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
       }
     };
     // set cost function hierarchy
-    gokartEntity.setCostVector(Arrays.asList(waypointCost), Arrays.asList(0.0));
+    gokartEntity.setCostVector(List.of(waypointCost), Arrays.asList(0.0));
     gokartEntity.addTimeCost(1, 0.0);
     // ---
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
@@ -60,7 +61,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
-        Arrays.asList(gokartEntity, glcPlannerCallback));
+        List.of(gokartEntity, glcPlannerCallback));
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(8));
     glcWaypointFollowing.startNonBlocking();
     // ---

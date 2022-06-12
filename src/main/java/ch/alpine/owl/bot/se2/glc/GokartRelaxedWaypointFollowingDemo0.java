@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
+import java.util.List;
 
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -51,7 +51,7 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
     // --
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
-        Arrays.asList(gokartEntity, glcPlannerCallback));
+        List.of(gokartEntity, glcPlannerCallback));
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(5));
     glcWaypointFollowing.startNonBlocking();
     // ---

@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.Arrays;
-
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
@@ -45,7 +43,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
     Region<StateTime> region2 = new R2xTEllipsoidStateTimeRegion( //
         Tensors.vector(0.8, 0.6), noise2, () -> carxTEntity.getStateTimeNow().time());
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList(region1, region2)));
+        RegionUnion.wrap(region1, region2));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
     MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);

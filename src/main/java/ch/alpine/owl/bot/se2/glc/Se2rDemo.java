@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -51,10 +50,10 @@ enum Se2rDemo {
         se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
     TrajectoryRegionQuery obstacleQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
-        )));
+        ));
     // ---
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, new TrajectoryObstacleConstraint(obstacleQuery), goalInterface);

@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import ch.alpine.ascona.util.win.RenderInterface;
@@ -54,7 +53,7 @@ public class Rice2dxTParts1Demo implements DemoInterface {
     Region<StateTime> region3 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList(region1, region2, region3)));
+        RegionUnion.wrap(region1, region2, region3));
     // abstractEntity.obstacleQuery = trq;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);

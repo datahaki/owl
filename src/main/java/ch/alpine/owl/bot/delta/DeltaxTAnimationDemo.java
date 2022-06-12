@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
-import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -72,7 +71,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     Region<Tensor> region = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList(new TimeInvariantRegion(region), region1, region2, region3, region4))));
+        RegionUnion.wrap(new TimeInvariantRegion(region), region1, region2, region3, region4)));
     // ---
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.add(trajectoryEntity);

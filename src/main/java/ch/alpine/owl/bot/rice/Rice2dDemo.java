@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -49,12 +48,12 @@ import ch.alpine.tensor.ext.Timing;
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     GoalInterface goalInterface = new Rice2GoalManager(ELLIPSOID_REGION);
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap(Arrays.asList( //
+        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap( //
             new HyperplaneRegion(Tensors.vector(1, +0, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, -1, 0, 0), RealScalar.of(3.2)), //
             new HyperplaneRegion(Tensors.vector(0, +0, 0, 1), RealScalar.ZERO) //
-        ))));
+        )));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, FixedStateIntegrator.create( //

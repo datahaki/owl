@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.Arrays;
-
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -60,10 +58,10 @@ public class Se2xTLetterDemo implements DemoInterface {
     // ---
     Region<Tensor> se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new TimeInvariantRegion(se2PointsVsRegion), // <- expects se2 states
             region1, cog0 //
-        )));
+        ));
     // Se2PointsVsRegion se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), RegionUnion.wrap(Arrays.asList( //
     // new TimeInvariantRegion(imageRegion), // <- expects se2 states
     // region1, cog0 //
@@ -79,12 +77,12 @@ public class Se2xTLetterDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) cog0);
     // ---
     final TrajectoryRegionQuery ray = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new TimeInvariantRegion(region), //
             region1,
             // region2,
             cog0 //
-        )));
+        ));
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carxTEntity::getStateTimeNow, ray);

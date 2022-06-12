@@ -4,8 +4,8 @@ package ch.alpine.owl.ani.api;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -46,7 +46,7 @@ class ProviderRankTest {
     csls.add(0);
     csls.add(5);
     // fails without arraylist
-    assertEquals(new ArrayList<>(csls), Arrays.asList(0, 2, 5, 10));
+    assertEquals(new ArrayList<>(csls), List.of(0, 2, 5, 10));
   }
 
   @Test

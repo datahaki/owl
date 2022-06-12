@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
@@ -74,7 +74,7 @@ public class RelaxedTrajectoryExpandDemo {
     CostFunction regionCost = ConstraintViolationCost.of(plannerConstraint, Quantity.of(2, ""));
     // ---
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(costFunction, regionCost), regionWithDistance);
+        new VectorCostGoalAdapter(List.of(costFunction, regionCost), regionWithDistance);
     // -------------------------------
     return new StandardRelaxedLexicographicPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface, slacks);

@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -70,7 +69,7 @@ public class CarRelaxedEntity extends CarEntity {
     Se2MinTimeGoalManager timeCosts = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     // set up cost vector with eventual other costs
     // construct cost vector
-    List<CostFunction> costTime = Arrays.asList(timeCosts);
+    List<CostFunction> costTime = List.of(timeCosts);
     List<CostFunction> costFunctionVector = Stream.concat(costTime.stream(), additionalCosts.stream()).collect(Collectors.toList());
     GoalInterface goalInterface = new VectorCostGoalAdapter(costFunctionVector, se2ComboRegion);
     // --

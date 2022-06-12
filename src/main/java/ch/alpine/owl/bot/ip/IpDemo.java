@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.ip;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -48,10 +47,10 @@ import ch.alpine.tensor.sca.Clips;
     IpGoalManager ipGoalManager = new IpGoalManager( //
         Tensors.vector(2, 0, 0, 0), //
         Tensors.vector(0.1, 0.1, 1, 1));
-    Region<Tensor> region = RegionUnion.wrap(Arrays.asList( //
+    Region<Tensor> region = RegionUnion.wrap( //
         new FreeBoundedIntervalRegion(0, Clips.interval(-1, +3)), // ,
         new FreeBoundedIntervalRegion(2, Clips.interval(-2, +2)) // ,
-    ));
+    );
     PlannerConstraint plannerConstraint = RegionConstraints.timeDependent(region);
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //

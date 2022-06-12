@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
-
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -54,7 +52,7 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
     Region<StateTime> region2 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = //
-        RegionConstraints.stateTime(RegionUnion.wrap(Arrays.asList(region1, region2)));
+        RegionConstraints.stateTime(RegionUnion.wrap(region1, region2));
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);

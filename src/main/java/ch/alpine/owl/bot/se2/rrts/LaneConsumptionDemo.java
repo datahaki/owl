@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.se2.rrts;
 
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -37,11 +37,11 @@ public class LaneConsumptionDemo extends AbstractCurveDemo implements DemoInterf
 
   @SafeVarargs
   public LaneConsumptionDemo(Consumer<LaneInterface>... consumers) {
-    this(Arrays.asList(consumers));
+    this(List.of(consumers));
   }
 
   public LaneConsumptionDemo(Collection<Consumer<LaneInterface>> consumers) {
-    super(Arrays.asList( //
+    super(List.of( //
         Se2ClothoidDisplay.ANALYTIC, //
         Se2ClothoidDisplay.LEGENDRE, //
         Se2CoveringClothoidDisplay.INSTANCE, //

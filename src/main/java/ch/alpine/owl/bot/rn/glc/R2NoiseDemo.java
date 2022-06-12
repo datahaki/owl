@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +57,7 @@ import ch.alpine.tensor.ext.Timing;
     BallRegion ballRegion = new BallRegion(center, radius);
     GoalInterface goalInterface = MultiCostGoalAdapter.of( //
         new RnMinDistGoalManager(ballRegion), //
-        Arrays.asList(new R2NoiseCostFunction(threshold.subtract(RealScalar.of(0.3)))));
+        List.of(new R2NoiseCostFunction(threshold.subtract(RealScalar.of(0.3)))));
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //

@@ -45,7 +45,7 @@ public class Tse2CarEntity extends Tse2Entity {
   static final Scalar LOOKAHEAD = RealScalar.of(0.5);
   static final Scalar MAX_TURNING_RATE = Degree.of(50); // slightly higher for pure pursuit
   static final FlowsInterface CARFLOWS = Tse2CarFlows.of(MAX_TURNING_PLAN, Tensors.vector(-0.7, 0, 0.7));
-  private static final Scalar SQRT2 = Sqrt.of(RealScalar.of(2));
+  private static final Scalar SQRT2 = Sqrt.of(RealScalar.TWO);
   private static final Scalar SHIFT_PENALTY = RealScalar.of(0.4);
   // ---
   static final Tensor SHAPE = Tensors.matrixDouble( //

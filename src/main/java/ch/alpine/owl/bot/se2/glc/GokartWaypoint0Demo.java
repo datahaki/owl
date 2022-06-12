@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
+import java.util.List;
 
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
@@ -46,7 +46,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
     waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
-    Region<Tensor> union = RegionUnion.wrap(Arrays.asList(hangarMap.region, polygonRegion));
+    Region<Tensor> union = RegionUnion.wrap(hangarMap.region, polygonRegion);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(union);
     // ---
     owlAnimationFrame.add(gokartEntity);
@@ -58,7 +58,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
-        Arrays.asList(gokartEntity, glcPlannerCallback));
+        List.of(gokartEntity, glcPlannerCallback));
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(7));
     glcWaypointFollowing.startNonBlocking();
     // ---

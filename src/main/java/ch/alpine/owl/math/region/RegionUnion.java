@@ -4,6 +4,7 @@ package ch.alpine.owl.math.region;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.sophus.api.Region;
@@ -25,6 +26,15 @@ public class RegionUnion<T> implements Region<T>, Serializable {
    * @return the combined region */
   public static <T> Region<T> wrap(Collection<Region<T>> collection) {
     return new RegionUnion<>(Objects.requireNonNull(collection));
+  }
+
+  /** combines a collection of {@link Region}s into one Region
+   * 
+   * @param regions
+   * @return */
+  @SafeVarargs
+  public static <T> Region<T> wrap(Region<T>... regions) {
+    return new RegionUnion<>(List.of(regions));
   }
 
   // ---

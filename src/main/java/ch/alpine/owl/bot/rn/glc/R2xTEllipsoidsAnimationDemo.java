@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
-
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -67,7 +65,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
         Tensors.vector(0.8, 0.5), rigidm, () -> abstractEntity.getStateTimeNow().time());
     Region<StateTime> region3 = new R2xTEllipsoidStateTimeRegion( //
         Tensors.vector(0.6, 0.6), noise, () -> abstractEntity.getStateTimeNow().time());
-    Region<StateTime> union = RegionUnion.wrap(Arrays.asList(region1, region2, region3));
+    Region<StateTime> union = RegionUnion.wrap(region1, region2, region3);
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(union);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);

@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -52,7 +51,7 @@ public class GokartRelaxedEntity extends GokartEntity {
     // define Se2MinTimeGoalManager
     Se2MinTimeGoalManager timeCosts = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     // construct cost vector
-    List<CostFunction> costTime = Arrays.asList(timeCosts);
+    List<CostFunction> costTime = List.of(timeCosts);
     List<CostFunction> costFunctionVector = Stream.concat(costTime.stream(), additionalCosts.stream()).collect(Collectors.toList());
     GoalInterface goalInterface = new VectorCostGoalAdapter(costFunctionVector, se2ComboRegion);
     // --

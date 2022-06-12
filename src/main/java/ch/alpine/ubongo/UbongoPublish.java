@@ -6,7 +6,7 @@ import java.util.List;
 
 /* package */ enum UbongoPublish {
   /** BATCH 1 2020 October */
-  STANDARD(UbongoBoards.STANDARD, Arrays.asList(0, 1, 2, 3, 10, 12)), //
+  STANDARD(UbongoBoards.STANDARD, List.of(0, 1, 2, 3, 10, 12)), //
   CARPET_1(UbongoBoards.CARPET_1, Arrays.asList(2, 6, 9, 12, 16, 19)), //
   CARPET_A(UbongoBoards.CARPET_1, Arrays.asList(5, 7, 10, 15, 17, 20)), //
   CARPET_2(UbongoBoards.CARPET_2, Arrays.asList(0, 3, 5, 9, 12, 14)), //

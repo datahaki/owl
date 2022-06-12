@@ -1,7 +1,6 @@
 // code by astoll, ynager
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -86,7 +85,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     CostFunction regionCost = ConstraintViolationCost.of(plannerConstraint, Quantity.of(2, ""));
     // ---
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(distanceCost, regionCost), goalRegion);
+        new VectorCostGoalAdapter(List.of(distanceCost, regionCost), goalRegion);
     // -------------------------------
     return new StandardRelaxedLexicographicPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface, slacks);

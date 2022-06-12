@@ -1,7 +1,6 @@
 // code by yn
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +82,7 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
     // ---
     // the 3rd cost penalizes distance of path
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(distanceCost, regionCost), goalRegion);
+        new VectorCostGoalAdapter(List.of(distanceCost, regionCost), goalRegion);
     // ---
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     RLTrajectoryPlanner trajectoryPlanner = new StandardRLTrajectoryPlanner( //

@@ -3,7 +3,6 @@ package ch.alpine.ubongo;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -44,7 +43,7 @@ import ch.alpine.tensor.io.ImageFormat;
       ubongoPiece.stamp = ImageRotate.cw(ubongoEntry.ubongo.mask());
       ubongoPiece.ubongo = ubongoEntry.ubongo;
       List<Integer> size = Dimensions.of(ubongoPiece.stamp);
-      Tensor tensor = UbongoRender.of(size, Arrays.asList(ubongoPiece));
+      Tensor tensor = UbongoRender.of(size, List.of(ubongoPiece));
       // List<Integer> size2 = Dimensions.of(tensor);
       int scale = 15;
       int piw = size.get(1) * scale;
