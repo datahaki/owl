@@ -18,7 +18,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class TransitionRegionQueryUnionTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     TransitionRegionQuery trq1 = //
         new SampledTransitionRegionQuery(new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), RealScalar.of(0.1));
     TransitionRegionQuery trq2 = //

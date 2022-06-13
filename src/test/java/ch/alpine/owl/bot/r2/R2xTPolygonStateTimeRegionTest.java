@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 
 class R2xTPolygonStateTimeRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));
     // ---
     BijectionFamily bijectionFamily = new So2Family(s -> s);

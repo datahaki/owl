@@ -23,7 +23,7 @@ import ch.alpine.tensor.Tensors;
 
 class ImageAreaTest {
   @Test
-  public void testBlackWhite() throws IOException {
+  void testBlackWhite() throws IOException {
     BufferedImage bufferedImage = image("/dubilab/obstacles/20180423.png");
     Area area = ImageArea.fromImage(bufferedImage); // takes ~6[s]
     Rectangle rectangle = area.getBounds();
@@ -40,7 +40,7 @@ class ImageAreaTest {
   }
 
   @Test
-  public void testTensorArea() {
+  void testTensorArea() {
     Tensor image = Tensors.fromString("{{1, 0, 0, 1, 0}}");
     ImageRegion imageRegion = new ImageRegion(image, Tensors.vector(5, 1), true);
     assertTrue(imageRegion.test(Tensors.vector(0.5, 0.5)));
@@ -59,7 +59,7 @@ class ImageAreaTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> ImageArea.fromImage(null));
   }
 }

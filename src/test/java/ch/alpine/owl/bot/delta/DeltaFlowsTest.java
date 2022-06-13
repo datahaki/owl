@@ -17,7 +17,7 @@ class DeltaFlowsTest {
   private static final int U_SIZE = 15;
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Collection<Tensor> controls = new DeltaFlows(U_NORM).getFlows(U_SIZE);
     Scalar u_norm = DeltaControls.maxSpeed(controls);
     Chop._10.requireClose(u_norm, U_NORM);

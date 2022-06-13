@@ -40,7 +40,7 @@ class BalloonEntityTest {
   }
 
   @Test
-  public void testDistanceSimple() {
+  void testDistanceSimple() {
     Tensor x = Tensors.vector(-1, 2, 1, 0);
     Tensor y = Tensors.vector(3, 2, 4, 0);
     Scalar expected = RealScalar.of(25);
@@ -49,7 +49,7 @@ class BalloonEntityTest {
   }
 
   @Test
-  public void testDistanceWithUnits() {
+  void testDistanceWithUnits() {
     Tensor x = Tensors.fromString("{2[m], 2[m]}");
     Tensor y = Tensors.fromString("{4[m], 2[m]}");
     Scalar expected = Quantity.of(4, "m^2");
@@ -58,13 +58,13 @@ class BalloonEntityTest {
   }
 
   @Test
-  public void testDelayHint() {
+  void testDelayHint() {
     BalloonEntity balloonEntity = createEntity();
     assertEquals(balloonEntity.delayHint(), RealScalar.of(2));
   }
 
   @Test
-  public void testCreateTrajectoryPlanner() {
+  void testCreateTrajectoryPlanner() {
     Tensor goal = Tensors.vector(-30, 0);
     Scalar vertSpeedMax = RealScalar.of(4);
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(vertSpeedMax);
@@ -84,7 +84,7 @@ class BalloonEntityTest {
   }
 
   @Test
-  public void testStateTimeRaster() {
+  void testStateTimeRaster() {
     BalloonEntity balloonEntity = createEntity();
     StateTimeRaster stateTimeRaster = balloonEntity.stateTimeRaster();
     assertInstanceOf(EtaRaster.class, stateTimeRaster);

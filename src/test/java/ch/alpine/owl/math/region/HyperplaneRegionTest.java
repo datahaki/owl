@@ -18,7 +18,7 @@ import ch.alpine.tensor.chq.ExactScalarQ;
 
 class HyperplaneRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = new HyperplaneRegion(Tensors.vector(1, 0), RealScalar.of(5));
     assertFalse(region.test(Tensors.vector(0, 0)));
     assertFalse(region.test(Tensors.vector(3, 0)));
@@ -30,7 +30,7 @@ class HyperplaneRegionTest {
   }
 
   @Test
-  public void testMore() {
+  void testMore() {
     Region<Tensor> region = new HyperplaneRegion(Tensors.vector(-1, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
@@ -40,7 +40,7 @@ class HyperplaneRegionTest {
   }
 
   @Test
-  public void testNormalize() {
+  void testNormalize() {
     Region<Tensor> region = HyperplaneRegion.normalize(Tensors.vector(-2, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
@@ -50,7 +50,7 @@ class HyperplaneRegionTest {
   }
 
   @Test
-  public void testDistance() {
+  void testDistance() {
     ImplicitFunctionRegion ifr = HyperplaneRegion.normalize(Tensors.vector(2, 0), RealScalar.of(-10));
     assertTrue(ifr.test(Array.zeros(2)));
     assertTrue(ifr.test(Tensors.vector(9, 0)));
@@ -65,7 +65,7 @@ class HyperplaneRegionTest {
   }
 
   @Test
-  public void testDistanceFail() {
+  void testDistanceFail() {
     ImplicitFunctionRegion ifr = HyperplaneRegion.normalize(Tensors.vector(2, 0), RealScalar.of(-10));
     assertThrows(Exception.class, () -> ifr.signedDistance(Array.zeros(3)));
   }

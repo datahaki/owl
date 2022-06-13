@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class ApTrajectoryPlannerTest {
   @Test
-  public void testIsStandardTrajectoryPlanner() {
+  void testIsStandardTrajectoryPlanner() {
     ApTrajectoryPlanner.apStandardTrajectoryPlanner();
   }
 }

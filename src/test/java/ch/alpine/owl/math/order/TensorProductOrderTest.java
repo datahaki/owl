@@ -24,7 +24,7 @@ class TensorProductOrderTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
     Tensor tensorY = Tensors.fromString("{2, 3, 4}");
     Tensor tensorA = Tensors.fromString("{0, 3, 3}");
@@ -37,7 +37,7 @@ class TensorProductOrderTest {
   }
 
   @Test
-  public void testDimOne() {
+  void testDimOne() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(2);
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
     Tensor tensorY = Tensors.fromString("{2, 3, 4}");
@@ -46,7 +46,7 @@ class TensorProductOrderTest {
   }
 
   @Test
-  public void testTotalProduct() {
+  void testTotalProduct() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     List<Scalar> x = new LinkedList<>();
     x.add(RealScalar.of(1));
@@ -70,7 +70,7 @@ class TensorProductOrderTest {
   }
 
   @Test
-  public void testFailLength() {
+  void testFailLength() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     Tensor tensorX = Tensors.fromString("{1, 2}");
     Tensor tensorY = Tensors.fromString("{2, 3}");
@@ -78,12 +78,12 @@ class TensorProductOrderTest {
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     assertEquals(TensorProductOrder.comparator(0).compare(Tensors.empty(), Tensors.empty()), OrderComparison.INDIFFERENT);
   }
 
   @Test
-  public void testFailNegative() {
+  void testFailNegative() {
     assertThrows(Exception.class, () -> TensorProductOrder.comparator(-1));
   }
 }

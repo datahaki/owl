@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class RnControlsTest {
   @Test
-  public void testMaxSpeed() {
+  void testMaxSpeed() {
     int n = 10;
     R2Flows r2Flows = new R2Flows(Quantity.of(3, "m*s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(n);

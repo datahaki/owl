@@ -10,7 +10,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class LinearVelocity3MinTimeTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(1, "m*s^-2");
     Scalar v_tar = Quantity.of(3, "m*s^-1");

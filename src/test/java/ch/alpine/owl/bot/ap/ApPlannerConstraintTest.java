@@ -29,19 +29,19 @@ class ApPlannerConstraintTest {
   private static final Tensor flow = Tensors.vector(100, 0.1);
 
   @Test
-  public void testXConstraints() {
+  void testXConstraints() {
     GlcNode pseudoNodeX = GlcNode.of(flow, new StateTime(xUnvalid, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     assertFalse(ap.isSatisfied(pseudoNodeX, null, flow));
   }
 
   @Test
-  public void testZConstraints() {
+  void testZConstraints() {
     GlcNode pseudoNodeZ = GlcNode.of(flow, new StateTime(zUnvalid, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     assertFalse(ap.isSatisfied(pseudoNodeZ, null, flow));
   }
 
   @Test
-  public void testVConstraints() throws ClassNotFoundException, IOException {
+  void testVConstraints() throws ClassNotFoundException, IOException {
     GlcNode pseudoNodeVStall = GlcNode.of(flow, new StateTime(vUnvalidStall, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     GlcNode pseudoNodeVMax = GlcNode.of(flow, new StateTime(vUnvalidMax, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     ApPlannerConstraint cp = Serialization.copy(ap);
@@ -49,21 +49,21 @@ class ApPlannerConstraintTest {
   }
 
   @Test
-  public void testGammaConstraints() {
+  void testGammaConstraints() {
     GlcNode pseudoNodeGammaPositive = GlcNode.of(flow, new StateTime(gammaPositive, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     GlcNode pseudoNodeGammaTooSteep = GlcNode.of(flow, new StateTime(gammaTooSteep, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     assertFalse(ap.isSatisfied(pseudoNodeGammaPositive, null, flow) | ap.isSatisfied(pseudoNodeGammaTooSteep, null, flow));
   }
 
   @Test
-  public void testTDRateConstraints() {
+  void testTDRateConstraints() {
     GlcNode pseudoNodeZRateTooSteep = GlcNode.of(flow, new StateTime(zRateTooSteep, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     GlcNode pseudoNodeZRateValid = GlcNode.of(flow, new StateTime(zRateValid, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     assertTrue(!ap.isSatisfied(pseudoNodeZRateTooSteep, null, flow) & ap.isSatisfied(pseudoNodeZRateValid, null, flow));
   }
 
   @Test
-  public void testValidConstraints() {
+  void testValidConstraints() {
     GlcNode pseudoNodeValid = GlcNode.of(flow, new StateTime(valid, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     assertTrue(ap.isSatisfied(pseudoNodeValid, null, flow));
   }

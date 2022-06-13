@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class TwdForwardFlowsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     TwdFlows twdFlows = new TwdForwardFlows(Quantity.of(3, "m*s^-1"), Quantity.of(1, "m"));
     int n = 3;
     Collection<Tensor> collection = twdFlows.getFlows(n);
@@ -22,7 +22,7 @@ class TwdForwardFlowsTest {
   }
 
   @Test
-  public void testZeros() {
+  void testZeros() {
     TwdFlows twdFlows = new TwdForwardFlows(Quantity.of(3, "m*s^-1"), Quantity.of(1, "m*rad^-1"));
     int n = 3;
     Collection<Tensor> collection = twdFlows.getFlows(n);

@@ -15,7 +15,7 @@ import ch.alpine.tensor.chq.ExactTensorQ;
 
 class IntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = Tensors.vector(1, 2);
     Tensor x = Tensors.vector(7, 2);

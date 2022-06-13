@@ -14,13 +14,13 @@ import ch.alpine.tensor.Tensor;
 
 class StaticHelperTest {
   @Test
-  public void testEntrywiseMinEmpty() {
+  void testEntrywiseMinEmpty() {
     Optional<Tensor> optional = StaticHelper.entrywiseMin(Stream.of());
     assertFalse(optional.isPresent());
   }
 
   @Test
-  public void testFailGetMinEmpty() {
+  void testFailGetMinEmpty() {
     assertThrows(Exception.class, () -> StaticHelper.getMin(Collections.emptyList(), 2));
   }
 }

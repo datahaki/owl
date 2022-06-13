@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Duncan1StateSpaceModelTest {
   @Test
-  public void testScalar() {
+  void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.1, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
     Tensor u = Tensors.fromString("{-1[m*s^-2], -1[m*s^-2]}");
@@ -36,7 +36,7 @@ class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.0, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
     Tensor u = Tensors.fromString("{-1[m*s^-2], -1[m*s^-2]}");
@@ -45,7 +45,7 @@ class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testLimit() {
+  void testLimit() {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
@@ -59,7 +59,7 @@ class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor speed = Tensors.fromString("{10[m*s^-1]}");
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         new Duncan1StateSpaceModel(Quantity.of(0.2, "s^-1")), //
@@ -72,7 +72,7 @@ class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }
 }

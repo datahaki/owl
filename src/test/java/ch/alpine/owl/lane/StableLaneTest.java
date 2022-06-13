@@ -22,7 +22,7 @@ class StableLaneTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}"), //
         LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, 1)::cyclic, 3, Quantity.of(1, "m")));
@@ -34,7 +34,7 @@ class StableLaneTest {
   }
 
   @Test
-  public void testStraight() throws ClassNotFoundException, IOException {
+  void testStraight() throws ClassNotFoundException, IOException {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 0[m], 0}, {2[m], 0[m], 0}}"), //
         LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, 1)::string, 3, Quantity.of(0.5, "m")));

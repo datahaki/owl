@@ -29,7 +29,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class PsuStateSpaceModelTest {
   @Test
-  public void testNonTrivial() {
+  void testNonTrivial() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
     Scalar h = RationalScalar.of(1, 3);
@@ -40,7 +40,7 @@ class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testReference() {
+  void testReference() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
     Scalar h = RationalScalar.of(1, 3);
@@ -51,7 +51,7 @@ class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testSmall() {
+  void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -67,7 +67,7 @@ class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testLarge() {
+  void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -83,7 +83,7 @@ class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testVectorField() {
+  void testVectorField() {
     Tensor range = Tensors.vector(Math.PI, 3);
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
@@ -91,7 +91,7 @@ class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

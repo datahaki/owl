@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 
 class TrajectoryRegionQueryTest {
   @Test
-  public void testDisjoint() {
+  void testDisjoint() {
     TrajectoryRegionQuery goalQuery = //
         CatchyTrajectoryRegionQuery.timeInvariant( //
             new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(1, 1)));

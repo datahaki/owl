@@ -20,7 +20,7 @@ class EulerIntegratorTest {
   private final Integrator integrator = EulerLieIntegrator.of(RnGroup.INSTANCE);
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-1"));
     Tensor x = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m"));
@@ -31,7 +31,7 @@ class EulerIntegratorTest {
   }
 
   @Test
-  public void testDouble() {
+  void testDouble() {
     StateSpaceModel stateSpaceModel = DoubleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-2"));
     Tensor x = Tensors.fromString("{2[m], 3[m], 4[m*s^-1], 5[m*s^-1]}"); // pos and vel

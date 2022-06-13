@@ -18,7 +18,7 @@ import ch.alpine.tensor.Tensors;
 
 class RegionRendersTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor image = Tensors.fromString("{{1, 0, 1}}");
     BufferedImage bufferedImage = RegionRenders.image(image);
     assertEquals(bufferedImage.getType(), BufferedImage.TYPE_BYTE_GRAY);

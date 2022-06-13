@@ -7,7 +7,7 @@ import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
 class GokartVec0DemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new GokartVec0Demo(), 2500);
   }
 }

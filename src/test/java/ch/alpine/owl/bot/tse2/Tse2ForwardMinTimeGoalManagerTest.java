@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Clip;
 
 class Tse2ForwardMinTimeGoalManagerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 4[m*s^-1]}"));
@@ -47,7 +47,7 @@ class Tse2ForwardMinTimeGoalManagerTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 0, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 5[m*s^-1]}"));

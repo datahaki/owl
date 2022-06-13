@@ -120,7 +120,7 @@ class RLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testSix() {
+  void testSix() {
     GlcNode goalNode = _withSlack("slack6", Tensors.vector(6, 0, 0));
     // Tensor costFromRoot =
     VectorScalars.vector(goalNode.costFromRoot());
@@ -129,7 +129,7 @@ class RLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testFour() {
+  void testFour() {
     GlcNode goalNode = _withSlack("slack4", Tensors.vector(4, 0, 0));
     // Tensor costFromRoot =
     VectorScalars.vector(goalNode.costFromRoot());
@@ -141,7 +141,7 @@ class RLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testTwo() {
+  void testTwo() {
     GlcNode goalNode = _withSlack("slack2", Tensors.vector(2, 0, 0));
     // Tensor costFromRoot =
     VectorScalars.vector(goalNode.costFromRoot());
@@ -150,7 +150,7 @@ class RLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testZeroEbbes() {
+  void testZeroEbbes() {
     GlcNode goalNode = _withSlack("slack1", Tensors.vector(1.3, 0, 0));
     // Tensor costFromRoot =
     VectorScalars.vector(goalNode.costFromRoot());
@@ -159,7 +159,7 @@ class RLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     GlcNode bestNode = _withSlack("slack0", Tensors.vector(0, 0, 0));
     // Tensor costFromRoot =
     VectorScalars.vector(bestNode.costFromRoot());

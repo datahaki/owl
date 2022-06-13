@@ -11,7 +11,7 @@ import ch.alpine.tensor.mat.DiagonalMatrix;
 
 class LoewnerPartialOrderTest {
   @Test
-  public void testDyn() {
+  void testDyn() {
     Tensor x = DiagonalMatrix.of(1, 2);
     Tensor y = DiagonalMatrix.of(2, 1);
     OrderComparison orderComparison = LoewnerPartialOrder.INSTANCE.compare(x, y);
@@ -19,7 +19,7 @@ class LoewnerPartialOrderTest {
   }
 
   @Test
-  public void testDyn2() {
+  void testDyn2() {
     Tensor x = DiagonalMatrix.of(1, 1);
     Tensor y = DiagonalMatrix.of(2, 2);
     OrderComparison orderComparison = LoewnerPartialOrder.INSTANCE.compare(x, y);

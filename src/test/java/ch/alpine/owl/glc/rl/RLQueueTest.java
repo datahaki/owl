@@ -21,7 +21,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 class RLQueueTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor slack = Tensors.vector(1, 0, 0);
     RLQueue rlQueue = new RLQueue(slack);
     GlcNode node21 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
@@ -55,7 +55,7 @@ class RLQueueTest {
   }
 
   @Test
-  public void testSpeed() {
+  void testSpeed() {
     Tensor slack = Tensors.vector(1, 1, 1);
     RLQueue rlQueue = new RLQueue(slack);
     Scalar minCostToGoal = VectorScalar.of(0, 0, 0);
@@ -80,7 +80,7 @@ class RLQueueTest {
   }
 
   @Test
-  public void testFailCollectionsMinEmpty() {
+  void testFailCollectionsMinEmpty() {
     assertThrows(Exception.class, () -> Collections.min(Arrays.asList()));
   }
 }

@@ -9,7 +9,7 @@ import ch.alpine.tensor.RealScalar;
 
 class ClothoidFixedControlTest {
   @Test
-  public void testNullFail() {
+  void testNullFail() {
     assertThrows(Exception.class, () -> new ClothoidFixedControl(null, RealScalar.of(2)));
     assertThrows(Exception.class, () -> new ClothoidFixedControl(RealScalar.of(2), null));
   }

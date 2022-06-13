@@ -14,7 +14,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class ApMinTimeGoalManagerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar maxSpeed = Quantity.of(83, "m*s^-1");
     ApComboRegion apComboRegion = new ApComboRegion( //
         new LinearRegion(Quantity.of(5, "m"), Quantity.of(1, "m")), //

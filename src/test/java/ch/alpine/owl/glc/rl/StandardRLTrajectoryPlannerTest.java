@@ -112,28 +112,28 @@ class StandardRLTrajectoryPlannerTest {
   }
 
   @Test
-  public void testFour() {
+  void testFour() {
     GlcNode goalNode = _withSlack(Tensors.vector(4, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(9, 2, 9));
   }
 
   @Test
-  public void testTwo() {
+  void testTwo() {
     GlcNode goalNode = _withSlack(Tensors.vector(2, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(7, 3, 7));
   }
 
   @Test
-  public void testZeroEbbes() {
+  void testZeroEbbes() {
     GlcNode goalNode = _withSlack(Tensors.vector(1.3, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(goalNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(5, 4, 5));
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     GlcNode bestNode = _withSlack(Tensors.vector(0, 0, 0));
     Tensor costFromRoot = VectorScalars.vector(bestNode.costFromRoot());
     assertEquals(costFromRoot, Tensors.vector(5, 4, 5));

@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 
 class Se2RelaxedCornerCuttingDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);
     Tensor slacks = Tensors.vector(2, 0);
     CarRelaxedEntity carRelaxedEntity = CarRelaxedEntity.createDefault(stateTime, slacks);

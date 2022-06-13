@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class OrderComparisonTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(OrderComparison.values().length, 4);
   }
 }

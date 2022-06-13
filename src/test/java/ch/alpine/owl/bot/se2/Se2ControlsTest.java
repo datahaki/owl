@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2ControlsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Scalar maxSpeed = Se2Controls.maxSpeed(controls);
@@ -38,7 +38,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testMaxRate() {
+  void testMaxRate() {
     List<Tensor> list = new ArrayList<>();
     for (Tensor angle : Subdivide.of(RealScalar.of(-.1), RealScalar.of(0.3), 5))
       list.add(Se2CarFlows.singleton(RealScalar.of(2), (Scalar) angle));
@@ -47,7 +47,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testMaxRate2() {
+  void testMaxRate2() {
     List<Tensor> list = new ArrayList<>();
     for (Tensor angle : Subdivide.of(RealScalar.of(-.3), RealScalar.of(0.1), 5))
       list.add(Se2CarFlows.singleton(RealScalar.of(2), (Scalar) angle));
@@ -56,7 +56,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testUnits() {
+  void testUnits() {
     final Scalar ms = Quantity.of(2, "m*s^-1");
     final Scalar mr = Scalars.fromString("3[m^-1]");
     Tensor flow = Se2CarFlows.singleton(ms, mr);
@@ -71,7 +71,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testUnitsNonSI() {
+  void testUnitsNonSI() {
     final Scalar ms = Quantity.of(2, "m*s^-1");
     final Scalar mr = Scalars.fromString("3[rad*m^-1]");
     Tensor flow = Se2CarFlows.singleton(ms, mr);
@@ -86,7 +86,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testMaxSpeed() {
+  void testMaxSpeed() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(3), RealScalar.of(0.567));
     Collection<Tensor> controls = twdConfig.getFlows(8);
     Scalar maxSpeed = Se2Controls.maxSpeed(controls);
@@ -94,7 +94,7 @@ class Se2ControlsTest {
   }
 
   @Test
-  public void testUnit() {
+  void testUnit() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(ms, sa);

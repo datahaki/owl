@@ -7,7 +7,7 @@ import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
 class Rice2dxTParts1DemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new Rice2dxTParts1Demo());
   }
 }

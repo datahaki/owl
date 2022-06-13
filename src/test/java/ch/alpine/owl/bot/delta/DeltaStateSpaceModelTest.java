@@ -16,7 +16,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 class DeltaStateSpaceModelTest {
   @Test
-  public void testConstructors() {
+  void testConstructors() {
     Scalar amp = RealScalar.of(-.05);
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //

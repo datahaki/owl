@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class RrtsFlowTrajectoryGeneratorTest {
   @Test
-  public void testRn() {
+  void testRn() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(-5, -5), Tensors.vector(10, 10))), //
@@ -84,7 +84,7 @@ class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testDubins() {
+  void testDubins() {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
@@ -136,7 +136,7 @@ class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testClothoid() {
+  void testClothoid() {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
@@ -189,7 +189,7 @@ class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testDirectionalClothoid() {
+  void testDirectionalClothoid() {
     TransitionSpace transitionSpace = DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC);
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //

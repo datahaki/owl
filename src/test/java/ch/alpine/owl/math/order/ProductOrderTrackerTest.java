@@ -11,7 +11,7 @@ import ch.alpine.tensor.Scalar;
 
 class ProductOrderTrackerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     ProductOrderTracker<Scalar> productOrderTracker = new ProductOrderTracker<>(ScalarTotalOrder.INSTANCE);
     assertEquals(productOrderTracker.digest(RealScalar.of(0), RealScalar.of(0)), OrderComparison.INDIFFERENT);
     assertEquals(productOrderTracker.digest(RealScalar.of(0), RealScalar.of(1)), OrderComparison.STRICTLY_PRECEDES);

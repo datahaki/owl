@@ -13,7 +13,7 @@ class ProductOrderTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.STRICTLY_PRECEDES, OrderComparison.STRICTLY_PRECEDES);
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE);
     _checkSym(OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE);
@@ -23,7 +23,7 @@ class ProductOrderTest {
   }
 
   @Test
-  public void testNullFail() {
+  void testNullFail() {
     for (OrderComparison orderComparison : OrderComparison.values()) {
       assertThrows(Exception.class, () -> ProductOrder.intersect(orderComparison, null));
       assertThrows(Exception.class, () -> ProductOrder.intersect(null, orderComparison));

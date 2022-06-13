@@ -18,18 +18,18 @@ import ch.alpine.tensor.red.ScalarSummaryStatistics;
 
 class Se2PointsVsRegionsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), Regions.emptyRegion());
     assertFalse(region.test(Tensors.vector(1, 2, 3, 4))); // interpretation as xya
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> Se2PointsVsRegions.line(Tensors.vector(-2, 1, 0, 5), null));
   }
 
   @Test
-  public void testFootprint() {
+  void testFootprint() {
     Tensor SHAPE = ResourceData.of("/gokart/footprint/20171201.csv");
     ScalarSummaryStatistics scalarSummaryStatistics = //
         SHAPE.stream().map(tensor -> tensor.Get(0)).collect(ScalarSummaryStatistics.collector());

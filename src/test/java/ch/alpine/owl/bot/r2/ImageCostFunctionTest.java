@@ -14,7 +14,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class ImageCostFunctionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     ImageCostFunction costFunction = //
         new DenseImageCostFunction(Tensors.fromString("{{1, 2}, {3, 4}}"), Tensors.vector(10, 10), RealScalar.ZERO);
     assertFalse(HeuristicQ.of(costFunction));
@@ -25,7 +25,7 @@ class ImageCostFunctionTest {
   }
 
   @Test
-  public void testSerializable() throws Exception {
+  void testSerializable() throws Exception {
     CostFunction costFunction = //
         new DenseImageCostFunction(Tensors.fromString("{{1, 2}, {3, 4}}"), Tensors.vector(10, 10), RealScalar.ZERO);
     Serialization.copy(costFunction);

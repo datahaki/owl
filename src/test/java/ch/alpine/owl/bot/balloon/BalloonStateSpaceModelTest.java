@@ -16,7 +16,7 @@ import ch.alpine.tensor.qty.Unit;
 
 class BalloonStateSpaceModelTest {
   @Test
-  public void testValidity() throws ClassNotFoundException, IOException {
+  void testValidity() throws ClassNotFoundException, IOException {
     Tensor xWithUnits = Tensors.fromString("{2[m], 2[m], 2[m*s^-1], 4[K]}");
     Tensor uWithUnits = Tensors.fromString("{3[K*s^-1]}");
     Tensor xWithoutUnits = Tensors.vector(1, 1, 2, 4);

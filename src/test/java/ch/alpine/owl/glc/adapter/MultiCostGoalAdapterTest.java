@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensors;
 
 class MultiCostGoalAdapterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);
@@ -48,7 +48,7 @@ class MultiCostGoalAdapterTest {
   }
 
   @Test
-  public void testMembers() {
+  void testMembers() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);
@@ -62,7 +62,7 @@ class MultiCostGoalAdapterTest {
   }
 
   @Test
-  public void testTrivial() {
+  void testTrivial() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);

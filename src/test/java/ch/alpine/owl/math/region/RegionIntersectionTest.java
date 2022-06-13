@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
 
 class RegionIntersectionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> intersection = RegionIntersection.wrap( //
         Arrays.asList( //
             new EllipsoidRegion(Tensors.vector(-2), Tensors.vector(3)), //

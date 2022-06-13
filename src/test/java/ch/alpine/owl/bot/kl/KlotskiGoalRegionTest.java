@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensors;
 
 class KlotskiGoalRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     KlotskiGoalRegion klotskiGoalRegion = new KlotskiGoalRegion(Tensors.vector(0, 4, 2));
     for (Huarong huarong : Huarong.values())
       assertFalse(klotskiGoalRegion.test(huarong.create().startState()));

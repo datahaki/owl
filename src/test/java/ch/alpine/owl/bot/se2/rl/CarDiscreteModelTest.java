@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.gam.Factorial;
 
 class CarDiscreteModelTest {
   @Test
-  public void testStateCount() {
+  void testStateCount() {
     for (int n = 2; n < 7; ++n) {
       CarDiscreteModel cdm = new CarDiscreteModel(n, 2);
       Tensor states = cdm.states();
@@ -22,7 +22,7 @@ class CarDiscreteModelTest {
   }
 
   @Test
-  public void testZeroFail() {
+  void testZeroFail() {
     assertThrows(Exception.class, () -> new CarDiscreteModel(0, 2));
   }
 }

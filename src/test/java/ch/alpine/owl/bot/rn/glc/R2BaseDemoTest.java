@@ -77,7 +77,7 @@ class R2BaseDemoTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     TrajectoryPlanner trajectoryPlanner = create();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(200);

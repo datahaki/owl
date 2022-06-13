@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 class UbongoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(Ubongo.values().length, 12);
     assertEquals(Ubongo.C2.count(), 5);
   }
 
   @Test
-  public void testStamps() {
+  void testStamps() {
     for (Ubongo ubongo : Ubongo.values()) {
       // System.out.println();
       System.out.println(ubongo + " " + ubongo.stamps().size());

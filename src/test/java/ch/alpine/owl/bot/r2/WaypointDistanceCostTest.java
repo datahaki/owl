@@ -17,7 +17,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 class WaypointDistanceCostTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
@@ -27,7 +27,7 @@ class WaypointDistanceCostTest {
   }
 
   @Test
-  public void testSynthetic() {
+  void testSynthetic() {
     Tensor waypoints = CirclePoints.of(30).multiply(RealScalar.of(10));
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(10), new Dimension(120, 100));

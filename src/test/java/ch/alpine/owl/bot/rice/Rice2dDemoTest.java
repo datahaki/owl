@@ -28,7 +28,7 @@ import ch.alpine.tensor.ext.Timing;
 
 class Rice2dDemoTest {
   @Test
-  public void testExpand() throws InterruptedException {
+  void testExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     TrajectoryPlanner trajectoryPlanner = Rice2dDemo.createInstance(mu, stateSpaceModel);
@@ -53,7 +53,7 @@ class Rice2dDemoTest {
   }
 
   @Test
-  public void testGlcExpand() throws InterruptedException {
+  void testGlcExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     TrajectoryPlanner trajectoryPlanner = Rice2dDemo.createInstance(mu, stateSpaceModel);

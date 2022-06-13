@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class EmptyPlannerConstraintTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertTrue(EmptyPlannerConstraint.INSTANCE.isSatisfied(null, null, null));
   }
 }

@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 
 class KlotskiStateTimeRasterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
       Tensor board = klotskiProblem.startState();

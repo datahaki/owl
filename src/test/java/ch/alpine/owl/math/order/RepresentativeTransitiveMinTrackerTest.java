@@ -20,7 +20,7 @@ import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
 class RepresentativeTransitiveMinTrackerTest {
   @Test
-  public void testDigestNotEmptyList() {
+  void testDigestNotEmptyList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(123);
@@ -28,7 +28,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDigestNotEmptySet() {
+  void testDigestNotEmptySet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(123);
@@ -36,7 +36,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testWithList() {
+  void testWithList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(123);
@@ -52,7 +52,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testWithSet() {
+  void testWithSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
     digitSumDivisibility.digest(123);
@@ -68,7 +68,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDuplicateEntriesList() {
+  void testDuplicateEntriesList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(333);
@@ -78,7 +78,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDuplicateEntriesSet() {
+  void testDuplicateEntriesSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(333);
@@ -88,7 +88,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testOnlyPreoneRepresentativeList() {
+  void testOnlyPreoneRepresentativeList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> minTracker = RepresentativeTransitiveMinTracker.withList(orderComparator);
     minTracker.digest(123);
@@ -105,7 +105,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testOnlyPreoneRepresentativeSet() {
+  void testOnlyPreoneRepresentativeSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = RepresentativeTransitiveMinTracker.withList(orderComparator);
     digitSumDivisibility.digest(123);
@@ -143,7 +143,7 @@ class RepresentativeTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testPermutations() {
+  void testPermutations() {
     _checkPermutations(() -> RepresentativeTransitiveMinTracker.withList(DigitSumDivisibilityPreorder.SCALAR));
   }
 }

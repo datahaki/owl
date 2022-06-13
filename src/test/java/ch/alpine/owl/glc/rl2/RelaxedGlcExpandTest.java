@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensors;
 
 class RelaxedGlcExpandTest {
   @Test
-  public void testExpand() {
+  void testExpand() {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = TestHelper.createPlanner();
     Objects.requireNonNull(relaxedTrajectoryPlanner.getStateIntegrator());
     assertTrue(relaxedTrajectoryPlanner.getQueue().isEmpty());

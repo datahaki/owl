@@ -22,35 +22,35 @@ import ch.alpine.tensor.qty.Quantity;
 
 class RnMinDistGoalManagerTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     GoalInterface goalInterface = Serialization.copy(RnMinDistGoalManager.sperical(Tensors.vector(10, 10, 10), RealScalar.of(2)));
     Scalar scalar = goalInterface.minCostToGoal(Tensors.vector(10, 0, 10));
     assertEquals(scalar, RealScalar.of(8));
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     GoalInterface goalInterface = RnMinDistGoalManager.sperical(Tensors.fromString("{10[m], 10[m], 10[m]}"), Quantity.of(2, "m"));
     Scalar scalar = goalInterface.minCostToGoal(Tensors.fromString("{10[m], 0[m], 10[m]}"));
     assertEquals(scalar, Quantity.of(8, "m"));
   }
 
   @Test
-  public void testHeuristic() {
+  void testHeuristic() {
     GoalInterface goalInterface = //
         RnMinDistGoalManager.sperical(Tensors.vector(5, 0), RealScalar.of(2));
     assertTrue(HeuristicQ.of(goalInterface));
   }
 
   @Test
-  public void testHeuristic2() {
+  void testHeuristic2() {
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 0), RealScalar.of(2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     assertTrue(HeuristicQ.of(goalInterface));
   }
 
   @Test
-  public void testMinCost() {
+  void testMinCost() {
     GoalInterface goalInterface = //
         RnMinDistGoalManager.sperical(Tensors.vector(5, 3), RealScalar.of(2));
     assertEquals(goalInterface.minCostToGoal(Tensors.vector(0, 3)), RealScalar.of(3));
@@ -59,7 +59,7 @@ class RnMinDistGoalManagerTest {
   }
 
   @Test
-  public void testMinCost2() {
+  void testMinCost2() {
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 3), RealScalar.of(2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     assertEquals(goalInterface.minCostToGoal(Tensors.vector(0, 3)), RealScalar.of(3));
@@ -68,7 +68,7 @@ class RnMinDistGoalManagerTest {
   }
 
   @Test
-  public void testCostIncr() {
+  void testCostIncr() {
     GlcNode glcNode = GlcNode.of(null, new StateTime(Tensors.vector(10, 3), RealScalar.ZERO), RealScalar.ZERO, RealScalar.ZERO);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 3), RealScalar.of(2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);

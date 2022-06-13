@@ -16,7 +16,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class Tse2VelocityConstraintTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     PlannerConstraint plannerConstraint = //
         new Tse2VelocityConstraint(Quantity.of(-3, "m*s^-1"), Quantity.of(5, "m*s^-1"));
     assertTrue(plannerConstraint.isSatisfied(null, //
@@ -26,7 +26,7 @@ class Tse2VelocityConstraintTest {
   }
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     PlannerConstraint plannerConstraint = //
         new Tse2VelocityConstraint(Quantity.of(5, "m*s^-1"), Quantity.of(5, "m*s^-1"));
     assertTrue(plannerConstraint.isSatisfied(null, //

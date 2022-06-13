@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensors;
 
 class RegionDifferenceTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = RegionDifference.of( //
         new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), //
         new BallRegion(Tensors.vector(1, 0), RealScalar.ONE));

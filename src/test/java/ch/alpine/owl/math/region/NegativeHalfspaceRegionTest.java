@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensors;
 
 class NegativeHalfspaceRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> r = new NegativeHalfspaceRegion(1);
     assertFalse(r.test(Tensors.vector(1, +1, 1)));
     assertTrue(r.test(Tensors.vector(1, -1, 1)));

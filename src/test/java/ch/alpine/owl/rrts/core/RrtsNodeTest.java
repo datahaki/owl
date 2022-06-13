@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensors;
 
 class RrtsNodeTest {
   @Test
-  public void testSome() {
+  void testSome() {
     RrtsNode root = RrtsNode.createRoot(Tensors.vector(0), RealScalar.ZERO);
     RrtsNode n1 = root.connectTo(Tensors.vector(1), RealScalar.of(10));
     RrtsNode n2 = n1.connectTo(Tensors.vector(2), RealScalar.of(10 + 1));
@@ -32,7 +32,7 @@ class RrtsNodeTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> RrtsNode.createRoot(null, RealScalar.ZERO));
     assertThrows(Exception.class, () -> RrtsNode.createRoot(Tensors.vector(1, 2, 3), null));
   }

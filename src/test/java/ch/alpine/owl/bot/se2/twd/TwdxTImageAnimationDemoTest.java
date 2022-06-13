@@ -7,7 +7,7 @@ import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
 class TwdxTImageAnimationDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new TwdxTImageAnimationDemo());
   }
 }

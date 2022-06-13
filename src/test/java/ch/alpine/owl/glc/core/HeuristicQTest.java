@@ -12,13 +12,13 @@ import ch.alpine.tensor.RealScalar;
 
 class HeuristicQTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertFalse(HeuristicQ.of(Se2LateralAcceleration.INSTANCE));
     assertFalse(HeuristicQ.of(new ScaledLateralAcceleration(RealScalar.ONE)));
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> HeuristicQ.of(null));
   }
 }

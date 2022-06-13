@@ -27,7 +27,7 @@ import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
 class TransitiveMinTrackerTest {
   @Test
-  public void testDigestNotEmptyList() {
+  void testDigestNotEmptyList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
     digitSumDivisibility.digest(123);
@@ -35,7 +35,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDigestNotEmptySet() {
+  void testDigestNotEmptySet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
     digitSumDivisibility.digest(123);
@@ -43,7 +43,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testPartial() {
+  void testPartial() {
     OrderComparator<Scalar> universalComparator = new Order<>(Scalars::divides);
     MinTracker<Scalar> divisibility = TransitiveMinTracker.of(universalComparator);
     divisibility.digest(RealScalar.of(10));
@@ -63,7 +63,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testTotal() {
+  void testTotal() {
     OrderComparator<Scalar> universalComparator = ScalarTotalOrder.INSTANCE;
     MinTracker<Scalar> lessEquals = TransitiveMinTracker.of(universalComparator);
     lessEquals.digest(RealScalar.of(10));
@@ -84,7 +84,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testWithList() {
+  void testWithList() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
     digitSumDivisibility.digest(123);
@@ -100,7 +100,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testWithSet() {
+  void testWithSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
     digitSumDivisibility.digest(123);
@@ -116,7 +116,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDuplicateEntriesList() throws ClassNotFoundException, IOException {
+  void testDuplicateEntriesList() throws ClassNotFoundException, IOException {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = //
         Serialization.copy(TransitiveMinTracker.of(orderComparator));
@@ -127,7 +127,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDuplicateEntriesSet() {
+  void testDuplicateEntriesSet() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = TransitiveMinTracker.of(orderComparator);
     digitSumDivisibility.digest(333);
@@ -137,7 +137,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testLexicographic() throws ClassNotFoundException, IOException {
+  void testLexicographic() throws ClassNotFoundException, IOException {
     List<OrderComparator<? extends Object>> comparators = Collections.nCopies(2, ScalarTotalOrder.INSTANCE);
     Tensor tensorX = Tensors.fromString("{1, 2}");
     Tensor tensorY = Tensors.fromString("{2, 3}");
@@ -171,7 +171,7 @@ class TransitiveMinTrackerTest {
   }
 
   @Test
-  public void testPermutations() {
+  void testPermutations() {
     _checkPermutations(() -> TransitiveMinTracker.of(DigitSumDivisibilityPreorder.SCALAR));
   }
 }

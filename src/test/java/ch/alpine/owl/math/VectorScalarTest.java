@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.Real;
 
 class VectorScalarTest {
   @Test
-  public void testOne() {
+  void testOne() {
     Scalar a = VectorScalar.of(1, -1, 2);
     assertEquals(a.add(VectorScalar.of(Tensors.vector(0, 1, 0))), VectorScalar.of(Tensors.vector(1, 0, 2)));
     assertEquals(a.divide(RealScalar.of(2)), VectorScalar.of(Tensors.vector(0.5, -0.5, 1)));
@@ -46,7 +46,7 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testComplex() {
+  void testComplex() {
     Scalar a = VectorScalar.of(Tensors.fromString("{1+3*I, 2-4*I}"));
     assertEquals(Real.of(a), VectorScalar.of(1, +2));
     assertEquals(Imag.of(a), VectorScalar.of(3, -4));
@@ -54,7 +54,7 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testMultiply() {
+  void testMultiply() {
     Scalar a = VectorScalar.of(1, 2, 3);
     Scalar b = VectorScalar.of(0, 3, 6);
     assertThrows(Exception.class, () -> a.multiply(b));
@@ -68,14 +68,14 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testChop() {
+  void testChop() {
     Scalar a = VectorScalar.of(1, 2, 3);
     Scalar b = VectorScalar.of(1 + 1e-8, 2 - 1e-8, 3 + 2e-8);
     Chop._06.requireClose(a, b);
   }
 
   @Test
-  public void testCommute() {
+  void testCommute() {
     Scalar a = VectorScalar.of(1, 2, 3);
     assertFalse(a.equals(null));
     Scalar b = RealScalar.of(4);
@@ -85,13 +85,13 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testString() {
+  void testString() {
     Scalar a = VectorScalar.of(Tensors.vector(1, -1, 2));
     assertEquals(a.toString(), "[1, -1, 2]");
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     Scalar e1 = VectorScalar.of();
     Scalar e2 = VectorScalar.of(Tensors.empty());
     Scalar e3 = VectorScalar.of(Tensors.empty().stream().map(Scalar.class::cast));
@@ -100,7 +100,7 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     Scalar a = VectorScalar.of(1, 2, 3);
     Scalar b = Serialization.copy(a);
     assertEquals(a, b);
@@ -108,19 +108,19 @@ class VectorScalarTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> VectorScalar.of(Tensors.empty()).number());
     assertThrows(Exception.class, () -> VectorScalar.of(Tensors.empty().add(RealScalar.ONE)));
   }
 
   @Test
-  public void testFailNested() {
+  void testFailNested() {
     Scalar a = VectorScalar.of(Tensors.vector(1, -1, 2));
     assertThrows(Exception.class, () -> VectorScalar.of(Tensors.of(RealScalar.ONE, a)));
   }
 
   @Test
-  public void testFailScalar() {
+  void testFailScalar() {
     assertThrows(Exception.class, () -> VectorScalar.of(RealScalar.ONE));
   }
 }

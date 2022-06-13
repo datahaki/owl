@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2CarFlowsTest {
   @Test
-  public void testRadUnits() {
+  void testRadUnits() {
     Scalar speed = Quantity.of(2, "m*s^-1");
     Scalar rate_max = UnitSystem.SI().apply(Quantity.of(1, "rad*m^-1"));
     FlowsInterface carFlows = Se2CarFlows.standard(speed, rate_max);
@@ -33,7 +33,7 @@ class Se2CarFlowsTest {
   }
 
   @Test
-  public void testRadRadius() {
+  void testRadRadius() {
     Scalar speed = Quantity.of(1.423, "m*s^-1");
     Scalar rate = UnitSystem.SI().apply(Quantity.of(2.384, "rad*m^-1"));
     Tensor flow = Se2CarFlows.singleton(speed, rate);
@@ -47,7 +47,7 @@ class Se2CarFlowsTest {
   }
 
   @Test
-  public void testUnits() {
+  void testUnits() {
     Scalar speed = Quantity.of(2, "m*s^-1");
     Scalar rate_max = UnitSystem.SI().apply(Quantity.of(1, "m^-1"));
     FlowsInterface carFlows = Se2CarFlows.standard(speed, rate_max);
@@ -60,7 +60,7 @@ class Se2CarFlowsTest {
   }
 
   @Test
-  public void testRadius() {
+  void testRadius() {
     Scalar speed = Quantity.of(1.423, "m*s^-1");
     Scalar rate = UnitSystem.SI().apply(Quantity.of(2.384, "m^-1"));
     Tensor flow = Se2CarFlows.singleton(speed, rate);

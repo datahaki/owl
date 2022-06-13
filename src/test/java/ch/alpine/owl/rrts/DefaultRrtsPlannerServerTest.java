@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class DefaultRrtsPlannerServerTest {
   @Test
-  public void testRn() {
+  void testRn() {
     Tensor goal = Tensors.vector(10, 10);
     Tensor state = Tensors.vector(0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
@@ -89,7 +89,7 @@ class DefaultRrtsPlannerServerTest {
   }
 
   @Test
-  public void testDubins() {
+  void testDubins() {
     CoordinateBoundingBox box = CoordinateBounds.of( //
         Tensors.vector(0, 0, -Math.PI), //
         Tensors.vector(10, 10, Math.PI));
@@ -133,7 +133,7 @@ class DefaultRrtsPlannerServerTest {
   }
 
   @Test
-  public void testClothoid() {
+  void testClothoid() {
     Tensor lbounds = Tensors.vector(0, 0);
     Tensor ubounds = Tensors.vector(10, 10);
     Tensor goal = Tensors.vector(10, 10, 0);

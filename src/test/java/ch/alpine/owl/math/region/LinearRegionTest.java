@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Clip;
 
 class LinearRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     LinearRegion linearRegion = new LinearRegion(RealScalar.of(10), RealScalar.of(2));
     assertEquals(linearRegion.center(), RealScalar.of(10));
     assertEquals(linearRegion.radius(), RealScalar.of(2));
@@ -31,7 +31,7 @@ class LinearRegionTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     LinearRegion linearRegion = new LinearRegion(Quantity.of(10, "m"), Quantity.of(2, "m"));
     assertEquals(linearRegion.signedDistance(Quantity.of(7, "m")), Quantity.of(1, "m"));
     assertEquals(linearRegion.signedDistance(Quantity.of(9, "m")), Quantity.of(-1, "m"));
@@ -39,7 +39,7 @@ class LinearRegionTest {
   }
 
   @Test
-  public void testClip() {
+  void testClip() {
     LinearRegion linearRegion = new LinearRegion(Quantity.of(10, "m"), Quantity.of(2, "m"));
     Clip clip = linearRegion.clip();
     assertEquals(clip.min(), Quantity.of(8, "m"));
@@ -47,7 +47,7 @@ class LinearRegionTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> new LinearRegion(null, RealScalar.of(2)));
     assertThrows(Exception.class, () -> new LinearRegion(RealScalar.of(2), RealScalar.of(-3)));
   }

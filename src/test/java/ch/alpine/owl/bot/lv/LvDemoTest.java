@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.exp.Log;
 
 class LvDemoTest {
   @Test
-  public void testPlan() {
+  void testPlan() {
     for (int index = 0; index < 5; ++index) {
       Tensor eta = Tensors.vector(10, 10);
       StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);

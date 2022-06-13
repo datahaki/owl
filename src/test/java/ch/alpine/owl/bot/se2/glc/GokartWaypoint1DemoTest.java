@@ -7,7 +7,7 @@ import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
 class GokartWaypoint1DemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new GokartWaypoint1Demo());
   }
 }

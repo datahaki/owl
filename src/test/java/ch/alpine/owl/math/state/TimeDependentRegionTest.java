@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensors;
 
 class TimeDependentRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<StateTime> region = //
         new TimeDependentRegion(new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4)));
     assertTrue(region.test(new StateTime(Tensors.vector(1), RealScalar.of(2))));

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class SimpleTrajectoryRegionQueryTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertThrows(Exception.class, () -> new SimpleTrajectoryRegionQuery(null));
   }
 }

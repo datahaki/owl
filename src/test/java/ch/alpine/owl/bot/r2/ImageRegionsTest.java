@@ -18,7 +18,7 @@ import ch.alpine.tensor.mat.MatrixQ;
 
 class ImageRegionsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor tensor = ResourceData.of("/io/track0_100.png");
     assertEquals(Dimensions.of(tensor), Arrays.asList(100, 100, 4));
     Tensor matrix = ImageRegions.grayscale(tensor);
@@ -26,7 +26,7 @@ class ImageRegionsTest {
   }
 
   @Test
-  public void testDubendorf() {
+  void testDubendorf() {
     BufferedImage bufferedImage = ResourceData.bufferedImage("/dubilab/localization/20180122.png");
     // Region<Tensor> ir = ImageRegions.loadFromRepository( //
     // "/dubilab/localization/20180122.png", Tensors.vector(10, 10), false);
@@ -36,14 +36,14 @@ class ImageRegionsTest {
   }
 
   @Test
-  public void testGrayscale() {
+  void testGrayscale() {
     Tensor image = Tensors.fromString("{{0, 1}, {0, 0}}");
     Tensor output = ImageRegions.grayscale(image);
     assertEquals(image, output);
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     try {
       ImageRegions.loadFromRepository( //
           "/does/not/exist.png", Tensors.vector(10, 10), false);

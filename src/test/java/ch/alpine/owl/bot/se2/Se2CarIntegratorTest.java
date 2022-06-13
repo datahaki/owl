@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2CarIntegratorTest {
   @Test
-  public void testStraight() {
+  void testStraight() {
     Tensor x = Tensors.vector(-1, -2, 1);
     Scalar h = RealScalar.of(2);
     Tensor flow = Se2CarFlows.singleton(RealScalar.ONE, RealScalar.ZERO);
@@ -24,7 +24,7 @@ class Se2CarIntegratorTest {
   }
 
   @Test
-  public void testRotate1() {
+  void testRotate1() {
     Tensor x = Tensors.vector(-1, -2, 1);
     Scalar h = RealScalar.of(0.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.ONE, RealScalar.ONE);
@@ -34,7 +34,7 @@ class Se2CarIntegratorTest {
   }
 
   @Test
-  public void testRotate2() {
+  void testRotate2() {
     Tensor x = Tensors.vector(-1, -2, 1);
     Scalar h = RealScalar.of(0.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(0.5), RealScalar.of(2));
@@ -45,7 +45,7 @@ class Se2CarIntegratorTest {
   }
 
   @Test
-  public void testRotateHN() {
+  void testRotateHN() {
     Tensor x = Tensors.vector(-1, -2, 1);
     Scalar h = RealScalar.of(-.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(0.7), RealScalar.of(1.2));
@@ -56,7 +56,7 @@ class Se2CarIntegratorTest {
   }
 
   @Test
-  public void testRotateUN() {
+  void testRotateUN() {
     Tensor x = Tensors.vector(-1, -2, 1);
     Scalar h = RealScalar.of(0.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(-0.8), RealScalar.of(2));

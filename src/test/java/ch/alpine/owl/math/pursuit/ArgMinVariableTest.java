@@ -24,7 +24,7 @@ class ArgMinVariableTest {
   private static final int DEPTH = 5;
 
   @Test
-  public void testInterpolation() throws ClassNotFoundException, IOException {
+  void testInterpolation() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}");
     TrajectoryEntryFinder entryFinder = Serialization.copy(InterpolationEntryFinder.INSTANCE);
     // ---
@@ -33,7 +33,7 @@ class ArgMinVariableTest {
   }
 
   @Test
-  public void testIntersection() throws ClassNotFoundException, IOException {
+  void testIntersection() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(IntersectionEntryFinder.SPHERE_SE2);
     // ---
@@ -43,7 +43,7 @@ class ArgMinVariableTest {
   }
 
   @Test
-  public void testGeodesic() throws ClassNotFoundException, IOException {
+  void testGeodesic() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(new GeodesicInterpolationEntryFinder(CLOTHOID_BUILDER));
     // ---

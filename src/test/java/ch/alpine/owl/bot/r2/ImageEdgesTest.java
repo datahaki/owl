@@ -11,19 +11,19 @@ import ch.alpine.tensor.Tensors;
 
 class ImageEdgesTest {
   @Test
-  public void testOne() {
+  void testOne() {
     Tensor image = ImageEdges.extrusion(Tensors.fromString("{{0, 255}, {255, 0}}"), 1);
     assertEquals(image, Tensors.fromString("{{128, 255}, {255, 128}}"));
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     Tensor image = ImageEdges.extrusion(Tensors.fromString("{{0, 255}, {255, 0}}"), 0);
     assertEquals(image, Tensors.fromString("{{0, 255}, {255, 0}}"));
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> ImageEdges.extrusion(Tensors.fromString("{{1, 255}, {255, 0}}"), 1));
   }
 }

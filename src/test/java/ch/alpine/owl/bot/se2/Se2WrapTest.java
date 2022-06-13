@@ -26,13 +26,13 @@ class Se2WrapTest {
   }
 
   @Test
-  public void testSe2xT_represent() {
+  void testSe2xT_represent() {
     Tensor res = Se2Wrap.INSTANCE.represent(Tensors.vector(1, 1, 2 * Math.PI, 1));
     assertEquals(res, Tensors.vector(1, 1, 0, 1));
   }
 
   @Test
-  public void testMod2Pi_1() {
+  void testMod2Pi_1() {
     Tensor p = Tensors.vector(20, -43, -2 * Math.PI * 8);
     Tensor q = Tensors.vector(20, -43, +2 * Math.PI + 0.1);
     Tensor distance = Se2Wrap.INSTANCE.difference(p, q);
@@ -40,7 +40,7 @@ class Se2WrapTest {
   }
 
   @Test
-  public void testMod2Pi_2() {
+  void testMod2Pi_2() {
     Tensor p = Tensors.vector(0, 0, -2 * Math.PI * 3);
     Tensor q = Tensors.vector(0, 0, +2 * Math.PI + 0.1);
     Tensor difference = Se2Wrap.INSTANCE.difference(p, q);
@@ -48,7 +48,7 @@ class Se2WrapTest {
   }
 
   @Test
-  public void testMod2PiUnits() {
+  void testMod2PiUnits() {
     Tensor p1 = Tensors.fromString("{20[m], -43[m]}").append(RealScalar.of(-2 * Math.PI * 3));
     Tensor p2 = Tensors.fromString("{20[m], -43[m]}").append(RealScalar.of(-2 * Math.PI * 8));
     Tensor q = Tensors.fromString("{21[m], -48[m]}").append(RealScalar.of(+2 * Math.PI + 0.1));
@@ -58,7 +58,7 @@ class Se2WrapTest {
   }
 
   @Test
-  public void testEndPoints() {
+  void testEndPoints() {
     Distribution distribution = NormalDistribution.of(0, 10);
     for (int index = 0; index < 100; ++index) {
       Tensor p = RandomVariate.of(distribution, 3);
@@ -73,12 +73,12 @@ class Se2WrapTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> Se2Wrap.INSTANCE.represent(Tensors.vector(1, 2)));
   }
 
   @Test
-  public void testFailMatrix() {
+  void testFailMatrix() {
     assertThrows(Exception.class, () -> Se2Wrap.INSTANCE.represent(IdentityMatrix.of(3)));
   }
 }

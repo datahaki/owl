@@ -20,19 +20,19 @@ import ch.alpine.tensor.mat.SquareMatrixQ;
 
 class RelaxedPriorityQueueTest {
   @Test
-  public void testSTOSerializable() throws ClassNotFoundException, IOException {
+  void testSTOSerializable() throws ClassNotFoundException, IOException {
     Serialization.copy(ScalarTotalOrder.INSTANCE);
   }
 
   @Test
-  public void testPeekNull() throws ClassNotFoundException, IOException {
+  void testPeekNull() throws ClassNotFoundException, IOException {
     RelaxedPriorityQueue relaxedPriorityQueue = Serialization.copy( //
         RelaxedDomainQueue.empty(Tensors.vector(1, 2, 3)));
     assertNull(relaxedPriorityQueue.peekBest());
   }
 
   @Test
-  public void testDimensionsChengQiLu() {
+  void testDimensionsChengQiLu() {
     Tensor matrix = Array.zeros(300, 300);
     List<Integer> list = Dimensions.of(matrix);
     assertEquals(list.get(0), list.get(1));
@@ -40,7 +40,7 @@ class RelaxedPriorityQueueTest {
   }
 
   @Test
-  public void testPollThrows() {
+  void testPollThrows() {
     RelaxedPriorityQueue relaxedPriorityQueue = RelaxedDomainQueue.empty(Tensors.vector(1, 2, 3));
     assertThrows(Exception.class, () -> relaxedPriorityQueue.pollBest());
   }

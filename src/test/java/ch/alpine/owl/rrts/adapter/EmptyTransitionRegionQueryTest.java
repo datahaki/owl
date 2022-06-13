@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class EmptyTransitionRegionQueryTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertTrue(EmptyTransitionRegionQuery.INSTANCE.isDisjoint(null));
   }
 }

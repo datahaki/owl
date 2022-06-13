@@ -10,7 +10,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class TrajectoryObstacleConstraintTest {
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(null);
     Serialization.copy(plannerConstraint);
   }

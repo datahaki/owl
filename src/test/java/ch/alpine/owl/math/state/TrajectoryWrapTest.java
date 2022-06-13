@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
 
 class TrajectoryWrapTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(4));
     TrajectorySample trajectorySample = new TrajectorySample(stateTime, null);
     TrajectoryWrap trajectoryWrap = TrajectoryWrap.of(Collections.singletonList(trajectorySample));

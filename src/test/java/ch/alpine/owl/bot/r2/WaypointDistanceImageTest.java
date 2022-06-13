@@ -17,7 +17,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 class WaypointDistanceImageTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
     waypoints = new BSpline1CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     WaypointDistanceImage waypointDistanceImage = //

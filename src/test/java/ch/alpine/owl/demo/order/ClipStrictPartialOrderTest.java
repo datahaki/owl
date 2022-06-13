@@ -11,7 +11,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class ClipStrictPartialOrderTest {
   @Test
-  public void testIncomparable() {
+  void testIncomparable() {
     OrderComparison orderComparison1 = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(0, 1), Clips.interval(0, 1));
     OrderComparison orderComparison2 = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(-1, 1), Clips.interval(0, 2));
     OrderComparison orderComparison3 = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(0, 5), Clips.interval(2, 3));
@@ -23,19 +23,19 @@ class ClipStrictPartialOrderTest {
   }
 
   @Test
-  public void testLessThan() {
+  void testLessThan() {
     OrderComparison orderComparison = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(0, 1), Clips.interval(2, 3));
     assertTrue(orderComparison.equals(OrderComparison.STRICTLY_PRECEDES));
   }
 
   @Test
-  public void testGreaterThan() {
+  void testGreaterThan() {
     OrderComparison orderComparison = ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(4, 6), Clips.interval(0, 1));
     assertTrue(orderComparison.equals(OrderComparison.STRICTLY_SUCCEEDS));
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     OrderComparison orderComparison = //
         ClipStrictPartialOrder.INSTANCE.compare(Clips.interval(0, 1), Clips.interval(0, 1));
     assertEquals(orderComparison, OrderComparison.INCOMPARABLE);

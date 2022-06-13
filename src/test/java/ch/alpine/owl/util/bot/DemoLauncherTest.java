@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class DemoLauncherTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     // for (Class<?> cls : DemoLauncher.detect())
     // try {
     // DemoInterface demoInterface = (DemoInterface) cls.newInstance();

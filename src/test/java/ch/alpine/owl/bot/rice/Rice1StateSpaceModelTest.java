@@ -7,7 +7,7 @@ import ch.alpine.tensor.RealScalar;
 
 class Rice1StateSpaceModelTest {
   @Test
-  public void testFormerFails() {
+  void testFormerFails() {
     Rice1StateSpaceModel.of(RealScalar.ZERO);
     Rice1StateSpaceModel.of(RealScalar.of(-1));
   }

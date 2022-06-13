@@ -24,25 +24,25 @@ class SetPartialOrderTest {
   Collection<Integer> E = create(5, 6, 7);
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     OrderComparison comparison = SetPartialOrder.INSTANCE.compare(A, B);
     assertEquals(comparison, OrderComparison.INDIFFERENT);
   }
 
   @Test
-  public void testGreater() {
+  void testGreater() {
     OrderComparison comparison = SetPartialOrder.INSTANCE.compare(A, C);
     assertEquals(comparison, OrderComparison.STRICTLY_SUCCEEDS);
   }
 
   @Test
-  public void testLess() {
+  void testLess() {
     OrderComparison comparison = SetPartialOrder.INSTANCE.compare(A, D);
     assertEquals(comparison, OrderComparison.STRICTLY_PRECEDES);
   }
 
   @Test
-  public void testNotComparable() {
+  void testNotComparable() {
     OrderComparison comparison = SetPartialOrder.INSTANCE.compare(A, E);
     assertEquals(comparison, OrderComparison.INCOMPARABLE);
   }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class GlcExpandTest {
   @Test
-  public void testFailNull() {
+  void testFailNull() {
     assertThrows(Exception.class, () -> new GlcExpand(null));
   }
 }

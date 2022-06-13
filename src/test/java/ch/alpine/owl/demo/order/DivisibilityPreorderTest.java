@@ -11,7 +11,7 @@ import ch.alpine.tensor.RealScalar;
 
 class DivisibilityPreorderTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(DivisibilityPreorder.INSTANCE.compare(RealScalar.of(1), RealScalar.of(6)), OrderComparison.STRICTLY_PRECEDES);
     assertEquals(DivisibilityPreorder.INSTANCE.compare(RealScalar.of(6), RealScalar.of(6)), OrderComparison.INDIFFERENT);
     assertEquals(DivisibilityPreorder.INSTANCE.compare(RealScalar.of(6), RealScalar.of(2)), OrderComparison.STRICTLY_SUCCEEDS);
@@ -19,7 +19,7 @@ class DivisibilityPreorderTest {
   }
 
   @Test
-  public void testZeroFail() {
+  void testZeroFail() {
     assertThrows(Exception.class, () -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ZERO, RealScalar.ONE));
     assertThrows(Exception.class, () -> DivisibilityPreorder.INSTANCE.compare(RealScalar.ONE, RealScalar.ZERO));
   }

@@ -21,7 +21,7 @@ class SingleEboTrackerTest {
   }
 
   @Test
-  public void testDigestSimple() {
+  void testDigestSimple() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     _checkSimple((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
@@ -41,7 +41,7 @@ class SingleEboTrackerTest {
   }
 
   @Test
-  public void testDigest() {
+  void testDigest() {
     Tensor slacks = Tensors.fromString("{2}");
     _checkDigest((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
@@ -88,13 +88,13 @@ class SingleEboTrackerTest {
   }
 
   @Test
-  public void testCandidateSet() {
+  void testCandidateSet() {
     Tensor slacks = Tensors.vector(2, 2, 2);
     _checkCS((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
 
   @Test
-  public void testFailNull() {
+  void testFailNull() {
     assertThrows(Exception.class, () -> SingleEboTracker.withList(null));
   }
 }

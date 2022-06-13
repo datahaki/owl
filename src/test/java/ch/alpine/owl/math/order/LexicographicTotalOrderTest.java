@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class LexicographicTotalOrderTest {
   @SuppressWarnings("rawtypes")
   @Test
-  public void testEquals() {
+  void testEquals() {
     List<Comparable> x = new LinkedList<>();
     x.add(1);
     x.add("zwei");
@@ -29,7 +29,7 @@ class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testLessThan() {
+  void testLessThan() {
     List<Comparable> x = new LinkedList<>();
     x.add(true);
     x.add(3.56);
@@ -46,7 +46,7 @@ class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testGreaterThan() {
+  void testGreaterThan() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwewwww");
     x.add(1);
@@ -61,7 +61,7 @@ class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testException() {
+  void testException() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwei");
     x.add(23);
@@ -74,7 +74,7 @@ class LexicographicTotalOrderTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(Arrays.asList(), Arrays.asList()), 0);
   }
 }

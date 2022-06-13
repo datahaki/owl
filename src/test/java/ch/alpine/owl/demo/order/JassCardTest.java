@@ -12,13 +12,13 @@ import ch.alpine.owl.demo.order.JassCard.Type;
 
 class JassCardTest {
   @Test
-  public void testIsTrumpf() {
+  void testIsTrumpf() {
     JassCard card = new JassCard(Farbe.EICHEL, Type.ACE, true);
     assertTrue(card.isTrumpf());
   }
 
   @Test
-  public void testCheatChecker() {
+  void testCheatChecker() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.SCHELLE, Type.ACE, true);
     JassCard card3 = new JassCard(Farbe.SCHELLE, Type.ACE, true);
@@ -27,7 +27,7 @@ class JassCardTest {
   }
 
   @Test
-  public void testIsLess() {
+  void testIsLess() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.JACK, true);
     JassCard card3 = new JassCard(Farbe.SCHELLE, Type.ACE, false);
@@ -42,7 +42,7 @@ class JassCardTest {
   }
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card3 = new JassCard(Farbe.EICHEL, Type.JACK, true);
@@ -51,7 +51,7 @@ class JassCardTest {
   }
 
   @Test
-  public void testHashCode() {
+  void testHashCode() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     assertTrue(card1.hashCode() == card2.hashCode());

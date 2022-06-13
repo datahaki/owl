@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class DirectionalTransitionSpaceTest {
   @Test
-  public void testLength() throws ClassNotFoundException, IOException {
+  void testLength() throws ClassNotFoundException, IOException {
     Tensor a = Tensors.fromString("{1[m], 1[m], 0}");
     Tensor b = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF);
     _checkLength(a, b);
@@ -41,7 +41,7 @@ class DirectionalTransitionSpaceTest {
   }
 
   @Test
-  public void testSamples() {
+  void testSamples() {
     Tensor a = Tensors.fromString("{1[m], 2[m], 1}");
     Tensor b = Tensors.fromString("{1[m], 6[m], 3}");
     _checkSamples(a, b);

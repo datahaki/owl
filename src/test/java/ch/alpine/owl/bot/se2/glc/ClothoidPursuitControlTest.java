@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class ClothoidPursuitControlTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     Clip clip = Serialization.copy(Clips.absolute(Quantity.of(2, "m^-1")));
     clip.requireInside(Quantity.of(-2, "m^-1"));
     clip.requireInside(Quantity.of(+2, "m^-1"));

@@ -31,7 +31,7 @@ import ch.alpine.tensor.Tensors;
 
 class GlcNodeTest {
   @Test
-  public void testCompare() {
+  void testCompare() {
     StateTime state1 = new StateTime(Tensors.vector(3, 0), RealScalar.of(3));
     StateTime state2 = new StateTime(Tensors.vector(3, 0), RealScalar.of(3));
     Scalar cost1 = RealScalar.of(1);
@@ -63,7 +63,7 @@ class GlcNodeTest {
   }
 
   @Test
-  public void testMakeRoot() {
+  void testMakeRoot() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);
     final Scalar radius = DoubleScalar.of(0.25);

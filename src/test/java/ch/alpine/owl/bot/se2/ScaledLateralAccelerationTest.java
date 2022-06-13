@@ -19,7 +19,7 @@ import ch.alpine.tensor.qty.Unit;
 
 class ScaledLateralAccelerationTest {
   @Test
-  public void testCar() {
+  void testCar() {
     final Scalar ms = Quantity.of(2, "m*s^-1");
     final Scalar mr = Scalars.fromString("3[rad*m^-1]");
     Tensor flow = Se2CarFlows.singleton(ms, mr);
@@ -31,7 +31,7 @@ class ScaledLateralAccelerationTest {
   }
 
   @Test
-  public void testTwd() {
+  void testTwd() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(ms, sa);
@@ -43,7 +43,7 @@ class ScaledLateralAccelerationTest {
   }
 
   @Test
-  public void testTwdDouble() {
+  void testTwdDouble() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(ms, sa);

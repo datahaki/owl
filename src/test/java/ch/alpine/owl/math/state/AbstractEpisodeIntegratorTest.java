@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class AbstractEpisodeIntegratorTest {
   @Test
-  public void testSmall() {
+  void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -44,7 +44,7 @@ class AbstractEpisodeIntegratorTest {
   }
 
   @Test
-  public void testLarge() {
+  void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -60,7 +60,7 @@ class AbstractEpisodeIntegratorTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -71,7 +71,7 @@ class AbstractEpisodeIntegratorTest {
   }
 
   @Test
-  public void testRice1Units() {
+  void testRice1Units() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(3, "s^-1"));
     Tensor x = Tensors.fromString("{1[m*s^-1], 2[m*s^-1]}");
     Tensor u = Tensors.fromString("{5[m*s^-2], -2[m*s^-2]}");

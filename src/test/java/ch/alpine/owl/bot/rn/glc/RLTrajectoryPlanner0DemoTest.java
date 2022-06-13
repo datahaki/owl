@@ -9,12 +9,12 @@ import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
 class RLTrajectoryPlanner0DemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new RLTrajectoryPlanner0Demo());
   }
 
   @Test
-  public void testPresent() {
+  void testPresent() {
     assertTrue(RLTrajectoryPlanner0Demo.getBest().isPresent());
   }
 }

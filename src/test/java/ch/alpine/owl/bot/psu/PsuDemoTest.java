@@ -22,7 +22,7 @@ import ch.alpine.tensor.alg.Array;
 
 class PsuDemoTest {
   @Test
-  public void testFindGoal() {
+  void testFindGoal() {
     GoalInterface goalInterface = PsuGoalManager.of( //
         PsuMetric.INSTANCE, Tensors.vector(Math.PI * 0.7, 0.5), RealScalar.of(0.3));
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap(PsuDemo.raw(goalInterface));

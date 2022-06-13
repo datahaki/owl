@@ -18,7 +18,7 @@ import ch.alpine.tensor.sca.Sign;
 
 class DeltaControlsTest {
   @Test
-  public void testFlows() {
+  void testFlows() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //
         ResourceData.of("/io/delta_uxy.png"), Tensors.vector(10, 10), RealScalar.of(0.1));
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();

@@ -18,7 +18,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class StaticHelperTest {
   @Test
-  public void testIsSimilar() {
+  void testIsSimilar() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
     RelaxedPriorityQueue rlQueue = RelaxedDomainQueue.singleton(node1, slacks);
@@ -37,7 +37,7 @@ class StaticHelperTest {
   }
 
   @Test
-  public void testNumberEquals() {
+  void testNumberEquals() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
     RelaxedPriorityQueue rlQueue = RelaxedDomainQueue.singleton(node1, slacks);
@@ -56,7 +56,7 @@ class StaticHelperTest {
   }
 
   @Test
-  public void testPriorityQueue() throws ClassNotFoundException, IOException {
+  void testPriorityQueue() throws ClassNotFoundException, IOException {
     PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
     priorityQueue.add(2);
     priorityQueue.add(1);

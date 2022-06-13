@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensors;
 
 class ProductOrderComparatorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         ScalarTotalOrder.INSTANCE, //
         ScalarTotalOrder.INSTANCE); //
@@ -30,7 +30,7 @@ class ProductOrderComparatorTest {
   }
 
   @Test
-  public void testMixed() {
+  void testMixed() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //
         SetPartialOrder.INSTANCE, //
@@ -51,7 +51,7 @@ class ProductOrderComparatorTest {
   }
 
   @Test
-  public void testTensor() {
+  void testTensor() {
     BinaryRelation<Tensor> relation1 = (x, y) -> x.length() <= y.length();
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         new Order<>(relation1), //

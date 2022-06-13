@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class VectorCostGoalAdapterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     List<CostFunction> costs = new ArrayList<>();
     costs.add(new Se2MinTimeGoalManager( //
         Se2ComboRegion.ball(Tensors.vector(2, 1, Math.PI * -1), Tensors.vector(0.1, 0.1, 10 / 180 * Math.PI)), //

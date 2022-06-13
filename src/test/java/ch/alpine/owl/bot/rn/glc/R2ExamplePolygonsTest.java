@@ -15,13 +15,13 @@ import ch.alpine.tensor.ext.Serialization;
 
 class R2ExamplePolygonsTest {
   @Test
-  public void testPolygon() throws ClassNotFoundException, IOException {
+  void testPolygon() throws ClassNotFoundException, IOException {
     PolygonRegion polygonRegion = Serialization.copy(new PolygonRegion(R2ExamplePolygons.BULKY_TOP_LEFT));
     assertEquals(polygonRegion.polygon(), R2ExamplePolygons.BULKY_TOP_LEFT);
   }
 
   @Test
-  public void testInside() {
+  void testInside() {
     PolygonRegion polygonRegion = new PolygonRegion(R2ExamplePolygons.BULKY_TOP_LEFT);
     assertFalse(polygonRegion.test(Tensors.vector(-1, 1)));
     assertFalse(polygonRegion.test(Tensors.vector(1, 1)));

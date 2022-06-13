@@ -14,7 +14,7 @@ import ch.alpine.tensor.io.ImageFormat;
 
 class ImageAlphaTest {
   @Test
-  public void testRgba() {
+  void testRgba() {
     Tensor tensor = Tensors.fromString("{{{255, 255, 255, 255}, {128, 0, 255, 128}}}");
     BufferedImage bufferedImage = ImageFormat.of(tensor);
     BufferedImage image = ImageAlpha.scale(bufferedImage, 0.5f);
@@ -23,14 +23,14 @@ class ImageAlphaTest {
   }
 
   @Test
-  public void testFailGray() {
+  void testFailGray() {
     Tensor tensor = Tensors.fromString("{{255, 255, 255, 255}, {128, 0, 255, 128}}");
     BufferedImage bufferedImage = ImageFormat.of(tensor);
     assertThrows(Exception.class, () -> ImageAlpha.scale(bufferedImage, 0.5f));
   }
 
   @Test
-  public void testGray() {
+  void testGray() {
     Tensor tensor = Tensors.fromString("{{255, 255, 255, 255}, {128, 0, 255, 128}}");
     BufferedImage bufferedImage = ImageFormat.of(tensor);
     BufferedImage image = ImageAlpha.grayscale(bufferedImage, 0.5f);

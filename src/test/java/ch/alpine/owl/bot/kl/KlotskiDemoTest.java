@@ -13,7 +13,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class KlotskiDemoTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     KlotskiProblem klotskiProblem = Serialization.copy(Huarong.ONLY_18_STEPS.create());
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
     List<StateTime> list = klotskiDemo.compute().list;
@@ -22,7 +22,7 @@ class KlotskiDemoTest {
   }
 
   @Test
-  public void testPennant() throws ClassNotFoundException, IOException {
+  void testPennant() throws ClassNotFoundException, IOException {
     KlotskiProblem klotskiProblem = Serialization.copy(Pennant.PUZZLE.create());
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
     List<StateTime> list = klotskiDemo.compute().list;

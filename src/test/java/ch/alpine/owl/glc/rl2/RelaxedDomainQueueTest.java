@@ -23,7 +23,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 class RelaxedDomainQueueTest {
   @Test
-  public void testAdd() {
+  void testAdd() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
     GlcNode node2 = GlcNode.of(null, null, VectorScalar.of(1, 2, 1), VectorScalar.of(0, 0, 0));
@@ -50,7 +50,7 @@ class RelaxedDomainQueueTest {
   }
 
   @Test
-  public void testPeek() {
+  void testPeek() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
     GlcNode node2 = GlcNode.of(null, null, VectorScalar.of(1, 2, 1), VectorScalar.of(0, 0, 0));
@@ -76,7 +76,7 @@ class RelaxedDomainQueueTest {
   }
 
   @Test
-  public void testPoll() throws ClassNotFoundException, IOException {
+  void testPoll() throws ClassNotFoundException, IOException {
     Tensor slacks = Tensors.vector(3, 3, 3);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
     GlcNode node2 = GlcNode.of(null, null, VectorScalar.of(1, 2, 1), VectorScalar.of(0, 0, 0));
@@ -107,14 +107,14 @@ class RelaxedDomainQueueTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedPriorityQueue rlQueue = RelaxedDomainQueue.empty(slacks);
     assertTrue(rlQueue.collection().isEmpty());
   }
 
   @Test
-  public void testSpeed() {
+  void testSpeed() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     Distribution distribution = UniformDistribution.of(1, 2);
     Scalar costFromRoot = VectorScalar.of(RandomVariate.of(distribution, 3));

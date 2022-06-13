@@ -15,7 +15,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class LinearVelocity2MinTimeTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(1, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -32,7 +32,7 @@ class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testMore() {
+  void testMore() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(3, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -44,7 +44,7 @@ class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testExactDist() {
+  void testExactDist() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -75,7 +75,7 @@ class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);

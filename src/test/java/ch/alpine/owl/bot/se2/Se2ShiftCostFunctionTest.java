@@ -9,7 +9,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class Se2ShiftCostFunctionTest {
   @Test
-  public void testSerializable() throws Exception {
+  void testSerializable() throws Exception {
     CostFunction costFunction = new Se2ShiftCostFunction(Quantity.of(100, "CHF"));
     Serialization.copy(costFunction);
   }

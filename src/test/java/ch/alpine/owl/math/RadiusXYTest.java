@@ -11,12 +11,12 @@ import ch.alpine.tensor.Tensors;
 
 class RadiusXYTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(RadiusXY.requireSame(Tensors.vector(2, 2, 3)), RealScalar.of(2));
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> RadiusXY.requireSame(Tensors.vector(1, 2)));
     assertThrows(Exception.class, () -> RadiusXY.requireSame(Tensors.vector(1, 2, 1)));
   }

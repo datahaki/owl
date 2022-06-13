@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensors;
 
 class ParetoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor a = Tensors.vector(1, 1);
     Tensor b = Tensors.vector(2, 2);
     Tensor c = Tensors.vector(1, 2);
@@ -22,7 +22,7 @@ class ParetoTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Tensor a = Tensors.vector(1, 1);
     Tensor b = Tensors.vector(2, 2, 3);
     assertThrows(Exception.class, () -> Pareto.isDominated(a, b));

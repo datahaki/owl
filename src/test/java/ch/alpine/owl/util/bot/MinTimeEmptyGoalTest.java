@@ -10,7 +10,7 @@ import ch.alpine.tensor.RealScalar;
 
 class MinTimeEmptyGoalTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(MinTimeEmptyGoal.INSTANCE.minCostToGoal(null), RealScalar.ZERO);
     assertFalse(MinTimeEmptyGoal.INSTANCE.test(null));
     assertFalse(MinTimeEmptyGoal.INSTANCE.firstMember(null).isPresent());

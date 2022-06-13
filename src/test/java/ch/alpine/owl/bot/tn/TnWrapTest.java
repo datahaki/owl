@@ -13,7 +13,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 
 class TnWrapTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     TnWrap tnWrap = new TnWrap(Tensors.vector(3, 7));
     Tensor r = tnWrap.represent(Tensors.vector(11, 20));
     assertEquals(r, Tensors.vector(2, 6));
@@ -27,7 +27,7 @@ class TnWrapTest {
   }
 
   @Test
-  public void testDistance() {
+  void testDistance() {
     TnWrap tnWrap = new TnWrap(Tensors.vector(3, 7));
     assertEquals(_distance(tnWrap, Tensors.vector(0, 0), Tensors.vector(3, 7)), RealScalar.ZERO);
     assertEquals(_distance(tnWrap, Tensors.vector(0, 0), Tensors.vector(4, 7)), RealScalar.ONE);

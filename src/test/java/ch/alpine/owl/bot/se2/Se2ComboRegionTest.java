@@ -15,13 +15,13 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2ComboRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 3));
     assertThrows(Exception.class, () -> Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 2, 3)));
   }
 
   @Test
-  public void testIsMember() {
+  void testIsMember() {
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
     assertTrue(se2ComboRegion.test(Tensors.vector(1, 2, 3)));
     assertFalse(se2ComboRegion.test(Tensors.vector(-1, 2, 3)));
@@ -29,7 +29,7 @@ class Se2ComboRegionTest {
   }
 
   @Test
-  public void testCone() {
+  void testCone() {
     Se2ComboRegion se2ComboRegion = //
         Se2ComboRegion.cone(Tensors.vector(0, 0, 6 * Math.PI), RealScalar.of(Math.PI / 4), RealScalar.of(1));
     assertEquals(se2ComboRegion.d_angle(Tensors.vector(0, 0, 1.00)), DoubleScalar.of(0.00));

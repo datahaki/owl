@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class TrajectoryRenderTest {
   @Test
-  public void testNull() {
+  void testNull() {
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(null);
     trajectoryRender.render(null, null);

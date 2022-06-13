@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class EmptyTrajectoryRegionQueryTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertFalse(EmptyTrajectoryRegionQuery.INSTANCE.firstMember(null).isPresent());
     assertFalse(EmptyTrajectoryRegionQuery.INSTANCE.test(null));
   }

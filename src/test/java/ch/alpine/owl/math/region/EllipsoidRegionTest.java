@@ -18,7 +18,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class EllipsoidRegionTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     Region<Tensor> region = Serialization.copy(new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(1, 1)));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
@@ -27,7 +27,7 @@ class EllipsoidRegionTest {
   }
 
   @Test
-  public void testSimple2() {
+  void testSimple2() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 2));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
@@ -39,7 +39,7 @@ class EllipsoidRegionTest {
   }
 
   @Test
-  public void testEllipsoid() {
+  void testEllipsoid() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 1));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
@@ -52,35 +52,35 @@ class EllipsoidRegionTest {
   }
 
   @Test
-  public void testInfty() {
+  void testInfty() {
     ImplicitFunctionRegion ifr = new EllipsoidRegion(Tensors.vector(5, 10), Tensors.vector(1 / 0.0, 2));
     assertEquals(ifr.signedDistance(Tensors.vector(1000, 8)), RealScalar.ZERO);
   }
 
   @Test
-  public void test1D() {
+  void test1D() {
     ImplicitFunctionRegion ifr = new EllipsoidRegion(Tensors.vector(10), Tensors.vector(2));
     assertEquals(ifr.signedDistance(Tensors.vector(8)), RealScalar.ZERO);
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     ImplicitFunctionRegion ifr = new EllipsoidRegion(Tensors.vector(10), Tensors.vector(2));
     Serialization.copy(ifr);
   }
 
   @Test
-  public void testLengthFail() {
+  void testLengthFail() {
     assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0, 3)));
   }
 
   @Test
-  public void testNegativeFail() {
+  void testNegativeFail() {
     assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, -2)));
   }
 
   @Test
-  public void testZeroFail() {
+  void testZeroFail() {
     assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 3), Tensors.vector(1, 0)));
     assertThrows(Exception.class, () -> new EllipsoidRegion(Tensors.vector(10, 2, 3), Tensors.vector(1, 0.0, 3)));
   }

@@ -9,7 +9,7 @@ import ch.alpine.tensor.mat.MatrixQ;
 
 class GokartEntityTest {
   @Test
-  public void testFootprint() {
+  void testFootprint() {
     assertTrue(MatrixQ.of(GokartEntity.SHAPE));
   }
 }

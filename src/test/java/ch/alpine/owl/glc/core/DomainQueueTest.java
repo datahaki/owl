@@ -15,7 +15,7 @@ import ch.alpine.tensor.RealScalar;
 
 class DomainQueueTest {
   @Test
-  public void testQueue() {
+  void testQueue() {
     GlcNode first = GlcNode.of(null, null, RealScalar.of(1), RealScalar.ZERO);
     DomainQueue dq = DomainQueue.singleton(first);
     dq.add(GlcNode.of(null, null, RealScalar.of(0), RealScalar.ZERO));
@@ -33,7 +33,7 @@ class DomainQueueTest {
    * from the collection Map::values
    * also removes the entry in the map */
   @Test
-  public void testMap() {
+  void testMap() {
     Map<Integer, String> map = new HashMap<>();
     map.put(1, "one");
     map.put(2, "two");

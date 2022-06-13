@@ -7,7 +7,7 @@ import ch.alpine.owl.util.win.OwlFrame;
 
 class R2DemoTest {
   @Test
-  public void testSimple() throws InterruptedException {
+  void testSimple() throws InterruptedException {
     OwlFrame owlFrame = R2Demo.show();
     Thread.sleep(200);
     owlFrame.jFrame.dispose();

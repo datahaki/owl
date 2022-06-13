@@ -14,7 +14,7 @@ import ch.alpine.subare.core.util.DiscreteQsa;
 
 class MonteCarloAlgorithmsTest {
   @Test
-  public void testExamplesWithSarsa() {
+  void testExamplesWithSarsa() {
     checkExampleWithSarsa(MonteCarloExamples.AIRPORT, true);
     checkExampleWithSarsa(MonteCarloExamples.CLIFFWALK, false);
     checkExampleWithSarsa(MonteCarloExamples.GAMBLER_20, true);
@@ -52,7 +52,7 @@ class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithSeveralTrials() {
+  void testExamplesWithSeveralTrials() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
     int batches = 5;
@@ -73,7 +73,7 @@ class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithSeveralErrorAnalysis() {
+  void testExamplesWithSeveralErrorAnalysis() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
     int batches = 5;
@@ -94,7 +94,7 @@ class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithMC() {
+  void testExamplesWithMC() {
     checkExampleWithMC(MonteCarloExamples.AIRPORT);
     checkExampleWithMC(MonteCarloExamples.GAMBLER_20);
     checkExampleWithMC(MonteCarloExamples.INFINITEVARIANCE);
@@ -119,7 +119,7 @@ class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testVirtualStationExample() {
+  void testVirtualStationExample() {
     MonteCarloExamples example = MonteCarloExamples.VIRTUALSTATIONS;
     System.out.println("Testing: " + example.toString());
     int batches = 1;

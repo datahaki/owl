@@ -19,7 +19,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 class ImageRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor image = ResourceData.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
@@ -32,7 +32,7 @@ class ImageRegionTest {
   }
 
   @Test
-  public void testCorner() {
+  void testCorner() {
     Tensor image = ResourceData.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
@@ -45,7 +45,7 @@ class ImageRegionTest {
   }
 
   @Test
-  public void testOutsideFalse() {
+  void testOutsideFalse() {
     Tensor image = ResourceData.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
@@ -53,7 +53,7 @@ class ImageRegionTest {
   }
 
   @Test
-  public void testOutsideTrue() {
+  void testOutsideTrue() {
     Tensor image = ResourceData.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Tensor range = Tensors.vector(179, 128);

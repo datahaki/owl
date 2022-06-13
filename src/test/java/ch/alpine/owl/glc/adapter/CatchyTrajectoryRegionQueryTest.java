@@ -21,7 +21,7 @@ import ch.alpine.tensor.Tensors;
 
 class CatchyTrajectoryRegionQueryTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTime stateTime = new StateTime(Tensors.vector(1), RealScalar.ZERO);
@@ -31,7 +31,7 @@ class CatchyTrajectoryRegionQueryTest {
   }
 
   @Test
-  public void testMembers1d() {
+  void testMembers1d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTimeCollector stc = (StateTimeCollector) trq;
@@ -44,7 +44,7 @@ class CatchyTrajectoryRegionQueryTest {
   }
 
   @Test
-  public void testMembers2d() {
+  void testMembers2d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2, 3), Tensors.vector(3, 4, 8));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTimeCollector stc = (StateTimeCollector) trq;

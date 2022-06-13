@@ -10,12 +10,12 @@ import ch.alpine.tensor.sca.Clips;
 
 class ClothoidCurvatureQueryTest {
   @Test
-  public void testWidthZeroFail() {
+  void testWidthZeroFail() {
     assertThrows(Exception.class, () -> new ClothoidCurvatureQuery(Clips.interval(3, 3)));
   }
 
   @Test
-  public void testNullFail() {
+  void testNullFail() {
     assertThrows(Exception.class, () -> new ClothoidCurvatureQuery((Clip) null));
   }
 }

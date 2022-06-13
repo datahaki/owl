@@ -21,7 +21,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class GlcNodesTest {
   @Test
-  public void testCostIncrement1() {
+  void testCostIncrement1() {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(Tensors.vector(5, 0), RealScalar.of(2));
     Scalar incr = rnGoal.costIncrement( //
@@ -30,7 +30,7 @@ class GlcNodesTest {
   }
 
   @Test
-  public void testCostIncrement2() {
+  void testCostIncrement2() {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     RnNoHeuristicCircleGoalManager rnGoal = new RnNoHeuristicCircleGoalManager(Tensors.vector(5, 0), RealScalar.of(2));
     Scalar incr = rnGoal.costIncrement( //
@@ -39,7 +39,7 @@ class GlcNodesTest {
   }
 
   @Test
-  public void testCreateRoot() {
+  void testCreateRoot() {
     GlcNode glcNode = GlcNodes.createRoot( //
         new StateTime(Tensors.vector(1, 2), RealScalar.of(10)), //
         x -> RealScalar.ZERO);
@@ -49,7 +49,7 @@ class GlcNodesTest {
   }
 
   @Test
-  public void testSimple2() {
+  void testSimple2() {
     CostFunction costFunction = new Se2ShiftCostFunction(Quantity.of(100, "CHF"));
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), costFunction);
     Scalar scalar = costFunction.costIncrement(glcNode, null, null);
@@ -57,12 +57,12 @@ class GlcNodesTest {
   }
 
   @Test
-  public void testRootFail() {
+  void testRootFail() {
     assertThrows(Exception.class, () -> GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), null));
   }
 
   @Test
-  public void testRoot() {
+  void testRoot() {
     GlcNode root = GlcNode.of(null, new StateTime(Tensors.empty(), RealScalar.ZERO), //
         RealScalar.ZERO, RealScalar.ZERO);
     List<StateTime> list = GlcNodes.getPathFromRootTo(root);
@@ -70,7 +70,7 @@ class GlcNodesTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertThrows(Exception.class, () -> GlcNodes.getPathFromRootTo(null));
   }
 }

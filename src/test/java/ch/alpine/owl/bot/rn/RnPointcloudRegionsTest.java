@@ -19,7 +19,7 @@ import ch.alpine.tensor.alg.Dimensions;
 
 class RnPointcloudRegionsTest {
   @Test
-  public void testSimple2D() {
+  void testSimple2D() {
     Region<Tensor> region = RnPointcloudRegions.createRandomRegion(1, Tensors.vector(10, 10), Tensors.vector(1, 1), RealScalar.of(1.5));
     assertTrue(region.test(Tensors.vector(10.5, 10.5)));
     assertTrue(region.test(Tensors.vector(10, 10)));
@@ -28,7 +28,7 @@ class RnPointcloudRegionsTest {
   }
 
   @Test
-  public void testPointsMatrix() {
+  void testPointsMatrix() {
     Region<Tensor> imageRegion = ImageRegions.loadFromRepository( //
         "/io/track0_100.png", Tensors.vector(10, 10), false);
     Tensor points = RnPointcloudRegions.points((BufferedImageRegion) imageRegion);

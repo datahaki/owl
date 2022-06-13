@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class Rice2GoalManagerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertThrows(Exception.class, () -> new Rice2GoalManager(null));
   }
 }

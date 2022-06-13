@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensors;
 
 class R2EntityTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor ux = Tensors.vector(1, 0);
     List<TrajectorySample> trajectory = new ArrayList<>();
     trajectory.add(TrajectorySample.head(new StateTime(Tensors.vector(0, 0), RealScalar.ZERO)));
@@ -68,7 +68,7 @@ class R2EntityTest {
   }
 
   @Test
-  public void testTail() {
+  void testTail() {
     Tensor state = Tensors.vector(0.7, 0);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

@@ -15,7 +15,7 @@ import ch.alpine.tensor.alg.Array;
 
 class RnPointcloudRegionTest {
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     Region<Tensor> region = RnPointcloudRegion.of(Tensors.empty(), RealScalar.ONE);
     assertFalse(region.test(Tensors.vector(2, 2.5)));
     assertFalse(region.test(Tensors.vector(2, 2)));
@@ -24,7 +24,7 @@ class RnPointcloudRegionTest {
   }
 
   @Test
-  public void testSingle2D() {
+  void testSingle2D() {
     Region<Tensor> region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { { 2, 3 } }), RealScalar.ONE);
     assertTrue(region.test(Tensors.vector(2, 2.5)));
     assertTrue(region.test(Tensors.vector(2, 2)));
@@ -33,7 +33,7 @@ class RnPointcloudRegionTest {
   }
 
   @Test
-  public void testTwo2D() {
+  void testTwo2D() {
     Region<Tensor> region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { //
         { 2, 3 }, //
         { 7, 1 } //
@@ -47,13 +47,13 @@ class RnPointcloudRegionTest {
   }
 
   @Test
-  public void testRadiusFail() {
+  void testRadiusFail() {
     RnPointcloudRegion.of(Tensors.empty(), RealScalar.of(1.0));
     assertThrows(Exception.class, () -> RnPointcloudRegion.of(Tensors.empty(), RealScalar.of(-1.0)));
   }
 
   @Test
-  public void testNonMatrix() {
+  void testNonMatrix() {
     assertThrows(Exception.class, () -> RnPointcloudRegion.of(Array.zeros(3, 3, 3), RealScalar.of(1.0)));
   }
 }

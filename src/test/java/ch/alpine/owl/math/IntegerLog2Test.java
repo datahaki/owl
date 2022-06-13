@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class IntegerLog2Test {
   @Test
-  public void testFloor() {
+  void testFloor() {
     assertEquals(IntegerLog2.floor(1), 0);
     assertEquals(IntegerLog2.floor(2), 1);
     assertEquals(IntegerLog2.floor(3), 1);
@@ -18,7 +18,7 @@ class IntegerLog2Test {
   }
 
   @Test
-  public void testCeil() {
+  void testCeil() {
     assertEquals(IntegerLog2.ceiling(1), 0);
     assertEquals(IntegerLog2.ceiling(2), 1);
     assertEquals(IntegerLog2.ceiling(3), 2);
@@ -28,12 +28,12 @@ class IntegerLog2Test {
   }
 
   @Test
-  public void testFailZero() {
+  void testFailZero() {
     assertThrows(Exception.class, () -> IntegerLog2.ceiling(0));
   }
 
   @Test
-  public void testFailNegative() {
+  void testFailNegative() {
     assertThrows(Exception.class, () -> IntegerLog2.ceiling(-1));
   }
 }

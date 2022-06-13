@@ -21,7 +21,7 @@ import ch.alpine.tensor.Tensors;
 
 class FixedStateIntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     FixedStateIntegrator fsi = //
         FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 2), 3);
@@ -34,7 +34,7 @@ class FixedStateIntegratorTest {
   }
 
   @Test
-  public void testCarEx() {
+  void testCarEx() {
     Scalar dt = RationalScalar.of(1, 10);
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
         FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
@@ -43,12 +43,12 @@ class FixedStateIntegratorTest {
   }
 
   @Test
-  public void testFail1() {
+  void testFail1() {
     assertThrows(Exception.class, () -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(-.1), 3));
   }
 
   @Test
-  public void testFail2() {
+  void testFail2() {
     assertThrows(Exception.class, () -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(0), 3));
   }
 }

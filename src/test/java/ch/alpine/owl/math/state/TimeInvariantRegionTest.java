@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class TimeInvariantRegionTest {
   @Test
-  public void testFailNull() {
+  void testFailNull() {
     assertThrows(Exception.class, () -> new TimeInvariantRegion(null));
   }
 }

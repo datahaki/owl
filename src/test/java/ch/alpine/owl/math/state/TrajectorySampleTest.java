@@ -12,14 +12,14 @@ import ch.alpine.tensor.Tensors;
 
 class TrajectorySampleTest {
   @Test
-  public void testHead() {
+  void testHead() {
     TrajectorySample ts = TrajectorySample.head(new StateTime(Tensors.vector(2, 3), RealScalar.ZERO));
     assertFalse(ts.getFlow().isPresent());
     assertFalse(ts.toInfoString().isEmpty());
   }
 
   @Test
-  public void testFlow() {
+  void testFlow() {
     Tensor flow = Tensors.vector(1, 1);
     TrajectorySample ts = new TrajectorySample(new StateTime(Tensors.vector(2, 3), RealScalar.ZERO), flow);
     assertTrue(ts.getFlow().isPresent());

@@ -25,7 +25,7 @@ import ch.alpine.tensor.alg.Array;
 
 class LvEntityTest {
   @Test
-  public void testVectorField() {
+  void testVectorField() {
     Tensor fallback_u = Array.zeros(1);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     Collection<Tensor> controls = LvControls.create(2);

@@ -25,7 +25,7 @@ class TrajectoryEntryFinderTest {
       Tensors.vector(4, 1, 0));
 
   @Test
-  public void testNaive() {
+  void testNaive() {
     TrajectoryEntryFinder finder = NaiveEntryFinder.INSTANCE;
     // ---
     Optional<Tensor> waypoint = finder.on(WAYPOINTS).apply(RealScalar.of(0.3)).point();
@@ -34,7 +34,7 @@ class TrajectoryEntryFinderTest {
   }
 
   @Test
-  public void testInterpolation() {
+  void testInterpolation() {
     TrajectoryEntryFinder finder = InterpolationEntryFinder.INSTANCE;
     // ---
     Optional<Tensor> waypoint = finder.on(WAYPOINTS).apply(RealScalar.of(2.5)).point();
@@ -43,7 +43,7 @@ class TrajectoryEntryFinderTest {
   }
 
   @Test
-  public void testGeodesic() {
+  void testGeodesic() {
     TrajectoryEntryFinder finder = new GeodesicInterpolationEntryFinder(CLOTHOID_BUILDER);
     // ---
     Optional<Tensor> waypoint = finder.on(WAYPOINTS).apply(RealScalar.of(2.5)).point();
@@ -60,7 +60,7 @@ class TrajectoryEntryFinderTest {
   }
 
   @Test
-  public void testOnce() {
+  void testOnce() {
     long count = IntStream.range(0, 10).mapToObj(RealScalar::of).map(func(null)).count();
     assertEquals(count, 10);
     assertEquals(INIT, 1);

@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensors;
 
 class CarxTEntityTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     // CarxTEntity carxt =
     new CarxTEntity(new StateTime(Tensors.vector(1, 2, 3), RealScalar.ZERO));
     // Tensor eta = carxt.eta();

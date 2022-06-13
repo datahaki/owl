@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensors;
 
 class NodesTest {
   @Test
-  public void testGetParent() {
+  void testGetParent() {
     HeuristicFunction heuristicFunction = new HeuristicFunction() {
       @Override
       public Scalar minCostToGoal(Tensor x) {
@@ -35,7 +35,7 @@ class NodesTest {
   }
 
   @Test
-  public void testNotConnected() {
+  void testNotConnected() {
     GlcNode root1 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     assertTrue(Nodes.areConnected(root1, root1));
     GlcNode root2 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
@@ -43,7 +43,7 @@ class NodesTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> Nodes.rootFrom(null));
     assertThrows(Exception.class, () -> Nodes.listFromRoot(null));
     assertThrows(Exception.class, () -> Nodes.listToRoot(null));

@@ -18,7 +18,7 @@ import ch.alpine.tensor.nrm.VectorInfinityNorm;
 
 class TensorNormTotalPreorderTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     assertEquals(weakOrderComparator.compare(Tensors.vector(1, 3), Tensors.vector(3, 12)), OrderComparison.STRICTLY_PRECEDES);
@@ -28,14 +28,14 @@ class TensorNormTotalPreorderTest {
   }
 
   @Test
-  public void testVector() {
+  void testVector() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparison weakOrderComparison = tensorNormWeakOrder.comparator().compare(Tensors.vector(0, 1, 2), Tensors.vector(0, 2, 1));
     assertEquals(weakOrderComparison, OrderComparison.INDIFFERENT);
   }
 
   @Test
-  public void testMatrix() throws ClassNotFoundException, IOException {
+  void testMatrix() throws ClassNotFoundException, IOException {
     TensorNormTotalPreorder tensorNormWeakOrder = //
         Serialization.copy(new TensorNormTotalPreorder(MatrixInfinityNorm::of));
     Tensor m1 = Tensors.fromString("{{1, 2}, {2, 3}}");
@@ -51,7 +51,7 @@ class TensorNormTotalPreorderTest {
   }
 
   @Test
-  public void testNullFail() {
+  void testNullFail() {
     assertThrows(Exception.class, () -> new TensorNormTotalPreorder(null));
   }
 }

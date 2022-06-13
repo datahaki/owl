@@ -13,7 +13,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class TrajectoryEntryTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     TrajectoryEntry trajectoryEntry = Serialization.copy(new TrajectoryEntry(null, RealScalar.ONE));
     assertFalse(trajectoryEntry.point().isPresent());
     assertEquals(trajectoryEntry.variable(), RealScalar.ONE);

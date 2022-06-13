@@ -25,7 +25,7 @@ class SimpleRelabelDecisionTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     check(true, true, true);
     check(true, true, false);
     check(true, false, true);
@@ -37,7 +37,7 @@ class SimpleRelabelDecisionTest {
   }
 
   @Test
-  public void testStatic() {
+  void testStatic() {
     assertTrue(doRelabel(RealScalar.of(1), RealScalar.of(2), DoubleScalar.of(2)));
     assertFalse(doRelabel(RealScalar.of(3), RealScalar.of(2), DoubleScalar.of(2)));
     assertFalse(doRelabel(RealScalar.of(1.), RealScalar.of(2), DoubleScalar.of(2)));
@@ -47,13 +47,13 @@ class SimpleRelabelDecisionTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     assertTrue(doRelabel(Quantity.of(1, "USD"), Quantity.of(2, "USD"), DoubleScalar.of(0.01)));
     assertFalse(doRelabel(Quantity.of(3, "USD"), Quantity.of(2, "USD"), DoubleScalar.of(0.01)));
   }
 
   @Test
-  public void testChop() {
+  void testChop() {
     Chop._05.requireZero(Quantity.of(1e-7, "USD"));
   }
 }

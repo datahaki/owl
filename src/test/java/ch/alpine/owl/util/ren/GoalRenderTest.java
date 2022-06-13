@@ -15,14 +15,14 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 
 class GoalRenderTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     GoalRender goalRender = new GoalRender(Arrays.asList(new StateTime(Array.zeros(2), RealScalar.ONE)));
     goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());
   }
 
   @Test
-  public void testNull() {
+  void testNull() {
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     GoalRender goalRender = new GoalRender(null);
     goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());

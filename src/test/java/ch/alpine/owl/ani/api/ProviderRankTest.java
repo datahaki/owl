@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 class ProviderRankTest {
   @Test
-  public void testProviderRank() {
+  void testProviderRank() {
     Set<ProviderRank> set = new ConcurrentSkipListSet<>();
     set.add(ProviderRank.FALLBACK);
     set.add(ProviderRank.AUTONOMOUS);
@@ -29,7 +29,7 @@ class ProviderRankTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.EMERGENCY);
     queue.add(ProviderRank.FALLBACK);
@@ -38,7 +38,7 @@ class ProviderRankTest {
   }
 
   @Test
-  public void testSet() {
+  void testSet() {
     Set<Integer> csls = new ConcurrentSkipListSet<>();
     csls.add(10);
     csls.add(2);
@@ -50,7 +50,7 @@ class ProviderRankTest {
   }
 
   @Test
-  public void testMorePriority() {
+  void testMorePriority() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.CALIBRATION);
     queue.add(ProviderRank.TESTING);

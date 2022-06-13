@@ -20,7 +20,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class ConstraintViolationCostTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor polygon = Tensors.matrixInt(new int[][] { { 1, 0 }, { 4, 0 }, { 4, 3 } });
     PolygonRegion polygonRegion = new PolygonRegion(polygon);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(polygonRegion);

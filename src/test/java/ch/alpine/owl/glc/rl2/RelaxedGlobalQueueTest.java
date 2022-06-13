@@ -17,14 +17,14 @@ import ch.alpine.tensor.Tensors;
 
 class RelaxedGlobalQueueTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
     assertTrue(rlQueue.collection().isEmpty());
   }
 
   @Test
-  public void testAdd() {
+  void testAdd() {
     Tensor slacks = Tensors.vector(3, 3, 3);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -50,7 +50,7 @@ class RelaxedGlobalQueueTest {
   }
 
   @Test
-  public void testPeek() {
+  void testPeek() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -72,7 +72,7 @@ class RelaxedGlobalQueueTest {
   }
 
   @Test
-  public void testPoll() {
+  void testPoll() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue rlQueue = new RelaxedGlobalQueue(slacks);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -99,7 +99,7 @@ class RelaxedGlobalQueueTest {
   }
 
   @Test
-  public void testRemoveAll() {
+  void testRemoveAll() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue relaxedGlobalQueue = new RelaxedGlobalQueue(slacks);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));
@@ -132,7 +132,7 @@ class RelaxedGlobalQueueTest {
 
   // -------------- Test for abstract class RelaxedPriorityQueue --------------------
   @Test
-  public void testRemove() {
+  void testRemove() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     RelaxedGlobalQueue relaxedGlobalQueue = new RelaxedGlobalQueue(slacks);
     GlcNode node1 = GlcNode.of(null, null, VectorScalar.of(1, 1, 2), VectorScalar.of(0, 0, 0));

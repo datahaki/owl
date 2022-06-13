@@ -10,7 +10,7 @@ import ch.alpine.tensor.mat.MatrixQ;
 
 class StreetScenarioDataTest {
   @Test
-  public void testLoad() {
+  void testLoad() {
     for (StreetScenario streetScenario : StreetScenario.values())
       try {
         StreetScenarioData streetScenarioData = streetScenario.load();

@@ -7,7 +7,7 @@ import ch.alpine.sophus.ext.api.AbstractDemoHelper;
 
 class Se2RrtsNodeCollectionDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     AbstractDemoHelper.offscreen(new Se2RrtsNodeCollectionDemo());
   }
 }

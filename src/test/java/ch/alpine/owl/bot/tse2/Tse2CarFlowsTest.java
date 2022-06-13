@@ -18,7 +18,7 @@ import ch.alpine.tensor.sca.Round;
 
 class Tse2CarFlowsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     FlowsInterface flowsInterface = Tse2CarFlows.of(RealScalar.of(3), Tensors.vector(-2, 0, 1));
     Collection<Tensor> flows = flowsInterface.getFlows(10);
     assertEquals(Tse2Controls.maxAcc(flows), RealScalar.of(1));
@@ -27,7 +27,7 @@ class Tse2CarFlowsTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     FlowsInterface flowsInterface = //
         Tse2CarFlows.of(Quantity.of(3, "m^-1"), Tensors.fromString("{-2[m*s^-2], 0[m*s^-2], 2[m*s^-2]}"));
     Collection<Tensor> flows = flowsInterface.getFlows(1);
@@ -53,7 +53,7 @@ class Tse2CarFlowsTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> Tse2CarFlows.of(Quantity.of(1, "m^-1"), Quantity.of(2, "m*s^-2")));
   }
 }

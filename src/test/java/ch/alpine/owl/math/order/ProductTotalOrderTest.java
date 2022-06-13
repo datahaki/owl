@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class ProductTotalOrderTest {
   @SuppressWarnings("rawtypes")
   @Test
-  public void testEquals() {
+  void testEquals() {
     List<Comparable> x = Arrays.asList(1, "zwei");
     List<Comparable> y = Arrays.asList(1, "zwei");
     assertTrue(ProductTotalOrder.INSTANCE.compare(x, y).equals(OrderComparison.INDIFFERENT));
@@ -22,7 +22,7 @@ class ProductTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testIncomparable() {
+  void testIncomparable() {
     List<Comparable> x = Arrays.asList(true, 1.34);
     List<Comparable> y = Arrays.asList(false, 3.56);
     assertTrue(ProductTotalOrder.INSTANCE.compare(x, y).equals(OrderComparison.INCOMPARABLE));
@@ -31,7 +31,7 @@ class ProductTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testIncomparable3() {
+  void testIncomparable3() {
     List<Comparable> x = Arrays.asList(2, true, 1.34);
     List<Comparable> y = Arrays.asList(2, false, 3.56);
     assertTrue(ProductTotalOrder.INSTANCE.compare(x, y).equals(OrderComparison.INCOMPARABLE));
@@ -40,7 +40,7 @@ class ProductTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testLessThan() {
+  void testLessThan() {
     List<Comparable> x = Arrays.asList(false, 1.34, 2);
     List<Comparable> y = Arrays.asList(true, 3.56, 2);
     assertTrue(ProductTotalOrder.INSTANCE.compare(x, y).equals(OrderComparison.STRICTLY_PRECEDES));
@@ -49,7 +49,7 @@ class ProductTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testGreaterThan() {
+  void testGreaterThan() {
     List<Comparable> x = Arrays.asList("zwei", 'a');
     List<Comparable> y = Arrays.asList("drei", 'a');
     assertTrue(ProductTotalOrder.INSTANCE.compare(x, y).equals(OrderComparison.STRICTLY_SUCCEEDS));
@@ -57,14 +57,14 @@ class ProductTotalOrderTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     OrderComparison orderComparison = ProductTotalOrder.INSTANCE.compare(Arrays.asList(), Arrays.asList());
     assertEquals(orderComparison, OrderComparison.INDIFFERENT);
   }
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testSizeException() {
+  void testSizeException() {
     List<Comparable> x = Arrays.asList("zwei", 'a');
     List<Comparable> y = Arrays.asList("drei");
     assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(x, y));
@@ -72,7 +72,7 @@ class ProductTotalOrderTest {
   }
 
   @Test
-  public void testNullException() {
+  void testNullException() {
     assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(Arrays.asList(2), null));
     assertThrows(Exception.class, () -> ProductTotalOrder.INSTANCE.compare(null, Arrays.asList(2)));
   }

@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensors;
 
 class SimpleEpisodeIntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.vector(1, 2);
     Tensor u = Tensors.vector(5, -2);
@@ -48,7 +48,7 @@ class SimpleEpisodeIntegratorTest {
   }
 
   @Test
-  public void testUnits1() {
+  void testUnits1() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.fromString("{1[m], 2[m]}");
     Tensor u = Tensors.fromString("{5[m], -2[m]}");
@@ -74,7 +74,7 @@ class SimpleEpisodeIntegratorTest {
   }
 
   @Test
-  public void testUnits2() {
+  void testUnits2() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor x = Tensors.fromString("{1[m], 2[m]}");
     Tensor u = Tensors.fromString("{5[m*s^-1], -2[m*s^-1]}");

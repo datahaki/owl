@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.Round;
 
 class TwdDuckieFlowsTest {
   @Test
-  public void testRadNoDuplicates() {
+  void testRadNoDuplicates() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m*rad^-1");
     FlowsInterface flowsInterface = new TwdDuckieFlows(ms, sa);
@@ -36,7 +36,7 @@ class TwdDuckieFlowsTest {
   }
 
   @Test
-  public void testNoDuplicates() {
+  void testNoDuplicates() {
     Scalar ms = Quantity.of(3, "m*s^-1");
     Scalar sa = Quantity.of(0.567, "m");
     FlowsInterface flowsInterface = new TwdDuckieFlows(ms, sa);
@@ -51,7 +51,7 @@ class TwdDuckieFlowsTest {
   }
 
   @Test
-  public void testSize() throws ClassNotFoundException, IOException {
+  void testSize() throws ClassNotFoundException, IOException {
     FlowsInterface flowsInterface = Serialization.copy(new TwdDuckieFlows(RealScalar.of(3), RealScalar.of(0.567)));
     assertEquals(flowsInterface.getFlows(5).size(), 20);
     assertEquals(flowsInterface.getFlows(7).size(), 28);

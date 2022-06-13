@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2MinTimeGoalManagerTest {
   @Test
-  public void testIsMember() {
+  void testIsMember() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
@@ -46,7 +46,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testGoalAdapter() {
+  void testGoalAdapter() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
@@ -58,7 +58,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "m*s^-1"), Quantity.of(0.5, "m^-1"));
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball( //
@@ -80,7 +80,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(10, 0, Math.PI), Tensors.vector(1, 1, 1));
@@ -95,7 +95,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testAllAngles() {
+  void testAllAngles() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(0, 0, Math.PI), Tensors.vector(1, 1, 4));
@@ -107,7 +107,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Serialization.copy(carFlows);
     Collection<Tensor> controls = carFlows.getFlows(3);
@@ -119,7 +119,7 @@ class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testWrapSuccessor() {
+  void testWrapSuccessor() {
     FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(10));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2ComboRegion se2ComboRegion = new Se2ComboRegion( //

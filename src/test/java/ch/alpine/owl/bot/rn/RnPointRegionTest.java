@@ -14,7 +14,7 @@ import ch.alpine.tensor.chq.ExactScalarQ;
 
 class RnPointRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     RnPointRegion pointRegion = new RnPointRegion(Tensors.vector(1, 2, 3, 4));
     Scalar scalar = pointRegion.distance(Tensors.vector(2, 3, 2, 5));
     assertEquals(scalar, RealScalar.of(2));

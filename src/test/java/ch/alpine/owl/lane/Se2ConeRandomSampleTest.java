@@ -20,7 +20,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class Se2ConeRandomSampleTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     Tensor apex = Tensors.vector(-10, -92, -3);
     Scalar semi = RealScalar.of(0.3);
     Scalar heading = RealScalar.ONE;

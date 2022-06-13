@@ -10,7 +10,7 @@ import ch.alpine.tensor.Tensors;
 
 class SingleIntegratorStateSpaceModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor u = Tensors.vector(1, 2, 3);
     Tensor r = SingleIntegratorStateSpaceModel.INSTANCE.f(null, u);
     assertEquals(u, r);

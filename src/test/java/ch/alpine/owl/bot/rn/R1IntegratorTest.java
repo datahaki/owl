@@ -15,13 +15,13 @@ import ch.alpine.tensor.qty.Quantity;
 
 class R1IntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor xn = R1Integrator.direct(Tensors.fromString("{3[m], 1[m*s^-1]}"), Quantity.of(2, "m*s^-2"), Quantity.of(10, "s"));
     assertEquals(xn, Tensors.fromString("{113[m], 21[m*s^-1]}"));
   }
 
   @Test
-  public void testIntegrator() {
+  void testIntegrator() {
     Integrator integrator = R1Integrator.INSTANCE;
     Tensor tensor = integrator.step( //
         SingleIntegratorStateSpaceModel.INSTANCE, Tensors.vector(10, 2), Tensors.vector(1), RationalScalar.HALF);

@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class RungeKutta4IntegratorTest {
   @Test
-  public void testSe2Rk() {
+  void testSe2Rk() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor u = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").map(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").map(UnitSystem.SI());

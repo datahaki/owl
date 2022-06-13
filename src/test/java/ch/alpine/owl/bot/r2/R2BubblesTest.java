@@ -13,7 +13,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class R2BubblesTest {
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     ImplicitFunctionRegion copy = Serialization.copy(R2Bubbles.INSTANCE);
     assertFalse(copy.test(Tensors.vector(1, 2)));
   }

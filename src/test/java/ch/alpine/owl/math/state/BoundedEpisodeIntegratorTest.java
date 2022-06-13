@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
 
 class BoundedEpisodeIntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     BoundedEpisodeIntegrator boundedEpisodeIntegrator = new BoundedEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
@@ -39,7 +39,7 @@ class BoundedEpisodeIntegratorTest {
   }
 
   @Test
-  public void testNegativeFail() {
+  void testNegativeFail() {
     assertThrows(Exception.class, () -> new BoundedEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //

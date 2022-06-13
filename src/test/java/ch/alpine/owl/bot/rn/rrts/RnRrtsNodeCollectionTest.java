@@ -30,7 +30,7 @@ class RnRrtsNodeCollectionTest {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     Rrts rrts = new DefaultRrts(TRANSITION_SPACE, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
@@ -49,7 +49,7 @@ class RnRrtsNodeCollectionTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);

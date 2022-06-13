@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensors;
 
 class Se2PointsVsRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor center = Tensors.vector(1, 2);
     Region<Tensor> region = new EllipsoidRegion(center, Tensors.vector(0.1, 0.1));
     Tensor xya = Tensors.vector(4, 5, 6);

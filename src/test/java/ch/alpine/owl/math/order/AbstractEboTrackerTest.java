@@ -24,7 +24,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 class AbstractEboTrackerTest {
   @Test
-  public void testPermutations() {
+  void testPermutations() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     Distribution distribution = UniformDistribution.of(0, 3);
     Tensor values = RandomVariate.of(distribution, 300, 3);
@@ -51,7 +51,7 @@ class AbstractEboTrackerTest {
   }
 
   @Test
-  public void testEmptyPollFail() {
+  void testEmptyPollFail() {
     Tensor slackVector = Tensors.vector(1, 2, 0.5);
     EboTracker<Integer> lexicographicSemiorderMinTracker = //
         SetEboTracker.<Integer>withList(slackVector);
@@ -59,12 +59,12 @@ class AbstractEboTrackerTest {
   }
 
   @Test
-  public void testMatrixSlackFail() {
+  void testMatrixSlackFail() {
     assertThrows(Exception.class, () -> SetEboTracker.withList(HilbertMatrix.of(3)));
   }
 
   @Test
-  public void testScalarSlackFail() {
+  void testScalarSlackFail() {
     assertThrows(Exception.class, () -> SetEboTracker.withList(Pi.VALUE));
   }
 }

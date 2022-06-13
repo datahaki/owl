@@ -15,14 +15,14 @@ import ch.alpine.tensor.chq.ExactScalarQ;
 
 class VectorScalarsTest {
   @Test
-  public void testVector() {
+  void testVector() {
     Scalar scalar = VectorScalar.of(19, 2.5, 3);
     Tensor tensor = VectorScalars.vector(scalar);
     assertEquals(tensor, Tensors.vector(19, 2.5, 3));
   }
 
   @Test
-  public void testAt() {
+  void testAt() {
     Scalar scalar = VectorScalar.of(19, 2.5, 3);
     assertEquals(VectorScalars.at(scalar, 0), RealScalar.of(19));
     assertEquals(VectorScalars.at(scalar, 1), RealScalar.of(2.5));

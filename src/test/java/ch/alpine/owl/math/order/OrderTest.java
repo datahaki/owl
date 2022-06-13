@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Abs;
 
 class OrderTest {
   @Test
-  public void testTotalOrderIntegers() {
+  void testTotalOrderIntegers() {
     OrderComparator<Integer> totalScalarComparator = new Order<>((x, y) -> x <= y);
     assertEquals(OrderComparison.STRICTLY_PRECEDES, totalScalarComparator.compare(4, 5));
     assertEquals(OrderComparison.INDIFFERENT, totalScalarComparator.compare(5, 5));
@@ -21,7 +21,7 @@ class OrderTest {
   }
 
   @Test
-  public void testTotalOrderScalars() {
+  void testTotalOrderScalars() {
     OrderComparator<Scalar> totalScalarComparator = ScalarTotalOrder.INSTANCE;
     assertEquals(OrderComparison.STRICTLY_PRECEDES, totalScalarComparator.compare(RealScalar.of(5), RealScalar.of(7)));
     assertEquals(OrderComparison.INDIFFERENT, totalScalarComparator.compare(RealScalar.of(5), RealScalar.of(5)));
@@ -29,7 +29,7 @@ class OrderTest {
   }
 
   @Test
-  public void testPartialOrderScalars() {
+  void testPartialOrderScalars() {
     OrderComparator<Scalar> partialScalarComparator = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     assertEquals(OrderComparison.STRICTLY_PRECEDES, partialScalarComparator.compare(RealScalar.of(2), RealScalar.of(4)));
     assertEquals(OrderComparison.STRICTLY_SUCCEEDS, partialScalarComparator.compare(RealScalar.of(4), RealScalar.of(2)));
@@ -40,7 +40,7 @@ class OrderTest {
   }
 
   @Test
-  public void testPreorderScalars() {
+  void testPreorderScalars() {
     OrderComparator<Scalar> preorderScalarComparator = new Order<>(Scalars::divides);
     assertEquals(OrderComparison.STRICTLY_PRECEDES, preorderScalarComparator.compare(RealScalar.of(2), RealScalar.of(4)));
     assertEquals(OrderComparison.STRICTLY_SUCCEEDS, preorderScalarComparator.compare(RealScalar.of(4), RealScalar.of(2)));

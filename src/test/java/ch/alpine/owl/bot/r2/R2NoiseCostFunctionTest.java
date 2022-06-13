@@ -12,13 +12,13 @@ import ch.alpine.tensor.ext.Serialization;
 
 class R2NoiseCostFunctionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     CostFunction costFunction = new R2NoiseCostFunction(RealScalar.of(0.2));
     assertFalse(HeuristicQ.of(costFunction));
   }
 
   @Test
-  public void testSerializable() throws Exception {
+  void testSerializable() throws Exception {
     CostFunction costFunction = new R2NoiseCostFunction(RealScalar.of(-0.5));
     Serialization.copy(costFunction);
   }

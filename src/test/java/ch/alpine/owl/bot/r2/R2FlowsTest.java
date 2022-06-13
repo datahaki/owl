@@ -15,7 +15,7 @@ import ch.alpine.tensor.lie.r2.ConvexHull;
 
 class R2FlowsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     int n = 100;
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> flows = r2Flows.getFlows(n);
@@ -26,7 +26,7 @@ class R2FlowsTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     assertThrows(Exception.class, () -> r2Flows.getFlows(2));
   }

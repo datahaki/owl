@@ -12,7 +12,7 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 
 class ColorLookupTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     ColorDataIndexed colorDataIndexed = ColorLookup.hsluv_lightness(128, .5).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 128);
     Color color0 = colorDataIndexed.getColor(0);
@@ -28,7 +28,7 @@ class ColorLookupTest {
   }
 
   @Test
-  public void testGrayIncr() {
+  void testGrayIncr() {
     ColorDataIndexed colorDataIndexed = ColorLookup.increasing(3, ColorDataGradients.GRAYSCALE).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 3);
     Color color0 = colorDataIndexed.getColor(0);
@@ -49,7 +49,7 @@ class ColorLookupTest {
   }
 
   @Test
-  public void testGrayDecr() {
+  void testGrayDecr() {
     ColorDataIndexed colorDataIndexed = ColorLookup.decreasing(3, ColorDataGradients.GRAYSCALE).deriveWithAlpha(76);
     assertEquals(colorDataIndexed.length(), 3);
     Color color2 = colorDataIndexed.getColor(2);

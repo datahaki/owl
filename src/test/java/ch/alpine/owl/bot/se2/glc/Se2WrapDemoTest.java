@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensors;
 
 class Se2WrapDemoTest {
   @Test
-  public void testSe2Wrap() {
+  void testSe2Wrap() {
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap( //
         Se2WrapDemo.createPlanner(Se2Wrap.INSTANCE, So2Region.periodic(RealScalar.ZERO, RealScalar.of(0.3))));
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(0.1, 0, 0), RealScalar.ZERO));
@@ -33,7 +33,7 @@ class Se2WrapDemoTest {
   }
 
   @Test
-  public void testSe2CoveringWrap() {
+  void testSe2CoveringWrap() {
     TrajectoryPlanner trajectoryPlanner = //
         CheckedTrajectoryPlanner.wrap(Se2WrapDemo.createPlanner(Se2CoveringWrap.INSTANCE, So2Region.covering(RealScalar.ZERO, RealScalar.of(0.3))));
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(0.1, 0, 0), RealScalar.ZERO));

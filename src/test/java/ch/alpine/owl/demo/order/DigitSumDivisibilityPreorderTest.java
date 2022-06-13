@@ -11,7 +11,7 @@ import ch.alpine.tensor.RealScalar;
 
 class DigitSumDivisibilityPreorderTest {
   @Test
-  public void testEquals() {
+  void testEquals() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(321, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 10001);
     OrderComparison preorderComparison3 = DigitSumDivisibilityPreorder.INTEGER.compare(345, 543);
@@ -23,13 +23,13 @@ class DigitSumDivisibilityPreorderTest {
   }
 
   @Test
-  public void testEqualsScalar() {
+  void testEqualsScalar() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.SCALAR.compare(RealScalar.of(321), RealScalar.of(6));
     assertTrue(preorderComparison1.equals(OrderComparison.INDIFFERENT));
   }
 
   @Test
-  public void testGreaterEqualsOnly() {
+  void testGreaterEqualsOnly() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(372, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(44, 10001);
     OrderComparison preorderComparison3 = DigitSumDivisibilityPreorder.INTEGER.compare(553434, 543);
@@ -41,7 +41,7 @@ class DigitSumDivisibilityPreorderTest {
   }
 
   @Test
-  public void testLessEqualsOnly() {
+  void testLessEqualsOnly() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(1, 6);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(4, 70001);
     OrderComparison preorderComparison3 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 543);
@@ -53,7 +53,7 @@ class DigitSumDivisibilityPreorderTest {
   }
 
   @Test
-  public void testIncomparable() {
+  void testIncomparable() {
     OrderComparison preorderComparison1 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 3);
     OrderComparison preorderComparison2 = DigitSumDivisibilityPreorder.INTEGER.compare(4, 80001);
     OrderComparison preorderComparison3 = DigitSumDivisibilityPreorder.INTEGER.compare(2, 533);
@@ -65,7 +65,7 @@ class DigitSumDivisibilityPreorderTest {
   }
 
   @Test
-  public void testNegativeAndZeroCase() {
+  void testNegativeAndZeroCase() {
     assertThrows(Exception.class, () -> DigitSumDivisibilityPreorder.INTEGER.compare(0, 3));
     assertThrows(Exception.class, () -> DigitSumDivisibilityPreorder.INTEGER.compare(-3, 3));
   }

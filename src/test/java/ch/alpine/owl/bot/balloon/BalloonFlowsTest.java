@@ -14,14 +14,14 @@ import ch.alpine.tensor.Tensor;
 
 class BalloonFlowsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     FlowsInterface flowsInterface = BalloonFlows.of(RealScalar.of(10));
     Collection<Tensor> collection = flowsInterface.getFlows(0);
     assertEquals(collection.size(), 2);
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     FlowsInterface flowsInterface = BalloonFlows.of(RealScalar.of(10));
     assertThrows(Exception.class, () -> flowsInterface.getFlows(-1));
   }

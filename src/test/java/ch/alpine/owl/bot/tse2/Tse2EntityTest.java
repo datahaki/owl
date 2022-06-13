@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.Clip;
 
 class Tse2EntityTest {
   @Test
-  public void testForward() {
+  void testForward() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 4[m*s^-1]}"));
@@ -73,7 +73,7 @@ class Tse2EntityTest {
 
   @SuppressWarnings("unused")
   @Test
-  public void testGeneral() {
+  void testGeneral() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 4[m*s^-1]}"));

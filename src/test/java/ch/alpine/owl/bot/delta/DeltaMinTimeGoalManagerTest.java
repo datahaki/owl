@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class DeltaMinTimeGoalManagerTest {
   @Test
-  public void testConstructors() {
+  void testConstructors() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //
         ResourceData.of("/io/delta_uxy.png"), Tensors.vector(10, 10), RealScalar.of(0.1));
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();

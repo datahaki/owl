@@ -10,7 +10,7 @@ import ch.alpine.tensor.chq.ExactScalarQ;
 
 class AbstractShadowConstraintTest {
   @Test
-  public void testNumeric() {
+  void testNumeric() {
     Tensor tensor = AbstractShadowConstraint.DIR;
     assertFalse(ExactScalarQ.of(tensor.Get(0)));
     assertFalse(ExactScalarQ.of(tensor.Get(1)));

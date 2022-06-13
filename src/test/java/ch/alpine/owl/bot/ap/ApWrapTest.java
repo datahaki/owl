@@ -9,7 +9,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class ApWrapTest {
   @Test
-  public void testWrap() {
+  void testWrap() {
     double pa = 2 * Math.PI;
     Tensor toBeTested = Tensors.vector(100, 20, -30, 6.6);
     Tensor expected = Tensors.vector(100, 20, -30, 6.6 - pa);

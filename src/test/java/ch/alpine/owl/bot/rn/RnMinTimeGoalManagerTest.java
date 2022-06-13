@@ -19,7 +19,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class RnMinTimeGoalManagerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     R2Flows r2Flows = new R2Flows(Quantity.of(2, "m*s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(10);
     Tensor center = Tensors.fromString("{3[m], 6[m]}");

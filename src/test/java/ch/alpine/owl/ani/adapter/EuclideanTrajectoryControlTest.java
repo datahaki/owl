@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class EuclideanTrajectoryControlTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     EuclideanTrajectoryControl euclideanTrajectoryControl = new EuclideanTrajectoryControl();
     assertFalse(euclideanTrajectoryControl.customControl(null, null).isPresent());
   }

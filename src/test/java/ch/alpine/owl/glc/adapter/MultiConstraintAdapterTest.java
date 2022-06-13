@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class MultiConstraintAdapterTest {
   @Test
-  public void testFailNull() {
+  void testFailNull() {
     assertThrows(Exception.class, () -> MultiConstraintAdapter.of(null));
   }
 }

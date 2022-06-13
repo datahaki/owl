@@ -19,14 +19,14 @@ import ch.alpine.tensor.Tensors;
 
 class LexicographicComparatorTest {
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     LexicographicComparator genericLexicographicOrder = new LexicographicComparator(Arrays.asList());
     List<Scalar> list = Arrays.asList();
     assertEquals(genericLexicographicOrder.compare(list, list), OrderComparison.INDIFFERENT);
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         ScalarTotalOrder.INSTANCE, //
         ScalarTotalOrder.INSTANCE); //
@@ -37,7 +37,7 @@ class LexicographicComparatorTest {
   }
 
   @Test
-  public void testMixed2() {
+  void testMixed2() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //
         SetPartialOrder.INSTANCE); //
@@ -51,7 +51,7 @@ class LexicographicComparatorTest {
   }
 
   @Test
-  public void testTensorAsIterable() {
+  void testTensorAsIterable() {
     BinaryRelation<Tensor> relation1 = (x, y) -> x.length() <= y.length();
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         new Order<>(relation1), //
@@ -64,7 +64,7 @@ class LexicographicComparatorTest {
   }
 
   @Test
-  public void testEquality() {
+  void testEquality() {
     List<OrderComparator<? extends Object>> comparators = Arrays.asList( //
         IntegerTotalOrder.INSTANCE, //
         ScalarTotalOrder.INSTANCE, //

@@ -17,7 +17,7 @@ import ch.alpine.tensor.chq.ExactTensorQ;
 
 class FloodFill2DTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor tensor = Array.zeros(5, 6);
     Tensor seeds = Tensors.fromString("{{2, 2}, {4, 3}}");
     int ttl = 3;
@@ -28,7 +28,7 @@ class FloodFill2DTest {
   }
 
   @Test
-  public void testObstacles() {
+  void testObstacles() {
     Tensor tensor = Array.zeros(5, 6);
     tensor.set(Tensors.vector(0, 1, 1, 1, 1), Tensor.ALL, 1);
     Tensor seeds = Tensors.fromString("{{2, 2}, {4, 3}}");
@@ -40,7 +40,7 @@ class FloodFill2DTest {
   }
 
   @Test
-  public void testSeeds() {
+  void testSeeds() {
     Tensor tensor = Tensors.matrixInt(new int[][] { //
         { 0, 0, 0, 0, 0 }, //
         { 0, 0, 0, 1, 1 }, //
@@ -62,7 +62,7 @@ class FloodFill2DTest {
   }
 
   @Test
-  public void testInvalid() {
+  void testInvalid() {
     Tensor tensor = Array.zeros(5, 6);
     int ttl = -1;
     assertThrows(Exception.class, () -> FloodFill2D.of(tensor, ttl));

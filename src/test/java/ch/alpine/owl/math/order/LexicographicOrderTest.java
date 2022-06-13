@@ -24,7 +24,7 @@ import ch.alpine.tensor.sca.Abs;
 
 class LexicographicOrderTest {
   @Test
-  public void testTotalLexciographic() {
+  void testTotalLexciographic() {
     OrderComparator<Scalar> comparator1 = ScalarTotalOrder.INSTANCE;
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -46,7 +46,7 @@ class LexicographicOrderTest {
   }
 
   @Test
-  public void testPartialLexicographic() {
+  void testPartialLexicographic() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -76,7 +76,7 @@ class LexicographicOrderTest {
   }
 
   @Test
-  public void testException() {
+  void testException() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -92,7 +92,7 @@ class LexicographicOrderTest {
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
     OrderComparator<Scalar> comparator1 = new Order<>( //
         (BiPredicate<Scalar, Scalar> & Serializable) (x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
@@ -109,7 +109,7 @@ class LexicographicOrderTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     LexicographicOrder<Object> lexicographicOrder = new LexicographicOrder<>(Collections.emptyList());
     OrderComparison orderComparison = lexicographicOrder.compare(Collections.emptyList(), Collections.emptyList());
     assertEquals(orderComparison, OrderComparison.INDIFFERENT);

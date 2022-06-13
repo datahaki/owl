@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class Se2FlowIntegratorTest {
   @Test
-  public void testSe2Exact() {
+  void testSe2Exact() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor flow = Tensors.fromString("{1[m*s^-1], 0[m*s^-1], 2[rad*s^-1]}").map(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").map(UnitSystem.SI());

@@ -17,13 +17,13 @@ import ch.alpine.tensor.sca.Chop;
 
 class Tse2StateSpaceModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor tensor = Tse2StateSpaceModel.INSTANCE.f(Tensors.vector(1, 2, Math.PI, 5), Tensors.vector(3, 4));
     Chop._13.requireClose(tensor, Tensors.vector(-5, 0, 5 * 3, 4));
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     FlowsInterface flowsInterface = //
         Tse2CarFlows.of(Quantity.of(1, "m^-1"), Tensors.of(Quantity.of(-2, "m*s^-2"), Quantity.of(0, "m*s^-2"), Quantity.of(2, "m*s^-2")));
     Collection<Tensor> collection = flowsInterface.getFlows(3);

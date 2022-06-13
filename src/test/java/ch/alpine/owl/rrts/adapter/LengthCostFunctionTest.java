@@ -16,7 +16,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 class LengthCostFunctionTest {
   @Test
-  public void testSingle() {
+  void testSingle() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
@@ -27,7 +27,7 @@ class LengthCostFunctionTest {
   }
 
   @Test
-  public void testMultiple() {
+  void testMultiple() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //

@@ -13,14 +13,14 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 
 class EtaRenderTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     EtaRender etaRender = new EtaRender(Tensors.vector(1, 2));
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     etaRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());
   }
 
   @Test
-  public void testSingle() {
+  void testSingle() {
     EtaRender etaRender = new EtaRender(Tensors.vector(1));
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     etaRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());

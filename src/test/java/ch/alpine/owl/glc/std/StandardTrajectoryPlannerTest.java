@@ -39,7 +39,7 @@ import ch.alpine.tensor.sca.Ramp;
 
 class StandardTrajectoryPlannerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);
     final Scalar radius = DoubleScalar.of(0.25);
@@ -73,7 +73,7 @@ class StandardTrajectoryPlannerTest {
   }
 
   @Test
-  public void testSimple2() {
+  void testSimple2() {
     final Tensor stateRoot = Tensors.vector(-2, -2);
     final Tensor stateGoal = Tensors.vector(2, 2);
     final Scalar radius = DoubleScalar.of(0.25);

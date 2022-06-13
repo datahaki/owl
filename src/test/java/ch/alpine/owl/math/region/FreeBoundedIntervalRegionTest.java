@@ -17,7 +17,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class FreeBoundedIntervalRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     FreeBoundedIntervalRegion bir = new FreeBoundedIntervalRegion(0, Clips.interval(10, 20));
     assertEquals(bir.signedDistance(Tensors.vector(+5)), RealScalar.of(-5));
     assertEquals(bir.signedDistance(Tensors.vector(10)), RealScalar.of(+0));
@@ -27,7 +27,7 @@ class FreeBoundedIntervalRegionTest {
   }
 
   @Test
-  public void testTrajectoryMember() {
+  void testTrajectoryMember() {
     FreeBoundedIntervalRegion bir = new FreeBoundedIntervalRegion(0, Clips.interval(10, 20));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(bir);
     assertFalse(trq.test(new StateTime(Tensors.vector(15), RealScalar.ZERO)));
@@ -35,7 +35,7 @@ class FreeBoundedIntervalRegionTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     assertThrows(Exception.class, () -> new FreeBoundedIntervalRegion(-1, Clips.unit()));
     assertThrows(Exception.class, () -> new FreeBoundedIntervalRegion(0, null));
   }

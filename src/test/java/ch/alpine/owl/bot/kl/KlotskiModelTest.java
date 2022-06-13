@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensors;
 
 class KlotskiModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
       assertEquals(klotskiProblem.startState(), //
@@ -30,7 +30,7 @@ class KlotskiModelTest {
   }
 
   @Test
-  public void testMove() {
+  void testMove() {
     KlotskiProblem klotskiProblem = Huarong.SNOWDROP.create();
     Tensor board = klotskiProblem.startState();
     Tensor next = KlotskiModel.INSTANCE.f(board, Tensors.vector(7, 1, 0));
