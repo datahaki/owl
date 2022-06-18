@@ -22,6 +22,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 class LvEntityTest {
   @Test
@@ -37,7 +38,7 @@ class LvEntityTest {
     lvEntity.delayHint();
     Tensor range = Tensors.vector(6, 5);
     // VectorFieldRender vectorFieldRender = ;
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Tensors.vector(0, 0), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     new VectorFieldRender().setUV_Pairs(VectorFields.of(stateSpaceModel, points, fallback_u, RealScalar.of(0.04)));
   }

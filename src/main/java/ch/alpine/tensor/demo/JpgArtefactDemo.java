@@ -85,7 +85,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   }
 
   public static void main(String[] args) {
-    LookAndFeels.DARK.updateUI();
+    LookAndFeels.DARK.tryUpdateUI();
     new JpgArtefactDemo().setVisible(1500, 950);
   }
 }

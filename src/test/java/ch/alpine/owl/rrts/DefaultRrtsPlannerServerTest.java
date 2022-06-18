@@ -139,9 +139,9 @@ class DefaultRrtsPlannerServerTest {
     Tensor goal = Tensors.vector(10, 10, 0);
     Tensor state = Tensors.vector(0, 0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
-        Append.of(ubounds, Pi.VALUE));
+        Append.of(ubounds, Pi.VALUE)));
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         ClothoidTransitionSpace.ANALYTIC, //
@@ -176,5 +176,10 @@ class DefaultRrtsPlannerServerTest {
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
     Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
+  }
+
+  @Test
+  void testSome() {
+    assertTrue(17 <= Integer.parseInt(System.getProperty("java.version")));
   }
 }

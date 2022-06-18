@@ -24,6 +24,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public class Rice1dNoiseDemo implements DemoInterface {
   @Override
@@ -38,7 +39,7 @@ public class Rice1dNoiseDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
     Tensor range = Tensors.vector(6, 1);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     RenderInterface renderInterface = new VectorFieldRender()
         .setUV_Pairs(VectorFields.of(Rice2StateSpaceModel.of(mu), points, Array.zeros(1), RealScalar.of(0.2)));

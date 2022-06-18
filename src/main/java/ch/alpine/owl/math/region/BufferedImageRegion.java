@@ -16,7 +16,7 @@ import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** region in R2 */
-public class BufferedImageRegion implements Region<Tensor>, RegionBoundsInterface, RenderInterface, Serializable {
+public class BufferedImageRegion implements Region<Tensor>, RegionBounds, RenderInterface, Serializable {
   private transient final BufferedImage bufferedImage;
   private final CoordinateBoundingBox coordinateBoundingBox;
   private final ImageRender imageRender;

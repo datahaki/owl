@@ -1,13 +1,8 @@
-name: java
+name: mvn test with JDK 17
 on:
   push:
     paths:
       - '**'
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -18,45 +13,40 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: mvn install tensor 106
+      - name: mvn install tensor
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/tensor.git
           cd tensor
-          git checkout v106
           mvn clean install -DskipTests=true
-      - name: mvn install sophus 010
+      - name: mvn install sophus
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/sophus.git
           cd sophus
-          git checkout v010
           mvn clean install -DskipTests=true
-      - name: mvn install subare 044
+      - name: mvn install subare
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/subare.git
           cd subare
-          git checkout v044
           mvn clean install -DskipTests=true
-      - name: mvn install bridge 033
+      - name: mvn install bridge
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/bridge.git
           cd bridge
-          git checkout v033
           mvn clean install -DskipTests=true
-      - name: mvn install ascona 001
+      - name: mvn install ascona
         working-directory: .
         run: |
           cd ..
           git clone https://github.com/datahaki/ascona.git
           cd ascona
-          git checkout v001
           mvn clean install -DskipTests=true
       - name: mvn test
         working-directory: .

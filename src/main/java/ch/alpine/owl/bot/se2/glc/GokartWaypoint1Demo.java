@@ -2,11 +2,10 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.List;
 
+import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.WaypointDistanceCost;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
@@ -65,12 +64,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(8));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosed(WindowEvent windowEvent) {
-        glcWaypointFollowing.flagShutdown();
-      }
-    });
+    WindowClosed.runs(owlAnimationFrame.jFrame, () -> glcWaypointFollowing.flagShutdown());
   }
 
   public static void main(String[] args) {

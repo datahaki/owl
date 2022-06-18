@@ -3,9 +3,12 @@ package ch.alpine.owl.math.region;
 
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
-/** @see CoordinateBoundingBox */
+/** <p>inspired by
+ * <a href="https://reference.wolfram.com/language/ref/RegionBounds.html">RegionBounds</a>
+ * 
+ * @see CoordinateBoundingBox */
 @FunctionalInterface
-public interface RegionBoundsInterface {
+public interface RegionBounds {
   /** @return box that contains region entirely */
   CoordinateBoundingBox coordinateBounds();
 }

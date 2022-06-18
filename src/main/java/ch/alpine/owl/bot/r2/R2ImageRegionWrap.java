@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.owl.math.region.RegionBoundsInterface;
+import ch.alpine.owl.math.region.RegionBounds;
 import ch.alpine.owl.util.img.FloodFill2D;
 import ch.alpine.sophus.api.Region;
 import ch.alpine.tensor.DoubleScalar;
@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Clips;
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
  * 2) {@link CostFunction} with given radius */
-public class R2ImageRegionWrap implements RegionBoundsInterface {
+public class R2ImageRegionWrap implements RegionBounds {
   private final Region<Tensor> imageRegion;
   private final CostFunction costFunction;
   private final Tensor range;

@@ -50,9 +50,9 @@ import ch.alpine.tensor.sca.Clips;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
     owlFrame.addBackground(RegionRenders.create(imageRegion));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
-        Append.of(ubounds, Pi.VALUE));
+        Append.of(ubounds, Pi.VALUE)));
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int c = 0; c < 50; ++c)

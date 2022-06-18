@@ -40,7 +40,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 5).get();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(min, max);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(min, max));
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures(name), 250, TimeUnit.MILLISECONDS)) {

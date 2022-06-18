@@ -93,7 +93,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
-    LookAndFeels.LIGHT.updateUI();
+    LookAndFeels.LIGHT.tryUpdateUI();
     new Se2RrtsNodeCollectionDemo().setVisible(1200, 800);
   }
 }

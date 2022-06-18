@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Clips;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 650, 550);
     owlFrame.addBackground(RegionRenders.create(region));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Tensors.vector(0, 0), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)

@@ -12,6 +12,7 @@ import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public enum RnPointcloudRegions {
   ;
@@ -21,7 +22,7 @@ public enum RnPointcloudRegions {
    * @param radius of each obstacle
    * @return region with random points as obstacles */
   public static Region<Tensor> createRandomRegion(int num, Tensor offset, Tensor width, Scalar radius) {
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(offset, offset.add(width));
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(offset, offset.add(width)));
     return RnPointcloudRegion.of(RandomSample.of(randomSampleInterface, num), radius);
   }
 

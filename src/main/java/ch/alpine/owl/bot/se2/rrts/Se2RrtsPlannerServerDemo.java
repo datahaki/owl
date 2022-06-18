@@ -53,9 +53,9 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
         imageRegion, RealScalar.of(0.05));
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     // ---
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
-        Append.of(ubounds, Pi.VALUE));
+        Append.of(ubounds, Pi.VALUE)));
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         transitionSpace, //
         transitionRegionQuery, //

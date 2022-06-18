@@ -25,6 +25,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Chop;
 
 class PsuStateSpaceModelTest {
@@ -85,7 +86,7 @@ class PsuStateSpaceModelTest {
   @Test
   void testVectorField() {
     Tensor range = Tensors.vector(Math.PI, 3);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     new VectorFieldRender().setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
   }

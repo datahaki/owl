@@ -1,8 +1,6 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,6 +9,7 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
@@ -74,12 +73,7 @@ import ch.alpine.tensor.sca.Clips;
         };
         timer.schedule(timerTask, 100, 50);
       }
-      laneConsumptionDemo.timerFrame.jFrame.addWindowListener(new WindowAdapter() {
-        @Override
-        public void windowClosed(WindowEvent windowEvent) {
-          timer.cancel();
-        }
-      });
+      WindowClosed.runs(laneConsumptionDemo.timerFrame.jFrame, () -> timer.cancel());
       { // periodic task for integration
         TimerTask timerTask = new TimerTask() {
           final Timing timing = Timing.started();

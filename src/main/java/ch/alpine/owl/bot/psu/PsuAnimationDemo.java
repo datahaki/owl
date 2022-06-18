@@ -23,6 +23,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 public class PsuAnimationDemo implements DemoInterface {
   @Override
@@ -38,7 +39,7 @@ public class PsuAnimationDemo implements DemoInterface {
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(Math.PI, 3);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     RenderInterface renderInterface = new VectorFieldRender()
         .setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));

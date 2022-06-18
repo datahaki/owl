@@ -19,7 +19,7 @@ import ch.alpine.tensor.red.Times;
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
-public class ImageRegion implements Region<Tensor>, RegionBoundsInterface, Serializable {
+public class ImageRegion implements Region<Tensor>, RegionBounds, Serializable {
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;

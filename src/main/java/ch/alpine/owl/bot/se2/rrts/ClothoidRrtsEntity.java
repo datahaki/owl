@@ -26,6 +26,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /* package */ class ClothoidRrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
@@ -62,9 +63,9 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
-            return BoxRandomSample.of( //
+            return BoxRandomSample.of(CoordinateBounds.of( //
                 Append.of(box.min(), Pi.HALF.negate()), //
-                Append.of(box.max(), Pi.HALF));
+                Append.of(box.max(), Pi.HALF)));
           }
 
           @Override

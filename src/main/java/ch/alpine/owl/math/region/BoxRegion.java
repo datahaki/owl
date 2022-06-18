@@ -11,7 +11,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /** region is open
  * coordinates on the boundary are inside */
-public class BoxRegion implements Region<Tensor>, RegionBoundsInterface, Serializable {
+public class BoxRegion implements Region<Tensor>, RegionBounds, Serializable {
   /** @param center
    * @param radius for each coordinate
    * @return */
