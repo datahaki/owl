@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.EntityControl;
 import ch.alpine.owl.ani.api.ProviderRank;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.gui.ren.EdgeRender;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.bot.FlowsInterface;
+import ch.alpine.owl.util.ren.EdgeRender;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

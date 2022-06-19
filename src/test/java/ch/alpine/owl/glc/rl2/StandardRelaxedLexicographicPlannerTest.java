@@ -19,9 +19,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class StandardRelaxedLexicographicPlannerTest {
+class StandardRelaxedLexicographicPlannerTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = Serialization.copy(TestHelper.createPlanner());
     Objects.requireNonNull(relaxedTrajectoryPlanner.getStateIntegrator());
     assertTrue(relaxedTrajectoryPlanner.getQueue().isEmpty());
@@ -37,7 +37,7 @@ public class StandardRelaxedLexicographicPlannerTest {
   }
 
   @Test
-  public void testAddToGlobal() {
+  void testAddToGlobal() {
     RelaxedTrajectoryPlanner relaxedTrajectoryPlanner = TestHelper.createPlanner();
     Tensor state = Tensors.vector(10, 10);
     GlcNode node1 = GlcNode.of(null, new StateTime(state, RealScalar.ZERO), VectorScalar.of(1, 2), VectorScalar.of(0, 0));
@@ -49,7 +49,7 @@ public class StandardRelaxedLexicographicPlannerTest {
   }
 
   @Test
-  public void testRemoveChildren() {
+  void testRemoveChildren() {
     StandardRelaxedLexicographicPlanner relaxedTrajectoryPlanner = (StandardRelaxedLexicographicPlanner) TestHelper.createPlanner();
     Tensor state = Tensors.vector(10, 10);
     Tensor state2 = Tensors.vector(30, 30);

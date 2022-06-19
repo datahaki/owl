@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.rrts.adapter;
 
-import ch.alpine.owl.rrts.core.Transition;
+import ch.alpine.sophus.crv.Transition;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Reverse;

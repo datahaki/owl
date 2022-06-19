@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import ch.alpine.owl.math.region.LinearRegion;
 import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.PackageTestAccess;

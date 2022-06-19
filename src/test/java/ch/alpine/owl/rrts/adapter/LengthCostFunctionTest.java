@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
-public class LengthCostFunctionTest {
+class LengthCostFunctionTest {
   @Test
-  public void testSingle() {
+  void testSingle() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //
@@ -27,7 +27,7 @@ public class LengthCostFunctionTest {
   }
 
   @Test
-  public void testMultiple() {
+  void testMultiple() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10))), //

@@ -2,20 +2,20 @@
 package ch.alpine.owl.bot.tse2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class LinearVelocity2MinTimeTest {
+class LinearVelocity2MinTimeTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(1, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -32,7 +32,7 @@ public class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testMore() {
+  void testMore() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(3, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -44,7 +44,7 @@ public class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testExactDist() {
+  void testExactDist() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
@@ -75,10 +75,10 @@ public class LinearVelocity2MinTimeTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Scalar v_max = Quantity.of(10, "m*s^-1");
     Scalar a_max = Quantity.of(2, "m*s^-2");
     LinearVelocity2MinTime linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
-    AssertFail.of(() -> linearVelocity2MinTime.timeDistToV_max(Quantity.of(11, "m*s^-1")));
+    assertThrows(Exception.class, () -> linearVelocity2MinTime.timeDistToV_max(Quantity.of(11, "m*s^-1")));
   }
 }

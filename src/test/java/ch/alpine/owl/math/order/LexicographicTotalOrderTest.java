@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -10,12 +11,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
-
-public class LexicographicTotalOrderTest {
+class LexicographicTotalOrderTest {
   @SuppressWarnings("rawtypes")
   @Test
-  public void testEquals() {
+  void testEquals() {
     List<Comparable> x = new LinkedList<>();
     x.add(1);
     x.add("zwei");
@@ -30,7 +29,7 @@ public class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testLessThan() {
+  void testLessThan() {
     List<Comparable> x = new LinkedList<>();
     x.add(true);
     x.add(3.56);
@@ -47,7 +46,7 @@ public class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testGreaterThan() {
+  void testGreaterThan() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwewwww");
     x.add(1);
@@ -62,7 +61,7 @@ public class LexicographicTotalOrderTest {
 
   @SuppressWarnings("rawtypes")
   @Test
-  public void testException() {
+  void testException() {
     List<Comparable> x = new LinkedList<>();
     x.add("zwei");
     x.add(23);
@@ -70,12 +69,12 @@ public class LexicographicTotalOrderTest {
     y.add("drei");
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(x, x), 0);
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(y, y), 0);
-    AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(x, y));
-    AssertFail.of(() -> LexicographicTotalOrder.INSTANCE.compare(y, x));
+    assertThrows(Exception.class, () -> LexicographicTotalOrder.INSTANCE.compare(x, y));
+    assertThrows(Exception.class, () -> LexicographicTotalOrder.INSTANCE.compare(y, x));
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     assertEquals(LexicographicTotalOrder.INSTANCE.compare(Arrays.asList(), Arrays.asList()), 0);
   }
 }

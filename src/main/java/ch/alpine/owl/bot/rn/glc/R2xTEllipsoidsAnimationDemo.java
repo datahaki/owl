@@ -1,14 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
-
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
@@ -17,10 +13,12 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.BijectionFamily;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
+import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.noise.NativeContinuousNoise;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
@@ -67,7 +65,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
         Tensors.vector(0.8, 0.5), rigidm, () -> abstractEntity.getStateTimeNow().time());
     Region<StateTime> region3 = new R2xTEllipsoidStateTimeRegion( //
         Tensors.vector(0.6, 0.6), noise, () -> abstractEntity.getStateTimeNow().time());
-    Region<StateTime> union = RegionUnion.wrap(Arrays.asList(region1, region2, region3));
+    Region<StateTime> union = RegionUnion.wrap(region1, region2, region3);
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(union);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);

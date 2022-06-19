@@ -1,13 +1,10 @@
 // code by jph
 package ch.alpine.owl.math.region;
 
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.java.gfx.GfxMatrix;
-import ch.alpine.sophus.api.Region;
-import ch.alpine.sophus.api.RegionBoundsInterface;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -22,21 +19,7 @@ import ch.alpine.tensor.red.Times;
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
-public class ImageRegion implements Region<Tensor>, RegionBoundsInterface, Serializable {
-  /** @param bufferedImage
-   * @param range
-   * @param outside
-   * @return */
-  public static Region<Tensor> of(BufferedImage bufferedImage, Tensor range, boolean outside) {
-    return new BufferedImageRegion(bufferedImage, //
-        Times.of(Tensors.vector( //
-            range.Get(0).number().doubleValue() / bufferedImage.getWidth(), //
-            range.Get(1).number().doubleValue() / bufferedImage.getHeight(), 1), //
-            GfxMatrix.flipY(bufferedImage.getHeight())),
-        outside);
-  }
-
-  // ---
+public class ImageRegion implements Region<Tensor>, RegionBounds, Serializable {
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;
@@ -45,6 +28,7 @@ public class ImageRegion implements Region<Tensor>, RegionBoundsInterface, Seria
   /** @param image has to be a matrix
    * @param range effective size of image in coordinate space, vector of length 2
    * @param outside point member status */
+  // TODO OWL API still needed next to BufferedImageRegion
   public ImageRegion(Tensor image, Tensor range, boolean outside) {
     this.image = MatrixQ.require(image);
     List<Integer> dimensions = Dimensions.of(image);

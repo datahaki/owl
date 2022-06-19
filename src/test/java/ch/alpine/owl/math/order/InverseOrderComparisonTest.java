@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class InverseOrderComparisonTest {
+class InverseOrderComparisonTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(InverseOrderComparison.of(OrderComparison.STRICTLY_PRECEDES), OrderComparison.STRICTLY_SUCCEEDS);
     assertEquals(InverseOrderComparison.of(OrderComparison.INDIFFERENT), OrderComparison.INDIFFERENT);
     assertEquals(InverseOrderComparison.of(OrderComparison.STRICTLY_SUCCEEDS), OrderComparison.STRICTLY_PRECEDES);

@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
 
-public class DeltaStateSpaceModelTest {
+class DeltaStateSpaceModelTest {
   @Test
-  public void testConstructors() {
+  void testConstructors() {
     Scalar amp = RealScalar.of(-.05);
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //

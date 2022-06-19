@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** used in se2 animation demo to check if footprint of vehicle intersects with obstacle region */

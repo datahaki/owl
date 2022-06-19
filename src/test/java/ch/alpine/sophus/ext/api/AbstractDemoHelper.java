@@ -3,9 +3,10 @@ package ch.alpine.sophus.ext.api;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.api.AbstractManifoldDisplayDemo;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.bridge.gfx.GeometricLayer;
 
 public enum AbstractDemoHelper {
   ;
@@ -44,12 +45,11 @@ public enum AbstractDemoHelper {
     BufferedImage bufferedImage = new BufferedImage(1280, 960, BufferedImage.TYPE_INT_ARGB);
     abstractDemo.render(geometricLayer, bufferedImage.createGraphics());
     boolean success = true;
-    if (abstractDemo instanceof AbstractGeodesicDisplayDemo) {
-      AbstractGeodesicDisplayDemo geodesicDisplayDemo = (AbstractGeodesicDisplayDemo) abstractDemo;
-      for (ManifoldDisplay manifoldDisplay : geodesicDisplayDemo.getManifoldDisplays())
+    if (abstractDemo instanceof AbstractManifoldDisplayDemo abstractManifoldDisplayDemo) {
+      for (ManifoldDisplay manifoldDisplay : abstractManifoldDisplayDemo.getManifoldDisplays())
         try {
-          geodesicDisplayDemo.setGeodesicDisplay(manifoldDisplay);
-          geodesicDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
+          abstractManifoldDisplayDemo.setManifoldDisplay(manifoldDisplay);
+          abstractManifoldDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
         } catch (Exception exception) {
           System.err.println(manifoldDisplay);
           success = false;

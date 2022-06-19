@@ -4,9 +4,9 @@ package ch.alpine.owl.rrts.adapter;
 import java.io.Serializable;
 import java.util.stream.IntStream;
 
-import ch.alpine.owl.rrts.core.Transition;
-import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.owl.rrts.core.TransitionWrap;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionWrap;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

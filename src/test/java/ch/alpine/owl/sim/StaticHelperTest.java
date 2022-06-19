@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 
-public class StaticHelperTest {
+class StaticHelperTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (int resolution = 2; resolution < 10; ++resolution) {
       Tensor localPoints = StaticHelper.create(resolution);
       assertEquals(localPoints.length(), resolution * resolution);

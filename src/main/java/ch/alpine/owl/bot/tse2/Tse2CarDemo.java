@@ -1,12 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

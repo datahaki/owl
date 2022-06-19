@@ -9,7 +9,7 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.math.state.TrajectoryWrap;
-import ch.alpine.sophus.api.TensorMetric;
+import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Lists;

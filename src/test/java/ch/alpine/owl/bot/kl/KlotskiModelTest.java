@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class KlotskiModelTest {
+class KlotskiModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
       assertEquals(klotskiProblem.startState(), //
@@ -30,7 +30,7 @@ public class KlotskiModelTest {
   }
 
   @Test
-  public void testMove() {
+  void testMove() {
     KlotskiProblem klotskiProblem = Huarong.SNOWDROP.create();
     Tensor board = klotskiProblem.startState();
     Tensor next = KlotskiModel.INSTANCE.f(board, Tensors.vector(7, 1, 0));

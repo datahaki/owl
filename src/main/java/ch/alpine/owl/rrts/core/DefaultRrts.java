@@ -5,6 +5,8 @@ import java.util.NavigableMap;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

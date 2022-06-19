@@ -2,19 +2,19 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class TensorProductOrderTest {
+class TensorProductOrderTest {
   private static void _check(Tensor x, Tensor y, OrderComparison orderComparison) {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(x.length());
     assertEquals(productOrderComparator.compare(x, y), orderComparison);
@@ -24,7 +24,7 @@ public class TensorProductOrderTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
     Tensor tensorY = Tensors.fromString("{2, 3, 4}");
     Tensor tensorA = Tensors.fromString("{0, 3, 3}");
@@ -37,7 +37,7 @@ public class TensorProductOrderTest {
   }
 
   @Test
-  public void testDimOne() {
+  void testDimOne() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(2);
     Tensor tensorX = Tensors.fromString("{1, 2, 3}");
     Tensor tensorY = Tensors.fromString("{2, 3, 4}");
@@ -46,7 +46,7 @@ public class TensorProductOrderTest {
   }
 
   @Test
-  public void testTotalProduct() {
+  void testTotalProduct() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     List<Scalar> x = new LinkedList<>();
     x.add(RealScalar.of(1));
@@ -70,20 +70,20 @@ public class TensorProductOrderTest {
   }
 
   @Test
-  public void testFailLength() {
+  void testFailLength() {
     ProductOrderComparator productOrderComparator = TensorProductOrder.comparator(3);
     Tensor tensorX = Tensors.fromString("{1, 2}");
     Tensor tensorY = Tensors.fromString("{2, 3}");
-    AssertFail.of(() -> productOrderComparator.compare(tensorX, tensorY));
+    assertThrows(Exception.class, () -> productOrderComparator.compare(tensorX, tensorY));
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     assertEquals(TensorProductOrder.comparator(0).compare(Tensors.empty(), Tensors.empty()), OrderComparison.INDIFFERENT);
   }
 
   @Test
-  public void testFailNegative() {
-    AssertFail.of(() -> TensorProductOrder.comparator(-1));
+  void testFailNegative() {
+    assertThrows(Exception.class, () -> TensorProductOrder.comparator(-1));
   }
 }

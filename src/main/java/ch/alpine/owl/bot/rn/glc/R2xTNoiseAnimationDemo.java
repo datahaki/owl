@@ -1,11 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2xTNoiseStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
@@ -13,7 +11,9 @@ import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;

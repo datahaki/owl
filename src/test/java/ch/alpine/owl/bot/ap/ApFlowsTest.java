@@ -7,14 +7,14 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
 
-public class ApFlowsTest {
+class ApFlowsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     FlowsInterface flowsInterface = ApFlows.of(Degree.of(10), Tensors.vector(0, 1, 2));
     Collection<Tensor> collection = flowsInterface.getFlows(10);
     assertEquals(collection.size(), 33);

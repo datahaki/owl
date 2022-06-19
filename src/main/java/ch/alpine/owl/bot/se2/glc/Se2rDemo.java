@@ -1,17 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -28,6 +25,8 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.util.bot.FlowsInterface;
+import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -51,10 +50,10 @@ enum Se2rDemo {
         se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
     TrajectoryRegionQuery obstacleQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
-        )));
+        ));
     // ---
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, new TrajectoryObstacleConstraint(obstacleQuery), goalInterface);

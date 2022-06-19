@@ -3,17 +3,17 @@ package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class SingleEboTrackerTest {
+class SingleEboTrackerTest {
   private static void _checkSimple(AbstractEboTracker<Integer> LSMT1) {
     Tensor x = Tensors.fromString("{1, 2, 2}");
     LSMT1.digest(1, x);
@@ -21,7 +21,7 @@ public class SingleEboTrackerTest {
   }
 
   @Test
-  public void testDigestSimple() {
+  void testDigestSimple() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     _checkSimple((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
@@ -41,7 +41,7 @@ public class SingleEboTrackerTest {
   }
 
   @Test
-  public void testDigest() {
+  void testDigest() {
     Tensor slacks = Tensors.fromString("{2}");
     _checkDigest((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
@@ -88,13 +88,13 @@ public class SingleEboTrackerTest {
   }
 
   @Test
-  public void testCandidateSet() {
+  void testCandidateSet() {
     Tensor slacks = Tensors.vector(2, 2, 2);
     _checkCS((AbstractEboTracker<Integer>) SingleEboTracker.<Integer>withList(slacks));
   }
 
   @Test
-  public void testFailNull() {
-    AssertFail.of(() -> SingleEboTracker.withList(null));
+  void testFailNull() {
+    assertThrows(Exception.class, () -> SingleEboTracker.withList(null));
   }
 }

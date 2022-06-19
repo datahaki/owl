@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class RegionUnionTest {
+class RegionUnionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     List<StateTime> stateList = new ArrayList<>();
     List<Region<Tensor>> regionList = new ArrayList<>();
     Tensor radius = Tensors.vector(0.1, 0.1);
@@ -43,7 +43,7 @@ public class RegionUnionTest {
   }
 
   @Test
-  public void testSimple2() {
+  void testSimple2() {
     List<Region<Tensor>> regionList = new ArrayList<>();
     final Region<Tensor> region1 = new HyperplaneRegion(Tensors.vector(-1, 0), RealScalar.ZERO); // right halfplane going through {0, 0}: x>0
     {

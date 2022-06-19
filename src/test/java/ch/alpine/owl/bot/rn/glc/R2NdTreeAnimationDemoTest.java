@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.rn.glc;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
-public class R2NdTreeAnimationDemoTest {
+class R2NdTreeAnimationDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new R2NdTreeAnimationDemo());
   }
 }

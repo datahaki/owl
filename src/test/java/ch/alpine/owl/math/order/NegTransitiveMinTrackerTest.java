@@ -21,9 +21,9 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
-public class NegTransitiveMinTrackerTest {
+class NegTransitiveMinTrackerTest {
   @Test
-  public void testDigestNotEmpty() {
+  void testDigestNotEmpty() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
@@ -32,7 +32,7 @@ public class NegTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDigestFunction() {
+  void testDigestFunction() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
@@ -51,7 +51,7 @@ public class NegTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testDuplicateEntries() {
+  void testDuplicateEntries() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
@@ -70,7 +70,7 @@ public class NegTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testWithSet() {
+  void testWithSet() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = NegTransitiveMinTracker.of(weakOrderComparator);
@@ -82,7 +82,7 @@ public class NegTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = Serialization.copy(NegTransitiveMinTracker.of(weakOrderComparator));
@@ -90,7 +90,7 @@ public class NegTransitiveMinTrackerTest {
   }
 
   @Test
-  public void testPermutations() {
+  void testPermutations() {
     Distribution distribution = DiscreteUniformDistribution.of(0, 10);
     final Tensor tensor = RandomVariate.of(distribution, 100, 3);
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);

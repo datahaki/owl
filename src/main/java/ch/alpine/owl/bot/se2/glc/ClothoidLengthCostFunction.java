@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import ch.alpine.sophus.clt.Clothoid;
-import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.Clothoid;
+import ch.alpine.sophus.crv.clt.ClothoidBuilder;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

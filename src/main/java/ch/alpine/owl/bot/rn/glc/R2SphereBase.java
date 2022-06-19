@@ -1,11 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
@@ -15,7 +12,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -25,7 +21,10 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -37,7 +36,7 @@ import ch.alpine.tensor.alg.Array;
   private final Region<Tensor> region2 = new EllipsoidRegion(Tensors.vector(2.5, 0), Tensors.vector(2, 1.5));
   private final BallRegion ballRegion = new BallRegion(Tensors.vector(5, 0), RealScalar.of(0.5));
   private final TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-      RegionUnion.wrap(Arrays.asList(region1, region2)));
+      RegionUnion.wrap(region1, region2));
 
   TrajectoryPlanner create() {
     Tensor partitionScale = Tensors.vector(3.5, 4);

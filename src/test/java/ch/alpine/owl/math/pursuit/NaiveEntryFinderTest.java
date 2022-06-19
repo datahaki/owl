@@ -12,11 +12,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
 
-public class NaiveEntryFinderTest {
+class NaiveEntryFinderTest {
   private static final int DEPTH = 5;
 
   @Test
-  public void testNaive() {
+  void testNaive() {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = NaiveEntryFinder.INSTANCE;
     // ---

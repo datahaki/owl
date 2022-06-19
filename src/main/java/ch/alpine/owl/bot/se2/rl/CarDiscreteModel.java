@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.rl;
 import java.util.Collection;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.subare.core.DiscreteModel;
 import ch.alpine.subare.core.TerminalInterface;
 import ch.alpine.tensor.RationalScalar;

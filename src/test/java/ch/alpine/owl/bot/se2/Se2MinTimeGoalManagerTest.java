@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -21,20 +20,21 @@ import ch.alpine.owl.glc.core.HeuristicQ;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.tensor.ExactScalarQ;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2MinTimeGoalManagerTest {
+class Se2MinTimeGoalManagerTest {
   @Test
-  public void testIsMember() {
+  void testIsMember() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
@@ -46,7 +46,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testGoalAdapter() {
+  void testGoalAdapter() {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(1, 2, 3), Tensors.vector(1, 1, 0.1));
@@ -58,7 +58,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "m*s^-1"), Quantity.of(0.5, "m^-1"));
     Collection<Tensor> controls = carFlows.getFlows(3);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball( //
@@ -80,7 +80,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(10, 0, Math.PI), Tensors.vector(1, 1, 1));
@@ -95,7 +95,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testAllAngles() {
+  void testAllAngles() {
     TwdDuckieFlows twdConfig = new TwdDuckieFlows(RealScalar.of(1), RealScalar.of(1));
     Collection<Tensor> controls = twdConfig.getFlows(8);
     Se2ComboRegion se2ComboRegion = Se2ComboRegion.ball(Tensors.vector(0, 0, Math.PI), Tensors.vector(1, 1, 4));
@@ -107,7 +107,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, RealScalar.ONE);
     Serialization.copy(carFlows);
     Collection<Tensor> controls = carFlows.getFlows(3);
@@ -119,7 +119,7 @@ public class Se2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testWrapSuccessor() {
+  void testWrapSuccessor() {
     FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(10));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2ComboRegion se2ComboRegion = new Se2ComboRegion( //

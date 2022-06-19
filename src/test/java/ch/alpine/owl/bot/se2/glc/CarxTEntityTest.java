@@ -7,9 +7,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class CarxTEntityTest {
+class CarxTEntityTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     // CarxTEntity carxt =
     new CarxTEntity(new StateTime(Tensors.vector(1, 2, 3), RealScalar.ZERO));
     // Tensor eta = carxt.eta();

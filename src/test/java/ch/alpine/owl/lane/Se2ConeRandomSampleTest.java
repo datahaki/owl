@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
@@ -18,9 +18,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class Se2ConeRandomSampleTest {
+class Se2ConeRandomSampleTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     Tensor apex = Tensors.vector(-10, -92, -3);
     Scalar semi = RealScalar.of(0.3);
     Scalar heading = RealScalar.ONE;

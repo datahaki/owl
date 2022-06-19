@@ -3,6 +3,7 @@ package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -11,15 +12,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.lie.Permutations;
 
-public class SetEboTrackerTest {
+class SetEboTrackerTest {
   @Test
-  public void testDigestSimple() {
+  void testDigestSimple() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
@@ -37,7 +37,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testDigest() {
+  void testDigest() {
     Tensor slackVector = Tensors.fromString("{2}");
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
@@ -55,7 +55,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testCandidateSet() {
+  void testCandidateSet() {
     Tensor slackVector = Tensors.fromString("{2, 2, 2}");
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
@@ -96,15 +96,15 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testDigestFalseDim() {
+  void testDigestFalseDim() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     EboTracker<Integer> lexSemiMinTracker = SetEboTracker.withList(slacks);
     Tensor x = Tensors.vector(1, 2, 2, 3);
-    AssertFail.of(() -> lexSemiMinTracker.digest(1, x));
+    assertThrows(Exception.class, () -> lexSemiMinTracker.digest(1, x));
   }
 
   @Test
-  public void testGetMinElements() {
+  void testGetMinElements() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slacks);
@@ -128,7 +128,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testGetMinKeys() {
+  void testGetMinKeys() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slacks);
@@ -149,7 +149,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testGetMinValues() {
+  void testGetMinValues() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slacks);
@@ -166,7 +166,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testReverseSequencewithList() {
+  void testReverseSequencewithList() {
     Tensor slacks = Tensors.vector(1, 1, 1);
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slacks);
@@ -205,7 +205,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testPermutations() {
+  void testPermutations() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);
@@ -226,7 +226,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testGetBest() {
+  void testGetBest() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<String> LSMT1 = //
         (AbstractEboTracker<String>) SetEboTracker.<String>withList(slackVector);
@@ -254,7 +254,7 @@ public class SetEboTrackerTest {
   }
 
   @Test
-  public void testExtractBest() {
+  void testExtractBest() {
     Tensor slackVector = Tensors.fromString("{1, 1, 1}");
     AbstractEboTracker<Integer> LSMT1 = //
         (AbstractEboTracker<Integer>) SetEboTracker.<Integer>withList(slackVector);

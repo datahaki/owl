@@ -1,16 +1,13 @@
 // code by yn
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.BaseFrame;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -25,9 +22,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.rl.RLTrajectoryPlanner;
 import ch.alpine.owl.glc.rl.StandardRLTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.EtaRender;
-import ch.alpine.owl.gui.ren.PolygonRegionRender;
-import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -36,13 +30,18 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.ren.EtaRender;
+import ch.alpine.owl.util.ren.PolygonRegionRender;
+import ch.alpine.owl.util.ren.TrajectoryRender;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
@@ -83,7 +82,7 @@ public class RLTrajectoryPlanner0Demo implements DemoInterface {
     // ---
     // the 3rd cost penalizes distance of path
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(distanceCost, regionCost), goalRegion);
+        new VectorCostGoalAdapter(List.of(distanceCost, regionCost), goalRegion);
     // ---
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     RLTrajectoryPlanner trajectoryPlanner = new StandardRLTrajectoryPlanner( //

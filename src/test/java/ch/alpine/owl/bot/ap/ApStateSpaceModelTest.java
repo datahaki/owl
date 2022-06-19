@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ApStateSpaceModelTest {
+class ApStateSpaceModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor f = ApStateSpaceModel.INSTANCE.f(Tensors.vector(80, 50, 30, 0.1), Tensors.vector(0, 0));
     assertEquals(4, f.length());
   }

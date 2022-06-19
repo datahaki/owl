@@ -1,23 +1,19 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JToggleButton;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.BaseFrame;
+import ch.alpine.ascona.util.win.BaseFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
-import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
@@ -28,7 +24,10 @@ import ch.alpine.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.MouseShapeRender;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -74,12 +73,7 @@ import ch.alpine.tensor.sca.Clips;
         };
         timer.schedule(timerTask, 100, 50);
       }
-      laneConsumptionDemo.timerFrame.jFrame.addWindowListener(new WindowAdapter() {
-        @Override
-        public void windowClosed(WindowEvent windowEvent) {
-          timer.cancel();
-        }
-      });
+      WindowClosed.runs(laneConsumptionDemo.timerFrame.jFrame, () -> timer.cancel());
       { // periodic task for integration
         TimerTask timerTask = new TimerTask() {
           final Timing timing = Timing.started();

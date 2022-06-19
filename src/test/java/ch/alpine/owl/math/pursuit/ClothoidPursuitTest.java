@@ -15,9 +15,9 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 
-public class ClothoidPursuitTest {
+class ClothoidPursuitTest {
   @Test
-  public void testPointRadius1() throws ClassNotFoundException, IOException {
+  void testPointRadius1() throws ClassNotFoundException, IOException {
     PursuitInterface pursuitInterface = //
         Serialization.copy(ClothoidPursuit.of(Tensors.vector(1, 1, Math.PI / 2)));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
@@ -25,35 +25,35 @@ public class ClothoidPursuitTest {
   }
 
   @Test
-  public void testPointRadius1Neg() {
+  void testPointRadius1Neg() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(1, -1, -Math.PI / 2));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
     Chop._03.requireClose(optional.get(), RealScalar.ONE.negate());
   }
 
   @Test
-  public void testPointRadiusTwo() {
+  void testPointRadiusTwo() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(2, 2, Math.PI / 2));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
     Chop._03.requireClose(optional.get(), RationalScalar.HALF);
   }
 
   @Test
-  public void testPointRadiusTwoNeg() {
+  void testPointRadiusTwoNeg() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(2, -2, -Math.PI / 2));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
     Chop._03.requireClose(optional.get(), RationalScalar.HALF.negate());
   }
 
   @Test
-  public void testPointRadiusStraight() {
+  void testPointRadiusStraight() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(10, 0, 0));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
     Chop._12.requireClose(optional.get(), RealScalar.ZERO);
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.fromString("{1[m], 1[m], 0.3}"));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
     Clips.interval(Quantity.of(2.765, "m^-1"), Quantity.of(2.79, "m^-1")).requireInside(optional.get());

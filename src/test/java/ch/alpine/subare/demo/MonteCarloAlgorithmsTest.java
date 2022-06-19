@@ -12,9 +12,9 @@ import ch.alpine.subare.analysis.MonteCarloExamples;
 import ch.alpine.subare.core.MonteCarloInterface;
 import ch.alpine.subare.core.util.DiscreteQsa;
 
-public class MonteCarloAlgorithmsTest {
+class MonteCarloAlgorithmsTest {
   @Test
-  public void testExamplesWithSarsa() {
+  void testExamplesWithSarsa() {
     checkExampleWithSarsa(MonteCarloExamples.AIRPORT, true);
     checkExampleWithSarsa(MonteCarloExamples.CLIFFWALK, false);
     checkExampleWithSarsa(MonteCarloExamples.GAMBLER_20, true);
@@ -31,7 +31,7 @@ public class MonteCarloAlgorithmsTest {
   private static void checkExampleWithSarsa(MonteCarloExamples example, boolean withTrueOnline) {
     System.out.println("Testing: " + example.toString());
     int batches = 5;
-    DiscreteQsa optimalQsa = MonteCarloAnalysis.getOptimalQsa(example.get(), batches);
+    DiscreteQsa optimalQsa = MonteCarloAnalysisShow.getOptimalQsa(example.get(), batches);
     List<MonteCarloAlgorithms> list = new ArrayList<>();
     list.add(MonteCarloAlgorithms.ORIGINAL_SARSA);
     list.add(MonteCarloAlgorithms.EXPECTED_SARSA);
@@ -52,11 +52,11 @@ public class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithSeveralTrials() {
+  void testExamplesWithSeveralTrials() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
     int batches = 5;
-    DiscreteQsa optimalQsa = MonteCarloAnalysis.getOptimalQsa(example.get(), batches);
+    DiscreteQsa optimalQsa = MonteCarloAnalysisShow.getOptimalQsa(example.get(), batches);
     List<MonteCarloAlgorithms> list = new ArrayList<>();
     list.add(MonteCarloAlgorithms.ORIGINAL_SARSA);
     list.add(MonteCarloAlgorithms.DOUBLE_QLEARNING_SARSA);
@@ -73,11 +73,11 @@ public class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithSeveralErrorAnalysis() {
+  void testExamplesWithSeveralErrorAnalysis() {
     MonteCarloExamples example = MonteCarloExamples.AIRPORT;
     System.out.println("Testing: " + example.toString());
     int batches = 5;
-    DiscreteQsa optimalQsa = MonteCarloAnalysis.getOptimalQsa(example.get(), batches);
+    DiscreteQsa optimalQsa = MonteCarloAnalysisShow.getOptimalQsa(example.get(), batches);
     List<MonteCarloAlgorithms> list = new ArrayList<>();
     list.add(MonteCarloAlgorithms.ORIGINAL_SARSA);
     list.add(MonteCarloAlgorithms.DOUBLE_QLEARNING_SARSA);
@@ -94,7 +94,7 @@ public class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testExamplesWithMC() {
+  void testExamplesWithMC() {
     checkExampleWithMC(MonteCarloExamples.AIRPORT);
     checkExampleWithMC(MonteCarloExamples.GAMBLER_20);
     checkExampleWithMC(MonteCarloExamples.INFINITEVARIANCE);
@@ -106,7 +106,7 @@ public class MonteCarloAlgorithmsTest {
   private static void checkExampleWithMC(MonteCarloExamples example) {
     System.out.println("Testing: " + example.toString());
     int batches = 10;
-    DiscreteQsa optimalQsa = MonteCarloAnalysis.getOptimalQsa(example.get(), batches);
+    DiscreteQsa optimalQsa = MonteCarloAnalysisShow.getOptimalQsa(example.get(), batches);
     List<MonteCarloAlgorithms> list = new ArrayList<>();
     list.add(MonteCarloAlgorithms.MONTE_CARLO);
     // ---
@@ -119,11 +119,11 @@ public class MonteCarloAlgorithmsTest {
   }
 
   @Test
-  public void testVirtualStationExample() {
+  void testVirtualStationExample() {
     MonteCarloExamples example = MonteCarloExamples.VIRTUALSTATIONS;
     System.out.println("Testing: " + example.toString());
     int batches = 1;
-    DiscreteQsa optimalQsa = MonteCarloAnalysis.getOptimalQsa(example.get(), batches);
+    DiscreteQsa optimalQsa = MonteCarloAnalysisShow.getOptimalQsa(example.get(), batches);
     List<MonteCarloAlgorithms> list = new ArrayList<>();
     list.add(MonteCarloAlgorithms.MONTE_CARLO);
     list.add(MonteCarloAlgorithms.EXPECTED_SARSA);

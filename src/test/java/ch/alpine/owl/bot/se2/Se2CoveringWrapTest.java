@@ -8,9 +8,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2CoveringWrapTest {
+class Se2CoveringWrapTest {
   @Test
-  public void testMod2Pi() {
+  void testMod2Pi() {
     double pa = -2 * Math.PI * 8;
     double qa = +2 * Math.PI + 0.1;
     Tensor p = Tensors.vector(20, -30, pa);

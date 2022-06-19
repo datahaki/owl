@@ -10,14 +10,14 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class Se2RelaxedCornerCuttingDemoTest {
+class Se2RelaxedCornerCuttingDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1.7, 2.2, 0), RealScalar.ZERO);
     Tensor slacks = Tensors.vector(2, 0);
     CarRelaxedEntity carRelaxedEntity = CarRelaxedEntity.createDefault(stateTime, slacks);

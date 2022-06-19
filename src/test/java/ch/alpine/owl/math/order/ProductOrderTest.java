@@ -2,19 +2,18 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
-
-public class ProductOrderTest {
+class ProductOrderTest {
   private static void _checkSym(OrderComparison a, OrderComparison b, OrderComparison ab) {
     assertEquals(ProductOrder.intersect(a, b), ab);
     assertEquals(ProductOrder.intersect(b, a), ab);
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.STRICTLY_PRECEDES, OrderComparison.STRICTLY_PRECEDES);
     _checkSym(OrderComparison.INDIFFERENT, OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE);
     _checkSym(OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE, OrderComparison.INCOMPARABLE);
@@ -24,10 +23,10 @@ public class ProductOrderTest {
   }
 
   @Test
-  public void testNullFail() {
+  void testNullFail() {
     for (OrderComparison orderComparison : OrderComparison.values()) {
-      AssertFail.of(() -> ProductOrder.intersect(orderComparison, null));
-      AssertFail.of(() -> ProductOrder.intersect(null, orderComparison));
+      assertThrows(Exception.class, () -> ProductOrder.intersect(orderComparison, null));
+      assertThrows(Exception.class, () -> ProductOrder.intersect(null, orderComparison));
     }
   }
 }

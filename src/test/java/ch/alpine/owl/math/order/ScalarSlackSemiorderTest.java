@@ -11,9 +11,9 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
-public class ScalarSlackSemiorderTest {
+class ScalarSlackSemiorderTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     OrderComparator<Scalar> scalarSlackSemiorder = Serialization.copy(new ScalarSlackSemiorder(Quantity.of(2, "s")));
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2, "s"), Quantity.of(5, "s")), OrderComparison.STRICTLY_PRECEDES);
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2, "s"), Quantity.of(1, "s")), OrderComparison.INDIFFERENT);
@@ -21,7 +21,7 @@ public class ScalarSlackSemiorderTest {
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     ScalarSlackSemiorder scalarSlackSemiorder = new ScalarSlackSemiorder(Quantity.of(0, "kg"));
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2, "kg"), Quantity.of(2, "kg")), OrderComparison.INDIFFERENT);
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2.3, "kg"), Quantity.of(2.3, "kg")), OrderComparison.INDIFFERENT);
@@ -30,7 +30,7 @@ public class ScalarSlackSemiorderTest {
   }
 
   @Test
-  public void testBoundaryCase() {
+  void testBoundaryCase() {
     ScalarSlackSemiorder scalarSlackSemiorder = new ScalarSlackSemiorder(Quantity.of(1, "m"));
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(2, "m"), Quantity.of(3, "m")), OrderComparison.INDIFFERENT);
     assertEquals(scalarSlackSemiorder.compare(Quantity.of(3, "m"), Quantity.of(2, "m")), OrderComparison.INDIFFERENT);

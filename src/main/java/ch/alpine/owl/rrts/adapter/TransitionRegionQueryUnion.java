@@ -2,17 +2,17 @@
 package ch.alpine.owl.rrts.adapter;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
-import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophus.crv.Transition;
 
 public class TransitionRegionQueryUnion implements TransitionRegionQuery, Serializable {
   /** @param queries
    * @return */
   public static TransitionRegionQuery wrap(TransitionRegionQuery... queries) {
-    return wrap(Arrays.asList(queries));
+    return wrap(List.of(queries));
   }
 
   /** @param collection

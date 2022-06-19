@@ -14,14 +14,14 @@ import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class CatchyTrajectoryRegionQueryTest {
+class CatchyTrajectoryRegionQueryTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTime stateTime = new StateTime(Tensors.vector(1), RealScalar.ZERO);
@@ -31,7 +31,7 @@ public class CatchyTrajectoryRegionQueryTest {
   }
 
   @Test
-  public void testMembers1d() {
+  void testMembers1d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTimeCollector stc = (StateTimeCollector) trq;
@@ -44,7 +44,7 @@ public class CatchyTrajectoryRegionQueryTest {
   }
 
   @Test
-  public void testMembers2d() {
+  void testMembers2d() {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2, 3), Tensors.vector(3, 4, 8));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTimeCollector stc = (StateTimeCollector) trq;

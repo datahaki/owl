@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionCostFunction;
+import ch.alpine.sophus.crv.Transition;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 

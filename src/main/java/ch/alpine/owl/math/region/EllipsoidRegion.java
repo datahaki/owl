@@ -3,7 +3,6 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.api.RegionBoundsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -23,7 +22,7 @@ import ch.alpine.tensor.sca.Sign;
  * Notice: evaluate(...) does not correspond to Euclidean distance
  * 
  * @see BallRegion */
-public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBoundsInterface, Serializable {
+public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBounds, Serializable {
   private final Tensor center;
   private final Tensor radius;
   private final Tensor invert;

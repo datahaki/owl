@@ -5,15 +5,15 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.function.Supplier;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ren.ImageRender;
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.owl.gui.ren.RegionRenders;
+import ch.alpine.ascona.util.ren.ImageRender;
+import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -33,7 +33,7 @@ public class R2xTImageStateTimeRegion implements Region<StateTime>, RenderInterf
     this.imageRegion = imageRegion;
     this.rigidFamily = rigidFamily;
     this.supplier = supplier;
-    renderInterface = ImageRender.scale(RegionRenders.image(imageRegion.image()), imageRegion.scale());
+    renderInterface = new ImageRender(RegionRenders.image(imageRegion.image()), imageRegion.coordinateBounds());
   }
 
   @Override // from Region

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.r2.CirclePoints;

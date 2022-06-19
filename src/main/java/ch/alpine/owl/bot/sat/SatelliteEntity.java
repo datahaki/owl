@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.sat;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.TrajectoryControl;

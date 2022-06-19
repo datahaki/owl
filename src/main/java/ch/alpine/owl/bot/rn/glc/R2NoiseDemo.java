@@ -1,13 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2NoiseCostFunction;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
@@ -24,7 +21,6 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -32,7 +28,10 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -58,7 +57,7 @@ import ch.alpine.tensor.ext.Timing;
     BallRegion ballRegion = new BallRegion(center, radius);
     GoalInterface goalInterface = MultiCostGoalAdapter.of( //
         new RnMinDistGoalManager(ballRegion), //
-        Arrays.asList(new R2NoiseCostFunction(threshold.subtract(RealScalar.of(0.3)))));
+        List.of(new R2NoiseCostFunction(threshold.subtract(RealScalar.of(0.3)))));
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //

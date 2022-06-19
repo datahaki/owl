@@ -2,19 +2,19 @@
 package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class BoundedEpisodeIntegratorTest {
+class BoundedEpisodeIntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     BoundedEpisodeIntegrator boundedEpisodeIntegrator = new BoundedEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
@@ -39,8 +39,8 @@ public class BoundedEpisodeIntegratorTest {
   }
 
   @Test
-  public void testNegativeFail() {
-    AssertFail.of(() -> new BoundedEpisodeIntegrator( //
+  void testNegativeFail() {
+    assertThrows(Exception.class, () -> new BoundedEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
         new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), //

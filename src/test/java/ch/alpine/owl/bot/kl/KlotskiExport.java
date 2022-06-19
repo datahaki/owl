@@ -11,9 +11,9 @@ import javax.imageio.ImageIO;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 
-import ch.alpine.java.fig.ListPlot;
-import ch.alpine.java.fig.VisualSet;
-import ch.alpine.java.io.HtmlUtf8;
+import ch.alpine.bridge.fig.ListPlot;
+import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.io.HtmlUtf8;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Lists;

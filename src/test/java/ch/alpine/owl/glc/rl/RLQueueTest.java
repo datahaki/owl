@@ -1,6 +1,7 @@
 // code by ynager
 package ch.alpine.owl.glc.rl;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -9,7 +10,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,9 +19,9 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-public class RLQueueTest {
+class RLQueueTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor slack = Tensors.vector(1, 0, 0);
     RLQueue rlQueue = new RLQueue(slack);
     GlcNode node21 = GlcNode.of(null, null, VectorScalar.of(2, 1, 2), VectorScalar.of(0, 0, 0));
@@ -55,7 +55,7 @@ public class RLQueueTest {
   }
 
   @Test
-  public void testSpeed() {
+  void testSpeed() {
     Tensor slack = Tensors.vector(1, 1, 1);
     RLQueue rlQueue = new RLQueue(slack);
     Scalar minCostToGoal = VectorScalar.of(0, 0, 0);
@@ -80,7 +80,7 @@ public class RLQueueTest {
   }
 
   @Test
-  public void testFailCollectionsMinEmpty() {
-    AssertFail.of(() -> Collections.min(Arrays.asList()));
+  void testFailCollectionsMinEmpty() {
+    assertThrows(Exception.class, () -> Collections.min(Arrays.asList()));
   }
 }

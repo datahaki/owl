@@ -1,7 +1,6 @@
 // code by astoll
 package ch.alpine.owl.math.order;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ import ch.alpine.tensor.ext.Integers;
 public enum ProductTotalOrder implements OrderComparator<List<Comparable>> {
   INSTANCE;
 
-  private static final List<Integer> PLUS_MINUS = Arrays.asList(1, -1);
+  private static final List<Integer> PLUS_MINUS = List.of(1, -1);
 
   @Override // from PartialComparator
   public OrderComparison compare(List<Comparable> x, List<Comparable> y) {

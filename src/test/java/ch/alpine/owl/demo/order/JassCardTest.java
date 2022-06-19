@@ -2,32 +2,32 @@
 package ch.alpine.owl.demo.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.JassCard.Farbe;
 import ch.alpine.owl.demo.order.JassCard.Type;
-import ch.alpine.owl.math.AssertFail;
 
-public class JassCardTest {
+class JassCardTest {
   @Test
-  public void testIsTrumpf() {
+  void testIsTrumpf() {
     JassCard card = new JassCard(Farbe.EICHEL, Type.ACE, true);
     assertTrue(card.isTrumpf());
   }
 
   @Test
-  public void testCheatChecker() {
+  void testCheatChecker() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.SCHELLE, Type.ACE, true);
     JassCard card3 = new JassCard(Farbe.SCHELLE, Type.ACE, true);
-    AssertFail.of(() -> card1.cheatChecker(card2));
-    AssertFail.of(() -> card2.cheatChecker(card3));
+    assertThrows(Exception.class, () -> card1.cheatChecker(card2));
+    assertThrows(Exception.class, () -> card2.cheatChecker(card3));
   }
 
   @Test
-  public void testIsLess() {
+  void testIsLess() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.JACK, true);
     JassCard card3 = new JassCard(Farbe.SCHELLE, Type.ACE, false);
@@ -42,7 +42,7 @@ public class JassCardTest {
   }
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card3 = new JassCard(Farbe.EICHEL, Type.JACK, true);
@@ -51,7 +51,7 @@ public class JassCardTest {
   }
 
   @Test
-  public void testHashCode() {
+  void testHashCode() {
     JassCard card1 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     JassCard card2 = new JassCard(Farbe.EICHEL, Type.ACE, true);
     assertTrue(card1.hashCode() == card2.hashCode());

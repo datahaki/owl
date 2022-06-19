@@ -1,26 +1,24 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.geom.Path2D;
 
-import javax.swing.JScrollPane;
-
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldClip;
-import ch.alpine.java.ref.ann.FieldInteger;
-import ch.alpine.java.ref.util.PanelFieldsEditor;
-import ch.alpine.java.ren.AxesRender;
+import ch.alpine.ascona.util.api.ControlPointsDemo;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.dis.ManifoldDisplays;
+import ch.alpine.ascona.util.ren.AxesRender;
+import ch.alpine.ascona.util.ren.LeversRender;
+import ch.alpine.ascona.util.win.LookAndFeels;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.ref.ann.FieldClip;
+import ch.alpine.bridge.ref.ann.FieldInteger;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
-import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
-import ch.alpine.sophus.ext.api.ControlPointsDemo;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.ManifoldDisplays;
+import ch.alpine.sophus.crv.dub.DubinsPathComparators;
+import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -47,6 +45,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
       ND_BOX_R2, 3);
 
   // ---
+  @ReflectionMarker
   public static class Param {
     public Boolean limit = true;
     @FieldInteger
@@ -59,11 +58,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   public Se2RrtsNodeCollectionDemo() {
     super(false, ManifoldDisplays.CL_ONLY);
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
-    // ---
-    Container container = timerFrame.jFrame.getContentPane();
-    JScrollPane jScrollPane = new PanelFieldsEditor(param).createJScrollPane();
-    jScrollPane.setPreferredSize(new Dimension(120, 200));
-    container.add(BorderLayout.WEST, jScrollPane);
+    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
     setPositioningEnabled(false);
     setMidpointIndicated(false);
@@ -81,30 +76,10 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     // ---
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(10 / Math.sqrt(SIZE)));
-    Color color_fill = new Color(255, 128, 128, 64);
-    Color color_draw = new Color(255, 128, 128, 255);
-    for (Tensor point : getGeodesicControlPoints()) {
-      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(point));
-      Path2D path2d = geometricLayer.toPath2D(shape);
-      path2d.closePath();
-      graphics.setColor(color_fill);
-      graphics.fill(path2d);
-      graphics.setColor(color_draw);
-      graphics.draw(path2d);
-      geometricLayer.popMatrix();
-    }
     Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
-    {
-      geometricLayer.pushMatrix(manifoldDisplay.matrixLift(mouse));
-      Path2D path2d = geometricLayer.toPath2D(shape);
-      path2d.closePath();
-      graphics.setColor(Color.CYAN);
-      graphics.fill(path2d);
-      graphics.setColor(Color.BLUE);
-      graphics.draw(path2d);
-      geometricLayer.popMatrix();
-    }
+    LeversRender leversRender = LeversRender.of(manifoldDisplay, getGeodesicControlPoints(), mouse, geometricLayer, graphics);
+    leversRender.renderSequence();
+    leversRender.renderOrigin();
     // ---
     int _value = Scalars.intValueExact(param.value);
     graphics.setColor(new Color(255, 0, 0, 128));
@@ -118,6 +93,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
+    LookAndFeels.LIGHT.tryUpdateUI();
     new Se2RrtsNodeCollectionDemo().setVisible(1200, 800);
   }
 }

@@ -2,19 +2,19 @@
 package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
-import ch.alpine.tensor.ExactScalarQ;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 
-public class LinearRegionTest {
+class LinearRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     LinearRegion linearRegion = new LinearRegion(RealScalar.of(10), RealScalar.of(2));
     assertEquals(linearRegion.center(), RealScalar.of(10));
     assertEquals(linearRegion.radius(), RealScalar.of(2));
@@ -31,7 +31,7 @@ public class LinearRegionTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     LinearRegion linearRegion = new LinearRegion(Quantity.of(10, "m"), Quantity.of(2, "m"));
     assertEquals(linearRegion.signedDistance(Quantity.of(7, "m")), Quantity.of(1, "m"));
     assertEquals(linearRegion.signedDistance(Quantity.of(9, "m")), Quantity.of(-1, "m"));
@@ -39,7 +39,7 @@ public class LinearRegionTest {
   }
 
   @Test
-  public void testClip() {
+  void testClip() {
     LinearRegion linearRegion = new LinearRegion(Quantity.of(10, "m"), Quantity.of(2, "m"));
     Clip clip = linearRegion.clip();
     assertEquals(clip.min(), Quantity.of(8, "m"));
@@ -47,8 +47,8 @@ public class LinearRegionTest {
   }
 
   @Test
-  public void testFail() {
-    AssertFail.of(() -> new LinearRegion(null, RealScalar.of(2)));
-    AssertFail.of(() -> new LinearRegion(RealScalar.of(2), RealScalar.of(-3)));
+  void testFail() {
+    assertThrows(Exception.class, () -> new LinearRegion(null, RealScalar.of(2)));
+    assertThrows(Exception.class, () -> new LinearRegion(RealScalar.of(2), RealScalar.of(-3)));
   }
 }

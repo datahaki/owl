@@ -2,13 +2,13 @@
 package ch.alpine.owl.bot.rice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -25,9 +25,9 @@ import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class Duncan1StateSpaceModelTest {
+class Duncan1StateSpaceModelTest {
   @Test
-  public void testScalar() {
+  void testScalar() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.1, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
     Tensor u = Tensors.fromString("{-1[m*s^-2], -1[m*s^-2]}");
@@ -36,7 +36,7 @@ public class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(0.0, "s^-1"));
     Tensor x = Tensors.fromString("{10[m*s^-1], 20[m*s^-1]}");
     Tensor u = Tensors.fromString("{-1[m*s^-2], -1[m*s^-2]}");
@@ -45,7 +45,7 @@ public class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testLimit() {
+  void testLimit() {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
@@ -59,7 +59,7 @@ public class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor speed = Tensors.fromString("{10[m*s^-1]}");
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         new Duncan1StateSpaceModel(Quantity.of(0.2, "s^-1")), //
@@ -72,7 +72,7 @@ public class Duncan1StateSpaceModelTest {
   }
 
   @Test
-  public void testFail() {
-    AssertFail.of(() -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
+  void testFail() {
+    assertThrows(Exception.class, () -> new Duncan1StateSpaceModel(Quantity.of(-1.0, "s^-1")));
   }
 }

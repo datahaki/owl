@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.ext.Serialization;
 
-public class RegionsTest {
+class RegionsTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertTrue(Regions.completeRegion().test(null));
     assertFalse(Regions.emptyRegion().test(null));
   }
 
   @Test
-  public void testSerialization() throws ClassNotFoundException, IOException {
+  void testSerialization() throws ClassNotFoundException, IOException {
     assertTrue(Serialization.copy(Regions.completeRegion()).test(null));
     assertFalse(Serialization.copy(Regions.emptyRegion()).test(null));
   }

@@ -9,11 +9,11 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.owl.gui.ren.TrajectoryRender;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

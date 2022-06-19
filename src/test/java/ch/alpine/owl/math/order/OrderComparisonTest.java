@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class OrderComparisonTest {
+class OrderComparisonTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertEquals(OrderComparison.values().length, 4);
   }
 }

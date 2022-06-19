@@ -1,16 +1,16 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.java.win.OwlAnimationFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

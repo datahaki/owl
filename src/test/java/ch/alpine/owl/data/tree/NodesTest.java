@@ -3,6 +3,7 @@ package ch.alpine.owl.data.tree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,16 +11,15 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.HeuristicFunction;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class NodesTest {
+class NodesTest {
   @Test
-  public void testGetParent() {
+  void testGetParent() {
     HeuristicFunction heuristicFunction = new HeuristicFunction() {
       @Override
       public Scalar minCostToGoal(Tensor x) {
@@ -35,7 +35,7 @@ public class NodesTest {
   }
 
   @Test
-  public void testNotConnected() {
+  void testNotConnected() {
     GlcNode root1 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     assertTrue(Nodes.areConnected(root1, root1));
     GlcNode root2 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
@@ -43,9 +43,9 @@ public class NodesTest {
   }
 
   @Test
-  public void testFail() {
-    AssertFail.of(() -> Nodes.rootFrom(null));
-    AssertFail.of(() -> Nodes.listFromRoot(null));
-    AssertFail.of(() -> Nodes.listToRoot(null));
+  void testFail() {
+    assertThrows(Exception.class, () -> Nodes.rootFrom(null));
+    assertThrows(Exception.class, () -> Nodes.listFromRoot(null));
+    assertThrows(Exception.class, () -> Nodes.listToRoot(null));
   }
 }

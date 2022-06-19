@@ -16,22 +16,22 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.ExponentialDistribution;
 
-public class ScanToStateTest {
+class ScanToStateTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor res = ScanToState.of(Tensors.vector(1, 2, 3));
     assertEquals(res.length(), 2);
   }
 
   @Test
-  public void testCollision() {
+  void testCollision() {
     Tensor res = ScanToState.of(Tensors.vector(0, 0, 0));
     assertEquals(res.length(), 2);
     assertTrue(res.get(0).length() < 2);
   }
 
   @Test
-  public void testUnique() {
+  void testUnique() {
     Random random = new Random();
     Distribution distribution = ExponentialDistribution.standard();
     for (int count = 0; count < 100; ++count) {

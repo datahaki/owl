@@ -14,7 +14,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.r2.AngleVector;
-import ch.alpine.tensor.red.VectorAngle;
+import ch.alpine.tensor.nrm.VectorAngle;
 
 /** class is not used */
 /* package */ class ImageGradientCostFunction implements CostFunction, Serializable {

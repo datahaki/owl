@@ -1,13 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
@@ -21,8 +18,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
-import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.EllipsoidRegion;
@@ -31,6 +26,10 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.TrajectoryRender;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -49,12 +48,12 @@ import ch.alpine.tensor.ext.Timing;
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     GoalInterface goalInterface = new Rice2GoalManager(ELLIPSOID_REGION);
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap(Arrays.asList( //
+        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap( //
             new HyperplaneRegion(Tensors.vector(1, +0, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, -1, 0, 0), RealScalar.of(3.2)), //
             new HyperplaneRegion(Tensors.vector(0, +0, 0, 1), RealScalar.ZERO) //
-        ))));
+        )));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, FixedStateIntegrator.create( //

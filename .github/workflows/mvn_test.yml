@@ -1,13 +1,8 @@
-name: java
+name: mvn test with JDK 17
 on:
   push:
     paths:
       - '**'
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -17,9 +12,42 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adopt'
-      - name: Set up env
-        run: sudo apt-get install xvfb
+          distribution: 'temurin'
+      - name: mvn install tensor
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/tensor.git
+          cd tensor
+          mvn clean install -DskipTests=true
+      - name: mvn install sophus
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/sophus.git
+          cd sophus
+          mvn clean install -DskipTests=true
+      - name: mvn install subare
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/subare.git
+          cd subare
+          mvn clean install -DskipTests=true
+      - name: mvn install bridge
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/bridge.git
+          cd bridge
+          mvn clean install -DskipTests=true
+      - name: mvn install ascona
+        working-directory: .
+        run: |
+          cd ..
+          git clone https://github.com/datahaki/ascona.git
+          cd ascona
+          mvn clean install -DskipTests=true
       - name: mvn test
         working-directory: .
         run: xvfb-run --auto-servernum mvn test -B

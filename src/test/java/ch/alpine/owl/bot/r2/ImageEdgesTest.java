@@ -2,28 +2,28 @@
 package ch.alpine.owl.bot.r2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class ImageEdgesTest {
+class ImageEdgesTest {
   @Test
-  public void testOne() {
+  void testOne() {
     Tensor image = ImageEdges.extrusion(Tensors.fromString("{{0, 255}, {255, 0}}"), 1);
     assertEquals(image, Tensors.fromString("{{128, 255}, {255, 128}}"));
   }
 
   @Test
-  public void testZero() {
+  void testZero() {
     Tensor image = ImageEdges.extrusion(Tensors.fromString("{{0, 255}, {255, 0}}"), 0);
     assertEquals(image, Tensors.fromString("{{0, 255}, {255, 0}}"));
   }
 
   @Test
-  public void testFail() {
-    AssertFail.of(() -> ImageEdges.extrusion(Tensors.fromString("{{1, 255}, {255, 0}}"), 1));
+  void testFail() {
+    assertThrows(Exception.class, () -> ImageEdges.extrusion(Tensors.fromString("{{1, 255}, {255, 0}}"), 1));
   }
 }

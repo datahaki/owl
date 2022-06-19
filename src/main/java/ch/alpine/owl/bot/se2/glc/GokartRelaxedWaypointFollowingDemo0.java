@@ -1,21 +1,19 @@
 // code by astoll
 package ch.alpine.owl.bot.se2.glc;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Arrays;
+import java.util.List;
 
-import ch.alpine.java.ren.WaypointRender;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -52,16 +50,11 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
     // --
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
-        Arrays.asList(gokartEntity, glcPlannerCallback));
+        List.of(gokartEntity, glcPlannerCallback));
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(5));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosed(WindowEvent windowEvent) {
-        glcWaypointFollowing.flagShutdown();
-      }
-    });
+    WindowClosed.runs(owlAnimationFrame.jFrame, () -> glcWaypointFollowing.flagShutdown());
   }
 
   public static void main(String[] args) {

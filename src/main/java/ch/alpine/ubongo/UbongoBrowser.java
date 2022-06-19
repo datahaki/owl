@@ -3,14 +3,12 @@ package ch.alpine.ubongo;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.swing.SpinnerLabel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.img.ImageRotate;
@@ -19,19 +17,18 @@ import ch.alpine.tensor.io.ImageFormat;
 /* package */ class UbongoBrowser extends AbstractDemo {
   private final UbongoBoard ubongoBoard;
   private final List<List<UbongoEntry>> list;
-  private final SpinnerLabel<Integer> spinnerIndex = new SpinnerLabel<>();
+  private final SpinnerLabel<Integer> spinnerIndex;
 
   public UbongoBrowser(UbongoBoard ubongoBoard, List<List<UbongoEntry>> list) {
     this.ubongoBoard = ubongoBoard;
     this.list = list;
-    spinnerIndex.setList(IntStream.range(0, list.size()).boxed().collect(Collectors.toList()));
-    spinnerIndex.setIndex(0);
+    spinnerIndex = SpinnerLabel.of(IntStream.range(0, list.size()).boxed().toArray(Integer[]::new));
     spinnerIndex.addToComponentReduced(timerFrame.jToolBar, new Dimension(40, 28), "index");
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    List<UbongoEntry> solution = list.get(spinnerIndex.getIndex());
+    List<UbongoEntry> solution = list.get(spinnerIndex.getValue());
     {
       int scale = 30;
       List<Integer> size = Dimensions.of(ubongoBoard.mask);
@@ -46,7 +43,7 @@ import ch.alpine.tensor.io.ImageFormat;
       ubongoPiece.stamp = ImageRotate.cw(ubongoEntry.ubongo.mask());
       ubongoPiece.ubongo = ubongoEntry.ubongo;
       List<Integer> size = Dimensions.of(ubongoPiece.stamp);
-      Tensor tensor = UbongoRender.of(size, Arrays.asList(ubongoPiece));
+      Tensor tensor = UbongoRender.of(size, List.of(ubongoPiece));
       // List<Integer> size2 = Dimensions.of(tensor);
       int scale = 15;
       int piw = size.get(1) * scale;

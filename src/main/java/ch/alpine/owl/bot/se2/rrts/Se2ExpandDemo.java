@@ -4,8 +4,6 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
@@ -14,8 +12,12 @@ import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.dub.DubinsPathComparators;
+import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -38,7 +40,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 5).get();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(min, max);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(min, max));
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures(name), 250, TimeUnit.MILLISECONDS)) {

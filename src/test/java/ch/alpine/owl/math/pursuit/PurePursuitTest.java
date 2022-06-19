@@ -3,13 +3,13 @@ package ch.alpine.owl.math.pursuit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -23,9 +23,9 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-public class PurePursuitTest {
+class PurePursuitTest {
   @Test
-  public void testRatioForwardLeftPositiveXUnit() {
+  void testRatioForwardLeftPositiveXUnit() {
     Tensor tensor = Tensors.fromString("{{.2[m], 0[m]}, {1[m], 1[m]}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, Quantity.of(1.0, "m"));
     Clip clip = Clips.interval(Quantity.of(1.2, "m^-1"), Quantity.of(1.5, "m^-1"));
@@ -33,13 +33,13 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testMatch2() {
+  void testMatch2() {
     Tensor curve = Tensors.fromString("{{-0.4}, {0.6}, {1.4}, {2.2}}");
-    AssertFail.of(() -> PurePursuit.fromTrajectory(curve, RealScalar.ONE));
+    assertThrows(Exception.class, () -> PurePursuit.fromTrajectory(curve, RealScalar.ONE));
   }
 
   @Test
-  public void testDistanceFail() {
+  void testDistanceFail() {
     Tensor curve = Tensors.fromString("{{-0.4}, {0.6}, {1.4}, {2.2}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(curve, RealScalar.of(3.3));
     Optional<Tensor> optional = purePursuit.lookAhead();
@@ -47,7 +47,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioFail() {
+  void testRatioFail() {
     Tensor tensor = Tensors.fromString("{{0.2, 0}, {1, 0}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(1.5));
     Optional<Tensor> optional = purePursuit.lookAhead();
@@ -56,7 +56,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     Tensor tensor = Tensors.fromString("{{1, 0}, {1, 0}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.ONE);
     Optional<Tensor> optional = purePursuit.lookAhead();
@@ -67,7 +67,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     Tensor tensor = Tensors.empty();
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(1.5));
     assertFalse(purePursuit.lookAhead().isPresent());
@@ -75,7 +75,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testDirectionFail() {
+  void testDirectionFail() {
     Tensor tensor = Tensors.fromString("{{1, 1}, {0.3, 0.2}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.ONE);
     assertFalse(purePursuit.lookAhead().isPresent());
@@ -83,7 +83,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioForward() {
+  void testRatioForward() {
     Tensor tensor = Tensors.fromString("{{0.2, 0}, {1, 0}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(0.5));
     Tensor dir = purePursuit.lookAhead().get();
@@ -95,7 +95,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioForwardPositiveX() {
+  void testRatioForwardPositiveX() {
     Tensor tensor = Tensors.fromString("{{0.2, 0}, {1, 0}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(0.5));
     Scalar rate = purePursuit.firstRatio().get();
@@ -103,7 +103,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioForwardLeftPositiveX() {
+  void testRatioForwardLeftPositiveX() {
     Tensor tensor = Tensors.fromString("{{0.2, 0}, {1, 1}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(1.0));
     Clip clip = Clips.interval(1.2, 1.5);
@@ -111,7 +111,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioForwardRightPositiveX() {
+  void testRatioForwardRightPositiveX() {
     Tensor tensor = Tensors.fromString("{{0.2, 0}, {1, -1}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(1.0));
     Clip clip = Clips.interval(-1.5, -1.2);
@@ -119,7 +119,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioBackRight() {
+  void testRatioBackRight() {
     Tensor tensor = Tensors.fromString("{{0, 0}, {-1, -1}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(0.5));
     Tensor dir = purePursuit.lookAhead().get();
@@ -129,7 +129,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioBackLeft() {
+  void testRatioBackLeft() {
     Tensor tensor = Tensors.fromString("{{0, 0}, {-1, 1}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(0.5));
     Tensor dir = purePursuit.lookAhead().get();
@@ -139,7 +139,7 @@ public class PurePursuitTest {
   }
 
   @Test
-  public void testRatioXZero() {
+  void testRatioXZero() {
     Tensor tensor = Tensors.fromString("{{0, 0.3}, {0, 1}}");
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, RealScalar.of(0.5));
     Tensor dir = purePursuit.lookAhead().get();
@@ -150,7 +150,7 @@ public class PurePursuitTest {
 
   // shows problem with non-positive x
   @Test
-  public void testRatioLarge() {
+  void testRatioLarge() {
     Tensor tensor = Tensors.fromString("{{0, 0}, {-100, 1}}");
     Scalar distance = DoubleScalar.of(100.0);
     PurePursuit purePursuit = PurePursuit.fromTrajectory(tensor, distance);

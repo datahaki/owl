@@ -13,16 +13,16 @@ import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-public class TypeStrictPartialOrderTest {
+class TypeStrictPartialOrderTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     assertFalse(Scalar.class.isAssignableFrom(Tensor.class));
     assertTrue(Scalar.class.isAssignableFrom(Scalar.class));
     assertTrue(Tensor.class.isAssignableFrom(Scalar.class));
   }
 
   @Test
-  public void testCompare() {
+  void testCompare() {
     assertEquals(TypeStrictPartialOrder.INSTANCE.compare(Tensor.class, Scalar.class), OrderComparison.STRICTLY_PRECEDES);
     assertEquals(TypeStrictPartialOrder.INSTANCE.compare(Object.class, Scalar.class), OrderComparison.STRICTLY_PRECEDES);
     assertEquals(TypeStrictPartialOrder.INSTANCE.compare(Tensor.class, Object.class), OrderComparison.STRICTLY_SUCCEEDS);

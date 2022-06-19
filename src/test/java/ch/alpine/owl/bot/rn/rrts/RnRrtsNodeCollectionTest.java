@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -16,7 +15,8 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -26,11 +26,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
-public class RnRrtsNodeCollectionTest {
+class RnRrtsNodeCollectionTest {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(10, 10)));
     TransitionRegionQuery transitionRegionQuery = EmptyTransitionRegionQuery.INSTANCE;
     Rrts rrts = new DefaultRrts(TRANSITION_SPACE, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
@@ -49,7 +49,7 @@ public class RnRrtsNodeCollectionTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);

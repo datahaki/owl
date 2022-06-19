@@ -1,14 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
-
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
@@ -17,10 +13,12 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.BijectionFamily;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.Se2Family;
+import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -54,7 +52,7 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
     Region<StateTime> region2 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = //
-        RegionConstraints.stateTime(RegionUnion.wrap(Arrays.asList(region1, region2)));
+        RegionConstraints.stateTime(RegionUnion.wrap(region1, region2));
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);

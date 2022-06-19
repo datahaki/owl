@@ -1,18 +1,15 @@
 // code by astoll, ynager
 package ch.alpine.owl.bot.rn.glc;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.BaseFrame;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.data.tree.NodesAssert;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
@@ -29,12 +26,6 @@ import ch.alpine.owl.glc.rl2.RelaxedDebugUtils;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.StandardRelaxedLexicographicPlanner;
-import ch.alpine.owl.gui.ren.BallRegionRender;
-import ch.alpine.owl.gui.ren.DomainQueueMapRender;
-import ch.alpine.owl.gui.ren.EdgeRenders;
-import ch.alpine.owl.gui.ren.EtaRender;
-import ch.alpine.owl.gui.ren.PolygonRegionRender;
-import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -43,13 +34,21 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.ren.BallRegionRender;
+import ch.alpine.owl.util.ren.DomainQueueMapRender;
+import ch.alpine.owl.util.ren.EdgeRenders;
+import ch.alpine.owl.util.ren.EtaRender;
+import ch.alpine.owl.util.ren.PolygonRegionRender;
+import ch.alpine.owl.util.ren.TrajectoryRender;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.qty.Quantity;
 
@@ -86,7 +85,7 @@ public class RelaxedTrajectoryPlanner0Demo implements DemoInterface {
     CostFunction regionCost = ConstraintViolationCost.of(plannerConstraint, Quantity.of(2, ""));
     // ---
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(distanceCost, regionCost), goalRegion);
+        new VectorCostGoalAdapter(List.of(distanceCost, regionCost), goalRegion);
     // -------------------------------
     return new StandardRelaxedLexicographicPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface, slacks);

@@ -15,9 +15,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class GokartRelaxedEntityTest {
+class GokartRelaxedEntityTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     final StateTime initial = new StateTime(Tensors.vector(0, 10, 0), RealScalar.ZERO);
     // define region costs
     // define slack vector

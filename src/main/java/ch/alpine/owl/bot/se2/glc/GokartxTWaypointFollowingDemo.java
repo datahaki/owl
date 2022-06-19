@@ -1,19 +1,15 @@
 // code by ynager
 package ch.alpine.owl.bot.se2.glc;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Arrays;
+import java.util.List;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.ren.WaypointRender;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.region.RegionWithDistance;
@@ -21,10 +17,12 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.BijectionFamily;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
+import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -70,12 +68,12 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     // ---
     Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
     Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
-    Region<Tensor> union = RegionUnion.wrap(Arrays.asList(hangarMap.region, polygonRegion));
+    Region<Tensor> union = RegionUnion.wrap(hangarMap.region, polygonRegion);
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new TimeInvariantRegion(union), // <- expects se2 states
             region1, region2 //
-        )));
+        ));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // ---
     owlAnimationFrame.add(gokartEntity);
@@ -89,16 +87,11 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.verbose(gokartEntity);
     GlcWaypointFollowing glcWaypointFollowing = new GlcWaypointFollowing( //
         waypoints, RealScalar.of(2), gokartEntity, plannerConstraint, //
-        Arrays.asList(gokartEntity, glcPlannerCallback));
+        List.of(gokartEntity, glcPlannerCallback));
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(5));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    owlAnimationFrame.jFrame.addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosed(WindowEvent windowEvent) {
-        glcWaypointFollowing.flagShutdown();
-      }
-    });
+    WindowClosed.runs(owlAnimationFrame.jFrame, () -> glcWaypointFollowing.flagShutdown());
   }
 
   public static void main(String[] args) {

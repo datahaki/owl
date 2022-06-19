@@ -4,10 +4,9 @@ package ch.alpine.owl.bot.tse2;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.MultiCostGoalAdapter;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -15,11 +14,12 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.owl.util.bot.FlowsInterface;
+import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -45,7 +45,7 @@ public class Tse2CarEntity extends Tse2Entity {
   static final Scalar LOOKAHEAD = RealScalar.of(0.5);
   static final Scalar MAX_TURNING_RATE = Degree.of(50); // slightly higher for pure pursuit
   static final FlowsInterface CARFLOWS = Tse2CarFlows.of(MAX_TURNING_PLAN, Tensors.vector(-0.7, 0, 0.7));
-  private static final Scalar SQRT2 = Sqrt.of(RealScalar.of(2));
+  private static final Scalar SQRT2 = Sqrt.of(RealScalar.TWO);
   private static final Scalar SHIFT_PENALTY = RealScalar.of(0.4);
   // ---
   static final Tensor SHAPE = Tensors.matrixDouble( //

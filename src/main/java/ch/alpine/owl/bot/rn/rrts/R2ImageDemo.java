@@ -1,11 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.ImageRegions;
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -14,8 +10,12 @@ import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

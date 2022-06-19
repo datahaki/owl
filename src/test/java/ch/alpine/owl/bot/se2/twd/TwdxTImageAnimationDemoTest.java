@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.se2.twd;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
-public class TwdxTImageAnimationDemoTest {
+class TwdxTImageAnimationDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new TwdxTImageAnimationDemo());
   }
 }

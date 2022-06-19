@@ -2,11 +2,9 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2RationalFlows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -22,8 +20,6 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.rl2.RelaxedGlcExpand;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.StandardRelaxedLexicographicPlanner;
-import ch.alpine.owl.gui.ren.BallRegionRender;
-import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
@@ -31,13 +27,17 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.ren.BallRegionRender;
+import ch.alpine.owl.util.ren.PolygonRegionRender;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
@@ -74,7 +74,7 @@ public class RelaxedTrajectoryExpandDemo {
     CostFunction regionCost = ConstraintViolationCost.of(plannerConstraint, Quantity.of(2, ""));
     // ---
     GoalInterface goalInterface = //
-        new VectorCostGoalAdapter(Arrays.asList(costFunction, regionCost), regionWithDistance);
+        new VectorCostGoalAdapter(List.of(costFunction, regionCost), regionWithDistance);
     // -------------------------------
     return new StandardRelaxedLexicographicPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface, slacks);

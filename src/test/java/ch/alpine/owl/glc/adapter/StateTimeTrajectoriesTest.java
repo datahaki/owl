@@ -13,17 +13,17 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.tensor.ExactScalarQ;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactScalarQ;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.qty.Quantity;
 
-public class StateTimeTrajectoriesTest {
+class StateTimeTrajectoriesTest {
   @Test
-  public void testTimeIncrement() {
+  void testTimeIncrement() {
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), x -> RealScalar.ZERO);
     List<StateTime> trajectory = Arrays.asList( //
         new StateTime(Tensors.vector(1, 2), Quantity.of(4, "s")), //
@@ -34,7 +34,7 @@ public class StateTimeTrajectoriesTest {
   }
 
   @Test
-  public void testDeltaTimes() {
+  void testDeltaTimes() {
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), x -> RealScalar.ZERO);
     List<StateTime> trajectory = Arrays.asList( //
         new StateTime(Tensors.vector(1, 2), Quantity.of(4, "s")), //
@@ -45,7 +45,7 @@ public class StateTimeTrajectoriesTest {
   }
 
   @Test
-  public void testDeltatime() {
+  void testDeltatime() {
     GlcNode glcNode = GlcNode.of(null, new StateTime(Tensors.vector(1, 2), RealScalar.ONE), RealScalar.ZERO, RealScalar.ZERO);
     List<StateTime> trajectory = new ArrayList<>();
     trajectory.add(new StateTime(Tensors.vector(0, 5), RealScalar.of(3)));

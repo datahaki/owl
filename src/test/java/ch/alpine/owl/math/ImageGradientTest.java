@@ -11,9 +11,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
 
-public class ImageGradientTest {
+class ImageGradientTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor image = Tensors.fromString("{{1, 5}, {2, 3}, {4, 5}}");
     assertEquals(Dimensions.of(image), Arrays.asList(3, 2));
     Tensor grad = ImageGradient.of(image);
@@ -26,7 +26,7 @@ public class ImageGradientTest {
   }
 
   @Test
-  public void testRotated() {
+  void testRotated() {
     Tensor image = Tensors.fromString("{{1, 5}, {2, 3}, {4, 5}}");
     assertEquals(Dimensions.of(image), Arrays.asList(3, 2));
     Tensor grad = ImageGradient.rotated(image);

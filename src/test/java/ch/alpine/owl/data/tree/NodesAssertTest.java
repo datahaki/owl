@@ -11,9 +11,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
-public class NodesAssertTest {
+class NodesAssertTest {
   @Test
-  public void testAllLeaf() {
+  void testAllLeaf() {
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), x -> RealScalar.ZERO);
     NodesAssert.allLeaf(Collections.singletonList(glcNode));
   }

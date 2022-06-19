@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.AbstractMinTimeGoalManager;
 import ch.alpine.owl.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -27,15 +26,16 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 
-public class Tse2EntityTest {
+class Tse2EntityTest {
   @Test
-  public void testForward() {
+  void testForward() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 4[m*s^-1]}"));
@@ -73,7 +73,7 @@ public class Tse2EntityTest {
 
   @SuppressWarnings("unused")
   @Test
-  public void testGeneral() {
+  void testGeneral() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 0[m], 2, 4[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 4[m*s^-1]}"));

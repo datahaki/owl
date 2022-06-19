@@ -3,22 +3,22 @@ package ch.alpine.owl.math.region;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.AssertFail;
-import ch.alpine.sophus.api.Region;
-import ch.alpine.tensor.ExactScalarQ;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.ExactScalarQ;
 
-public class HyperplaneRegionTest {
+class HyperplaneRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Region<Tensor> region = new HyperplaneRegion(Tensors.vector(1, 0), RealScalar.of(5));
     assertFalse(region.test(Tensors.vector(0, 0)));
     assertFalse(region.test(Tensors.vector(3, 0)));
@@ -30,7 +30,7 @@ public class HyperplaneRegionTest {
   }
 
   @Test
-  public void testMore() {
+  void testMore() {
     Region<Tensor> region = new HyperplaneRegion(Tensors.vector(-1, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
@@ -40,7 +40,7 @@ public class HyperplaneRegionTest {
   }
 
   @Test
-  public void testNormalize() {
+  void testNormalize() {
     Region<Tensor> region = HyperplaneRegion.normalize(Tensors.vector(-2, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
@@ -50,7 +50,7 @@ public class HyperplaneRegionTest {
   }
 
   @Test
-  public void testDistance() {
+  void testDistance() {
     ImplicitFunctionRegion ifr = HyperplaneRegion.normalize(Tensors.vector(2, 0), RealScalar.of(-10));
     assertTrue(ifr.test(Array.zeros(2)));
     assertTrue(ifr.test(Tensors.vector(9, 0)));
@@ -65,8 +65,8 @@ public class HyperplaneRegionTest {
   }
 
   @Test
-  public void testDistanceFail() {
+  void testDistanceFail() {
     ImplicitFunctionRegion ifr = HyperplaneRegion.normalize(Tensors.vector(2, 0), RealScalar.of(-10));
-    AssertFail.of(() -> ifr.signedDistance(Array.zeros(3)));
+    assertThrows(Exception.class, () -> ifr.signedDistance(Array.zeros(3)));
   }
 }

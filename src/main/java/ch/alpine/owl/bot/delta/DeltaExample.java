@@ -2,8 +2,9 @@
 package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
+import java.util.stream.Stream;
 
-import ch.alpine.java.ren.RenderInterface;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -16,16 +17,18 @@ import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta */
 /* package */ class DeltaExample {
@@ -33,7 +36,10 @@ import ch.alpine.tensor.io.ResourceData;
   // RungeKutta45Integrator.INSTANCE, RationalScalar.of(1, 10), 4);
   private static final Tensor RANGE = Tensors.vector(9, 6.5);
   // private static final Tensor OBSTACLE_IMAGE = ; //
-  static final Region<Tensor> REGION = ImageRegion.of(ResourceData.bufferedImage("/io/delta_free.png"), RANGE, true);
+  private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+      Clips.positive(RANGE.Get(0)), Clips.positive(RANGE.Get(1))));
+  static final Region<Tensor> REGION = new BufferedImageRegion( //
+      ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
   private static final PlannerConstraint PLANNER_CONSTRAINT = //
       new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(REGION));
   private static final Scalar MAX_INPUT = RealScalar.ONE;

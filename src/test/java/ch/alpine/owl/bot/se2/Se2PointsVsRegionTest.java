@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class Se2PointsVsRegionTest {
+class Se2PointsVsRegionTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor center = Tensors.vector(1, 2);
     Region<Tensor> region = new EllipsoidRegion(center, Tensors.vector(0.1, 0.1));
     Tensor xya = Tensors.vector(4, 5, 6);

@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
-public class KlotskiGoalAdapterTest {
+class KlotskiGoalAdapterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
       KlotskiGoalAdapter klotskiGoalAdapter = new KlotskiGoalAdapter(klotskiProblem.getGoal());
@@ -20,7 +20,7 @@ public class KlotskiGoalAdapterTest {
   }
 
   @Test
-  public void testPennant() {
+  void testPennant() {
     for (Pennant pennant : Pennant.values()) {
       KlotskiProblem klotskiProblem = pennant.create();
       KlotskiGoalAdapter klotskiGoalAdapter = new KlotskiGoalAdapter(klotskiProblem.getGoal());
@@ -30,7 +30,7 @@ public class KlotskiGoalAdapterTest {
   }
 
   @Test
-  public void testTrafficJam() {
+  void testTrafficJam() {
     for (TrafficJam trafficJam : TrafficJam.values()) {
       KlotskiProblem klotskiProblem = trafficJam.create();
       KlotskiGoalAdapter klotskiGoalAdapter = new KlotskiGoalAdapter(klotskiProblem.getGoal());

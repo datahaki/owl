@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import ch.alpine.sophus.lie.se2.Se2Geodesic;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.io.ResourceData;
 
 /* package */ enum WaypointDistanceCostDemo {
   ;
-  private static final CurveSubdivision CURVE_SUBDIVISION = new BSpline1CurveSubdivision(Se2Geodesic.INSTANCE);
+  private static final CurveSubdivision CURVE_SUBDIVISION = new BSpline1CurveSubdivision(Se2Group.INSTANCE);
 
   public static void show(Tensor waypoints) {
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //

@@ -3,6 +3,7 @@ package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rice.Duncan1StateSpaceModel;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
@@ -26,9 +26,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class AbstractEpisodeIntegratorTest {
+class AbstractEpisodeIntegratorTest {
   @Test
-  public void testSmall() {
+  void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -44,7 +44,7 @@ public class AbstractEpisodeIntegratorTest {
   }
 
   @Test
-  public void testLarge() {
+  void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -60,18 +60,18 @@ public class AbstractEpisodeIntegratorTest {
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         Se2StateSpaceModel.INSTANCE, integrator, //
         init);
     assertEquals(episodeIntegrator.tail(), init);
-    AssertFail.of(() -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
+    assertThrows(Exception.class, () -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
   }
 
   @Test
-  public void testRice1Units() {
+  void testRice1Units() {
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(3, "s^-1"));
     Tensor x = Tensors.fromString("{1[m*s^-1], 2[m*s^-1]}");
     Tensor u = Tensors.fromString("{5[m*s^-2], -2[m*s^-2]}");

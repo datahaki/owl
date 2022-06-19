@@ -1,8 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTImageStateTimeRegion;
@@ -15,9 +14,10 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.hs.r2.R2RigidFamily;
 import ch.alpine.sophus.hs.r2.Se2Family;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;

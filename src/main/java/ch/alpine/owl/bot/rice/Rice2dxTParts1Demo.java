@@ -1,29 +1,28 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.util.Arrays;
 import java.util.Collection;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
 import ch.alpine.owl.bot.rn.glc.R2xTEllipsoidsAnimationDemo;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.BijectionFamily;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
 import ch.alpine.sophus.hs.r2.So2Family;
+import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -54,7 +53,7 @@ public class Rice2dxTParts1Demo implements DemoInterface {
     Region<StateTime> region3 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList(region1, region2, region3)));
+        RegionUnion.wrap(region1, region2, region3));
     // abstractEntity.obstacleQuery = trq;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);

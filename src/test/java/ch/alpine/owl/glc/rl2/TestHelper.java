@@ -23,12 +23,12 @@ import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.qty.Quantity;
 
 /* package */ enum TestHelper {

@@ -13,9 +13,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class RelaxedDomainQueueMapTest {
+class RelaxedDomainQueueMapTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     RelaxedDomainQueueMap relaxedDomainQueueMap = Serialization.copy(new RelaxedDomainQueueMap(Tensors.vector(1, 1, 1, 1)));
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(11, 2, 3), RealScalar.ZERO), x -> VectorScalar.of(1, 2, 3, 5));
     relaxedDomainQueueMap.addToDomainMap(Tensors.vector(1, 2), glcNode);

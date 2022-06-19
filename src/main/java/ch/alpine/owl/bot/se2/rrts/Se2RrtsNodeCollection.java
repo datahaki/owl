@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import ch.alpine.java.util.BoundedSortedQueue;
+import ch.alpine.bridge.util.BoundedSortedQueue;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
-import ch.alpine.owl.rrts.core.Transition;
-import ch.alpine.owl.rrts.core.TransitionSpace;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
@@ -21,6 +21,7 @@ import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdMatch;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 
+// TODO OWL redundant to ClothoidNdMap
 public class Se2RrtsNodeCollection implements RrtsNodeCollection {
   private final TransitionSpace transitionSpace;
   private final NdMap<RrtsNode> ndMap;

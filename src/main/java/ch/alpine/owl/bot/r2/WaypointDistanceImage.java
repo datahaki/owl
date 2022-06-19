@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

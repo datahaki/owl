@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensors;
 
-public class MirrorYStateTimeRasterTest {
+class MirrorYStateTimeRasterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     MirrorYStateTimeRaster mirrorYStateTimeRaster = new MirrorYStateTimeRaster(4);
     assertEquals(mirrorYStateTimeRaster.mirrorStone(Tensors.vector(0, 9, 0)), Tensors.vector(0, 9, 2));
     assertEquals(mirrorYStateTimeRaster.mirrorStone(Tensors.vector(1, 0, 0)), Tensors.vector(1, 0, 3));

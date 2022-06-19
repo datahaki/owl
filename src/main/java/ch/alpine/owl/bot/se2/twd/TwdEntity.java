@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.twd;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2LateralAcceleration;
@@ -18,12 +18,12 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.sophus.crv.d2.Arrowhead;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 /* package */ class TwdEntity extends Se2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //
       RealScalar.of(6), RealScalar.of(6), Degree.of(10).reciprocal()).unmodifiable();
-  private static final Scalar SQRT2 = Sqrt.of(RealScalar.of(2));
+  private static final Scalar SQRT2 = Sqrt.of(RealScalar.TWO);
   static final Tensor SHAPE = Arrowhead.of(0.3);
 
   public static TwdEntity createDuckie(StateTime stateTime) {

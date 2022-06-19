@@ -12,9 +12,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-public class BalloonMinTimeGoalManagerTest {
+class BalloonMinTimeGoalManagerTest {
   @Test
-  public void testWithoutUnits() {
+  void testWithoutUnits() {
     Tensor goal = Tensors.vector(0, 0);
     Scalar goalRadius = RealScalar.of(1);
     Scalar maxSpeed = RealScalar.of(10);
@@ -27,7 +27,7 @@ public class BalloonMinTimeGoalManagerTest {
   }
 
   @Test
-  public void testWithUnits() {
+  void testWithUnits() {
     Tensor goal = Tensors.fromString("{5[m], 0[m]}");
     Scalar maxSpeed = Quantity.of(10, "m*s^-1");
     Scalar goalRadius = Quantity.of(1, "m");

@@ -15,20 +15,20 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.ref.ann.FieldPreferredWidth;
-import ch.alpine.java.ref.util.ToolbarFieldsEditor;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.java.win.LookAndFeels;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.ascona.util.win.LookAndFeels;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.ref.ann.FieldPreferredWidth;
+import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
+import ch.alpine.bridge.swing.SpinnerLabel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
 public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   private static final File ROOT = //
-      new File("/run/media/datahaki/data/public_html/photos/2016_germany/image");
+      new File("/run / 134media/datahaki/data/public_html/photos/2016_germany/image");
   // ---
-  private final SpinnerLabel<String> spinnerLabel = new SpinnerLabel<>();
+  private final SpinnerLabel<String> spinnerLabel;
   private final JSlider jSlider = new JSlider(0, 1231, 0);
   private BufferedImage bufferedImage;
 
@@ -47,8 +47,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(() -> stateChanged(null));
     // ---
     File[] files = ROOT.listFiles();
-    spinnerLabel.setArray(Stream.of(files).map(File::getName).toArray(String[]::new));
-    spinnerLabel.setIndex(0);
+    spinnerLabel = SpinnerLabel.of(Stream.of(files).map(File::getName).toArray(String[]::new));
     spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "file");
     spinnerLabel.addSpinnerListener(s -> stateChanged(null));
     // ---
@@ -86,7 +85,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   }
 
   public static void main(String[] args) {
-    LookAndFeels.DARK.updateUI();
+    LookAndFeels.DARK.tryUpdateUI();
     new JpgArtefactDemo().setVisible(1500, 950);
   }
 }

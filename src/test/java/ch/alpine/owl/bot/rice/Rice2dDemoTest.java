@@ -7,28 +7,28 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.GlcTrajectories;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GlcNodes;
 import ch.alpine.owl.glc.core.HeuristicAssert;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.gui.ren.RegionRenders;
-import ch.alpine.owl.gui.ren.TrajectoryRender;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.TrajectoryRender;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Timing;
 
-public class Rice2dDemoTest {
+class Rice2dDemoTest {
   @Test
-  public void testExpand() throws InterruptedException {
+  void testExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     TrajectoryPlanner trajectoryPlanner = Rice2dDemo.createInstance(mu, stateSpaceModel);
@@ -53,7 +53,7 @@ public class Rice2dDemoTest {
   }
 
   @Test
-  public void testGlcExpand() throws InterruptedException {
+  void testGlcExpand() throws InterruptedException {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     TrajectoryPlanner trajectoryPlanner = Rice2dDemo.createInstance(mu, stateSpaceModel);

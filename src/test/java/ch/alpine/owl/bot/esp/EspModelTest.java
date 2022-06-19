@@ -10,9 +10,9 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class EspModelTest {
+class EspModelTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tensor board = EspDemo.START;
     for (Tensor flow : EspFlows.INSTANCE.flows(new StateTime(board, RealScalar.ZERO))) {
       Tensor u = flow;
@@ -24,7 +24,7 @@ public class EspModelTest {
   }
 
   @Test
-  public void testBorder() {
+  void testBorder() {
     Tensor board = Tensors.of( //
         Tensors.vector(2, 2, 2, 0, 0), //
         Tensors.vector(2, 2, 2, 0, 0), //
@@ -43,7 +43,7 @@ public class EspModelTest {
   }
 
   @Test
-  public void testEdge() {
+  void testEdge() {
     Tensor board = Tensors.of( //
         Tensors.vector(2, 2, 2, 0, 0), //
         Tensors.vector(2, 2, 2, 0, 0), //

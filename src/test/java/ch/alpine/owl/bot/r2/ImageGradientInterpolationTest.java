@@ -16,9 +16,9 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.io.ResourceData;
 
-public class ImageGradientInterpolationTest {
+class ImageGradientInterpolationTest {
   @Test
-  public void testLinear() {
+  void testLinear() {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
     Scalar max;
@@ -40,7 +40,7 @@ public class ImageGradientInterpolationTest {
   }
 
   @Test
-  public void testNearest() {
+  void testNearest() {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
     Scalar max;
@@ -63,7 +63,7 @@ public class ImageGradientInterpolationTest {
   }
 
   @Test
-  public void testSerialize() throws Exception {
+  void testSerialize() throws Exception {
     Tensor range = Tensors.vector(9, 6.5);
     final Tensor image = ResourceData.of("/io/delta_uxy.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));

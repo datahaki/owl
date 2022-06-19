@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.math.pursuit;
 
-import ch.alpine.sophus.lie.rn.RnGeodesic;
+import ch.alpine.sophus.lie.rn.RnGroup;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -13,7 +13,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 public class SphereCurveIntersection extends AssistedCurveIntersection {
   /** @param radius non-negative */
   public SphereCurveIntersection(Scalar radius) {
-    super(radius, RnGeodesic.INSTANCE);
+    super(radius, RnGroup.INSTANCE);
   }
 
   @Override // from SimpleCurveIntersection

@@ -5,19 +5,25 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.io.ImageFormat;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 /** collection of ready-to-use image regions */
 public enum R2ImageRegions {
   ;
   static Region<Tensor> normal(BufferedImage bufferedImage, Tensor range, boolean strict) {
-    return ImageRegion.of(bufferedImage, range, strict);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    return new BufferedImageRegion(bufferedImage, coordinateBoundingBox, strict);
   }
 
   // the use of normal is preferred over transpose

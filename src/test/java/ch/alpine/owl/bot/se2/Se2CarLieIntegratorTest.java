@@ -18,9 +18,9 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2CarLieIntegratorTest {
+class Se2CarLieIntegratorTest {
   @Test
-  public void testCombine() {
+  void testCombine() {
     for (int index = 0; index < 20; ++index) {
       Tensor g = RandomVariate.of(NormalDistribution.standard(), 3);
       Tensor x = RandomVariate.of(NormalDistribution.standard(), 3);
@@ -32,7 +32,7 @@ public class Se2CarLieIntegratorTest {
   }
 
   @Test
-  public void testRatioPositiveX() {
+  void testRatioPositiveX() {
     for (Tensor lookAhead : Tensors.of(Tensors.vector(3, 1), Tensors.vector(3, -1))) {
       Optional<Scalar> optional = PurePursuit.ratioPositiveX(lookAhead);
       Scalar ratio = optional.get();
@@ -44,7 +44,7 @@ public class Se2CarLieIntegratorTest {
   }
 
   @Test
-  public void testCreateLookAhead() {
+  void testCreateLookAhead() {
     Distribution distribution = UniformDistribution.of(-0.3, +0.3);
     Distribution speeds = UniformDistribution.of(0, 3);
     for (Tensor _ratio : RandomVariate.of(distribution, 100)) {
@@ -59,7 +59,7 @@ public class Se2CarLieIntegratorTest {
   }
 
   @Test
-  public void testRatioNegativeX() {
+  void testRatioNegativeX() {
     for (Tensor lookAhead : Tensors.of(Tensors.vector(-3, 1), Tensors.vector(-3, -1))) {
       Optional<Scalar> optional = PurePursuit.ratioNegativeX(lookAhead);
       Scalar ratio = optional.get();

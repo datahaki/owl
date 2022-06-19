@@ -18,10 +18,12 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.LogarithmicAxis;
 
-import ch.alpine.java.fig.ListPlot;
-import ch.alpine.java.fig.VisualRow;
-import ch.alpine.java.fig.VisualSet;
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.ascona.util.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
+import ch.alpine.bridge.fig.ListPlot;
+import ch.alpine.bridge.fig.VisualRow;
+import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.data.tree.Nodes;
@@ -34,8 +36,7 @@ import ch.alpine.owl.rrts.adapter.SimpleLaneConsumer;
 import ch.alpine.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.ext.dis.ManifoldDisplay;
-import ch.alpine.sophus.ext.dis.Se2ClothoidDisplay;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
 import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -90,7 +91,7 @@ import ch.alpine.tensor.sca.Clips;
         // controlPoints.stream().forEach(System.out::println);
         LaneInterface lane = StableLanes.of( //
             controlPoints, //
-            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesic(), DEGREE)::string, //
+            LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesicSpace(), DEGREE)::string, //
             LEVELS, LANE_WIDTH.multiply(RationalScalar.HALF));
         // ---
         Tensor diagonal = Tensors.of( //

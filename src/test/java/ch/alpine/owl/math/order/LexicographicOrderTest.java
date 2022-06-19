@@ -2,6 +2,7 @@
 package ch.alpine.owl.math.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.demo.order.ScalarTotalOrder;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -22,9 +22,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.Abs;
 
-public class LexicographicOrderTest {
+class LexicographicOrderTest {
   @Test
-  public void testTotalLexciographic() {
+  void testTotalLexciographic() {
     OrderComparator<Scalar> comparator1 = ScalarTotalOrder.INSTANCE;
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -46,7 +46,7 @@ public class LexicographicOrderTest {
   }
 
   @Test
-  public void testPartialLexicographic() {
+  void testPartialLexicographic() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -76,7 +76,7 @@ public class LexicographicOrderTest {
   }
 
   @Test
-  public void testException() {
+  void testException() {
     OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
@@ -87,12 +87,12 @@ public class LexicographicOrderTest {
     List<Scalar> y = Tensors.vector(6, 2).stream().map(Scalar.class::cast).collect(Collectors.toList());
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(x, x));
     assertEquals(OrderComparison.INDIFFERENT, lexicographicOrder.compare(y, y));
-    AssertFail.of(() -> lexicographicOrder.compare(x, y));
-    AssertFail.of(() -> lexicographicOrder.compare(y, x));
+    assertThrows(Exception.class, () -> lexicographicOrder.compare(x, y));
+    assertThrows(Exception.class, () -> lexicographicOrder.compare(y, x));
   }
 
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
     OrderComparator<Scalar> comparator1 = new Order<>( //
         (BiPredicate<Scalar, Scalar> & Serializable) (x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
@@ -109,7 +109,7 @@ public class LexicographicOrderTest {
   }
 
   @Test
-  public void testEmpty() {
+  void testEmpty() {
     LexicographicOrder<Object> lexicographicOrder = new LexicographicOrder<>(Collections.emptyList());
     OrderComparison orderComparison = lexicographicOrder.compare(Collections.emptyList(), Collections.emptyList());
     assertEquals(orderComparison, OrderComparison.INDIFFERENT);

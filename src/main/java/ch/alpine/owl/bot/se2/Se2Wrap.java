@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2;
 
 import ch.alpine.owl.math.CoordinateWrap;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
-import ch.alpine.sophus.lie.se2c.Se2CoveringExponential;
+import ch.alpine.sophus.lie.se2c.Se2CoveringGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Mod;
@@ -30,6 +30,6 @@ public enum Se2Wrap implements CoordinateWrap {
 
   @Override // from TensorDifference
   public Tensor difference(Tensor p, Tensor q) {
-    return Se2CoveringExponential.INSTANCE.log(new Se2GroupElement(p).inverse().combine(q));
+    return Se2CoveringGroup.INSTANCE.log(new Se2GroupElement(p).inverse().combine(q));
   }
 }

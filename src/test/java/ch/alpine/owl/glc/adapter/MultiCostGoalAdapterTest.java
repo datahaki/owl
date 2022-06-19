@@ -15,18 +15,18 @@ import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class MultiCostGoalAdapterTest {
+class MultiCostGoalAdapterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);
@@ -48,7 +48,7 @@ public class MultiCostGoalAdapterTest {
   }
 
   @Test
-  public void testMembers() {
+  void testMembers() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);
@@ -62,7 +62,7 @@ public class MultiCostGoalAdapterTest {
   }
 
   @Test
-  public void testTrivial() {
+  void testTrivial() {
     Scalar speed = RealScalar.of(2);
     FlowsInterface carFlows = Se2CarFlows.forward(speed, RealScalar.ONE);
     Collection<Tensor> controls = carFlows.getFlows(9);

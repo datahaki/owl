@@ -1,10 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.Arrays;
-
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -13,10 +10,8 @@ import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.se2.rl.CarPolicyEntity;
-import ch.alpine.owl.bot.util.DemoInterface;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
@@ -24,11 +19,14 @@ import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.sophus.api.BijectionFamily;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.CogPoints;
 import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
+import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.subare.core.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -60,10 +58,10 @@ public class Se2xTLetterDemo implements DemoInterface {
     // ---
     Region<Tensor> se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new TimeInvariantRegion(se2PointsVsRegion), // <- expects se2 states
             region1, cog0 //
-        )));
+        ));
     // Se2PointsVsRegion se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), RegionUnion.wrap(Arrays.asList( //
     // new TimeInvariantRegion(imageRegion), // <- expects se2 states
     // region1, cog0 //
@@ -79,12 +77,12 @@ public class Se2xTLetterDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) cog0);
     // ---
     final TrajectoryRegionQuery ray = new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             new TimeInvariantRegion(region), //
             region1,
             // region2,
             cog0 //
-        )));
+        ));
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carxTEntity::getStateTimeNow, ray);

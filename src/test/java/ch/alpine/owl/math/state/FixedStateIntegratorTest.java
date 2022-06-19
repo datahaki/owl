@@ -2,13 +2,13 @@
 package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
-import ch.alpine.owl.math.AssertFail;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
@@ -19,9 +19,9 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-public class FixedStateIntegratorTest {
+class FixedStateIntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     FixedStateIntegrator fsi = //
         FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 2), 3);
@@ -34,7 +34,7 @@ public class FixedStateIntegratorTest {
   }
 
   @Test
-  public void testCarEx() {
+  void testCarEx() {
     Scalar dt = RationalScalar.of(1, 10);
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
         FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
@@ -43,12 +43,12 @@ public class FixedStateIntegratorTest {
   }
 
   @Test
-  public void testFail1() {
-    AssertFail.of(() -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(-.1), 3));
+  void testFail1() {
+    assertThrows(Exception.class, () -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(-.1), 3));
   }
 
   @Test
-  public void testFail2() {
-    AssertFail.of(() -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(0), 3));
+  void testFail2() {
+    assertThrows(Exception.class, () -> FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RealScalar.of(0), 3));
   }
 }

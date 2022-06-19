@@ -7,9 +7,9 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import ch.alpine.java.gfx.GeometricLayer;
-import ch.alpine.java.win.AbstractDemo;
-import ch.alpine.javax.swing.SpinnerLabel;
+import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.swing.SpinnerLabel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.img.ImageRotate;
   }
 
   // ---
-  private final SpinnerLabel<UbongoPublish> spinnerIndex = SpinnerLabel.of(UbongoPublish.values());
+  private final SpinnerLabel<UbongoPublish> spinnerIndex = SpinnerLabel.of(UbongoPublish.class);
 
   public UbongoViewer() {
     spinnerIndex.addToComponentReduced(timerFrame.jToolBar, new Dimension(200, 28), "index");

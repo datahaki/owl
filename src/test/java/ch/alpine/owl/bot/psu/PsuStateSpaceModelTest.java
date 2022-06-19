@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.java.ren.VectorFieldRender;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
@@ -16,6 +15,7 @@ import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
@@ -25,11 +25,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Chop;
 
-public class PsuStateSpaceModelTest {
+class PsuStateSpaceModelTest {
   @Test
-  public void testNonTrivial() {
+  void testNonTrivial() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
     Scalar h = RationalScalar.of(1, 3);
@@ -40,7 +41,7 @@ public class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testReference() {
+  void testReference() {
     Tensor u = Tensors.of(RationalScalar.HALF);
     Tensor x = Tensors.vector(1, 2);
     Scalar h = RationalScalar.of(1, 3);
@@ -51,7 +52,7 @@ public class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testSmall() {
+  void testSmall() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -67,7 +68,7 @@ public class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testLarge() {
+  void testLarge() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -83,15 +84,15 @@ public class PsuStateSpaceModelTest {
   }
 
   @Test
-  public void testVectorField() {
+  void testVectorField() {
     Tensor range = Tensors.vector(Math.PI, 3);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(range.negate(), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     new VectorFieldRender().setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
   }
 
   @Test
-  public void testFail() {
+  void testFail() {
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

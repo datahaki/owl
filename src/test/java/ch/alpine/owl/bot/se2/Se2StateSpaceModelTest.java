@@ -11,9 +11,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
-public class Se2StateSpaceModelTest {
+class Se2StateSpaceModelTest {
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     Tensor x = Tensors.fromString("{-1[m], -2[m], 3}");
     Scalar h = Quantity.of(1, "s");
     Tensor flow = Se2CarFlows.singleton(Quantity.of(2, "m*s^-1"), Quantity.of(-1, "m^-1"));

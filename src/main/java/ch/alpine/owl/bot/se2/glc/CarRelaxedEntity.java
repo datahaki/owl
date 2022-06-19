@@ -3,17 +3,15 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import ch.alpine.java.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
-import ch.alpine.owl.bot.util.FlowsInterface;
 import ch.alpine.owl.glc.adapter.VectorCostGoalAdapter;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GoalInterface;
@@ -21,12 +19,13 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.RelaxedTrajectoryPlanner;
 import ch.alpine.owl.glc.rl2.StandardRelaxedLexicographicPlanner;
-import ch.alpine.owl.gui.ren.EdgeRender;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.util.bot.FlowsInterface;
+import ch.alpine.owl.util.ren.EdgeRender;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.qty.Degree;
 
@@ -70,7 +69,7 @@ public class CarRelaxedEntity extends CarEntity {
     Se2MinTimeGoalManager timeCosts = new Se2MinTimeGoalManager(se2ComboRegion, controls);
     // set up cost vector with eventual other costs
     // construct cost vector
-    List<CostFunction> costTime = Arrays.asList(timeCosts);
+    List<CostFunction> costTime = List.of(timeCosts);
     List<CostFunction> costFunctionVector = Stream.concat(costTime.stream(), additionalCosts.stream()).collect(Collectors.toList());
     GoalInterface goalInterface = new VectorCostGoalAdapter(costFunctionVector, se2ComboRegion);
     // --

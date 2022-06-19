@@ -7,9 +7,9 @@ import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
-public class Se2ShiftCostFunctionTest {
+class Se2ShiftCostFunctionTest {
   @Test
-  public void testSerializable() throws Exception {
+  void testSerializable() throws Exception {
     CostFunction costFunction = new Se2ShiftCostFunction(Quantity.of(100, "CHF"));
     Serialization.copy(costFunction);
   }

@@ -7,13 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Expand;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -22,7 +19,10 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.dub.DubinsPathComparators;
+import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.ConstantRandomSample;
@@ -41,9 +41,9 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 
-public class DefaultRrtsPlannerServerTest {
+class DefaultRrtsPlannerServerTest {
   @Test
-  public void testRn() {
+  void testRn() {
     Tensor goal = Tensors.vector(10, 10);
     Tensor state = Tensors.vector(0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
@@ -89,7 +89,7 @@ public class DefaultRrtsPlannerServerTest {
   }
 
   @Test
-  public void testDubins() {
+  void testDubins() {
     CoordinateBoundingBox box = CoordinateBounds.of( //
         Tensors.vector(0, 0, -Math.PI), //
         Tensors.vector(10, 10, Math.PI));
@@ -133,15 +133,15 @@ public class DefaultRrtsPlannerServerTest {
   }
 
   @Test
-  public void testClothoid() {
+  void testClothoid() {
     Tensor lbounds = Tensors.vector(0, 0);
     Tensor ubounds = Tensors.vector(10, 10);
     Tensor goal = Tensors.vector(10, 10, 0);
     Tensor state = Tensors.vector(0, 0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of( //
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
-        Append.of(ubounds, Pi.VALUE));
+        Append.of(ubounds, Pi.VALUE)));
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         ClothoidTransitionSpace.ANALYTIC, //
@@ -176,5 +176,10 @@ public class DefaultRrtsPlannerServerTest {
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
     Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
+  }
+
+  @Test
+  void testSome() {
+    assertTrue(17 <= Integer.parseInt(System.getProperty("java.version")));
   }
 }

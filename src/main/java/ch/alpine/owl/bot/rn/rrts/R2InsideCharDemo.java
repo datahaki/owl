@@ -2,13 +2,10 @@
 package ch.alpine.owl.bot.rn.rrts;
 
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 
-import ch.alpine.java.win.OwlFrame;
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
-import ch.alpine.owl.gui.ren.RegionRenders;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -17,20 +14,28 @@ import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.sca.Clips;
 
 /* package */ enum R2InsideCharDemo {
   ;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
-    Region<Tensor> region = ImageRegion.of(bufferedImage, range, false);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), range));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
@@ -40,7 +45,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 650, 550);
     owlFrame.addBackground(RegionRenders.create(region));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(Tensors.vector(0, 0), range);
+    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)

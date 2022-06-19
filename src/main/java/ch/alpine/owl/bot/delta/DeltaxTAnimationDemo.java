@@ -1,26 +1,22 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
-import java.util.Arrays;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
-import ch.alpine.owl.bot.util.DemoInterface;
-import ch.alpine.owl.bot.util.TrajectoryR2TranslationFamily;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.RegionRenders;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
@@ -29,7 +25,11 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.bot.TrajectoryR2TranslationFamily;
+import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -37,6 +37,8 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.sca.Clips;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
@@ -64,9 +66,12 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     Region<StateTime> region3 = create(stateSpaceModel, RealScalar.of(0.3), Tensors.vector(2, 7), flow, supplier);
     Region<StateTime> region4 = create(stateSpaceModel, RealScalar.of(0.3), Tensors.vector(1, 8), flow, supplier);
     // ---
-    Region<Tensor> region = ImageRegion.of(ResourceData.bufferedImage("/io/delta_free.png"), range, true);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    Region<Tensor> region = new BufferedImageRegion( //
+        ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
-        RegionUnion.wrap(Arrays.asList(new TimeInvariantRegion(region), region1, region2, region3, region4))));
+        RegionUnion.wrap(new TimeInvariantRegion(region), region1, region2, region3, region4)));
     // ---
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.add(trajectoryEntity);

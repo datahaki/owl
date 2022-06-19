@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ch.alpine.java.ren.RenderInterface;
-import ch.alpine.java.win.OwlAnimationFrame;
+import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.glc.adapter.ConstraintViolationCost;
@@ -17,12 +16,13 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.adapter.SimpleGoalConsumer;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.gui.ren.MouseShapeRender;
-import ch.alpine.owl.gui.ren.PolygonRegionRender;
 import ch.alpine.owl.math.region.ConeRegion;
 import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.util.ren.MouseShapeRender;
+import ch.alpine.owl.util.ren.PolygonRegionRender;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -50,7 +50,7 @@ public class GokartVec0Demo extends GokartDemo {
     PolygonRegion polygonRegion = new PolygonRegion(polygon);
     PlannerConstraint regionConstraint = RegionConstraints.timeInvariant(polygonRegion);
     CostFunction regionCost = ConstraintViolationCost.of(regionConstraint, RealScalar.ONE);
-    gokartEntity.setCostVector(Arrays.asList(regionCost), Arrays.asList(0.0));
+    gokartEntity.setCostVector(List.of(regionCost), Arrays.asList(0.0));
     gokartEntity.addTimeCost(0, 0.8); // set priority to 0, allow for 0.8 seconds of slack
     // ---
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;

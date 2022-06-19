@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.psu;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
-public class PsuAnimationDemoTest {
+class PsuAnimationDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new PsuAnimationDemo());
   }
 }

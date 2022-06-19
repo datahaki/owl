@@ -13,9 +13,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
 
-public class IntersectionEntryFinderTest {
+class IntersectionEntryFinderTest {
   @Test
-  public void testSE2() {
+  void testSE2() {
     Tensor goalSE2 = Tensors.vector(3, 1, 0);
     Tensor goal2D = Extract2D.FUNCTION.apply(goalSE2);
     TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_SE2;
@@ -25,7 +25,7 @@ public class IntersectionEntryFinderTest {
   }
 
   @Test
-  public void test2D() {
+  void test2D() {
     Tensor goalSE2 = Tensors.vector(3, 1, 0);
     Tensor goal2D = Extract2D.FUNCTION.apply(goalSE2);
     TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_RN;
@@ -36,7 +36,7 @@ public class IntersectionEntryFinderTest {
   }
 
   @Test
-  public void testSweep1() {
+  void testSweep1() {
     // TODO OWL TEST
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_SE2;
     // Tensor points = Tensor.of(finder.sweep(TrajectoryEntryFinderTest.WAYPOINTS).map(TrajectoryEntry::point).map(Optional::get));
@@ -48,7 +48,7 @@ public class IntersectionEntryFinderTest {
   }
 
   @Test
-  public void testSweep2() {
+  void testSweep2() {
     // TODO OWL TEST
     // Tensor waypoints = Tensors.fromString("{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}}");
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_RN;

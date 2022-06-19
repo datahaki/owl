@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.tensor.ext.Serialization;
 
-public class TrajectoryObstacleConstraintTest {
+class TrajectoryObstacleConstraintTest {
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(null);
     Serialization.copy(plannerConstraint);
   }

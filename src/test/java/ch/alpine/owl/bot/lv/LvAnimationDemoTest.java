@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.lv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
-public class LvAnimationDemoTest {
+class LvAnimationDemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new LvAnimationDemo());
   }
 }

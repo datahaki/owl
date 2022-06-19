@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.java.win.OwlFrame;
+import ch.alpine.owl.util.win.OwlFrame;
 
-public class R2DemoTest {
+class R2DemoTest {
   @Test
-  public void testSimple() throws InterruptedException {
+  void testSimple() throws InterruptedException {
     OwlFrame owlFrame = R2Demo.show();
     Thread.sleep(200);
     owlFrame.jFrame.dispose();

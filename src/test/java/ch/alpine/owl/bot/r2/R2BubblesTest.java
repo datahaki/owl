@@ -11,9 +11,9 @@ import ch.alpine.owl.math.region.ImplicitFunctionRegion;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class R2BubblesTest {
+class R2BubblesTest {
   @Test
-  public void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() throws ClassNotFoundException, IOException {
     ImplicitFunctionRegion copy = Serialization.copy(R2Bubbles.INSTANCE);
     assertFalse(copy.test(Tensors.vector(1, 2)));
   }

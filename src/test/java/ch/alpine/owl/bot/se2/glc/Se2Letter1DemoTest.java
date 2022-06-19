@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.se2.glc;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.DemoInterfaceHelper;
+import ch.alpine.owl.util.bot.DemoInterfaceHelper;
 
-public class Se2Letter1DemoTest {
+class Se2Letter1DemoTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     DemoInterfaceHelper.brief(new Se2Letter1Demo());
   }
 }

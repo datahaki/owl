@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.java.win.OwlAnimationFrame;
-import ch.alpine.owl.bot.util.DemoInterface;
+import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.owl.util.win.OwlAnimationFrame;
 
 public abstract class Se2Demo implements DemoInterface {
   @Override

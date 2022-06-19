@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.clt.ClothoidBuilder;
-import ch.alpine.sophus.clt.ClothoidBuilders;
+import ch.alpine.sophus.crv.clt.ClothoidBuilder;
+import ch.alpine.sophus.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,12 +19,12 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.N;
 
-public class ArgMinVariableTest {
+class ArgMinVariableTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
   private static final int DEPTH = 5;
 
   @Test
-  public void testInterpolation() throws ClassNotFoundException, IOException {
+  void testInterpolation() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}");
     TrajectoryEntryFinder entryFinder = Serialization.copy(InterpolationEntryFinder.INSTANCE);
     // ---
@@ -33,7 +33,7 @@ public class ArgMinVariableTest {
   }
 
   @Test
-  public void testIntersection() throws ClassNotFoundException, IOException {
+  void testIntersection() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(IntersectionEntryFinder.SPHERE_SE2);
     // ---
@@ -43,7 +43,7 @@ public class ArgMinVariableTest {
   }
 
   @Test
-  public void testGeodesic() throws ClassNotFoundException, IOException {
+  void testGeodesic() throws ClassNotFoundException, IOException {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(new GeodesicInterpolationEntryFinder(CLOTHOID_BUILDER));
     // ---

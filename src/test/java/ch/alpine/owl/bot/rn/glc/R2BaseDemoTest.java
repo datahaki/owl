@@ -30,14 +30,14 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 
-public class R2BaseDemoTest {
+class R2BaseDemoTest {
   private static final StateSpaceModel SINGLE_INTEGRATOR = SingleIntegratorStateSpaceModel.INSTANCE;
   // static final StateIntegrator STATE_INTEGRATOR = //
   // FixedStateIntegrator.create(EulerIntegrator.INSTANCE, RealScalar.ONE, 1);
@@ -77,7 +77,7 @@ public class R2BaseDemoTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     TrajectoryPlanner trajectoryPlanner = create();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(200);

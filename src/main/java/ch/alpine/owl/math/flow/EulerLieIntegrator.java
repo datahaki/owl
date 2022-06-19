@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.sophus.api.Exponential;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.LieIntegrator;
 import ch.alpine.tensor.Scalar;
@@ -13,21 +12,16 @@ import ch.alpine.tensor.Tensor;
 
 public class EulerLieIntegrator implements Integrator, LieIntegrator, Serializable {
   /** @param lieGroup
-   * @param exponential
    * @return */
-  public static Integrator of(LieGroup lieGroup, Exponential exponential) {
-    return new EulerLieIntegrator( //
-        Objects.requireNonNull(lieGroup), //
-        Objects.requireNonNull(exponential));
+  public static Integrator of(LieGroup lieGroup) {
+    return new EulerLieIntegrator(Objects.requireNonNull(lieGroup));
   }
 
   // ---
   private final LieGroup lieGroup;
-  private final Exponential exponential;
 
-  private EulerLieIntegrator(LieGroup lieGroup, Exponential exponential) {
+  private EulerLieIntegrator(LieGroup lieGroup) {
     this.lieGroup = lieGroup;
-    this.exponential = exponential;
   }
 
   @Override // from Integrator
@@ -37,6 +31,6 @@ public class EulerLieIntegrator implements Integrator, LieIntegrator, Serializab
 
   @Override // from LieIntegrator
   public Tensor spin(Tensor g, Tensor v) {
-    return lieGroup.element(g).combine(exponential.exp(v));
+    return lieGroup.element(g).combine(lieGroup.exp(v));
   }
 }

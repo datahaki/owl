@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.tensor.ExactTensorQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.ExactTensorQ;
 
-public class IntegratorTest {
+class IntegratorTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     Tensor u = Tensors.vector(1, 2);
     Tensor x = Tensors.vector(7, 2);

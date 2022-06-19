@@ -10,7 +10,7 @@ import ch.alpine.owl.math.state.StateTimeRegionCallback;
 import ch.alpine.owl.math.state.TimeDependentRegion;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** wrapper for obstacle and goal queries */

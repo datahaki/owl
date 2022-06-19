@@ -12,14 +12,11 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
 import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.bot.se2.Se2FlowIntegrator;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
-import ch.alpine.owl.bot.se2.rrts.ClothoidTransitionSpace;
-import ch.alpine.owl.bot.se2.rrts.DubinsTransitionSpace;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
@@ -32,8 +29,11 @@ import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.TransitionSpace;
-import ch.alpine.sophus.crv.dubins.DubinsPathComparators;
+import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
+import ch.alpine.sophus.crv.dub.DubinsPathComparators;
+import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.TensorRuntimeException;
@@ -43,9 +43,9 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Chop;
 
-public class RrtsFlowTrajectoryGeneratorTest {
+class RrtsFlowTrajectoryGeneratorTest {
   @Test
-  public void testRn() {
+  void testRn() {
     Rrts rrts = new DefaultRrts( //
         RnTransitionSpace.INSTANCE, //
         new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(-5, -5), Tensors.vector(10, 10))), //
@@ -84,7 +84,7 @@ public class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testDubins() {
+  void testDubins() {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
@@ -136,7 +136,7 @@ public class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testClothoid() {
+  void testClothoid() {
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
@@ -189,7 +189,7 @@ public class RrtsFlowTrajectoryGeneratorTest {
   }
 
   @Test
-  public void testDirectionalClothoid() {
+  void testDirectionalClothoid() {
     TransitionSpace transitionSpace = DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC);
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //

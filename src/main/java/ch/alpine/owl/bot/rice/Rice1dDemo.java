@@ -1,12 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rice;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.java.win.OwlGui;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
@@ -25,7 +23,8 @@ import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -50,10 +49,10 @@ import ch.alpine.tensor.alg.Array;
     Region<Tensor> region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));
     Region<Tensor> region2 = new EllipsoidRegion(Tensors.vector(-2, +0), Tensors.vector(1, 1));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant( //
-        RegionUnion.wrap(Arrays.asList( //
+        RegionUnion.wrap( //
             region1, // speed limit along the way
             region2 // block to the left
-        )));
+        ));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, plannerConstraint, goalInterface);

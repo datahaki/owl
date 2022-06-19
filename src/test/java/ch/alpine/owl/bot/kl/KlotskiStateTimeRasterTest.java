@@ -9,9 +9,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 
-public class KlotskiStateTimeRasterTest {
+class KlotskiStateTimeRasterTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
       Tensor board = klotskiProblem.startState();

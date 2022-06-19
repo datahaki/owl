@@ -8,17 +8,17 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.rn.RnTransitionSpace;
 import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.rrts.core.Transition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophus.crv.Transition;
+import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 
-public class TransitionRegionQueryUnionTest {
+class TransitionRegionQueryUnionTest {
   @Test
-  public void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() throws ClassNotFoundException, IOException {
     TransitionRegionQuery trq1 = //
         new SampledTransitionRegionQuery(new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), RealScalar.of(0.1));
     TransitionRegionQuery trq2 = //

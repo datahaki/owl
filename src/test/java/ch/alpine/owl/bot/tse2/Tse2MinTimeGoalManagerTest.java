@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.bot.util.FlowsInterface;
+import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -13,9 +13,9 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
-public class Tse2MinTimeGoalManagerTest {
+class Tse2MinTimeGoalManagerTest {
   @Test
-  public void testSimple() {
+  void testSimple() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical(Tensors.vector(1, 2, 3, 1), Tensors.vector(1, 1, 0.1, 1));
     Scalar rate_max = Degree.of(30); // 45
     FlowsInterface flowsInterface = Tse2CarFlows.of(rate_max, Tensors.vector(-2, 0, 2));
@@ -26,7 +26,7 @@ public class Tse2MinTimeGoalManagerTest {
   }
 
   @Test
-  public void testQuantity() {
+  void testQuantity() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical( //
         Tensors.fromString("{10[m], 20[m], 3, 2[m*s^-1]}"), //
         Tensors.fromString("{1[m], 1[m], 1, 1[m*s^-1]}"));

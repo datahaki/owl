@@ -4,8 +4,8 @@ package ch.alpine.owl.ani.api;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -13,9 +13,9 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 import org.junit.jupiter.api.Test;
 
-public class ProviderRankTest {
+class ProviderRankTest {
   @Test
-  public void testProviderRank() {
+  void testProviderRank() {
     Set<ProviderRank> set = new ConcurrentSkipListSet<>();
     set.add(ProviderRank.FALLBACK);
     set.add(ProviderRank.AUTONOMOUS);
@@ -29,7 +29,7 @@ public class ProviderRankTest {
   }
 
   @Test
-  public void testSimple() {
+  void testSimple() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.EMERGENCY);
     queue.add(ProviderRank.FALLBACK);
@@ -38,7 +38,7 @@ public class ProviderRankTest {
   }
 
   @Test
-  public void testSet() {
+  void testSet() {
     Set<Integer> csls = new ConcurrentSkipListSet<>();
     csls.add(10);
     csls.add(2);
@@ -46,11 +46,11 @@ public class ProviderRankTest {
     csls.add(0);
     csls.add(5);
     // fails without arraylist
-    assertEquals(new ArrayList<>(csls), Arrays.asList(0, 2, 5, 10));
+    assertEquals(new ArrayList<>(csls), List.of(0, 2, 5, 10));
   }
 
   @Test
-  public void testMorePriority() {
+  void testMorePriority() {
     Queue<ProviderRank> queue = new PriorityQueue<>();
     queue.add(ProviderRank.CALIBRATION);
     queue.add(ProviderRank.TESTING);
