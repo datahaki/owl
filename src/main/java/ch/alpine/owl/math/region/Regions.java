@@ -3,7 +3,7 @@ package ch.alpine.owl.math.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 
 /** class design stolen from java.util.Collections */
 public enum Regions {

@@ -7,7 +7,7 @@ import ch.alpine.owl.bot.r2.ImageEdges;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

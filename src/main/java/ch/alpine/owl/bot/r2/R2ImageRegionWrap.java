@@ -9,7 +9,7 @@ import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.region.RegionBounds;
 import ch.alpine.owl.util.img.FloodFill2D;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

@@ -5,7 +5,7 @@ import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.BoxRandomSample;
 import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;

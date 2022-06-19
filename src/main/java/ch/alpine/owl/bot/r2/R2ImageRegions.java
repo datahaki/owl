@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ImageRegion;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Transpose;

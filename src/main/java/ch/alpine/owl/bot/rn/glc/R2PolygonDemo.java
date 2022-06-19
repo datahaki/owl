@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.sophus.api.Region;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 

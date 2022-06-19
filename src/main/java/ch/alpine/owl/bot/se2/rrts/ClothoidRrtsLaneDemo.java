@@ -27,7 +27,7 @@ import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

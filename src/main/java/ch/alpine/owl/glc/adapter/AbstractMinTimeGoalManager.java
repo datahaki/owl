@@ -9,7 +9,7 @@ import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.api.Region;
+import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

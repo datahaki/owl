@@ -2,7 +2,9 @@
 
 # ch.alpine.owl
 
-Library for motion planning in Java, version `0.6.1`
+Library for motion planning in Java
+
+![](https://github.com/datahaki/owl/actions/workflows/mvn_test.yml/badge.svg)
 
 The library was developed with the following objectives in mind
 * suitable for use in safety-critical real-time systems
