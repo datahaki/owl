@@ -3,11 +3,12 @@ package ch.alpine.sophus.ext.api;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.ascona.util.api.AbstractManifoldDisplayDemo;
-import ch.alpine.ascona.util.dis.ManifoldDisplay;
+import ch.alpine.ascona.util.api.ControlPointsDemo;
+import ch.alpine.ascona.util.dis.ManifoldDisplays;
 import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 
+// TODO ASCONA AbstractDemoHelper exist in 2 projects
 public enum AbstractDemoHelper {
   ;
   /** off-screen test
@@ -45,16 +46,15 @@ public enum AbstractDemoHelper {
     BufferedImage bufferedImage = new BufferedImage(1280, 960, BufferedImage.TYPE_INT_ARGB);
     abstractDemo.render(geometricLayer, bufferedImage.createGraphics());
     boolean success = true;
-    if (abstractDemo instanceof AbstractManifoldDisplayDemo abstractManifoldDisplayDemo) {
-      for (ManifoldDisplay manifoldDisplay : abstractManifoldDisplayDemo.getManifoldDisplays())
+    if (abstractDemo instanceof ControlPointsDemo abstractManifoldDisplayDemo)
+      for (ManifoldDisplays manifoldDisplays : abstractManifoldDisplayDemo.getManifoldDisplays())
         try {
-          abstractManifoldDisplayDemo.setManifoldDisplay(manifoldDisplay);
+          abstractManifoldDisplayDemo.setManifoldDisplay(manifoldDisplays);
           abstractManifoldDisplayDemo.render(geometricLayer, bufferedImage.createGraphics());
         } catch (Exception exception) {
-          System.err.println(manifoldDisplay);
+          System.err.println(manifoldDisplays);
           success = false;
         }
-    }
     if (!success)
       throw new RuntimeException();
   }

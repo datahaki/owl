@@ -180,6 +180,10 @@ class DefaultRrtsPlannerServerTest {
 
   @Test
   void testSome() {
-    assertTrue(17 <= Integer.parseInt(System.getProperty("java.version")));
+    String string = System.getProperty("java.version"); // for instance "17", or "17.0.3"
+    int index = string.indexOf('.');
+    if (0 < index)
+      string = string.substring(0, index);
+    assertTrue(17 <= Integer.parseInt(string));
   }
 }

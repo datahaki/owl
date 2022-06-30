@@ -48,7 +48,7 @@ public class Rice2dxTParts1Demo implements DemoInterface {
     BijectionFamily noise2 = new SimpleR2TranslationFamily(stf2);
     Region<StateTime> region2 = new R2xTEllipsoidStateTimeRegion( //
         Tensors.vector(0.5, 0.6), noise2, () -> abstractEntity.getStateTimeNow().time());
-    BijectionFamily rigid2 = new So2Family(s -> s.multiply(RealScalar.of(0.25)));
+    BijectionFamily rigid2 = new So2Family(RealScalar.of(0.25)::multiply);
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));
     Region<StateTime> region3 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());

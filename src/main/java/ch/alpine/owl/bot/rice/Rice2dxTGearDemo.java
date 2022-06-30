@@ -37,7 +37,7 @@ public class Rice2dxTGearDemo implements DemoInterface {
     abstractEntity.delayHint = RealScalar.of(1.6);
     owlAnimationFrame.add(abstractEntity);
     Tensor polygon = CogPoints.of(4, RealScalar.of(1.0), RealScalar.of(0.3));
-    BijectionFamily rigid2 = new So2Family(s -> s.multiply(RealScalar.of(0.25)));
+    BijectionFamily rigid2 = new So2Family(RealScalar.of(0.25)::multiply);
     Region<StateTime> cog0 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     BijectionFamily rigid3 = new Se2Family(s -> Tensors.of( //

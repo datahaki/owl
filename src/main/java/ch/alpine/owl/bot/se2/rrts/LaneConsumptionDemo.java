@@ -12,10 +12,7 @@ import javax.swing.JButton;
 
 import ch.alpine.ascona.crv.AbstractCurveDemo;
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
-import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
-import ch.alpine.ascona.util.dis.Se2CoveringClothoidDisplay;
-import ch.alpine.ascona.util.dis.Se2CoveringDisplay;
-import ch.alpine.ascona.util.dis.Se2Display;
+import ch.alpine.ascona.util.dis.ManifoldDisplays;
 import ch.alpine.ascona.util.ren.LeversRender;
 import ch.alpine.ascona.util.win.BaseFrame;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -42,11 +39,10 @@ public class LaneConsumptionDemo extends AbstractCurveDemo implements DemoInterf
 
   public LaneConsumptionDemo(Collection<Consumer<LaneInterface>> consumers) {
     super(List.of( //
-        Se2ClothoidDisplay.ANALYTIC, //
-        Se2ClothoidDisplay.LEGENDRE, //
-        Se2CoveringClothoidDisplay.INSTANCE, //
-        Se2CoveringDisplay.INSTANCE, //
-        Se2Display.INSTANCE));
+        ManifoldDisplays.Se2ClA, //
+        ManifoldDisplays.Se2ClL, //
+        ManifoldDisplays.Se2C, //
+        ManifoldDisplays.Se2));
     curvt = false;
     ToolbarFieldsEditor.add(this, timerFrame.jToolBar);
     // ---

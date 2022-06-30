@@ -34,8 +34,8 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(1.2);
 
   public static ScalarTensorFunction wrap1DTensor(NativeContinuousNoise nativeContinuousNoise, Tensor offset, double period, double amplitude) {
-    return scalar -> Tensor.of(offset.stream().map(Scalar.class::cast)
-        .map(value -> RealScalar.of(amplitude * nativeContinuousNoise.at(scalar.number().doubleValue() * period, value.number().doubleValue()))));
+    return scalar -> //
+    offset.map(value -> RealScalar.of(amplitude * nativeContinuousNoise.at(scalar.number().doubleValue() * period, value.number().doubleValue())));
   }
 
   @SuppressWarnings("unused")
