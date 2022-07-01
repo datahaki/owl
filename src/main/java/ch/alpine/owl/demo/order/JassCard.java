@@ -10,12 +10,12 @@ import ch.alpine.owl.demo.order.JassCard.Type;
  * 
  * https://en.wikipedia.org/wiki/Jass */
 /* package */ record JassCard(Farbe farbe, Type type, boolean isTrumpf) implements Serializable {
-  public static enum Farbe {
+  public enum Farbe {
     ROSEN, EICHEL, SCHILTEN, SCHELLE
   }
 
-  public static enum Type {
-    SIX(1), SEVEN(2), EIGHT(3), NINE(8), TEN(4), JACK(9), QUEEN(5), KING(6), ACE(7),;
+  public enum Type {
+    SIX(1), SEVEN(2), EIGHT(3), NINE(8), TEN(4), JACK(9), QUEEN(5), KING(6), ACE(7);
 
     private final int trumpfOrdering;
 

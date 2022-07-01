@@ -16,10 +16,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ch.alpine.ascona.util.win.AbstractDemo;
-import ch.alpine.ascona.util.win.LookAndFeels;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldPreferredWidth;
 import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
+import ch.alpine.bridge.swing.LookAndFeels;
 import ch.alpine.bridge.swing.SpinnerLabel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -85,7 +85,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
   }
 
   public static void main(String[] args) {
-    LookAndFeels.DARK.tryUpdateUI();
+    LookAndFeels.DARK.updateComponentTreeUI();
     new JpgArtefactDemo().setVisible(1500, 950);
   }
 }
