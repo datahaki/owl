@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.math.region.BufferedImageRegion;
@@ -31,8 +30,8 @@ public class R2ImageRegionWrap implements RegionBounds {
    * @param range
    * @param ttl time to live */
   public R2ImageRegionWrap(BufferedImage bufferedImage, Tensor range, int ttl) {
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     imageRegion = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
     Tensor cost = FloodFill2D.of(ImageFormat.from(bufferedImage), ttl);
     costFunction = new DenseImageCostFunction(cost.divide(DoubleScalar.of(ttl)), range, RealScalar.ZERO);

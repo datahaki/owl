@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.ubongo;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
@@ -17,7 +17,7 @@ import ch.alpine.tensor.img.StrictColorDataIndexed;
 
 /* package */ enum UbongoRender {
   ;
-  private static final ColorDataIndexed INSTANCE = StrictColorDataIndexed.of(Tensor.of(Stream.of(Ubongo.values()).map(Ubongo::colorVector)));
+  private static final ColorDataIndexed INSTANCE = StrictColorDataIndexed.of(Tensor.of(Arrays.stream(Ubongo.values()).map(Ubongo::colorVector)));
   private static final ColorDataIndexed MONOCHROME = CyclicColorDataIndexed.of(Tensors.of(Tensors.vector(160, 160, 160, 255)));
 
   /** @param list

@@ -12,8 +12,8 @@ import ch.alpine.owl.math.order.VectorLexicographic;
 import ch.alpine.tensor.MultiplexScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.api.ComplexEmbedding;
 import ch.alpine.tensor.api.ConjugateInterface;
 import ch.alpine.tensor.qty.Quantity;
@@ -46,7 +46,7 @@ public class VectorScalar extends MultiplexScalar implements //
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */
   public static Scalar of(Tensor vector) {
     if (vector.stream().map(Scalar.class::cast).anyMatch(VectorScalar.class::isInstance))
-      throw TensorRuntimeException.of(vector);
+      throw Throw.of(vector);
     return new VectorScalar(vector.copy());
   }
 
@@ -81,7 +81,7 @@ public class VectorScalar extends MultiplexScalar implements //
   @Override // from Scalar
   public Scalar multiply(Scalar scalar) {
     if (scalar instanceof VectorScalar)
-      throw TensorRuntimeException.of(this, scalar);
+      throw Throw.of(this, scalar);
     return new VectorScalar(vector.multiply(scalar));
   }
 
@@ -92,7 +92,7 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public Scalar reciprocal() {
-    throw TensorRuntimeException.of(this);
+    throw Throw.of(this);
   }
 
   @Override // from Scalar
@@ -102,7 +102,7 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public Scalar one() {
-    throw TensorRuntimeException.of(this);
+    throw Throw.of(this);
   }
 
   // ---
@@ -112,7 +112,7 @@ public class VectorScalar extends MultiplexScalar implements //
       VectorScalar vectorScalar = (VectorScalar) scalar;
       return new VectorScalar(vector.add(vectorScalar.vector));
     }
-    throw TensorRuntimeException.of(this, scalar);
+    throw Throw.of(this, scalar);
   }
 
   @Override // from ComplexEmbedding
@@ -147,7 +147,7 @@ public class VectorScalar extends MultiplexScalar implements //
       VectorScalar vectorScalar = (VectorScalar) scalar;
       return VectorLexicographic.COMPARATOR.compare(vector, vectorScalar.vector());
     }
-    throw TensorRuntimeException.of(this, scalar);
+    throw Throw.of(this, scalar);
   }
 
   @Override // from Scalar

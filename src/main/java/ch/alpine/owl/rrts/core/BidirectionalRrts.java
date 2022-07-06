@@ -10,7 +10,7 @@ import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.ext.Lists;
 
 public class BidirectionalRrts implements Rrts {
@@ -51,7 +51,7 @@ public class BidirectionalRrts implements Rrts {
     List<RrtsNode> toGoal = Nodes.listToRoot(parent);
     Tensor backwardRoot = Lists.last(toGoal).state();
     if (!backwardRoot.equals(goal))
-      throw TensorRuntimeException.of(backwardRoot, goal);
+      throw Throw.of(backwardRoot, goal);
     for (RrtsNode node : toGoal) {
       Optional<RrtsNode> optional = find(node.state());
       if (!optional.isPresent())

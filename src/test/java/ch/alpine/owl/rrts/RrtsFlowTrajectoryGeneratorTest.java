@@ -36,8 +36,8 @@ import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
 import ch.alpine.sophus.lie.rn.RnTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.sca.Abs;
@@ -241,7 +241,7 @@ class RrtsFlowTrajectoryGeneratorTest {
       assertEquals(trajectorySample.stateTime().time(), integrator.tail().time());
       try {
         Chop._03.requireClose(trajectorySample.stateTime().state(), integrator.tail().state());
-      } catch (TensorRuntimeException e) { // +/- close to pi
+      } catch (Throw e) { // +/- close to pi
         Chop._03.requireClose(trajectorySample.stateTime().state().extract(0, 2), integrator.tail().state().extract(0, 2));
         Chop._03.requireClose( //
             Abs.of(trajectorySample.stateTime().state().Get(2)), //

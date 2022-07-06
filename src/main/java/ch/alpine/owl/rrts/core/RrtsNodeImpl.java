@@ -5,7 +5,7 @@ import ch.alpine.owl.data.tree.SetNode;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 
 /** Implementation based on
  * Sertac Karaman and Emilio Frazzoli, 2011:
@@ -34,7 +34,7 @@ import ch.alpine.tensor.TensorRuntimeException;
     final Scalar nodeCostFromRoot = costFromRoot().add(costFromParent);
     // the condition of cost reduction is not strictly necessary
     if (!Scalars.lessThan(nodeCostFromRoot, child.costFromRoot()))
-      throw TensorRuntimeException.of(nodeCostFromRoot, child.costFromRoot());
+      throw Throw.of(nodeCostFromRoot, child.costFromRoot());
     _propagate(child, nodeCostFromRoot);
     ((RrtsNodeImpl) child).costFromRoot = nodeCostFromRoot;
   }

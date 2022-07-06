@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
-import java.util.stream.Stream;
 
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
@@ -36,8 +35,8 @@ import ch.alpine.tensor.sca.Clips;
   // RungeKutta45Integrator.INSTANCE, RationalScalar.of(1, 10), 4);
   private static final Tensor RANGE = Tensors.vector(9, 6.5);
   // private static final Tensor OBSTACLE_IMAGE = ; //
-  private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-      Clips.positive(RANGE.Get(0)), Clips.positive(RANGE.Get(1))));
+  private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+      Clips.positive(RANGE.Get(0)), Clips.positive(RANGE.Get(1)));
   static final Region<Tensor> REGION = new BufferedImageRegion( //
       ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
   private static final PlannerConstraint PLANNER_CONSTRAINT = //

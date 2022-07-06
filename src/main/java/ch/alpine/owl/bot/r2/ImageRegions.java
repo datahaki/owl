@@ -2,12 +2,11 @@
 package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.TensorRank;
 import ch.alpine.tensor.io.ResourceData;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -26,8 +25,8 @@ public enum ImageRegions {
   public static Region<Tensor> from(BufferedImage bufferedImage, Tensor range, boolean strict) {
     if (bufferedImage.getType() != BufferedImage.TYPE_BYTE_GRAY)
       bufferedImage = Binarize.of(bufferedImage);
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     return new BufferedImageRegion(bufferedImage, coordinateBoundingBox, strict);
   }
 
@@ -44,7 +43,7 @@ public enum ImageRegions {
     return switch (TensorRank.ofArray(image)) {
     case 2 -> image.copy();
     case 3 -> image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
-    default -> throw TensorRuntimeException.of(image);
+    default -> throw Throw.of(image);
     };
   }
 }

@@ -60,8 +60,8 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
-    renderInterface.setPositioningEnabled(false);
-    renderInterface.setMidpointIndicated(false);
+    controlPointsRender.setPositioningEnabled(false);
+    controlPointsRender.setMidpointIndicated(false);
     // ---
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX_SE2);
     Tensor tensor = RandomSample.of(randomSampleInterface, SIZE);

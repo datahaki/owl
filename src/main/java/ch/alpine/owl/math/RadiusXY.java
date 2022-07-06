@@ -3,7 +3,7 @@ package ch.alpine.owl.math;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 
 /** helper predicate */
 public enum RadiusXY {
@@ -15,6 +15,6 @@ public enum RadiusXY {
     Scalar scalar = vector.Get(0);
     if (scalar.equals(vector.get(1)))
       return scalar;
-    throw TensorRuntimeException.of(vector);
+    throw Throw.of(vector);
   }
 }

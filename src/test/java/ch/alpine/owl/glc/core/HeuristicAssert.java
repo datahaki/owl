@@ -8,7 +8,7 @@ import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.data.tree.NodesAssert;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.tensor.Scalars;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 
 public enum HeuristicAssert {
   ;
@@ -45,7 +45,7 @@ public enum HeuristicAssert {
         System.err.println(String.format("At time %s merit decreased\n %s\n %s", //
             current.stateTime().time(), parent.merit(), current.merit()));
         StateTimeTrajectories.print(GlcNodes.getPathFromRootTo(finalNode));
-        throw TensorRuntimeException.of(current.merit(), parent.merit());
+        throw Throw.of(current.merit(), parent.merit());
       }
       // monotonously increasing merit means, that delta(Cost) >= delta(CostToGo)
       // as: Cost(Goal)== Merit(Goal) >= (Cost(Node) + CostToGo(Node)) = Merit (Node)

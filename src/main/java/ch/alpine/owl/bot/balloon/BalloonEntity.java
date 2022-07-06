@@ -8,7 +8,6 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import ch.alpine.ascona.util.ren.ImageRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -96,9 +95,9 @@ import ch.alpine.tensor.sca.Clips;
     { // indicate current position
       Tensor state = getStateTimeNow().state();
       geometricLayer.pushMatrix(GfxMatrix.translation(state));
-      new ImageRender(bufferedImage, CoordinateBoundingBox.of(Stream.of( //
+      new ImageRender(bufferedImage, CoordinateBoundingBox.of( //
           Clips.interval(-5, 5), //
-          Clips.interval(0, 10)))).render(geometricLayer, graphics);
+          Clips.interval(0, 10))).render(geometricLayer, graphics);
       geometricLayer.popMatrix();
       Point2D point = geometricLayer.toPoint2D(state);
       graphics.setColor(new Color(64, 128, 64, 192));

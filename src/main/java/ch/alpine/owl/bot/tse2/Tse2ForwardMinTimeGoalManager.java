@@ -7,7 +7,7 @@ import ch.alpine.owl.glc.adapter.AbstractMinTimeGoalManager;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.red.Max;
 
 /** min time cost function with indecent heuristic
@@ -27,13 +27,13 @@ public final class Tse2ForwardMinTimeGoalManager extends AbstractMinTimeGoalMana
     super(tse2ComboRegion);
     this.tse2ComboRegion = tse2ComboRegion;
     if (Scalars.nonZero(tse2ComboRegion.v_range().min()))
-      throw TensorRuntimeException.of(tse2ComboRegion.v_range().min());
+      throw Throw.of(tse2ComboRegion.v_range().min());
     Scalar v_max = tse2ComboRegion.v_range().max();
     this.maxTurning = Tse2Controls.maxTurning(controls).multiply(v_max);
     Scalar a_min = Tse2Controls.minAcc(controls);
     Scalar a_max = Tse2Controls.maxAcc(controls);
     if (!a_max.equals(a_min.negate()))
-      throw TensorRuntimeException.of(a_min, a_max);
+      throw Throw.of(a_min, a_max);
     linearVelocity2MinTime = new LinearVelocity2MinTime(v_max, a_max);
   }
 

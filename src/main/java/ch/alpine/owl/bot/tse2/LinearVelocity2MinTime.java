@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.tse2;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.num.Roots;
 import ch.alpine.tensor.sca.Sign;
 
@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.Sign;
     Tensor coeffs = Tensors.of(d_tar.negate(), v_cur, a_max.divide(RealScalar.of(2)));
     Scalar time = Roots.of(coeffs).Get(1);
     if (Sign.isPositive(Roots.of(coeffs).Get(0)))
-      throw TensorRuntimeException.of(coeffs);
+      throw Throw.of(coeffs);
     return Sign.requirePositiveOrZero(time);
   }
 

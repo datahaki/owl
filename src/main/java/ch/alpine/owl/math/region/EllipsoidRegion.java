@@ -6,7 +6,7 @@ import java.io.Serializable;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -39,7 +39,7 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBou
   public EllipsoidRegion(Tensor center, Tensor radius) {
     // assert that radius are strictly positive
     if (radius.stream().map(Scalar.class::cast).anyMatch(Sign::isNegativeOrZero))
-      throw TensorRuntimeException.of(radius);
+      throw Throw.of(radius);
     // ---
     this.center = VectorQ.requireLength(center, radius.length()).copy();
     this.radius = radius.copy();

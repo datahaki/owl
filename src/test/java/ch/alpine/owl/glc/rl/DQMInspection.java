@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.io.Primitives;
@@ -22,7 +22,7 @@ import ch.alpine.tensor.red.Entrywise;
     max = rlDomainQueueMap.keySet().stream().reduce(Entrywise.max()).get();
     Tensor width = max.subtract(min).map(RealScalar.ONE::add);
     if (!ExactTensorQ.of(width))
-      throw TensorRuntimeException.of(min, max, width);
+      throw Throw.of(min, max, width);
     count = Array.zeros(Primitives.toListInteger(width));
     for (Entry<Tensor, RLDomainQueue> entry : rlDomainQueueMap.entrySet()) {
       Tensor key = entry.getKey();

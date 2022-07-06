@@ -31,8 +31,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
@@ -70,7 +70,7 @@ import ch.alpine.tensor.sca.Ramp;
       Scalar cost = goalNode.costFromRoot();
       Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
-        throw TensorRuntimeException.of(cost, lowerBound);
+        throw Throw.of(cost, lowerBound);
     }
     return trajectoryPlanner;
   }

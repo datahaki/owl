@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.rn.rrts;
 
 import java.awt.image.BufferedImage;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.math.region.BufferedImageRegion;
@@ -33,8 +32,8 @@ import ch.alpine.tensor.sca.Clips;
 /* package */ enum R2InsideCharDemo {
   ;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), range));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));

@@ -1,8 +1,6 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
-import java.util.stream.Stream;
-
 import ch.alpine.ascona.util.ren.AxesRender;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -38,8 +36,8 @@ public class BalloonAnimationDemo implements DemoInterface {
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
     MouseGoal.simple(owlAnimationFrame, balloonEntity, plannerConstraint);
     Tensor range = Tensors.vector(500, 100).unmodifiable();
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     Region<Tensor> imageRegion = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/mountainChain.png"), coordinateBoundingBox, true);
     owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));

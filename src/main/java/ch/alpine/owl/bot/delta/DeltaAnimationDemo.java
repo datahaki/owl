@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.delta;
 
 import java.awt.image.BufferedImage;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -38,8 +37,8 @@ public class DeltaAnimationDemo implements DemoInterface {
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.nearest(ResourceData.of("/io/delta_uxy.png"), range, amp);
     BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO);

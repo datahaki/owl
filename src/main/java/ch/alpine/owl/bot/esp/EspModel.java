@@ -5,7 +5,7 @@ import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
+import ch.alpine.tensor.Throw;
 
 /** English sixteen problem
  * 
@@ -21,7 +21,7 @@ import ch.alpine.tensor.TensorRuntimeException;
     int sx = Scalars.intValueExact(spot.Get(0));
     int sy = Scalars.intValueExact(spot.Get(1));
     if (Scalars.nonZero(x.Get(sx, sy)))
-      throw TensorRuntimeException.of(x);
+      throw Throw.of(x);
     Tensor vacant = spot.add(u);
     int px = Scalars.intValueExact(vacant.Get(0));
     int py = Scalars.intValueExact(vacant.Get(1));

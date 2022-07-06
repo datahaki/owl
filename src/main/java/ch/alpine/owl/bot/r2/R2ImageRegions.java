@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.stream.Stream;
 
 import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.region.ImageRegion;
@@ -21,8 +20,8 @@ import ch.alpine.tensor.sca.Clips;
 public enum R2ImageRegions {
   ;
   static Region<Tensor> normal(BufferedImage bufferedImage, Tensor range, boolean strict) {
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     return new BufferedImageRegion(bufferedImage, coordinateBoundingBox, strict);
   }
 

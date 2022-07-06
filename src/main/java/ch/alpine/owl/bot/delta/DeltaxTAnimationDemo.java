@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.delta;
 
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
@@ -66,8 +65,8 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     Region<StateTime> region3 = create(stateSpaceModel, RealScalar.of(0.3), Tensors.vector(2, 7), flow, supplier);
     Region<StateTime> region4 = create(stateSpaceModel, RealScalar.of(0.3), Tensors.vector(1, 8), flow, supplier);
     // ---
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of(Stream.of( //
-        Clips.positive(range.Get(0)), Clips.positive(range.Get(1))));
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+        Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     Region<Tensor> region = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //

@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JSlider;
@@ -47,7 +47,7 @@ public class JpgArtefactDemo extends AbstractDemo implements ChangeListener {
     ToolbarFieldsEditor.add(param, timerFrame.jToolBar).addUniversalListener(() -> stateChanged(null));
     // ---
     File[] files = ROOT.listFiles();
-    spinnerLabel = SpinnerLabel.of(Stream.of(files).map(File::getName).toArray(String[]::new));
+    spinnerLabel = SpinnerLabel.of(Arrays.stream(files).map(File::getName).toArray(String[]::new));
     spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(120, 28), "file");
     spinnerLabel.addSpinnerListener(s -> stateChanged(null));
     // ---

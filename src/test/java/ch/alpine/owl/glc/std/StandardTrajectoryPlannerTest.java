@@ -32,8 +32,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.TensorRuntimeException;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
@@ -65,7 +65,7 @@ class StandardTrajectoryPlannerTest {
       // FIXME OWL TEST abs!?
       Scalar lowerBound = Ramp.of(Vector2Norm.of(stateGoal.subtract(stateRoot)).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
-        throw TensorRuntimeException.of(cost, lowerBound);
+        throw Throw.of(cost, lowerBound);
     }
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
