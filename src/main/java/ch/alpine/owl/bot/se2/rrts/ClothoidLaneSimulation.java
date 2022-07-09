@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.LogarithmicAxis;
+import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.XYPlot;
 
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
@@ -119,10 +121,13 @@ import ch.alpine.tensor.sca.Clips;
         writer.println(summary.replace("\n", System.lineSeparator()));
         System.out.println("\n" + summary + "\n");
         JFreeChart jFreeChart = ListPlot.of(visualSet);
-        jFreeChart.getXYPlot().setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
+        // TODO can simplify!
+        Plot plot = jFreeChart.getPlot();
+        XYPlot xyPlot = (XYPlot) plot;
+        xyPlot.setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
         List<CoordinateBoundingBox> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
             .map(points -> CoordinateBounds.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
-        jFreeChart.getXYPlot().getRangeAxis().setRange( //
+        xyPlot.getRangeAxis().setRange( //
             Math.max(0., 0.9 * minMaxes.stream() //
                 .map(CoordinateBoundingBox::min) //
                 .map(Scalar.class::cast) //

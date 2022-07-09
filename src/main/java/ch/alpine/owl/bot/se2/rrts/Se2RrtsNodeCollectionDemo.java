@@ -7,14 +7,13 @@ import java.awt.Graphics2D;
 import ch.alpine.ascona.util.api.ControlPointsDemo;
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.ManifoldDisplays;
+import ch.alpine.ascona.util.ref.AsconaParam;
 import ch.alpine.ascona.util.ren.AxesRender;
 import ch.alpine.ascona.util.ren.LeversRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldInteger;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.bridge.ref.util.ToolbarFieldsEditor;
-import ch.alpine.bridge.swing.LookAndFeels;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.sophus.crv.dub.DubinsPathComparators;
@@ -46,38 +45,43 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
 
   // ---
   @ReflectionMarker
-  public static class Param {
-    public Boolean limit = true;
+  public static class Param extends AsconaParam {
+    public Param() {
+      super(false, ManifoldDisplays.CL_ONLY);
+    }
+
     @FieldInteger
-    @FieldClip(min = "1", max = "50")
+    @FieldClip(min = "1", max = "20")
     public Scalar value = RealScalar.of(3);
   }
 
-  public final Param param = new Param();
+  private final Param param;
+  private Tensor sequence;
 
   public Se2RrtsNodeCollectionDemo() {
-    super(false, ManifoldDisplays.CL_ONLY);
+    this(new Param());
+  }
+
+  public Se2RrtsNodeCollectionDemo(Param param) {
+    super(param);
+    this.param = param;
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
-    ToolbarFieldsEditor.add(param, timerFrame.jToolBar);
     // ---
-    controlPointsRender.setPositioningEnabled(false);
     controlPointsRender.setMidpointIndicated(false);
     // ---
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX_SE2);
-    Tensor tensor = RandomSample.of(randomSampleInterface, SIZE);
-    for (Tensor state : tensor) {
+    sequence = RandomSample.of(randomSampleInterface, SIZE);
+    for (Tensor state : sequence) {
       se2RrtsNodeCollection.insert(RrtsNode.createRoot(state, RealScalar.ONE));
     }
-    setControlPointsSe2(tensor);
+    setControlPointsSe2(Tensors.fromString("{{0, 0, 0}}"));
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    AxesRender.INSTANCE.render(geometricLayer, graphics);
-    // ---
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Tensor mouse = timerFrame.geometricComponent.getMouseSe2CState();
-    LeversRender leversRender = LeversRender.of(manifoldDisplay, getGeodesicControlPoints(), mouse, geometricLayer, graphics);
+    Tensor mouse = getGeodesicControlPoints().get(0);
+    LeversRender leversRender = LeversRender.of(manifoldDisplay, sequence, mouse, geometricLayer, graphics);
     leversRender.renderSequence();
     leversRender.renderOrigin();
     // ---
@@ -93,7 +97,6 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   public static void main(String[] args) {
-    LookAndFeels.LIGHT.updateComponentTreeUI();
-    new Se2RrtsNodeCollectionDemo().setVisible(1200, 800);
+    launch();
   }
 }
