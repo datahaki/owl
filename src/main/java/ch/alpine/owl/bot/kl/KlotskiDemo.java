@@ -1,12 +1,16 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
+import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.glc.adapter.DiscreteIntegrator;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.CTrajectoryPlanner;
@@ -23,16 +27,18 @@ import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.TableBuilder;
 
-/* package */ class KlotskiDemo {
+/* package */ class KlotskiDemo extends AbstractDemo {
   public static final File FOLDER_SOLUTIONS = HomeDirectory.Documents("klotski");
   private final KlotskiProblem klotskiProblem;
-  final KlotskiFrame klotskiFrame;
+  private static final int RES = 128;
+  // ---
+  private final KlotskiPlot klotskiPlot;
+  Tensor _board = null; // bad design
 
   public KlotskiDemo(KlotskiProblem klotskiProblem) {
     this.klotskiProblem = klotskiProblem;
-    klotskiFrame = new KlotskiFrame(klotskiProblem);
-    klotskiFrame.timerFrame.geometricComponent.setOffset(100, 500);
-    klotskiFrame.setVisible(700, 700);
+    klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
+    timerFrame.geometricComponent.setOffset(100, 500);
   }
 
   KlotskiSolution compute() {
@@ -65,7 +71,7 @@ import ch.alpine.tensor.io.TableBuilder;
         Map<Tensor, GlcNode> domainMap = standardTrajectoryPlanner.getDomainMap();
         GlcNode nextNode = optional.get();
         {
-          klotskiFrame._board = nextNode.state();
+          _board = nextNode.state();
           tableBuilder.appendRow(Tensors.vector( //
               expandCount, domainMap.size(), queue.size(), //
               Scalars.intValueExact(nextNode.costFromRoot())));
@@ -80,8 +86,15 @@ import ch.alpine.tensor.io.TableBuilder;
     }
   }
 
+  @Override
+  public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+    Tensor board = _board;
+    if (Objects.nonNull(board))
+      klotskiPlot.new Plot(board).render(geometricLayer, graphics);
+  }
+
   public void close() {
-    klotskiFrame.timerFrame.close();
+    timerFrame.close();
   }
 
   public static File solutionFile(KlotskiProblem klotskiProblem) {
@@ -92,6 +105,7 @@ import ch.alpine.tensor.io.TableBuilder;
   public static void main(String[] args) throws IOException {
     KlotskiProblem klotskiProblem = Huarong.AMBUSH.create();
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
+    klotskiDemo.setVisible(700, 700);
     KlotskiSolution klotskiSolution = klotskiDemo.compute();
     Export.object(solutionFile(klotskiProblem), klotskiSolution);
     klotskiDemo.close();

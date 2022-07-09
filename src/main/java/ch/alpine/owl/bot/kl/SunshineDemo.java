@@ -13,9 +13,10 @@ import ch.alpine.tensor.red.Times;
   public static void main(String[] args) throws IOException {
     KlotskiProblem klotskiProblem = Sunshine.ORIGINAL.create();
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
-    Tensor model2Pixel = klotskiDemo.klotskiFrame.timerFrame.geometricComponent.getModel2Pixel();
-    klotskiDemo.klotskiFrame.timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(0.4, 0.4, 1), model2Pixel));
-    klotskiDemo.klotskiFrame.timerFrame.geometricComponent.setOffset(100, 600);
+    Tensor model2Pixel = klotskiDemo.timerFrame.geometricComponent.getModel2Pixel();
+    klotskiDemo.timerFrame.geometricComponent.setModel2Pixel(Times.of(Tensors.vector(0.4, 0.4, 1), model2Pixel));
+    klotskiDemo.timerFrame.geometricComponent.setOffset(100, 600);
+    klotskiDemo.setVisible(700, 700);
     KlotskiSolution klotskiSolution = klotskiDemo.compute();
     Export.object(KlotskiDemo.solutionFile(klotskiProblem), klotskiSolution);
     klotskiDemo.close();
