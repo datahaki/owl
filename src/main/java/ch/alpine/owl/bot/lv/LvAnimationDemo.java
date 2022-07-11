@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;

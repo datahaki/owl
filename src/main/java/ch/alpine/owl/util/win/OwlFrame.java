@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.ascona.util.win.BaseFrame;
-import ch.alpine.ascona.util.win.RenderInterface;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.rrts.core.RrtsNode;

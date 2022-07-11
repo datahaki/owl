@@ -4,7 +4,7 @@ package ch.alpine.owl.util.ren;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.region.EllipsoidRegion;

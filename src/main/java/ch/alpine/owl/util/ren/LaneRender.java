@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.util.Objects;
 
 import ch.alpine.ascona.util.ren.PathRender;
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.tensor.Tensor;

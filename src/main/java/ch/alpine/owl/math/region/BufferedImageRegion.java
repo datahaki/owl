@@ -8,7 +8,7 @@ import java.awt.image.WritableRaster;
 import java.io.Serializable;
 
 import ch.alpine.ascona.util.ren.ImageRender;
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;

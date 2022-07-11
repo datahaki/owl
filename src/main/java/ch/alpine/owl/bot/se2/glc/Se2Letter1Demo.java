@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.glc.core.PlannerConstraint;

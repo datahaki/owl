@@ -3,7 +3,7 @@ package ch.alpine.owl.util.ren;
 
 import java.awt.Graphics2D;
 
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.sophus.crv.d2.PolygonRegion;
 import ch.alpine.tensor.Tensor;

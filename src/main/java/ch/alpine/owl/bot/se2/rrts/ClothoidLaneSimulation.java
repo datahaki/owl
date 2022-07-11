@@ -121,7 +121,7 @@ import ch.alpine.tensor.sca.Clips;
         writer.println(summary.replace("\n", System.lineSeparator()));
         System.out.println("\n" + summary + "\n");
         JFreeChart jFreeChart = ListPlot.of(visualSet);
-        // TODO can simplify!
+        // TODO OWL can simplify!
         Plot plot = jFreeChart.getPlot();
         XYPlot xyPlot = (XYPlot) plot;
         xyPlot.setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));

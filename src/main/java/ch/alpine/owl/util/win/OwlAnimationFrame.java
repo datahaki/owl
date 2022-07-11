@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JToggleButton;
 
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.ascona.util.win.TimerFrame;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;

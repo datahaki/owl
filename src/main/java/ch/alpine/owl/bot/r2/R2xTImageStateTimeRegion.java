@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.function.Supplier;
 
 import ch.alpine.ascona.util.ren.ImageRender;
-import ch.alpine.ascona.util.win.RenderInterface;
+import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.StateTime;
