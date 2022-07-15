@@ -1,8 +1,6 @@
+// code by jph
 package ch.alpine.owl.math.flow;
 
-//// code by jph
-// package ch.ethz.idsc.owl.math.flow;
-//
 // import ch.ethz.idsc.tensor.ExactTensorQ;
 // import ch.ethz.idsc.tensor.RealScalar;
 // import ch.ethz.idsc.tensor.Tensor;

@@ -47,14 +47,14 @@ public class SetEboTracker<K> extends AbstractEboTracker<K> {
             break; // leave for loop, continue with while loop
           }
         } else
-          // if x strictly succeeding the current object and it is strictly succeeding
-          // in every coordinate until now, then x will be discarded
-          if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) { //
-            if (productorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
-              discardedKeys.add(applicantPair.key());
-              return;
-            }
+        // if x strictly succeeding the current object and it is strictly succeeding
+        // in every coordinate until now, then x will be discarded
+        if (semiorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) { //
+          if (productorder.equals(OrderComparison.STRICTLY_SUCCEEDS)) {
+            discardedKeys.add(applicantPair.key());
+            return;
           }
+        }
       }
     }
     candidateSet.add(applicantPair);
