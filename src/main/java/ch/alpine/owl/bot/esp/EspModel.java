@@ -21,7 +21,7 @@ import ch.alpine.tensor.Throw;
     int sx = Scalars.intValueExact(spot.Get(0));
     int sy = Scalars.intValueExact(spot.Get(1));
     if (Scalars.nonZero(x.Get(sx, sy)))
-      throw Throw.of(x);
+      throw new Throw(x);
     Tensor vacant = spot.add(u);
     int px = Scalars.intValueExact(vacant.Get(0));
     int py = Scalars.intValueExact(vacant.Get(1));

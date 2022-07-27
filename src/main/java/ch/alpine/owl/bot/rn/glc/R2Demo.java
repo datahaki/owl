@@ -70,7 +70,7 @@ import ch.alpine.tensor.sca.Ramp;
       Scalar cost = goalNode.costFromRoot();
       Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
-        throw Throw.of(cost, lowerBound);
+        throw new Throw(cost, lowerBound);
     }
     return trajectoryPlanner;
   }

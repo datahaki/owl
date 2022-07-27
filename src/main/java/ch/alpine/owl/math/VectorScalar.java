@@ -46,7 +46,7 @@ public class VectorScalar extends MultiplexScalar implements //
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */
   public static Scalar of(Tensor vector) {
     if (vector.stream().map(Scalar.class::cast).anyMatch(VectorScalar.class::isInstance))
-      throw Throw.of(vector);
+      throw new Throw(vector);
     return new VectorScalar(vector.copy());
   }
 
@@ -81,7 +81,7 @@ public class VectorScalar extends MultiplexScalar implements //
   @Override // from Scalar
   public Scalar multiply(Scalar scalar) {
     if (scalar instanceof VectorScalar)
-      throw Throw.of(this, scalar);
+      throw new Throw(this, scalar);
     return new VectorScalar(vector.multiply(scalar));
   }
 
@@ -92,7 +92,7 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public Scalar reciprocal() {
-    throw Throw.of(this);
+    throw new Throw(this);
   }
 
   @Override // from Scalar
@@ -102,7 +102,7 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public Scalar one() {
-    throw Throw.of(this);
+    throw new Throw(this);
   }
 
   // ---
@@ -112,7 +112,7 @@ public class VectorScalar extends MultiplexScalar implements //
       VectorScalar vectorScalar = (VectorScalar) scalar;
       return new VectorScalar(vector.add(vectorScalar.vector));
     }
-    throw Throw.of(this, scalar);
+    throw new Throw(this, scalar);
   }
 
   @Override // from ComplexEmbedding
@@ -147,7 +147,7 @@ public class VectorScalar extends MultiplexScalar implements //
       VectorScalar vectorScalar = (VectorScalar) scalar;
       return VectorLexicographic.COMPARATOR.compare(vector, vectorScalar.vector());
     }
-    throw Throw.of(this, scalar);
+    throw new Throw(this, scalar);
   }
 
   @Override // from Scalar

@@ -34,7 +34,7 @@ import ch.alpine.tensor.Throw;
     final Scalar nodeCostFromRoot = costFromRoot().add(costFromParent);
     // the condition of cost reduction is not strictly necessary
     if (!Scalars.lessThan(nodeCostFromRoot, child.costFromRoot()))
-      throw Throw.of(nodeCostFromRoot, child.costFromRoot());
+      throw new Throw(nodeCostFromRoot, child.costFromRoot());
     _propagate(child, nodeCostFromRoot);
     ((RrtsNodeImpl) child).costFromRoot = nodeCostFromRoot;
   }

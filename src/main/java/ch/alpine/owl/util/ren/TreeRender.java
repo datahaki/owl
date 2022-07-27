@@ -16,12 +16,12 @@ import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.StateCostNode;
 import ch.alpine.owl.math.VectorScalar;
+import ch.alpine.sophus.hs.r2.ConvexHull2D;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.FiniteScalarQ;
-import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
@@ -71,7 +71,7 @@ public class TreeRender implements RenderInterface {
 
     public Render(Collection<? extends StateCostNode> collection) {
       this.collection = collection;
-      polygon = ConvexHull.of(collection.stream().map(StateCostNode::state).map(Extract2D.FUNCTION), Chop._10);
+      polygon = ConvexHull2D.of(collection.stream().map(StateCostNode::state).map(Extract2D.FUNCTION), Chop._10);
       treeColor = TreeColor.ofDimensions(collection.iterator().next().state().length());
       ScalarSummaryStatistics scalarSummaryStatistics = collection.stream() //
           .map(StateCostNode::costFromRoot) //

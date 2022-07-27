@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.util.win;
 
-import ch.alpine.bridge.awt.Hsluv;
+import ch.alpine.bridge.col.Hsluv;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.img.ColorDataGradient;

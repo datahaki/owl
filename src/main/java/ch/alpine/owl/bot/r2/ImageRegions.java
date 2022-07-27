@@ -43,7 +43,7 @@ public enum ImageRegions {
     return switch (TensorRank.ofArray(image)) {
     case 2 -> image.copy();
     case 3 -> image.get(Tensor.ALL, Tensor.ALL, 0); // take RED channel for region member test
-    default -> throw Throw.of(image);
+    default -> throw new Throw(image);
     };
   }
 }

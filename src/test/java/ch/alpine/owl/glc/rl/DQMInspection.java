@@ -22,7 +22,7 @@ import ch.alpine.tensor.red.Entrywise;
     max = rlDomainQueueMap.keySet().stream().reduce(Entrywise.max()).get();
     Tensor width = max.subtract(min).map(RealScalar.ONE::add);
     if (!ExactTensorQ.of(width))
-      throw Throw.of(min, max, width);
+      throw new Throw(min, max, width);
     count = Array.zeros(Primitives.toListInteger(width));
     for (Entry<Tensor, RLDomainQueue> entry : rlDomainQueueMap.entrySet()) {
       Tensor key = entry.getKey();

@@ -15,9 +15,9 @@ import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeCollector;
+import ch.alpine.sophus.hs.r2.ConvexHull2D;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.lie.r2.ConvexHull;
 
 public class GoalRender implements RenderInterface {
   public static final boolean CONVEX = true;
@@ -37,7 +37,7 @@ public class GoalRender implements RenderInterface {
       Tensor points = Tensor.of(collection.stream().map(StateTime::state).map(Extract2D.FUNCTION));
       if (2 < points.length()) {
         graphics.setColor(COLOR);
-        Path2D path2D = geometricLayer.toPath2D(ConvexHull.of(points));
+        Path2D path2D = geometricLayer.toPath2D(ConvexHull2D.of(points));
         path2D.closePath();
         graphics.draw(path2D);
       }

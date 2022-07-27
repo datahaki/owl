@@ -15,6 +15,6 @@ public enum RadiusXY {
     Scalar scalar = vector.Get(0);
     if (scalar.equals(vector.get(1)))
       return scalar;
-    throw Throw.of(vector);
+    throw new Throw(vector);
   }
 }

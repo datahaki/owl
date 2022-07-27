@@ -15,9 +15,9 @@ import ch.alpine.ascona.util.ren.EmptyRender;
 import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.StateCostNode;
+import ch.alpine.sophus.hs.r2.ConvexHull2D;
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.lie.r2.ConvexHull;
 import ch.alpine.tensor.sca.Chop;
 
 /** renders the edges between nodes
@@ -61,7 +61,7 @@ public class EdgeRender {
 
     public Render(Collection<? extends StateCostNode> collection) {
       this.collection = collection;
-      polygon = ConvexHull.of(collection.stream() //
+      polygon = ConvexHull2D.of(collection.stream() //
           .map(StateCostNode::state) //
           .map(Extract2D.FUNCTION), Chop._10); //
     }

@@ -39,7 +39,7 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBou
   public EllipsoidRegion(Tensor center, Tensor radius) {
     // assert that radius are strictly positive
     if (radius.stream().map(Scalar.class::cast).anyMatch(Sign::isNegativeOrZero))
-      throw Throw.of(radius);
+      throw new Throw(radius);
     // ---
     this.center = VectorQ.requireLength(center, radius.length()).copy();
     this.radius = radius.copy();

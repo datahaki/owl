@@ -65,7 +65,7 @@ class StandardTrajectoryPlannerTest {
       // FIXME OWL TEST abs!?
       Scalar lowerBound = Ramp.of(Vector2Norm.of(stateGoal.subtract(stateRoot)).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
-        throw Throw.of(cost, lowerBound);
+        throw new Throw(cost, lowerBound);
     }
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);

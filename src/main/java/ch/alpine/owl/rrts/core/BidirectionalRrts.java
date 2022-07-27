@@ -51,7 +51,7 @@ public class BidirectionalRrts implements Rrts {
     List<RrtsNode> toGoal = Nodes.listToRoot(parent);
     Tensor backwardRoot = Lists.last(toGoal).state();
     if (!backwardRoot.equals(goal))
-      throw Throw.of(backwardRoot, goal);
+      throw new Throw(backwardRoot, goal);
     for (RrtsNode node : toGoal) {
       Optional<RrtsNode> optional = find(node.state());
       if (!optional.isPresent())

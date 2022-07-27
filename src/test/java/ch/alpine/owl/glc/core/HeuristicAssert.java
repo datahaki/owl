@@ -45,7 +45,7 @@ public enum HeuristicAssert {
         System.err.println(String.format("At time %s merit decreased\n %s\n %s", //
             current.stateTime().time(), parent.merit(), current.merit()));
         StateTimeTrajectories.print(GlcNodes.getPathFromRootTo(finalNode));
-        throw Throw.of(current.merit(), parent.merit());
+        throw new Throw(current.merit(), parent.merit());
       }
       // monotonously increasing merit means, that delta(Cost) >= delta(CostToGo)
       // as: Cost(Goal)== Merit(Goal) >= (Cost(Node) + CostToGo(Node)) = Merit (Node)

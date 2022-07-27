@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.Sign;
     Tensor coeffs = Tensors.of(d_tar.negate(), v_cur, a_max.divide(RealScalar.of(2)));
     Scalar time = Roots.of(coeffs).Get(1);
     if (Sign.isPositive(Roots.of(coeffs).Get(0)))
-      throw Throw.of(coeffs);
+      throw new Throw(coeffs);
     return Sign.requirePositiveOrZero(time);
   }
 

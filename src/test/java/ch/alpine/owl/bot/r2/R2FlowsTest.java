@@ -8,10 +8,10 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophus.hs.r2.ConvexHull2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.lie.r2.ConvexHull;
 
 class R2FlowsTest {
   @Test
@@ -21,7 +21,7 @@ class R2FlowsTest {
     Collection<Tensor> flows = r2Flows.getFlows(n);
     assertEquals(flows.size(), n);
     Tensor tflow = Tensor.of(flows.stream());
-    Tensor hul = ConvexHull.of(tflow);
+    Tensor hul = ConvexHull2D.of(tflow);
     assertEquals(Dimensions.of(tflow), Dimensions.of(hul));
   }
 
