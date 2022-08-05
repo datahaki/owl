@@ -16,6 +16,7 @@ import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.img.ColorFormat;
 import ch.alpine.tensor.img.ImageRotate;
 
+/** 12 different pieces */
 /* package */ enum Ubongo {
   A0(new Color(154, 68, 41), "xx"), //
   A1(new Color(62, 121, 87), "xx", "x"), //
@@ -72,11 +73,11 @@ import ch.alpine.tensor.img.ImageRotate;
     return Collections.unmodifiableSet(set);
   }
 
-  public static void main(String[] args) {
-    System.out.println(Ubongo.values().length);
-  }
-
   public Tensor colorVector() {
     return ColorFormat.toVector(color);
+  }
+
+  public static void main(String[] args) {
+    System.out.println(Ubongo.values().length);
   }
 }

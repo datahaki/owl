@@ -30,7 +30,7 @@ public class UbongoPrintable implements Printable {
     graphics.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
     graphics.scale(factor, factor);
     if (pageIndex < Math.min(UbongoPublish.values().length, 200)) {
-      UbongoViewer.draw(graphics, UbongoPublish.values()[pageIndex], scale);
+      StaticHelper.draw(graphics, UbongoPublish.values()[pageIndex], scale);
       return Printable.PAGE_EXISTS;
     }
     return Printable.NO_SUCH_PAGE;

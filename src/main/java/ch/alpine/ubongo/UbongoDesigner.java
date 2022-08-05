@@ -37,13 +37,13 @@ import ch.alpine.tensor.sca.Floor;
 /* package */ class UbongoDesigner extends AbstractDemo implements ActionListener {
   public static final Scalar FREE = UbongoBoard.FREE;
   // ---
-  private final SpinnerLabel<Integer> spinnerUse = SpinnerLabel.of(2, 3, 4, 5, 6, 7, 8);
+  private final SpinnerLabel<Integer> spinnerLabel = SpinnerLabel.of(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
   private final GridRender gridRender;
   private final Tensor template = Array.fill(() -> RealScalar.ZERO, 9, 10);
 
   public UbongoDesigner() {
-    spinnerUse.setValue(4);
-    spinnerUse.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), null);
+    spinnerLabel.setValue(4);
+    spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), null);
     {
       JButton jButton = new JButton("reset");
       jButton.addActionListener(new ActionListener() {
@@ -122,7 +122,7 @@ import ch.alpine.tensor.sca.Floor;
   @Override
   public void actionPerformed(ActionEvent e) {
     Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
-    int use = spinnerUse.getValue();
+    int use = spinnerLabel.getValue();
     String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
     System.out.printf("UNTITLED(%d, %s), //\n", use, collect);
     System.out.println(Pretty.of(result));
