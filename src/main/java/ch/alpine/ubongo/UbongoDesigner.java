@@ -2,18 +2,13 @@
 package ch.alpine.ubongo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.swing.JButton;
 
 import ch.alpine.ascona.util.api.Box2D;
 import ch.alpine.ascona.util.ren.AxesRender;
@@ -22,7 +17,11 @@ import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
-import ch.alpine.bridge.swing.SpinnerLabel;
+import ch.alpine.bridge.ref.ann.FieldClip;
+import ch.alpine.bridge.ref.ann.FieldFuse;
+import ch.alpine.bridge.ref.ann.FieldInteger;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.bridge.swing.LookAndFeels;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -34,31 +33,32 @@ import ch.alpine.tensor.img.ImageCrop;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.sca.Floor;
 
-/* package */ class UbongoDesigner extends AbstractDemo implements ActionListener {
+/* package */ class UbongoDesigner extends AbstractDemo implements Runnable {
   public static final Scalar FREE = UbongoBoard.FREE;
-  // ---
-  private final SpinnerLabel<Integer> spinnerLabel = SpinnerLabel.of(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+
+  @ReflectionMarker
+  public static class Param {
+    @FieldInteger
+    @FieldClip(min = "1", max = "12")
+    public Scalar num = RealScalar.of(4);
+    @FieldFuse
+    public Boolean solve = false;
+    @FieldFuse
+    public Boolean reset = false;
+  }
+
+  private final Param param;
   private final GridRender gridRender;
-  private final Tensor template = Array.fill(() -> RealScalar.ZERO, 9, 10);
+  private final Tensor template = Array.zeros(9, 10);
 
   public UbongoDesigner() {
-    spinnerLabel.setValue(4);
-    spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(50, 28), null);
-    {
-      JButton jButton = new JButton("reset");
-      jButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-          template.set(Scalar::zero, Tensor.ALL, Tensor.ALL);
-        }
-      });
-      timerFrame.jToolBar.add(jButton);
-    }
-    {
-      JButton jButton = new JButton("solve");
-      jButton.addActionListener(this);
-      timerFrame.jToolBar.add(jButton);
-    }
+    this(new Param());
+  }
+
+  public UbongoDesigner(Param param) {
+    super(param);
+    this.param = param;
+    fieldsEditor(0).addUniversalListener(this);
     // ---
     Tensor matrix = Tensors.fromString("{{30, 0, 100}, {0, -30, 500}, {0, 0, 1}}");
     matrix = matrix.dot(GfxMatrix.of(Tensors.vector(0, 0, -Math.PI / 2)));
@@ -102,12 +102,17 @@ import ch.alpine.tensor.sca.Floor;
       }
     }
     gridRender.render(geometricLayer, graphics);
-  }
-
-  public static void main(String[] args) {
-    UbongoDesigner ubongoDesigner = new UbongoDesigner();
-    // ubongoDesigner.timerFrame.configCoordinateOffset(100, 700);
-    ubongoDesigner.setVisible(800, 600);
+    {
+      int count = (int) template.flatten(-1).filter(FREE::equals).count();
+      graphics.setColor(Color.DARK_GRAY);
+      graphics.drawString("" + count, 0, 30);
+      List<List<Ubongo>> candidates = UbongoBoard.candidates(param.num.number().intValue(), count);
+      int piy = 40;
+      for (List<Ubongo> list : candidates) {
+        graphics.drawString("" + list, 0, piy);
+        piy += 20;
+      }
+    }
   }
 
   static final Collector<CharSequence, ?, String> EMBRACE = //
@@ -120,19 +125,33 @@ import ch.alpine.tensor.sca.Floor;
   }
 
   @Override
-  public void actionPerformed(ActionEvent e) {
-    Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
-    int use = spinnerLabel.getValue();
-    String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
-    System.out.printf("UNTITLED(%d, %s), //\n", use, collect);
-    System.out.println(Pretty.of(result));
-    UbongoBoard ubongoBoard = new UbongoBoard(result);
-    List<List<UbongoEntry>> list = ubongoBoard.filter0(use);
-    if (list.isEmpty()) {
-      System.err.println("no solutions");
-    } else {
-      UbongoBrowser ubongoBrowser = new UbongoBrowser(ubongoBoard, list);
-      ubongoBrowser.setVisible(800, 600);
+  public void run() {
+    if (param.reset) {
+      param.reset = false;
+      template.set(Scalar::zero, Tensor.ALL, Tensor.ALL);
     }
+    if (param.solve) {
+      param.solve = false;
+      Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
+      int use = param.num.number().intValue();
+      String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
+      System.out.printf("UNTITLED(%d, %s), //\n", use, collect);
+      System.out.println(Pretty.of(result));
+      UbongoBoard ubongoBoard = new UbongoBoard(result);
+      List<List<UbongoEntry>> list = ubongoBoard.filter0(use);
+      if (list.isEmpty()) {
+        System.err.println("no solutions");
+      } else {
+        UbongoBrowser ubongoBrowser = new UbongoBrowser(ubongoBoard, list);
+        ubongoBrowser.setVisible(800, 600);
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    LookAndFeels.LIGHT.updateComponentTreeUI();
+    UbongoDesigner ubongoDesigner = new UbongoDesigner();
+    // ubongoDesigner.timerFrame.configCoordinateOffset(100, 700);
+    ubongoDesigner.setVisible(800, 600);
   }
 }

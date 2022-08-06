@@ -1,26 +1,33 @@
 // code by jph
 package ch.alpine.ubongo;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 
 import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.bridge.swing.LookAndFeels;
-import ch.alpine.bridge.swing.SpinnerLabel;
 
 /* package */ class UbongoViewer extends AbstractDemo {
-  // ---
-  private final SpinnerLabel<UbongoPublish> spinnerLabel = SpinnerLabel.of(UbongoPublish.class);
+  @ReflectionMarker
+  public static class Param {
+    public UbongoPublish ubongoPublish = UbongoPublish.STANDARD;
+  }
+
+  private final Param param;
 
   public UbongoViewer() {
-    spinnerLabel.addToComponentReduced(timerFrame.jToolBar, new Dimension(200, 28), "index");
-    spinnerLabel.setValue(UbongoPublish.STANDARD);
+    this(new Param());
+  }
+
+  public UbongoViewer(Param param) {
+    super(param);
+    this.param = param;
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    StaticHelper.draw(graphics, spinnerLabel.getValue(), StaticHelper.SCALE);
+    StaticHelper.draw(graphics, param.ubongoPublish, StaticHelper.SCALE);
   }
 
   public static void main(String[] args) {

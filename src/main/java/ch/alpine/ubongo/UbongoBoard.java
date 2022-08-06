@@ -61,32 +61,42 @@ import ch.alpine.tensor.red.Total;
   }
 
   public List<List<UbongoEntry>> filter0(int use) {
+    List<List<Ubongo>> values = candidates(use, count);
     List<List<UbongoEntry>> solutions = new LinkedList<>();
+    for (List<Ubongo> list : values) {
+      Solve solve = new Solve(list);
+      if (solve.solutions.size() == 1) {
+        for (List<UbongoEntry> list2 : solve.solutions) {
+          solutions.add(list2);
+          System.out.println(list2);
+        }
+      }
+    }
+    return solutions;
+  }
+
+  public static List<List<Ubongo>> candidates(int use, int count) {
+    List<List<Ubongo>> values = new LinkedList<>();
+    List<Ubongo> ubongos = List.of(Ubongo.values());
     for (Tensor index : Subsets.of(Range.of(0, 12), use)) {
       int sum = index.stream() //
           .map(Scalar.class::cast) //
           .map(Scalar::number) //
           .mapToInt(Number::intValue) //
-          .map(i -> Ubongo.values()[i].count()).sum();
+          .map(i -> ubongos.get(i).count()) //
+          .sum();
       if (sum == count) {
         // System.out.println(index);
         List<Ubongo> list = index.stream() //
             .map(Scalar.class::cast) //
             .map(Scalar::number) //
             .mapToInt(Number::intValue) //
-            .mapToObj(i -> Ubongo.values()[i]) //
+            .mapToObj(ubongos::get) //
             .collect(Collectors.toList());
-        Solve solve = new Solve(list);
-        if (solve.solutions.size() == 1) //
-        {
-          for (List<UbongoEntry> list2 : solve.solutions) {
-            solutions.add(list2);
-            System.out.println(list2);
-          }
-        }
+        values.add(list);
       }
     }
-    return solutions;
+    return values;
   }
 
   class Solve {
