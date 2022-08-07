@@ -105,13 +105,14 @@ import ch.alpine.tensor.sca.Floor;
     {
       int count = (int) template.flatten(-1).filter(FREE::equals).count();
       graphics.setColor(Color.DARK_GRAY);
-      graphics.drawString("" + count, 0, 30);
-      List<List<Ubongo>> candidates = UbongoBoard.candidates(param.num.number().intValue(), count);
+      graphics.drawString("free=" + count, 0, 30);
+      List<List<Ubongo>> candidates = Ubongo.candidates(param.num.number().intValue(), count);
+      graphics.drawString("comb=" + candidates.size(), 0, 50);
       int piy = 40;
-      for (List<Ubongo> list : candidates) {
-        graphics.drawString("" + list, 0, piy);
-        piy += 20;
-      }
+//      for (List<Ubongo> list : candidates) {
+//        graphics.drawString("" + list, 0, piy);
+//        piy += 20;
+//      }
     }
   }
 
@@ -137,7 +138,7 @@ import ch.alpine.tensor.sca.Floor;
       String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
       System.out.printf("UNTITLED(%d, %s), //\n", use, collect);
       System.out.println(Pretty.of(result));
-      UbongoBoard ubongoBoard = new UbongoBoard(result);
+      UbongoBoard ubongoBoard = UbongoBoard.of(result);
       List<List<UbongoEntry>> list = ubongoBoard.filter0(use);
       if (list.isEmpty()) {
         System.err.println("no solutions");

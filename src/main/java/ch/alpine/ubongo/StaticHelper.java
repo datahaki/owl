@@ -34,7 +34,7 @@ import ch.alpine.tensor.img.ImageRotate;
     UbongoBoard ubongoBoard = ubongoPublish.ubongoBoards.board();
     List<List<UbongoEntry>> solutions = UbongoLoader.INSTANCE.load(ubongoPublish.ubongoBoards);
     {
-      Tensor mask = ubongoBoard.mask;
+      Tensor mask = ubongoBoard.mask();
       int scale = SCALE;
       graphics.setColor(Color.GRAY);
       List<Integer> size = Dimensions.of(mask);

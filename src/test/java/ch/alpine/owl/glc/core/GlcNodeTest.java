@@ -28,6 +28,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Lists;
 
 class GlcNodeTest {
   @Test
@@ -87,7 +88,7 @@ class GlcNodeTest {
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(1);
     nodeList = new ArrayList<>(trajectoryPlanner.getDomainMap().values());
-    GlcNode test = nodeList.get(nodeList.size() - 1);
+    GlcNode test = Lists.last(nodeList);
     assertFalse(test.isRoot());
     HeuristicAssert.check(trajectoryPlanner);
     glcExpand.findAny(10);

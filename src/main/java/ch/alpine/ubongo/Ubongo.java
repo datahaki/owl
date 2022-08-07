@@ -4,15 +4,21 @@ package ch.alpine.ubongo;
 import java.awt.Color;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.DeleteDuplicates;
 import ch.alpine.tensor.alg.NestList;
+import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Reverse;
+import ch.alpine.tensor.alg.Subsets;
 import ch.alpine.tensor.img.ColorFormat;
 import ch.alpine.tensor.img.ImageRotate;
 
@@ -56,9 +62,8 @@ import ch.alpine.tensor.img.ImageRotate;
     Set<Tensor> stamps = new HashSet<>();
     rotated.stream().forEach(stamps::add);
     rotated.stream().map(Reverse::of).forEach(stamps::add);
-    for (Tensor stamp : stamps) {
+    for (Tensor stamp : stamps)
       set.add(new UbongoStamp(stamp));
-    }
   }
 
   public Tensor mask() {
@@ -77,7 +82,27 @@ import ch.alpine.tensor.img.ImageRotate;
     return ColorFormat.toVector(color);
   }
 
-  public static void main(String[] args) {
-    System.out.println(Ubongo.values().length);
+  public static List<List<Ubongo>> candidates(int use, int count) {
+    List<List<Ubongo>> values = new LinkedList<>();
+    List<Ubongo> ubongos = List.of(values());
+    for (Tensor index : Subsets.of(Range.of(0, 12), use)) {
+      int sum = index.stream() //
+          .map(Scalar.class::cast) //
+          .map(Scalar::number) //
+          .mapToInt(Number::intValue) //
+          .map(i -> ubongos.get(i).count()) //
+          .sum();
+      if (sum == count) {
+        // System.out.println(index);
+        List<Ubongo> list = index.stream() //
+            .map(Scalar.class::cast) //
+            .map(Scalar::number) //
+            .mapToInt(Number::intValue) //
+            .mapToObj(ubongos::get) //
+            .collect(Collectors.toList());
+        values.add(list);
+      }
+    }
+    return values;
   }
 }

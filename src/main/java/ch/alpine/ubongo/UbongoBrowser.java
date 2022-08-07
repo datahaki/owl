@@ -59,7 +59,7 @@ import ch.alpine.tensor.io.ImageFormat;
     List<UbongoEntry> solution = list.get(index);
     {
       int scale = 30;
-      List<Integer> size = Dimensions.of(ubongoBoard.mask);
+      List<Integer> size = Dimensions.of(ubongoBoard.mask());
       Tensor tensor = UbongoRender.of(size, solution);
       int pix = 50;
       int piy = 120;

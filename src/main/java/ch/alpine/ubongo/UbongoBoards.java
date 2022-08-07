@@ -183,6 +183,9 @@ import java.util.List;
   MOUSEGT1(6, "oo    ", "oo oo ", " oooo ", " ooo  ", "ooooo ", "oo ooo"), //
   TOWERBR1(6, "  o   o  ", "  oo  o  ", " ooo ooo ", "ooooooooo", " oo   oo "), //
   HELMET_1(6, " ooo ", "ooooo", "oo oo", "oo oo", " oooo", "oo  o"), //
+  /***************************************************/
+  /************ BATCH 7 ******************************/
+  SLECAT_1(7, "o  o   ", "oooo   ", "ooo  oo", " ooooo ", "ooooooo", "    ooo"), //
   ;
 
   private final int use;
