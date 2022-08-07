@@ -82,7 +82,7 @@ import ch.alpine.tensor.io.ImageFormat;
 
   public static void main(String[] args) {
     LookAndFeels.LIGHT.updateComponentTreeUI();
-    UbongoBoards ubongoBoards = UbongoBoards.CASTLEGB;
+    UbongoBoards ubongoBoards = UbongoBoards.CLOVERCL;
     List<List<UbongoEntry>> list = // ubongoBoards.solve();
         UbongoLoader.INSTANCE.load(ubongoBoards);
     if (list.isEmpty()) {

@@ -20,9 +20,11 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.Export;
+import ch.alpine.tensor.io.Primitives;
 
 /* package */ class UbongoBoard {
   public static final Scalar FREE = RealScalar.ONE.negate();
+  public static final int free = -1;
 
   public static UbongoBoard of(String... strings) {
     final int n = strings[0].length();
@@ -44,6 +46,8 @@ import ch.alpine.tensor.io.Export;
 
   // ---
   private final Tensor mask;
+  private final int dim1;
+  private final int[] _mask;
   private final List<Integer> board_size;
   private final int count;
   private final Map<UbongoStamp, List<Point>> map = new HashMap<>();
@@ -51,7 +55,9 @@ import ch.alpine.tensor.io.Export;
   private UbongoBoard(Tensor prep) {
     mask = prep.unmodifiable();
     board_size = Dimensions.of(prep);
+    dim1 = board_size.get(1);
     count = (int) mask.flatten(-1).filter(FREE::equals).count();
+    _mask = Primitives.toIntArray(mask);
     // ---
     for (Ubongo ubongo : Ubongo.values())
       for (UbongoStamp ubongoStamp : ubongo.stamps()) {
@@ -96,10 +102,10 @@ import ch.alpine.tensor.io.Export;
     private final List<List<UbongoEntry>> solutions = new LinkedList<>();
 
     public Solve(List<Ubongo> list) {
-      solve(mask.copy(), list, Collections.emptyList());
+      solve(_mask.clone(), list, Collections.emptyList());
     }
 
-    private void solve(Tensor board, List<Ubongo> list, List<UbongoEntry> entries) {
+    private void solve(int[] board, List<Ubongo> list, List<UbongoEntry> entries) {
       if (list.isEmpty()) {
         solutions.add(entries);
       } else {
@@ -110,18 +116,20 @@ import ch.alpine.tensor.io.Export;
           for (Point point : points) {
             int bi = point.x;
             int bj = point.y;
-            Tensor nubrd = board.copy();
+            int[] nubrd = board.clone();
             boolean status = true;
             for (int si = 0; si < ubongoStamp.size0; ++si)
               for (int sj = 0; sj < ubongoStamp.size1; ++sj) {
                 boolean occupied = stamp.get(si, sj).equals(RealScalar.ONE);
-                if (occupied)
-                  if (nubrd.get(bi + si, bj + sj).equals(FREE)) {
-                    nubrd.set(RealScalar.ZERO, bi + si, bj + sj);
+                if (occupied) {
+                  int index = (bi + si) * dim1 + bj + sj;
+                  if (nubrd[index] == free) {
+                    nubrd[index] = 0;
                   } else {
                     status = false;
                     break;
                   }
+                }
               }
             // ---
             if (status) {

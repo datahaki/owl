@@ -200,7 +200,25 @@ import java.util.List;
   SLASHDOT(7, "  ooo ", " o ooo", "oooooo", " ooo o", " oo oo", "oo ooo", " ooooo"),
   /** only 2 solutions */
   FLATFLAT(7, "oooooo ooo", "o ooo o oo", "ooo oooooo"),
-  CASTLEDE(7, "oo  o  o o", "oooooooooo", "o ooo o oo", "ooo ooooo "),;
+  CASTLEDE(7, "oo  o  o o", "oooooooooo", "o ooo o oo", "ooo ooooo "),
+  /***************************************************/
+  /************ BATCH 8 ******************************/
+  LONGHALL(8, " oooo ooo ", "oooo ooooo", "o  oooo oo", "oooo oooo "),
+  SOMEBLUB(8, "  oo   ", " ooooo ", " oo ooo", "oo  oo ", "oo  oo ", " ooooo ", " ooooo ", " oo    "),
+  QUADLUPI(8, "      oo ", "      ooo", "ooooooooo", "ooo ooo  ", "  ooo oo ", " oooo oo ", " o    oo ", "       o "),
+  /** 5 solutions */
+  QUADPEDI(8, "      oo ", "     oooo", " ooooooo ", "ooooooo  ", "  ooo oo ", " oooo oo ", " o    oo ", "       o "),
+  /** 1 solution */
+  CHEESFAC(8, "o o o o", "ooooooo", "o o o o", " oooooo", "oo o  o", "ooooooo"),
+  /** 3 solutions */
+  PIGGYBNK(8, " ooooooo ", "oooooo oo", "oo  o  oo", "ooo  o oo", "  ooooooo", "   o   o "),
+  /** 2 solutions */
+  PIGGYUPI(8, "  o      ", " oo oooo ", "oooooo oo", "oo  o  oo", "ooo  o oo", "  ooooooo", "   o   o "),
+  /** many solutions */
+  PIGGYEAR(8, "  o      ", " oo oooo ", " ooooo oo", "ooo oo oo", " oo  oooo", "  oooooo ", "   o     "),
+  CLOVERCL(8, "oo ooo ", "oo  ooo", "oooooo ", "  oo   ", " oooo  ", "oo oo  ", "oo ooo ", "  oooo "),
+  ///
+  ;
 
   private final int use;
   private final UbongoBoard ubongoBoard;
