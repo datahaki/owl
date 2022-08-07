@@ -108,11 +108,6 @@ import ch.alpine.tensor.sca.Floor;
       graphics.drawString("free=" + count, 0, 30);
       List<List<Ubongo>> candidates = Ubongo.candidates(param.num.number().intValue(), count);
       graphics.drawString("comb=" + candidates.size(), 0, 50);
-      int piy = 40;
-//      for (List<Ubongo> list : candidates) {
-//        graphics.drawString("" + list, 0, piy);
-//        piy += 20;
-//      }
     }
   }
 
@@ -136,7 +131,7 @@ import ch.alpine.tensor.sca.Floor;
       Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
       int use = param.num.number().intValue();
       String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
-      System.out.printf("UNTITLED(%d, %s), //\n", use, collect);
+      System.out.printf("UNTITLED(%d, %s),\n", use, collect);
       System.out.println(Pretty.of(result));
       UbongoBoard ubongoBoard = UbongoBoard.of(result);
       List<List<UbongoEntry>> list = ubongoBoard.filter0(use);

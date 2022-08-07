@@ -11,7 +11,7 @@ import ch.alpine.bridge.swing.LookAndFeels;
 /* package */ class UbongoViewer extends AbstractDemo {
   @ReflectionMarker
   public static class Param {
-    public UbongoPublish ubongoPublish = UbongoPublish.STANDARD;
+    public UbongoPublish ubongoPublish = UbongoPublish.FLATCRAB;
   }
 
   private final Param param;
@@ -33,6 +33,6 @@ import ch.alpine.bridge.swing.LookAndFeels;
   public static void main(String[] args) {
     LookAndFeels.LIGHT.updateComponentTreeUI();
     UbongoViewer ubongoViewer = new UbongoViewer();
-    ubongoViewer.setVisible(1200, 600);
+    ubongoViewer.setVisible(700, 900);
   }
 }

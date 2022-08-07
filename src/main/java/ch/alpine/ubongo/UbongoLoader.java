@@ -13,7 +13,7 @@ import ch.alpine.tensor.io.Import;
 /* package */ enum UbongoLoader {
   INSTANCE;
 
-  private final Function<UbongoBoards, List<List<UbongoEntry>>> cache = Cache.of(this::of, 64);
+  private final Function<UbongoBoards, List<List<UbongoEntry>>> cache = Cache.of(this::of, 164);
 
   public List<List<UbongoEntry>> load(UbongoBoards ubongoBoards) {
     return cache.apply(ubongoBoards);

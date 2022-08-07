@@ -136,6 +136,16 @@ import java.util.List;
   TOWERBR1(UbongoBoards.TOWERBR1, List.of(0, 1, 2, 3, 4, 5)), //
   HELMET_1(UbongoBoards.HELMET_1, List.of(0, 1, 2, 12, 13, 14)), //
   HELMET_A(UbongoBoards.HELMET_1, List.of(7, 9, 11, 15, 17, 20)), //
+  // ---
+  LARGESAW(UbongoBoards.LARGESAW, List.of(0, 1, 2, 3, 4, 5)),
+  FLATCRAB(UbongoBoards.FLATCRAB, List.of(4, 7, 9, 14, 16, 23)),
+  CASTLEDE(UbongoBoards.CASTLEDE, List.of(0, 2, 4, 6, 7, 8)),
+  SLEEPCA1(UbongoBoards.SLEEPCAT, List.of(1, 2, 4, 6, 7, 8)),
+  SLEEPCA2(UbongoBoards.SLEEPCAT, List.of(9, 10, 11, 12, 13, 14)),
+  DEVILMSK(UbongoBoards.DEVILMSK, List.of(0, 2, 3, 4, 5, 6)),
+  CASTLEGB(UbongoBoards.CASTLEGB, List.of(0, 2, 3, 4, 8, 9)),
+  CODECARD(UbongoBoards.CODECARD, List.of(0)),
+  //
   ;
 
   public final UbongoBoards ubongoBoards;
