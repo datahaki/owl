@@ -17,7 +17,7 @@ public enum UbongoImaging {
   ;
   public static void main(String[] args) throws IOException {
     List<UbongoPublish> list2 = Arrays.stream(UbongoPublish.values()) //
-        .filter(u -> u.ubongoBoards.use() == 7) //
+        .filter(u -> u.ubongoBoards.use() >= 9) //
         .toList();
     for (UbongoPublish ubongoPublish : list2) {
       BufferedImage bufferedImage = new BufferedImage(700, 900, BufferedImage.TYPE_INT_ARGB);
@@ -27,7 +27,9 @@ public enum UbongoImaging {
       // 68 was too large: 17.95 instead of 16
       // 61 was tested to work well
       StaticHelper.draw(graphics, ubongoPublish, 61);
-      File file = HomeDirectory.Pictures("ubongo", ubongoPublish.name() + ".png");
+      File folder = HomeDirectory.Pictures("ubongo8");
+      folder.mkdir();
+      File file = new File(folder, ubongoPublish.name() + ".png");
       ImageIO.write(bufferedImage, "png", file);
     }
   }

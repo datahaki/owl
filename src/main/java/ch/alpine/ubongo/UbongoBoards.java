@@ -217,6 +217,49 @@ import java.util.List;
   /** many solutions */
   PIGGYEAR(8, "  o      ", " oo oooo ", " ooooo oo", "ooo oo oo", " oo  oooo", "  oooooo ", "   o     "),
   CLOVERCL(8, "oo ooo ", "oo  ooo", "oooooo ", "  oo   ", " oooo  ", "oo oo  ", "oo ooo ", "  oooo "),
+  // ---
+  PACMANAG(9, "o       ", "oo  oooo", "ooooooo ", " oo oo  ", " ooo oo ", " ooooo  ", " oo ooo ", " o   ooo"),
+  PACMANDO(9, " o  oooo", " oooooo ", "ooo oo  ", "oooo oo ", " ooooo  ", "ooo ooo ", " o   ooo"),
+  NOIDEANO(9, " ooooooo ", "oo o oooo", " ooooooo ", "oo ooo o ", " ooooooo ", "  o o oo "),
+  HUNDERTW(9, " o ooooo ", "ooooooo o", " oo ooooo", "oo ooooo ", "oo oo oo "),
+  /** 1 solution */
+  BABELISH(9, "  o      ", " ooo     ", " oooo  o ", " ooooo oo", "ooo ooooo", "oo  oooo ", "oo   oooo"),
+  /** use only 1st solution */
+  MODERNHS(9, "oo ooooo ", " o o o oo", "ooooooooo", "oo o oo o", "ooooooooo"),
+  /** 6 solutions */
+  COOLHUTS(9, "  o      ", "o oo o o ", "oooooo oo", "ooooooooo", "  oo  o o", "ooooooo o"),
+  FACTORY9(9, "  o      ", "  o      ", "oooo o o ", "oooooo oo", "ooooooooo", "  oo oo o", "ooooooo o"),
+  /** 1 solution */
+  STARFIS1(9, "      o   ", "     oo   ", "    oooo  ", "oooooooo  ", "  ooo  o  ", "  oooooo  ", "   ooooooo", "   o  o   ", "   o      "),
+  /** 1 solution */
+  STARFIS2(9, "      o   ", "      o   ", "    oooo  ", "oooooo o  ", "  ooo oo  ", "  oo ooo  ", "   ooooooo", "   oo o   ", "   o      "),
+  /** 6 solutions */
+  STARFIS3(9, "      o   ", "      o   ", "    oooo  ", "oooooo o  ", "  oooooo  ", "  oo ooo  ", "   ooooooo", "   oo o   ", "   o      "),
+  /** use solutions: 0, 2 */
+  FANTASY9(9, "  o      ", "  o  o   ", "  oooo   ", " ooo oo  ", " oo ooo  ", "oo oooooo", " ooooo oo", "  o  oo  ", "  o   o  "),
+  /** many solutions */
+  TREASURE(9, "ooo  o  ", "ooooooo ", " o o oo ", "ooo oo  ", "oo o ooo", " oooooo ", "  oooo  "),
+  SWITZER1(9, " ooo o ", " oooooo", "ooo ooo", " o   oo", "ooo oo ", "ooooooo", "  o  oo"),
+  /** 1 solution */
+  SWITZER2(9, "oooo ooo", " oooooo ", " oo oo  ", "oo   oo ", " oo ooo ", "ooooooo ", "oo o ooo"),
+  /** many solutions */
+  SWITZER3(9, "oooo o ", " oooooo", "ooo ooo", " o   oo", "ooo oo ", "ooooooo", " oo  oo"),
+  /** 1 solution */
+  TENISHT1(10, "  o oooo  ", "  oooo oo ", "  o oo o  ", "oooo oooo ", "  oooooooo", "   oo o o ", "   oooooo "),
+  /** 1 solution */
+  TENISHT2(10, "   oooo  ", " oooo oo ", " o oo o  ", "ooo oooo ", " oooooooo", "  oo o o ", "  oooooo "),
+  /** 1 solution */
+  TENISHT3(10, "  o      ", "  o  o   ", "  ooooo  ", " ooo oo  ", "ooo oooo ", "oo oo ooo", " ooooo o ", "  o oooo ", "  o   o  "),
+  /** 1 solution */
+  TENISHT4(10, "ooo oo  ", "ooooooo ", " o o oo ", "ooo oo  ", "oo o ooo", " ooooooo", "oooo o  "),
+  /** 1 solution */
+  TENISHT5(10, " oo oo  ", "oooooooo", " o o oo ", "ooo oo  ", "oo o ooo", " oooooo ", "oooo oo "),
+  TENISHT9(10, "  o      ", "  o  o   ", "  ooooo  ", " ooo oo  ", " oo oooo ", "oo oo ooo", " ooooo oo", "  o oooo ", "  o   o  "),
+  /** 1 solution */
+  SWITZERA(10, "  oo o  ", " ooooooo", "ooo oo  ", "oo   oo ", " oo oooo", "oooooooo", "oo o oo "),
+  /** 5 solutions */
+  SWITZERB(10, " ooo o  ", " ooooooo", "ooo oo  ", "oo   oo ", "ooo oooo", "oooooo  ", " o ooooo"),
+  FINALBOS(12, "  o   o   ", "  o ooooo ", " oooooo   ", "oooooo ooo", "ooo o ooo ", " ooooooooo", "oo oo o o ", " o o  o   "),
   ///
   ;
 

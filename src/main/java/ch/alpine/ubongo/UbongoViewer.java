@@ -11,7 +11,7 @@ import ch.alpine.bridge.swing.LookAndFeels;
 /* package */ class UbongoViewer extends AbstractDemo {
   @ReflectionMarker
   public static class Param {
-    public UbongoPublish ubongoPublish = UbongoPublish.FLATCRAB;
+    public UbongoPublish ubongoPublish = UbongoPublish.STARFIS3;
   }
 
   private final Param param;

@@ -88,7 +88,12 @@ import ch.alpine.tensor.io.Primitives;
     List<List<Ubongo>> values = Ubongo.candidates(use, count);
     List<List<UbongoEntry>> solutions = new LinkedList<>();
     for (List<Ubongo> list : values) {
-      Solve solve = new Solve(list);
+      List<Ubongo> _list = new ArrayList<>(list);
+      Collections.sort(_list, (u1, u2) -> {
+        return Integer.compare(u2.count(), u1.count());
+      });
+      System.out.println(_list);
+      Solve solve = new Solve(_list);
       if (solve.solutions.size() == 1) {
         List<UbongoEntry> list2 = solve.solutions.get(0);
         solutions.add(list2);

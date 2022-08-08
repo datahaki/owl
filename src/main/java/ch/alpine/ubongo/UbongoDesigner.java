@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -29,11 +30,15 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.img.ImageCrop;
+import ch.alpine.tensor.io.Export;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.sca.Floor;
 
 /* package */ class UbongoDesigner extends AbstractDemo implements Runnable {
+  private static final File FILE = HomeDirectory.Downloads("ubongo_design.csv");
   public static final Scalar FREE = UbongoBoard.FREE;
 
   @ReflectionMarker
@@ -49,7 +54,7 @@ import ch.alpine.tensor.sca.Floor;
 
   private final Param param;
   private final GridRender gridRender;
-  private final Tensor template = Array.zeros(9, 10);
+  private Tensor template = Array.zeros(9, 10);
 
   public UbongoDesigner() {
     this(new Param());
@@ -59,6 +64,13 @@ import ch.alpine.tensor.sca.Floor;
     super(param);
     this.param = param;
     fieldsEditor(0).addUniversalListener(this);
+    {
+      try {
+        template = Import.of(FILE);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
     // ---
     Tensor matrix = Tensors.fromString("{{30, 0, 100}, {0, -30, 500}, {0, 0, 1}}");
     matrix = matrix.dot(GfxMatrix.of(Tensors.vector(0, 0, -Math.PI / 2)));
@@ -128,6 +140,11 @@ import ch.alpine.tensor.sca.Floor;
     }
     if (param.solve) {
       param.solve = false;
+      try {
+        Export.of(FILE, template);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
       Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
       int use = param.num.number().intValue();
       String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);

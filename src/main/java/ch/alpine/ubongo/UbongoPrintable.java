@@ -18,7 +18,7 @@ public class UbongoPrintable implements Printable {
   public UbongoPrintable(List<UbongoPublish> list, int scale, double factor) {
     this.scale = scale;
     this.factor = factor;
-    this.list=list;
+    this.list = list;
   }
 
   @Override

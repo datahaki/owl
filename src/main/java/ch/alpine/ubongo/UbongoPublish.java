@@ -157,6 +157,20 @@ import java.util.List;
   PIGGYEAR(UbongoBoards.PIGGYEAR, List.of(0, 2, 3, 4, 5, 7)),
   CLOVERCL(UbongoBoards.CLOVERCL, List.of(0, 1, 2, 3)),
   // ---
+  PACMANAG(UbongoBoards.PACMANAG, List.of(3, 4)),
+  PACMANDO(UbongoBoards.PACMANDO, List.of(0, 1, 2)),
+  NOIDEANO(UbongoBoards.NOIDEANO, List.of(0, 1)),
+  HUNDERTW(UbongoBoards.HUNDERTW, List.of(0, 1, 2, 3)),
+  STARFIS3(UbongoBoards.STARFIS3, List.of(0, 1, 2, 3, 5)),
+  TREASURE(UbongoBoards.TREASURE, List.of(0, 1, 2, 4, 6, 7)),
+  SWITZER3(UbongoBoards.SWITZER3, List.of(0, 1, 2, 4, 6, 7)),
+  // ---
+  TENISHT3(UbongoBoards.TENISHT3, List.of(0)),
+  TENISHT9(UbongoBoards.TENISHT9, List.of(0, 1)),
+  SWITZERB(UbongoBoards.SWITZERB, List.of(0, 1, 2, 3, 4)),
+  // ---
+  FINALBOS(UbongoBoards.FINALBOS, List.of(0)),
+  ///
   ;
 
   public final UbongoBoards ubongoBoards;
