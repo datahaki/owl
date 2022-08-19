@@ -15,12 +15,10 @@ import javax.imageio.ImageIO;
 import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
-import ch.alpine.bridge.ref.ann.FieldInteger;
 import ch.alpine.bridge.ref.ann.FieldSelectionCallback;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.tensor.RationalScalar;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
 public class JpgArtefactDemo extends AbstractDemo {
@@ -37,17 +35,14 @@ public class JpgArtefactDemo extends AbstractDemo {
     @FieldClip(min = "0", max = "1")
     public Scalar ratio = RationalScalar.HALF;
     @FieldSlider
-    @FieldInteger
     @FieldClip(min = "0", max = "100")
-    public Scalar len = RealScalar.of(50);
+    public Integer len = 50;
     @FieldSlider
-    @FieldInteger
     @FieldClip(min = "0", max = "100")
-    public Scalar step = RealScalar.of(73);
+    public Integer step = 73;
     @FieldSlider
-    @FieldInteger
     @FieldClip(min = "0", max = "100")
-    public Scalar val = RealScalar.of(0);
+    public Integer val = 0;
 
     @ReflectionMarker
     public List<String> files() {
@@ -79,9 +74,9 @@ public class JpgArtefactDemo extends AbstractDemo {
       File file = new File(ROOT, param.string);
       byte[] data = Files.readAllBytes(file.toPath());
       int offset = (int) (data.length * (param.ratio.number().doubleValue()));
-      int len = param.len.number().intValue();
-      int step = param.step.number().intValue();
-      byte val = param.val.number().byteValue();
+      int len = param.len;
+      int step = param.step;
+      byte val = param.val.byteValue();
       for (int count = 0; count < len; ++count) {
         int index = offset + step * count;
         if (index < data.length)

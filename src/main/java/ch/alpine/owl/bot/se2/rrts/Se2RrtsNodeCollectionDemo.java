@@ -11,7 +11,6 @@ import ch.alpine.ascona.util.ren.LeversRender;
 import ch.alpine.ascona.util.win.ControlPointsDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
-import ch.alpine.bridge.ref.ann.FieldInteger;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
@@ -22,7 +21,6 @@ import ch.alpine.sophus.math.sample.RandomSample;
 import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -49,9 +47,8 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
       super(false, ManifoldDisplays.CL_ONLY);
     }
 
-    @FieldInteger
     @FieldClip(min = "1", max = "20")
-    public Scalar value = RealScalar.of(3);
+    public Integer value = 3;
   }
 
   private final Param param;
@@ -84,7 +81,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     leversRender.renderSequence();
     leversRender.renderOrigin();
     // ---
-    int _value = Scalars.intValueExact(param.value);
+    int _value = param.value;
     graphics.setColor(new Color(255, 0, 0, 128));
     Scalar minResolution = RealScalar.of(geometricLayer.pixel2modelWidth(10));
     for (RrtsNodeTransition rrtsNodeTransition : se2RrtsNodeCollection.nearFrom(mouse, _value))

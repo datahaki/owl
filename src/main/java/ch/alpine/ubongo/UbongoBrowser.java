@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import ch.alpine.ascona.util.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.ref.ann.FieldInteger;
 import ch.alpine.bridge.ref.ann.FieldSelectionCallback;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.bridge.swing.LookAndFeels;
@@ -31,9 +30,8 @@ import ch.alpine.tensor.io.ImageFormat;
       this.limit = limit;
     }
 
-    @FieldInteger
     @FieldSelectionCallback("index")
-    public Scalar index = RealScalar.of(0);
+    public Integer index = 0;
 
     public List<Scalar> index() {
       return IntStream.range(0, limit).mapToObj(RealScalar::of).toList();
@@ -55,7 +53,7 @@ import ch.alpine.tensor.io.ImageFormat;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    int index = param.index.number().intValue();
+    int index = param.index;
     List<UbongoEntry> solution = list.get(index);
     {
       int scale = 30;

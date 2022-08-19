@@ -20,7 +20,6 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldFuse;
-import ch.alpine.bridge.ref.ann.FieldInteger;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.bridge.swing.LookAndFeels;
 import ch.alpine.tensor.RealScalar;
@@ -33,7 +32,6 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.img.ImageCrop;
 import ch.alpine.tensor.io.Export;
-import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.sca.Floor;
 
@@ -43,9 +41,8 @@ import ch.alpine.tensor.sca.Floor;
 
   @ReflectionMarker
   public static class Param {
-    @FieldInteger
     @FieldClip(min = "1", max = "12")
-    public Scalar num = RealScalar.of(4);
+    public Integer num = 4;
     @FieldFuse
     public Boolean solve = false;
     @FieldFuse
@@ -54,7 +51,7 @@ import ch.alpine.tensor.sca.Floor;
 
   private final Param param;
   private final GridRender gridRender;
-  private Tensor template = Array.zeros(9, 10);
+  private Tensor template = Array.zeros(10, 11);
 
   public UbongoDesigner() {
     this(new Param());
@@ -66,7 +63,7 @@ import ch.alpine.tensor.sca.Floor;
     fieldsEditor(0).addUniversalListener(this);
     {
       try {
-        template = Import.of(FILE);
+        // template = Import.of(FILE);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -118,7 +115,7 @@ import ch.alpine.tensor.sca.Floor;
       int count = (int) template.flatten(-1).filter(FREE::equals).count();
       graphics.setColor(Color.DARK_GRAY);
       graphics.drawString("free=" + count, 0, 30);
-      List<List<Ubongo>> candidates = Ubongo.candidates(param.num.number().intValue(), count);
+      List<List<Ubongo>> candidates = Ubongo.candidates(param.num, count);
       graphics.drawString("comb=" + candidates.size(), 0, 50);
     }
   }
@@ -145,8 +142,8 @@ import ch.alpine.tensor.sca.Floor;
       } catch (Exception e) {
         e.printStackTrace();
       }
-      Tensor result = ImageCrop.color(RealScalar.ZERO).apply(template);
-      int use = param.num.number().intValue();
+      Tensor result = ImageCrop.eq(RealScalar.ZERO).apply(template);
+      int use = param.num;
       String collect = result.stream().map(UbongoDesigner::rowToString).collect(EMBRACE2);
       System.out.printf("UNTITLED(%d, %s),\n", use, collect);
       System.out.println(Pretty.of(result));
