@@ -32,6 +32,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.img.ImageCrop;
 import ch.alpine.tensor.io.Export;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.sca.Floor;
 
@@ -63,7 +64,7 @@ import ch.alpine.tensor.sca.Floor;
     fieldsEditor(0).addUniversalListener(this);
     {
       try {
-        // template = Import.of(FILE);
+        template = Import.of(FILE);
       } catch (Exception e) {
         e.printStackTrace();
       }

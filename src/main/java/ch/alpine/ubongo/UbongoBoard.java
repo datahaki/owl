@@ -2,8 +2,6 @@
 package ch.alpine.ubongo;
 
 import java.awt.Point;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,8 +16,6 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Lists;
-import ch.alpine.tensor.img.ImageResize;
-import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Primitives;
 
 /* package */ class UbongoBoard {
@@ -150,18 +146,6 @@ import ch.alpine.tensor.io.Primitives;
           }
         }
       }
-    }
-  }
-
-  // TODO not called
-  @Deprecated
-  public static void export(File folder, Tensor mask, List<List<UbongoEntry>> solutions) throws IOException {
-    folder.mkdir();
-    int index = 0;
-    for (List<UbongoEntry> solution : solutions) {
-      Tensor tensor = UbongoRender.of(Dimensions.of(mask), solution);
-      Export.of(new File(folder, String.format("ub%03d.png", index)), ImageResize.nearest(tensor, 10));
-      ++index;
     }
   }
 }

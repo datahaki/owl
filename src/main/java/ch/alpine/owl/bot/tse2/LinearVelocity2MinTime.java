@@ -6,8 +6,8 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
-import ch.alpine.tensor.num.Roots;
 import ch.alpine.tensor.sca.Sign;
+import ch.alpine.tensor.sca.ply.Roots;
 
 /** use in combination with {@link Tse2Integrator} */
 /* package */ class LinearVelocity2MinTime {

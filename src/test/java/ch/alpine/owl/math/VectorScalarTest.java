@@ -20,8 +20,8 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Conjugate;
-import ch.alpine.tensor.sca.Imag;
-import ch.alpine.tensor.sca.Real;
+import ch.alpine.tensor.sca.Im;
+import ch.alpine.tensor.sca.Re;
 
 class VectorScalarTest {
   @Test
@@ -48,8 +48,8 @@ class VectorScalarTest {
   @Test
   void testComplex() {
     Scalar a = VectorScalar.of(Tensors.fromString("{1+3*I, 2-4*I}"));
-    assertEquals(Real.of(a), VectorScalar.of(1, +2));
-    assertEquals(Imag.of(a), VectorScalar.of(3, -4));
+    assertEquals(Re.of(a), VectorScalar.of(1, +2));
+    assertEquals(Im.of(a), VectorScalar.of(3, -4));
     assertEquals(Conjugate.of(a), VectorScalar.of(Tensors.fromString("{1-3*I, 2+4*I}")));
   }
 

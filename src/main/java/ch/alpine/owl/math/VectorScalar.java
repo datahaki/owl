@@ -18,8 +18,8 @@ import ch.alpine.tensor.api.ComplexEmbedding;
 import ch.alpine.tensor.api.ConjugateInterface;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Conjugate;
-import ch.alpine.tensor.sca.Imag;
-import ch.alpine.tensor.sca.Real;
+import ch.alpine.tensor.sca.Im;
+import ch.alpine.tensor.sca.Re;
 
 /** immutable as required by {@link Scalar} interface
  * 
@@ -122,12 +122,12 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from ComplexEmbedding
   public Scalar real() {
-    return new VectorScalar(Real.of(vector));
+    return new VectorScalar(Re.of(vector));
   }
 
   @Override // from ComplexEmbedding
   public Scalar imag() {
-    return new VectorScalar(Imag.of(vector));
+    return new VectorScalar(Im.of(vector));
   }
 
   @Override
