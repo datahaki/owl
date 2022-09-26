@@ -34,7 +34,7 @@ abstract class AbstractShadowConstraint implements PlannerConstraint, Serializab
   final float a;
   final float tReact;
 
-  public AbstractShadowConstraint(float a, float tReact, boolean tse2) {
+  protected AbstractShadowConstraint(float a, float tReact, boolean tse2) {
     // TODO_YN hack
     // GlobalAssert.that((tReact / TIMESTEP) % SEGLENGTH == 0); // <- does not work
     this.a = a;

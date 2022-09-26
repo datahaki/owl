@@ -12,7 +12,7 @@ import ch.alpine.tensor.sca.Clip;
   // ---
   protected final Clip clip;
 
-  public Se2TrajectoryControl(Clip clip) {
+  protected Se2TrajectoryControl(Clip clip) {
     this.clip = clip;
   }
 

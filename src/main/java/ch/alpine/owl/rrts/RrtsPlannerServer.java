@@ -44,7 +44,7 @@ public abstract class RrtsPlannerServer implements TransitionPlanner, ObservingE
   private List<TrajectorySample> trajectory = new ArrayList<>();
   private NavigableMap<Scalar, List<TrajectorySample>> potentialFutureTrajectories = new TreeMap<>(Scalars::compare);
 
-  public RrtsPlannerServer( //
+  protected RrtsPlannerServer( //
       TransitionSpace transitionSpace, //
       TransitionRegionQuery obstacleQuery, //
       Scalar resolution, //

@@ -7,7 +7,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
-public enum ContinuousNoiseUtils {
+/* package */ enum ContinuousNoiseUtils {
   ;
   public static ScalarUnaryOperator wrap1D(NativeContinuousNoise nativeContinuousNoise) {
     return wrap1D(nativeContinuousNoise, RealScalar.ZERO);

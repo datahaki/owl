@@ -30,7 +30,7 @@ public abstract class DefaultRrtsPlannerServer extends RrtsPlannerServer {
   /** collection of control points */
   private Collection<Tensor> greeds = Collections.emptyList();
 
-  public DefaultRrtsPlannerServer( //
+  protected DefaultRrtsPlannerServer( //
       TransitionSpace transitionSpace, //
       TransitionRegionQuery obstacleQuery, //
       Scalar resolution, //

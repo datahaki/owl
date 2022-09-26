@@ -15,7 +15,7 @@ import ch.alpine.tensor.ext.Lists;
   /* package */ final Integrator integrator;
   private StateTime stateTime;
 
-  public AbstractEpisodeIntegrator(StateSpaceModel stateSpaceModel, Integrator integrator, StateTime stateTime) {
+  protected AbstractEpisodeIntegrator(StateSpaceModel stateSpaceModel, Integrator integrator, StateTime stateTime) {
     this.stateSpaceModel = stateSpaceModel;
     this.integrator = integrator;
     this.stateTime = stateTime;

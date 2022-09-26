@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensor;
 public abstract class AbstractMinTimeGoalManager implements Region<Tensor>, CostFunction, Serializable {
   private final Region<Tensor> region;
 
-  public AbstractMinTimeGoalManager(Region<Tensor> region) {
+  protected AbstractMinTimeGoalManager(Region<Tensor> region) {
     this.region = region;
   }
 

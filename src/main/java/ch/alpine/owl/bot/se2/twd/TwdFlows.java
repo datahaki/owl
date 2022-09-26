@@ -17,7 +17,7 @@ public abstract class TwdFlows implements FlowsInterface, Serializable {
 
   /** @param maxSpeed [m*s^-1]
    * @param halfWidth [m*rad^-1] */
-  public TwdFlows(Scalar maxSpeed, Scalar halfWidth) {
+  protected TwdFlows(Scalar maxSpeed, Scalar halfWidth) {
     maxSpeedHalf = maxSpeed.multiply(RationalScalar.HALF);
     this.halfWidth = halfWidth;
   }

@@ -21,7 +21,7 @@ public abstract class BiRrtsPlannerServer extends RrtsPlannerServer {
   private Tensor state = Tensors.empty();
   private Tensor goal = Tensors.empty();
 
-  public BiRrtsPlannerServer( //
+  protected BiRrtsPlannerServer( //
       TransitionSpace transitionSpace, //
       TransitionRegionQuery obstacleQuery, //
       Scalar resolution, //

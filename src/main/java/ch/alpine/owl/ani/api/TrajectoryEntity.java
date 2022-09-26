@@ -19,7 +19,7 @@ public abstract class TrajectoryEntity extends AbstractEntity implements Traject
   private final TrajectoryControl trajectoryControl;
   protected TrajectoryWrap trajectoryWrap = null;
 
-  public TrajectoryEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
+  protected TrajectoryEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
     super(episodeIntegrator);
     add(trajectoryControl);
     this.trajectoryControl = trajectoryControl;

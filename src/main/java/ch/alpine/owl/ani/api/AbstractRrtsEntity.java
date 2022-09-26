@@ -30,7 +30,7 @@ public abstract class AbstractRrtsEntity extends TrajectoryEntity implements Rrt
   private final TreeRender treeRender = new TreeRender();
   private final TransitionRender transitionRender;
 
-  public AbstractRrtsEntity( //
+  protected AbstractRrtsEntity( //
       EpisodeIntegrator episodeIntegrator, //
       TrajectoryControl trajectoryControl, //
       RrtsPlannerServer rrtsPlannerServer) {

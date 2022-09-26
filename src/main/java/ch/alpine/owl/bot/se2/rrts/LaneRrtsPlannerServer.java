@@ -44,7 +44,7 @@ public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer imp
   private Scalar heading = Degree.of(5);
   private Distribution rotDist = DEFAULT_ROT_DIST;
 
-  public LaneRrtsPlannerServer( //
+  protected LaneRrtsPlannerServer( //
       TransitionSpace transitionSpace, //
       TransitionRegionQuery obstacleQuery, //
       Scalar resolution, //

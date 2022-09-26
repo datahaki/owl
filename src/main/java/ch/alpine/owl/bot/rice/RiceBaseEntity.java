@@ -17,7 +17,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 /* package */ abstract class RiceBaseEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected final TreeRender treeRender = new TreeRender();
 
-  public RiceBaseEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
+  protected RiceBaseEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
     super(episodeIntegrator, trajectoryControl);
   }
 

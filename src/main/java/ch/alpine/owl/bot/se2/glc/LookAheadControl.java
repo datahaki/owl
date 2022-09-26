@@ -16,7 +16,7 @@ import ch.alpine.tensor.sca.Clips;
   /** for drawing only */
   Tensor targetLocal = null;
 
-  public LookAheadControl(Scalar lookAhead, Scalar maxTurningRate) {
+  protected LookAheadControl(Scalar lookAhead, Scalar maxTurningRate) {
     super(Clips.absolute(maxTurningRate));
     this.lookAhead = lookAhead;
   }

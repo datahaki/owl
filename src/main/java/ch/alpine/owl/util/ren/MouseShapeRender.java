@@ -16,7 +16,7 @@ public abstract class MouseShapeRender implements RenderInterface {
   private final Region<StateTime> region;
   private final Tensor shape;
 
-  public MouseShapeRender(Region<StateTime> region, Tensor shape) {
+  protected MouseShapeRender(Region<StateTime> region, Tensor shape) {
     this.region = region;
     this.shape = shape;
   }

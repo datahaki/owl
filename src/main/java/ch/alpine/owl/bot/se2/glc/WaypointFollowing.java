@@ -23,7 +23,7 @@ public abstract class WaypointFollowing {
   /** @param waypoints to be followed
    * @param replanningRate
    * @param entity */
-  public WaypointFollowing(Tensor waypoints, Scalar replanningRate, TrajectoryEntity entity) {
+  protected WaypointFollowing(Tensor waypoints, Scalar replanningRate, TrajectoryEntity entity) {
     this.waypoints = waypoints.unmodifiable();
     this.entity = entity;
     this.replanningRate = Sign.requirePositive(replanningRate);

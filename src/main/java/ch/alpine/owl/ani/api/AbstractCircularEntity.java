@@ -19,7 +19,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 public abstract class AbstractCircularEntity extends TrajectoryEntity {
-  public AbstractCircularEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
+  protected AbstractCircularEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
     super(episodeIntegrator, trajectoryControl);
   }
 
