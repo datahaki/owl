@@ -22,7 +22,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.FiniteScalarQ;
-import ch.alpine.tensor.red.ScalarSummaryStatistics;
+import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clip;
 
@@ -73,12 +73,12 @@ public class TreeRender implements RenderInterface {
       this.collection = collection;
       polygon = ConvexHull2D.of(collection.stream().map(StateCostNode::state).map(Extract2D.FUNCTION), Chop._10);
       treeColor = TreeColor.ofDimensions(collection.iterator().next().state().length());
-      ScalarSummaryStatistics scalarSummaryStatistics = collection.stream() //
+      MinMax minMax = collection.stream() //
           .map(StateCostNode::costFromRoot) //
           .filter(FiniteScalarQ::of) //
-          .collect(ScalarSummaryStatistics.collector());
-      clip = scalarSummaryStatistics.getClip();
-      count = scalarSummaryStatistics.getCount();
+          .collect(MinMax.collector());
+      clip = minMax.getClip();
+      count = minMax.getCount();
       inverse = RealScalar.of(treeColor.nodeColor.length() - 1);
     }
 

@@ -18,7 +18,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.img.ColorDataIndexed;
-import ch.alpine.tensor.red.ScalarSummaryStatistics;
+import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
 
 /** renders the edges between nodes
@@ -56,11 +56,11 @@ public class TransitionRender implements RenderInterface {
 
     public Render(Collection<? extends RrtsNode> collection) {
       this.collection = collection;
-      ScalarSummaryStatistics scalarSummaryStatistics = collection.stream() //
+      MinMax minMax = collection.stream() //
           .map(StateCostNode::costFromRoot) //
           .filter(FiniteScalarQ::of) //
-          .collect(ScalarSummaryStatistics.collector());
-      clip = scalarSummaryStatistics.getClip();
+          .collect(MinMax.collector());
+      clip = minMax.getClip();
       inverse = RealScalar.of(colorDataIndexed.length() - 1);
     }
 

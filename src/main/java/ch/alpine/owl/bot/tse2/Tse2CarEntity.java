@@ -29,7 +29,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Degree;
-import ch.alpine.tensor.red.ScalarSummaryStatistics;
+import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.pow.Sqrt;
@@ -141,8 +141,8 @@ public class Tse2CarEntity extends Tse2Entity {
   }
 
   public Tensor coords_X() {
-    ScalarSummaryStatistics scalarSummaryStatistics = //
-        shape.stream().map(tensor -> tensor.Get(0)).collect(ScalarSummaryStatistics.collector());
-    return Subdivide.increasing(scalarSummaryStatistics.getClip(), 2);
+    MinMax minMax = //
+        shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.collector());
+    return Subdivide.increasing(minMax.getClip(), 2);
   }
 }
