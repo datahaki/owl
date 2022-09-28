@@ -35,7 +35,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.red.MinMax;
-import ch.alpine.tensor.red.ScalarSummaryStatistics;
+import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** several magic constants are hard-coded in the implementation.
@@ -155,8 +155,7 @@ public class CarEntity extends Se2Entity {
   }
 
   public final Tensor coords_X() {
-    MinMax minMax = //
-        shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.collector());
-    return Subdivide.increasing(minMax.getClip(), 2);
+    Clip clip = shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.toClip());
+    return Subdivide.increasing(clip, 2);
   }
 }

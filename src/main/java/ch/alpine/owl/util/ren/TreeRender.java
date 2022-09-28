@@ -77,8 +77,8 @@ public class TreeRender implements RenderInterface {
           .map(StateCostNode::costFromRoot) //
           .filter(FiniteScalarQ::of) //
           .collect(MinMax.collector());
-      clip = minMax.getClip();
-      count = minMax.getCount();
+      clip = minMax.clip();
+      count = minMax.count();
       inverse = RealScalar.of(treeColor.nodeColor.length() - 1);
     }
 

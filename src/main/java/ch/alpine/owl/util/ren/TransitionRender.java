@@ -56,11 +56,10 @@ public class TransitionRender implements RenderInterface {
 
     public Render(Collection<? extends RrtsNode> collection) {
       this.collection = collection;
-      MinMax minMax = collection.stream() //
+      clip = collection.stream() //
           .map(StateCostNode::costFromRoot) //
           .filter(FiniteScalarQ::of) //
-          .collect(MinMax.collector());
-      clip = minMax.getClip();
+          .collect(MinMax.toClip());
       inverse = RealScalar.of(colorDataIndexed.length() - 1);
     }
 

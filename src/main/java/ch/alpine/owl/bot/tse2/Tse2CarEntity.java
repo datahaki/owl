@@ -141,8 +141,7 @@ public class Tse2CarEntity extends Tse2Entity {
   }
 
   public Tensor coords_X() {
-    MinMax minMax = //
-        shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.collector());
-    return Subdivide.increasing(minMax.getClip(), 2);
+    Clip clip = shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.toClip());
+    return Subdivide.increasing(clip, 2);
   }
 }
