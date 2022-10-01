@@ -72,7 +72,7 @@ class SingleEboTrackerTest {
       assertEquals(collection.size(), 1);
     }
     assertTrue(lexSemiMinTracker.getCandidateSet().size() == 2);
-    assertTrue(!lexSemiMinTracker.getCandidateKeys().contains(3));
+    assertFalse(lexSemiMinTracker.getCandidateKeys().contains(3));
     assertTrue(lexSemiMinTracker.getCandidateValues().contains(x) && lexSemiMinTracker.getCandidateValues().contains(y)
         && !lexSemiMinTracker.getCandidateValues().contains(z));
     {

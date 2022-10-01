@@ -59,7 +59,7 @@ class ApPlannerConstraintTest {
   void testTDRateConstraints() {
     GlcNode pseudoNodeZRateTooSteep = GlcNode.of(flow, new StateTime(zRateTooSteep, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     GlcNode pseudoNodeZRateValid = GlcNode.of(flow, new StateTime(zRateValid, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
-    assertTrue(!ap.isSatisfied(pseudoNodeZRateTooSteep, null, flow) & ap.isSatisfied(pseudoNodeZRateValid, null, flow));
+    assertFalse(ap.isSatisfied(pseudoNodeZRateTooSteep, null, flow) & ap.isSatisfied(pseudoNodeZRateValid, null, flow));
   }
 
   @Test

@@ -41,8 +41,6 @@ public class LinearRegion extends ImplicitRegionWithDistance implements Serializ
 
   /** @return region as clip interval */
   public Clip clip() {
-    return Clips.interval( //
-        center.subtract(radius), //
-        center.add(radius));
+    return Clips.centered(center, radius);
   }
 }

@@ -38,7 +38,7 @@ public class TrajectoryWrap {
     navigableMap = trajectory.stream().collect(Collectors.toMap( //
         trajectorySample -> trajectorySample.stateTime().time(), //
         Function.identity(), (u, v) -> null, TreeMap::new));
-    clip = Clips.interval(navigableMap.firstKey(), navigableMap.lastKey());
+    clip = Clips.keycover(navigableMap);
   }
 
   /** @return unmodifiable list */

@@ -66,7 +66,7 @@ public class TreeRender implements RenderInterface {
     private final Tensor polygon;
     private final TreeColor treeColor;
     private final Clip clip;
-    private final long count;
+    // private final long count;
     private final Scalar inverse;
 
     public Render(Collection<? extends StateCostNode> collection) {
@@ -78,7 +78,6 @@ public class TreeRender implements RenderInterface {
           .filter(FiniteScalarQ::of) //
           .collect(MinMax.collector());
       clip = minMax.clip();
-      count = minMax.count();
       inverse = RealScalar.of(treeColor.nodeColor.length() - 1);
     }
 
@@ -89,7 +88,7 @@ public class TreeRender implements RenderInterface {
       path2D.closePath();
       graphics.draw(path2D);
       // ---
-      if (count <= nodeBound) // don't draw tree beyond certain node count
+      if (collection.size() <= nodeBound) // don't draw tree beyond certain node count
         for (StateCostNode node : collection) {
           int interp = clip.rescale(node.costFromRoot()).multiply(inverse).number().intValue();
           graphics.setColor(treeColor.nodeColor.getColor(interp));

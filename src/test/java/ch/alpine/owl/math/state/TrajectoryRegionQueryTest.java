@@ -25,7 +25,6 @@ class TrajectoryRegionQueryTest {
     trajectory.add(new StateTime(Tensors.vector(0, 5), RealScalar.ZERO));
     trajectory.add(new StateTime(Tensors.vector(5, 5), RealScalar.ZERO));
     assertFalse(goalQuery.firstMember(trajectory).isPresent());
-    assertTrue(!goalQuery.firstMember(trajectory).isPresent());
     // ---
     StateTime term = new StateTime(Tensors.vector(10, 5), RealScalar.ZERO);
     trajectory.add(term);

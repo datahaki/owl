@@ -180,7 +180,7 @@ class SetEboTrackerTest {
     LSMT1.digest(1, x);
     assertTrue(LSMT1.getCandidateValues().contains(x) && LSMT1.getCandidateSet().size() == 1);
     LSMT1.digest(2, y);
-    assertTrue(!LSMT1.getCandidateValues().contains(y) && LSMT1.getCandidateSet().size() == 1);
+    assertFalse(LSMT1.getCandidateValues().contains(y) && LSMT1.getCandidateSet().size() == 1);
     LSMT1.digest(3, z);
     assertTrue(LSMT1.getCandidateValues().contains(z) && LSMT1.getCandidateSet().size() > 1);
     LSMT2.digest(2, y);
@@ -194,7 +194,7 @@ class SetEboTrackerTest {
     LSMT3.digest(2, y);
     assertTrue(LSMT3.getCandidateValues().contains(z) && LSMT3.getCandidateValues().contains(y) && LSMT3.getCandidateSet().size() > 1);
     LSMT3.digest(1, x);
-    assertTrue(!LSMT3.getCandidateValues().contains(y) && LSMT3.getCandidateValues().contains(x) && LSMT3.getCandidateValues().contains(z)
+    assertFalse(LSMT3.getCandidateValues().contains(y) && LSMT3.getCandidateValues().contains(x) && LSMT3.getCandidateValues().contains(z)
         && LSMT2.getCandidateSet().size() > 1);
     assertTrue(LSMT1.getMinValues().contains(x) && LSMT1.getCandidateValues().contains(z) && LSMT1.getMinElements().size() > 1);
     assertTrue(LSMT2.getMinValues().contains(x) && LSMT2.getCandidateValues().contains(z) && LSMT2.getMinElements().size() > 1);
