@@ -1,14 +1,14 @@
 // code by fluric
 package ch.alpine.subare.demo;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-
+import ch.alpine.bridge.fig.ChartUtils;
+import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.VisualRow;
 import ch.alpine.bridge.fig.VisualSet;
@@ -60,7 +60,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 
   private static File savePlot(File directory, String fileTitle, JFreeChart jFreeChart) throws Exception {
     File file = new File(directory, fileTitle + ".png");
-    ChartUtils.saveChartAsPNG(file, jFreeChart, WIDTH, HEIGHT);
+    ChartUtils.saveChartAsPNG(file, jFreeChart, new Dimension(WIDTH, HEIGHT));
     System.out.println("Exported " + fileTitle + ".png to " + directory);
     return file;
   }

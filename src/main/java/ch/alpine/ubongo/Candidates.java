@@ -1,13 +1,12 @@
 // code by jph
 package ch.alpine.ubongo;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.List;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-
+import ch.alpine.bridge.fig.ChartUtils;
+import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.VisualRow;
 import ch.alpine.bridge.fig.VisualSet;
@@ -28,8 +27,7 @@ enum Candidates {
       VisualRow visualRow = visualSet.add(xy);
       visualRow.setLabel("" + use);
     }
-    JFreeChart jFreeChart = ListPlot.of(visualSet, true);
-    jFreeChart.setBackgroundPaint(Color.WHITE);
-    ChartUtils.saveChartAsPNG(HomeDirectory.Pictures("ubongo_candidate_size.png"), jFreeChart, 800, 600);
+    JFreeChart jFreeChart = ListPlot.of(visualSet);
+    ChartUtils.saveChartAsPNG(HomeDirectory.Pictures("ubongo_candidate_size.png"), jFreeChart, new Dimension(800, 600));
   }
 }

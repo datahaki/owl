@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,9 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-
+import ch.alpine.bridge.fig.ChartUtils;
+import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.VisualSet;
 import ch.alpine.bridge.io.HtmlUtf8;
@@ -85,7 +85,7 @@ import ch.alpine.tensor.pdf.BinCounts;
             visualSet.add(expandCount, klotskiSolution.domain.get(Tensor.ALL, 3));
             JFreeChart jFreeChart = ListPlot.of(visualSet);
             String filename = imageFilename("eva", klotskiProblem, "png");
-            ChartUtils.saveChartAsPNG(new File(ROOT, filename), jFreeChart, 500, 130);
+            ChartUtils.saveChartAsPNG(new File(ROOT, filename), jFreeChart, new Dimension(500, 130));
             htmlUtf8.appendln("<td><img src='" + filename + "'/>");
           }
           htmlUtf8.appendln("</tr>");

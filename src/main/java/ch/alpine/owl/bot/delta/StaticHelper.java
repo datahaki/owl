@@ -1,6 +1,8 @@
 // code by jph and jl
 package ch.alpine.owl.bot.delta;
 
+import java.util.function.Predicate;
+
 import ch.alpine.ascona.util.ren.RenderInterface;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
@@ -24,7 +26,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.map(Scalar::zero), range);
     RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
     Tensor points = Tensor.of(RandomSample.stream(randomSampleInterface) //
-        .filter(p -> !region.test(p)) //
+        .filter(Predicate.not(region::test)) //
         .limit(LIMIT));
     return new VectorFieldRender().setUV_Pairs(VectorFields.of(stateSpaceModel, points, Array.zeros(2), factor));
   }

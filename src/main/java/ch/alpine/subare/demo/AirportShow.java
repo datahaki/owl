@@ -1,11 +1,10 @@
 // code by fluric
 package ch.alpine.subare.demo;
 
-import java.awt.Color;
+import java.awt.Dimension;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-
+import ch.alpine.bridge.fig.ChartUtils;
+import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.VisualSet;
 import ch.alpine.subare.analysis.DiscreteModelErrorAnalysis;
@@ -96,9 +95,9 @@ import ch.alpine.tensor.ext.Timing;
       visualSet.add(XYsarsa).setLabel("Sarsa");
       visualSet.add(XYtoSarsa).setLabel("TrueOnlineSarsa");
       JFreeChart jFreeChart = ListPlot.of(visualSet);
-      jFreeChart.setBackgroundPaint(Color.WHITE);
       ChartUtils.saveChartAsPNG( //
-          HomeDirectory.Pictures(AirportShow.class.getSimpleName() + ".png"), jFreeChart, 1280, 720);
+          HomeDirectory.Pictures(AirportShow.class.getSimpleName() + ".png"), jFreeChart, //
+          new Dimension(1280, 720));
     }
     // DiscreteQsa toQsa = toSarsa.qsa();
     // System.out.println(toSarsa.getW());

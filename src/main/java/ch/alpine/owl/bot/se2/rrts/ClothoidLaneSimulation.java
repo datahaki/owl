@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.se2.rrts;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.PrintWriter;
@@ -14,14 +15,10 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.LogarithmicAxis;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.XYPlot;
-
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
+import ch.alpine.bridge.fig.ChartUtils;
+import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.VisualRow;
 import ch.alpine.bridge.fig.VisualSet;
@@ -50,8 +47,6 @@ import ch.alpine.tensor.mat.DiagonalMatrix;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.qty.Quantity;
-import ch.alpine.tensor.red.Max;
-import ch.alpine.tensor.red.Min;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.red.StandardDeviation;
 import ch.alpine.tensor.sca.Clips;
@@ -122,24 +117,24 @@ import ch.alpine.tensor.sca.Clips;
         System.out.println("\n" + summary + "\n");
         JFreeChart jFreeChart = ListPlot.of(visualSet);
         // TODO OWL can simplify!
-        Plot plot = jFreeChart.getPlot();
-        XYPlot xyPlot = (XYPlot) plot;
-        xyPlot.setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
+        // Plot plot = jFreeChart.getPlot();
+        // XYPlot xyPlot = (XYPlot) plot;
+        // xyPlot.setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
         List<CoordinateBoundingBox> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
             .map(points -> CoordinateBounds.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
-        xyPlot.getRangeAxis().setRange( //
-            Math.max(0., 0.9 * minMaxes.stream() //
-                .map(CoordinateBoundingBox::min) //
-                .map(Scalar.class::cast) //
-                .reduce(Min::of) //
-                .get().number().doubleValue()), //
-            1.1 * minMaxes.stream() //
-                .map(CoordinateBoundingBox::max) //
-                .map(Scalar.class::cast) //
-                .reduce(Max::of) //
-                .get().number().doubleValue());
+        // xyPlot.getRangeAxis().setRange( //
+        // Math.max(0., 0.9 * minMaxes.stream() //
+        // .map(CoordinateBoundingBox::min) //
+        // .map(Scalar.class::cast) //
+        // .reduce(Min::of) //
+        // .get().number().doubleValue()), //
+        // 1.1 * minMaxes.stream() //
+        // .map(CoordinateBoundingBox::max) //
+        // .map(Scalar.class::cast) //
+        // .reduce(Max::of) //
+        // .get().number().doubleValue());
         File file = new File(DIRECTORY, String.format("costs_%d.png", task++));
-        ChartUtils.saveChartAsPNG(file, jFreeChart, WIDTH, HEIGHT);
+        ChartUtils.saveChartAsPNG(file, jFreeChart, new Dimension(WIDTH, HEIGHT));
       }
     }
   }
