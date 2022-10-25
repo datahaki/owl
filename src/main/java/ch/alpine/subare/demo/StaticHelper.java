@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import ch.alpine.bridge.fig.ChartUtils;
-import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
-import ch.alpine.bridge.fig.VisualRow;
-import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.fig.Show;
+import ch.alpine.bridge.fig.Showable;
 import ch.alpine.subare.analysis.DiscreteModelErrorAnalysis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.HomeDirectory;
@@ -29,38 +27,39 @@ import ch.alpine.tensor.ext.HomeDirectory;
 
   public static void createPlot(Map<String, Tensor> map, String path, List<DiscreteModelErrorAnalysis> errorAnalysisList) {
     for (int index = 0; index < errorAnalysisList.size(); ++index) {
-      VisualSet visualSet = StaticHelper.create(map, index);
+      Show show = StaticHelper.create(map, index);
       // return a new chart containing the overlaid plot...
       String subPath = path + "_" + errorAnalysisList.get(index).name().toLowerCase();
-      JFreeChart jFreeChart = plot(subPath, subPath, "Number batches", "Error", visualSet);
+      plot(subPath, subPath, "Number batches", "Error", show);
       try {
-        savePlot(directory(), path, jFreeChart);
+        savePlot(directory(), path, show);
       } catch (Exception exception) {
         exception.printStackTrace();
       }
     }
   }
 
-  private static VisualSet create(Map<String, Tensor> map, int index) {
-    VisualSet visualSet = new VisualSet();
+  private static Show create(Map<String, Tensor> map, int index) {
+    Show show = new Show();
     for (Entry<String, Tensor> entry : map.entrySet()) {
-      VisualRow visualRow = visualSet.add(entry.getValue());
+      Showable visualRow = show.add(ListPlot.of(entry.getValue()));
       visualRow.setLabel(entry.getKey());
     }
-    return visualSet;
+    return show;
   }
 
-  private static JFreeChart plot( //
-      String filename, String diagramTitle, String axisLabelX, String axisLabelY, VisualSet visualSet) {
-    visualSet.setPlotLabel(diagramTitle);
-    visualSet.getAxisX().setLabel(axisLabelX);
-    visualSet.getAxisY().setLabel(axisLabelY);
-    return ListPlot.of(visualSet);
+  private static void plot( //
+      String filename, String diagramTitle, String axisLabelX, String axisLabelY, Show show) {
+    show.setPlotLabel(diagramTitle);
+    // show.add(ListPlot.of(null))
+    // show.getAxisX().setLabel(axisLabelX);
+    // show.getAxisY().setLabel(axisLabelY);
+    // return ListPlot.of(show);
   }
 
-  private static File savePlot(File directory, String fileTitle, JFreeChart jFreeChart) throws Exception {
+  private static File savePlot(File directory, String fileTitle, Show show) throws Exception {
     File file = new File(directory, fileTitle + ".png");
-    ChartUtils.saveChartAsPNG(file, jFreeChart, new Dimension(WIDTH, HEIGHT));
+    show.export(file, new Dimension(WIDTH, HEIGHT));
     System.out.println("Exported " + fileTitle + ".png to " + directory);
     return file;
   }

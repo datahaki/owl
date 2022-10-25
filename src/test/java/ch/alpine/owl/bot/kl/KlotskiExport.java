@@ -9,10 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.bridge.fig.ChartUtils;
-import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
-import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.io.HtmlUtf8;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
@@ -79,13 +77,12 @@ import ch.alpine.tensor.pdf.BinCounts;
           }
           {
             ColorDataIndexed colorDataIndexed = ColorDataLists._097.cyclic(); // .deriveWithAlpha(16);
-            VisualSet visualSet = new VisualSet(colorDataIndexed);
+            Show show = new Show(colorDataIndexed);
             Tensor expandCount = klotskiSolution.domain.get(Tensor.ALL, 0);
-            visualSet.add(expandCount, klotskiSolution.domain.get(Tensor.ALL, 2));
-            visualSet.add(expandCount, klotskiSolution.domain.get(Tensor.ALL, 3));
-            JFreeChart jFreeChart = ListPlot.of(visualSet);
+            show.add(ListPlot.of(expandCount, klotskiSolution.domain.get(Tensor.ALL, 2)));
+            show.add(ListPlot.of(expandCount, klotskiSolution.domain.get(Tensor.ALL, 3)));
             String filename = imageFilename("eva", klotskiProblem, "png");
-            ChartUtils.saveChartAsPNG(new File(ROOT, filename), jFreeChart, new Dimension(500, 130));
+            show.export(new File(ROOT, filename), new Dimension(500, 130));
             htmlUtf8.appendln("<td><img src='" + filename + "'/>");
           }
           htmlUtf8.appendln("</tr>");

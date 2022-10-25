@@ -3,10 +3,8 @@ package ch.alpine.subare.demo;
 
 import java.awt.Dimension;
 
-import ch.alpine.bridge.fig.ChartUtils;
-import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
-import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.fig.Show;
 import ch.alpine.subare.analysis.DiscreteModelErrorAnalysis;
 import ch.alpine.subare.core.StateActionCounter;
 import ch.alpine.subare.core.alg.ActionValueIterations;
@@ -90,13 +88,13 @@ import ch.alpine.tensor.ext.Timing;
       System.out.println("time for TrueOnlineSarsa: " + timing.seconds() + "s");
     }
     {
-      VisualSet visualSet = new VisualSet();
-      visualSet.add(XYmc).setLabel("MonteCarlo");
-      visualSet.add(XYsarsa).setLabel("Sarsa");
-      visualSet.add(XYtoSarsa).setLabel("TrueOnlineSarsa");
-      JFreeChart jFreeChart = ListPlot.of(visualSet);
-      ChartUtils.saveChartAsPNG( //
-          HomeDirectory.Pictures(AirportShow.class.getSimpleName() + ".png"), jFreeChart, //
+      Show show = new Show();
+      show.add(ListPlot.of(XYmc)).setLabel("MonteCarlo");
+      show.add(ListPlot.of(XYsarsa)).setLabel("Sarsa");
+      show.add(ListPlot.of(XYtoSarsa)).setLabel("TrueOnlineSarsa");
+      // Showable jFreeChart = ListPlot.of(show);
+      show.export( //
+          HomeDirectory.Pictures(AirportShow.class.getSimpleName() + ".png"), //
           new Dimension(1280, 720));
     }
     // DiscreteQsa toQsa = toSarsa.qsa();

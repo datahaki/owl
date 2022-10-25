@@ -13,15 +13,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import ch.alpine.ascona.util.dis.ManifoldDisplay;
 import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
-import ch.alpine.bridge.fig.ChartUtils;
-import ch.alpine.bridge.fig.JFreeChart;
 import ch.alpine.bridge.fig.ListPlot;
-import ch.alpine.bridge.fig.VisualRow;
-import ch.alpine.bridge.fig.VisualSet;
+import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -44,8 +40,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.mat.DiagonalMatrix;
-import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
-import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.red.StandardDeviation;
@@ -101,12 +95,12 @@ import ch.alpine.tensor.sca.Clips;
         // scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);
         // ---
         Tensor ttfs = Tensors.empty();
-        VisualSet visualSet = new VisualSet();
-        visualSet.getAxisX().setLabel("time [s]");
-        visualSet.getAxisY().setLabel("cost");
+        Show show = new Show();
+        // show.getAxisX().setLabel("time [s]");
+        // show.getAxisY().setLabel("cost");
         for (int rep = 0; rep < REPS; rep++) {
           System.out.println("iteration " + (rep + 1));
-          run(lane, visualSet, ttfs, geometricLayer, task, rep + 1);
+          run(lane, show, ttfs, geometricLayer, task, rep + 1);
         }
         ScalarSummaryStatistics statistics = new ScalarSummaryStatistics();
         ttfs.stream().map(Scalar.class::cast).forEach(statistics);
@@ -115,13 +109,13 @@ import ch.alpine.tensor.sca.Clips;
             task, statistics.getAverage(), StandardDeviation.ofVector(ttfs), statistics.getMin(), statistics.getMax(), 100. * ttfs.length() / REPS);
         writer.println(summary.replace("\n", System.lineSeparator()));
         System.out.println("\n" + summary + "\n");
-        JFreeChart jFreeChart = ListPlot.of(visualSet);
+        // Showable jFreeChart = ListPlot.of(show);
         // TODO OWL can simplify!
         // Plot plot = jFreeChart.getPlot();
         // XYPlot xyPlot = (XYPlot) plot;
         // xyPlot.setDomainAxis(new LogarithmicAxis(visualSet.getAxisX().getLabel()));
-        List<CoordinateBoundingBox> minMaxes = visualSet.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
-            .map(points -> CoordinateBounds.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
+        // List<CoordinateBoundingBox> minMaxes = show.visualRows().stream().map(VisualRow::points).filter(Tensors::nonEmpty) //
+        // .map(points -> CoordinateBounds.of(points.get(Tensor.ALL, 1))).collect(Collectors.toList());
         // xyPlot.getRangeAxis().setRange( //
         // Math.max(0., 0.9 * minMaxes.stream() //
         // .map(CoordinateBoundingBox::min) //
@@ -134,18 +128,17 @@ import ch.alpine.tensor.sca.Clips;
         // .reduce(Max::of) //
         // .get().number().doubleValue());
         File file = new File(DIRECTORY, String.format("costs_%d.png", task++));
-        ChartUtils.saveChartAsPNG(file, jFreeChart, new Dimension(WIDTH, HEIGHT));
+        show.export(file, new Dimension(WIDTH, HEIGHT));
       }
     }
   }
 
-  private synchronized static void run(LaneInterface lane, VisualSet visualSet, Tensor ttfs, GeometricLayer geometricLayer, int task, int rep)
-      throws Exception {
+  private synchronized static void run(LaneInterface lane, Show visualSet, Tensor ttfs, GeometricLayer geometricLayer, int task, int rep) throws Exception {
     StateTime stateTime = new StateTime(lane.midLane().get(0), RealScalar.ZERO);
     Consumer<Map<Double, Scalar>> process = observations -> {
       Tensor domain = Tensor.of(observations.keySet().stream().map(d -> Quantity.of(d, "s")));
       Tensor values = Tensor.of(observations.values().stream());
-      visualSet.add(domain, values);
+      visualSet.add(ListPlot.of(domain, values));
       observations.keySet().stream().map(RealScalar::of).findFirst().ifPresent(ttfs::append);
     };
     List<RrtsNode> first = new ArrayList<>();
