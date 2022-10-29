@@ -6,16 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.demo.order.JassCard.Farbe;
-import ch.alpine.owl.demo.order.JassCard.Type;
 import ch.alpine.owl.math.order.OrderComparison;
 
 class JassCardPartialOrderTest {
-  final JassCard A = new JassCard(Farbe.ROSEN, Type.ACE, true);
-  final JassCard B = new JassCard(Farbe.ROSEN, Type.JACK, true);
-  final JassCard C = new JassCard(Farbe.EICHEL, Type.QUEEN, false);
-  final JassCard D = new JassCard(Farbe.EICHEL, Type.SEVEN, false);
-  final JassCard E = new JassCard(Farbe.SCHELLE, Type.ACE, false);
+  final JassCard A = new JassCard(JassFarbe.ROSEN, JassType.ACE, true);
+  final JassCard B = new JassCard(JassFarbe.ROSEN, JassType.JACK, true);
+  final JassCard C = new JassCard(JassFarbe.EICHEL, JassType.QUEEN, false);
+  final JassCard D = new JassCard(JassFarbe.EICHEL, JassType.SEVEN, false);
+  final JassCard E = new JassCard(JassFarbe.SCHELLE, JassType.ACE, false);
 
   @Test
   void testAIsTrumpfBIsNot() {

@@ -3,38 +3,10 @@ package ch.alpine.owl.demo.order;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.demo.order.JassCard.Farbe;
-import ch.alpine.owl.demo.order.JassCard.Type;
-
 /** Creates a card of the game jassen with the attributes color and card type
  * 
  * https://en.wikipedia.org/wiki/Jass */
-/* package */ record JassCard(Farbe farbe, Type type, boolean isTrumpf) implements Serializable {
-  public enum Farbe {
-    ROSEN,
-    EICHEL,
-    SCHILTEN,
-    SCHELLE
-  }
-
-  public enum Type {
-    SIX(1),
-    SEVEN(2),
-    EIGHT(3),
-    NINE(8),
-    TEN(4),
-    JACK(9),
-    QUEEN(5),
-    KING(6),
-    ACE(7);
-
-    private final int trumpfOrdering;
-
-    private Type(int trumpfOrdering) {
-      this.trumpfOrdering = trumpfOrdering;
-    }
-  }
-
+/* package */ record JassCard(JassFarbe farbe, JassType type, boolean isTrumpf) implements Serializable {
   /** checks whether the two cards are exactly the same or if two different colors were assigned Trumpf
    * 
    * @param jassCard to check for eligibility

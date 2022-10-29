@@ -27,7 +27,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.TableBuilder;
 
-/* package */ class KlotskiDemo extends AbstractDemo {
+public class KlotskiDemo extends AbstractDemo {
   public static final File FOLDER_SOLUTIONS = HomeDirectory.Documents("klotski");
   private final KlotskiProblem klotskiProblem;
   private static final int RES = 128;
@@ -103,7 +103,7 @@ import ch.alpine.tensor.io.TableBuilder;
   }
 
   public static void main(String[] args) throws IOException {
-    KlotskiProblem klotskiProblem = Huarong.AMBUSH.create();
+    KlotskiProblem klotskiProblem = Huarong.ONLY_18_STEPS.create();
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
     klotskiDemo.setVisible(700, 700);
     KlotskiSolution klotskiSolution = klotskiDemo.compute();
