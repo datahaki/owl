@@ -2,7 +2,7 @@
 package ch.alpine.owl.lane;
 
 import java.io.Serializable;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
@@ -53,7 +53,7 @@ public class Se2ConeRandomSample implements RandomSampleInterface, Serializable 
   }
 
   @Override // from RandomSampleInterface
-  public Tensor randomSample(Random random) {
+  public Tensor randomSample(RandomGenerator random) {
     Tensor xy = AngleVector.of(RandomVariate.of(distributionAngle, random)).multiply(RandomVariate.of(distributionDepth, random));
     return se2GroupElement.combine(xy.append(RandomVariate.of(distributionHeading, random)));
   }

@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.EntityControl;
@@ -37,7 +38,7 @@ public class GokartEntity extends CarEntity {
   private final EdgeRender edgeRender = new EdgeRender();
   /** simulation of occasional feedback from localization algorithm */
   private final EntityControl localizationFeedback = new EntityControl() {
-    private final Random random = new Random();
+    private final RandomGenerator random = new Random();
     private final Distribution distribution = NormalDistribution.standard();
     private boolean trigger = false;
 

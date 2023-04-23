@@ -2,7 +2,7 @@
 package ch.alpine.owl.lane;
 
 import java.io.Serializable;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 import ch.alpine.sophus.hs.r2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2GroupElement;
@@ -31,7 +31,7 @@ public class LaneRandomSample implements RandomSampleInterface, Serializable {
   }
 
   @Override // from RandomSampleInterface
-  public Tensor randomSample(Random random) {
+  public Tensor randomSample(RandomGenerator random) {
     return around(random.nextInt(laneInterface.midLane().length())).randomSample(random);
   }
 
@@ -45,7 +45,7 @@ public class LaneRandomSample implements RandomSampleInterface, Serializable {
     Se2GroupElement se2GroupElement = new Se2GroupElement(point);
     return new RandomSampleInterface() {
       @Override // from RandomSampleInterface
-      public Tensor randomSample(Random random) {
+      public Tensor randomSample(RandomGenerator random) {
         Tensor trans = randomSampleInterface.randomSample(random);
         Scalar rot = RandomVariate.of(distribution, random);
         return se2GroupElement.combine(trans.append(rot));
