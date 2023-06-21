@@ -3,9 +3,8 @@
 package ch.alpine.owl.demo.order;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
 
+import ch.alpine.bridge.io.ParentFileQ;
 import ch.alpine.owl.math.order.BinaryRelation;
 
 public enum ParentFileRelation implements BinaryRelation<File> {
@@ -20,17 +19,6 @@ public enum ParentFileRelation implements BinaryRelation<File> {
    * @throws Exception if an error occurred during the test. */
   @Override
   public boolean test(File base, File child) {
-    try {
-      base = base.getCanonicalFile();
-      child = child.getCanonicalFile();
-      while (Objects.nonNull(child)) {
-        if (base.equals(child))
-          return true;
-        child = child.getParentFile();
-      }
-    } catch (IOException ioException) {
-      throw new RuntimeException(ioException);
-    }
-    return false;
+    return ParentFileQ.test(base, child);
   }
 }

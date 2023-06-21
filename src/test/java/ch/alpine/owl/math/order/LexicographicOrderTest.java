@@ -47,7 +47,7 @@ class LexicographicOrderTest {
 
   @Test
   void testPartialLexicographic() {
-    OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
+    OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.FUNCTION.apply(x), Abs.FUNCTION.apply(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
     comparatorList.add(comparator1);
@@ -77,7 +77,7 @@ class LexicographicOrderTest {
 
   @Test
   void testException() {
-    OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
+    OrderComparator<Scalar> comparator1 = new Order<>((x, y) -> Scalars.divides(Abs.FUNCTION.apply(x), Abs.FUNCTION.apply(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
     comparatorList.add(comparator1);
@@ -95,7 +95,7 @@ class LexicographicOrderTest {
   void testSerializable() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
     OrderComparator<Scalar> comparator1 = new Order<>( //
-        (BiPredicate<Scalar, Scalar> & Serializable) (x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
+        (BiPredicate<Scalar, Scalar> & Serializable) (x, y) -> Scalars.divides(Abs.FUNCTION.apply(x), Abs.FUNCTION.apply(y)));
     List<OrderComparator<Scalar>> comparatorList = new LinkedList<>();
     comparatorList.add(comparator1);
     comparatorList.add(comparator1);

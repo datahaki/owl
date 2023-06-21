@@ -119,7 +119,7 @@ import ch.alpine.tensor.sca.Sign;
       Scalar maxLength = segment.stream().skip(1) //
           .map(node -> transitionSpace.connect(node.parent().state(), node.state()).length()).reduce(Max::of).get();
       Scalar t0 = Lists.last(trajectory).stateTime().time();
-      int depth = IntegerLog2.ceiling(Ceiling.of(maxLength.divide(Sign.requirePositive(dt))).number().intValue());
+      int depth = IntegerLog2.ceiling(Ceiling.FUNCTION.apply(maxLength.divide(Sign.requirePositive(dt))).number().intValue());
       if (!direction)
         points = Reverse.of(points);
       Tensor samples = Nest.of(curveSubdivision::string, points, depth);

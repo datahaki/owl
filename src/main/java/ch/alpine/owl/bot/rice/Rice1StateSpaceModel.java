@@ -31,7 +31,7 @@ public class Rice1StateSpaceModel implements StateSpaceModel, Serializable {
   /** @param mu
    * @return */
   public static StateSpaceModel of(Scalar mu) {
-    return new Rice1StateSpaceModel(Exp.of(mu));
+    return new Rice1StateSpaceModel(Exp.FUNCTION.apply(mu));
   }
 
   // ---

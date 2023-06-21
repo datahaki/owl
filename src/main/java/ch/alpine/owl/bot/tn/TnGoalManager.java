@@ -41,7 +41,7 @@ import ch.alpine.tensor.sca.Ramp;
 
   @Override // from HeuristicFunction
   public Scalar minCostToGoal(Tensor x) {
-    return Ramp.of(tensorMetric.distance(x, center).subtract(radius));
+    return Ramp.FUNCTION.apply(tensorMetric.distance(x, center).subtract(radius));
   }
 
   @Override // from Region

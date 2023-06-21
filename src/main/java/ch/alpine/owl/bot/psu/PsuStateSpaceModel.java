@@ -25,6 +25,6 @@ import ch.alpine.tensor.sca.tri.Sin;
     // equation (10)
     // x0' = x1
     // x1' = -sin(x0) + u
-    return Tensors.of(x.Get(1), u.Get(0).subtract(Sin.of(x.Get(0))));
+    return Tensors.of(x.Get(1), u.Get(0).subtract(Sin.FUNCTION.apply(x.Get(0))));
   }
 }

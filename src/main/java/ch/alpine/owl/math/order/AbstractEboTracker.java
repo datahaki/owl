@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import ch.alpine.subare.util.RandomChoice;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.PackageTestAccess;
+import ch.alpine.tensor.ext.RandomChoice;
 
 /** immutable */
 /* package */ class Pair<K> implements Serializable {

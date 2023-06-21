@@ -244,8 +244,8 @@ class RrtsFlowTrajectoryGeneratorTest {
       } catch (Throw e) { // +/- close to pi
         Chop._03.requireClose(trajectorySample.stateTime().state().extract(0, 2), integrator.tail().state().extract(0, 2));
         Chop._03.requireClose( //
-            Abs.of(trajectorySample.stateTime().state().Get(2)), //
-            Abs.of(integrator.tail().state().Get(2)));
+            Abs.FUNCTION.apply(trajectorySample.stateTime().state().Get(2)), //
+            Abs.FUNCTION.apply(integrator.tail().state().Get(2)));
       }
     }
   }

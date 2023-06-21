@@ -39,7 +39,7 @@ import ch.alpine.tensor.sca.exp.Log;
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);
     // ---
-    StateTimeRaster stateTimeRaster = new EtaRaster(eta, StateTimeTensorFunction.state(Log::of));
+    StateTimeRaster stateTimeRaster = new EtaRaster(eta, StateTimeTensorFunction.state(tensor -> tensor.map(Log.FUNCTION)));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface);
     // ---

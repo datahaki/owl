@@ -30,7 +30,7 @@ class OrderTest {
 
   @Test
   void testPartialOrderScalars() {
-    OrderComparator<Scalar> partialScalarComparator = new Order<>((x, y) -> Scalars.divides(Abs.of(x), Abs.of(y)));
+    OrderComparator<Scalar> partialScalarComparator = new Order<>((x, y) -> Scalars.divides(Abs.FUNCTION.apply(x), Abs.FUNCTION.apply(y)));
     assertEquals(OrderComparison.STRICTLY_PRECEDES, partialScalarComparator.compare(RealScalar.of(2), RealScalar.of(4)));
     assertEquals(OrderComparison.STRICTLY_SUCCEEDS, partialScalarComparator.compare(RealScalar.of(4), RealScalar.of(2)));
     assertEquals(OrderComparison.INDIFFERENT, partialScalarComparator.compare(RealScalar.of(5), RealScalar.of(5)));

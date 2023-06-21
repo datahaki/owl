@@ -13,12 +13,12 @@ import ch.alpine.tensor.sca.Abs;
   /** @param flows
    * @return max speed with unit "m*s^-1" */
   public static Scalar maxSpeed(Collection<Tensor> flows) {
-    return flows.stream().map(u -> Abs.of(u.Get(0))).reduce(Max::of).orElseThrow();
+    return flows.stream().map(u -> Abs.FUNCTION.apply(u.Get(0))).reduce(Max::of).orElseThrow();
   }
 
   /** @param flows
    * @return max rate per meter driven in unit "s^-1" */
   public static Scalar maxTurning(Collection<Tensor> flows) {
-    return flows.stream().map(u -> Abs.of(u.Get(2))).reduce(Max::of).orElseThrow();
+    return flows.stream().map(u -> Abs.FUNCTION.apply(u.Get(2))).reduce(Max::of).orElseThrow();
   }
 }

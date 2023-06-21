@@ -46,7 +46,7 @@ import ch.alpine.tensor.sca.tri.Sin;
     if (CLIP_GAMMA.isOutside(gamma))
       return false;
     if (Scalars.lessEquals(z, ApStateSpaceModel.ALTITUDE_FINAL_PHASE)) {
-      Scalar v_z = v.multiply(Sin.of(gamma));
+      Scalar v_z = v.multiply(Sin.FUNCTION.apply(gamma));
       return Scalars.lessEquals(ApStateSpaceModel.Z_DOT_0_MAX, v_z);
     }
     return true;//

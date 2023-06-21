@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Abs;
   public ApMinTimeGoalManager(ApComboRegion apComboRegion, Scalar maxVerticalSpeed) {
     super(apComboRegion);
     this.apComboRegion = apComboRegion;
-    this.maxVerticalSpeed = Abs.of(maxVerticalSpeed);
+    this.maxVerticalSpeed = Abs.FUNCTION.apply(maxVerticalSpeed);
   }
 
   @Override // from HeuristicFunction

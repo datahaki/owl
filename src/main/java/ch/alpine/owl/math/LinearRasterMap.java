@@ -14,6 +14,6 @@ public class LinearRasterMap<T> extends RasterMap<T> {
 
   @Override
   public Tensor toKey(Tensor tensor) {
-    return Floor.of(Times.of(tensor, scale));
+    return Times.of(tensor, scale).map(Floor.FUNCTION);
   }
 }

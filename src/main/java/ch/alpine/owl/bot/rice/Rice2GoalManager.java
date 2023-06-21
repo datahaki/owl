@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.Ramp;
 
   @Override // from HeuristicFunction
   public Scalar minCostToGoal(Tensor x) {
-    Scalar minDist = Ramp.of(Vector2Norm.between(Extract2D.FUNCTION.apply(x), center).subtract(radius));
+    Scalar minDist = Ramp.FUNCTION.apply(Vector2Norm.between(Extract2D.FUNCTION.apply(x), center).subtract(radius));
     return minDist; // .divide(1 [m/s]), since max velocity == 1 => division is obsolete
   }
 }

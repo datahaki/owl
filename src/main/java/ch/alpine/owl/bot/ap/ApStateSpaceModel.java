@@ -36,7 +36,7 @@ import ch.alpine.tensor.sca.tri.Sin;
   /** steepest descent flight path angle */
   static final Scalar MAX_DESCENT_GAMMA = Degree.of(-15);
   /** maximal vertical speed in z direction during flight in [m/s] */
-  static final Scalar Z_DOT_FLIGHT_MAX = MAX_SPEED.multiply(Sin.of(MAX_DESCENT_GAMMA));
+  static final Scalar Z_DOT_FLIGHT_MAX = MAX_SPEED.multiply(Sin.FUNCTION.apply(MAX_DESCENT_GAMMA));
   /** maximal vertical touchdown speed in z direction in [m/s] */
   static final Scalar Z_DOT_0_MAX = RealScalar.of(-0.9144);
   /** altitude of final landing phase in [m] */
@@ -55,10 +55,10 @@ import ch.alpine.tensor.sca.tri.Sin;
     Scalar u1 = u.Get(0); // Thrust
     Scalar u2 = u.Get(1); // angle of attack
     return Tensors.of( //
-        x3.multiply(Cos.of(x4)), //
-        x3.multiply(Sin.of(x4)), //
-        (u1.multiply(Cos.of(u2)).subtract(D(u2, x3)).subtract(Times.of(MASS, GRAVITY, Sin.of(x4)))).divide(MASS), //
-        (u1.multiply(Sin.of(u2)).add(L(u2, x3)).subtract(Times.of(MASS, GRAVITY, Cos.of(x4)))).divide(MASS).divide(x3)//
+        x3.multiply(Cos.FUNCTION.apply(x4)), //
+        x3.multiply(Sin.FUNCTION.apply(x4)), //
+        (u1.multiply(Cos.FUNCTION.apply(u2)).subtract(D(u2, x3)).subtract(Times.of(MASS, GRAVITY, Sin.FUNCTION.apply(x4)))).divide(MASS), //
+        (u1.multiply(Sin.FUNCTION.apply(u2)).add(L(u2, x3)).subtract(Times.of(MASS, GRAVITY, Cos.FUNCTION.apply(x4)))).divide(MASS).divide(x3)//
     );
   }
 

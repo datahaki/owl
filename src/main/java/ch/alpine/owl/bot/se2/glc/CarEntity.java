@@ -50,7 +50,7 @@ public class CarEntity extends Se2Entity {
    * than the planner, to overcome small imprecisions when following the trajectory */
   public static final Scalar MAX_TURNING_RATE = Degree.of(50);
   public static final FlowsInterface CARFLOWS = Se2CarFlows.standard(SPEED, MAX_TURNING_PLAN);
-  private static final Scalar SQRT2 = Sqrt.of(RealScalar.of(2));
+  private static final Scalar SQRT2 = Sqrt.FUNCTION.apply(RealScalar.of(2));
   private static final Scalar SHIFT_PENALTY = RealScalar.of(0.4);
   // ---
   public static final Tensor SHAPE = Tensors.matrixDouble( //

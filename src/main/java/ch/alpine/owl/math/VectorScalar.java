@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import ch.alpine.owl.math.order.VectorLexicographic;
 import ch.alpine.tensor.MultiplexScalar;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -40,7 +41,6 @@ import ch.alpine.tensor.sca.Re;
  * <p>Hint: a {@link VectorScalar} may also have zero entries */
 public class VectorScalar extends MultiplexScalar implements //
     ComplexEmbedding, ConjugateInterface, Comparable<Scalar>, Serializable {
-  // TODO OWL API not finalized: should VectorScalar allow entries with other VectorScalar's?
   /** @param vector
    * @return
    * @throws Exception if input is not a vector, or contains entries of type {@link VectorScalar} */
@@ -102,32 +102,30 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public Scalar one() {
-    throw new Throw(this);
+    return RealScalar.ONE;
   }
 
   // ---
   @Override // from AbstractScalar
   protected Scalar plus(Scalar scalar) {
-    if (scalar instanceof VectorScalar) {
-      VectorScalar vectorScalar = (VectorScalar) scalar;
+    if (scalar instanceof VectorScalar vectorScalar)
       return new VectorScalar(vector.add(vectorScalar.vector));
-    }
     throw new Throw(this, scalar);
   }
 
   @Override // from ComplexEmbedding
   public Scalar conjugate() {
-    return new VectorScalar(Conjugate.of(vector));
+    return new VectorScalar(vector.map(Conjugate.FUNCTION));
   }
 
   @Override // from ComplexEmbedding
   public Scalar real() {
-    return new VectorScalar(Re.of(vector));
+    return new VectorScalar(vector.map(Re.FUNCTION));
   }
 
   @Override // from ComplexEmbedding
   public Scalar imag() {
-    return new VectorScalar(Im.of(vector));
+    return new VectorScalar(vector.map(Im.FUNCTION));
   }
 
   @Override
@@ -143,10 +141,8 @@ public class VectorScalar extends MultiplexScalar implements //
   // ---
   @Override // from Comparable
   public int compareTo(Scalar scalar) {
-    if (scalar instanceof VectorScalar) {
-      VectorScalar vectorScalar = (VectorScalar) scalar;
+    if (scalar instanceof VectorScalar vectorScalar)
       return VectorLexicographic.COMPARATOR.compare(vector, vectorScalar.vector());
-    }
     throw new Throw(this, scalar);
   }
 
@@ -157,7 +153,8 @@ public class VectorScalar extends MultiplexScalar implements //
 
   @Override // from Scalar
   public boolean equals(Object object) {
-    return object instanceof VectorScalar && vector.equals(((VectorScalar) object).vector);
+    return object instanceof VectorScalar vectorScalar //
+        && vector.equals(vectorScalar.vector);
   }
 
   private static final Collector<CharSequence, ?, String> EMBRACE = Collectors.joining(", ", "[", "]");

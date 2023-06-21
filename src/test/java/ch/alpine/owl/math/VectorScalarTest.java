@@ -48,9 +48,9 @@ class VectorScalarTest {
   @Test
   void testComplex() {
     Scalar a = VectorScalar.of(Tensors.fromString("{1+3*I, 2-4*I}"));
-    assertEquals(Re.of(a), VectorScalar.of(1, +2));
-    assertEquals(Im.of(a), VectorScalar.of(3, -4));
-    assertEquals(Conjugate.of(a), VectorScalar.of(Tensors.fromString("{1-3*I, 2+4*I}")));
+    assertEquals(a.map(Re.FUNCTION), VectorScalar.of(1, +2));
+    assertEquals(a.map(Im.FUNCTION), VectorScalar.of(3, -4));
+    assertEquals(a.map(Conjugate.FUNCTION), VectorScalar.of(Tensors.fromString("{1-3*I, 2+4*I}")));
   }
 
   @Test

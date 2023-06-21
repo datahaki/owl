@@ -68,7 +68,7 @@ import ch.alpine.tensor.sca.Ramp;
     if (optional.isPresent()) {
       GlcNode goalNode = optional.orElseThrow(); // <- throws exception if
       Scalar cost = goalNode.costFromRoot();
-      Scalar lowerBound = Ramp.of(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
+      Scalar lowerBound = Ramp.FUNCTION.apply(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
         throw new Throw(cost, lowerBound);
     }

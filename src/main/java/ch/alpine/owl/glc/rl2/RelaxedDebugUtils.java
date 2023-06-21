@@ -61,7 +61,8 @@ public enum RelaxedDebugUtils {
       if (PRINT)
         System.out.println("Number of elements similar to best: " + StaticHelper.numberEquals(relaxedPriorityQueue));
       relaxedPriorityQueue.collection().stream().filter(a -> VectorScalars.vector(a.merit()).subtract(bestMerit).stream() //
-          .map(Scalar.class::cast).allMatch(v -> Scalars.lessThan(Abs.of(v), RationalScalar.of(1, 100)))).forEach(x -> System.out.println(x.merit()));
+          .map(Scalar.class::cast).allMatch(v -> Scalars.lessThan(Abs.FUNCTION.apply(v), RationalScalar.of(1, 100))))
+          .forEach(x -> System.out.println(x.merit()));
     }
   }
 
