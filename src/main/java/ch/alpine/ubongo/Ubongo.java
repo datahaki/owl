@@ -60,7 +60,7 @@ import ch.alpine.tensor.img.ImageRotate;
     // ---
     Tensor rotated = DeleteDuplicates.of(NestList.of(ImageRotate::of, mask, 4));
     Set<Tensor> stamps = new HashSet<>();
-    rotated.stream().forEach(stamps::add);
+    rotated.forEach(stamps::add);
     rotated.stream().map(Reverse::of).forEach(stamps::add);
     for (Tensor stamp : stamps)
       set.add(new UbongoStamp(stamp));

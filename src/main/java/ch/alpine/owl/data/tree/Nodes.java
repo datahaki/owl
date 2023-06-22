@@ -68,7 +68,7 @@ public enum Nodes {
   @SuppressWarnings("unchecked")
   public static <T extends Node> void ofSubtree(T node, Collection<T> collection) {
     collection.add(node);
-    node.children().stream().forEach(child -> ofSubtree((T) child, collection));
+    node.children().forEach(child -> ofSubtree((T) child, collection));
   }
 
   /** applications may sort the collection, for instance {@link OptimalAnyTrajectoryPlanner}

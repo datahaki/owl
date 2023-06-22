@@ -103,7 +103,7 @@ public class StandardRLTrajectoryPlanner extends RLTrajectoryPlanner {
                 if (!toRemove.isEmpty()) {
                   boolean removed = queue().removeAll(toRemove); // remove bad nodes from OPEN queue
                   formerQueue.removeAll(toRemove); // remove bad nodes from domain queue
-                  toRemove.stream().forEach(Nodes::disjoinChild); // remove edges from parent
+                  toRemove.forEach(Nodes::disjoinChild); // remove edges from parent
                   if (!removed) //
                     System.err.println("miss - nodes to be removed dont exist " + domainKey);
                 }
