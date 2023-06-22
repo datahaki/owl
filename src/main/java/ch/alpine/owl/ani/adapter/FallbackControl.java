@@ -9,12 +9,11 @@ import ch.alpine.owl.ani.api.ProviderRank;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.sca.N;
 
 public class FallbackControl implements EntityControl, Serializable {
   /** @param fallback control */
   public static EntityControl of(Tensor fallback) {
-    return new FallbackControl(N.DOUBLE.of(fallback).unmodifiable());
+    return new FallbackControl(fallback.unmodifiable());
   }
 
   // ---

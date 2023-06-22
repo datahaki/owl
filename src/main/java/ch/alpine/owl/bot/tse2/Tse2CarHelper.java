@@ -14,6 +14,6 @@ import ch.alpine.tensor.sca.N;
    * @param acceleration [m*s^-2]
    * @return flow with u == { rate[m^-1], acceleration[m*s^-2]} */
   public static Tensor singleton(Scalar rate, Scalar acceleration) {
-    return N.DOUBLE.of(Tensors.of(rate, acceleration));
+    return Tensors.of(rate, acceleration).map(N.DOUBLE);
   }
 }

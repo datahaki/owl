@@ -31,7 +31,7 @@ import ch.alpine.tensor.sca.N;
   public Collection<Tensor> getFlows(int resolution) {
     Collection<Tensor> collection = new ArrayList<>();
     for (Tensor u : Subdivide.of(u_max.negate(), u_max, 1 + resolution))
-      collection.add(N.DOUBLE.of(Tensors.of(u)));
+      collection.add(Tensors.of(u).map(N.DOUBLE));
     return collection;
   }
 }
