@@ -2,6 +2,7 @@
 package ch.alpine.owl.data.tree;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,6 @@ class NodesAssertTest {
   @Test
   void testAllLeaf() {
     GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), x -> RealScalar.ZERO);
-    NodesAssert.allLeaf(Collections.singletonList(glcNode));
+    NodesAssert.allLeaf(List.of(glcNode));
   }
 }

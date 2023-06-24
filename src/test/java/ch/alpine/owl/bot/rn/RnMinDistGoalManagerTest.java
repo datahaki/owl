@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,7 +75,7 @@ class RnMinDistGoalManagerTest {
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     Scalar increment = goalInterface.costIncrement( //
         glcNode, //
-        Collections.singletonList(new StateTime(Tensors.vector(13, 7), RealScalar.ZERO)), //
+        List.of(new StateTime(Tensors.vector(13, 7), RealScalar.ZERO)), //
         null);
     assertEquals(increment, RealScalar.of(5));
   }

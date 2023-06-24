@@ -21,6 +21,6 @@ public class DiscreteIntegrator implements StateIntegrator {
   @Override // from StateIntegrator
   public List<StateTime> trajectory(StateTime stateTime, Tensor u) {
     Tensor xn = stateSpaceModel.f(stateTime.state(), u);
-    return Collections.singletonList(new StateTime(xn, stateTime.time().add(RealScalar.ONE)));
+    return List.of(new StateTime(xn, stateTime.time().add(RealScalar.ONE)));
   }
 }

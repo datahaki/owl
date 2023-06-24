@@ -25,7 +25,7 @@ class GlcNodesTest {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(Tensors.vector(5, 0), RealScalar.of(2));
     Scalar incr = rnGoal.costIncrement( //
-        root, Collections.singletonList(new StateTime(Tensors.vector(10, 2), RealScalar.ZERO)), null);
+        root, List.of(new StateTime(Tensors.vector(10, 2), RealScalar.ZERO)), null);
     assertEquals(incr, RealScalar.of(8));
   }
 
@@ -34,7 +34,7 @@ class GlcNodesTest {
     GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(2, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
     RnNoHeuristicCircleGoalManager rnGoal = new RnNoHeuristicCircleGoalManager(Tensors.vector(5, 0), RealScalar.of(2));
     Scalar incr = rnGoal.costIncrement( //
-        root, Collections.singletonList(new StateTime(Tensors.vector(10, 2), RealScalar.ZERO)), null);
+        root, List.of(new StateTime(Tensors.vector(10, 2), RealScalar.ZERO)), null);
     assertEquals(incr, RealScalar.of(8));
   }
 
@@ -44,7 +44,7 @@ class GlcNodesTest {
         new StateTime(Tensors.vector(1, 2), RealScalar.of(10)), //
         x -> RealScalar.ZERO);
     StateTime last = new StateTime(Tensors.vector(1, 2), RealScalar.of(15));
-    Scalar dt = StateTimeTrajectories.timeIncrement(glcNode, Collections.singletonList(last));
+    Scalar dt = StateTimeTrajectories.timeIncrement(glcNode, List.of(last));
     assertEquals(dt, RealScalar.of(5));
   }
 

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ class TrajectoryWrapTest {
   void testSimple() {
     StateTime stateTime = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(4));
     TrajectorySample trajectorySample = new TrajectorySample(stateTime, null);
-    TrajectoryWrap trajectoryWrap = TrajectoryWrap.of(Collections.singletonList(trajectorySample));
+    TrajectoryWrap trajectoryWrap = TrajectoryWrap.of(List.of(trajectorySample));
     assertTrue(trajectoryWrap.isRelevant(RealScalar.of(3)));
     assertFalse(trajectoryWrap.isDefined(RealScalar.of(4)));
     assertThrows(Exception.class, () -> trajectoryWrap.getControl(RealScalar.of(3)));

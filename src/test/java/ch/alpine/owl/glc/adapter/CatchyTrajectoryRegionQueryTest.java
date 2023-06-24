@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class CatchyTrajectoryRegionQueryTest {
     Region<Tensor> region = new EllipsoidRegion(Tensors.vector(1, 2), Tensors.vector(3, 4));
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeDependent(region);
     StateTime stateTime = new StateTime(Tensors.vector(1), RealScalar.ZERO);
-    Optional<StateTime> optional = trq.firstMember(Collections.singletonList(stateTime));
+    Optional<StateTime> optional = trq.firstMember(List.of(stateTime));
     assertTrue(optional.isPresent());
     assertEquals(optional.get(), stateTime);
   }
@@ -37,7 +38,7 @@ class CatchyTrajectoryRegionQueryTest {
     StateTimeCollector stc = (StateTimeCollector) trq;
     assertTrue(stc.getMembers().isEmpty());
     StateTime stateTime = new StateTime(Tensors.vector(1), RealScalar.ZERO);
-    Optional<StateTime> optional = trq.firstMember(Collections.singletonList(stateTime));
+    Optional<StateTime> optional = trq.firstMember(List.of(stateTime));
     assertTrue(optional.isPresent());
     assertEquals(optional.get(), stateTime);
     assertFalse(stc.getMembers().isEmpty());
@@ -50,7 +51,7 @@ class CatchyTrajectoryRegionQueryTest {
     StateTimeCollector stc = (StateTimeCollector) trq;
     assertTrue(stc.getMembers().isEmpty());
     StateTime stateTime = new StateTime(Tensors.vector(1, 2), RealScalar.ZERO);
-    Optional<StateTime> optional = trq.firstMember(Collections.singletonList(stateTime));
+    Optional<StateTime> optional = trq.firstMember(List.of(stateTime));
     assertTrue(optional.isPresent());
     assertEquals(optional.get(), stateTime);
     assertFalse(stc.getMembers().isEmpty());

@@ -2,7 +2,6 @@
 package ch.alpine.owl.ani.adapter;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -53,7 +52,7 @@ public abstract class StateTrajectoryControl implements TrajectoryControl, Seria
   @Override
   public final synchronized List<TrajectorySample> getFutureTrajectoryUntil(StateTime tail, Scalar delay) {
     if (Objects.isNull(trajectory)) // agent does not have a trajectory
-      return Collections.singletonList(TrajectorySample.head(tail)); // delay is not added
+      return List.of(TrajectorySample.head(tail)); // delay is not added
     int index = trajectory_skip + indexOfPassedTrajectorySample(tail, trajectory.subList(trajectory_skip, trajectory.size()));
     // <- no update of trajectory_skip here
     Scalar threshold = trajectory.get(index).stateTime().time().add(delay);

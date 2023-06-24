@@ -54,7 +54,7 @@ public class TemporalTrajectoryControl implements TrajectoryControl, Serializabl
     Scalar tail_delayed = tail.time().add(delay);
     if (Objects.isNull(trajectoryWrap)) {
       StateTime stateTime = new StateTime(tail.state(), tail_delayed);
-      return Collections.singletonList(TrajectorySample.head(stateTime));
+      return List.of(TrajectorySample.head(stateTime));
     }
     return trajectoryWrap.trajectory().stream() //
         .filter(Trajectories.untilTime(tail_delayed)) //
