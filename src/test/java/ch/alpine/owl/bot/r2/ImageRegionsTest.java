@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.r2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
@@ -44,12 +44,7 @@ class ImageRegionsTest {
 
   @Test
   void testFail() {
-    try {
-      ImageRegions.loadFromRepository( //
-          "/does/not/exist.png", Tensors.vector(10, 10), false);
-      fail();
-    } catch (Exception exception) {
-      // ---
-    }
+    assertThrows(Exception.class, () -> ImageRegions.loadFromRepository( //
+        "/does/not/exist.png", Tensors.vector(10, 10), false));
   }
 }

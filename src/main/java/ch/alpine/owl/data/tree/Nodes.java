@@ -93,7 +93,7 @@ public enum Nodes {
    * @throws Exception if given child has no parent
    * @see Nodes#disjoinAt(Node) */
   public static void disjoinChild(Node node) {
-    if (node.parent() == null)
+    if (Objects.isNull(node.parent()))
       throw new RuntimeException("Node is root!");
     node.parent().removeEdgeTo(node);
   }

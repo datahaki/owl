@@ -3,7 +3,6 @@ package ch.alpine.owl.math.state;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,18 +23,8 @@ class BoundedEpisodeIntegratorTest {
     StateTime stateTime = boundedEpisodeIntegrator.tail();
     assertEquals(stateTime.state(), Tensors.vector(5, 0));
     assertEquals(stateTime.time(), RealScalar.of(3));
-    try {
-      boundedEpisodeIntegrator.move(Tensors.vector(3, 4), RealScalar.of(3));
-      fail();
-    } catch (Exception exception) {
-      // ---
-    }
-    try {
-      boundedEpisodeIntegrator.move(Tensors.vector(3, 4), RealScalar.of(2.3));
-      fail();
-    } catch (Exception exception) {
-      // ---
-    }
+    assertThrows(Exception.class, () -> boundedEpisodeIntegrator.move(Tensors.vector(3, 4), RealScalar.of(3)));
+    assertThrows(Exception.class, () -> boundedEpisodeIntegrator.move(Tensors.vector(3, 4), RealScalar.of(2.3)));
   }
 
   @Test

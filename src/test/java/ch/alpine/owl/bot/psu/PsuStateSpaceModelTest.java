@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.psu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -99,11 +99,6 @@ class PsuStateSpaceModelTest {
         PsuStateSpaceModel.INSTANCE, integrator, //
         init);
     assertEquals(episodeIntegrator.tail(), init);
-    try {
-      episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3));
-      fail();
-    } catch (Exception exception) {
-      // ---
-    }
+    assertThrows(Exception.class, () -> episodeIntegrator.move(Tensors.vector(1), RealScalar.of(3)));
   }
 }
