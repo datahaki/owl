@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.util.ren;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
@@ -18,13 +19,17 @@ class GoalRenderTest {
   void testSimple() {
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     GoalRender goalRender = new GoalRender(Arrays.asList(new StateTime(Array.zeros(2), RealScalar.ONE)));
-    goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());
+    Graphics2D graphics = bi.createGraphics();
+    goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), graphics);
+    graphics.dispose();
   }
 
   @Test
   void testNull() {
     BufferedImage bi = ImageFormat.of(Array.zeros(100, 100, 4));
     GoalRender goalRender = new GoalRender(null);
-    goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), bi.createGraphics());
+    Graphics2D graphics = bi.createGraphics();
+    goalRender.render(new GeometricLayer(IdentityMatrix.of(3)), graphics);
+    graphics.dispose();
   }
 }

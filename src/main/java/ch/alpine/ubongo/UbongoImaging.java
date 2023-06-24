@@ -27,6 +27,7 @@ public enum UbongoImaging {
       // 68 was too large: 17.95 instead of 16
       // 61 was tested to work well
       StaticHelper.draw(graphics, ubongoPublish, 61);
+      graphics.dispose();
       File folder = HomeDirectory.Pictures("ubongo8");
       folder.mkdir();
       File file = new File(folder, ubongoPublish.name() + ".png");

@@ -48,6 +48,7 @@ import ch.alpine.tensor.io.ImageFormat;
     if (closed)
       path.closePath();
     graphics.draw(path);
+    graphics.dispose();
   }
 
   public BufferedImage bufferedImage() {

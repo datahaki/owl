@@ -41,6 +41,7 @@ import ch.alpine.tensor.io.Import;
       graphics.setColor(Color.DARK_GRAY);
       // graphics.setFont(new Font(Font.DIALOG, Font.PLAIN, RES / 2));
       // graphics.drawString("move " + index, RES / 8, RES / 2);
+      graphics.dispose();
       ImageIO.write(bufferedImage, "png", new File(folder, String.format("%03d.png", index)));
       ++index;
     }

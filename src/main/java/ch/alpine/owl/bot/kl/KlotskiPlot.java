@@ -58,6 +58,7 @@ import ch.alpine.tensor.red.Times;
         { 0, 0, 1 } }));
     Graphics2D graphics = bufferedImage.createGraphics();
     new Plot(board).render(geometricLayer, graphics);
+    graphics.dispose();
     return bufferedImage;
   }
 
@@ -158,6 +159,7 @@ import ch.alpine.tensor.red.Times;
       graphics.setColor(Color.DARK_GRAY);
       graphics.setFont(new Font(Font.DIALOG, Font.PLAIN, RES / 2));
       graphics.drawString("move " + index, RES / 8, RES / 2);
+      graphics.dispose();
       ImageIO.write(bufferedImage, "png", new File(folder, String.format("%03d.png", index)));
       ++index;
     }
