@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.data.tree;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

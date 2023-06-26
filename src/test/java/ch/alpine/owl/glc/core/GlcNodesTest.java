@@ -4,7 +4,6 @@ package ch.alpine.owl.glc.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

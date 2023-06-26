@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
