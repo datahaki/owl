@@ -22,7 +22,7 @@ import ch.alpine.sophus.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.red.Nest;
 
@@ -34,7 +34,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180610.csv");
     // System.out.println(Pretty.of(waypoints));
     waypoints = Nest.of(new BSpline3CurveSubdivision(Se2Group.INSTANCE)::cyclic, waypoints, 1);
     CostFunction waypointCost = WaypointDistanceCost.of( //

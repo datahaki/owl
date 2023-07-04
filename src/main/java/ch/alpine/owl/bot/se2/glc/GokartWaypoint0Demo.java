@@ -21,7 +21,7 @@ import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 
 /** demo to simulate dubendorf hangar
@@ -42,7 +42,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     // ---
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     // ---
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
     Region<Tensor> union = RegionUnion.wrap(hangarMap.region, polygonRegion);

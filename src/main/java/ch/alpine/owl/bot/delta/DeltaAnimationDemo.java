@@ -23,7 +23,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
 
@@ -35,7 +36,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     Scalar amp = RealScalar.of(-.05);
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //
-        ImageGradientInterpolation.nearest(ResourceData.of("/io/delta_uxy.png"), range, amp);
+        ImageGradientInterpolation.nearest(Import.of("/io/delta_uxy.png"), range, amp);
     BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));

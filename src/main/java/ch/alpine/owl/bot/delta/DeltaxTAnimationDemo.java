@@ -35,14 +35,15 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame start() {
-    Tensor image = ResourceData.of("/io/delta_uxy.png");
+    Tensor image = Import.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = RealScalar.of(-.05); // direction and strength of river flow
     // ---

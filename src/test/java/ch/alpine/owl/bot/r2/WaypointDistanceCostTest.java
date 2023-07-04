@@ -11,14 +11,14 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ExactTensorQ;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.lie.r2.CirclePoints;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 class WaypointDistanceCostTest {
   @Test
   void testSimple() {
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     ImageCostFunction imageCostFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
     for (Tensor waypoint : waypoints)

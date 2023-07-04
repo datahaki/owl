@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.ext.Serialization;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 class ImageGradientInterpolationTest {
   @Test
@@ -22,7 +22,7 @@ class ImageGradientInterpolationTest {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
     Scalar max;
-    final Tensor image = ResourceData.of("/io/delta_uxy.png");
+    final Tensor image = Import.of("/io/delta_uxy.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     {
       ImageGradientInterpolation imageGradientInterpolation = //
@@ -44,7 +44,7 @@ class ImageGradientInterpolationTest {
     Tensor range = Tensors.vector(9, 6.5);
     Tensor res;
     Scalar max;
-    final Tensor image = ResourceData.of("/io/delta_uxy.png");
+    final Tensor image = Import.of("/io/delta_uxy.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     {
       ImageGradientInterpolation imageGradientInterpolation = //
@@ -65,7 +65,7 @@ class ImageGradientInterpolationTest {
   @Test
   void testSerialize() throws Exception {
     Tensor range = Tensors.vector(9, 6.5);
-    final Tensor image = ResourceData.of("/io/delta_uxy.png");
+    final Tensor image = Import.of("/io/delta_uxy.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.linear(image, range, RealScalar.of(0.5));

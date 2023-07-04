@@ -6,7 +6,8 @@ import java.awt.image.BufferedImage;
 import ch.alpine.owl.bot.r2.ImageEdges;
 import ch.alpine.owl.util.img.ImageBlackWhiteQ;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 public class StreetScenarioData {
   public static StreetScenarioData load(String id) {
@@ -31,10 +32,10 @@ public class StreetScenarioData {
   private StreetScenarioData(String id) {
     final String prefix = "/simulation/" + id + "/";
     render = ResourceData.bufferedImage(prefix + "render.png");
-    imagePedLegal = ImageBlackWhiteQ.require(ResourceData.of(prefix + "ped_obs_legal.png"));
-    imagePedIllegal = ImageBlackWhiteQ.require(ResourceData.of(prefix + "ped_obs_illegal.png"));
-    imageCar = ImageBlackWhiteQ.require(ResourceData.of(prefix + "car_obs_1.png"));
-    imageLid = ImageBlackWhiteQ.require(ResourceData.of(prefix + "lidar_obs.png"));
+    imagePedLegal = ImageBlackWhiteQ.require(Import.of(prefix + "ped_obs_legal.png"));
+    imagePedIllegal = ImageBlackWhiteQ.require(Import.of(prefix + "ped_obs_illegal.png"));
+    imageCar = ImageBlackWhiteQ.require(Import.of(prefix + "car_obs_1.png"));
+    imageLid = ImageBlackWhiteQ.require(Import.of(prefix + "lidar_obs.png"));
     imageLanesString = prefix + "car_lanes.png";
   }
 
@@ -43,6 +44,6 @@ public class StreetScenarioData {
   }
 
   Tensor imageLanes() {
-    return ResourceData.of(imageLanesString);
+    return Import.of(imageLanesString);
   }
 }

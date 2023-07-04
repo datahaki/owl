@@ -26,7 +26,7 @@ import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 
 /** demo to simulate dubendorf hangar */
@@ -66,7 +66,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     // ---
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     // ---
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
     Region<Tensor> union = RegionUnion.wrap(hangarMap.region, polygonRegion);
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //

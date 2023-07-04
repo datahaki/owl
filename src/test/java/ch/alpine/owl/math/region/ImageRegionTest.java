@@ -15,12 +15,12 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 class ImageRegionTest {
   @Test
   void testSimple() {
-    Tensor image = ResourceData.of("/io/delta_free.png");
+    Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
     for (int x = 0; x < 179; ++x)
@@ -33,7 +33,7 @@ class ImageRegionTest {
 
   @Test
   void testCorner() {
-    Tensor image = ResourceData.of("/io/delta_free.png");
+    Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
     for (int x = 0; x < 179; ++x)
@@ -46,7 +46,7 @@ class ImageRegionTest {
 
   @Test
   void testOutsideFalse() {
-    Tensor image = ResourceData.of("/io/delta_free.png");
+    Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
     assertFalse(region.test(Tensors.vector(-100, -2000, 3)));
@@ -54,7 +54,7 @@ class ImageRegionTest {
 
   @Test
   void testOutsideTrue() {
-    Tensor image = ResourceData.of("/io/delta_free.png");
+    Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
     Tensor range = Tensors.vector(179, 128);
     ImageRegion region = new ImageRegion(image, range, true);

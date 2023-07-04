@@ -7,20 +7,20 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.DeleteDuplicates;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.alg.NestList;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.alg.Subsets;
 import ch.alpine.tensor.img.ColorFormat;
 import ch.alpine.tensor.img.ImageRotate;
+import ch.alpine.tensor.io.Primitives;
 
 /** 12 different pieces */
 /* package */ enum Ubongo {
@@ -56,7 +56,7 @@ import ch.alpine.tensor.img.ImageRotate;
       prep.append(row);
     }
     mask = prep.unmodifiable();
-    count = (int) prep.flatten(-1).filter(RealScalar.ONE::equals).count();
+    count = (int) Flatten.stream(prep, -1).filter(RealScalar.ONE::equals).count();
     // ---
     Tensor rotated = DeleteDuplicates.of(NestList.of(ImageRotate::of, mask, 4));
     Set<Tensor> stamps = new HashSet<>();
@@ -86,20 +86,14 @@ import ch.alpine.tensor.img.ImageRotate;
     List<List<Ubongo>> values = new LinkedList<>();
     List<Ubongo> ubongos = List.of(values());
     for (Tensor index : Subsets.of(Range.of(0, 12), use)) {
-      int sum = index.stream() //
-          .map(Scalar.class::cast) //
-          .map(Scalar::number) //
-          .mapToInt(Number::intValue) //
+      int sum = Primitives.toIntStream(index) //
           .map(i -> ubongos.get(i).count()) //
           .sum();
       if (sum == count) {
         // System.out.println(index);
-        List<Ubongo> list = index.stream() //
-            .map(Scalar.class::cast) //
-            .map(Scalar::number) //
-            .mapToInt(Number::intValue) //
+        List<Ubongo> list = Primitives.toIntStream(index) //
             .mapToObj(ubongos::get) //
-            .collect(Collectors.toList());
+            .toList();
         values.add(list);
       }
     }

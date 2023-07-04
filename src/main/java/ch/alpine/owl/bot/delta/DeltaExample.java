@@ -25,7 +25,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
 
@@ -52,7 +53,7 @@ import ch.alpine.tensor.sca.Clips;
 
   public DeltaExample(Scalar amp) {
     imageGradientInterpolation = //
-        ImageGradientInterpolation.linear(ResourceData.of("/io/delta_uxy.png"), RANGE, amp);
+        ImageGradientInterpolation.linear(Import.of("/io/delta_uxy.png"), RANGE, amp);
     stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     Scalar maxMove = maxNormGradient.add(MAX_INPUT);

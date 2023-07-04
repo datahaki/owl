@@ -22,7 +22,7 @@ import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 
 /** demo to simulate dubendorf hangar */
@@ -35,7 +35,7 @@ public class GokartWaypoint2Demo extends GokartDemo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     final StateTime initial = new StateTime(Tensors.vector(33.6, 41.5, 0.6), RealScalar.ZERO);
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180610.csv");
     waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     CostFunction costFunction = WaypointDistanceCost.of( //
         waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));

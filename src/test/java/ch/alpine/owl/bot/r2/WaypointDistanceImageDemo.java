@@ -14,7 +14,7 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 /* package */ enum WaypointDistanceImageDemo {
   ;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.io.ResourceData;
   }
 
   public static void main(String[] args) {
-    show(ResourceData.of("/dubilab/waypoints/20180610.csv"));
-    show(ResourceData.of("/dubilab/waypoints/20181126.csv"));
+    show(Import.of("/dubilab/waypoints/20180610.csv"));
+    show(Import.of("/dubilab/waypoints/20181126.csv"));
   }
 }

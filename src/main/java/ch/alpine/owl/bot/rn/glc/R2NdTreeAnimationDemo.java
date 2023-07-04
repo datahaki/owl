@@ -21,7 +21,7 @@ import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
 
 /** demo shows the use of a cost image that is added to the distance cost
  * which gives an incentive to stay clear of obstacles */

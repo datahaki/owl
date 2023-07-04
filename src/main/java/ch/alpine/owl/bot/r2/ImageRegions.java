@@ -8,7 +8,7 @@ import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.TensorRank;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
 

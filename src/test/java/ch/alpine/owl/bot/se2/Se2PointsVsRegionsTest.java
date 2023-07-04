@@ -13,7 +13,7 @@ import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
 
@@ -31,7 +31,7 @@ class Se2PointsVsRegionsTest {
 
   @Test
   void testFootprint() {
-    Tensor shape = ResourceData.of("/gokart/footprint/20171201.csv");
+    Tensor shape = Import.of("/gokart/footprint/20171201.csv");
     Clip clip = shape.stream().map(tensor -> tensor.Get(0)).collect(MinMax.toClip());
     Tensor x_coords = Subdivide.increasing(clip, 3);
     Tensor center = Tensors.vector(2, 0);

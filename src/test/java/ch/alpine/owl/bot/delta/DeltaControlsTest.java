@@ -12,7 +12,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 
@@ -20,7 +20,7 @@ class DeltaControlsTest {
   @Test
   void testFlows() {
     ImageGradientInterpolation imageGradientInterpolation = ImageGradientInterpolation.linear( //
-        ResourceData.of("/io/delta_uxy.png"), Tensors.vector(10, 10), RealScalar.of(0.1));
+        Import.of("/io/delta_uxy.png"), Tensors.vector(10, 10), RealScalar.of(0.1));
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     assertTrue(Sign.isPositive(maxNormGradient));
     Scalar amp = RealScalar.of(2);

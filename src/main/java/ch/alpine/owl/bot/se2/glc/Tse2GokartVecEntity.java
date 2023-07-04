@@ -31,7 +31,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 
 public class Tse2GokartVecEntity extends Tse2CarEntity {
@@ -40,7 +40,7 @@ public class Tse2GokartVecEntity extends Tse2CarEntity {
   static final Scalar LOOKAHEAD = RealScalar.of(3.0);
   static final Scalar MAX_TURNING_PLAN = Degree.of(15);
   static final Scalar MAX_TURNING_RATE = Degree.of(23);
-  public static final Tensor SHAPE = ResourceData.of("/gokart/footprint/20171201.csv");
+  public static final Tensor SHAPE = Import.of("/gokart/footprint/20171201.csv");
   static final FlowsInterface CARFLOWS = Tse2CarFlows.of(MAX_TURNING_PLAN, Tensors.vector(-0.7, 0, 0.7));
   //
   private List<CostFunction> costVector = Collections.emptyList();

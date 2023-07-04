@@ -13,13 +13,14 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.mat.MatrixQ;
 
 class ImageRegionsTest {
   @Test
   void testSimple() {
-    Tensor tensor = ResourceData.of("/io/track0_100.png");
+    Tensor tensor = Import.of("/io/track0_100.png");
     assertEquals(Dimensions.of(tensor), Arrays.asList(100, 100, 4));
     Tensor matrix = ImageRegions.grayscale(tensor);
     assertTrue(MatrixQ.of(matrix));

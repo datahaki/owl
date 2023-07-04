@@ -28,6 +28,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.img.ImageCrop;
@@ -113,7 +114,7 @@ import ch.alpine.tensor.sca.Floor;
     }
     gridRender.render(geometricLayer, graphics);
     {
-      int count = (int) template.flatten(-1).filter(FREE::equals).count();
+      int count = (int) Flatten.stream(template, -1).filter(FREE::equals).count();
       graphics.setColor(Color.DARK_GRAY);
       graphics.drawString("free=" + count, 0, 30);
       List<List<Ubongo>> candidates = Ubongo.candidates(param.num, count);

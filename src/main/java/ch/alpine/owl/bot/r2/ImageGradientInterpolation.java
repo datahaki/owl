@@ -10,6 +10,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.itp.Interpolation;
@@ -56,7 +57,7 @@ public class ImageGradientInterpolation implements Serializable {
     scale = Times.of(Tensors.vector(dims), range.map(Scalar::reciprocal));
     Tensor field = ImageGradient.rotated(image).multiply(N.DOUBLE.apply(amp));
     interpolation = function.apply(field);
-    maxNormGradient = field.flatten(1).map(Vector2Norm::of).reduce(Max::of).orElseThrow();
+    maxNormGradient = Flatten.stream(field, 1).map(Vector2Norm::of).reduce(Max::of).orElseThrow();
   }
 
   /** @param vector of length 2

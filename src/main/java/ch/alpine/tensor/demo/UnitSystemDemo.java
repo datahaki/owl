@@ -15,7 +15,7 @@ import javax.swing.JToolBar;
 import javax.swing.WindowConstants;
 
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.qty.SimpleUnitSystem;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.qty.UnitSystems;

@@ -8,6 +8,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.alg.Flatten;
 
 public enum ImageBlackWhiteQ {
   ;
@@ -35,7 +36,6 @@ public enum ImageBlackWhiteQ {
 
   // helper function
   private static List<Scalar> members(Tensor image) {
-    return image.flatten(-1).map(Scalar.class::cast) //
-        .distinct().sorted().collect(Collectors.toList());
+    return Flatten.scalars(image).distinct().sorted().collect(Collectors.toList());
   }
 }

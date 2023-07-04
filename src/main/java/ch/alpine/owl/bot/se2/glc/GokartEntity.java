@@ -19,7 +19,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
@@ -33,7 +33,7 @@ public class GokartEntity extends CarEntity {
   static final Scalar MAX_TURNING_PLAN = Degree.of(15);
   static final Scalar MAX_TURNING_RATE = Degree.of(23);
   static final FlowsInterface CARFLOWS = Se2CarFlows.forward(SPEED, MAX_TURNING_PLAN);
-  public static final Tensor SHAPE = ResourceData.of("/gokart/footprint/20171201.csv");
+  public static final Tensor SHAPE = Import.of("/gokart/footprint/20171201.csv");
   // ---
   private final EdgeRender edgeRender = new EdgeRender();
   /** simulation of occasional feedback from localization algorithm */

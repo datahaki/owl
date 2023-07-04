@@ -15,6 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.io.Primitives;
 
@@ -52,7 +53,7 @@ import ch.alpine.tensor.io.Primitives;
     mask = prep.unmodifiable();
     board_size = Dimensions.of(prep);
     dim1 = board_size.get(1);
-    count = (int) mask.flatten(-1).filter(FREE::equals).count();
+    count = (int) Flatten.stream(mask, -1).filter(FREE::equals).count();
     _mask = Primitives.toIntArray(mask);
     // ---
     for (Ubongo ubongo : Ubongo.values())

@@ -17,7 +17,7 @@ import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
   private static final Tensor MODEL2PIXEL = Tensors.matrixDouble(new double[][] { { 7.5, 0, 0 }, { 0, -7.5, 640 }, { 0, 0, 1 } });
@@ -31,7 +31,7 @@ public class GokartRelaxedWaypointFollowingDemo0 extends GokartDemo {
     GokartRelaxedEntity gokartEntity = GokartRelaxedEntity.createRelaxedGokartEntity(initial, slacks);
     // set up hangar map and way points
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180704.png", gokartEntity);
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180610.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180610.csv");
     // add set up second cost function, e.g. penalty for coming to close to obstacles
     R2ImageRegionWrap r2ImageRegionWrap = new R2ImageRegionWrap(hangarMap.bufferedImage, hangarMap.imageRegion.range(), 8);
     gokartEntity.setAdditionalCostFunction(r2ImageRegionWrap.costFunction());

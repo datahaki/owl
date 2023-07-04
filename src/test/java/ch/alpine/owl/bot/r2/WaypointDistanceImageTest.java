@@ -13,17 +13,18 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.alg.Flatten;
+import ch.alpine.tensor.io.Import;
 
 class WaypointDistanceImageTest {
   @Test
   void testSimple() {
-    Tensor waypoints = ResourceData.of("/dubilab/waypoints/20180425.csv");
+    Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     waypoints = new BSpline1CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     WaypointDistanceImage waypointDistanceImage = //
         new WaypointDistanceImage(waypoints, true, RealScalar.ONE, RealScalar.of(7.5), new Dimension(640, 640));
     Tensor tensor = waypointDistanceImage.image();
-    List<Tensor> list = tensor.flatten(-1).distinct().collect(Collectors.toList());
+    List<Tensor> list = Flatten.stream(tensor, -1).distinct().collect(Collectors.toList());
     assertEquals(list.get(0), RealScalar.ONE);
     assertEquals(list.get(1), RealScalar.ZERO);
     assertEquals(list.size(), 2);

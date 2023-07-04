@@ -16,7 +16,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
-import ch.alpine.tensor.io.ResourceData;
+import ch.alpine.tensor.io.Import;
 
 /* package */ enum WaypointDistanceCostDemo {
   ;
@@ -41,7 +41,7 @@ import ch.alpine.tensor.io.ResourceData;
   }
 
   public static void main(String[] args) {
-    show(ResourceData.of("/dubilab/waypoints/20180610.csv"));
-    show(ResourceData.of("/dubilab/waypoints/20181126.csv"));
+    show(Import.of("/dubilab/waypoints/20180610.csv"));
+    show(Import.of("/dubilab/waypoints/20181126.csv"));
   }
 }
