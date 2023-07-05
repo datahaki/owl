@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ch.alpine.ascona.util.ren.RenderInterface;
@@ -50,7 +49,7 @@ public class GokartVec0Demo extends GokartDemo {
     PolygonRegion polygonRegion = new PolygonRegion(polygon);
     PlannerConstraint regionConstraint = RegionConstraints.timeInvariant(polygonRegion);
     CostFunction regionCost = ConstraintViolationCost.of(regionConstraint, RealScalar.ONE);
-    gokartEntity.setCostVector(List.of(regionCost), Arrays.asList(0.0));
+    gokartEntity.setCostVector(List.of(regionCost), List.of(0.0));
     gokartEntity.addTimeCost(0, 0.8); // set priority to 0, allow for 0.8 seconds of slack
     // ---
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;

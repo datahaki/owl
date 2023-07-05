@@ -62,7 +62,7 @@ public class Se2xTLetterDemo implements DemoInterface {
             new TimeInvariantRegion(se2PointsVsRegion), // <- expects se2 states
             region1, cog0 //
         ));
-    // Se2PointsVsRegion se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), RegionUnion.wrap(Arrays.asList( //
+    // Se2PointsVsRegion se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), RegionUnion.wrap(List.of( //
     // new TimeInvariantRegion(imageRegion), // <- expects se2 states
     // region1, cog0 //
     // )));

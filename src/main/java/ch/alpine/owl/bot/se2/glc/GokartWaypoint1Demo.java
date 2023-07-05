@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Dimension;
-import java.util.Arrays;
 import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
@@ -46,7 +45,7 @@ public class GokartWaypoint1Demo extends GokartDemo {
       }
     };
     // set cost function hierarchy
-    gokartEntity.setCostVector(List.of(waypointCost), Arrays.asList(0.0));
+    gokartEntity.setCostVector(List.of(waypointCost), List.of(0.0));
     gokartEntity.addTimeCost(1, 0.0);
     // ---
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);

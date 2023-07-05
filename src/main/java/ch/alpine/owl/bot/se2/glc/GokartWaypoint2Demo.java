@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Dimension;
-import java.util.Arrays;
 import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
@@ -46,7 +45,7 @@ public class GokartWaypoint2Demo extends GokartDemo {
       }
     };
     // define cost funcion hierarchy
-    gokartEntity.setCostVector(List.of(costFunction), Arrays.asList(0.0));
+    gokartEntity.setCostVector(List.of(costFunction), List.of(0.0));
     gokartEntity.addTimeCost(1, 0.0);
     // ---
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/localization/20180603.png", gokartEntity);
