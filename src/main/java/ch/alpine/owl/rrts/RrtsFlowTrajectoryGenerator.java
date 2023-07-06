@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-import ch.alpine.owl.math.IntegerLog2;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
@@ -23,6 +22,7 @@ import ch.alpine.sophus.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Reverse;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.red.Nest;
@@ -119,7 +119,7 @@ import ch.alpine.tensor.sca.Sign;
       Scalar maxLength = segment.stream().skip(1) //
           .map(node -> transitionSpace.connect(node.parent().state(), node.state()).length()).reduce(Max::of).get();
       Scalar t0 = Lists.last(trajectory).stateTime().time();
-      int depth = IntegerLog2.ceiling(Ceiling.FUNCTION.apply(maxLength.divide(Sign.requirePositive(dt))).number().intValue());
+      int depth = Integers.log2Ceiling(Ceiling.FUNCTION.apply(maxLength.divide(Sign.requirePositive(dt))).number().intValue());
       if (!direction)
         points = Reverse.of(points);
       Tensor samples = Nest.of(curveSubdivision::string, points, depth);
