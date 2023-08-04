@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ch.alpine.bridge.io.UserName;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.data.tree.NodesAssert;
 import ch.alpine.owl.demo.order.SubsetQ;
@@ -14,12 +15,11 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.UserName;
 import ch.alpine.tensor.sca.Abs;
 
 public enum RelaxedDebugUtils {
   ;
-  private static final boolean PRINT = !(UserName.is("travis") || UserName.is("datahaki"));
+  private static final boolean PRINT = !UserName.is("datahaki");
 
   public static List<GlcNode> allNodes(RelaxedTrajectoryPlanner relaxedTrajectoryPlanner) {
     return allNodes(relaxedTrajectoryPlanner.getRelaxedDomainQueueMap().getMap().values());

@@ -25,12 +25,6 @@
 			<artifactId>subare</artifactId>
 			<version>0.4.4</version>
 		</dependency>
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itext7-core</artifactId>
-			<version>7.2.3</version>
-			<type>pom</type>
-		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

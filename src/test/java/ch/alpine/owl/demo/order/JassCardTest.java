@@ -1,6 +1,7 @@
 // code by astoll
 package ch.alpine.owl.demo.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,7 +52,7 @@ class JassCardTest {
   void testHashCode() {
     JassCard card1 = new JassCard(JassFarbe.EICHEL, JassType.ACE, true);
     JassCard card2 = new JassCard(JassFarbe.EICHEL, JassType.ACE, true);
-    assertTrue(card1.hashCode() == card2.hashCode());
+    assertEquals(card1.hashCode(), card2.hashCode());
     JassCard card3 = new JassCard(JassFarbe.EICHEL, JassType.JACK, true);
     assertFalse(card1.hashCode() == card3.hashCode());
   }
