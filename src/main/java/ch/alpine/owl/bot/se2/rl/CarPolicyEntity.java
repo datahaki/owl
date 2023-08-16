@@ -21,8 +21,7 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.subare.core.RewardInterface;
 import ch.alpine.subare.core.StateActionCounter;
-import ch.alpine.subare.core.StepInterface;
-import ch.alpine.subare.core.adapter.StepAdapter;
+import ch.alpine.subare.core.StepRecord;
 import ch.alpine.subare.core.td.Sarsa;
 import ch.alpine.subare.core.td.SarsaType;
 import ch.alpine.subare.core.util.DefaultLearningRate;
@@ -94,7 +93,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
       // System.out.println("learn " + episodeLog.size());
       Sarsa sarsa = sarsaType.sarsa(carDiscreteModel, learningRate, qsa, sac, policy);
       int nstep = 50;
-      Deque<StepInterface> deque = new LinkedList<>(episodeLog.subList(Math.max(1, episodeLog.size() - nstep), episodeLog.size()));
+      Deque<StepRecord> deque = new LinkedList<>(episodeLog.subList(Math.max(1, episodeLog.size() - nstep), episodeLog.size()));
       while (!deque.isEmpty()) {
         sarsa.digest(deque);
         deque.poll();
@@ -106,7 +105,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
     episodeIntegrator = new SimpleEpisodeIntegrator(Se2StateSpaceModel.INSTANCE, Se2CarIntegrator.INSTANCE, stateTime);
   }
 
-  private final List<StepInterface> episodeLog = new LinkedList<>();
+  private final List<StepRecord> episodeLog = new LinkedList<>();
   private Tensor prev_state;
   private Tensor prev_action; // {1, 0, al}
   private Scalar prev_reward;
@@ -121,7 +120,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
       // <- compute reward based on prev_state,
       prev_reward = reward(prev_state, prev_action, state);
       // GlobalAssert.that(Objects.nonNull(prev_reward));
-      episodeLog.add(new StepAdapter(prev_state, prev_action, prev_reward, state));
+      episodeLog.add(new StepRecord(prev_state, prev_action, prev_reward, state));
     }
     prev_state = state;
     PolicyWrap policyWrap = new PolicyWrap(policy);
