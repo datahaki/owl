@@ -5,8 +5,8 @@ import java.util.Collection;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.subare.core.DiscreteModel;
-import ch.alpine.subare.core.TerminalInterface;
+import ch.alpine.subare.api.DiscreteModel;
+import ch.alpine.subare.api.TerminalInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

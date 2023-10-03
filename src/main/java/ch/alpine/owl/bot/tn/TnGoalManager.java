@@ -15,7 +15,6 @@ import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
@@ -36,7 +35,7 @@ import ch.alpine.tensor.sca.Ramp;
   @Override // from CostIncrementFunction
   public Scalar costIncrement(GlcNode node, List<StateTime> trajectory, Tensor flow) {
     StateTime from = node.stateTime();
-    return Vector2Norm.between(from.state(), Lists.last(trajectory).state());
+    return Vector2Norm.between(from.state(), trajectory.getLast().state());
   }
 
   @Override // from HeuristicFunction

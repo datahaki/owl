@@ -8,7 +8,6 @@ import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 
 /* package */ abstract class AbstractEpisodeIntegrator implements EpisodeIntegrator, Serializable {
   protected final StateSpaceModel stateSpaceModel;
@@ -29,7 +28,7 @@ import ch.alpine.tensor.ext.Lists;
   @Override // from EpisodeIntegrator
   public final void move(Tensor u, Scalar now) {
     List<StateTime> trajectory = abstract_move(u, now.subtract(stateTime.time()));
-    stateTime = Lists.last(trajectory);
+    stateTime = trajectory.getLast();
   }
 
   @Override

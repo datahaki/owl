@@ -7,7 +7,6 @@ import java.util.List;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.ext.Timing;
 
 public abstract class MotionPlanWorker<T extends TreePlanner<?>, P extends PlannerCallback<T>> {
@@ -36,18 +35,15 @@ public abstract class MotionPlanWorker<T extends TreePlanner<?>, P extends Plann
    * @param head non-empty trajectory
    * @param trajectoryPlanner */
   public void start(List<TrajectorySample> head, T trajectoryPlanner) {
-    Thread thread = new Thread(new Runnable() {
-      @Override // from Runnable
-      public void run() {
-        Timing timing = Timing.started();
-        StateTime root = Lists.last(head).stateTime(); // last statetime in head trajectory
-        trajectoryPlanner.insertRoot(root);
-        expand(trajectoryPlanner);
-        if (isRelevant) {
-          timing.seconds();
-          for (P plannerCallback : plannerCallbacks)
-            plannerCallback.expandResult(head, trajectoryPlanner);
-        }
+    Thread thread = new Thread(() -> {
+      Timing timing = Timing.started();
+      StateTime root = head.getLast().stateTime(); // last statetime in head trajectory
+      trajectoryPlanner.insertRoot(root);
+      expand(trajectoryPlanner);
+      if (isRelevant) {
+        timing.seconds();
+        for (P plannerCallback : plannerCallbacks)
+          plannerCallback.expandResult(head, trajectoryPlanner);
       }
     });
     thread.start();

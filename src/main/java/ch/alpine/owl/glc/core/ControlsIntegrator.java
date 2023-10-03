@@ -11,7 +11,6 @@ import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 
 /** private utility class to facilitate the construction of the map */
 /* private */ class FlowTrajectory {
@@ -31,7 +30,7 @@ import ch.alpine.tensor.ext.Lists;
    * @param costFunction in order to derive costs and minCostToGoal of returned node
    * @return new node with state at end of trajectory */
   GlcNode createGlcNode(GlcNode node, CostFunction costFunction) {
-    StateTime last = Lists.last(trajectory);
+    StateTime last = trajectory.getLast();
     return GlcNode.of(flow, last, //
         node.costFromRoot().add(costFunction.costIncrement(node, trajectory, flow)), //
         costFunction.minCostToGoal(last.state()));

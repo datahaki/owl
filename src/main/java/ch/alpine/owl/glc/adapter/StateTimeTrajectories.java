@@ -8,7 +8,6 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.sca.Sign;
 
 /** utility functions that operate on List<StateTime> */
@@ -24,7 +23,7 @@ public enum StateTimeTrajectories {
 
   // helper function
   private static Scalar timeIncrement(StateTime stateTime, List<StateTime> trajectory) {
-    Scalar dt = Lists.last(trajectory).time().subtract(stateTime.time());
+    Scalar dt = trajectory.getLast().time().subtract(stateTime.time());
     return Sign.requirePositiveOrZero(dt);
   }
 

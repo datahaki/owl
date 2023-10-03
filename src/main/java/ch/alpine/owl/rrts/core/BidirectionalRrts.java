@@ -11,7 +11,6 @@ import ch.alpine.owl.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.sophus.crv.TransitionSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;
-import ch.alpine.tensor.ext.Lists;
 
 public class BidirectionalRrts implements Rrts {
   private final RrtsNodeCollection nodeCollection;
@@ -49,7 +48,7 @@ public class BidirectionalRrts implements Rrts {
   @Override // from Rrts
   public void rewireAround(RrtsNode parent, int k_nearest) {
     List<RrtsNode> toGoal = Nodes.listToRoot(parent);
-    Tensor backwardRoot = Lists.last(toGoal).state();
+    Tensor backwardRoot = toGoal.getLast().state();
     if (!backwardRoot.equals(goal))
       throw new Throw(backwardRoot, goal);
     for (RrtsNode node : toGoal) {

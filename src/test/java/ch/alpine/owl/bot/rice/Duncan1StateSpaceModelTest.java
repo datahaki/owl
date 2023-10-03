@@ -21,7 +21,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
@@ -53,7 +52,7 @@ class Duncan1StateSpaceModelTest {
     StateTime stateTime = new StateTime(Tensors.of(Quantity.of(10, "m*s^-1")), Quantity.of(1, "s"));
     Scalar push = Quantity.of(3, "m*s^-2");
     List<StateTime> list = stateIntegrator.trajectory(stateTime, Tensors.of(push));
-    StateTime last = Lists.last(list);
+    StateTime last = list.getLast();
     assertEquals(last.time(), Quantity.of(100, "s"));
     Chop._12.requireClose(last.state().get(0), push.divide(lambda));
   }

@@ -42,7 +42,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -67,7 +66,7 @@ class RLTrajectoryPlannerTest {
     CostFunction distanceCost = new CostFunction() {
       @Override // from CostIncrementFunction
       public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
-        return Vector2Norm.between(glcNode.stateTime().state(), Lists.last(trajectory).state()); // ||x_prev - x_next||
+        return Vector2Norm.between(glcNode.stateTime().state(), trajectory.getLast().state()); // ||x_prev - x_next||
       }
 
       @Override // from HeuristicFunction

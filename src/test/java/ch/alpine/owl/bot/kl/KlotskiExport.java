@@ -14,7 +14,6 @@ import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.io.HtmlUtf8;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.io.AnimationWriter;
@@ -70,7 +69,7 @@ import ch.alpine.tensor.pdf.BinCounts;
           }
           {
             String filename = imageFilename("end", klotskiProblem, "png");
-            StateTime stateTime = Lists.last(klotskiSolution.list);
+            StateTime stateTime = klotskiSolution.list.getLast();
             BufferedImage bufferedImage = new KlotskiPlot(klotskiProblem, RES).plot(stateTime.state());
             ImageIO.write(bufferedImage, "png", new File(ROOT, filename));
             htmlUtf8.appendln("<td><img src='" + filename + "'/><td>");

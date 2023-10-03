@@ -12,7 +12,6 @@ import ch.alpine.owl.math.state.TrajectoryWrap;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 
 /** entity executes flows along a given trajectory */
 public abstract class TrajectoryEntity extends AbstractEntity implements TrajectoryListener, TensorMetric {
@@ -45,7 +44,7 @@ public abstract class TrajectoryEntity extends AbstractEntity implements Traject
     if (Objects.isNull(trajectoryWrap))
       return getStateTimeNow().state();
     List<TrajectorySample> relevant = trajectoryControl.getFutureTrajectoryUntil(getStateTimeNow(), delay);
-    return Lists.last(relevant).stateTime().state();
+    return relevant.getLast().stateTime().state();
   }
 
   /** @return delay between now and the future point in time from when to divert to a new trajectory */

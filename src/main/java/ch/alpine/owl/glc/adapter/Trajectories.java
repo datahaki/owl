@@ -19,7 +19,7 @@ public enum Trajectories {
    * @throws Exception if head[end] != tail[0] */
   public static List<TrajectorySample> glue(List<TrajectorySample> head, List<TrajectorySample> tail) {
     List<TrajectorySample> trajectory = new ArrayList<>(head);
-    TrajectorySample tsh = Lists.last(head);
+    TrajectorySample tsh = head.getLast();
     TrajectorySample tst = tail.get(0);
     boolean contact = tsh.stateTime().equals(tst.stateTime());
     if (!contact) {

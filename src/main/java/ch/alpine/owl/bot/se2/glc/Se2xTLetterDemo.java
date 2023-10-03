@@ -27,7 +27,7 @@ import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
 import ch.alpine.sophus.math.api.BijectionFamily;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.subare.core.td.SarsaType;
+import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

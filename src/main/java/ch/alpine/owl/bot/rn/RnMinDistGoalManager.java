@@ -12,7 +12,6 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
 /** objective is minimum path length.
@@ -47,7 +46,7 @@ public class RnMinDistGoalManager extends SimpleTrajectoryRegionQuery implements
   @Override // from CostIncrementFunction
   public Scalar costIncrement(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
     // assumes that flow is along a straight line
-    return Vector2Norm.between(glcNode.stateTime().state(), Lists.last(trajectory).state()); // ||x_prev - x_next||
+    return Vector2Norm.between(glcNode.stateTime().state(), trajectory.getLast().state()); // ||x_prev - x_next||
   }
 
   @Override // from HeuristicFunction

@@ -37,7 +37,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
@@ -111,7 +110,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
         });
         owlFrame.geometricComponent.jComponent.repaint();
         // ---
-        stateTime = Lists.last(optional.get()).stateTime();
+        stateTime = optional.get().getLast().stateTime();
         goal = RandomSample.of(randomSampleInterface);
       }
       System.out.println(frame + "/" + 5);

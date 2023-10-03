@@ -3,7 +3,6 @@ package ch.alpine.owl.data.tree;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -40,9 +39,7 @@ public enum Nodes {
   /** @param node
    * @return */
   public static <T extends Node> List<T> listFromRoot(T node) {
-    List<T> list = listToRoot(node);
-    Collections.reverse(list);
-    return list;
+    return listToRoot(node).reversed();
   }
 
   /** @param node

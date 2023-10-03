@@ -17,7 +17,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.lie.r2.AngleVector;
 
@@ -48,7 +47,7 @@ abstract class AbstractShadowConstraint implements PlannerConstraint, Serializab
   @Override
   public final boolean isSatisfied(GlcNode glcNode, List<StateTime> trajectory, Tensor flow) {
     // TODO_YN there are few different values for vel => precompute
-    StateTime childStateTime = Lists.last(trajectory);
+    StateTime childStateTime = trajectory.getLast();
     float vel = velSupplier.apply(childStateTime, flow).number().floatValue();
     float tBrake = vel / a;
     float dBrake = tBrake * vel / 2;

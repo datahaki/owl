@@ -33,7 +33,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
-import ch.alpine.tensor.ext.Lists;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -85,7 +84,7 @@ class DefaultRrtsPlannerServerTest {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, trajectory.getLast().stateTime().state());
   }
 
   @Test
@@ -129,7 +128,7 @@ class DefaultRrtsPlannerServerTest {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, trajectory.getLast().stateTime().state());
   }
 
   @Test
@@ -175,7 +174,7 @@ class DefaultRrtsPlannerServerTest {
     // ---
     assertTrue(server.getTrajectory().isPresent());
     List<TrajectorySample> trajectory = server.getTrajectory().get();
-    Chop._05.requireClose(goal, Lists.last(trajectory).stateTime().state());
+    Chop._05.requireClose(goal, trajectory.getLast().stateTime().state());
   }
 
   @Test
