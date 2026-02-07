@@ -2,10 +2,9 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.awt.Graphics2D;
-import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
-import java.util.random.RandomGenerator;
+import java.util.concurrent.ThreadLocalRandom;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.EntityControl;
@@ -38,7 +37,6 @@ public class GokartEntity extends CarEntity {
   private final EdgeRender edgeRender = new EdgeRender();
   /** simulation of occasional feedback from localization algorithm */
   private final EntityControl localizationFeedback = new EntityControl() {
-    private final RandomGenerator random = new SecureRandom();
     private final Distribution distribution = NormalDistribution.standard();
     private boolean trigger = false;
 
@@ -52,7 +50,7 @@ public class GokartEntity extends CarEntity {
       Optional<Tensor> optional = Optional.empty();
       if (trigger)
         optional = Optional.of(RandomVariate.of(distribution, 3));
-      trigger = 0 == random.nextInt(20);
+      trigger = 0 == ThreadLocalRandom.current().nextInt(20);
       return optional;
     }
   };

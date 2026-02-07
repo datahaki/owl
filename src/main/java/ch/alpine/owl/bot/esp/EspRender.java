@@ -6,14 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.Objects;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.rot.CirclePoints;
 
 /* package */ class EspRender implements RenderInterface {
   private static final Tensor CIRCLE = CirclePoints.of(31).multiply(RealScalar.of(0.48));
@@ -40,7 +40,7 @@ import ch.alpine.tensor.lie.r2.CirclePoints;
           case 2 -> graphics.setColor(DARK);
           default -> throw new RuntimeException();
           }
-          geometricLayer.pushMatrix(GfxMatrix.translation(Tensors.vector(px + 0.5, py + 0.5)));
+          geometricLayer.pushMatrix(Se2Matrix.translation(Tensors.vector(px + 0.5, py + 0.5)));
           Path2D path2d = geometricLayer.toPath2D(CIRCLE);
           graphics.fill(path2d);
           geometricLayer.popMatrix();

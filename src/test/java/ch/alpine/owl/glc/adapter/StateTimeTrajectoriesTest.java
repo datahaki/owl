@@ -24,7 +24,7 @@ import ch.alpine.tensor.qty.Quantity;
 class StateTimeTrajectoriesTest {
   @Test
   void testTimeIncrement() {
-    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), x -> RealScalar.ZERO);
+    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), _ -> RealScalar.ZERO);
     List<StateTime> trajectory = Arrays.asList( //
         new StateTime(Tensors.vector(1, 2), Quantity.of(4, "s")), //
         new StateTime(Tensors.vector(1, 2), Quantity.of(5, "s")));
@@ -35,7 +35,7 @@ class StateTimeTrajectoriesTest {
 
   @Test
   void testDeltaTimes() {
-    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), x -> RealScalar.ZERO);
+    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), Quantity.of(3, "s")), _ -> RealScalar.ZERO);
     List<StateTime> trajectory = Arrays.asList( //
         new StateTime(Tensors.vector(1, 2), Quantity.of(4, "s")), //
         new StateTime(Tensors.vector(1, 2), Quantity.of(7, "s")));

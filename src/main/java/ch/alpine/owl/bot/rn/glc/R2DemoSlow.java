@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -23,13 +23,13 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.EmptyTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -79,7 +79,7 @@ import ch.alpine.tensor.sca.Ramp;
     trajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
       OwlFrame owlFrame = OwlGui.start();
       owlFrame.addBackground(RegionRenders.create(ballRegion));
       owlFrame.addBackground(renderInterface); // reference to collection
@@ -114,7 +114,7 @@ import ch.alpine.tensor.sca.Ramp;
     // OwlyGui.glc(trajectoryPlanner);
   }
 
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     simpleR2Circle();
   }
 }

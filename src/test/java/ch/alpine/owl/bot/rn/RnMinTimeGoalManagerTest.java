@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.RegionWithDistance;
+import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

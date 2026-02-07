@@ -36,9 +36,9 @@ class NodesTest {
 
   @Test
   void testNotConnected() {
-    GlcNode root1 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
+    GlcNode root1 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), _ -> RealScalar.ZERO);
     assertTrue(Nodes.areConnected(root1, root1));
-    GlcNode root2 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
+    GlcNode root2 = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), _ -> RealScalar.ZERO);
     assertFalse(Nodes.areConnected(root1, root2));
   }
 

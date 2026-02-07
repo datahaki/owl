@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
-import ch.alpine.owl.math.pursuit.PurePursuit;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.owl.pursuit.PurePursuit;
+import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;

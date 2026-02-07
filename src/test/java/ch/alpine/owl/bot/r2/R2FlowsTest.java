@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.r2.ConvexHull2D;
+import ch.alpine.sophis.crv.d2.alg.ConvexHull2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;

@@ -11,15 +11,15 @@ import ch.alpine.tensor.io.Import;
 
 enum ImageEdgesDemo {
   ;
-  public static void main(String[] args) throws IOException {
+  static void main() throws IOException {
     final Tensor tensor = ImageRegions.grayscale( //
-        Import.of(HomeDirectory.Pictures("20180122_duebendorf_hangar.png"))).unmodifiable();
+        Import.of(HomeDirectory.Pictures.resolve("20180122_duebendorf_hangar.png"))).unmodifiable();
     // ---
     for (int ttl = 0; ttl <= 5; ++ttl) {
       Timing timing = Timing.started();
       Tensor visual = ImageEdges.extrusion(tensor, ttl);
       System.out.println(timing.seconds());
-      Export.of(HomeDirectory.Pictures(String.format("hangar%02d.png", ttl)), visual);
+      Export.of(HomeDirectory.Pictures.resolve(String.format("hangar%02d.png", ttl)), visual);
     }
   }
 }

@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.pursuit.PurePursuit;
-import ch.alpine.sophus.lie.se2c.Se2CoveringIntegrator;
+import ch.alpine.owl.pursuit.PurePursuit;
+import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -26,7 +26,7 @@ class Se2CarLieIntegratorTest {
       Tensor x = RandomVariate.of(NormalDistribution.standard(), 3);
       x.set(RealScalar.ZERO, 1);
       Chop._10.requireClose( //
-          Se2CoveringIntegrator.INSTANCE.spin(g, x), //
+          Se2CoveringGroup.INSTANCE.spin(g, x), //
           Se2CarLieIntegrator.INSTANCE.spin(g, x));
     }
   }

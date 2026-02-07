@@ -8,10 +8,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.region.BallRegion;
+import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.crv.Transition;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.Transition;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;

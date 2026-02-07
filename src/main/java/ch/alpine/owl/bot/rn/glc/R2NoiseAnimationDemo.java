@@ -41,7 +41,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2NoiseAnimationDemo().start().jFrame.setVisible(true);
   }
 }

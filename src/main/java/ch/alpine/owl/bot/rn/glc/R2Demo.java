@@ -21,10 +21,10 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -84,7 +84,7 @@ import ch.alpine.tensor.sca.Ramp;
     OwlGui.glc(trajectoryPlanner);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     demo(simpleEmpty());
     demo(simpleR2Bubbles());
   }

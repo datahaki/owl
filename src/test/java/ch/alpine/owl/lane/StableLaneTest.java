@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.crv.clt.ClothoidBuilder;
-import ch.alpine.sophus.crv.clt.ClothoidBuilders;
-import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
+import ch.alpine.sophis.crv.clt.ClothoidBuilder;
+import ch.alpine.sophis.crv.clt.ClothoidBuilders;
+import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.VectorQ;

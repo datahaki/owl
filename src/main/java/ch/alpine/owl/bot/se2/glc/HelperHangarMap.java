@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import ch.alpine.owl.bot.r2.ImageEdges;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

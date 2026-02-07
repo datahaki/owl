@@ -15,16 +15,16 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 class RnRrtsNodeCollectionTest {
   private static final TransitionSpace TRANSITION_SPACE = RnTransitionSpace.INSTANCE;
@@ -52,7 +52,7 @@ class RnRrtsNodeCollectionTest {
   void testQuantity() {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.fromString("{-5[m], -7[m]}"), Tensors.fromString("{10[m], 10[m]}"));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(box);
     for (int count = 0; count < 30; ++count) {
       Tensor tensor = RandomSample.of(randomSampleInterface);
       rrtsNodeCollection.insert(RrtsNode.createRoot(tensor, RealScalar.ONE));

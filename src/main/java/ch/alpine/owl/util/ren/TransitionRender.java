@@ -6,14 +6,13 @@ import java.awt.geom.Path2D;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.ascona.util.ren.EmptyRender;
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.EmptyRender;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.data.tree.StateCostNode;
-import ch.alpine.owl.math.VectorScalar;
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.sophus.crv.Transition;
-import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophis.ts.Transition;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.chq.FiniteScalarQ;
@@ -24,9 +23,6 @@ import ch.alpine.tensor.sca.Clip;
 /** renders the edges between nodes
  * 
  * the edges are drawn as lines with the color of the cost to root
- * 
- * only real-valued costs are supported
- * in particular costs of type {@link VectorScalar} are not supported
  * 
  * @see EdgeRender */
 public class TransitionRender implements RenderInterface {

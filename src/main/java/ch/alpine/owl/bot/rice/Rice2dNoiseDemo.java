@@ -34,7 +34,7 @@ public class Rice2dNoiseDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Rice2dNoiseDemo().start().jFrame.setVisible(true);
   }
 }

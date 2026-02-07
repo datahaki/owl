@@ -15,14 +15,14 @@ import ch.alpine.tensor.sca.Chop;
 class ClothoidLengthCostFunctionTest {
   @Test
   void testSimple() {
-    ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(s -> true);
+    ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(_ -> true);
     Scalar scalar = clothoidLengthCostFunction.apply(Tensors.vector(1, 2, 3));
     Chop._03.requireClose(scalar, RealScalar.of(3.3833822797708275));
   }
 
   @Test
   void testUnits() {
-    ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(s -> true);
+    ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(_ -> true);
     Scalar scalar = clothoidLengthCostFunction.apply(Tensors.fromString("{1[m], 2[m], 3}"));
     Chop._03.requireClose(scalar, Quantity.of(3.3833822797708275, "m"));
   }
@@ -30,12 +30,12 @@ class ClothoidLengthCostFunctionTest {
   @Test
   void testInfinite() {
     {
-      ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(s -> false);
+      ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(_ -> false);
       Scalar scalar = clothoidLengthCostFunction.apply(Tensors.vector(1, 2, 3));
       assertEquals(DoubleScalar.POSITIVE_INFINITY, scalar);
     }
     {
-      ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(s -> false);
+      ClothoidLengthCostFunction clothoidLengthCostFunction = new ClothoidLengthCostFunction(_ -> false);
       Scalar scalar = clothoidLengthCostFunction.apply(Tensors.fromString("{1[m], 2[m], 3}"));
       assertEquals(Quantity.of(DoubleScalar.POSITIVE_INFINITY, "m"), scalar);
     }

@@ -20,12 +20,12 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.owl.math.region.HyperplaneRegion;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owl.region.EllipsoidRegion;
+import ch.alpine.owl.region.HyperplaneRegion;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlFrame;
@@ -64,7 +64,7 @@ import ch.alpine.tensor.ext.Timing;
   }
 
   // Hint: ensure that goal region contains at least 1 domain etc.
-  public static void main(String[] args) {
+  static void main() {
     Scalar mu = RealScalar.of(-.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     TrajectoryPlanner trajectoryPlanner = createInstance(mu, stateSpaceModel);

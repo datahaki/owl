@@ -4,20 +4,20 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
+import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
-import ch.alpine.owl.glc.adapter.EntityGlcPlannerCallback;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.owl.math.region.RegionUnion;
-import ch.alpine.owl.math.region.RegionWithDistance;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.ConeRegion;
+import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.crv.d2.PolygonRegion;
+import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
+import ch.alpine.sophis.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.ref.d1.BSpline2CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -64,7 +64,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     WindowClosed.runs(owlAnimationFrame.jFrame, () -> glcWaypointFollowing.flagShutdown());
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new GokartWaypoint0Demo().start().jFrame.setVisible(true);
   }
 }

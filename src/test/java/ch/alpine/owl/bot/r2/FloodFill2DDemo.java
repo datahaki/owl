@@ -32,17 +32,17 @@ import ch.alpine.tensor.sca.Clips;
     }
   };
 
-  public static void main(String[] args) throws IOException {
+  static void main() throws IOException {
     final Tensor tensor = R2ImageRegions.inside_0f5c_2182_charImage();
     int ttl = 30;
     // ---
     System.out.println("export image " + Dimensions.of(tensor));
-    Export.of(HomeDirectory.Pictures("image.png"), tensor);
+    Export.of(HomeDirectory.Pictures.resolve("image.png"), tensor);
     Timing timing = Timing.started();
     Tensor cost_raw = FloodFill2D.of(tensor, ttl);
     System.out.println("floodfill    " + timing.seconds());
     System.out.println("export cost  " + Dimensions.of(cost_raw));
-    Export.of(HomeDirectory.Pictures("image_cost_raw.png"), cost_raw);
+    Export.of(HomeDirectory.Pictures.resolve("image_cost_raw.png"), cost_raw);
     // ---
     Tensor cost = cost_raw;
     // MeanFilter.of(cost_raw, 2);
@@ -54,11 +54,11 @@ import ch.alpine.tensor.sca.Clips;
     dx = dx.map(GRAYSCALE);
     dy = dy.map(GRAYSCALE);
     List<Integer> dims = Dimensions.of(dx);
-    Tensor visual = Array.of(l -> RealScalar.of(255), dims.get(0), dims.get(1), 4);
+    Tensor visual = Array.of(_ -> RealScalar.of(255), dims.get(0), dims.get(1), 4);
     visual.set(dx, Tensor.ALL, Tensor.ALL, 0);
     visual.set(dy, Tensor.ALL, Tensor.ALL, 1);
     // Export.of(UserHome.Pictures("cost_dx.png"), dx);
     // Export.of(UserHome.Pictures("cost_dy.png"), dy);
-    Export.of(HomeDirectory.Pictures("visual.png"), visual);
+    Export.of(HomeDirectory.Pictures.resolve("visual.png"), visual);
   }
 }

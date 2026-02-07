@@ -10,22 +10,21 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
-import ch.alpine.owl.math.flow.RungeKutta45Reference;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.sca.Chop;
 
 class PsuStateSpaceModelTest {
@@ -86,7 +85,7 @@ class PsuStateSpaceModelTest {
   @Test
   void testVectorField() {
     Tensor range = Tensors.vector(Math.PI, 3);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(range.negate(), range));
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     new VectorFieldRender().setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
   }

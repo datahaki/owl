@@ -6,8 +6,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.math.region.BufferedImageRegion;
-import ch.alpine.owl.math.region.ImageRegion;
+import ch.alpine.owl.region.BufferedImageRegion;
+import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

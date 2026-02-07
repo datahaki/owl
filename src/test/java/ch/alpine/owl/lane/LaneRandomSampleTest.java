@@ -5,16 +5,16 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.crv.clt.ClothoidBuilders;
-import ch.alpine.sophus.crv.d2.PolygonRegion;
-import ch.alpine.sophus.hs.r2.Extract2D;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
-import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
+import ch.alpine.sophis.crv.clt.ClothoidBuilders;
+import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
+import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.pdf.Distribution;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;

@@ -17,7 +17,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
 /** (x, y, theta) */
 enum Se2rExpandDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     TrajectoryPlanner trajectoryPlanner = Se2rAnimateDemo.trajectoryPlanner();
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
@@ -25,7 +25,7 @@ enum Se2rExpandDemo {
     owlFrame.geometricComponent.setOffset(169, 71);
     owlFrame.jFrame.setBounds(100, 100, 300, 200);
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures("se2r.gif"), 250, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("se2r.gif"), 250, TimeUnit.MILLISECONDS)) {
       GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
       while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
         glcExpand.findAny(1);

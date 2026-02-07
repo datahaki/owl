@@ -13,18 +13,18 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.hs.r2.Extract2D;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.ConstantRandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.pdf.ConstantRandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 // TODO OWL API the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
@@ -56,7 +56,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
-            return BoxRandomSample.of(box);
+            return new BoxRandomSample(box);
           }
 
           @Override

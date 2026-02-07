@@ -37,7 +37,7 @@ public class Se2xTPlainDemo
     owlAnimationFrame.jFrame.setVisible(true);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2xTPlainDemo().start();
   }
 }

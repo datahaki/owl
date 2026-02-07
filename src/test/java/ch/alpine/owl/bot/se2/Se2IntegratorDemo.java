@@ -19,7 +19,7 @@ enum Se2IntegratorDemo {
    * se2_int 0.10052994000000001
    * runge4_ 0.12139695800000001
    * runge45 0.407662399 */
-  public static void main(String[] args) {
+  static void main() {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor flow = Se2CarFlows.singleton(RealScalar.ONE, RealScalar.ONE);
     Timing s1 = Timing.stopped();

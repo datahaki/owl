@@ -4,8 +4,9 @@ package ch.alpine.owl.bot.esp;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -21,12 +22,12 @@ import ch.alpine.tensor.io.Import;
   ;
   static final int RES = 64;
 
-  public static void main(String[] args) throws ClassNotFoundException, IOException, DataFormatException {
-    List<StateTime> list = Import.object(HomeDirectory.file("esp.object"));
+  static void main() throws ClassNotFoundException, IOException, DataFormatException {
+    List<StateTime> list = Import.object(HomeDirectory.path("esp.object"));
     System.out.println(list.size());
     int index = 0;
-    File folder = HomeDirectory.Pictures("ESP");
-    folder.mkdir();
+    Path folder = HomeDirectory.Pictures.resolve("ESP");
+    Files.createDirectories(folder);
     // KlotskiPlot klotskiPlot = new KlotskiPlot(klotskiProblem, TRAFFIC_JAM);
     for (StateTime stateTime : list) {
       BufferedImage bufferedImage = new BufferedImage(320, 320, BufferedImage.TYPE_INT_ARGB);
@@ -42,7 +43,7 @@ import ch.alpine.tensor.io.Import;
       // graphics.setFont(new Font(Font.DIALOG, Font.PLAIN, RES / 2));
       // graphics.drawString("move " + index, RES / 8, RES / 2);
       graphics.dispose();
-      ImageIO.write(bufferedImage, "png", new File(folder, String.format("%03d.png", index)));
+      ImageIO.write(bufferedImage, "png", folder.resolve(String.format("%03d.png", index)).toFile());
       ++index;
     }
   }

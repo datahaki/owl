@@ -35,7 +35,7 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2PolicyNoiseDemo().start().jFrame.setVisible(true);
   }
 }

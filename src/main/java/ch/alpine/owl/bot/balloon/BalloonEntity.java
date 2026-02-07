@@ -9,9 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.ascona.util.ren.ImageRender;
+import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.adapter.EtaRaster;
@@ -25,7 +24,8 @@ import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.util.ren.TrajectoryRender;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -94,7 +94,7 @@ import ch.alpine.tensor.sca.Clips;
     }
     { // indicate current position
       Tensor state = getStateTimeNow().state();
-      geometricLayer.pushMatrix(GfxMatrix.translation(state));
+      geometricLayer.pushMatrix(Se2Matrix.translation(state));
       new ImageRender(bufferedImage, CoordinateBoundingBox.of( //
           Clips.interval(-5, 5), //
           Clips.interval(0, 10))).render(geometricLayer, graphics);

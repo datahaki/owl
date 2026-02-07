@@ -15,14 +15,14 @@ import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 class LvEntityTest {
   @Test
@@ -38,7 +38,7 @@ class LvEntityTest {
     lvEntity.delayHint();
     Tensor range = Tensors.vector(6, 5);
     // VectorFieldRender vectorFieldRender = ;
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(Tensors.vector(0, 0), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);
     new VectorFieldRender().setUV_Pairs(VectorFields.of(stateSpaceModel, points, fallback_u, RealScalar.of(0.04)));
   }

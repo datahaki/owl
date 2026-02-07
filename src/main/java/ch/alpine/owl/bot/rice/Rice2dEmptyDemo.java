@@ -28,7 +28,7 @@ public class Rice2dEmptyDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Rice2dEmptyDemo().start().jFrame.setVisible(true);
   }
 }

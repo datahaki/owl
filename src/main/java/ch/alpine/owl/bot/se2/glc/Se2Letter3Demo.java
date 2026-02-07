@@ -9,7 +9,7 @@ public class Se2Letter3Demo extends Se2LetterADemo {
     return CarEntity.createPurePursuitControl();
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2Letter3Demo().start().jFrame.setVisible(true);
   }
 }

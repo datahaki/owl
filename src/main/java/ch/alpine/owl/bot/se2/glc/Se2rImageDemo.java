@@ -39,7 +39,7 @@ import ch.alpine.tensor.qty.Degree;
 /** (x, y, theta) */
 enum Se2rImageDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     Region<Tensor> region = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(8, 8), false);
     Tensor partitionScale = Tensors.vector(3, 3, 50 / Math.PI);

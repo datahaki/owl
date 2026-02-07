@@ -18,7 +18,7 @@ import ch.alpine.tensor.Tensors;
     return Tensors.vector(-0.5, -0.5);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2PointsDemo().start();
   }
 }

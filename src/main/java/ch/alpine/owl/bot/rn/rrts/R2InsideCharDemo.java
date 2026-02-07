@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.rn.rrts;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.math.region.BufferedImageRegion;
+import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
@@ -16,17 +16,17 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.sca.Clips;
 
 /* package */ enum R2InsideCharDemo {
@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.Clips;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 650, 550);
     owlFrame.addBackground(RegionRenders.create(region));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of(Tensors.vector(0, 0), range));
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(Tensors.vector(0, 0), range));
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)
@@ -68,7 +68,7 @@ import ch.alpine.tensor.sca.Clips;
     explore(R2ImageRegions.inside_2182(), Tensors.vector(9, 6), Tensors.vector(4.5, 3));
   }
 
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     _0b36();
   }
 }

@@ -4,13 +4,13 @@ package ch.alpine.owl.lane;
 import java.io.Serializable;
 import java.util.random.RandomGenerator;
 
-import ch.alpine.sophus.hs.r2.Extract2D;
-import ch.alpine.sophus.lie.se2.Se2GroupElement;
+import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.Distribution;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 
 public class LaneRandomSample implements RandomSampleInterface, Serializable {
@@ -42,13 +42,12 @@ public class LaneRandomSample implements RandomSampleInterface, Serializable {
   private RandomSampleInterface around(Tensor point, Scalar radius) {
     RandomSampleInterface randomSampleInterface = //
         BallRandomSample.of(Extract2D.FUNCTION.apply(point).map(Scalar::zero), radius);
-    Se2GroupElement se2GroupElement = new Se2GroupElement(point);
     return new RandomSampleInterface() {
       @Override // from RandomSampleInterface
       public Tensor randomSample(RandomGenerator random) {
         Tensor trans = randomSampleInterface.randomSample(random);
         Scalar rot = RandomVariate.of(distribution, random);
-        return se2GroupElement.combine(trans.append(rot));
+        return Se2Group.INSTANCE.combine(point, trans.append(rot));
       }
     };
   }

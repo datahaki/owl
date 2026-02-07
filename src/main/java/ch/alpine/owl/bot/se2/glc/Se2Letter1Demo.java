@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
@@ -43,7 +43,7 @@ public class Se2Letter1Demo extends Se2CarDemo {
     }
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2Letter1Demo().start().jFrame.setVisible(true);
   }
 }

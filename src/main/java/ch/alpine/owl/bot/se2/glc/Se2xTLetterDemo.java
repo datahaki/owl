@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -12,21 +12,21 @@ import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.se2.rl.CarPolicyEntity;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.crv.d2.CogPoints;
-import ch.alpine.sophus.hs.r2.Se2Family;
-import ch.alpine.sophus.hs.r2.SimpleR2TranslationFamily;
-import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophus.math.bij.BijectionFamily;
+import ch.alpine.sophus.math.bij.Se2Family;
+import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -104,7 +104,7 @@ public class Se2xTLetterDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2xTLetterDemo().start().jFrame.setVisible(true);
   }
 }

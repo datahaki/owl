@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
 class NodesAssertTest {
   @Test
   void testAllLeaf() {
-    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), x -> RealScalar.ZERO);
+    GlcNode glcNode = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ONE), _ -> RealScalar.ZERO);
     NodesAssert.allLeaf(List.of(glcNode));
   }
 }

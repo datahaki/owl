@@ -12,7 +12,7 @@ import ch.alpine.tensor.RealScalar;
  * records to animated gif */
 /* package */ enum DeltaExpand0Demo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     // for 0.5 (in direction of river):
     // mintime w/o heuristic requires 1623 expands
     // mintime w/. heuristic requires 1334 expands

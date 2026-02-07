@@ -21,10 +21,10 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.ext.Timing;
 
 /* package */ enum R2ImageDemo {
   ;
-  public static void main(String[] args) {
+  static void main() {
     Tensor partitionScale = Tensors.vector(6, 6);
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);

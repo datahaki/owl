@@ -22,12 +22,12 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.CoordinateWrap;
-import ch.alpine.owl.math.region.HyperplaneRegion;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.owl.region.HyperplaneRegion;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.qty.Degree;
 /** (x, y, theta) */
 enum Se2ExpandDemo {
   ;
-  public static void main(String[] args) {
+  static void main() {
     Tensor eta = Tensors.of(RealScalar.of(6), RealScalar.of(6), Degree.of(15).reciprocal());
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, RationalScalar.of(1, 10), 4);

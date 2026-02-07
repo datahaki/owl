@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 /* package */ enum Sunshine {
-  REDUCED( //
+  REDUCED(//
       Tensors.vector(8, 10, 5), //
       // Tensors.vector(1, 5, 7), //
       // Tensors.vector(1, 8, 7), //
@@ -46,7 +46,7 @@ import ch.alpine.tensor.Tensors;
       // ---
       Tensors.vector(5, 5, 0), //
       Tensors.vector(5, 5, 10)), //
-  ORIGINAL( //
+  ORIGINAL(//
       Tensors.vector(8, 10, 5), //
       Tensors.vector(1, 5, 7), //
       Tensors.vector(1, 8, 7), //

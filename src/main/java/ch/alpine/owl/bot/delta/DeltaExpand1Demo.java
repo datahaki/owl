@@ -17,7 +17,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
  * records to animated gif */
 /* package */ enum DeltaExpand1Demo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     DeltaExample deltaDemo = new DeltaExample(RealScalar.of(0.5));
     OwlFrame owlFrame = OwlGui.start();
     owlFrame.addBackground(RegionRenders.create(DeltaExample.REGION));
@@ -27,7 +27,7 @@ import ch.alpine.tensor.io.GifAnimationWriter;
     owlFrame.geometricComponent.setOffset(33, 416);
     owlFrame.jFrame.setBounds(100, 100, 620, 475);
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures("delta_s.gif"), 250, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("delta_s.gif"), 250, TimeUnit.MILLISECONDS)) {
       GlcExpand glcExpand = new GlcExpand(deltaDemo.trajectoryPlanner);
       while (!deltaDemo.trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
         glcExpand.findAny(40);

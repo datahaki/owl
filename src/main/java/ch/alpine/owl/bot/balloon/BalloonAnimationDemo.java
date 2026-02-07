@@ -1,16 +1,16 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
-import ch.alpine.ascona.util.ren.AxesRender;
+import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
-import ch.alpine.owl.math.region.BufferedImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
@@ -46,7 +46,7 @@ public class BalloonAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new BalloonAnimationDemo().start().jFrame.setVisible(true);
   }
 }

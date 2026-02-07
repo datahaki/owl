@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.kl;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Import;
@@ -12,7 +12,7 @@ enum KlotskiSolutions {
   public static void run() throws IOException {
     for (Huarong huarong : Huarong.values()) {
       KlotskiProblem klotskiProblem = huarong.create();
-      File file = KlotskiDemo.solutionFile(klotskiProblem);
+      Path file = KlotskiDemo.solutionFile(klotskiProblem);
       try {
         Import.object(file);
       } catch (Exception exception) {
@@ -24,7 +24,7 @@ enum KlotskiSolutions {
     }
   }
 
-  public static void main(String[] args) throws IOException {
+  static void main() throws IOException {
     run();
   }
 }

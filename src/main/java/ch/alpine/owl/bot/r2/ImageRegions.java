@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.math.region.BufferedImageRegion;
+import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;

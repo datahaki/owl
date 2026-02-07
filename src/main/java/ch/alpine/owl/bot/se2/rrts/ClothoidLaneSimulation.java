@@ -4,8 +4,9 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,11 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import ch.alpine.ascona.util.dis.ManifoldDisplay;
-import ch.alpine.ascona.util.dis.Se2ClothoidDisplay;
+import ch.alpine.ascony.dis.ManifoldDisplay;
+import ch.alpine.ascony.dis.Se2ClothoidDisplay;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.owl.ani.api.SimpleLaneConsumer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.data.tree.Nodes;
@@ -27,12 +29,11 @@ import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.StableLanes;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
-import ch.alpine.owl.rrts.adapter.SimpleLaneConsumer;
 import ch.alpine.owl.rrts.adapter.TransitionRegionQueryUnion;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
-import ch.alpine.sophus.ref.d1.LaneRiesenfeldCurveSubdivision;
+import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
+import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -58,7 +59,7 @@ import ch.alpine.tensor.sca.Clips;
   private static final int REPS = 25;
   private static final Scalar DELAY_HINT = RealScalar.of(3);
   // ---
-  private static final File DIRECTORY = HomeDirectory.Pictures("LaneSim");
+  private static final Path DIRECTORY = HomeDirectory.Pictures.resolve("LaneSim");
   private static final int WIDTH = 900;
   private static final int HEIGHT = 600;
   private static final Scalar OVERHEAD = RealScalar.of(0.5);
@@ -74,9 +75,9 @@ import ch.alpine.tensor.sca.Clips;
       new SampledTransitionRegionQuery(R2_IMAGE_REGION_WRAP.region(), RealScalar.of(0.05)), //
       new ClothoidCurvatureQuery(Clips.absolute(5.)));
 
-  public static void main(String[] args) throws Exception {
-    DIRECTORY.mkdirs();
-    try (PrintWriter writer = new PrintWriter(new File(DIRECTORY, "report.txt"))) {
+  static void main() throws Exception {
+    Files.createDirectories(DIRECTORY);
+    try (PrintWriter writer = new PrintWriter(DIRECTORY.resolve("report.txt").toFile())) {
       int task = 1;
       for (Tensor controlPoints : CONTROLS) {
         // controlPoints.stream().forEach(System.out::println);
@@ -127,7 +128,7 @@ import ch.alpine.tensor.sca.Clips;
         // .map(Scalar.class::cast) //
         // .reduce(Max::of) //
         // .get().number().doubleValue());
-        File file = new File(DIRECTORY, String.format("costs_%d.png", task++));
+        Path file = DIRECTORY.resolve(String.format("costs_%d.png", task++));
         show.export(file, new Dimension(WIDTH, HEIGHT));
       }
     }

@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.rot.CirclePoints;
 
 /** controls for position and velocity */
 /* package */ class Rice2Controls implements FlowsInterface, Serializable {

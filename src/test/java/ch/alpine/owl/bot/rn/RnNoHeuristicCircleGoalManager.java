@@ -5,10 +5,10 @@ import java.util.List;
 
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
+import ch.alpine.owl.region.BallRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

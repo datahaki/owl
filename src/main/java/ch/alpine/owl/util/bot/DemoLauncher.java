@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
-import ch.alpine.ascona.util.win.BaseFrame;
+import ch.alpine.ascony.win.BaseFrame;
 import ch.alpine.bridge.lang.ClassDiscovery;
 import ch.alpine.bridge.lang.ClassPaths;
 import ch.alpine.bridge.lang.ClassVisitor;
@@ -59,7 +59,7 @@ public enum DemoLauncher {
       JPanel jPanel = new JPanel(new GridLayout(demos.size(), 1));
       for (Class<?> cls : demos) {
         JButton jButton = new JButton(cls.getSimpleName());
-        jButton.addActionListener(event -> {
+        jButton.addActionListener(_ -> {
           try {
             DemoInterface demoInterface = (DemoInterface) cls.getDeclaredConstructor().newInstance();
             BaseFrame baseFrame = demoInterface.start();
@@ -81,7 +81,7 @@ public enum DemoLauncher {
     jFrame.setVisible(true);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     build(detect());
   }
 }

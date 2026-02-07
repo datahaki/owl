@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.kl;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
@@ -23,16 +23,16 @@ import ch.alpine.tensor.pdf.BinCounts;
 
 /* package */ enum KlotskiExport {
   ;
-  private static final File ROOT = new File("/media/datahaki/data/public_html/numerics");
+  private static final Path ROOT = Path.of("/media/datahaki/data/public_html/numerics");
   private static final int RES = 24;
 
   static String imageFilename(String prefix, KlotskiProblem klotskiProblem, String extension) {
     return "klotski/" + prefix + "_" + klotskiProblem.name().toLowerCase() + "." + extension;
   }
 
-  public static void main(String[] args) throws IOException {
+  static void main() throws IOException {
     KlotskiSolutions.run();
-    try (HtmlUtf8 htmlUtf8 = HtmlUtf8.page(new File(ROOT, "klotski.htm"))) {
+    try (HtmlUtf8 htmlUtf8 = HtmlUtf8.page(ROOT.resolve("klotski.htm"))) {
       htmlUtf8.appendln("<table>");
       htmlUtf8.appendln("<tr>");
       htmlUtf8.appendln("<th>Problem");
@@ -53,13 +53,13 @@ import ch.alpine.tensor.pdf.BinCounts;
           {
             String filename = imageFilename("beg", klotskiProblem, "png");
             BufferedImage bufferedImage = new KlotskiPlot(klotskiProblem, RES).plot(klotskiProblem.startState());
-            ImageIO.write(bufferedImage, "png", new File(ROOT, filename));
+            ImageIO.write(bufferedImage, "png", ROOT.resolve(filename).toFile());
             htmlUtf8.appendln("<td><img src='" + filename + "'/><td>");
           }
           {
             String filename = imageFilename("ani", klotskiProblem, "gif");
             try (AnimationWriter animationWriter = //
-                new GifAnimationWriter(new File(ROOT, filename), 500, TimeUnit.MILLISECONDS)) {
+                new GifAnimationWriter(ROOT.resolve(filename), 500, TimeUnit.MILLISECONDS)) {
               for (StateTime stateTime : klotskiSolution.list) {
                 BufferedImage bufferedImage = new KlotskiPlot(klotskiProblem, RES).plot(stateTime.state());
                 animationWriter.write(bufferedImage);
@@ -71,7 +71,7 @@ import ch.alpine.tensor.pdf.BinCounts;
             String filename = imageFilename("end", klotskiProblem, "png");
             StateTime stateTime = klotskiSolution.list.getLast();
             BufferedImage bufferedImage = new KlotskiPlot(klotskiProblem, RES).plot(stateTime.state());
-            ImageIO.write(bufferedImage, "png", new File(ROOT, filename));
+            ImageIO.write(bufferedImage, "png", ROOT.resolve(filename).toFile());
             htmlUtf8.appendln("<td><img src='" + filename + "'/><td>");
           }
           {
@@ -81,7 +81,7 @@ import ch.alpine.tensor.pdf.BinCounts;
             show.add(ListPlot.of(expandCount, klotskiSolution.domain.get(Tensor.ALL, 2)));
             show.add(ListPlot.of(expandCount, klotskiSolution.domain.get(Tensor.ALL, 3)));
             String filename = imageFilename("eva", klotskiProblem, "png");
-            show.export(new File(ROOT, filename), new Dimension(500, 130));
+            show.export(ROOT.resolve(filename), new Dimension(500, 130));
             htmlUtf8.appendln("<td><img src='" + filename + "'/>");
           }
           htmlUtf8.appendln("</tr>");

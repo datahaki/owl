@@ -11,14 +11,14 @@ import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.TensorProduct;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 
 abstract class AbstractShadowConstraint implements PlannerConstraint, Serializable {
   static final Tensor DIR = AngleVector.of(RealScalar.ZERO).unmodifiable();
@@ -40,8 +40,8 @@ abstract class AbstractShadowConstraint implements PlannerConstraint, Serializab
     this.tReact = tReact;
     this.steps = Math.max((int) Math.ceil(tReact / TIMESTEP), 1);
     velSupplier = tse2 //
-        ? (StateTime stateTime, Tensor flow) -> stateTime.state().Get(Tse2StateSpaceModel.STATE_INDEX_VEL)
-        : (StateTime stateTime, Tensor flow) -> flow.Get(Se2StateSpaceModel.CONTROL_INDEX_VEL);
+        ? (StateTime stateTime, Tensor _) -> stateTime.state().Get(Tse2StateSpaceModel.STATE_INDEX_VEL)
+        : (StateTime _, Tensor flow) -> flow.Get(Se2StateSpaceModel.CONTROL_INDEX_VEL);
   }
 
   @Override

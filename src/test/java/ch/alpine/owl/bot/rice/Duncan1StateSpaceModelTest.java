@@ -9,9 +9,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owl.math.flow.EulerIntegrator;
+import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
+import ch.alpine.owl.math.flow.RungeKutta4Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owl.math.state.AbstractEpisodeIntegrator;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
@@ -68,6 +72,30 @@ class Duncan1StateSpaceModelTest {
     episodeIntegrator.move(accel, Quantity.of(1, "s"));
     StateTime stateTime = episodeIntegrator.tail();
     assertTrue(Scalars.lessThan(speed.Get(0), stateTime.state().Get(0)));
+  }
+
+  @Test
+  void testRice1Units() {
+    StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(Quantity.of(3, "s^-1"));
+    Tensor x = Tensors.fromString("{1[m*s^-1], 2[m*s^-1]}");
+    Tensor u = Tensors.fromString("{5[m*s^-2], -2[m*s^-2]}");
+    Scalar t = Scalars.fromString("3[s]");
+    Scalar p = Scalars.fromString("2[s]");
+    Integrator[] ints = new Integrator[] { //
+        EulerIntegrator.INSTANCE, //
+        MidpointIntegrator.INSTANCE, //
+        RungeKutta4Integrator.INSTANCE, //
+        RungeKutta45Integrator.INSTANCE //
+    };
+    for (Integrator integrator : ints) {
+      AbstractEpisodeIntegrator aei = new SimpleEpisodeIntegrator( //
+          stateSpaceModel, //
+          integrator, new StateTime(x, t));
+      Tensor flow = u;
+      List<StateTime> list = aei.abstract_move(flow, p);
+      assertEquals(list.size(), 1);
+      assertEquals(list.get(0).time(), t.add(p));
+    }
   }
 
   @Test

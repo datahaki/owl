@@ -6,10 +6,10 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 /* package */ enum Solomon {
-  SIMPLE( //
+  SIMPLE(//
       Tensors.vector(7, 0, 1)), //
   /** 19 */
-  INSTANCE( //
+  INSTANCE(//
       Tensors.vector(7, 3, 3), //
       // ---
       Tensors.vector(1, 0, 4), //
@@ -55,7 +55,7 @@ import ch.alpine.tensor.Tensors;
             Tensors.vector(0, 1)).map(RealScalar.ONE.negate()::add));
   }
 
-  public static void main(String[] args) {
+  static void main() {
     INSTANCE.create();
   }
 }

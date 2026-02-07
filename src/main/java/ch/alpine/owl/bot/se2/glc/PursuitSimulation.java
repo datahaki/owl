@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.ascona.util.ren.GridRender;
+import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
@@ -14,7 +14,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Degree;
 
@@ -49,7 +49,7 @@ import ch.alpine.tensor.qty.Degree;
     owlAnimationFrame.geometricComponent.setOffset(400, 400);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new PursuitSimulation().start().jFrame.setVisible(true);
   }
 }

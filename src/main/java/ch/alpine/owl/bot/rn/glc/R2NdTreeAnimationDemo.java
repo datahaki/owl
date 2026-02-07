@@ -47,7 +47,7 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2NdTreeAnimationDemo().start().jFrame.setVisible(true);
   }
 }

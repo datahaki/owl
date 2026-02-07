@@ -3,24 +3,24 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2xTPolygonStateTimeRegion;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.crv.d2.CogPoints;
-import ch.alpine.sophus.hs.r2.Se2Family;
-import ch.alpine.sophus.hs.r2.So2Family;
-import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophus.math.bij.BijectionFamily;
+import ch.alpine.sophus.math.bij.Se2Family;
+import ch.alpine.sophus.math.bij.So2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -59,7 +59,7 @@ public class Rice2dxTGearDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Rice2dxTGearDemo().start().jFrame.setVisible(true);
   }
 }

@@ -23,11 +23,11 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.region.BallRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.ext.Timing;
  * computation time: 0.876993604 */
 /* package */ enum R2NoiseDemo {
   ;
-  public static void main(String[] args) {
+  static void main() {
     Tensor partitionScale = Tensors.vector(8, 8);
     final Scalar threshold = RealScalar.of(0.1);
     Region<Tensor> region = new R2NoiseRegion(threshold);

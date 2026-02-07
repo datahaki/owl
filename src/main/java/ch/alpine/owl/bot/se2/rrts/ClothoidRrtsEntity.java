@@ -13,10 +13,7 @@ import ch.alpine.owl.rrts.DefaultRrtsPlannerServer;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.ConstantRandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -25,8 +22,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.ConstantRandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ class ClothoidRrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
@@ -63,7 +63,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
           @Override
           protected RandomSampleInterface spaceSampler(Tensor state) {
-            return BoxRandomSample.of(CoordinateBounds.of( //
+            return new BoxRandomSample(CoordinateBounds.of( //
                 Append.of(box.min(), Pi.HALF.negate()), //
                 Append.of(box.max(), Pi.HALF)));
           }

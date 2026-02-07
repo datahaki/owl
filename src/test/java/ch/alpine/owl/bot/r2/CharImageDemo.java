@@ -14,11 +14,11 @@ import ch.alpine.tensor.ext.HomeDirectory;
 enum CharImageDemo {
   ;
   // demo
-  public static void main(String[] args) throws IOException {
+  static void main() throws IOException {
     CharImage charImage = CharImage.fillWhite(new Dimension(236, 180));
     charImage.setFont(new Font(Font.DIALOG, Font.BOLD, 400));
     charImage.draw('a', new Point(-20, 200));
     BufferedImage bufferedImage = charImage.bufferedImage();
-    ImageIO.write(bufferedImage, "png", HomeDirectory.Pictures("circdots.png"));
+    ImageIO.write(bufferedImage, "png", HomeDirectory.Pictures.resolve("circdots.png").toFile());
   }
 }

@@ -10,19 +10,19 @@ import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum R2NoiseDemo {
   ;
-  public static void main(String[] args) {
+  static void main() {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.noise1();

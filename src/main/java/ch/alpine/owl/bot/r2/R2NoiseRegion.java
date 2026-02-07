@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.noise.ContinuousNoise;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;

@@ -12,8 +12,8 @@ import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.core.CheckedTrajectoryPlanner;
 import ch.alpine.owl.glc.core.HeuristicAssert;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.So2Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

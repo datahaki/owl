@@ -8,14 +8,14 @@ import java.util.Optional;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.math.pursuit.ArgMinVariable;
-import ch.alpine.owl.math.pursuit.ClothoidPursuit;
-import ch.alpine.owl.math.pursuit.ClothoidPursuits;
-import ch.alpine.owl.math.pursuit.PursuitInterface;
-import ch.alpine.owl.math.pursuit.TrajectoryEntryFinder;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.sophus.lie.se2.Se2GroupElement;
+import ch.alpine.owl.pursuit.ArgMinVariable;
+import ch.alpine.owl.pursuit.ClothoidPursuit;
+import ch.alpine.owl.pursuit.ClothoidPursuits;
+import ch.alpine.owl.pursuit.PursuitInterface;
+import ch.alpine.owl.pursuit.TrajectoryEntryFinder;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.sca.Sign;
     Scalar speed = trailAhead.get(0).getFlow().orElseThrow().Get(0);
     boolean inReverse = Sign.isNegative(speed);
     Tensor state = tail.state();
-    TensorUnaryOperator tensorUnaryOperator = new Se2GroupElement(state).inverse()::combine;
+    TensorUnaryOperator tensorUnaryOperator = Se2Group.INSTANCE.diffOp(state);
     Tensor beacons = Tensor.of(trailAhead.stream() //
         .map(TrajectorySample::stateTime) //
         .map(StateTime::state) //

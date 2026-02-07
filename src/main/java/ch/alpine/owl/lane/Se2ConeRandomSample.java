@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.util.random.RandomGenerator;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
-import ch.alpine.sophus.lie.se2.Se2GroupElement;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.pdf.Distribution;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Clips;
@@ -31,7 +31,7 @@ public class Se2ConeRandomSample implements RandomSampleInterface, Serializable 
   }
 
   // ---
-  private final Se2GroupElement se2GroupElement;
+  private final Tensor apex;
   private final Distribution distributionDepth;
   private final Distribution distributionAngle;
   private final Distribution distributionHeading;
@@ -46,15 +46,15 @@ public class Se2ConeRandomSample implements RandomSampleInterface, Serializable 
       Distribution distributionSemi, //
       Distribution distributionHeading, //
       Distribution distributionDepth) {
-    se2GroupElement = new Se2GroupElement(apex);
+    this.apex = apex;
     this.distributionAngle = distributionSemi;
     this.distributionHeading = distributionHeading;
     this.distributionDepth = distributionDepth;
   }
 
   @Override // from RandomSampleInterface
-  public Tensor randomSample(RandomGenerator random) {
-    Tensor xy = AngleVector.of(RandomVariate.of(distributionAngle, random)).multiply(RandomVariate.of(distributionDepth, random));
-    return se2GroupElement.combine(xy.append(RandomVariate.of(distributionHeading, random)));
+  public Tensor randomSample(RandomGenerator randomGenerator) {
+    Tensor xy = AngleVector.of(RandomVariate.of(distributionAngle, randomGenerator)).multiply(RandomVariate.of(distributionDepth, randomGenerator));
+    return Se2Group.INSTANCE.combine(apex, xy.append(RandomVariate.of(distributionHeading, randomGenerator)));
   }
 }

@@ -44,7 +44,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2xTMapAnimationDemo().start().jFrame.setVisible(true);
   }
 }

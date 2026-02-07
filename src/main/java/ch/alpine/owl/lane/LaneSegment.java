@@ -1,7 +1,7 @@
 // code by gjoel
 package ch.alpine.owl.lane;
 
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.RotateLeft;
 import ch.alpine.tensor.ext.ArgMin;

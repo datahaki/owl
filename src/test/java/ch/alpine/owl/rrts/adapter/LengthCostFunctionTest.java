@@ -9,7 +9,7 @@ import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.rrts.core.DefaultRrts;
 import ch.alpine.owl.rrts.core.Rrts;
 import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;

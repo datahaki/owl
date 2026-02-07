@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2;
 
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.sophus.lie.se2.Se2Integrator;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -17,6 +17,6 @@ public enum Se2FlowIntegrator implements Integrator {
    * h in R */
   @Override // from Integrator
   public Tensor step(StateSpaceModel stateSpaceModel, Tensor g, Tensor u, Scalar h) {
-    return Se2Integrator.INSTANCE.spin(g, u.multiply(h));
+    return Se2Group.INSTANCE.spin(g, u.multiply(h));
   }
 }

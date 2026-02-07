@@ -10,14 +10,14 @@ import ch.alpine.owl.rrts.core.RrtsNodeCollection;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum R2Demo {
   ;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, transitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(coordinateBoundingBox);
     for (int count = 0; count < 1000; ++count)
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
@@ -41,7 +41,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     return owlFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     show();
   }
 }

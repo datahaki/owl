@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.owl.math.RadiusXY;
-import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.ConeRegion;
-import ch.alpine.owl.math.region.RegionWithDistance;
-import ch.alpine.owl.math.region.So2Region;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owl.region.ConeRegion;
+import ch.alpine.owl.region.RegionWithDistance;
+import ch.alpine.owl.region.So2Region;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

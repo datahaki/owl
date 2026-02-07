@@ -23,7 +23,7 @@ import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.util.ren.TreeRender;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

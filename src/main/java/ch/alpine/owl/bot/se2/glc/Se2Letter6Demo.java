@@ -9,7 +9,7 @@ public class Se2Letter6Demo extends Se2LetterADemo {
     return new ClothoidFixedControl(CarEntity.LOOKAHEAD, CarEntity.MAX_TURNING_RATE);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2Letter6Demo().start().jFrame.setVisible(true);
   }
 }

@@ -38,7 +38,7 @@ public class Rice2dImageDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Rice2dImageDemo().start().jFrame.setVisible(true);
   }
 }

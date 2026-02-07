@@ -2,14 +2,15 @@
 package ch.alpine.owl.bot.kl;
 
 import java.awt.Graphics2D;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import ch.alpine.ascona.util.win.AbstractDemo;
+import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.glc.adapter.DiscreteIntegrator;
 import ch.alpine.owl.glc.adapter.RegionConstraints;
@@ -28,7 +29,7 @@ import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.TableBuilder;
 
 public class KlotskiDemo extends AbstractDemo {
-  public static final File FOLDER_SOLUTIONS = HomeDirectory.Documents("klotski");
+  public static final Path FOLDER_SOLUTIONS = HomeDirectory.Documents.resolve("klotski");
   private final KlotskiProblem klotskiProblem;
   private static final int RES = 128;
   // ---
@@ -97,13 +98,17 @@ public class KlotskiDemo extends AbstractDemo {
     timerFrame.close();
   }
 
-  public static File solutionFile(KlotskiProblem klotskiProblem) {
-    FOLDER_SOLUTIONS.mkdir();
-    return new File(FOLDER_SOLUTIONS, klotskiProblem.name() + ".object");
+  public static Path solutionFile(KlotskiProblem klotskiProblem) {
+    try {
+      Files.createDirectories(FOLDER_SOLUTIONS);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return FOLDER_SOLUTIONS.resolve(klotskiProblem.name() + ".object");
   }
 
-  public static void main(String[] args) throws IOException {
-    KlotskiProblem klotskiProblem = Huarong.ONLY_18_STEPS.create();
+  static void main() throws IOException {
+    KlotskiProblem klotskiProblem = Huarong.AMBUSH.create();
     KlotskiDemo klotskiDemo = new KlotskiDemo(klotskiProblem);
     klotskiDemo.setVisible(700, 700);
     KlotskiSolution klotskiSolution = klotskiDemo.compute();

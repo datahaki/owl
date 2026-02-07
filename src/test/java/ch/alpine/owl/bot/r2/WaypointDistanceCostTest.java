@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.io.Import;
-import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 class WaypointDistanceCostTest {

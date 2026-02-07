@@ -3,19 +3,19 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.function.Predicate;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum StaticHelper {
   ;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
   public static RenderInterface vectorFieldRender( //
       StateSpaceModel stateSpaceModel, Tensor range, Region<Tensor> region, Scalar factor) {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.map(Scalar::zero), range);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(coordinateBoundingBox);
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(coordinateBoundingBox);
     Tensor points = Tensor.of(RandomSample.stream(randomSampleInterface) //
         .filter(Predicate.not(region::test)) //
         .limit(LIMIT));

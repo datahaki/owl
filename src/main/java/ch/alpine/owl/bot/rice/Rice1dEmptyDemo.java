@@ -29,7 +29,7 @@ public class Rice1dEmptyDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Rice1dEmptyDemo().start().jFrame.setVisible(true);
   }
 }

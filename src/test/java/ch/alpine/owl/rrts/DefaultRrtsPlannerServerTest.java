@@ -19,14 +19,11 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
-import ch.alpine.sophus.crv.dub.DubinsPathComparators;
-import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.crv.dub.DubinsPathComparators;
+import ch.alpine.sophis.ts.ClothoidTransitionSpace;
+import ch.alpine.sophis.ts.DubinsTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.ConstantRandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -35,8 +32,11 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.ConstantRandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 
@@ -109,7 +109,7 @@ class DefaultRrtsPlannerServerTest {
 
       @Override
       protected RandomSampleInterface spaceSampler(Tensor state) {
-        return BoxRandomSample.of(box);
+        return new BoxRandomSample(box);
       }
 
       @Override
@@ -138,7 +138,7 @@ class DefaultRrtsPlannerServerTest {
     Tensor goal = Tensors.vector(10, 10, 0);
     Tensor state = Tensors.vector(0, 0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE)));
     // ---

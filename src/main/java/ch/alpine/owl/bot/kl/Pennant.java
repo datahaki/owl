@@ -7,7 +7,7 @@ import ch.alpine.tensor.Tensors;
 
 /* package */ enum Pennant {
   /** 83 */
-  PUZZLE( //
+  PUZZLE(//
       Tensors.vector(0, 0, 0), //
       // ---
       Tensors.vector(1, 3, 0), //

@@ -1,7 +1,7 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -79,7 +79,7 @@ import ch.alpine.tensor.sca.Clips;
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new ClothoidRrtsLetterDemo().start().jFrame.setVisible(true);
   }
 }

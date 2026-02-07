@@ -7,12 +7,12 @@ import java.awt.Shape;
 import java.awt.geom.Path2D;
 import java.util.function.Supplier;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

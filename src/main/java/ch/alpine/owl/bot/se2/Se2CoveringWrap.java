@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2;
 
 import ch.alpine.owl.math.CoordinateWrap;
-import ch.alpine.sophus.lie.se2c.Se2CoveringGroup;
+import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.Tensor;
 
 /** measures difference between p and q in SE(2) covering group relative to p
@@ -17,7 +17,6 @@ public enum Se2CoveringWrap implements CoordinateWrap {
 
   @Override // from TensorDifference
   public Tensor difference(Tensor p, Tensor q) {
-    Tensor tensor = Se2CoveringGroup.INSTANCE.element(p).inverse().combine(q);
-    return Se2CoveringGroup.INSTANCE.log(tensor);
+    return Se2CoveringGroup.INSTANCE.exponential(p).log(q);
   }
 }

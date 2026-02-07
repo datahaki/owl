@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 /* package */ enum TrafficJam {
-  CORNERS_ONLY( //
+  CORNERS_ONLY(//
       Tensors.vector(0, 0, 0), //
       // ---
       Tensors.vector(6, 0, 3), //
@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensors;
       // ---
       Tensors.vector(7, 1, 4), //
       Tensors.vector(7, 3, 1)), //
-  NO_CORNERS( //
+  NO_CORNERS(//
       Tensors.vector(0, 0, 0), //
       // ---
       Tensors.vector(1, 3, 4), //
@@ -28,7 +28,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 2, 3), //
       Tensors.vector(3, 3, 3), //
       Tensors.vector(3, 4, 3)), //
-  PROPAEDEUTIC5( //
+  PROPAEDEUTIC5(//
       Tensors.vector(0, 0, 0), //
       // ---
       Tensors.vector(1, 3, 4), //
@@ -46,7 +46,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(7, 1, 4), //
       Tensors.vector(7, 3, 1)),
   /** 181 */
-  INSTANCE( //
+  INSTANCE(//
       Tensors.vector(0, 0, 0), //
       // ---
       Tensors.vector(1, 3, 4), //

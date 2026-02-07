@@ -3,7 +3,7 @@ package ch.alpine.owl.lane;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.lie.se2.Se2GroupElement;
+import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -39,8 +39,7 @@ public class StableLane implements LaneInterface, Serializable {
 
   private Tensor boundary(Tensor base) {
     return Tensor.of(refined.stream() //
-        .map(Se2GroupElement::new) //
-        .map(se2GroupElement -> se2GroupElement.combine(base)));
+        .map(t -> Se2Group.INSTANCE.combine(t, base)));
   }
 
   @Override // from LaneInterface

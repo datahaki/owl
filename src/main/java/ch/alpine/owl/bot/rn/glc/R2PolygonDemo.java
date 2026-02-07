@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.sophus.crv.d2.PolygonRegion;
+import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
@@ -17,7 +17,7 @@ import ch.alpine.tensor.alg.Array;
     return Array.zeros(2);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2PolygonDemo().start();
   }
 }

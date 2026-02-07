@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.sophus.lie.se2c.Se2CoveringIntegrator;
+import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -40,7 +40,7 @@ class Se2CarFlowsTest {
     Tensor u = flow;
     Tensor origin = Tensors.fromString("{0[m], 0[m], 0}");
     Scalar half_turn = Pi.VALUE.divide(u.Get(2));
-    Tensor res = Se2CoveringIntegrator.INSTANCE.spin(origin, u.multiply(half_turn));
+    Tensor res = Se2CoveringGroup.INSTANCE.spin(origin, u.multiply(half_turn));
     res = res.map(Chop._12);
     Scalar radius = res.Get(1).divide(RealScalar.of(2));
     Chop._12.requireClose(radius.reciprocal(), rate);
@@ -67,7 +67,7 @@ class Se2CarFlowsTest {
     Tensor u = flow;
     Tensor origin = Tensors.fromString("{0[m], 0[m], 0}");
     Scalar half_turn = Pi.VALUE.divide(u.Get(2));
-    Tensor res = Se2CoveringIntegrator.INSTANCE.spin(origin, u.multiply(half_turn));
+    Tensor res = Se2CoveringGroup.INSTANCE.spin(origin, u.multiply(half_turn));
     res = res.map(Chop._12);
     Scalar radius = res.Get(1).divide(RealScalar.of(2));
     Chop._12.requireClose(radius.reciprocal(), rate);

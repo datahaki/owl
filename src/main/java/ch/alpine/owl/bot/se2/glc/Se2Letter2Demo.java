@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -45,7 +45,7 @@ public class Se2Letter2Demo extends Se2CarDemo {
     }
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2Letter2Demo().start().jFrame.setVisible(true);
   }
 }

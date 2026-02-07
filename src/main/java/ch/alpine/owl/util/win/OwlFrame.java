@@ -10,15 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
-import ch.alpine.ascona.util.win.BaseFrame;
+import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.ascony.win.BaseFrame;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owl.util.ren.TransitionRender;
-import ch.alpine.sophus.crv.TransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.ext.Serialization;
 
 public class OwlFrame extends BaseFrame {
@@ -31,13 +31,13 @@ public class OwlFrame extends BaseFrame {
     {
       JToggleButton jToggleButton = new JToggleButton("Replay");
       jToggleButton.setToolTipText("stops LiveFeed and goes to Replaymode");
-      jToggleButton.addActionListener(actionEvent -> replay = jToggleButton.isSelected());
+      jToggleButton.addActionListener(_ -> replay = jToggleButton.isSelected());
       jToolBar.add(jToggleButton);
     }
     {
       JButton jButton = new JButton("<<");
       jButton.setToolTipText("Replay: 1 Step back");
-      jButton.addActionListener(actionEvent -> {
+      jButton.addActionListener(_ -> {
         if (replayIndex > 0) {
           replayIndex = replayIndex - 1;
         } else {
@@ -51,7 +51,7 @@ public class OwlFrame extends BaseFrame {
     {
       JButton jButton = new JButton(">>");
       jButton.setToolTipText("Replay: 1 Step forward");
-      jButton.addActionListener(actionEvent -> {
+      jButton.addActionListener(_ -> {
         if (replayIndex < backup.size() - 1) {
           replayIndex = replayIndex + 1;
         } else {
@@ -64,7 +64,7 @@ public class OwlFrame extends BaseFrame {
     }
     {
       jSlider.setOpaque(false);
-      jSlider.addChangeListener(changeEvent -> {
+      jSlider.addChangeListener(_ -> {
         replayIndex = jSlider.getValue();
         repaint(replayIndex);
       });

@@ -5,17 +5,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -85,7 +86,7 @@ import ch.alpine.tensor.red.Times;
       graphics.setColor(STONE_GOAL);
       for (Tensor stone : board) {
         int index = Scalars.intValueExact(stone.Get(0));
-        geometricLayer.pushMatrix(GfxMatrix.translation(stone.extract(1, 3)));
+        geometricLayer.pushMatrix(Se2Matrix.translation(stone.extract(1, 3)));
         {
           Tensor polygon = Tensors.empty();
           int limit = BLOCKS.length();
@@ -149,8 +150,8 @@ import ch.alpine.tensor.red.Times;
     List<StateTime> list = klotskiSolution.list;
     System.out.println(list.size());
     int index = 0;
-    File folder = HomeDirectory.Pictures(klotskiProblem.name());
-    folder.mkdir();
+    Path folder = HomeDirectory.Pictures.resolve(klotskiProblem.name());
+    Files.createDirectories(folder);
     int RES = 128;
     KlotskiPlot klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
     for (StateTime stateTime : list) {
@@ -160,7 +161,7 @@ import ch.alpine.tensor.red.Times;
       graphics.setFont(new Font(Font.DIALOG, Font.PLAIN, RES / 2));
       graphics.drawString("move " + index, RES / 8, RES / 2);
       graphics.dispose();
-      ImageIO.write(bufferedImage, "png", new File(folder, String.format("%03d.png", index)));
+      ImageIO.write(bufferedImage, "png", folder.resolve(String.format("%03d.png", index)).toFile());
       ++index;
     }
   }

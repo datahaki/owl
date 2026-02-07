@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Flatten;

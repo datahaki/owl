@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophus.hs.r2.Se2Bijection;
+import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.lie.TensorProduct;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.red.Times;

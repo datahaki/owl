@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 class Se2SphereRandomSampleTest {
   @Test

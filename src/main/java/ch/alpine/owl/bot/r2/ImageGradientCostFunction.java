@@ -9,11 +9,11 @@ import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.nrm.VectorAngle;
 
 /** class is not used */

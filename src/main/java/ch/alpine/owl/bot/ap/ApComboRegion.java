@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.ap;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.owl.math.region.LinearRegion;
-import ch.alpine.owl.math.region.So2Region;
+import ch.alpine.owl.region.LinearRegion;
+import ch.alpine.owl.region.So2Region;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

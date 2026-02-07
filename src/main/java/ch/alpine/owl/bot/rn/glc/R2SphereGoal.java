@@ -13,7 +13,7 @@ import ch.alpine.owl.math.state.StateTime;
 
 /* package */ enum R2SphereGoal {
   ;
-  public static void main(String[] args) {
+  static void main() {
     R2SphereBase r2SphereBase = new R2SphereBase();
     TrajectoryPlanner trajectoryPlanner = r2SphereBase.create();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);

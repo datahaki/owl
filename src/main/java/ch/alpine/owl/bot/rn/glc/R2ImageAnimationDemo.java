@@ -43,7 +43,7 @@ public class R2ImageAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2ImageAnimationDemo().start().jFrame.setVisible(true);
   }
 }

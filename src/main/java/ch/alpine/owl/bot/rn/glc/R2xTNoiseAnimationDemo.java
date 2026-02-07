@@ -37,7 +37,7 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2xTNoiseAnimationDemo().start().jFrame.setVisible(true);
   }
 }

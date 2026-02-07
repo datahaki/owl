@@ -34,7 +34,7 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
     return trajectoryRegionQuery;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new TwdNoiseDemo().start().jFrame.setVisible(true);
   }
 }

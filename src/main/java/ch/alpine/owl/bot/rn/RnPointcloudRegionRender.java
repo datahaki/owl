@@ -4,13 +4,13 @@ package ch.alpine.owl.bot.rn;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.lie.r2.CirclePoints;
+import ch.alpine.tensor.lie.rot.CirclePoints;
 
 public class RnPointcloudRegionRender implements RenderInterface {
   private static final int RESOLUTION = 16;
@@ -27,7 +27,7 @@ public class RnPointcloudRegionRender implements RenderInterface {
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     for (Tensor point : points) {
-      geometricLayer.pushMatrix(GfxMatrix.translation(point));
+      geometricLayer.pushMatrix(Se2Matrix.translation(point));
       // TODO OWL ALG make polygon dependent on resolution
       Path2D path2D = geometricLayer.toPath2D(polygon, true);
       graphics.setColor(RegionRenders.COLOR);

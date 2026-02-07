@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.r2;
 import java.io.Serializable;
 
 import ch.alpine.owl.glc.core.CostFunction;
-import ch.alpine.owl.math.region.FlipYXTensorInterp;
+import ch.alpine.owl.region.FlipYXTensorInterp;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

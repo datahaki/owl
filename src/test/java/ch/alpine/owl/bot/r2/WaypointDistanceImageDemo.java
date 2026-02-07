@@ -10,8 +10,8 @@ import java.awt.image.WritableRaster;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import ch.alpine.sophis.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.sophus.ref.d1.BSpline1CurveSubdivision;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.Import;
@@ -41,7 +41,7 @@ import ch.alpine.tensor.io.Import;
     frame.setVisible(true);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     show(Import.of("/dubilab/waypoints/20180610.csv"));
     show(Import.of("/dubilab/waypoints/20181126.csv"));
   }

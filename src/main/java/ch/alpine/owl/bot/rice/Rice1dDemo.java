@@ -18,11 +18,11 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.EllipsoidRegion;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RationalScalar;
@@ -64,7 +64,7 @@ import ch.alpine.tensor.alg.Array;
     return trajectoryPlanner;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     TrajectoryPlanner trajectoryPlanner = simple();
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {

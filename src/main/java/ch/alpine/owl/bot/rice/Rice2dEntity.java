@@ -16,12 +16,12 @@ import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.owl.region.EllipsoidRegion;
+import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Join;
-import ch.alpine.tensor.lie.r2.AngleVector;
+import ch.alpine.tensor.lie.rot.AngleVector;
 
 /* package */ class Rice2dEntity extends RiceBaseEntity {
   private static final Tensor SHAPE = Tensors.matrixDouble( //

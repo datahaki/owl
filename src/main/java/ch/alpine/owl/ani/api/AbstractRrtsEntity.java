@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
 import ch.alpine.owl.data.tree.Nodes;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
@@ -20,6 +19,7 @@ import ch.alpine.owl.rrts.core.TransitionPlanner;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.ren.TransitionRender;
 import ch.alpine.owl.util.ren.TreeRender;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.PadRight;
@@ -73,7 +73,7 @@ public abstract class AbstractRrtsEntity extends TrajectoryEntity implements Rrt
     { // indicate current position
       final StateTime stateTime = getStateTimeNow();
       Color color = new Color(64, 64, 64, 128);
-      geometricLayer.pushMatrix(GfxMatrix.of(PadRight.zeros(3).apply(stateTime.state())));
+      geometricLayer.pushMatrix(Se2Matrix.of(PadRight.zeros(3).apply(stateTime.state())));
       graphics.setColor(color);
       graphics.fill(geometricLayer.toPath2D(shape()));
       geometricLayer.popMatrix();

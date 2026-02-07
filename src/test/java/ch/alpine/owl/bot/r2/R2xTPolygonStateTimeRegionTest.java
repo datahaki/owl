@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.crv.d2.CogPoints;
-import ch.alpine.sophus.hs.r2.So2Family;
-import ch.alpine.sophus.math.api.BijectionFamily;
+import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophus.math.bij.BijectionFamily;
+import ch.alpine.sophus.math.bij.So2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

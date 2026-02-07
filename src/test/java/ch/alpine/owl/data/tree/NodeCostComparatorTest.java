@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensors;
 class NodeCostComparatorTest {
   @Test
   void testSimple() {
-    GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), x -> RealScalar.ZERO);
+    GlcNode root = GlcNodes.createRoot(new StateTime(Tensors.vector(1, 2), RealScalar.ZERO), _ -> RealScalar.ZERO);
     assertEquals(NodeCostComparator.INSTANCE.compare(root, root), 0);
   }
 

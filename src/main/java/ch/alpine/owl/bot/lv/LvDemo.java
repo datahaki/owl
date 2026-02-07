@@ -12,11 +12,11 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
+import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.exp.Log;
  * the domain coordinates are computed from the log of the state coordinates */
 /* package */ enum LvDemo {
   ;
-  public static void main(String[] args) {
+  static void main() {
     Tensor eta = Tensors.vector(10, 10);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //

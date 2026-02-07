@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -10,15 +10,15 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.hs.r2.R2RigidFamily;
-import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophus.math.bij.R2RigidFamily;
+import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -49,7 +49,7 @@ public class R2xTImageAnimationDemo implements DemoInterface {
     return owlAnimationFrame;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new R2xTImageAnimationDemo().start().jFrame.setVisible(true);
   }
 }

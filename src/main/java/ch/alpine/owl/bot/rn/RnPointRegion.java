@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
-import ch.alpine.owl.math.region.RegionWithDistance;
+import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;

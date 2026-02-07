@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.region.ImplicitFunctionRegion;
+import ch.alpine.owl.region.ImplicitFunctionRegion;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.ImageRegions;
-import ch.alpine.owl.math.region.BufferedImageRegion;
+import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

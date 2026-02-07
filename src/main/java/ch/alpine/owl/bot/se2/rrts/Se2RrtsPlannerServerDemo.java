@@ -8,7 +8,7 @@ import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
@@ -24,13 +24,10 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.crv.clt.ClothoidTransitionSpace;
+import ch.alpine.sophis.ts.ClothoidTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -38,11 +35,14 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum Se2RrtsPlannerServerDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     Tensor range = Tensors.vector(7, 7).unmodifiable();
     Region<Tensor> imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", range, false);
@@ -52,7 +52,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
         imageRegion, RealScalar.of(0.05));
     TransitionSpace transitionSpace = ClothoidTransitionSpace.ANALYTIC;
     // ---
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(CoordinateBounds.of( //
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE)));
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //

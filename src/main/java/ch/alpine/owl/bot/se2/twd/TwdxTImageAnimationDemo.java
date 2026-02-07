@@ -1,23 +1,23 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.r2.R2xTImageStateTimeRegion;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.region.ImageRegion;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.hs.r2.R2RigidFamily;
-import ch.alpine.sophus.hs.r2.Se2Family;
 import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophus.math.bij.R2RigidFamily;
+import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -68,7 +68,7 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
     return trajectoryRegionQuery;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new TwdxTImageAnimationDemo().start().jFrame.setVisible(true);
   }
 }

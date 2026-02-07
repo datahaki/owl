@@ -22,17 +22,17 @@ import ch.alpine.owl.glc.core.StateTimeRaster;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.CoordinateWrap;
-import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.RegionUnion;
-import ch.alpine.owl.math.region.So2Region;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.So2Region;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.d2.PolygonRegion;
+import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -92,7 +92,7 @@ enum Se2WrapDemo {
     OwlGui.glc(trajectoryPlanner);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     demo(Se2CoveringWrap.INSTANCE, So2Region.covering(RealScalar.ZERO, RealScalar.of(0.3)));
     demo(Se2Wrap.INSTANCE, So2Region.periodic(RealScalar.ZERO, RealScalar.of(0.3)));
   }

@@ -22,7 +22,7 @@ import ch.alpine.tensor.qty.Degree;
   ;
   final static Tensor INITIAL = Tensors.of(RealScalar.of(0), RealScalar.of(80), RealScalar.of(60), Degree.of(-1));
 
-  public static void main(String[] args) {
+  static void main() {
     // StateTimeRaster stateTimeRaster = ApTrajectoryPlanner.stateTimeRaster();
     StandardTrajectoryPlanner standardTrajectoryPlanner = ApTrajectoryPlanner.apStandardTrajectoryPlanner();
     // ---

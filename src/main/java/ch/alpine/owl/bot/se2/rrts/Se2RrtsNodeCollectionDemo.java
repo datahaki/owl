@@ -4,27 +4,27 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ch.alpine.ascona.util.dis.ManifoldDisplay;
-import ch.alpine.ascona.util.dis.ManifoldDisplays;
-import ch.alpine.ascona.util.ref.AsconaParam;
-import ch.alpine.ascona.util.ren.LeversRender;
-import ch.alpine.ascona.util.win.ControlPointsDemo;
+import ch.alpine.ascony.dis.ManifoldDisplay;
+import ch.alpine.ascony.dis.ManifoldDisplays;
+import ch.alpine.ascony.ref.AsconaParam;
+import ch.alpine.ascony.ren.LeversRender;
+import ch.alpine.ascony.win.ControlPointsDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.RrtsNodeTransition;
-import ch.alpine.sophus.crv.dub.DubinsPathComparators;
-import ch.alpine.sophus.crv.dub.DubinsTransitionSpace;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
+import ch.alpine.sophis.crv.dub.DubinsPathComparators;
+import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   private static final int SIZE = 400;
@@ -65,7 +65,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     // ---
     controlPointsRender.setMidpointIndicated(false);
     // ---
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(ND_BOX_SE2);
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(ND_BOX_SE2);
     sequence = RandomSample.of(randomSampleInterface, SIZE);
     for (Tensor state : sequence) {
       se2RrtsNodeCollection.insert(RrtsNode.createRoot(state, RealScalar.ONE));
@@ -92,7 +92,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
       graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
   }
 
-  public static void main(String[] args) {
+  static void main() {
     launch();
   }
 }

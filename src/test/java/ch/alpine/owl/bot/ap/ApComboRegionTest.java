@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.region.LinearRegion;
-import ch.alpine.owl.math.region.So2Region;
+import ch.alpine.owl.region.LinearRegion;
+import ch.alpine.owl.region.So2Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

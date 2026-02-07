@@ -12,10 +12,10 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
-import ch.alpine.owl.math.region.EllipsoidRegion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.Tensors;
 
 /* package */ enum SatelliteDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     Collection<Tensor> controls = new SatelliteControls(RealScalar.of(0.9)).getFlows(6);
     Tensor start = Tensors.vector(2, 0, 0, 2); // pos, vel
     Region<Tensor> obstacleRegion = new EllipsoidRegion( // obstacle at origin

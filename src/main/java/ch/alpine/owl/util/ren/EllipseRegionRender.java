@@ -4,12 +4,12 @@ package ch.alpine.owl.util.ren;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.math.region.BallRegion;
-import ch.alpine.owl.math.region.EllipsoidRegion;
-import ch.alpine.sophus.crv.d2.EllipsePoints;
-import ch.alpine.sophus.hs.r2.Extract2D;
+import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owl.region.EllipsoidRegion;
+import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.crv.d2.ex.EllipsePoints;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

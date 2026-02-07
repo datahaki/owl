@@ -8,7 +8,7 @@ import ch.alpine.tensor.Tensors;
 /* package */ enum Huarong {
   /** type (0, 0)
    * steps 19 */
-  ONLY_18_STEPS( //
+  ONLY_18_STEPS(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(3, 0, 0), //
@@ -28,7 +28,7 @@ import ch.alpine.tensor.Tensors;
   /** type (0, 5)
    * steps 44
    * not part of Klotski app */
-  ZAURON( //
+  ZAURON(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(2, 2, 1), //
@@ -43,7 +43,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 1, 3)),
   /** type (3, 0)
    * steps 45 */
-  VIOLET( //
+  VIOLET(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -60,7 +60,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 3)),
   /** type (2, 0)
    * steps 46 */
-  DAISY( //
+  DAISY(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -78,7 +78,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 3)),
   /** type (4, 0)
    * steps 46 */
-  PANSY( //
+  PANSY(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -94,7 +94,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 3)),
   /** type (2, 1)
    * steps 56 */
-  POPPY( //
+  POPPY(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -112,7 +112,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 3)),
   /** type (3, 1)
    * steps 64 */
-  SNOWDROP( //
+  SNOWDROP(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -130,7 +130,7 @@ import ch.alpine.tensor.Tensors;
   /** type (0, 5)
    * steps 77
    * not part of Klotski app */
-  BUDDHA( //
+  BUDDHA(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(2, 2, 0), //
@@ -146,7 +146,7 @@ import ch.alpine.tensor.Tensors;
   /** type (3, 2)
    * steps 91
    * not part of Klotski app */
-  CUBISM( //
+  CUBISM(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 1, 0), //
@@ -163,7 +163,7 @@ import ch.alpine.tensor.Tensors;
   /** type (3, 2)
    * steps 106
    * not part of Klotski app */
-  ANDROID( //
+  ANDROID(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -179,7 +179,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 2)),
   /** type (4, 1)
    * steps 116 */
-  RED_DONKEY( //
+  RED_DONKEY(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -195,7 +195,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 4, 3)),
   /** 122
    * CUBISM.19 == HANDSHAKE.50 */
-  HANDSHAKE( //
+  HANDSHAKE(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 1, 3), //
@@ -212,7 +212,7 @@ import ch.alpine.tensor.Tensors;
   /** type (1, 4)
    * steps 124
    * not part of Klotski app */
-  BALANCE( //
+  BALANCE(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -228,7 +228,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 2, 3)),
   /** type (2, 3)
    * steps 138 */
-  TRAIL( //
+  TRAIL(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 0, 0), //
@@ -244,7 +244,7 @@ import ch.alpine.tensor.Tensors;
       Tensors.vector(3, 3, 3)),
   /** type (2, 3)
    * steps 158 */
-  AMBUSH( //
+  AMBUSH(//
       Tensors.vector(0, 0, 1), //
       // ---
       Tensors.vector(1, 1, 0), //

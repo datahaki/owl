@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -54,7 +54,7 @@ public class TwdImageDemo extends AbstractTwdDemo {
     return trajectoryRegionQuery;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new TwdImageDemo().start().jFrame.setVisible(true);
   }
 }

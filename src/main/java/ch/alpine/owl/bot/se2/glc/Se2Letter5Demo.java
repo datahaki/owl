@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.math.pursuit.InterpolationEntryFinder;
+import ch.alpine.owl.pursuit.InterpolationEntryFinder;
 
 public class Se2Letter5Demo extends Se2LetterADemo {
   @Override
@@ -10,7 +10,7 @@ public class Se2Letter5Demo extends Se2LetterADemo {
     return new ClothoidPursuitControl(InterpolationEntryFinder.INSTANCE, CarEntity.MAX_TURNING_RATE);
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Se2Letter5Demo().start().jFrame.setVisible(true);
   }
 }

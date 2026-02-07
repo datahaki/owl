@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.util.ren;
 
-import ch.alpine.owl.util.win.ColorLookup;
+import ch.alpine.bridge.col.ColorLookup;
 import ch.alpine.tensor.img.ColorDataIndexed;
 
 /** helper class to adapt the node and edge colors of a tree

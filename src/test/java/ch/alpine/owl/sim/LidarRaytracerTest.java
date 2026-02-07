@@ -22,7 +22,7 @@ class LidarRaytracerTest {
     LidarRaytracer lidarRaytracer = new LidarRaytracer(Subdivide.of(-1, 1, 10), Subdivide.of(0., 5., 30));
     StateTime stateTime = new StateTime(Tensors.vector(1, 2, 3), RealScalar.ZERO);
     Tensor scan = lidarRaytracer.scan(stateTime, EmptyTrajectoryRegionQuery.INSTANCE);
-    assertEquals(scan, Array.of(l -> RealScalar.of(5), 11));
+    assertEquals(scan, Array.of(_ -> RealScalar.of(5), 11));
     Tensor poly = lidarRaytracer.toPoints(scan);
     assertEquals(Dimensions.of(poly), Arrays.asList(11, 2));
   }

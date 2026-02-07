@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
-import ch.alpine.ascona.util.ren.EmptyRender;
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.EmptyRender;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.gfx.GfxMatrix;
+import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -43,7 +43,7 @@ public class WaypointRender implements RenderInterface {
     private final Tensor se2Matrixs;
 
     public Render(Tensor waypoints) {
-      se2Matrixs = Tensor.of(waypoints.stream().map(GfxMatrix::of));
+      se2Matrixs = Tensor.of(waypoints.stream().map(Se2Matrix::of));
     }
 
     @Override // from RenderInterface

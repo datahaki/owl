@@ -75,7 +75,7 @@ import ch.alpine.tensor.alg.Array;
     return trajectoryPlanner;
   }
 
-  public static void main(String[] args) {
+  static void main() {
     TrajectoryPlanner trajectoryPlanner = medium();
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {

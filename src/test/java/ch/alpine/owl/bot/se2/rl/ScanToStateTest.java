@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.rl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class ScanToStateTest {
 
   @Test
   void testUnique() {
-    RandomGenerator random = new Random();
+    RandomGenerator random = ThreadLocalRandom.current();
     Distribution distribution = ExponentialDistribution.standard();
     for (int count = 0; count < 100; ++count) {
       Tensor range = RandomVariate.of(distribution, 2 + random.nextInt(4));

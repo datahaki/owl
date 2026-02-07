@@ -1,7 +1,7 @@
 // code by ynager
 package ch.alpine.owl.bot.tse2;
 
-import ch.alpine.ascona.util.ren.RenderInterface;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -46,7 +46,7 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     }
   }
 
-  public static void main(String[] args) {
+  static void main() {
     new Tse2Car0Demo().start().jFrame.setVisible(true);
   }
 }

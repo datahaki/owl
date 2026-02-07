@@ -15,11 +15,11 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.math.region.HyperplaneRegion;
-import ch.alpine.owl.math.region.RegionUnion;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owl.region.HyperplaneRegion;
+import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -56,7 +56,7 @@ enum Se2rAnimateDemo {
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
   }
 
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     TrajectoryPlanner trajectoryPlanner = trajectoryPlanner();
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
     OwlFrame owlFrame = OwlGui.start();

@@ -13,21 +13,21 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophus.crv.TransitionSpace;
-import ch.alpine.sophus.lie.rn.RnTransitionSpace;
+import ch.alpine.sophis.ts.RnTransitionSpace;
+import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.math.sample.BoxRandomSample;
-import ch.alpine.sophus.math.sample.RandomSample;
-import ch.alpine.sophus.math.sample.RandomSampleInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum R2OutsideCharDemo {
   ;
-  public static void main(String[] args) throws Exception {
+  static void main() throws Exception {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
     Region<Tensor> imageRegion = R2ImageRegions.outside_0b36(box.max());
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
@@ -39,7 +39,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
     owlFrame.addBackground(RegionRenders.create(imageRegion));
-    RandomSampleInterface randomSampleInterface = BoxRandomSample.of(box);
+    RandomSampleInterface randomSampleInterface = new BoxRandomSample(box);
     int frame = 0;
     while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
       for (int count = 0; count < 50; ++count)
