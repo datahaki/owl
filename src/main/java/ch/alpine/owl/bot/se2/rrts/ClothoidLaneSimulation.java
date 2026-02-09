@@ -136,11 +136,11 @@ import ch.alpine.tensor.sca.Clips;
 
   private synchronized static void run(LaneInterface lane, Show visualSet, Tensor ttfs, GeometricLayer geometricLayer, int task, int rep) throws Exception {
     StateTime stateTime = new StateTime(lane.midLane().get(0), RealScalar.ZERO);
-    Consumer<Map<Double, Scalar>> process = observations -> {
+    Consumer<Map<Scalar, Scalar>> process = observations -> {
       Tensor domain = Tensor.of(observations.keySet().stream().map(d -> Quantity.of(d, "s")));
       Tensor values = Tensor.of(observations.values().stream());
       visualSet.add(ListPlot.of(domain, values));
-      observations.keySet().stream().map(RealScalar::of).findFirst().ifPresent(ttfs::append);
+      observations.keySet().stream().findFirst().ifPresent(ttfs::append);
     };
     List<RrtsNode> first = new ArrayList<>();
     List<RrtsNode> last = new ArrayList<>();

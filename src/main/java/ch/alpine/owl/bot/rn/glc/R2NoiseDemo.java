@@ -38,7 +38,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.qty.Timing;
 
 /** expands: 1491
  * computation time: 0.876993604 */

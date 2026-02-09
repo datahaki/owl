@@ -7,7 +7,7 @@ import java.util.List;
 import ch.alpine.owl.data.tree.TreePlanner;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.qty.Timing;
 
 public abstract class MotionPlanWorker<T extends TreePlanner<?>, P extends PlannerCallback<T>> {
   @SuppressWarnings("unchecked")

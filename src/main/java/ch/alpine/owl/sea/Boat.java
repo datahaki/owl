@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.owl.sea;
 
 import ch.alpine.tensor.RealScalar;

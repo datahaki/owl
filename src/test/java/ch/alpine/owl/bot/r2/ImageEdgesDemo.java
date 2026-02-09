@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.Import;
+import ch.alpine.tensor.qty.Timing;
 
 enum ImageEdgesDemo {
   ;

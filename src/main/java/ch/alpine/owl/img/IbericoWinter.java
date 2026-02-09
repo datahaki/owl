@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.owl.img;
 
 import java.util.NavigableMap;

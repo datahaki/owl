@@ -13,15 +13,16 @@ import ch.alpine.ascony.api.Box2D;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.alg.RotateLeft;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.chq.ExactTensorQ;
-import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.qty.Quantity;
+import ch.alpine.tensor.qty.Timing;
 
 class SphereCurveIntersectionTest {
   @Test
@@ -134,6 +135,6 @@ class SphereCurveIntersectionTest {
       }
       timing2.stop();
     }
-    assertTrue(timing2.seconds() < timing1.seconds());
+    assertTrue(Scalars.lessThan(timing2.seconds(), timing1.seconds()));
   }
 }

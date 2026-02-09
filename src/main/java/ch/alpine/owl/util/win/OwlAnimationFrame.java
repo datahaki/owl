@@ -23,10 +23,9 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.qty.Timing;
 
 public class OwlAnimationFrame extends TimerFrame {
   private static final Dimension RECORDING = new Dimension(400, 400);
@@ -90,7 +89,7 @@ public class OwlAnimationFrame extends TimerFrame {
 
         @Override
         public void run() {
-          Scalar now = RealScalar.of(timing.seconds());
+          Scalar now = timing.seconds();
           animationInterfaces.forEach(animationInterface -> animationInterface.integrate(now));
         }
       };

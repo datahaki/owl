@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.owl.img.bar;
 
 import java.awt.image.AffineTransformOp;

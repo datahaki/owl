@@ -31,7 +31,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
   /** @param stateTime initial position of entity */
   /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box, boolean greedy,
-      Scalar delayHint, Consumer<Map<Double, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
+      Scalar delayHint, Consumer<Map<Scalar, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
@@ -61,7 +61,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
           }
 
           @Override // from ObservingExpandInterface
-          public void process(Map<Double, Scalar> observations) {
+          public void process(Map<Scalar, Scalar> observations) {
             process.accept(observations);
             super.process(observations);
           }

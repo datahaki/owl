@@ -24,7 +24,9 @@ import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.qty.Quantity;
+import ch.alpine.tensor.qty.Timing;
 
 class Rice2dDemoTest {
   @Test
@@ -35,7 +37,7 @@ class Rice2dDemoTest {
     Timing timing = Timing.started();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(1000); // 153 0.368319228
-    assertTrue(timing.seconds() < 1.5);
+    assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
     OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
@@ -60,7 +62,7 @@ class Rice2dDemoTest {
     Timing timing = Timing.started();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.untilOptimal(1000); // 220 0.283809941
-    assertTrue(timing.seconds() < 1.5);
+    assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
     OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();

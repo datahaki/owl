@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.ascona.hull;
 
 import ch.alpine.bridge.ref.ann.FieldClip;

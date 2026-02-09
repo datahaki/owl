@@ -34,7 +34,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.qty.Timing;
 
 /* package */ enum R2ImageDemo {
   ;
