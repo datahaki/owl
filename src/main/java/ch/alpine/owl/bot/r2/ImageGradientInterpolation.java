@@ -54,7 +54,7 @@ public class ImageGradientInterpolation implements Serializable {
     Tensor image = _displayOrientation(_image);
     MatrixQ.require(image);
     List<Integer> dims = Dimensions.of(image);
-    scale = Times.of(Tensors.vector(dims), range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dims), range.maps(Scalar::reciprocal));
     Tensor field = ImageGradient.rotated(image).multiply(N.DOUBLE.apply(amp));
     interpolation = function.apply(field);
     maxNormGradient = Flatten.stream(field, 1).map(Vector2Norm::of).reduce(Max::of).orElseThrow();

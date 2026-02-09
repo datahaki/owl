@@ -28,6 +28,6 @@ public abstract class TwdFlows implements FlowsInterface, Serializable {
   protected final Tensor singleton(Scalar speedL, Scalar speedR) {
     Scalar speed = speedL.add(speedR).multiply(maxSpeedHalf);
     Scalar rate = speedR.subtract(speedL).multiply(maxSpeedHalf).divide(halfWidth);
-    return Tensors.of(speed, speed.zero(), rate).map(N.DOUBLE);
+    return Tensors.of(speed, speed.zero(), rate).maps(N.DOUBLE);
   }
 }

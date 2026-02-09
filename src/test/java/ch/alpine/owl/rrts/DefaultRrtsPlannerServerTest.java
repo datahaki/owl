@@ -49,8 +49,8 @@ class DefaultRrtsPlannerServerTest {
     Scalar radius = Vector2Norm.between(goal, state).multiply(RationalScalar.HALF).add(RealScalar.ONE);
     Tensor center = Mean.of(Tensors.of(state, goal));
     CoordinateBoundingBox box = CoordinateBounds.of( //
-        center.map(scalar -> scalar.subtract(radius)), //
-        center.map(scalar -> scalar.add(radius)));
+        center.maps(scalar -> scalar.subtract(radius)), //
+        center.maps(scalar -> scalar.add(radius)));
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         RnTransitionSpace.INSTANCE, //

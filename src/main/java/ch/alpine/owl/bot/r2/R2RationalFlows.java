@@ -19,6 +19,6 @@ public class R2RationalFlows extends R2Flows {
 
   @Override // from R2Flows
   protected Tensor mapU(Tensor u) {
-    return u.map(RATIONALIZE);
+    return u.maps(RATIONALIZE);
   }
 }

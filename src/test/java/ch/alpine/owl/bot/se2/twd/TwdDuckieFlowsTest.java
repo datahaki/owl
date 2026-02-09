@@ -29,7 +29,7 @@ class TwdDuckieFlowsTest {
       Collection<Tensor> controls = flowsInterface.getFlows(res);
       Set<Tensor> set = new HashSet<>();
       for (Tensor flow : controls) {
-        Tensor key = flow.map(Round._3);
+        Tensor key = flow.maps(Round._3);
         assertTrue(set.add(key));
       }
     }
@@ -44,7 +44,7 @@ class TwdDuckieFlowsTest {
       Collection<Tensor> controls = flowsInterface.getFlows(res);
       Set<Tensor> set = new HashSet<>();
       for (Tensor flow : controls) {
-        Tensor key = flow.map(Round._3);
+        Tensor key = flow.maps(Round._3);
         assertTrue(set.add(key));
       }
     }

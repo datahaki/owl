@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Floor;
 
 class Se2WrapTest {
   static Tensor convertToKey(Tensor eta, TensorUnaryOperator represent, Tensor x) {
-    return Times.of(eta, represent.apply(x)).map(Floor.FUNCTION);
+    return Times.of(eta, represent.apply(x)).maps(Floor.FUNCTION);
   }
 
   @Test

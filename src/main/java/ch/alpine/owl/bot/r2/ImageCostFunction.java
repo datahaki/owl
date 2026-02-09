@@ -37,7 +37,7 @@ public abstract class ImageCostFunction implements CostFunction, Serializable {
   }
 
   public final CoordinateBoundingBox range() {
-    return CoordinateBounds.of(range.map(Scalar::zero), range);
+    return CoordinateBounds.of(range.maps(Scalar::zero), range);
   }
 
   public final Tensor scale() {

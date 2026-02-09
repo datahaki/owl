@@ -36,7 +36,7 @@ public class Se2SphereRandomSample implements RandomSampleInterface, Serializabl
    * @param distribution for heading */
   public Se2SphereRandomSample(Tensor apex, Scalar radius, Distribution distribution) {
     this.apex = apex;
-    randomSampleInterface = BallRandomSample.of(Extract2D.FUNCTION.apply(apex).map(Scalar::zero), radius);
+    randomSampleInterface = BallRandomSample.of(Extract2D.FUNCTION.apply(apex).maps(Scalar::zero), radius);
     this.distribution = distribution;
   }
 

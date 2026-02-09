@@ -31,6 +31,6 @@ import ch.alpine.tensor.sca.Round;
     // ---
     StateTime stateTime = getStateTimeNow();
     graphics.setColor(Color.GRAY);
-    graphics.drawString(stateTime.time().map(Round._3).toString(), 0, 12 * 2);
+    graphics.drawString(stateTime.time().maps(Round._3).toString(), 0, 12 * 2);
   }
 }

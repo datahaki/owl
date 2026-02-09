@@ -35,7 +35,7 @@ import ch.alpine.tensor.sca.N;
     Collection<Tensor> collection = new ArrayList<>();
     for (Tensor thrust : thrusts)
       for (Tensor aoa : Subdivide.of(aoa_max.zero(), aoa_max, resolution))
-        collection.add(Tensors.of(thrust, aoa).map(N.DOUBLE));
+        collection.add(Tensors.of(thrust, aoa).maps(N.DOUBLE));
     return collection;
   }
 }

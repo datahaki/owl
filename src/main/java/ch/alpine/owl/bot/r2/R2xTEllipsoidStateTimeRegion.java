@@ -36,7 +36,7 @@ public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderIn
    * @param bijectionFamily with origin at center of ellipsoid region
    * @param supplier for parameter to evaluate bijectionFamily */
   public R2xTEllipsoidStateTimeRegion(Tensor radius, BijectionFamily bijectionFamily, Supplier<Scalar> supplier) {
-    invert = radius.map(Scalar::reciprocal);
+    invert = radius.maps(Scalar::reciprocal);
     this.bijectionFamily = bijectionFamily;
     this.supplier = supplier;
     polygon = EllipsePoints.of(RESOLUTION, Extract2D.FUNCTION.apply(radius));

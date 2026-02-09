@@ -43,7 +43,7 @@ public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBou
     // ---
     this.center = VectorQ.requireLength(center, radius.length()).copy();
     this.radius = radius.copy();
-    invert = radius.map(Scalar::reciprocal);
+    invert = radius.maps(Scalar::reciprocal);
   }
 
   @Override // from SignedDistanceFunction<Tensor>

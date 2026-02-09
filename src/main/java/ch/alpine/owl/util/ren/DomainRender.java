@@ -30,7 +30,7 @@ public class DomainRender implements RenderInterface {
 
   DomainRender(Tensor keys, Tensor eta) {
     this.keys = keys;
-    eta_invert = Extract2D.FUNCTION.apply(eta).map(Scalar::reciprocal);
+    eta_invert = Extract2D.FUNCTION.apply(eta).maps(Scalar::reciprocal);
     int lo = 0;
     int hi = 1;
     ratios = Tensors.of( //

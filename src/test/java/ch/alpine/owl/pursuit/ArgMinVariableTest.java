@@ -29,7 +29,7 @@ class ArgMinVariableTest {
     TrajectoryEntryFinder entryFinder = Serialization.copy(InterpolationEntryFinder.INSTANCE);
     // ---
     Scalar var = ArgMinVariable.using(entryFinder, t -> Vector2Norm.of(Extract2D.FUNCTION.apply(t)), 20).apply(tensor);
-    assertEquals(Array.zeros(3), entryFinder.on(tensor).apply(var).point().get().map(N.DOUBLE).map(Chop._06));
+    assertEquals(Array.zeros(3), entryFinder.on(tensor).apply(var).point().get().maps(N.DOUBLE).maps(Chop._06));
   }
 
   @Test
@@ -48,7 +48,7 @@ class ArgMinVariableTest {
     TrajectoryEntryFinder entryFinder = Serialization.copy(new GeodesicInterpolationEntryFinder(CLOTHOID_BUILDER));
     // ---
     Scalar var = ArgMinVariable.using(entryFinder, t -> Vector2Norm.of(Extract2D.FUNCTION.apply(t)), 20).apply(tensor);
-    assertEquals(Array.zeros(3), entryFinder.on(tensor).apply(var).point().get().map(Chop._06));
+    assertEquals(Array.zeros(3), entryFinder.on(tensor).apply(var).point().get().maps(Chop._06));
   }
   // public void testPerformance() {
   // Tensor timings = Tensors.empty();

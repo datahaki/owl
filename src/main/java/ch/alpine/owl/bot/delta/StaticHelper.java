@@ -23,7 +23,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
   public static RenderInterface vectorFieldRender( //
       StateSpaceModel stateSpaceModel, Tensor range, Region<Tensor> region, Scalar factor) {
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.map(Scalar::zero), range);
+    CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.maps(Scalar::zero), range);
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(coordinateBoundingBox);
     Tensor points = Tensor.of(RandomSample.stream(randomSampleInterface) //
         .filter(Predicate.not(region::test)) //

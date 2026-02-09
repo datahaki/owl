@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.N;
 
 /** controls for position and velocity */
 class SatelliteControls implements FlowsInterface, Serializable {
-  private static final Tensor ZEROS = Array.zeros(2).map(N.DOUBLE);
+  private static final Tensor ZEROS = Array.zeros(2).maps(N.DOUBLE);
   // ---
   private final Scalar amp;
 

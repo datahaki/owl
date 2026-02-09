@@ -54,7 +54,7 @@ import ch.alpine.tensor.sca.exp.Log;
   }
 
   static void main() {
-    launch(tensor -> tensor.map(Log.FUNCTION));
+    launch(tensor -> tensor.maps(Log.FUNCTION));
     launch(t -> t);
   }
 }

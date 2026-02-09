@@ -33,7 +33,7 @@ public class FlipYXTensorInterp<T> implements Serializable {
     dim1 = dimensions.get(1);
     max_y = dimensions.get(0) - 1;
     VectorQ.requireLength(range, 2);
-    scale = Times.of(Tensors.vector(dimensions.get(1), dimensions.get(0)), range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dimensions.get(1), dimensions.get(0)), range.maps(Scalar::reciprocal));
     scaleX = scale.Get(0).number().floatValue();
     scaleY = scale.Get(1).number().floatValue();
     this.outside = outside;

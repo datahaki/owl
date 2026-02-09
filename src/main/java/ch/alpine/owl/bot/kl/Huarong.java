@@ -285,6 +285,6 @@ import ch.alpine.tensor.Tensors;
             Tensors.vector(6, 4), //
             Tensors.vector(7, 4), //
             Tensors.vector(7, 6), //
-            Tensors.vector(0, 6)).map(RealScalar.ONE.negate()::add));
+            Tensors.vector(0, 6)).maps(RealScalar.ONE.negate()::add));
   }
 }

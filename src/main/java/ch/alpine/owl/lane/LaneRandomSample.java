@@ -41,7 +41,7 @@ public class LaneRandomSample implements RandomSampleInterface, Serializable {
 
   private RandomSampleInterface around(Tensor point, Scalar radius) {
     RandomSampleInterface randomSampleInterface = //
-        BallRandomSample.of(Extract2D.FUNCTION.apply(point).map(Scalar::zero), radius);
+        BallRandomSample.of(Extract2D.FUNCTION.apply(point).maps(Scalar::zero), radius);
     return new RandomSampleInterface() {
       @Override // from RandomSampleInterface
       public Tensor randomSample(RandomGenerator random) {

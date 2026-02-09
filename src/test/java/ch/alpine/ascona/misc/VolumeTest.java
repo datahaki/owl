@@ -26,7 +26,7 @@ class VolumeTest {
   @Test
   void testCubeUnits() {
     SurfaceMesh surfaceMesh = SurfaceMeshDemo.surfaceMesh(PlatonicSolid.CUBE);
-    surfaceMesh.vrt = surfaceMesh.vrt.map(s -> Quantity.of(s, "m"));
+    surfaceMesh.vrt = surfaceMesh.vrt.maps(s -> Quantity.of(s, "m"));
     Scalar scalar = Volume.of(surfaceMesh);
     assertEquals(scalar, Quantity.of(1, "m^3"));
     ExactScalarQ.require(scalar);

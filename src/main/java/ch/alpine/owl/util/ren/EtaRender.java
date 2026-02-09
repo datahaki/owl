@@ -23,7 +23,7 @@ public class EtaRender implements RenderInterface {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     if (eta.length() < 2)
       return;
-    Tensor inv = eta.map(Scalar::reciprocal);
+    Tensor inv = eta.maps(Scalar::reciprocal);
     graphics.setColor(Color.LIGHT_GRAY);
     int c1 = Ceiling.intValueExact(eta.Get(1));
     int c0 = Ceiling.intValueExact(eta.Get(0));

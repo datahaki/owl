@@ -73,7 +73,7 @@ public enum ImagePerspective {
   private static Tensor rectify(Tensor src, Tensor points, int width, int height) {
     Tensor reference = Tensors.matrixInt( //
         new int[][] { { 0, 0 }, { 0, width }, { height, width }, { height, 0 } });
-    reference = reference.map(RealScalar.of(-0.5)::add);
+    reference = reference.maps(RealScalar.of(-0.5)::add);
     LinearFractionalTransform lft = LinearFractionalTransform.fit(reference, points);
     Interpolation interpolation = LinearInterpolation.of(src);
     return Tensors.matrix((i, j) -> //

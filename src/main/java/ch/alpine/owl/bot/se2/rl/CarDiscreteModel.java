@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.gam.Factorial;
     Collection<Tensor> collection = flowsInterface.getFlows(flows);
     ScalarUnaryOperator suo = Rationalize.withDenominatorLessEquals(100);
     actions = Tensor.of(collection.stream() //
-        .map(u -> u.map(suo)) //
+        .map(u -> u.maps(suo)) //
     ).unmodifiable();
     System.out.println(actions);
     this.resolution = scans;

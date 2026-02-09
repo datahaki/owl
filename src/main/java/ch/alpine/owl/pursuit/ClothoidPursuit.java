@@ -24,7 +24,7 @@ public class ClothoidPursuit implements PursuitInterface, Serializable {
   private final LagrangeQuadraticD lagrangeQuadraticD;
 
   private ClothoidPursuit(Tensor lookAhead) {
-    lagrangeQuadraticD = CLOTHOID_BUILDER.curve(lookAhead.map(Scalar::zero), lookAhead).curvature();
+    lagrangeQuadraticD = CLOTHOID_BUILDER.curve(lookAhead.maps(Scalar::zero), lookAhead).curvature();
   }
 
   @Override // from PursuitInterface

@@ -16,7 +16,7 @@ public enum Se2PointsVsRegions {
    * @param region
    * @return instance of Se2PointsVsRegion */
   public static Region<Tensor> line(Tensor x_coords, Region<Tensor> region) {
-    Tensor points = x_coords.map(scalar -> Tensors.of(scalar, scalar.zero()));
+    Tensor points = x_coords.maps(scalar -> Tensors.of(scalar, scalar.zero()));
     return new Se2PointsVsRegion(points, region);
   }
 }

@@ -22,7 +22,7 @@ public class Se2CarFlows implements FlowsInterface, Serializable {
    * @param ratio of turning, unit [m^-1]
    * @return flow with u == {speed[m*s^-1], 0.0[m*s^-1], (ratio*speed)[s^-1]} */
   public static Tensor singleton(Scalar speed, Scalar ratio) {
-    return Tensors.of(speed, speed.zero(), ratio.multiply(speed)).map(N.DOUBLE);
+    return Tensors.of(speed, speed.zero(), ratio.multiply(speed)).maps(N.DOUBLE);
   }
 
   /** @param speed with unit [m*s^-1]

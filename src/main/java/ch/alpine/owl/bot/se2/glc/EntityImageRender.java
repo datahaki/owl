@@ -26,7 +26,7 @@ import ch.alpine.tensor.red.Times;
     this.supplier = supplier;
     this.bufferedImage = bufferedImage;
     Tensor invsc = AppendOne.FUNCTION.apply(Times.of(range, //
-        Tensors.vector(bufferedImage.getWidth(), -bufferedImage.getHeight()).map(Scalar::reciprocal)));
+        Tensors.vector(bufferedImage.getWidth(), -bufferedImage.getHeight()).maps(Scalar::reciprocal)));
     // not generic since factor / 3 is used
     Tensor translate = Se2Matrix.translation( //
         Tensors.vector(-bufferedImage.getWidth() / 3, -bufferedImage.getHeight() / 2));

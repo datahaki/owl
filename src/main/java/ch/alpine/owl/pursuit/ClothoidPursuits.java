@@ -23,7 +23,7 @@ public enum ClothoidPursuits {
   public static Tensor curve(Tensor lookAhead, int depth) {
     return Nest.of( //
         CURVE_SUBDIVISION::string, //
-        Tensor.of(Stream.of(lookAhead.map(Scalar::zero), lookAhead)), //
+        Tensor.of(Stream.of(lookAhead.maps(Scalar::zero), lookAhead)), //
         depth);
   }
 

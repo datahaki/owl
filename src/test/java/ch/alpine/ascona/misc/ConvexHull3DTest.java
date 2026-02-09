@@ -27,7 +27,7 @@ class ConvexHull3DTest {
     CoordinateBoundingBox ccb = CoordinateBoundingBox.of(Clips.unit(), Clips.unit(), Clips.interval(-3, 3));
     Tensor tensor = RandomSample.of(new BoxRandomSample(ccb), 100);
     List<int[]> list1 = ConvexHull3D.of(tensor);
-    List<int[]> list2 = ConvexHull3D.of(tensor.map(s -> Quantity.of(s, "m")));
+    List<int[]> list2 = ConvexHull3D.of(tensor.maps(s -> Quantity.of(s, "m")));
     assertEquals(list1.size(), list2.size());
     for (int index = 0; index < list1.size(); ++index)
       assertEquals(Integers.asList(list1.get(index)), Integers.asList(list2.get(index)));

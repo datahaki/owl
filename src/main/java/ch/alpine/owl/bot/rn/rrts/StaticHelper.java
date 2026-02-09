@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.N;
             { 1, 6 }, //
             { 1, 3 }, //
             { 3, 3 } //
-        }).map(N.DOUBLE)), RealScalar.of(0.1));
+        }).maps(N.DOUBLE)), RealScalar.of(0.1));
   }
 
   public static TransitionRegionQuery noise1() {

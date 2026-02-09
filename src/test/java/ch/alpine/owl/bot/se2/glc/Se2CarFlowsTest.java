@@ -26,7 +26,7 @@ class Se2CarFlowsTest {
     FlowsInterface carFlows = Se2CarFlows.standard(speed, rate_max);
     Collection<Tensor> collection = carFlows.getFlows(8);
     Tensor flow = collection.iterator().next();
-    Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").map(UnitSystem.SI());
+    Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").maps(UnitSystem.SI());
     Tensor r = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
     Chop._10.requireClose(r, //
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
@@ -41,7 +41,7 @@ class Se2CarFlowsTest {
     Tensor origin = Tensors.fromString("{0[m], 0[m], 0}");
     Scalar half_turn = Pi.VALUE.divide(u.Get(2));
     Tensor res = Se2CoveringGroup.INSTANCE.spin(origin, u.multiply(half_turn));
-    res = res.map(Chop._12);
+    res = res.maps(Chop._12);
     Scalar radius = res.Get(1).divide(RealScalar.of(2));
     Chop._12.requireClose(radius.reciprocal(), rate);
   }
@@ -53,7 +53,7 @@ class Se2CarFlowsTest {
     FlowsInterface carFlows = Se2CarFlows.standard(speed, rate_max);
     Collection<Tensor> collection = carFlows.getFlows(8);
     Tensor flow = collection.iterator().next();
-    Tensor x = Tensors.fromString("{1[m], 2[m], 3[]}").map(UnitSystem.SI());
+    Tensor x = Tensors.fromString("{1[m], 2[m], 3[]}").maps(UnitSystem.SI());
     Tensor r = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
     Chop._10.requireClose(r, //
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
@@ -68,7 +68,7 @@ class Se2CarFlowsTest {
     Tensor origin = Tensors.fromString("{0[m], 0[m], 0}");
     Scalar half_turn = Pi.VALUE.divide(u.Get(2));
     Tensor res = Se2CoveringGroup.INSTANCE.spin(origin, u.multiply(half_turn));
-    res = res.map(Chop._12);
+    res = res.maps(Chop._12);
     Scalar radius = res.Get(1).divide(RealScalar.of(2));
     Chop._12.requireClose(radius.reciprocal(), rate);
   }

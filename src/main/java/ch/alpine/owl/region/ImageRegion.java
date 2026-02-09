@@ -35,7 +35,7 @@ public class ImageRegion implements Region<Tensor>, RegionBounds, Serializable {
     int dim0 = dimensions.get(0);
     int dim1 = dimensions.get(1);
     this.range = range;
-    scale = Times.of(Tensors.vector(dim1, dim0), range.map(Scalar::reciprocal));
+    scale = Times.of(Tensors.vector(dim1, dim0), range.maps(Scalar::reciprocal));
     flipYXTensorInterp = new FlipYXTensorInterp<>(image, range, Scalars::nonZero, outside);
   }
 
@@ -57,7 +57,7 @@ public class ImageRegion implements Region<Tensor>, RegionBounds, Serializable {
   }
 
   public Tensor origin() {
-    return range.map(Scalar::zero);
+    return range.maps(Scalar::zero);
   }
 
   @Override

@@ -55,7 +55,7 @@ public class BallRegion extends ImplicitRegionWithDistance implements RegionBoun
   public CoordinateBoundingBox coordinateBounds() {
     Scalar n_radius = radius.negate();
     return CoordinateBounds.of( //
-        center.map(n_radius::add), //
-        center.map(radius::add));
+        center.maps(n_radius::add), //
+        center.maps(radius::add));
   }
 }

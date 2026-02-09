@@ -52,7 +52,7 @@ import ch.alpine.tensor.Tensors;
             Tensors.vector(1, 6), //
             Tensors.vector(6, 6), //
             Tensors.vector(6, 1), //
-            Tensors.vector(0, 1)).map(RealScalar.ONE.negate()::add));
+            Tensors.vector(0, 1)).maps(RealScalar.ONE.negate()::add));
   }
 
   static void main() {

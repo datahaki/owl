@@ -36,7 +36,7 @@ class Tse2CarFlowsTest {
     for (Tensor flow : flows) {
       Tensor dx = Tse2StateSpaceModel.INSTANCE.f(x, flow);
       Tensor xp = x.add(dx.multiply(Quantity.of(2, "s")));
-      assertEquals(xp.extract(0, 2).map(Round._8), Tensors.fromString("{6.24181384[m], -1.04882591[m]}"));
+      assertEquals(xp.extract(0, 2).maps(Round._8), Tensors.fromString("{6.24181384[m], -1.04882591[m]}"));
     }
     {
       Scalar maxAcc = Tse2Controls.maxAcc(flows);

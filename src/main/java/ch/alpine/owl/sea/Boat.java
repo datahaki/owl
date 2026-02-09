@@ -110,12 +110,12 @@ public record Boat( //
 
   public String textValues(ScalarUnaryOperator suo) {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("hullVel\t" + hullVelocity().map(suo) + "\t" + okHullVel() + "\n");
-    stringBuilder.append("sailArD\t" + sailAreaDisplacementRatio().map(suo) + "\t" + okSailAreaDis() + "\n");
-    stringBuilder.append("balastD\t" + ballastDisplacementRatio().map(suo) + "\t" + okBallastDisp() + "\n");
-    stringBuilder.append("displLn\t" + displacementLengthRatio().map(suo) + "\t" + okDispLen() + "\n");
-    stringBuilder.append("comfort\t" + comfortRatio().map(suo) + "\t" + okComfort() + "\n");
-    stringBuilder.append("capsize\t" + capsize().map(suo) + "\t" + okCapsize() + "\n");
+    stringBuilder.append("hullVel\t" + hullVelocity().maps(suo) + "\t" + okHullVel() + "\n");
+    stringBuilder.append("sailArD\t" + sailAreaDisplacementRatio().maps(suo) + "\t" + okSailAreaDis() + "\n");
+    stringBuilder.append("balastD\t" + ballastDisplacementRatio().maps(suo) + "\t" + okBallastDisp() + "\n");
+    stringBuilder.append("displLn\t" + displacementLengthRatio().maps(suo) + "\t" + okDispLen() + "\n");
+    stringBuilder.append("comfort\t" + comfortRatio().maps(suo) + "\t" + okComfort() + "\n");
+    stringBuilder.append("capsize\t" + capsize().maps(suo) + "\t" + okCapsize() + "\n");
     return stringBuilder.toString();
   }
 }

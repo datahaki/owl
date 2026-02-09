@@ -35,7 +35,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
 
   public static ScalarTensorFunction wrap1DTensor(NativeContinuousNoise nativeContinuousNoise, Tensor offset, double period, double amplitude) {
     return scalar -> //
-    offset.map(value -> RealScalar.of(amplitude * nativeContinuousNoise.at(scalar.number().doubleValue() * period, value.number().doubleValue())));
+    offset.maps(value -> RealScalar.of(amplitude * nativeContinuousNoise.at(scalar.number().doubleValue() * period, value.number().doubleValue())));
   }
 
   @SuppressWarnings("unused")

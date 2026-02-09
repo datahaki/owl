@@ -52,6 +52,6 @@ public class R2ImageRegionWrap implements RegionBounds {
 
   @Override
   public CoordinateBoundingBox coordinateBounds() {
-    return CoordinateBounds.of(range.map(Scalar::zero), range);
+    return CoordinateBounds.of(range.maps(Scalar::zero), range);
   }
 }

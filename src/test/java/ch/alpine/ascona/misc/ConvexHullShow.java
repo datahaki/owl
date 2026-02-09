@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.Clips;
   ;
   private static Tensor image(int seed) {
     RandomGenerator randomGenerator = new Random(seed);
-    Tensor points = RandomVariate.of(NormalDistribution.of(0.5, .28), randomGenerator, 30, 2).map(Clips.unit());
+    Tensor points = RandomVariate.of(NormalDistribution.of(0.5, .28), randomGenerator, 30, 2).maps(Clips.unit());
     Tensor hull = CirclePoints.of(17); // TODO SOPHUS demo is placed incorrectly
     // ConvexHull2D.of(points);
     GeometricLayer geometricLayer = new GeometricLayer(StaticHelper.SE2);
