@@ -106,6 +106,6 @@ class IbericoPlots {
     show3.add(ListPlot.of(Tensors.fromString("{{0,0[m*km^-1]}}"))).setColor(new Color(0, 0, 0, 0));
     show4.add(ListPlot.of(Tensors.fromString("{{0[km],0[m]}}"))).setColor(new Color(0, 0, 0, 0));
     show5.add(ListPlot.of(Tensors.fromString("{{0[km],0[m*km^-1]}}"))).setColor(new Color(0, 0, 0, 0));
-    ShowWindow.of(List.of(show0, show1, show11, show2, show21, show3, show31, show4, show5));
+    ShowWindow.asDialog(List.of(show0, show1, show11, show2, show21, show3, show31, show4, show5));
   }
 }

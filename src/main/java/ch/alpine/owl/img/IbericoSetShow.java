@@ -149,7 +149,7 @@ class IbericoSetShow {
     Show show = new Show();
     show.add(ImagePlot.of(bufferedImage));
     // JFrame j = new JFrame();
-    JDialog jDialog = ShowWindow.of(List.of(show));
+    JDialog jDialog = ShowWindow.asDialog(List.of(show));
     jDialog.setBounds(0, 0, 1400, 1000);
   }
 

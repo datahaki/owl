@@ -62,7 +62,7 @@ class CycleStats {
 
   static void main() {
     CycleStats cycleStats = new CycleStats();
-    ShowWindow.of(cycleStats.listPlot(1), cycleStats.listPlot(2), cycleStats.listPlot(3), //
+    ShowWindow.asDialog(cycleStats.listPlot(1), cycleStats.listPlot(2), cycleStats.listPlot(3), //
         cycleStats.asd2(1, Quantity.of(8, "km")), //
         cycleStats.asd2(2, Quantity.of(250, "m")), //
         cycleStats.asd2(3, Quantity.of(10, "m*km^-1")) //
