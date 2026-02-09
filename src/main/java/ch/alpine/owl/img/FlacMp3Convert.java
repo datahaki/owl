@@ -5,8 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import ch.alpine.tensor.ext.FileExtension;
 import ch.alpine.tensor.ext.HomeDirectory;
+import ch.alpine.tensor.ext.PathName;
 
 enum FlacMp3Convert {
   ;
@@ -15,7 +15,7 @@ enum FlacMp3Convert {
     Path dst = HomeDirectory.Music.resolve("mp3", src.getFileName().toString());
     Files.createDirectories(dst);
     for (Path file : Files.list(src).toList())
-      if (FileExtension.of(file).equalsIgnoreCase("FLAC")) {
+      if (PathName.of(file).hasExtension("FLAC")) {
         // String fi = file.getAbsolutePath();
         Path fo = dst.resolve(file.getFileName() + ".mp3");
         System.out.println(fo);

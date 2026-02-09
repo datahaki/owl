@@ -7,7 +7,7 @@ import java.util.TreeMap;
 import ch.alpine.bridge.fig.ListLinePlot;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.Show;
-import ch.alpine.bridge.fig.ShowDialog;
+import ch.alpine.bridge.fig.ShowWindow;
 import ch.alpine.bridge.fig.Showable;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -62,7 +62,7 @@ class CycleStats {
 
   static void main() {
     CycleStats cycleStats = new CycleStats();
-    ShowDialog.of(cycleStats.listPlot(1), cycleStats.listPlot(2), cycleStats.listPlot(3), //
+    ShowWindow.of(cycleStats.listPlot(1), cycleStats.listPlot(2), cycleStats.listPlot(3), //
         cycleStats.asd2(1, Quantity.of(8, "km")), //
         cycleStats.asd2(2, Quantity.of(250, "m")), //
         cycleStats.asd2(3, Quantity.of(10, "m*km^-1")) //

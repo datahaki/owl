@@ -19,7 +19,7 @@ import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.cal.GeoPosition;
 import ch.alpine.bridge.fig.ImagePlot;
 import ch.alpine.bridge.fig.Show;
-import ch.alpine.bridge.fig.ShowDialog;
+import ch.alpine.bridge.fig.ShowWindow;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
@@ -149,7 +149,7 @@ class IbericoSetShow {
     Show show = new Show();
     show.add(ImagePlot.of(bufferedImage));
     // JFrame j = new JFrame();
-    JDialog jDialog = ShowDialog.of(List.of(show));
+    JDialog jDialog = ShowWindow.of(List.of(show));
     jDialog.setBounds(0, 0, 1400, 1000);
   }
 
