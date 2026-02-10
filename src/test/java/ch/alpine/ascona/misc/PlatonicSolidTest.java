@@ -16,7 +16,7 @@ import ch.alpine.qhull3d.PlatonicSolid;
 import ch.alpine.sophis.srf.SimplexD;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 
 class PlatonicSolidTest {
   @ParameterizedTest
@@ -36,7 +36,7 @@ class PlatonicSolidTest {
     int[] last = faces.getLast();
     Tensor v = Tensors.vectorInt(last);
     for (int i = 0; i < v.length(); ++i)
-      assertTrue(set.remove(RotateLeft.of(v, i).extract(0, 2)));
+      assertTrue(set.remove(Rotate.PULL.of(v, i).extract(0, 2)));
     assertTrue(set.isEmpty());
   }
 }

@@ -3,7 +3,7 @@ package ch.alpine.owl.lane;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.ext.ArgMin;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
@@ -35,7 +35,7 @@ public class LaneSegment implements LaneInterface {
     int toIdx = ArgMin.of(Tensor.of(laneInterface.controlPoints().stream() //
         .map(laneInterface.midLane().get(this.toIdx)::subtract).map(Extract2D.FUNCTION).map(Vector2Norm::of)));
     int idx = Math.floorMod(toIdx - fromIdx, laneInterface.controlPoints().length());
-    return RotateLeft.of(laneInterface.controlPoints(), fromIdx).extract(0, idx + 1);
+    return Rotate.PULL.of(laneInterface.controlPoints(), fromIdx).extract(0, idx + 1);
   }
 
   @Override // from LaneInterface
@@ -60,6 +60,6 @@ public class LaneSegment implements LaneInterface {
 
   private Tensor segment(Tensor tensor) {
     int idx = Math.floorMod(toIdx - fromIdx, tensor.length());
-    return RotateLeft.of(tensor, fromIdx).extract(0, idx + 1);
+    return Rotate.PULL.of(tensor, fromIdx).extract(0, idx + 1);
   }
 }

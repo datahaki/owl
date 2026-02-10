@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.lie.TensorProduct;
@@ -30,7 +30,7 @@ class SphereCurveIntersectionTest {
     Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
-      Optional<Tensor> optional = curveIntersection.string(RotateLeft.of(curve, index));
+      Optional<Tensor> optional = curveIntersection.string(Rotate.PULL.of(curve, index));
       assertEquals(optional.isPresent(), index != 1);
       if (index != 1) {
         Tensor tensor = optional.get();
@@ -45,7 +45,7 @@ class SphereCurveIntersectionTest {
     Tensor curve = Box2D.SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     for (int index = 0; index < curve.length(); ++index) {
-      Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));
+      Optional<Tensor> optional = curveIntersection.cyclic(Rotate.PULL.of(curve, index));
       assertTrue(optional.isPresent());
       Tensor tensor = optional.get();
       ExactTensorQ.require(tensor);
@@ -58,7 +58,7 @@ class SphereCurveIntersectionTest {
     Tensor curve = Tensors.fromString("{{0[m], 0[m]}, {1[m], 0[m]}, {1[m], 1[m]}, {0[m], 1[m]}}").unmodifiable();
     CurveIntersection curveIntersection = new SphereCurveIntersection(Quantity.of(RationalScalar.HALF, "m"));
     for (int index = 0; index < curve.length(); ++index) {
-      Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));
+      Optional<Tensor> optional = curveIntersection.cyclic(Rotate.PULL.of(curve, index));
       assertTrue(optional.isPresent());
       Tensor tensor = optional.get();
       ExactTensorQ.require(tensor);
@@ -87,7 +87,7 @@ class SphereCurveIntersectionTest {
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     Tensor curve = Tensors.fromString("{{-1}, {0}, {1}, {2}, {3}}").unmodifiable();
     for (int index = 0; index < curve.length(); ++index) {
-      Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));
+      Optional<Tensor> optional = curveIntersection.cyclic(Rotate.PULL.of(curve, index));
       assertTrue(optional.isPresent());
       Tensor tensor = optional.get();
       ExactTensorQ.require(tensor);
@@ -100,7 +100,7 @@ class SphereCurveIntersectionTest {
     CurveIntersection curveIntersection = new SphereCurveIntersection(RationalScalar.HALF);
     Tensor curve = Tensors.fromString("{{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {0, 1, 0}}").unmodifiable();
     for (int index = 0; index < curve.length(); ++index) {
-      Optional<Tensor> optional = curveIntersection.cyclic(RotateLeft.of(curve, index));
+      Optional<Tensor> optional = curveIntersection.cyclic(Rotate.PULL.of(curve, index));
       assertTrue(optional.isPresent());
       Tensor tensor = optional.get();
       ExactTensorQ.require(tensor);

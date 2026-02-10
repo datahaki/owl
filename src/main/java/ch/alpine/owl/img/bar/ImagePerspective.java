@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.img.bar;
 
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.tensor.RealScalar;
@@ -63,9 +62,9 @@ public enum ImagePerspective {
     int h = box.clip(0).max().number().intValue() - y;
     BufferedImage subimage = uncropped.getSubimage(x, y, w + 1, h + 1);
     Scalar factor = format.factor;
-    Tensor resized = ImageFormat.from(ImageResize.of(subimage, //
+    Tensor resized = ImageFormat.from(ImageResize.DEGREE_3.of(subimage, //
         Ceiling.intValueExact(RealScalar.of(w).multiply(factor)) + 1, //
-        Ceiling.intValueExact(RealScalar.of(h).multiply(factor)) + 1, AffineTransformOp.TYPE_BICUBIC));
+        Ceiling.intValueExact(RealScalar.of(h).multiply(factor)) + 1));
     Tensor sft = Tensors.vectorInt(y, x).negate();
     Tensor pnu = Tensor.of(points.stream().map(sft::add)).multiply(factor);
     return ImageFormat.of(rectify(resized, pnu, format.w(), format.h()));

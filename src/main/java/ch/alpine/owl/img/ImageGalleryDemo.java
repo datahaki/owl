@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.img;
 
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -120,10 +119,9 @@ class ImageGalleryDemo {
           Scalar factor = Sqrt.FUNCTION.apply(pixels);
           double doubleValue = factor.number().doubleValue();
           BufferedImage result = ASIS ? bufferedImage
-              : ImageResize.of(bufferedImage, //
+              : ImageResize.DEGREE_3.of(bufferedImage, //
                   (int) Math.round(bufferedImage.getWidth() * doubleValue), //
-                  (int) Math.round(bufferedImage.getHeight() * doubleValue), //
-                  AffineTransformOp.TYPE_BICUBIC);
+                  (int) Math.round(bufferedImage.getHeight() * doubleValue));
           if (rotate)
             result = ImageRotate.cw(result);
           Jpeg.put(result, ifile.toPath(), JPG_QUALITY);

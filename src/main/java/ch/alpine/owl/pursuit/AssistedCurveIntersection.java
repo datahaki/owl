@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.itp.BinaryAverage;
 
 public abstract class AssistedCurveIntersection extends SimpleCurveIntersection //
@@ -30,7 +30,7 @@ public abstract class AssistedCurveIntersection extends SimpleCurveIntersection 
   }
 
   private Optional<CurvePoint> universal(Tensor tensor, int prevIdx, int first) {
-    Optional<CurvePoint> optional = universal(RotateLeft.of(tensor, prevIdx), first);
+    Optional<CurvePoint> optional = universal(Rotate.PULL.of(tensor, prevIdx), first);
     return optional.map(curvePoint -> curvePoint.withIndex(Math.floorMod(curvePoint.getIndex() + prevIdx, tensor.length())));
   }
 }
