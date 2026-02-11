@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.sophus.math.noise.ContinuousNoise;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -18,9 +17,6 @@ import ch.alpine.tensor.Tensor;
  * 
  * membership in the region for coordinates (x, y) that evaluate the noise function above a given threshold. */
 public class R2NoiseRegion implements Region<Tensor>, Serializable {
-  private static final ContinuousNoise CONTINUOUS_NOISE = //
-      ContinuousNoiseUtils.wrap2D(SimplexContinuousNoise.FUNCTION);
-  // ---
   private final Scalar threshold;
 
   /** @param threshold in the interval [-1, 1] */
@@ -30,6 +26,6 @@ public class R2NoiseRegion implements Region<Tensor>, Serializable {
 
   @Override // from Region
   public boolean test(Tensor tensor) {
-    return Scalars.lessThan(threshold, CONTINUOUS_NOISE.apply(Extract2D.FUNCTION.apply(tensor)));
+    return Scalars.lessThan(threshold, SimplexContinuousNoise.FUNCTION.apply(Extract2D.FUNCTION.apply(tensor)));
   }
 }

@@ -8,7 +8,6 @@ import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.noise.ContinuousNoise;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -19,8 +18,6 @@ import ch.alpine.tensor.sca.Ramp;
  * 
  * the cost increment may be zero therefore, min cost to goal also is zero */
 public class R2NoiseCostFunction implements CostFunction, Serializable {
-  private static final ContinuousNoise CONTINUOUS_NOISE = //
-      ContinuousNoiseUtils.wrap2D(SimplexContinuousNoise.FUNCTION);
   // ---
   private final Scalar treshold;
 
@@ -33,7 +30,7 @@ public class R2NoiseCostFunction implements CostFunction, Serializable {
     Tensor dts = StateTimeTrajectories.deltaTimes(glcNode, trajectory);
     Tensor cost = Tensor.of(trajectory.stream() //
         .map(StateTime::state) //
-        .map(CONTINUOUS_NOISE) //
+        .map(SimplexContinuousNoise.FUNCTION) // used to be 2D
         .map(scalar -> scalar.subtract(treshold)) //
         .map(Ramp.FUNCTION));
     return (Scalar) cost.dot(dts);
