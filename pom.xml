@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>ch.alpine</groupId>
-			<artifactId>ascona</artifactId>
+			<artifactId>ascony</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

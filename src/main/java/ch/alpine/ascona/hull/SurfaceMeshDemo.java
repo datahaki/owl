@@ -7,7 +7,6 @@ import java.awt.geom.Path2D;
 import java.util.HashSet;
 import java.util.Set;
 
-import ch.alpine.ascona.ref.d2.SurfaceMeshRefinements;
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
 import ch.alpine.ascony.ref.AsconaParam;
@@ -24,6 +23,7 @@ import ch.alpine.qhull3d.PlatonicSolid;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.crv.d2.PolygonArea;
 import ch.alpine.sophis.ref.d2.SurfaceMeshRefinement;
+import ch.alpine.sophis.ref.d2.SurfaceMeshRefinements;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;

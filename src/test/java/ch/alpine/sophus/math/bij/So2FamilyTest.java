@@ -46,7 +46,7 @@ class So2FamilyTest {
   void testForwardSe2() {
     R2RigidFamily rigidFamily = new So2Family(s -> s);
     Tensor matrix = rigidFamily.forward_se2(RealScalar.ONE);
-    assertTrue(new OrthogonalMatrixQ(Chop._14).isMember(matrix));
+    assertTrue(new OrthogonalMatrixQ(Chop._14).test(matrix));
     assertEquals(matrix, Se2Matrix.of(Tensors.vector(0, 0, 1)));
   }
 }
