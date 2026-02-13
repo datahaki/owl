@@ -21,6 +21,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.ext.Jpeg;
 import ch.alpine.tensor.ext.MergeIllegal;
 import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.ext.UserName;
 import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.img.ImageRotate;
 import ch.alpine.tensor.img.Thumbnail;
@@ -154,7 +155,7 @@ class ImageGalleryDemo {
     // File src = HomeDirectory.Pictures("boat/trip02");
     // File dst = HomeDirectory.file("public_html/photos/2025_scandinavia");
     Path src = HomeDirectory.Pictures.resolve("2025_barberini", "dst");
-    Path dst = HomeDirectory.path("public_html/photos/2025_barberini");
+    Path dst = UserName.home().resolve("public_html/photos/2025_barberini");
     of(src.toFile(), dst.toFile());
   }
 }

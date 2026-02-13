@@ -17,7 +17,7 @@ public enum FranceSetShow {
         ImageIO.read(HomeDirectory.Pictures.resolve("france.png").toFile()));
     ibericoSetShow.add(ibericoImports.winter.get(1).tensor);
     ibericoSetShow.addP(ibericoImports.winter.get(1).tensor);
-    ImageIO.write(ibericoSetShow.bufferedImage, "png", HomeDirectory.path("france_track.png").toFile());
+    ImageIO.write(ibericoSetShow.bufferedImage, "png", HomeDirectory.Ephemeral.resolve("france_track.png").toFile());
     ibericoSetShow.show();
   }
 }

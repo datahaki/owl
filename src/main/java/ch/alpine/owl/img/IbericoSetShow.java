@@ -163,7 +163,7 @@ class IbericoSetShow {
     ibericoSetShow.add(ibericoImports.winter.get(2).tensor);
     ibericoSetShow.addP(ibericoImports.winter.get(0).tensor);
     ibericoSetShow.addP(ibericoImports.winter.get(2).tensor);
-    ImageIO.write(ibericoSetShow.bufferedImage, "png", HomeDirectory.path("iberico_track.png").toFile());
+    ImageIO.write(ibericoSetShow.bufferedImage, "png", HomeDirectory.Ephemeral.resolve("iberico_track.png").toFile());
     ibericoSetShow.show();
   }
 }

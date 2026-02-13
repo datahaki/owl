@@ -95,6 +95,6 @@ public class EspDemo extends AbstractDemo {
     EspDemo espDemo = (EspDemo) launch();
     List<StateTime> list = espDemo.compute();
     if (Objects.nonNull(list))
-      Export.object(HomeDirectory.path("esp.object"), list);
+      Export.object(HomeDirectory.Ephemeral.resolve("esp.object"), list);
   }
 }
