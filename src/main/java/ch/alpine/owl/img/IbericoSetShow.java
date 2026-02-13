@@ -144,7 +144,7 @@ class IbericoSetShow {
     g.dispose();
   }
 
-  public void show() throws IOException {
+  public void show() {
     graphics.dispose();
     Show show = new Show();
     show.add(ImagePlot.of(bufferedImage));

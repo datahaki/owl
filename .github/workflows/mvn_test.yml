@@ -1,0 +1,85 @@
+name: mvn test with JDK 25
+on:
+  push:
+    paths:
+      - '**'
+jobs:
+  os_matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout main repo
+        uses: actions/checkout@v4
+
+      - name: set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: checkout tensor
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/tensor
+          path: tensor
+      - name: build and install tensor
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./tensor
+
+      - name: checkout subare
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/subare
+          path: subare
+      - name: build and install subare
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./subare
+
+      - name: checkout bridge
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/bridge
+          path: bridge
+      - name: build and install bridge
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./bridge
+
+      - name: checkout sophus
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/sophus
+          path: sophus
+      - name: build and install sophus
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./sophus
+
+      - name: checkout sophis
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/sophis
+          path: sophis
+      - name: build and install sophis
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./sophis
+
+      - name: checkout ascony
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/ascony
+          path: ascony
+      - name: build and install ascony
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./ascony
+
+      - name: mvn test
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            xvfb-run --auto-servernum mvn -B test
+          else
+            mvn -B test
+          fi
