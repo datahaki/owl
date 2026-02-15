@@ -55,7 +55,7 @@ class IbericoSetShow {
   ColorDataIndexed colorDataIndexed = ColorDataLists._097.strict().deriveWithAlpha(128 + 64);
   final BufferedImage bufferedImage;
 
-  public IbericoSetShow(Tensor tab, BufferedImage bufferedImage) throws IOException {
+  public IbericoSetShow(Tensor tab, BufferedImage bufferedImage) {
     this.bufferedImage = bufferedImage;
     Tensor p_s2 = Tensor.of(tab.stream().map(row -> row.extract(2, 4)).map(GeoPosition::of));
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(SnManifold.INSTANCE);

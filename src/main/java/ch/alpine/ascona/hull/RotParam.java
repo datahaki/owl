@@ -4,7 +4,7 @@ package ch.alpine.ascona.hull;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -24,6 +24,6 @@ public class RotParam {
   public Scalar t2 = RealScalar.of(0);
 
   public Tensor rotation() {
-    return Rodrigues.vectorExp(Tensors.of(t0, t1, t2));
+    return So3Exponential.vectorExp(Tensors.of(t0, t1, t2));
   }
 }

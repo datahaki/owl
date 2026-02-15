@@ -90,7 +90,7 @@ import ch.alpine.tensor.sca.Clips;
             RealScalar.of(WIDTH /* graphics.getWidth() */).divide(R2_IMAGE_REGION_WRAP.range().Get(0)), //
             RealScalar.of(WIDTH /* graphics.getHeight() */).divide(R2_IMAGE_REGION_WRAP.range().Get(1)), //
             RealScalar.ONE);
-        Tensor matrix = DiagonalMatrix.with(diagonal);
+        Tensor matrix = DiagonalMatrix.sparse(diagonal);
         GeometricLayer geometricLayer = new GeometricLayer(matrix);
         // SVGUtils.writeToSVG(new File(DIRECTORY, String.format("scenario_%d.svg", task)),
         // scenario(geometricLayer, lane).getSVGElement() /* graphics.getSVGElement() */);

@@ -4,7 +4,8 @@ package ch.alpine.owl.img;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -33,53 +34,54 @@ class ImageGalleryDemo {
   private static final int THUMB_SIZE = 100;
   private static final int TARGET_PIXELS = 768 * 1024;
 
-  private static void of(File src, File dst) {
-    if (!src.isDirectory())
+  private static void of(Path src, Path dst) throws IOException {
+    if (!Files.isDirectory(src))
       throw new IllegalArgumentException(src.toString());
-    dst.mkdir();
-    if (!dst.isDirectory())
+    Files.createDirectories(dst);
+    if (!Files.isDirectory(dst))
       throw new IllegalArgumentException(dst.toString());
     new ImageGalleryDemo(src, dst);
   }
 
-  private final File dst_thumb;
-  private final File dst_image;
-  private final Map<File, String> map;
+  private final Path dst_thumb;
+  private final Path dst_image;
+  private final Map<Path, String> map;
 
-  public ImageGalleryDemo(File src, File dst) {
-    dst_thumb = new File(dst, "thumb");
-    dst_image = new File(dst, "image");
-    dst_thumb.mkdir();
-    dst_image.mkdir();
-    map = Collections.unmodifiableMap(Arrays.stream(src.listFiles()) //
+  public ImageGalleryDemo(Path src, Path dst) throws IOException {
+    dst_thumb = dst.resolve("thumb");
+    dst_image = dst.resolve("image");
+    Files.createDirectories(dst_thumb);
+    Files.createDirectories(dst_image);
+    map = Collections.unmodifiableMap(Arrays.stream(src.toFile().listFiles()) //
         .filter(File::isFile) //
         .sorted() //
+        .map(File::toPath) //
         .collect(Collectors.toMap(f -> f, ImageGalleryDemo::computeHash, MergeIllegal.operator(), LinkedHashMap::new)));
     // ---
-    Arrays.stream(src.listFiles()) //
+    Arrays.stream(src.toFile().listFiles()) //
         .filter(File::isFile) //
-        .filter(this::isMissing) //
         .map(File::toPath) //
+        .filter(this::isMissing) //
         .forEach(this::handle);
     // ---
     createIndex();
   }
 
-  private static String computeHash(File file) {
+  private static String computeHash(Path file) {
     try {
-      return FileHash.string(file.toPath(), MessageDigest.getInstance("MD5")).substring(0, 8);
+      return FileHash.string(file, MessageDigest.getInstance("MD5")).substring(0, 8);
     } catch (Exception exception) {
       throw new RuntimeException();
     }
   }
 
-  private boolean isMissing(File file) {
+  private boolean isMissing(Path file) {
     System.out.println(file);
     try {
       String key = map.get(file) + ".jpg";
       boolean exist = true;
-      exist &= new File(dst_thumb, key).exists();
-      exist &= new File(dst_image, key).exists();
+      exist &= Files.exists(dst_thumb.resolve(key));
+      exist &= Files.exists(dst_image.resolve(key));
       return !exist;
     } catch (Exception exception) {
       exception.printStackTrace();
@@ -97,20 +99,20 @@ class ImageGalleryDemo {
       System.out.println("rotation = " + rotate);
       final BufferedImage bufferedImage = ImageIO.read(file.toFile());
       {
-        File ifile = new File(dst_thumb, key);
+        Path ifile = dst_thumb.resolve(key);
         System.out.println(ifile);
-        if (ifile.exists()) {
+        if (Files.exists(ifile)) {
           System.out.println("skip thumb");
         } else {
           BufferedImage result = Thumbnail.of(bufferedImage, THUMB_SIZE, rotate);
           if (rotate)
             result = ImageRotate.cw(result);
-          Jpeg.put(result, ifile.toPath(), JPG_QUALITY);
+          Jpeg.put(result, ifile, JPG_QUALITY);
         }
       }
       {
-        File ifile = new File(dst_image, key);
-        if (ifile.exists()) {
+        Path ifile = dst_image.resolve(key);
+        if (Files.exists(ifile)) {
           System.out.println("skip image");
         } else {
           Scalar pixels = RationalScalar.of( //
@@ -124,7 +126,7 @@ class ImageGalleryDemo {
                   (int) Math.round(bufferedImage.getHeight() * doubleValue));
           if (rotate)
             result = ImageRotate.cw(result);
-          Jpeg.put(result, ifile.toPath(), JPG_QUALITY);
+          Jpeg.put(result, ifile, JPG_QUALITY);
         }
       }
     } catch (Exception exception) {
@@ -133,8 +135,8 @@ class ImageGalleryDemo {
   }
 
   private void createIndex() {
-    File dst = dst_thumb.getParentFile();
-    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(dst, "index.html")))) {
+    Path dst = dst_thumb.getParent();
+    try (BufferedWriter bufferedWriter = Files.newBufferedWriter(dst.resolve("index.html"))) {
       for (String string : ResourceData.lines("/html/gallery/head.html"))
         bufferedWriter.write(string + "\n");
       // ---
@@ -150,11 +152,11 @@ class ImageGalleryDemo {
     }
   }
 
-  static void main() {
+  static void main() throws IOException {
     // File src = HomeDirectory.Pictures("boat/trip02");
     // File dst = HomeDirectory.file("public_html/photos/2025_scandinavia");
     Path src = HomeDirectory.Pictures.resolve("2025_barberini", "dst");
     Path dst = HomeDirectory.public_html.resolve("photos", "2025_barberini");
-    of(src.toFile(), dst.toFile());
+    of(src, dst);
   }
 }
