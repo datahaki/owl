@@ -23,7 +23,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.ex.CogPoints;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;

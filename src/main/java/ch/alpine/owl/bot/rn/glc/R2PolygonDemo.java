@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 

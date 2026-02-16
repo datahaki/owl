@@ -12,7 +12,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

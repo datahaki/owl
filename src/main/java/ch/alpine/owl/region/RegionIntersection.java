@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 
 /** RegionIntersection is a region that defines membership
  * to be member in all of a collection of {@link Region}s

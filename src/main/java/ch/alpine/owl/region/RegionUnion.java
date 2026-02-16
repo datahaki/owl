@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 
 /** RegionUnion is a region that defines membership
  * to be member in either of a collection of {@link Region}s

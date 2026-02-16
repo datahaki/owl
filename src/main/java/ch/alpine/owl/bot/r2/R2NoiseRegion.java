@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.r2;
 import java.io.Serializable;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

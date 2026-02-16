@@ -10,7 +10,7 @@ import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

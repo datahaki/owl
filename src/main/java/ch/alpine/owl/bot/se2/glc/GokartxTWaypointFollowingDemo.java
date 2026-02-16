@@ -20,7 +20,7 @@ import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.tensor.RealScalar;

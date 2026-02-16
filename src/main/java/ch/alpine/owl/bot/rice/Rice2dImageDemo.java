@@ -14,7 +14,7 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

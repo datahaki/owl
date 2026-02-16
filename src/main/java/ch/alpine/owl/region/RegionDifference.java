@@ -4,7 +4,7 @@ package ch.alpine.owl.region;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 
 public class RegionDifference<T> implements Region<T>, Serializable {
   /** @param belongs

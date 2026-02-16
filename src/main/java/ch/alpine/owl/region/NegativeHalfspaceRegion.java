@@ -3,7 +3,7 @@ package ch.alpine.owl.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
 

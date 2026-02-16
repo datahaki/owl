@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.rn;
 import java.io.Serializable;
 
 import ch.alpine.owl.region.Regions;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

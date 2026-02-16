@@ -15,7 +15,7 @@ import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.R2RigidFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;

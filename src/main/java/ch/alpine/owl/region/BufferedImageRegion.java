@@ -10,7 +10,7 @@ import java.io.Serializable;
 import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;

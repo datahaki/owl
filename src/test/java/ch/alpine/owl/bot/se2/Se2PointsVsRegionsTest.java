@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.Regions;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;

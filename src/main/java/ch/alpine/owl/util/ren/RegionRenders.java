@@ -18,7 +18,7 @@ import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

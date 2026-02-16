@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.Tensor;
 

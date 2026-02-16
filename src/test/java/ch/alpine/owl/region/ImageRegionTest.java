@@ -12,7 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.util.img.ImageArea;
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
