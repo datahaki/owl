@@ -1,21 +1,21 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import java.io.Serializable;
 import java.util.Objects;
+import java.util.function.Predicate;
 
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** used in se2 animation demo to check if footprint of vehicle intersects with obstacle region */
-/* package */ class Se2PointsVsRegion implements Region<Tensor>, Serializable {
+/* package */ class Se2PointsVsRegion implements MemberQ {
   private final Tensor points;
-  private final Region<Tensor> region;
+  private final Predicate<Tensor> region;
 
   /** @param points n x 2
    * @param region */
-  public Se2PointsVsRegion(Tensor points, Region<Tensor> region) {
+  public Se2PointsVsRegion(Tensor points, Predicate<Tensor> region) {
     this.points = points;
     this.region = Objects.requireNonNull(region);
   }

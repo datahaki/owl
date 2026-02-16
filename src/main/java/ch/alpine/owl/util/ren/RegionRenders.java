@@ -4,6 +4,7 @@ package ch.alpine.owl.util.ren;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.function.Predicate;
 
 import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.ascony.ren.RenderInterface;
@@ -18,7 +19,6 @@ import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -53,7 +53,7 @@ public enum RegionRenders {
   /** @param region
    * @return new instance of {@link RenderInterface} that visualizes given region,
    * or null if drawing capability is not available for the region */
-  public static RenderInterface create(Region<Tensor> region) {
+  public static RenderInterface create(Predicate<Tensor> region) {
     if (region instanceof ImageRegion imageRegion)
       return RegionRenders.createImageRegionRender(imageRegion);
     if (region instanceof BufferedImageRegion bufferedImageRegion)
@@ -75,7 +75,7 @@ public enum RegionRenders {
     throw new RuntimeException();
   }
 
-  public static void draw(GeometricLayer geometricLayer, Graphics2D graphics, Region<Tensor> region) {
+  public static void draw(GeometricLayer geometricLayer, Graphics2D graphics, Predicate<Tensor> region) {
     if (region instanceof ConeRegion)
       ConeRegionRender.draw(geometricLayer, graphics, (ConeRegion) region);
     if (region instanceof BallRegion)

@@ -5,18 +5,17 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
-import java.io.Serializable;
 
 import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.mat.re.Inverse;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** region in R2 */
-public class BufferedImageRegion implements Region<Tensor>, RegionBounds, RenderInterface, Serializable {
+public class BufferedImageRegion implements MemberQ, RegionBounds, RenderInterface {
   private transient final BufferedImage bufferedImage;
   private final CoordinateBoundingBox coordinateBoundingBox;
   private final ImageRender imageRender;

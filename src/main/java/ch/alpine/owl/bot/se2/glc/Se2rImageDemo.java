@@ -28,19 +28,19 @@ import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 
 /** (x, y, theta) */
 enum Se2rImageDemo {
   ;
   static void main() throws Exception {
-    Region<Tensor> region = //
+    MemberQ region = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(8, 8), false);
     Tensor partitionScale = Tensors.vector(3, 3, 50 / Math.PI);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //

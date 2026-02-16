@@ -15,10 +15,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** demo shows the use of a cost image that is added to the distance cost
  * which gives an incentive to stay clear of obstacles */
@@ -35,7 +34,7 @@ public class R2ImageAnimationDemo implements DemoInterface {
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     r2Entity.extraCosts.add(r2ImageRegionWrap.costFunction());
     owlAnimationFrame.add(r2Entity);
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenders.create(region));

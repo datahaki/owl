@@ -23,7 +23,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.ex.CogPoints;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
@@ -32,6 +32,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2xTLetterDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 20));
@@ -43,7 +44,7 @@ public class Se2xTLetterDemo implements DemoInterface {
     owlAnimationFrame.add(carxTEntity);
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     carxTEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
     // ---
     BijectionFamily oscillation = new SimpleR2TranslationFamily(s -> Tensors.vector( //
@@ -56,7 +57,7 @@ public class Se2xTLetterDemo implements DemoInterface {
     Region<StateTime> cog0 = new R2xTPolygonStateTimeRegion( //
         polygon, rigid3, () -> carxTEntity.getStateTimeNow().time());
     // ---
-    Region<Tensor> se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
+    MemberQ se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap( //
             new TimeInvariantRegion(se2PointsVsRegion), // <- expects se2 states

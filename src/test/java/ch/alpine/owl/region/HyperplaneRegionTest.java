@@ -8,18 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.ExactScalarQ;
+import ch.alpine.tensor.chq.MemberQ;
 
 class HyperplaneRegionTest {
   @Test
   void testSimple() {
-    Region<Tensor> region = new HyperplaneRegion(Tensors.vector(1, 0), RealScalar.of(5));
+    MemberQ region = new HyperplaneRegion(Tensors.vector(1, 0), RealScalar.of(5));
     assertFalse(region.test(Tensors.vector(0, 0)));
     assertFalse(region.test(Tensors.vector(3, 0)));
     assertFalse(region.test(Tensors.vector(5, 0)));
@@ -31,7 +30,7 @@ class HyperplaneRegionTest {
 
   @Test
   void testMore() {
-    Region<Tensor> region = new HyperplaneRegion(Tensors.vector(-1, 0), RealScalar.of(10));
+    MemberQ region = new HyperplaneRegion(Tensors.vector(-1, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
     assertFalse(region.test(Tensors.vector(9, -3)));
@@ -41,7 +40,7 @@ class HyperplaneRegionTest {
 
   @Test
   void testNormalize() {
-    Region<Tensor> region = HyperplaneRegion.normalize(Tensors.vector(-2, 0), RealScalar.of(10));
+    MemberQ region = HyperplaneRegion.normalize(Tensors.vector(-2, 0), RealScalar.of(10));
     assertFalse(region.test(Array.zeros(2)));
     assertFalse(region.test(Tensors.vector(9, 0)));
     assertFalse(region.test(Tensors.vector(9, -3)));

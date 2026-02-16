@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

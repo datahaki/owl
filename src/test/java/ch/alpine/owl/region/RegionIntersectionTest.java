@@ -8,14 +8,13 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.Region;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 class RegionIntersectionTest {
   @Test
   void testSimple() {
-    Region<Tensor> intersection = RegionIntersection.wrap( //
+    MemberQ intersection = new CapMemberQ( //
         Arrays.asList( //
             new EllipsoidRegion(Tensors.vector(-2), Tensors.vector(3)), //
             new EllipsoidRegion(Tensors.vector(+2), Tensors.vector(3))));

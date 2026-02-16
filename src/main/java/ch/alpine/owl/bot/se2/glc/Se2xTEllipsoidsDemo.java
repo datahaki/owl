@@ -16,7 +16,7 @@ import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;

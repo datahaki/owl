@@ -28,13 +28,14 @@ import ch.alpine.owl.util.bot.TrajectoryR2TranslationFamily;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -68,7 +69,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     // ---
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
-    Region<Tensor> region = new BufferedImageRegion( //
+    MemberQ region = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(new TimeInvariantRegion(region), region1, region2, region3, region4)));

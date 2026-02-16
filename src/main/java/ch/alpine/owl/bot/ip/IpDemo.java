@@ -21,14 +21,14 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.FreeBoundedIntervalRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.sca.Clips;
 
 /** inverted pendulum */
@@ -47,10 +47,10 @@ import ch.alpine.tensor.sca.Clips;
     IpGoalManager ipGoalManager = new IpGoalManager( //
         Tensors.vector(2, 0, 0, 0), //
         Tensors.vector(0.1, 0.1, 1, 1));
-    Region<Tensor> region = RegionUnion.wrap( //
+    MemberQ region = new UnionMemberQ(List.of( //
         new FreeBoundedIntervalRegion(0, Clips.interval(-1, +3)), // ,
         new FreeBoundedIntervalRegion(2, Clips.interval(-2, +2)) // ,
-    );
+    ));
     PlannerConstraint plannerConstraint = RegionConstraints.timeDependent(region);
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //

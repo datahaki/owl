@@ -12,12 +12,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.util.img.ImageArea;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.Import;
 
 class ImageRegionTest {
@@ -25,7 +25,7 @@ class ImageRegionTest {
   void testSimple() {
     Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
-    Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
+    MemberQ region = new ImageRegion(image, Tensors.vector(179, 128), false);
     for (int x = 0; x < 179; ++x)
       for (int y = 0; y < 128; ++y) {
         assertEquals( //
@@ -38,7 +38,7 @@ class ImageRegionTest {
   void testCorner() {
     Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
-    Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
+    MemberQ region = new ImageRegion(image, Tensors.vector(179, 128), false);
     for (int x = 0; x < 179; ++x)
       for (int y = 0; y < 128; ++y) {
         assertEquals( //
@@ -70,7 +70,7 @@ class ImageRegionTest {
   void testOutsideFalse() {
     Tensor image = Import.of("/io/delta_free.png");
     assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
-    Region<Tensor> region = new ImageRegion(image, Tensors.vector(179, 128), false);
+    MemberQ region = new ImageRegion(image, Tensors.vector(179, 128), false);
     assertFalse(region.test(Tensors.vector(-100, -2000, 3)));
   }
 

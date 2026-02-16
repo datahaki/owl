@@ -16,7 +16,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.R2RigidFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;

@@ -17,15 +17,17 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.region.RegionWithDistance;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.qty.Degree;
 
@@ -67,8 +69,8 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     HelperHangarMap hangarMap = new HelperHangarMap("/dubilab/obstacles/20180423.png", gokartEntity);
     // ---
     Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
-    Region<Tensor> polygonRegion = new PolygonRegion(VIRTUAL);
-    Region<Tensor> union = RegionUnion.wrap(hangarMap.region, polygonRegion);
+    MemberQ polygonRegion = new PolygonRegion(VIRTUAL);
+    MemberQ union = new UnionMemberQ(List.of(hangarMap.region, polygonRegion));
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap( //
             new TimeInvariantRegion(union), // <- expects se2 states

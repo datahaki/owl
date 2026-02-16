@@ -1,13 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
-import java.io.Serializable;
-
 import ch.alpine.owl.region.Regions;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.opt.nd.NdInsideRadius;
@@ -15,17 +13,17 @@ import ch.alpine.tensor.opt.nd.NdMap;
 import ch.alpine.tensor.opt.nd.NdTreeMap;
 import ch.alpine.tensor.sca.Sign;
 
-public class RnPointcloudRegion implements Region<Tensor>, Serializable {
+public class RnPointcloudRegion implements MemberQ {
   /** Example:
    * The points of a point cloud in the 2-dimensional plane are encoded as a N x 2 matrix.
    * 
    * @param points, matrix with dimensions N x D
    * @param radius non-negative
    * @return */
-  public static Region<Tensor> of(Tensor points, Scalar radius) {
+  public static MemberQ of(Tensor points, Scalar radius) {
     Sign.requirePositiveOrZero(radius);
     return Tensors.isEmpty(points) //
-        ? Regions.emptyRegion()
+        ? Regions.EMPTY
         : new RnPointcloudRegion(points, radius);
   }
 

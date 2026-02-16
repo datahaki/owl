@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.region;
 
-import java.io.Serializable;
-
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
@@ -26,7 +24,7 @@ import ch.alpine.tensor.sca.Sign;
  * <li>zero in a single point: the center, and
  * <li>negative nowhere
  * </ul> */
-public class BallRegion extends ImplicitRegionWithDistance implements RegionBounds, Serializable {
+public class BallRegion extends ImplicitRegionWithDistance implements RegionBounds {
   private final Tensor center;
   private final Scalar radius;
 

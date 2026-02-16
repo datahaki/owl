@@ -7,16 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 
 class RnPointcloudRegionTest {
   @Test
   void testEmpty() {
-    Region<Tensor> region = RnPointcloudRegion.of(Tensors.empty(), RealScalar.ONE);
+    MemberQ region = RnPointcloudRegion.of(Tensors.empty(), RealScalar.ONE);
     assertFalse(region.test(Tensors.vector(2, 2.5)));
     assertFalse(region.test(Tensors.vector(2, 2)));
     assertFalse(region.test(Tensors.vector(2, 1)));
@@ -25,7 +24,7 @@ class RnPointcloudRegionTest {
 
   @Test
   void testSingle2D() {
-    Region<Tensor> region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { { 2, 3 } }), RealScalar.ONE);
+    MemberQ region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { { 2, 3 } }), RealScalar.ONE);
     assertTrue(region.test(Tensors.vector(2, 2.5)));
     assertTrue(region.test(Tensors.vector(2, 2)));
     assertFalse(region.test(Tensors.vector(2, 1)));
@@ -34,7 +33,7 @@ class RnPointcloudRegionTest {
 
   @Test
   void testTwo2D() {
-    Region<Tensor> region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { //
+    MemberQ region = RnPointcloudRegion.of(Tensors.matrix(new Number[][] { //
         { 2, 3 }, //
         { 7, 1 } //
     }), RealScalar.ONE);

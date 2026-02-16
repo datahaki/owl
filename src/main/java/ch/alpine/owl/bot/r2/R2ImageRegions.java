@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.region.ImageRegion;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Transpose;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.sca.Clips;
 /** collection of ready-to-use image regions */
 public enum R2ImageRegions {
   ;
-  static Region<Tensor> normal(BufferedImage bufferedImage, Tensor range, boolean strict) {
+  static MemberQ normal(BufferedImage bufferedImage, Tensor range, boolean strict) {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     return new BufferedImageRegion(bufferedImage, coordinateBoundingBox, strict);
@@ -30,7 +30,7 @@ public enum R2ImageRegions {
     return new ImageRegion(Transpose.of(ImageFormat.from(bufferedImage)), range, strict);
   }
 
-  public static Region<Tensor> outside_0b36(Tensor range) {
+  public static MemberQ outside_0b36(Tensor range) {
     CharImage charImage = CharImage.fillBlack(new Dimension(256, 256));
     charImage.setFont(new Font(Font.DIALOG, Font.PLAIN, 256));
     charImage.draw('\u0b36', new Point(30, 200));

@@ -17,10 +17,9 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 
 /** demo shows the use of a cost image that is added to the distance cost
@@ -30,8 +29,8 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
   public OwlAnimationFrame start() {
     String path = "/io/track0_100.png";
     BufferedImage bufferedImage = ResourceData.bufferedImage(path);
-    Region<Tensor> imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
-    Region<Tensor> region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.3));
+    MemberQ imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
+    MemberQ region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.3));
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

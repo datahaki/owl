@@ -18,11 +18,11 @@ import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -40,7 +40,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
-    Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
+    MemberQ region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

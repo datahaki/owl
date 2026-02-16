@@ -22,15 +22,15 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** position and velocity control in 1D with friction
  * 
@@ -46,13 +46,13 @@ import ch.alpine.tensor.alg.Array;
         MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 8), 5);
     Collection<Tensor> controls = Rice2Controls.create1d(15); //
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Tensors.vector(6, -.7), Tensors.vector(0.4, 0.3)));
-    Region<Tensor> region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));
-    Region<Tensor> region2 = new EllipsoidRegion(Tensors.vector(-2, +0), Tensors.vector(1, 1));
+    MemberQ region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));
+    MemberQ region2 = new EllipsoidRegion(Tensors.vector(-2, +0), Tensors.vector(1, 1));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant( //
-        RegionUnion.wrap( //
+        new UnionMemberQ(List.of( //
             region1, // speed limit along the way
             region2 // block to the left
-        ));
+        )));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, plannerConstraint, goalInterface);

@@ -29,14 +29,14 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 abstract class R2BaseDemo implements DemoInterface {
-  protected abstract Region<Tensor> region();
+  protected abstract MemberQ region();
 
   protected abstract Tensor startState();
 
@@ -49,7 +49,7 @@ abstract class R2BaseDemo implements DemoInterface {
     Collection<Tensor> controls = r2Flows.getFlows(20);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 5), RealScalar.of(0.2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
-    Region<Tensor> region = region(); //
+    MemberQ region = region(); //
     PlannerConstraint plannerConstraint = //
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(region));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //

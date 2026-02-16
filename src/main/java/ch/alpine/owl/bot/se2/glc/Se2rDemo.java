@@ -9,7 +9,6 @@ import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
@@ -20,11 +19,12 @@ import ch.alpine.owl.glc.core.GoalInterface;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.Rational;
@@ -49,11 +49,11 @@ enum Se2rDemo {
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager( //
         se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    TrajectoryRegionQuery obstacleQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-        RegionUnion.wrap( //
+    TrajectoryRegionQuery obstacleQuery = SimpleTrajectoryRegionQuery.timeInvariant( //
+        new UnionMemberQ(List.of(//
             new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
-        ));
+        )));
     // ---
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, new TrajectoryObstacleConstraint(obstacleQuery), goalInterface);

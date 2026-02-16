@@ -27,7 +27,7 @@ import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.Rational;
@@ -53,10 +53,10 @@ enum Se2ExpandDemo {
         new Se2MinTimeGoalManager(se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant( //
-        RegionUnion.wrap( //
+        new UnionMemberQ(List.of( //
             new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
-        ));
+        )));
     // ---
     CoordinateWrap coordinateWrap = Se2Wrap.INSTANCE;
     StateTimeRaster stateTimeRaster = new EtaRaster(eta, StateTimeTensorFunction.state(coordinateWrap::represent));

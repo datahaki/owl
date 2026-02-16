@@ -12,11 +12,11 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Rice2dNoiseDemo implements DemoInterface {
   @Override
@@ -28,7 +28,7 @@ public class Rice2dNoiseDemo implements DemoInterface {
     TrajectoryEntity trajectoryEntity = //
         new Rice2dEntity(mu, Tensors.vector(0, 0, 0, 0), trajectoryControl, controls);
     owlAnimationFrame.add(trajectoryEntity);
-    Region<Tensor> region = new R2NoiseRegion(RealScalar.of(0.5));
+    MemberQ region = new R2NoiseRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
     return owlAnimationFrame;

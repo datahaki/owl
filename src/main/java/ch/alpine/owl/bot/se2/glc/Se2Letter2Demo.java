@@ -11,18 +11,18 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2Letter2Demo extends Se2CarDemo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     CarEntity carEntity = CarEntity.createDefault(new StateTime(Tensors.vector(6, 5, 1), RealScalar.ZERO));
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);
     owlAnimationFrame.add(carEntity);
     MouseGoal.simple(owlAnimationFrame, carEntity, plannerConstraint);

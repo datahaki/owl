@@ -2,12 +2,12 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import java.util.Collection;
+import java.util.List;
 
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.TrajectoryObstacleConstraint;
@@ -16,19 +16,20 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 
 enum Se2rAnimateDemo {
@@ -45,12 +46,12 @@ enum Se2rAnimateDemo {
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager( //
         se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    Region<Tensor> region = RegionUnion.wrap( //
+    MemberQ region = new UnionMemberQ(List.of( //
         new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
         new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
-    );
+    ));
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(region));
+        new TrajectoryObstacleConstraint(SimpleTrajectoryRegionQuery.timeInvariant(region));
     // ---
     return new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);

@@ -14,10 +14,10 @@ import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
@@ -38,7 +38,7 @@ public class BalloonAnimationDemo implements DemoInterface {
     Tensor range = Tensors.vector(500, 100).unmodifiable();
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
-    Region<Tensor> imageRegion = new BufferedImageRegion( //
+    MemberQ imageRegion = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/mountainChain.png"), coordinateBoundingBox, true);
     owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
     owlAnimationFrame.add(balloonEntity);

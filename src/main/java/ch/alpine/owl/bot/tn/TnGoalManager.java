@@ -1,27 +1,26 @@
 // code by jph
 package ch.alpine.owl.bot.tn;
 
-import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.GoalAdapter;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 
 /** goal region is spherical
  * 
  * objective is minimum path length */
-/* package */ class TnGoalManager implements Region<Tensor>, CostFunction, Serializable {
+/* package */ class TnGoalManager implements MemberQ, CostFunction {
   private final TensorMetric tensorMetric;
   private final Tensor center;
   private final Scalar radius;
@@ -49,6 +48,6 @@ import ch.alpine.tensor.sca.Ramp;
   }
 
   public GoalInterface getGoalInterface() {
-    return new GoalAdapter(CatchyTrajectoryRegionQuery.timeInvariant(this), this);
+    return new GoalAdapter(SimpleTrajectoryRegionQuery.timeInvariant(this), this);
   }
 }

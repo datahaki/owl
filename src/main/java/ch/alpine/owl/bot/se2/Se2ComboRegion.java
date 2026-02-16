@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.owl.math.RadiusXY;
@@ -10,15 +9,15 @@ import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.owl.region.So2Region;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** suggested base class for se2 goal managers.
  * all implemented methods in this layer are final.
  * 
  * class defines circle region for (x, y) component and periodic intervals in angular component */
-public class Se2ComboRegion implements Region<Tensor>, Serializable {
+public class Se2ComboRegion implements MemberQ {
   /** @param goal {px, py, angle}
    * @param radiusVector {dist_radius, dist_radius, dist_angle}
    * @throws Exception if first two entries of radiusVector are different */

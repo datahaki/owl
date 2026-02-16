@@ -6,18 +6,18 @@ import ch.alpine.owl.glc.adapter.RegionConstraints;
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /* package */ abstract class Tse2CarDemo implements DemoInterface {
   private static final Tensor PROBE_X = Tensors.vector(0.2, 0.1, 0, -0.1);
 
-  static Region<Tensor> line(Region<Tensor> region) {
+  static MemberQ line(MemberQ region) {
     return Se2PointsVsRegions.line(PROBE_X, region);
   }
 
-  static PlannerConstraint createConstraint(Region<Tensor> region) {
+  static PlannerConstraint createConstraint(MemberQ region) {
     return RegionConstraints.timeInvariant(line(region));
   }
 

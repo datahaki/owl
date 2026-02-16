@@ -9,7 +9,7 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.tensor.RealScalar;

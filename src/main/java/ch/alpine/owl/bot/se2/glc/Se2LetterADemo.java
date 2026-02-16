@@ -18,12 +18,12 @@ import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 
 public abstract class Se2LetterADemo extends Se2CarDemo {
@@ -44,7 +44,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
       }
     };
     carEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);
     TrajectoryRegionQuery trajectoryRegionQuery = //
         SimpleTrajectoryRegionQuery.timeInvariant(region);

@@ -1,7 +1,6 @@
 // code by astoll
 package ch.alpine.owl.bot.balloon;
 
-import java.io.Serializable;
 import java.util.List;
 
 import ch.alpine.owl.glc.adapter.GoalAdapter;
@@ -13,14 +12,14 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.sca.Sign;
 
 /** heuristic computes minimum time to goal
  * e.g. shortest path to goal (euclidean distance) travelled with maximum speed */
-/* package */ class BalloonMinTimeGoalManager implements Region<Tensor>, CostFunction, Serializable {
+/* package */ class BalloonMinTimeGoalManager implements MemberQ, CostFunction {
   // ---
   private final BallRegion ballRegion;
   /** unit of maxSpeed is velocity, e.g. [m/s] */

@@ -3,7 +3,8 @@ package ch.alpine.owl.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** class design stolen from java.util.Collections */
 public enum Regions {
@@ -22,6 +23,8 @@ public enum Regions {
   public static final <T> Region<T> emptyRegion() {
     return EMPTY_REGION;
   }
+
+  public static final MemberQ EMPTY = _ -> false;
 
   // ---
   private static class CompleteRegion<T> implements Region<T>, Serializable {

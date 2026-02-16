@@ -25,7 +25,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlFrame;
@@ -48,12 +48,12 @@ import ch.alpine.tensor.qty.Timing;
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     GoalInterface goalInterface = new Rice2GoalManager(ELLIPSOID_REGION);
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap( //
+        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(new UnionMemberQ(List.of( //
             new HyperplaneRegion(Tensors.vector(1, +0, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, -1, 0, 0), RealScalar.of(3.2)), //
             new HyperplaneRegion(Tensors.vector(0, +0, 0, 1), RealScalar.ZERO) //
-        )));
+        ))));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, FixedStateIntegrator.create( //

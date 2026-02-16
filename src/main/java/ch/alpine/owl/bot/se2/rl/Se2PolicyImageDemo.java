@@ -8,10 +8,9 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.subare.td.SarsaType;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2PolicyImageDemo implements DemoInterface {
   @Override
@@ -19,7 +18,7 @@ public class Se2PolicyImageDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._2181;
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.addBackground(RegionRenders.create(region));

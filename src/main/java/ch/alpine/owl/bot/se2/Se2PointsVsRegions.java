@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** typical use case of class:
  * extrude region by half-width of vehicle, then give several points along x-axis
@@ -15,7 +15,7 @@ public enum Se2PointsVsRegions {
    * @param x_coords vector {x1, x2, ..., xN}
    * @param region
    * @return instance of Se2PointsVsRegion */
-  public static Region<Tensor> line(Tensor x_coords, Region<Tensor> region) {
+  public static MemberQ line(Tensor x_coords, MemberQ region) {
     Tensor points = x_coords.maps(scalar -> Tensors.of(scalar, scalar.zero()));
     return new Se2PointsVsRegion(points, region);
   }

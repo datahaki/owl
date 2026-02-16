@@ -36,7 +36,7 @@ public class ConeRegion implements RegionWithDistance<Tensor>, Serializable {
     normal = AngleVector.of(semi_pi_half);
   }
 
-  @Override // from Region<Tensor>
+  @Override // from MemberQ
   public boolean test(Tensor tensor) {
     Tensor local = inverse.apply(tensor);
     local.set(Abs.FUNCTION, 1); // normalize y coordinate

@@ -8,11 +8,11 @@ import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.region.RegionBounds;
 import ch.alpine.owl.util.img.FloodFill2D;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Clips;
  * 1) {@link ImageRegion}, and
  * 2) {@link CostFunction} with given radius */
 public class R2ImageRegionWrap implements RegionBounds {
-  private final Region<Tensor> imageRegion;
+  private final MemberQ imageRegion;
   private final CostFunction costFunction;
   private final Tensor range;
 
@@ -38,7 +38,7 @@ public class R2ImageRegionWrap implements RegionBounds {
     this.range = range.unmodifiable();
   }
 
-  public Region<Tensor> region() {
+  public MemberQ region() {
     return imageRegion;
   }
 

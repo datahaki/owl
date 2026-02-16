@@ -19,18 +19,18 @@ import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /* package */ enum SatelliteDemo {
   ;
   static void main() throws Exception {
     Collection<Tensor> controls = new SatelliteControls(RealScalar.of(0.9)).getFlows(6);
     Tensor start = Tensors.vector(2, 0, 0, 2); // pos, vel
-    Region<Tensor> obstacleRegion = new EllipsoidRegion( // obstacle at origin
+    MemberQ obstacleRegion = new EllipsoidRegion( // obstacle at origin
         Tensors.vector(0, 0, 0, 0), //
         Tensors.vector(0.5, 0.5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
     // ---

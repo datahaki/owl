@@ -28,19 +28,19 @@ import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Timing;
 
 /* package */ enum R2ImageDemo {
   ;
   static void main() {
     Tensor partitionScale = Tensors.vector(6, 6);
-    Region<Tensor> imageRegion = //
+    MemberQ imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 8), 4);

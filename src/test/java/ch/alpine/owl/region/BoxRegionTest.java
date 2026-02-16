@@ -6,14 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.Region;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 class BoxRegionTest {
   @Test
   void testSimple() {
-    Region<Tensor> r = BoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));
+    MemberQ r = BoxRegion.fromCenterAndRadius(Tensors.vector(10, 5), Tensors.vector(2, 5));
     assertTrue(r.test(Tensors.vector(10, 5)));
     assertTrue(r.test(Tensors.vector(10, 9)));
     assertTrue(r.test(Tensors.vector(11, 9)));

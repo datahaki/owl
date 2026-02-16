@@ -14,11 +14,11 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Rice2dImageDemo implements DemoInterface {
   @Override
@@ -27,7 +27,7 @@ public class Rice2dImageDemo implements DemoInterface {
     Scalar mu = RealScalar.of(-0.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new Rice2dEntity(mu, Tensors.vector(7, 6, 0, 0), trajectoryControl, controls);

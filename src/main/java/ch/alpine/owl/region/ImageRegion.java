@@ -1,15 +1,14 @@
 // code by jph
 package ch.alpine.owl.region;
 
-import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
@@ -19,7 +18,7 @@ import ch.alpine.tensor.red.Times;
  * a location is available if the grayscale value of the pixel equals 0
  * 
  * Hint: the use of {@link BufferedImageRegion} is preferred. */
-public class ImageRegion implements Region<Tensor>, RegionBounds, Serializable {
+public class ImageRegion implements MemberQ, RegionBounds {
   private final Tensor image;
   private final Tensor range;
   private final Tensor scale;

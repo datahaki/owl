@@ -11,7 +11,6 @@ import ch.alpine.owl.bot.se2.Se2CoveringWrap;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
@@ -23,13 +22,14 @@ import ch.alpine.owl.glc.core.TrajectoryPlanner;
 import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.CoordinateWrap;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.BallRegion;
-import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.region.So2Region;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.qty.Degree;
 enum Se2WrapDemo {
   ;
   static TrajectoryRegionQuery obstacleQuery() {
-    return CatchyTrajectoryRegionQuery.timeInvariant(RegionUnion.wrap( //
+    return SimpleTrajectoryRegionQuery.timeInvariant(new UnionMemberQ(List.of( //
         new PolygonRegion(Tensors.matrixDouble(new double[][] { //
             { 0.633, -0.333 }, { 1.733, 0.517 }, { 1.617, 2.317 }, { 0.483, 3.317 }, //
             { -1.250, 3.167 }, { -1.383, 4.483 }, { 6.350, 4.400 }, { 6.250, -0.950 } //
@@ -60,7 +60,7 @@ enum Se2WrapDemo {
             { -6.933, 0.300 }, { -4.700, 0.250 }, { -4.617, -2.950 }, { 0.433, -3.217 }, //
             { 1.050, -0.300 }, { 1.867, -0.417 }, { 2.150, -5.300 }, { -6.900, -4.900 } //
         })) //
-    ));
+    )));
   }
 
   static TrajectoryPlanner createPlanner(CoordinateWrap coordinateWrap, So2Region so2Region) {

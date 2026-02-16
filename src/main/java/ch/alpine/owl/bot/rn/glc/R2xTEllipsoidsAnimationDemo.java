@@ -15,7 +15,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;

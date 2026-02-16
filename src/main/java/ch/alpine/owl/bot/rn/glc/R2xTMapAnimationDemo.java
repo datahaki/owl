@@ -15,11 +15,10 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** the obstacle region in the demo is the outside of a rotating letter 'a' */
 public class R2xTMapAnimationDemo implements DemoInterface {
@@ -34,9 +33,9 @@ public class R2xTMapAnimationDemo implements DemoInterface {
         new StateTime(Tensors.vector(4.5, 5), RealScalar.ZERO));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);
-    Region<Tensor> imageRegion = ImageRegions.loadFromRepository( //
+    MemberQ imageRegion = ImageRegions.loadFromRepository( //
         "/dubilab/localization/20180122.png", Tensors.vector(10, 10), false);
-    Region<Tensor> region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.15));
+    MemberQ region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.15));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));

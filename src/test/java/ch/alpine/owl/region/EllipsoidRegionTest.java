@@ -16,10 +16,10 @@ import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeDependentRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.Serialization;
 
 class EllipsoidRegionTest {
@@ -50,7 +50,7 @@ class EllipsoidRegionTest {
 
   @Test
   void testSimple() throws ClassNotFoundException, IOException {
-    Region<Tensor> region = Serialization.copy(new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(1, 1)));
+    MemberQ region = Serialization.copy(new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(1, 1)));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
     assertTrue(region.test(Tensors.vector(10, 6)));
@@ -59,7 +59,7 @@ class EllipsoidRegionTest {
 
   @Test
   void testSimple2() {
-    Region<Tensor> region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 2));
+    MemberQ region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 2));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
     assertTrue(region.test(Tensors.vector(10, 7)));
@@ -71,7 +71,7 @@ class EllipsoidRegionTest {
 
   @Test
   void testEllipsoid() {
-    Region<Tensor> region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 1));
+    MemberQ region = new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(2, 1));
     assertTrue(region.test(Tensors.vector(10, 5)));
     assertTrue(region.test(Tensors.vector(10, 5.5)));
     assertFalse(region.test(Tensors.vector(10, 7)));

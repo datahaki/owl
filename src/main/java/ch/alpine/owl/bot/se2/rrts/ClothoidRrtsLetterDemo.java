@@ -19,12 +19,12 @@ import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Clips;
 
@@ -36,7 +36,7 @@ import ch.alpine.tensor.sca.Clips;
   public OwlAnimationFrame start() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
-    Region<Tensor> region = r2ImageRegionWrap.region();
+    MemberQ region = r2ImageRegionWrap.region();
     TrajectoryRegionQuery trajectoryRegionQuery = SimpleTrajectoryRegionQuery.timeInvariant(region);
     TransitionRegionQuery transitionRegionQuery = TransitionRegionQueryUnion.wrap( //
         new SampledTransitionRegionQuery(region, RealScalar.of(0.05)), //

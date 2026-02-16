@@ -1,14 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import java.io.Serializable;
-
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** {@link R2NoiseRegion} is an implicit function region.
  * 
@@ -16,7 +14,7 @@ import ch.alpine.tensor.Tensor;
  * https://de.wikipedia.org/wiki/Simplex_Noise
  * 
  * membership in the region for coordinates (x, y) that evaluate the noise function above a given threshold. */
-public class R2NoiseRegion implements Region<Tensor>, Serializable {
+public class R2NoiseRegion implements MemberQ {
   private final Scalar threshold;
 
   /** @param threshold in the interval [-1, 1] */

@@ -19,12 +19,12 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.sca.Clips;
   // private static final Tensor OBSTACLE_IMAGE = ; //
   private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
       Clips.positive(RANGE.Get(0)), Clips.positive(RANGE.Get(1)));
-  static final Region<Tensor> REGION = new BufferedImageRegion( //
+  static final MemberQ REGION = new BufferedImageRegion( //
       ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
   private static final PlannerConstraint PLANNER_CONSTRAINT = //
       new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(REGION));

@@ -7,12 +7,12 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2PolicyNoiseDemo implements DemoInterface {
   @Override
@@ -20,7 +20,7 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     final Scalar threshold = RealScalar.of(0.6);
-    Region<Tensor> region = new R2NoiseRegion(threshold);
+    MemberQ region = new R2NoiseRegion(threshold);
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.addBackground(RegionRenders.create(trq));

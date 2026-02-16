@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.rn.glc;
 
 import java.util.Collection;
+import java.util.List;
 
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
@@ -20,23 +21,23 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.RegionUnion;
+import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 
 /* package */ class R2SphereBase {
-  private final Region<Tensor> region1 = new EllipsoidRegion(Tensors.vector(3, 3), Tensors.vector(2, 2));
-  private final Region<Tensor> region2 = new EllipsoidRegion(Tensors.vector(2.5, 0), Tensors.vector(2, 1.5));
+  private final MemberQ region1 = new EllipsoidRegion(Tensors.vector(3, 3), Tensors.vector(2, 2));
+  private final MemberQ region2 = new EllipsoidRegion(Tensors.vector(2.5, 0), Tensors.vector(2, 1.5));
   private final BallRegion ballRegion = new BallRegion(Tensors.vector(5, 0), RealScalar.of(0.5));
   private final TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant( //
-      RegionUnion.wrap(region1, region2));
+      new UnionMemberQ(List.of(region1, region2)));
 
   TrajectoryPlanner create() {
     Tensor partitionScale = Tensors.vector(3.5, 4);

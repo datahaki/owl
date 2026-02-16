@@ -14,7 +14,6 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
@@ -22,6 +21,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
@@ -33,7 +33,7 @@ import ch.alpine.tensor.sca.Clips;
   ;
   static void main() throws Exception {
     Tensor range = Tensors.vector(7, 7).unmodifiable();
-    Region<Tensor> imageRegion = //
+    MemberQ imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", range, false);
     Tensor lbounds = Array.zeros(2).unmodifiable();
     Tensor ubounds = range.unmodifiable();

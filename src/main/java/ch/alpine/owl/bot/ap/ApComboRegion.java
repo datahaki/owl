@@ -1,17 +1,16 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.owl.region.LinearRegion;
 import ch.alpine.owl.region.So2Region;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.PackageTestAccess;
 
-/* package */ class ApComboRegion implements Region<Tensor>, Serializable {
+/* package */ class ApComboRegion implements MemberQ {
   /** @param goal = {zCenter, velocityCenter, gammaCenter} defining center of goal region
    * @param radiusVector = {zRadius, velocityCenter, gammaCenter} defining radii of goal region
    * @return new ApComboRegion */

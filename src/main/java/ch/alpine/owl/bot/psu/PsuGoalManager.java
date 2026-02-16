@@ -1,24 +1,23 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import java.io.Serializable;
 import java.util.List;
 
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.GoalAdapter;
 import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.glc.core.GlcNode;
 import ch.alpine.owl.glc.core.GoalInterface;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.sca.Sign;
 
-/* package */ class PsuGoalManager implements Region<Tensor>, CostFunction, Serializable {
+/* package */ class PsuGoalManager implements MemberQ, CostFunction {
   /** @param coordinateWrap
    * @param center
    * @param radius
@@ -26,7 +25,7 @@ import ch.alpine.tensor.sca.Sign;
   public static GoalInterface of(TensorMetric coordinateWrap, Tensor center, Tensor radius) {
     PsuGoalManager psuGoalManager = new PsuGoalManager(coordinateWrap, center, radius);
     return new GoalAdapter( //
-        CatchyTrajectoryRegionQuery.timeInvariant(psuGoalManager), //
+        SimpleTrajectoryRegionQuery.timeInvariant(psuGoalManager), //
         psuGoalManager);
   }
 
@@ -51,7 +50,7 @@ import ch.alpine.tensor.sca.Sign;
     return RealScalar.ZERO;
   }
 
-  @Override // from Region<Tensor>
+  @Override // from MemberQ
   public boolean test(Tensor x) {
     return Sign.isNegative(coordinateWrap.distance(x, center).subtract(radius));
   }

@@ -16,10 +16,9 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 /** demo visualizes the detected obstacles */
 public class R2NoiseAnimationDemo implements DemoInterface {
@@ -33,7 +32,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(r2Entity);
-    Region<Tensor> region = new R2NoiseRegion(RealScalar.of(0.2));
+    MemberQ region = new R2NoiseRegion(RealScalar.of(0.2));
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);

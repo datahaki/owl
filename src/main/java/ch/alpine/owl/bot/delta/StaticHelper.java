@@ -7,7 +7,6 @@ import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.model.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
@@ -22,7 +21,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
   private static final int LIMIT = 800;
 
   public static RenderInterface vectorFieldRender( //
-      StateSpaceModel stateSpaceModel, Tensor range, Region<Tensor> region, Scalar factor) {
+      StateSpaceModel stateSpaceModel, Tensor range, Predicate<Tensor> region, Scalar factor) {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(range.maps(Scalar::zero), range);
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(coordinateBoundingBox);
     Tensor points = Tensor.of(RandomSample.stream(randomSampleInterface) //

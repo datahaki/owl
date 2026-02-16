@@ -10,10 +10,9 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2xTPlainDemo
 // implements DemoInterface
@@ -26,8 +25,8 @@ public class Se2xTPlainDemo
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     carxTEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
-    Region<Tensor> region = r2ImageRegionWrap.region();
-    Region<Tensor> se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
+    MemberQ region = r2ImageRegionWrap.region();
+    MemberQ se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(se2PointsVsRegion);
     MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenders.create(region));

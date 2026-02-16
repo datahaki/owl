@@ -4,10 +4,10 @@ package ch.alpine.owl.bot.r2;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.TensorRank;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.sca.Clips;
@@ -18,11 +18,11 @@ public enum ImageRegions {
    * @param range vector of length 2
    * @param strict
    * @return */
-  public static Region<Tensor> loadFromRepository(String path, Tensor range, boolean strict) {
+  public static MemberQ loadFromRepository(String path, Tensor range, boolean strict) {
     return from(ResourceData.bufferedImage(path), range, strict);
   }
 
-  public static Region<Tensor> from(BufferedImage bufferedImage, Tensor range, boolean strict) {
+  public static MemberQ from(BufferedImage bufferedImage, Tensor range, boolean strict) {
     if (bufferedImage.getType() != BufferedImage.TYPE_BYTE_GRAY)
       bufferedImage = Binarize.of(bufferedImage);
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //

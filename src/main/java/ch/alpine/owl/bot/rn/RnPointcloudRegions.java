@@ -5,10 +5,10 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
@@ -21,7 +21,7 @@ public enum RnPointcloudRegions {
    * @param offset of area, in which they are created
    * @param radius of each obstacle
    * @return region with random points as obstacles */
-  public static Region<Tensor> createRandomRegion(int num, Tensor offset, Tensor width, Scalar radius) {
+  public static MemberQ createRandomRegion(int num, Tensor offset, Tensor width, Scalar radius) {
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(offset, offset.add(width)));
     return RnPointcloudRegion.of(RandomSample.of(randomSampleInterface, num), radius);
   }
@@ -31,7 +31,7 @@ public enum RnPointcloudRegions {
    * @param bufferedImageRegion
    * @param radius non-negative
    * @return */
-  public static Region<Tensor> from(Region<Tensor> bufferedImageRegion, Scalar radius) {
+  public static MemberQ from(MemberQ bufferedImageRegion, Scalar radius) {
     return RnPointcloudRegion.of(points((BufferedImageRegion) bufferedImageRegion), radius);
   }
 

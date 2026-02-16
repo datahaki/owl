@@ -7,12 +7,12 @@ import ch.alpine.owl.bot.r2.ImageEdges;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.region.ImageRegion;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.Import;
 
@@ -21,7 +21,7 @@ public class HelperHangarMap {
   // ---
   public final BufferedImage bufferedImage;
   public final ImageRegion imageRegion;
-  public final Region<Tensor> region;
+  public final MemberQ region;
 
   public HelperHangarMap(String string, CarEntity gokartEntity) {
     final Scalar scale = RealScalar.of(7.5); // meter_to_pixel

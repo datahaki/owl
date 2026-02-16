@@ -16,12 +16,12 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.sophis.math.Region;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
-    Region<Tensor> region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
+    MemberQ region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(CoordinateBounds.of(Tensors.vector(0, 0), range));
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.1));
     TransitionSpace transitionSpace = RnTransitionSpace.INSTANCE;

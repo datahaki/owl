@@ -29,9 +29,6 @@ class ImageRegionsTest {
   @Test
   void testDubendorf() {
     BufferedImage bufferedImage = ResourceData.bufferedImage("/dubilab/localization/20180122.png");
-    // Region<Tensor> ir = ImageRegions.loadFromRepository( //
-    // "/dubilab/localization/20180122.png", Tensors.vector(10, 10), false);
-    // assertEquals(Dimensions.of(ir.image()), Arrays.asList(640, 640));
     assertEquals(bufferedImage.getWidth(), 640);
     assertEquals(bufferedImage.getHeight(), 640);
   }
