@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.function.Function;
 
-import ch.alpine.owl.math.ImageGradient;
+import ch.alpine.sophis.math.ImageGradient;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.tn;
 
-import ch.alpine.owl.math.CoordinateWrap;
+import ch.alpine.sophis.math.api.CoordinateWrap;
 import ch.alpine.tensor.Tensor;
 
 class TnIdentityWrap implements CoordinateWrap {

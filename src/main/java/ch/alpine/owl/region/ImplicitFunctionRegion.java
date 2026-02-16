@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.region;
 
-import ch.alpine.owl.math.SignedDistanceFunction;
+import ch.alpine.sophis.math.api.SignedDistanceFunction;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.sca.Sign;

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.owl.math.CoordinateWrap;
+import ch.alpine.sophis.math.api.CoordinateWrap;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

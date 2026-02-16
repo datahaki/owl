@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.owl.math.CoordinateWrap;
+import ch.alpine.sophis.math.api.CoordinateWrap;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.Tensor;
 

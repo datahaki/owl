@@ -3,12 +3,12 @@ package ch.alpine.owl.bot.se2;
 
 import java.util.Objects;
 
-import ch.alpine.owl.math.RadiusXY;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.owl.region.So2Region;
 import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.math.RadiusXY;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
