@@ -14,7 +14,7 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -51,7 +51,7 @@ import ch.alpine.tensor.qty.Degree;
    * @return New StandardTrajectoryPlanner for airplane simulation */
   static StandardTrajectoryPlanner apStandardTrajectoryPlanner() {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        INTEGRATOR, ApStateSpaceModel.INSTANCE, RationalScalar.of(1, 5), 3);
+        INTEGRATOR, ApStateSpaceModel.INSTANCE, Rational.of(1, 5), 3);
     Collection<Tensor> controls = AP_FLOWS.getFlows(FLOWRES);
     ApComboRegion apComboRegion = ApComboRegion.createApRegion(GOAL, RADIUS_VECTOR);
     ApMinTimeGoalManager apMinTimeGoalManager = new ApMinTimeGoalManager(apComboRegion, ApStateSpaceModel.Z_DOT_FLIGHT_MAX);

@@ -24,7 +24,7 @@ import ch.alpine.owl.region.FreeBoundedIntervalRegion;
 import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.sca.Clips;
         RealScalar.of(0.5), // l
         RealScalar.of(1)); // g;
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 12), 5);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 12), 5);
     Collection<Tensor> controls = IpControls.createControls(2, 10);
     IpGoalManager ipGoalManager = new IpGoalManager( //
         Tensors.vector(2, 0, 0, 0), //

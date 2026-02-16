@@ -30,7 +30,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -57,7 +57,7 @@ import ch.alpine.tensor.qty.Timing;
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, FixedStateIntegrator.create( //
-            MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5),
+            MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.HALF, 5),
         controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(0.1, 0.1, 0, 0), RealScalar.ZERO));
     return trajectoryPlanner;
@@ -81,7 +81,7 @@ import ch.alpine.tensor.qty.Timing;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
-          MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
+          MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
       owlFrame.addBackground(trajectoryRender);
@@ -94,7 +94,7 @@ import ch.alpine.tensor.qty.Timing;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
       List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
-          MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.HALF, 5), glcNode);
+          MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.HALF, 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
       owlFrame.addBackground(trajectoryRender);

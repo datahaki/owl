@@ -34,7 +34,7 @@ import ch.alpine.owl.rrts.core.RrtsNode;
 import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -84,7 +84,7 @@ import ch.alpine.tensor.sca.Clips;
         LaneInterface lane = StableLanes.of( //
             controlPoints, //
             LaneRiesenfeldCurveSubdivision.of(MANIFOLD_DISPLAY.geodesicSpace(), DEGREE)::string, //
-            LEVELS, LANE_WIDTH.multiply(RationalScalar.HALF));
+            LEVELS, LANE_WIDTH.multiply(Rational.HALF));
         // ---
         Tensor diagonal = Tensors.of( //
             RealScalar.of(WIDTH /* graphics.getWidth() */).divide(R2_IMAGE_REGION_WRAP.range().Get(0)), //

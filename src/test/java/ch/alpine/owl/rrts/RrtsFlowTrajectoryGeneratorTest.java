@@ -34,7 +34,7 @@ import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophis.ts.TransitionSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
@@ -66,11 +66,11 @@ class RrtsFlowTrajectoryGeneratorTest {
         SingleIntegratorStateSpaceModel.INSTANCE, //
         RnRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
-        generator.createTrajectory(RnTransitionSpace.INSTANCE, sequence, RealScalar.ZERO, RationalScalar.of(1, 10));
+        generator.createTrajectory(RnTransitionSpace.INSTANCE, sequence, RealScalar.ZERO, Rational.of(1, 10));
     assertEquals(31, trajectory.size());
     for (int i = 1; i < 31; i++) {
       TrajectorySample sample = trajectory.get(i);
-      assertEquals(RationalScalar.of(i, 10), sample.stateTime().time());
+      assertEquals(Rational.of(i, 10), sample.stateTime().time());
       assertEquals(Tensors.of(sample.stateTime().time(), RealScalar.ZERO), sample.stateTime().state());
       assertEquals(Tensors.vector(1, 0), sample.getFlow().get());
     }
@@ -106,12 +106,12 @@ class RrtsFlowTrajectoryGeneratorTest {
         Se2StateSpaceModel.INSTANCE, //
         CarRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
-        generator.createTrajectory(DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), sequence, RealScalar.ZERO, RationalScalar.of(1, 10));
+        generator.createTrajectory(DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), sequence, RealScalar.ZERO, Rational.of(1, 10));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
     assertEquals(37, trajectory.size());
     for (int i = 1; i < 21; i++) {
       TrajectorySample sample = trajectory.get(i);
-      Chop._15.requireClose(sample.stateTime().time(), RationalScalar.of(i, 10));
+      Chop._15.requireClose(sample.stateTime().time(), Rational.of(i, 10));
       Chop._15.requireClose(sample.stateTime().state(), Tensors.of(sample.stateTime().time(), RealScalar.ZERO, RealScalar.ZERO));
       Chop._14.requireClose(sample.getFlow().get(), Tensors.vector(1, 0, 0));
     }
@@ -158,7 +158,7 @@ class RrtsFlowTrajectoryGeneratorTest {
         Se2StateSpaceModel.INSTANCE, //
         CarRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
-        generator.createTrajectory(ClothoidTransitionSpace.ANALYTIC, sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
+        generator.createTrajectory(ClothoidTransitionSpace.ANALYTIC, sequence, RealScalar.ZERO, Rational.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
     assertEquals(71, trajectory.size());
     for (int i = 1; i < 33; i++) {
@@ -212,7 +212,7 @@ class RrtsFlowTrajectoryGeneratorTest {
         Se2StateSpaceModel.INSTANCE, //
         CarRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
-        generator.createTrajectory(DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), sequence, RealScalar.ZERO, RationalScalar.of(1, 16));
+        generator.createTrajectory(DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC), sequence, RealScalar.ZERO, Rational.of(1, 16));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
     assertEquals(67, trajectory.size());
     for (int i = 1; i < 17; i++) {

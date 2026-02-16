@@ -26,7 +26,7 @@ import ch.alpine.owl.region.RegionWithDistance;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TreeRender;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     this.imageGradientInterpolation = imageGradientInterpolation;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     fixedStateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 5), 4);
+        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 4);
   }
 
   @Override // from TensorMetric
@@ -89,7 +89,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
         FixedStateIntegrator.create( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 5), 4),
+            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 4),
         controls, plannerConstraint, goalInterface);
   }
 

@@ -24,7 +24,7 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.util.ren.TreeRender;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -45,7 +45,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     super(episodeIntegrator, trajectoryControl);
     add(FallbackControl.of(Array.zeros(1)));
     fixedStateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, RationalScalar.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Rational.of(1, 12), 4);
     this.controls = controls;
   }
 

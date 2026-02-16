@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -22,7 +22,7 @@ class Se2SphereRandomSampleTest {
   @Test
   void testSimple() throws ClassNotFoundException, IOException {
     Tensor apex = Tensors.vector(10, 20, 3);
-    Scalar radius = RationalScalar.HALF;
+    Scalar radius = Rational.HALF;
     Scalar heading = RealScalar.ONE;
     RandomSampleInterface randomSampleInterface = Serialization.copy(Se2SphereRandomSample.of(apex, radius, heading));
     Region<Tensor> region = Se2ComboRegion.ball(apex, Tensors.of(radius, radius, heading));

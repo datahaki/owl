@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.ext.Jpeg;
@@ -115,7 +115,7 @@ class ImageGalleryDemo {
         if (Files.exists(ifile)) {
           System.out.println("skip image");
         } else {
-          Scalar pixels = RationalScalar.of( //
+          Scalar pixels = Rational.of( //
               TARGET_PIXELS, //
               Math.multiplyExact(bufferedImage.getHeight(), bufferedImage.getWidth()));
           Scalar factor = Sqrt.FUNCTION.apply(pixels);

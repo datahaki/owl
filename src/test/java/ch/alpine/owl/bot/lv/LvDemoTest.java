@@ -22,7 +22,7 @@ import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -35,7 +35,7 @@ class LvDemoTest {
       Tensor eta = Tensors.vector(10, 10);
       StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
       StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-          RungeKutta45Integrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 30), 4);
+          RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 30), 4);
       Collection<Tensor> controls = LvControls.create(2);
       EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
       GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);

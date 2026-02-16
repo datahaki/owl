@@ -22,7 +22,7 @@ import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -63,7 +63,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
   @Override
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     StateIntegrator stateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, STATE_SPACE_MODEL, RationalScalar.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, STATE_SPACE_MODEL, Rational.of(1, 12), 4);
     Tensor center = Join.of(Extract2D.FUNCTION.apply(goal), Array.zeros(2));
     GoalInterface goalInterface = SatelliteGoalManager.create( //
         center, Tensors.vector(0.5, 0.5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));

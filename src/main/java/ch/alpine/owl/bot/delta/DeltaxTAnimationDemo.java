@@ -29,7 +29,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -88,7 +88,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 10), 120 * 10);
+        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 10), 120 * 10);
     return new R2xTEllipsoidStateTimeRegion(Tensors.of(radius, radius), //
         TrajectoryR2TranslationFamily.create(stateIntegrator, new StateTime(pos, RealScalar.ZERO), flow), //
         supplier);

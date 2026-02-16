@@ -20,7 +20,7 @@ import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.Tensors;
     // ---
     Tensor eta = Tensors.vector(3, 3, 2, 2);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, SatelliteStateSpaceModel.INSTANCE, RationalScalar.of(1, 10), 6);
+        RungeKutta45Integrator.INSTANCE, SatelliteStateSpaceModel.INSTANCE, Rational.of(1, 10), 6);
     PlannerConstraint plannerConstraint = //
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(obstacleRegion));
     EllipsoidRegion goalRegion = new EllipsoidRegion( //

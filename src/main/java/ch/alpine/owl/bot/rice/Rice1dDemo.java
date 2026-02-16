@@ -25,7 +25,7 @@ import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.alg.Array;
     Scalar mu = RealScalar.of(-0.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 8), 5);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 8), 5);
     Collection<Tensor> controls = Rice2Controls.create1d(15); //
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Tensors.vector(6, -.7), Tensors.vector(0.4, 0.3)));
     Region<Tensor> region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));

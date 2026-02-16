@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn;
 
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -32,7 +32,7 @@ public enum R1Integrator implements Integrator {
   public static Tensor direct(Tensor x, Scalar a, Scalar h) {
     Scalar p0 = x.Get(0);
     Scalar v0 = x.Get(1);
-    Scalar a2 = a.multiply(RationalScalar.HALF);
+    Scalar a2 = a.multiply(Rational.HALF);
     return Tensors.of( //
         a2.multiply(h).add(v0).multiply(h).add(p0), // Polynomial.of(Tensors.of(p0, v0, a2)).apply(h),
         a.multiply(h).add(v0));

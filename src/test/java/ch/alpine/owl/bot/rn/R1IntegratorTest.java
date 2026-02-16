@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.flow.Integrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ExactTensorQ;
@@ -24,7 +24,7 @@ class R1IntegratorTest {
   void testIntegrator() {
     Integrator integrator = R1Integrator.INSTANCE;
     Tensor tensor = integrator.step( //
-        SingleIntegratorStateSpaceModel.INSTANCE, Tensors.vector(10, 2), Tensors.vector(1), RationalScalar.HALF);
+        SingleIntegratorStateSpaceModel.INSTANCE, Tensors.vector(10, 2), Tensors.vector(1), Rational.HALF);
     assertEquals(tensor, Tensors.fromString("{89/8, 5/2}"));
     ExactTensorQ.require(tensor);
   }

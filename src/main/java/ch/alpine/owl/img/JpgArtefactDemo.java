@@ -18,7 +18,7 @@ import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSelectionCallback;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 
 public class JpgArtefactDemo extends AbstractDemo {
@@ -33,7 +33,7 @@ public class JpgArtefactDemo extends AbstractDemo {
     public String string = "";
     @FieldSlider
     @FieldClip(min = "0", max = "1")
-    public Scalar ratio = RationalScalar.HALF;
+    public Scalar ratio = Rational.HALF;
     @FieldSlider
     @FieldClip(min = "0", max = "100")
     public Integer len = 50;

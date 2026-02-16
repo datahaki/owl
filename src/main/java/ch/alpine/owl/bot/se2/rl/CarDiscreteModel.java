@@ -7,7 +7,7 @@ import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.subare.api.DiscreteModel;
 import ch.alpine.subare.api.TerminalInterface;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.gam.Factorial;
    * @param scans */
   public CarDiscreteModel(int scans, int flows) {
     Integers.requirePositive(scans);
-    states = Tensors.reserve(Scalars.intValueExact(Factorial.of(scans).multiply(RationalScalar.HALF)) + 1);
+    states = Tensors.reserve(Scalars.intValueExact(Factorial.of(scans).multiply(Rational.HALF)) + 1);
     for (Tensor perm : Permutations.of(Range.of(0, scans))) { // for instance perm = {2, 0, 1, 4, 3}
       Tensor pair = ScanToState.of(perm);
       if (pair.Get(1).equals(RealScalar.ONE))

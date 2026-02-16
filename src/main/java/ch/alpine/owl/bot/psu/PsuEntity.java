@@ -26,7 +26,7 @@ import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.util.ren.TreeRender;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -59,7 +59,7 @@ import ch.alpine.tensor.alg.Array;
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     Tensor eta = Tensors.vector(6, 8);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        INTEGRATOR, PsuStateSpaceModel.INSTANCE, RationalScalar.of(1, 4), 5);
+        INTEGRATOR, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //

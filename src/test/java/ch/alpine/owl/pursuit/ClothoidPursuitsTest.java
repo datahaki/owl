@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -29,6 +29,6 @@ class ClothoidPursuitsTest {
         Tensors.vector(4, 4, Math.PI / 2));
     // ---
     pursuitInterface = ClothoidPursuits.fromTrajectory(trajectory, NaiveEntryFinder.INSTANCE, RealScalar.ONE);
-    Chop._03.requireClose(pursuitInterface.firstRatio().get(), RationalScalar.HALF);
+    Chop._03.requireClose(pursuitInterface.firstRatio().get(), Rational.HALF);
   }
 }

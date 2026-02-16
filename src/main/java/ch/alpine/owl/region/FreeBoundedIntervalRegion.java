@@ -3,7 +3,7 @@ package ch.alpine.owl.region;
 
 import java.io.Serializable;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
@@ -12,7 +12,7 @@ import ch.alpine.tensor.sca.Clip;
 
 /** axis-aligned region of infinity extension in the direction of other axes */
 public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements Serializable {
-  private static final Scalar HALF = RationalScalar.HALF;
+  private static final Scalar HALF = Rational.HALF;
   // ---
   private final int index;
   private final Scalar semiwidth;

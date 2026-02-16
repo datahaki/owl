@@ -26,7 +26,7 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -76,7 +76,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = balloonMinTimeGoalManager.getGoalInterface();
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
-        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 5), 3), //
+        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 3), //
         controls, plannerConstraint, goalInterface);
   }
 

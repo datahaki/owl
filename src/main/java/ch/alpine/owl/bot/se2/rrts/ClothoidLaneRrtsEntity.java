@@ -19,7 +19,7 @@ import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -55,7 +55,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
         new LaneRrtsPlannerServer( //
             ClothoidTransitionSpace.ANALYTIC, //
             transitionRegionQuery, //
-            RationalScalar.of(1, 10), //
+            Rational.of(1, 10), //
             STATE_SPACE_MODEL, //
             LengthCostFunction.INSTANCE, //
             greedy) {

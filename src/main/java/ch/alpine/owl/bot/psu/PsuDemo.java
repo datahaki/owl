@@ -22,7 +22,7 @@ import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -39,7 +39,7 @@ import ch.alpine.tensor.alg.Array;
 
   public static TrajectoryPlanner raw(GoalInterface goalInterface) {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, RationalScalar.of(1, 4), 5);
+        RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     StateTimeRaster stateTimeRaster = new EtaRaster(ETA, StateTimeTensorFunction.state(psuWrap::represent));
@@ -60,7 +60,7 @@ import ch.alpine.tensor.alg.Array;
 
   public static TrajectoryPlanner medium() {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, RationalScalar.of(1, 4), 5);
+        RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -36,7 +36,7 @@ public final class IntersectionEntryFinder extends TrajectoryEntryFinder impleme
     CoordinateBoundingBox minmax = CoordinateBounds.of(Tensor.of(waypoints.stream().map(Extract2D.FUNCTION).map(Vector2Norm::of)));
     Interpolation interpolation = LinearInterpolation.of(Tensors.of(minmax.min(), minmax.max()));
     return IntStream.range(0, waypoints.length()) //
-        .mapToObj(i -> RationalScalar.of(i, waypoints.length() - 1)) //
+        .mapToObj(i -> Rational.of(i, waypoints.length() - 1)) //
         .map(interpolation::At);
   }
 }

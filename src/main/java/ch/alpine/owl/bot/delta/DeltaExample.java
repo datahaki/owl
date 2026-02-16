@@ -20,7 +20,7 @@ import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.sophus.math.api.Region;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -61,7 +61,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = new DeltaMinTimeGoalManager(SPHERICAL_REGION, maxMove);
     trajectoryPlanner = new StandardTrajectoryPlanner( //
         STATE_TIME_RASTER, FixedStateIntegrator.create( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 10), 4),
+            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 10), 4),
         controls, PLANNER_CONSTRAINT, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), RealScalar.ZERO));
   }

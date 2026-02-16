@@ -26,7 +26,7 @@ import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -40,7 +40,7 @@ import ch.alpine.tensor.sca.Ramp;
 /* package */ enum R2Demo {
   ;
   static final StateIntegrator STATE_INTEGRATOR = FixedStateIntegrator.create( //
-      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, RationalScalar.of(1, 5), 5);
+      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5);
 
   static TrajectoryPlanner simpleEmpty() {
     return simple(EmptyPlannerConstraint.INSTANCE);

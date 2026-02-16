@@ -15,7 +15,7 @@ import ch.alpine.owl.math.state.EpisodeIntegrator;
 import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -30,9 +30,9 @@ import ch.alpine.tensor.sca.Chop;
 class PsuStateSpaceModelTest {
   @Test
   void testNonTrivial() {
-    Tensor u = Tensors.of(RationalScalar.HALF);
+    Tensor u = Tensors.of(Rational.HALF);
     Tensor x = Tensors.vector(1, 2);
-    Scalar h = RationalScalar.of(1, 3);
+    Scalar h = Rational.of(1, 3);
     // Flow flow = StateSpaceModels.createFlow(, u);
     Tensor res = RungeKutta45Integrator.INSTANCE.step(PsuStateSpaceModel.INSTANCE, x, u, h);
     Tensor eul = EulerIntegrator.INSTANCE.step(PsuStateSpaceModel.INSTANCE, x, u, h);
@@ -41,9 +41,9 @@ class PsuStateSpaceModelTest {
 
   @Test
   void testReference() {
-    Tensor u = Tensors.of(RationalScalar.HALF);
+    Tensor u = Tensors.of(Rational.HALF);
     Tensor x = Tensors.vector(1, 2);
-    Scalar h = RationalScalar.of(1, 3);
+    Scalar h = Rational.of(1, 3);
     // Flow flow = StateSpaceModels.createFlow(, u);
     Tensor res = RungeKutta45Integrator.INSTANCE.step(PsuStateSpaceModel.INSTANCE, x, u, h);
     Tensor ref = RungeKutta45Reference.INSTANCE.step(PsuStateSpaceModel.INSTANCE, x, u, h);

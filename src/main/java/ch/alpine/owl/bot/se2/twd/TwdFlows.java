@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.twd;
 import java.io.Serializable;
 
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -18,7 +18,7 @@ public abstract class TwdFlows implements FlowsInterface, Serializable {
   /** @param maxSpeed [m*s^-1]
    * @param halfWidth [m*rad^-1] */
   protected TwdFlows(Scalar maxSpeed, Scalar halfWidth) {
-    maxSpeedHalf = maxSpeed.multiply(RationalScalar.HALF);
+    maxSpeedHalf = maxSpeed.multiply(Rational.HALF);
     this.halfWidth = halfWidth;
   }
 

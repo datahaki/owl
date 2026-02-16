@@ -28,7 +28,7 @@ import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophus.math.api.Region;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -58,7 +58,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         transitionSpace, //
         transitionRegionQuery, //
-        RationalScalar.of(1, 10), //
+        Rational.of(1, 10), //
         Se2StateSpaceModel.INSTANCE, //
         LengthCostFunction.INSTANCE) {
       @Override

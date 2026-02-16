@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.owl.math.CoordinateWrap;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Mod;
 
 class TnWrap implements CoordinateWrap, Serializable {
-  private static final Scalar NEGATIVE_HALF = RationalScalar.HALF.negate();
+  private static final Scalar NEGATIVE_HALF = Rational.HALF.negate();
   // ---
   private final Tensor extension;
   private final List<Mod> mod_distance = new ArrayList<>();

@@ -25,7 +25,7 @@ import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.ren.TreeRender;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.sca.Clip;
@@ -47,7 +47,7 @@ public abstract class Tse2Entity extends TrajectoryEntity implements GlcPlannerC
         stateTime), //
         trajectoryControl);
     fixedStateIntegrator = // node interval == 3/10
-        FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, RationalScalar.of(1, 10), 3);
+        FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, Rational.of(1, 10), 3);
     // TODO OWL ALG use tse2 fallback control
     add(FallbackControl.of(Array.zeros(2)));
   }

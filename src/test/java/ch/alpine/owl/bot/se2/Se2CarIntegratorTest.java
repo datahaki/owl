@@ -9,7 +9,7 @@ import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.math.flow.RungeKutta45Integrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.sca.Chop;
 class Se2CarIntegratorTest {
   @Test
   void testCarEx() {
-    Scalar dt = RationalScalar.of(1, 10);
+    Scalar dt = Rational.of(1, 10);
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
         FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
     Scalar r = FIXEDSTATEINTEGRATOR.getTimeStepTrajectory();

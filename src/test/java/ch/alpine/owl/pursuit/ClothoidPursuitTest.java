@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -35,14 +35,14 @@ class ClothoidPursuitTest {
   void testPointRadiusTwo() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(2, 2, Math.PI / 2));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
-    Chop._03.requireClose(optional.get(), RationalScalar.HALF);
+    Chop._03.requireClose(optional.get(), Rational.HALF);
   }
 
   @Test
   void testPointRadiusTwoNeg() {
     PursuitInterface pursuitInterface = ClothoidPursuit.of(Tensors.vector(2, -2, -Math.PI / 2));
     Optional<Scalar> optional = pursuitInterface.firstRatio();
-    Chop._03.requireClose(optional.get(), RationalScalar.HALF.negate());
+    Chop._03.requireClose(optional.get(), Rational.HALF.negate());
   }
 
   @Test

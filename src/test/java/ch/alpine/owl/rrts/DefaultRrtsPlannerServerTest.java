@@ -24,7 +24,7 @@ import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophus.math.sample.BallRandomSample;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -46,7 +46,7 @@ class DefaultRrtsPlannerServerTest {
     Tensor goal = Tensors.vector(10, 10);
     Tensor state = Tensors.vector(0, 0);
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
-    Scalar radius = Vector2Norm.between(goal, state).multiply(RationalScalar.HALF).add(RealScalar.ONE);
+    Scalar radius = Vector2Norm.between(goal, state).multiply(Rational.HALF).add(RealScalar.ONE);
     Tensor center = Mean.of(Tensors.of(state, goal));
     CoordinateBoundingBox box = CoordinateBounds.of( //
         center.maps(scalar -> scalar.subtract(radius)), //
@@ -55,7 +55,7 @@ class DefaultRrtsPlannerServerTest {
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         RnTransitionSpace.INSTANCE, //
         EmptyTransitionRegionQuery.INSTANCE, //
-        RationalScalar.of(1, 10), //
+        Rational.of(1, 10), //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         LengthCostFunction.INSTANCE) {
       @Override
@@ -99,7 +99,7 @@ class DefaultRrtsPlannerServerTest {
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), //
         EmptyTransitionRegionQuery.INSTANCE, //
-        RationalScalar.of(1, 10), //
+        Rational.of(1, 10), //
         Se2StateSpaceModel.INSTANCE, //
         LengthCostFunction.INSTANCE) {
       @Override
@@ -145,7 +145,7 @@ class DefaultRrtsPlannerServerTest {
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
         ClothoidTransitionSpace.ANALYTIC, //
         EmptyTransitionRegionQuery.INSTANCE, //
-        RationalScalar.of(1, 10), //
+        Rational.of(1, 10), //
         Se2StateSpaceModel.INSTANCE, //
         LengthCostFunction.INSTANCE) {
       @Override
