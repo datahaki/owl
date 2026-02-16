@@ -20,7 +20,6 @@ import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
@@ -46,7 +45,7 @@ enum Se2rAnimateDemo {
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager( //
         se2ComboRegion, controls);
     GoalInterface goalInterface = se2MinTimeGoalManager.getGoalInterface();
-    MemberQ region = new UnionMemberQ(List.of( //
+    MemberQ region = MemberQ.any(List.of( //
         new HyperplaneRegion(Tensors.vector(0, -1, 0), RealScalar.of(1.5)), //
         new HyperplaneRegion(Tensors.vector(0, +1, 0), RealScalar.of(2.0)) //
     ));

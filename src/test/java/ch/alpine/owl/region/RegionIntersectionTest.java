@@ -14,7 +14,7 @@ import ch.alpine.tensor.chq.MemberQ;
 class RegionIntersectionTest {
   @Test
   void testSimple() {
-    MemberQ intersection = new CapMemberQ( //
+    MemberQ intersection = MemberQ.all( //
         Arrays.asList( //
             new EllipsoidRegion(Tensors.vector(-2), Tensors.vector(3)), //
             new EllipsoidRegion(Tensors.vector(+2), Tensors.vector(3))));

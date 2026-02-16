@@ -11,7 +11,6 @@ import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.RegionWithDistance;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
@@ -45,7 +44,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     waypoints = new BSpline2CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);
     MemberQ polygonRegion = new PolygonRegion(VIRTUAL);
-    MemberQ union = new UnionMemberQ(List.of(hangarMap.region, polygonRegion));
+    MemberQ union = MemberQ.any(List.of(hangarMap.region, polygonRegion));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(union);
     // ---
     owlAnimationFrame.add(gokartEntity);

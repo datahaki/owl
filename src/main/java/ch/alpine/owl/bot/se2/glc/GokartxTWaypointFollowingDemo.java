@@ -17,7 +17,6 @@ import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.ConeRegion;
 import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.region.RegionWithDistance;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
@@ -70,7 +69,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     // ---
     Tensor waypoints = Import.of("/dubilab/waypoints/20180425.csv");
     MemberQ polygonRegion = new PolygonRegion(VIRTUAL);
-    MemberQ union = new UnionMemberQ(List.of(hangarMap.region, polygonRegion));
+    MemberQ union = MemberQ.any(List.of(hangarMap.region, polygonRegion));
     TrajectoryRegionQuery trajectoryRegionQuery = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap( //
             new TimeInvariantRegion(union), // <- expects se2 states

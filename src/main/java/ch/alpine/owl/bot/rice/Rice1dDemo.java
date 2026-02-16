@@ -22,7 +22,6 @@ import ch.alpine.owl.math.state.FixedStateIntegrator;
 import ch.alpine.owl.math.state.StateIntegrator;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -49,7 +48,7 @@ import ch.alpine.tensor.chq.MemberQ;
     MemberQ region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));
     MemberQ region2 = new EllipsoidRegion(Tensors.vector(-2, +0), Tensors.vector(1, 1));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant( //
-        new UnionMemberQ(List.of( //
+        MemberQ.any(List.of( //
             region1, // speed limit along the way
             region2 // block to the left
         )));

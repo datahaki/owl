@@ -28,7 +28,6 @@ import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.So2Region;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
@@ -37,6 +36,7 @@ import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 
 /** Notice:
@@ -48,7 +48,7 @@ import ch.alpine.tensor.qty.Degree;
 enum Se2WrapDemo {
   ;
   static TrajectoryRegionQuery obstacleQuery() {
-    return SimpleTrajectoryRegionQuery.timeInvariant(new UnionMemberQ(List.of( //
+    return SimpleTrajectoryRegionQuery.timeInvariant(MemberQ.any(List.of( //
         new PolygonRegion(Tensors.matrixDouble(new double[][] { //
             { 0.633, -0.333 }, { 1.733, 0.517 }, { 1.617, 2.317 }, { 0.483, 3.317 }, //
             { -1.250, 3.167 }, { -1.383, 4.483 }, { 6.350, 4.400 }, { 6.250, -0.950 } //

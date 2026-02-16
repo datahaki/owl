@@ -21,11 +21,11 @@ import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owl.math.flow.MidpointIntegrator;
 import ch.alpine.owl.math.model.StateSpaceModel;
 import ch.alpine.owl.math.state.FixedStateIntegrator;
+import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.HyperplaneRegion;
-import ch.alpine.owl.region.UnionMemberQ;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlFrame;
@@ -35,6 +35,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Timing;
 
 /** position and velocity control in 2D with friction */
@@ -48,7 +49,7 @@ import ch.alpine.tensor.qty.Timing;
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
     GoalInterface goalInterface = new Rice2GoalManager(ELLIPSOID_REGION);
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(new UnionMemberQ(List.of( //
+        new TrajectoryObstacleConstraint(SimpleTrajectoryRegionQuery.timeInvariant(MemberQ.any(List.of( //
             new HyperplaneRegion(Tensors.vector(1, +0, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, +1, 0, 0), RealScalar.ZERO), //
             new HyperplaneRegion(Tensors.vector(0, -1, 0, 0), RealScalar.of(3.2)), //
