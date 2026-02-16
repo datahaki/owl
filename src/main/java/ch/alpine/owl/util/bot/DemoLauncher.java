@@ -17,10 +17,10 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import ch.alpine.ascony.win.BaseFrame;
-import ch.alpine.bridge.lang.ClassDiscovery;
-import ch.alpine.bridge.lang.ClassPaths;
-import ch.alpine.bridge.lang.ClassVisitor;
 import ch.alpine.owl.util.win.DemoInterface;
+import ch.alpine.tensor.ext.ref.ClassDiscovery;
+import ch.alpine.tensor.ext.ref.ClassPaths;
+import ch.alpine.tensor.ext.ref.ClassVisitor;
 
 /** scans repository for classes that implement {@link DemoInterface}
  * DemoLauncher creates a gui that allows to start these classes. */
