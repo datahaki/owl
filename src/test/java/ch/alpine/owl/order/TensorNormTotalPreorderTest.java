@@ -16,6 +16,7 @@ import ch.alpine.owl.math.order.NegTransitiveMinTracker;
 import ch.alpine.owl.math.order.OrderComparator;
 import ch.alpine.owl.math.order.OrderComparison;
 import ch.alpine.owl.math.order.RepresentativeNegTransitiveMinTracker;
+import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
