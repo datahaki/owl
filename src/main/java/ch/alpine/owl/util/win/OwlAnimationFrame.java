@@ -24,7 +24,9 @@ import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
+import ch.alpine.tensor.qty.QuantityMagnitude;
 import ch.alpine.tensor.qty.Timing;
 
 public class OwlAnimationFrame extends TimerFrame {
@@ -86,10 +88,12 @@ public class OwlAnimationFrame extends TimerFrame {
     { // periodic task for integration
       TimerTask timerTask = new TimerTask() {
         final Timing timing = Timing.started();
+        // TODO ideally use units
+        final ScalarUnaryOperator IN_SEC = QuantityMagnitude.SI().in("s");
 
         @Override
         public void run() {
-          Scalar now = timing.seconds();
+          Scalar now = IN_SEC.apply(timing.seconds());
           animationInterfaces.forEach(animationInterface -> animationInterface.integrate(now));
         }
       };
