@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owl.glc.adapter.EtaRaster;
 import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.glc.adapter.GlcTrajectories;
