@@ -54,6 +54,7 @@ public class OwlAnimationFrame extends TimerFrame {
         timerTask = new TimerTask() {
           int count = 0;
           Point2D point = null;
+          private final String IMAGE_FORMAT = "png";
 
           @Override
           public void run() {
