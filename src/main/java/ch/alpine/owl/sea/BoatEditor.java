@@ -41,7 +41,7 @@ public class BoatEditor implements Runnable {
   }
 
   static void main() {
-    LookAndFeels.LIGHT.updateComponentTreeUI();
+    LookAndFeels.autoDetect();
     BoatEditor boatEditor = new BoatEditor(MyBoat.MONSUN_31);
     boatEditor.jFrame.setVisible(true);
   }
