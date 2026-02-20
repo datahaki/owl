@@ -63,6 +63,6 @@ public class SymHullDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new SymHullDemo().runStandalone();
   }
 }

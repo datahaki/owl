@@ -92,7 +92,8 @@ public class EspDemo extends AbstractDemo {
   }
 
   static void main() throws IOException {
-    EspDemo espDemo = (EspDemo) launch();
+    EspDemo espDemo = new EspDemo();
+    espDemo.runStandalone();
     List<StateTime> list = espDemo.compute();
     if (Objects.nonNull(list))
       Export.object(HomeDirectory.Ephemeral.resolve("esp.object"), list);

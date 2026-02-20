@@ -89,6 +89,6 @@ public class JpgArtefactDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new JpgArtefactDemo().runStandalone();
   }
 }

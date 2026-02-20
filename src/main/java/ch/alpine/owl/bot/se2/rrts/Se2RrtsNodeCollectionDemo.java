@@ -93,6 +93,6 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   static void main() {
-    launch();
+    new Se2RrtsNodeCollectionDemo().runStandalone();
   }
 }

@@ -103,6 +103,6 @@ public class JpgBlenderDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new JpgBlenderDemo().runStandalone();
   }
 }

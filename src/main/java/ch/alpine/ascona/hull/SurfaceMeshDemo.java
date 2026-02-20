@@ -138,6 +138,6 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   }
 
   static void main() {
-    launch();
+    new SurfaceMeshDemo().runStandalone();
   }
 }

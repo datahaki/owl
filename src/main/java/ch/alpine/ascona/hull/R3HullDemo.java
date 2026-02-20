@@ -75,6 +75,6 @@ public class R3HullDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new R3HullDemo().runStandalone();
   }
 }

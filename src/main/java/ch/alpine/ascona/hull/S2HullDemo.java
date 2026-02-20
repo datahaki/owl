@@ -54,6 +54,6 @@ public class S2HullDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new S2HullDemo().runStandalone();
   }
 }

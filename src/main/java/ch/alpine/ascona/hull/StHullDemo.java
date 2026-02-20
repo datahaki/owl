@@ -61,6 +61,6 @@ public class StHullDemo extends AbstractDemo {
   }
 
   static void main() {
-    launch();
+    new StHullDemo().runStandalone();
   }
 }
