@@ -3,9 +3,10 @@ package ch.alpine.owl.util.win;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DynamicTest;
@@ -18,10 +19,10 @@ class DemoInterfaceTest implements Consumer<DemoInterface> {
   private static final AtomicInteger COUNT = new AtomicInteger();
 
   @TestFactory
-  Collection<DynamicTest> dynamicTests() {
+  Stream<DynamicTest> dynamicTests() {
     return InstanceDiscovery.of("ch.alpine", DemoInterface.class).stream() //
-        .map(instance -> DynamicTest.dynamicTest(instance.toString(), () -> accept(instance))) //
-        .toList();
+        .map(Supplier::get) //
+        .map(instance -> DynamicTest.dynamicTest(instance.toString(), () -> accept(instance)));
   }
 
   @Override
