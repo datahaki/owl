@@ -83,7 +83,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
     surfaceMesh.vrt = getControlPointsSe2();
     RenderQuality.setQuality(graphics);
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    HomogeneousSpace homogeneousSpace = (HomogeneousSpace) manifoldDisplay.geodesicSpace();
+    HomogeneousSpace homogeneousSpace = manifoldDisplay.homogeneousSpace();
     SurfaceMeshRefinement surfaceMeshRefinement = param.ref.operator(homogeneousSpace.biinvariantMean());
     SurfaceMesh refine = surfaceMesh;
     for (int count = 0; count < param.refine; ++count)

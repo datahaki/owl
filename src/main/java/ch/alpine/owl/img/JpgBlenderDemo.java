@@ -83,7 +83,7 @@ public class JpgBlenderDemo extends AbstractDemo {
       RandomGenerator random = new Random(param.seed);
       int min = Math.min(d1.length, d2.length);
       double exp = Math.exp(-param.exp);
-      double fac = exp / (double) min;
+      double fac = exp / min;
       byte mask = (byte) (1 << param.bit);
       int half = (int) (min * param.ratio.number().doubleValue());
       System.out.println(half);

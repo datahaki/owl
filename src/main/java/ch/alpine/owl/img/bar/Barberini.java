@@ -178,7 +178,7 @@ public class Barberini {
     jComponent.addKeyListener(new KeyAdapter() {
       @Override
       public void keyTyped(KeyEvent e) {
-        int keyChar = (int) e.getKeyChar();
+        int keyChar = e.getKeyChar();
         keyChar -= '1';
         if (0 <= keyChar && keyChar < 4) {
           index = keyChar;
