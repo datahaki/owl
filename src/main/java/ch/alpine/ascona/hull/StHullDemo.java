@@ -20,6 +20,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Transpose;
+import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
@@ -30,6 +31,7 @@ public class StHullDemo extends AbstractDemo {
     @FieldClip(min = "0", max = "10")
     @FieldSlider(showValue = true, showRange = true)
     public Scalar split = RealScalar.ZERO;
+    ColorDataGradients cdg = ColorDataGradients.SOLAR;
   }
 
   public final ExpGen expGen;
@@ -55,7 +57,7 @@ public class StHullDemo extends AbstractDemo {
     Tensor points = Transpose.of(pointst);
     List<int[]> faces = ConvexHull3D.of(points);
     SurfaceMesh surfaceMesh = new SurfaceMesh(points, faces);
-    new SurfaceMeshRender(surfaceMesh).render(geometricLayer, graphics);
+    new SurfaceMeshRender(surfaceMesh, expGen.cdg).render(geometricLayer, graphics);
   }
 
   static void main() {

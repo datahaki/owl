@@ -68,7 +68,7 @@ public class R3HullDemo extends AbstractDemo {
     LeversRender leversRender = LeversRender.of(manifoldDisplay, rotate, null, geometricLayer, graphics);
     leversRender.renderSequence();
     SurfaceMesh surfaceMesh = new SurfaceMesh(rotate, faces);
-    new SurfaceMeshRender(surfaceMesh).render(geometricLayer, graphics);
+    new SurfaceMeshRender(surfaceMesh, hullParam.cdg).render(geometricLayer, graphics);
   }
 
   static void main() {

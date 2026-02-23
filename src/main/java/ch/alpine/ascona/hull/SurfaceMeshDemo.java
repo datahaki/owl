@@ -33,6 +33,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Sort;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarTensorFunction;
+import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
 import ch.alpine.tensor.sca.Sign;
@@ -57,6 +58,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
     @FieldPreferredWidth(100)
     @FieldClip(min = "0", max = "4")
     public Integer refine = 2;
+    public ColorDataGradients cdg = ColorDataGradients.CLASSIC;
   }
 
   private final Param param;
@@ -95,7 +97,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
       }
     }
     if (param.manifoldDisplays.equals(ManifoldDisplays.R2))
-      new SurfaceMeshRender(refine).render(geometricLayer, graphics);
+      new SurfaceMeshRender(refine, param.cdg).render(geometricLayer, graphics);
     else {
       for (Tensor polygon : refine.polygons()) {
         Path2D path2d = geometricLayer.toPath2D(polygon);

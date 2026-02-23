@@ -17,6 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
+import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
@@ -57,7 +58,7 @@ public class SymHullDemo extends AbstractDemo {
     LeversRender leversRender = LeversRender.of(manifoldDisplay, rotate, null, geometricLayer, graphics);
     leversRender.renderSequence();
     SurfaceMesh surfaceMesh = new SurfaceMesh(rotate, faces);
-    new SurfaceMeshRender(surfaceMesh).render(geometricLayer, graphics);
+    new SurfaceMeshRender(surfaceMesh, ColorDataGradients.AURORA).render(geometricLayer, graphics);
   }
 
   static void main() {
