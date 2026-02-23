@@ -79,7 +79,7 @@ public class OwlAnimationFrame extends TimerFrame {
             }
           }
         };
-        timer.schedule(timerTask, 100, 100);
+        timer_schedule(timerTask, 100, 100);
       } else
         timerTask.cancel();
     }
@@ -98,7 +98,7 @@ public class OwlAnimationFrame extends TimerFrame {
           animationInterfaces.forEach(animationInterface -> animationInterface.integrate(now));
         }
       };
-      timer.schedule(timerTask, 100, 20);
+      timer_schedule(timerTask, 100, 20);
     }
     {
       jToggleButtonRecord.addActionListener(actionListener);
