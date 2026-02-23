@@ -11,7 +11,6 @@ import ch.alpine.tensor.Scalar;
 public class HullParam extends RotParam {
   @FieldSelectionArray({ "50", "100", "200", "400" })
   public Scalar count = RealScalar.of(200);
-  public Boolean quality = false;
   public Boolean cuboid = false;
   @FieldFuse
   public transient Boolean shuffle = true;

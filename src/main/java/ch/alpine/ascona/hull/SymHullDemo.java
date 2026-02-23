@@ -9,7 +9,6 @@ import ch.alpine.ascony.dis.R3Display;
 import ch.alpine.ascony.ren.LeversRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.AbstractDemo;
-import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.qhull3d.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
@@ -54,7 +53,6 @@ public class SymHullDemo extends AbstractDemo {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    RenderQuality.setQuality(graphics);
     Tensor rotate = this.tensor.dot(hullParam.rotation());
     LeversRender leversRender = LeversRender.of(manifoldDisplay, rotate, null, geometricLayer, graphics);
     leversRender.renderSequence();

@@ -7,7 +7,6 @@ import java.util.List;
 import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.AbstractDemo;
-import ch.alpine.bridge.awt.RenderQuality;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSlider;
@@ -51,7 +50,6 @@ public class StHullDemo extends AbstractDemo {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    RenderQuality.setQuality(graphics);
     AxesRender.INSTANCE.render(geometricLayer, graphics);
     Tensor pointst = stiefelManifold.exponential(p).exp(v.multiply(expGen.split));
     Tensor points = Transpose.of(pointst);
