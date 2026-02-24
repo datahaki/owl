@@ -31,6 +31,7 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 
 @ReflectionMarker
 public class StHullDemo implements ManipulateProvider, RenderInterface {
+  public Integer n = 25;
   @FieldClip(min = "0", max = "10")
   @FieldSlider(showValue = true, showRange = true)
   public Scalar split = RealScalar.ZERO;
@@ -46,9 +47,10 @@ public class StHullDemo implements ManipulateProvider, RenderInterface {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     geometricComponent.renderGrid(graphics);
     RandomGenerator randomGenerator = new Random(3);
-    StiefelManifold stiefelManifold = new StiefelManifold(25, 3);
+    StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
     Tensor p = RandomSample.of(stiefelManifold, randomGenerator);
-    Tensor v = new TStMemberQ(p).projection(RandomVariate.of(NormalDistribution.of(0.0, 0.1), randomGenerator, Dimensions.of(p)));
+    Tensor v = new TStMemberQ(p).projection( //
+        RandomVariate.of(NormalDistribution.of(0.0, 0.1), randomGenerator, Dimensions.of(p)));
     Tensor pointst = stiefelManifold.exponential(p).exp(v.multiply(split));
     Tensor points = Transpose.of(pointst);
     List<int[]> faces = ConvexHull3D.of(points);
