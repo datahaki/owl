@@ -1,13 +1,17 @@
 // code by jph
 package ch.alpine.ascona.hull;
 
+import java.awt.Container;
 import java.awt.Graphics2D;
 import java.util.List;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
-import ch.alpine.ascony.ren.AxesRender;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
-import ch.alpine.ascony.win.AbstractDemo;
+import ch.alpine.ascony.win.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
@@ -25,39 +29,36 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 
-public class StHullDemo extends AbstractDemo {
-  @ReflectionMarker
-  public static class ExpGen {
-    @FieldClip(min = "0", max = "10")
-    @FieldSlider(showValue = true, showRange = true)
-    public Scalar split = RealScalar.ZERO;
-    ColorDataGradients cdg = ColorDataGradients.SOLAR;
-  }
-
-  public final ExpGen expGen;
-  private StiefelManifold stiefelManifold = new StiefelManifold(25, 3);
-  private Tensor p;
-  private Tensor v;
-
-  public StHullDemo(ExpGen expGen) {
-    super(expGen);
-    this.expGen = expGen;
-    p = RandomSample.of(stiefelManifold);
-    v = new TStMemberQ(p).projection(RandomVariate.of(NormalDistribution.of(0.0, 0.1), Dimensions.of(p)));
-  }
+@ReflectionMarker
+public class StHullDemo implements ManipulateProvider, RenderInterface {
+  @FieldClip(min = "0", max = "10")
+  @FieldSlider(showValue = true, showRange = true)
+  public Scalar split = RealScalar.ZERO;
+  public ColorDataGradients cdg = ColorDataGradients.SOLAR;
+  // ---
+  private final GeometricComponent geometricComponent = new GeometricComponent();
 
   public StHullDemo() {
-    this(new ExpGen());
+    geometricComponent.addRenderInterface(this);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    AxesRender.INSTANCE.render(geometricLayer, graphics);
-    Tensor pointst = stiefelManifold.exponential(p).exp(v.multiply(expGen.split));
+    geometricComponent.renderGrid(graphics);
+    RandomGenerator randomGenerator = new Random(3);
+    StiefelManifold stiefelManifold = new StiefelManifold(25, 3);
+    Tensor p = RandomSample.of(stiefelManifold, randomGenerator);
+    Tensor v = new TStMemberQ(p).projection(RandomVariate.of(NormalDistribution.of(0.0, 0.1), randomGenerator, Dimensions.of(p)));
+    Tensor pointst = stiefelManifold.exponential(p).exp(v.multiply(split));
     Tensor points = Transpose.of(pointst);
     List<int[]> faces = ConvexHull3D.of(points);
     SurfaceMesh surfaceMesh = new SurfaceMesh(points, faces);
-    new SurfaceMeshRender(surfaceMesh, expGen.cdg).render(geometricLayer, graphics);
+    new SurfaceMeshRender(surfaceMesh, cdg).render(geometricLayer, graphics);
+  }
+
+  @Override
+  public Container getContainer() {
+    return geometricComponent.jComponent;
   }
 
   static void main() {
