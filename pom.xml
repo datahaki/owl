@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ch.alpine</groupId>
+	<groupId>io.github.datahaki</groupId>
 	<artifactId>owl</artifactId>
 	<version>0.6.2</version>
 	<packaging>jar</packaging>
@@ -18,17 +18,17 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>ch.alpine</groupId>
+			<groupId>io.github.datahaki</groupId>
 			<artifactId>ascony</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.alpine</groupId>
+			<groupId>io.github.datahaki</groupId>
 			<artifactId>subare</artifactId>
 			<version>0.4.4</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.alpine</groupId>
+			<groupId>io.github.datahaki</groupId>
 			<artifactId>qhull3d</artifactId>
 			<version>0.0.3</version>
 		</dependency>

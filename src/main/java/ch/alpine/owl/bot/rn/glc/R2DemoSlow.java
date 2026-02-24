@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.ascony.io.AnimationWriter;
+import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
@@ -41,8 +43,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.io.AnimationWriter;
-import ch.alpine.tensor.io.GifAnimationWriter;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Ramp;
 

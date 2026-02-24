@@ -4,6 +4,8 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.ascony.io.AnimationWriter;
+import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.owl.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
@@ -22,8 +24,6 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.io.AnimationWriter;
-import ch.alpine.tensor.io.GifAnimationWriter;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;

@@ -3,6 +3,8 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.util.concurrent.TimeUnit;
 
+import ch.alpine.ascony.io.AnimationWriter;
+import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.owl.rrts.adapter.LengthCostFunction;
 import ch.alpine.owl.rrts.adapter.RrtsNodes;
 import ch.alpine.owl.rrts.core.DefaultRrts;
@@ -16,8 +18,6 @@ import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.io.AnimationWriter;
-import ch.alpine.tensor.io.GifAnimationWriter;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
