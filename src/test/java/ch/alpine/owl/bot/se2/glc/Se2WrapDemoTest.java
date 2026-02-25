@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2CoveringWrap;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.glc.core.CheckedTrajectoryPlanner;
 import ch.alpine.owl.glc.core.HeuristicAssert;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.So2Region;
+import ch.alpine.owlets.glc.adapter.GlcExpand;
+import ch.alpine.owlets.glc.core.CheckedTrajectoryPlanner;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

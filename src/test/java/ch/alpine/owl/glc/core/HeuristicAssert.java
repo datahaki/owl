@@ -4,9 +4,13 @@ package ch.alpine.owl.glc.core;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.data.tree.Nodes;
-import ch.alpine.owl.data.tree.NodesAssert;
-import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
+import ch.alpine.owlets.data.tree.Nodes;
+import ch.alpine.owlets.data.tree.NodesAssert;
+import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.glc.core.GlcNodes;
+import ch.alpine.owlets.glc.core.HeuristicQ;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Throw;
 

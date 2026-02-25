@@ -5,7 +5,7 @@ package ch.alpine.owl.order;
 import java.io.File;
 
 import ch.alpine.bridge.io.ParentFileQ;
-import ch.alpine.owl.math.order.BinaryRelation;
+import ch.alpine.owlets.math.order.BinaryRelation;
 
 public enum ParentFileRelation implements BinaryRelation<File> {
   INSTANCE;

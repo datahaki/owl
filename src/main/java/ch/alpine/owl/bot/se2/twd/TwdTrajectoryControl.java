@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2NormSquared;

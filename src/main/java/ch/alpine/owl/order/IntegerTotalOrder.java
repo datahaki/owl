@@ -3,9 +3,9 @@ package ch.alpine.owl.order;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.order.BinaryRelation;
-import ch.alpine.owl.math.order.Order;
-import ch.alpine.owl.math.order.OrderComparator;
+import ch.alpine.owlets.math.order.BinaryRelation;
+import ch.alpine.owlets.math.order.Order;
+import ch.alpine.owlets.math.order.OrderComparator;
 
 public enum IntegerTotalOrder {
   ;

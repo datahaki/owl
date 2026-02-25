@@ -10,8 +10,8 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.order.OrderComparison;
-import ch.alpine.owl.math.order.SetPartialOrder;
+import ch.alpine.owlets.math.order.OrderComparison;
+import ch.alpine.owlets.math.order.SetPartialOrder;
 
 class SetPartialOrderTest {
   static Collection<Integer> create(Integer... integers) {

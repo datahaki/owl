@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import ch.alpine.bridge.util.BoundedSortedQueue;
-import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.owl.rrts.core.RrtsNodeTransition;
+import ch.alpine.owlets.rrts.core.RrtsNode;
+import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
+import ch.alpine.owlets.rrts.core.RrtsNodeTransition;
 import ch.alpine.sophis.ts.Transition;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.Scalar;

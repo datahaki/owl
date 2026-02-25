@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
+
 class EmptyPlannerConstraintTest {
   @Test
   void testSimple() {

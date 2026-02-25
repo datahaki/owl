@@ -9,9 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 import ch.alpine.ascony.win.GeometricComponent;
-import ch.alpine.owl.glc.adapter.GoalConsumer;
-import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.owlets.glc.adapter.GoalConsumer;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
 
 public enum MouseGoal {
   ;

@@ -4,12 +4,12 @@ package ch.alpine.owl.bot.rn.glc;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.glc.core.GlcNodes;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.GlcExpand;
+import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.glc.core.GlcNodes;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.math.state.StateTime;
 
 /* package */ enum R2SphereGoal {
   ;

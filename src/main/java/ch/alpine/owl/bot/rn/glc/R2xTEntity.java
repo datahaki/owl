@@ -4,10 +4,10 @@ package ch.alpine.owl.bot.rn.glc;
 import java.util.Collection;
 
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
-import ch.alpine.owl.glc.adapter.EtaRaster;
-import ch.alpine.owl.glc.core.StateTimeRaster;
-import ch.alpine.owl.math.state.EpisodeIntegrator;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.EtaRaster;
+import ch.alpine.owlets.glc.core.StateTimeRaster;
+import ch.alpine.owlets.math.state.EpisodeIntegrator;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

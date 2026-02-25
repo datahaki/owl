@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectoryRegionQuery;
+import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Clips;

@@ -11,6 +11,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owlets.glc.core.DomainQueue;
+import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.tensor.RealScalar;
 
 class DomainQueueTest {

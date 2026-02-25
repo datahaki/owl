@@ -5,11 +5,11 @@ import java.util.concurrent.TimeUnit;
 
 import ch.alpine.ascony.io.AnimationWriter;
 import ch.alpine.ascony.io.GifAnimationWriter;
-import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owlets.glc.adapter.GlcExpand;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.ext.HomeDirectory;

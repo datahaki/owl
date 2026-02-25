@@ -1,8 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.owl.math.flow.Integrator;
-import ch.alpine.owl.math.model.StateSpaceModel;
+import java.util.stream.Gatherer.Integrator;
+
+import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

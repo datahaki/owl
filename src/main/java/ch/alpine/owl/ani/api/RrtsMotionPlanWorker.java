@@ -4,9 +4,9 @@ package ch.alpine.owl.ani.api;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.owl.data.tree.Expand;
-import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.TransitionPlanner;
+import ch.alpine.owlets.data.tree.Expand;
+import ch.alpine.owlets.rrts.core.RrtsNode;
+import ch.alpine.owlets.rrts.core.TransitionPlanner;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.red.Min;
 

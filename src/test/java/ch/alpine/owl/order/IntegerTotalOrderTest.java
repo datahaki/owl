@@ -8,12 +8,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.order.LexicographicComparator;
-import ch.alpine.owl.math.order.OrderComparator;
-import ch.alpine.owl.math.order.OrderComparison;
-import ch.alpine.owl.math.order.ProductOrderComparator;
-import ch.alpine.owl.math.order.ScalarTotalOrder;
-import ch.alpine.owl.math.order.SetPartialOrder;
+import ch.alpine.owlets.math.order.LexicographicComparator;
+import ch.alpine.owlets.math.order.OrderComparator;
+import ch.alpine.owlets.math.order.OrderComparison;
+import ch.alpine.owlets.math.order.ProductOrderComparator;
+import ch.alpine.owlets.math.order.ScalarTotalOrder;
+import ch.alpine.owlets.math.order.SetPartialOrder;
 import ch.alpine.tensor.RealScalar;
 
 class IntegerTotalOrderTest {

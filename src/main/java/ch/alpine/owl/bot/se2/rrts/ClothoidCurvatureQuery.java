@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.crv.clt.LagrangeQuadraticD;
 import ch.alpine.sophis.ts.ClothoidTransition;
 import ch.alpine.sophis.ts.Transition;

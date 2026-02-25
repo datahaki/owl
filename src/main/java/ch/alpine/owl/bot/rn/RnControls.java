@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.rn;
 
 import java.util.Collection;
 
-import ch.alpine.owl.math.model.DoubleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
+import ch.alpine.owlets.math.model.DoubleIntegratorStateSpaceModel;
+import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;

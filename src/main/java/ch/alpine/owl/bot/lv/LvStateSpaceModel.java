@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.lv;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

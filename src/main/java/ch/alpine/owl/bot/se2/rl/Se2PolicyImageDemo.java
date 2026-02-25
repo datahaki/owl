@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.se2.rl;
 
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.glc.adapter.CatchyTrajectoryRegionQuery;
-import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;

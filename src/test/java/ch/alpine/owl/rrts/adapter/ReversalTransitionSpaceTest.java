@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owlets.rrts.adapter.ReversalTransitionSpace;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.Transition;
 import ch.alpine.sophis.ts.TransitionWrap;

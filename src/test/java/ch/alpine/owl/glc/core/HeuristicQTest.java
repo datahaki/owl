@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.ScaledLateralAcceleration;
 import ch.alpine.owl.bot.se2.Se2LateralAcceleration;
+import ch.alpine.owlets.glc.core.HeuristicQ;
 import ch.alpine.tensor.RealScalar;
 
 class HeuristicQTest {

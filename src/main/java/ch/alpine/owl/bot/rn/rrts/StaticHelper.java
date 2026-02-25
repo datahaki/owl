@@ -2,8 +2,8 @@
 package ch.alpine.owl.bot.rn.rrts;
 
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
-import ch.alpine.owl.rrts.adapter.SampledTransitionRegionQuery;
-import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.owlets.rrts.adapter.SampledTransitionRegionQuery;
+import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;

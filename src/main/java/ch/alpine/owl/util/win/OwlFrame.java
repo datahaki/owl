@@ -12,12 +12,12 @@ import javax.swing.JToggleButton;
 
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.win.BaseFrame;
-import ch.alpine.owl.data.tree.Nodes;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.TransitionRegionQuery;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owl.util.ren.TransitionRender;
+import ch.alpine.owlets.data.tree.Nodes;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.rrts.core.RrtsNode;
+import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.ext.Serialization;
 

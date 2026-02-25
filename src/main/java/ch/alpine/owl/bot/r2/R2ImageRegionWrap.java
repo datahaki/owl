@@ -3,11 +3,11 @@ package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.glc.core.CostFunction;
 import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owl.region.RegionBounds;
 import ch.alpine.owl.util.img.FloodFill2D;
+import ch.alpine.owlets.glc.core.CostFunction;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

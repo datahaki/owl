@@ -10,10 +10,11 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.StateTimeCollector;
-import ch.alpine.owl.math.state.TrajectoryRegionQuery;
 import ch.alpine.owl.region.EllipsoidRegion;
+import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTimeCollector;
+import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;

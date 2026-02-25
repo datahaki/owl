@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.rn.rrts;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import ch.alpine.owl.rrts.core.RrtsNode;
-import ch.alpine.owl.rrts.core.RrtsNodeCollection;
-import ch.alpine.owl.rrts.core.RrtsNodeTransition;
+import ch.alpine.owlets.rrts.core.RrtsNode;
+import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
+import ch.alpine.owlets.rrts.core.RrtsNodeTransition;
 import ch.alpine.sophis.ts.RnTransition;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;

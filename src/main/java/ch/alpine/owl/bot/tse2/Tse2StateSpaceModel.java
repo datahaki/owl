@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.tse2;
 
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

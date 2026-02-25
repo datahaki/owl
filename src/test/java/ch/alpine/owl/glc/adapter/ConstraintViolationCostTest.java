@@ -9,9 +9,11 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.CostFunction;
-import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.ConstraintViolationCost;
+import ch.alpine.owlets.glc.adapter.RegionConstraints;
+import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

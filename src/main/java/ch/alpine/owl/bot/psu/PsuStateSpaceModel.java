@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import ch.alpine.owl.math.model.StateSpaceModel;
+import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.tri.Sin;

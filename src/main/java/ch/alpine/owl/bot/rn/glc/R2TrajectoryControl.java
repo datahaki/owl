@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

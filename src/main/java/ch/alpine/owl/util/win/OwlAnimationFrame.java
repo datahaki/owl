@@ -22,7 +22,7 @@ import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.AnimationInterface;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.CostFunction;
-import ch.alpine.owl.glc.core.HeuristicQ;
+import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.owlets.glc.core.HeuristicQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;

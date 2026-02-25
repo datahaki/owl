@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.order.SubsetQ;
+import ch.alpine.owlets.math.order.SubsetQ;
 
 class SubsetQTest {
   @Test

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.glc.core.HeuristicQ;
+import ch.alpine.owlets.glc.core.GoalInterface;
+import ch.alpine.owlets.glc.core.HeuristicQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.adapter.GlcTrajectories;
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.glc.adapter.GlcTrajectories;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.math.state.TrajectorySample;
 
 class R2DemoTest {
   @Test

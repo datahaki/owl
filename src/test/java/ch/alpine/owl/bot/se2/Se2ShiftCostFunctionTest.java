@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.CostFunction;
+import ch.alpine.owlets.glc.core.CostFunction;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 

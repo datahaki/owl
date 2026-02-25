@@ -1,10 +1,11 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import ch.alpine.owl.math.flow.Integrator;
-import ch.alpine.owl.math.flow.RungeKutta45Integrator;
-import ch.alpine.owl.math.flow.RungeKutta4Integrator;
-import ch.alpine.owl.math.model.StateSpaceModel;
+import java.util.stream.Gatherer.Integrator;
+
+import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
+import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
+import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

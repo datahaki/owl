@@ -3,9 +3,9 @@ package ch.alpine.owl.order;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.order.BinaryRelation;
-import ch.alpine.owl.math.order.Order;
-import ch.alpine.owl.math.order.OrderComparator;
+import ch.alpine.owlets.math.order.BinaryRelation;
+import ch.alpine.owlets.math.order.Order;
+import ch.alpine.owlets.math.order.OrderComparator;
 
 /** Creates a STRICT partial order for cards of deck according to the rules of "Jassen" */
 /* package */ enum JassCardPartialOrder {

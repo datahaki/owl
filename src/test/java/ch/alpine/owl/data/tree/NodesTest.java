@@ -8,10 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.glc.core.GlcNodes;
-import ch.alpine.owl.glc.core.HeuristicFunction;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.data.tree.Nodes;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.glc.core.GlcNodes;
+import ch.alpine.owlets.glc.core.HeuristicFunction;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

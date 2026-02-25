@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.order.OrderComparison;
+import ch.alpine.owlets.math.order.OrderComparison;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

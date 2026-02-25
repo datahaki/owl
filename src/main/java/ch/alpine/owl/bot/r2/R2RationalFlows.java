@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import ch.alpine.owl.math.flow.EulerIntegrator;
+import ch.alpine.owlets.math.flow.EulerIntegrator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;

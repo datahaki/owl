@@ -11,11 +11,11 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.math.order.MinTracker;
-import ch.alpine.owl.math.order.NegTransitiveMinTracker;
-import ch.alpine.owl.math.order.OrderComparator;
-import ch.alpine.owl.math.order.OrderComparison;
-import ch.alpine.owl.math.order.RepresentativeNegTransitiveMinTracker;
+import ch.alpine.owlets.math.order.MinTracker;
+import ch.alpine.owlets.math.order.NegTransitiveMinTracker;
+import ch.alpine.owlets.math.order.OrderComparator;
+import ch.alpine.owlets.math.order.OrderComparison;
+import ch.alpine.owlets.math.order.RepresentativeNegTransitiveMinTracker;
 import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

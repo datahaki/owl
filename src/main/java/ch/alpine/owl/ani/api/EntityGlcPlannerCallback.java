@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import ch.alpine.owl.glc.adapter.GlcTrajectories;
-import ch.alpine.owl.glc.adapter.Trajectories;
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.glc.adapter.GlcTrajectories;
+import ch.alpine.owlets.glc.adapter.Trajectories;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.math.state.TrajectorySample;
 
 public class EntityGlcPlannerCallback implements GlcPlannerCallback {
   public static GlcPlannerCallback of(TrajectoryEntity trajectoryEntity) {

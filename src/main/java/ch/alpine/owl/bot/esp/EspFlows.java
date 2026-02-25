@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import ch.alpine.owl.glc.core.StateTimeFlows;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.core.StateTimeFlows;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

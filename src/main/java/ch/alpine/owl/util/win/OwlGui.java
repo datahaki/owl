@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.util.win;
 
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 
 public enum OwlGui {
   ;

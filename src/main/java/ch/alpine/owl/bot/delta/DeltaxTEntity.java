@@ -7,11 +7,11 @@ import java.awt.Graphics2D;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.glc.adapter.EtaRaster;
-import ch.alpine.owl.glc.core.StateTimeRaster;
-import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.math.state.EpisodeIntegrator;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.EtaRaster;
+import ch.alpine.owlets.glc.core.StateTimeRaster;
+import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owlets.math.state.EpisodeIntegrator;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.sca.Round;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */

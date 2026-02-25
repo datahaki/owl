@@ -13,8 +13,8 @@ import java.util.Objects;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryListener;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.Tensor;
 
 public class TrajectoryRender implements RenderInterface, TrajectoryListener {

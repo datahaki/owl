@@ -6,9 +6,9 @@ import java.util.List;
 
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -3,8 +3,8 @@ package ch.alpine.owl.ani.api;
 
 import java.util.List;
 
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 
 public interface TrajectoryControl extends EntityControl, TrajectoryListener {

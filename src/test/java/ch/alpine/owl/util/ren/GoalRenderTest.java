@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.io.ImageFormat;

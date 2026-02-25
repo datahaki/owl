@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.noise.SimplexContinuousNoise;

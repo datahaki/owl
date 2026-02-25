@@ -7,7 +7,7 @@ import java.util.Optional;
 import ch.alpine.owl.ani.api.EntityControl;
 import ch.alpine.owl.ani.api.ProviderRank;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

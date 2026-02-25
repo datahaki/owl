@@ -6,7 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ch.alpine.owl.ani.api.TrajectoryEntity;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

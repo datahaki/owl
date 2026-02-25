@@ -3,8 +3,8 @@ package ch.alpine.owl.ani.api;
 
 import java.util.Optional;
 
-import ch.alpine.owl.math.state.EpisodeIntegrator;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.EpisodeIntegrator;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

@@ -4,11 +4,11 @@ package ch.alpine.owl.ani.api;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.owl.data.tree.TreePlanner;
-import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.state.EpisodeIntegrator;
-import ch.alpine.owl.math.state.TrajectorySample;
-import ch.alpine.owl.math.state.TrajectoryWrap;
+import ch.alpine.owlets.data.tree.TreePlanner;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.state.EpisodeIntegrator;
+import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.owlets.math.state.TrajectoryWrap;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

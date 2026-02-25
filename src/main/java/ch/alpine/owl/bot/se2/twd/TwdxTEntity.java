@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
-import ch.alpine.owl.glc.adapter.EtaRaster;
-import ch.alpine.owl.glc.core.StateTimeRaster;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.EtaRaster;
+import ch.alpine.owlets.glc.core.StateTimeRaster;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 

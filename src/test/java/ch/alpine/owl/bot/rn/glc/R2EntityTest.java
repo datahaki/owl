@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.math.flow.EulerIntegrator;
-import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.state.EpisodeIntegrator;
-import ch.alpine.owl.math.state.SimpleEpisodeIntegrator;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
+import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
+import ch.alpine.owlets.math.state.EpisodeIntegrator;
+import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

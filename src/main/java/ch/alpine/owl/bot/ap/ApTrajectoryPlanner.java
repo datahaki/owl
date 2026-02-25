@@ -2,18 +2,18 @@
 package ch.alpine.owl.bot.ap;
 
 import java.util.Collection;
+import java.util.stream.Gatherer.Integrator;
 
-import ch.alpine.owl.glc.adapter.EtaRaster;
-import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.glc.core.StateTimeRaster;
-import ch.alpine.owl.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owl.math.flow.Integrator;
-import ch.alpine.owl.math.flow.RungeKutta4Integrator;
-import ch.alpine.owl.math.state.FixedStateIntegrator;
-import ch.alpine.owl.math.state.StateIntegrator;
-import ch.alpine.owl.math.state.StateTimeTensorFunction;
 import ch.alpine.owl.util.bot.FlowsInterface;
+import ch.alpine.owlets.glc.adapter.EtaRaster;
+import ch.alpine.owlets.glc.core.GoalInterface;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.glc.core.StateTimeRaster;
+import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
+import ch.alpine.owlets.math.state.FixedStateIntegrator;
+import ch.alpine.owlets.math.state.StateIntegrator;
+import ch.alpine.owlets.math.state.StateTimeTensorFunction;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

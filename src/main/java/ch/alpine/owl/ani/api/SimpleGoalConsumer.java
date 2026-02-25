@@ -4,8 +4,8 @@ package ch.alpine.owl.ani.api;
 import java.util.Collection;
 import java.util.Objects;
 
-import ch.alpine.owl.glc.adapter.GoalConsumer;
-import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owlets.glc.adapter.GoalConsumer;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.tensor.Tensor;
 
 public class SimpleGoalConsumer implements GoalConsumer {

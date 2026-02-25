@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.PlannerConstraint;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;

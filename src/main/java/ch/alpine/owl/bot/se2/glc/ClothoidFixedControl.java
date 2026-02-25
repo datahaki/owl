@@ -4,12 +4,12 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.TrajectorySample;
 import ch.alpine.owl.pursuit.ClothoidPursuit;
 import ch.alpine.owl.pursuit.CurveIntersection;
 import ch.alpine.owl.pursuit.PseudoSe2CurveIntersection;
 import ch.alpine.owl.pursuit.PursuitInterface;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.HeuristicAssert;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 
 class Rice1dDemoTest {
   @Test

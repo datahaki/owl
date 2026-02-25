@@ -3,11 +3,11 @@ package ch.alpine.owl.ani.api;
 
 import java.util.Collection;
 
-import ch.alpine.owl.data.tree.TreePlanner;
-import ch.alpine.owl.glc.adapter.GoalConsumer;
-import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.lane.LaneInterface;
+import ch.alpine.owlets.data.tree.TreePlanner;
+import ch.alpine.owlets.glc.adapter.GoalConsumer;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Last;
 

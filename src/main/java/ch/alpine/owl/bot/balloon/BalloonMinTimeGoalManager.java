@@ -3,14 +3,14 @@ package ch.alpine.owl.bot.balloon;
 
 import java.util.List;
 
-import ch.alpine.owl.glc.adapter.GoalAdapter;
-import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
-import ch.alpine.owl.glc.core.CostFunction;
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.glc.core.GoalInterface;
-import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
-import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.region.BallRegion;
+import ch.alpine.owlets.glc.adapter.GoalAdapter;
+import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
+import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.glc.core.GoalInterface;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

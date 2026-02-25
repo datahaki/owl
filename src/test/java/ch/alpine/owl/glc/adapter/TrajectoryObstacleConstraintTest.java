@@ -5,7 +5,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.glc.core.PlannerConstraint;
+import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
+import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.tensor.ext.Serialization;
 
 class TrajectoryObstacleConstraintTest {

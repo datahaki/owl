@@ -1,7 +1,7 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
-import ch.alpine.owl.glc.adapter.AbstractMinTimeGoalManager;
+import ch.alpine.owlets.glc.adapter.AbstractMinTimeGoalManager;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Abs;

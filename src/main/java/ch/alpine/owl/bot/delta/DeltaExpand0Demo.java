@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
-import ch.alpine.owl.glc.adapter.GlcExpand;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.tensor.RealScalar;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta

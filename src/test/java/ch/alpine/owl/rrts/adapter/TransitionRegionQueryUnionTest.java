@@ -9,7 +9,9 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.region.BallRegion;
-import ch.alpine.owl.rrts.core.TransitionRegionQuery;
+import ch.alpine.owlets.rrts.adapter.SampledTransitionRegionQuery;
+import ch.alpine.owlets.rrts.adapter.TransitionRegionQueryUnion;
+import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.sophis.ts.Transition;
 import ch.alpine.tensor.RealScalar;

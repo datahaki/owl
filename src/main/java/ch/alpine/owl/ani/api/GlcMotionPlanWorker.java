@@ -3,8 +3,8 @@ package ch.alpine.owl.ani.api;
 
 import java.util.Collection;
 
-import ch.alpine.owl.glc.adapter.GlcExpand;
-import ch.alpine.owl.glc.core.TrajectoryPlanner;
+import ch.alpine.owlets.glc.adapter.GlcExpand;
+import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 
 /* package */ class GlcMotionPlanWorker extends MotionPlanWorker<TrajectoryPlanner, GlcPlannerCallback> {
   public GlcMotionPlanWorker(int maxSteps, Collection<GlcPlannerCallback> glcPlannerCallbacks) {

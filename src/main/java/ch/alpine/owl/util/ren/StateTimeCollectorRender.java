@@ -7,8 +7,8 @@ import java.awt.geom.Point2D;
 
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.math.state.StateTime;
-import ch.alpine.owl.math.state.StateTimeCollector;
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTimeCollector;
 
 public class StateTimeCollectorRender implements RenderInterface {
   private static final Color COLOR = new Color(0, 0, 0, 128);

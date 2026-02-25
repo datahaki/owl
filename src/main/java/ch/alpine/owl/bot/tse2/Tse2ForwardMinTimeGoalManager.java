@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.tse2;
 
 import java.util.Collection;
 
-import ch.alpine.owl.glc.adapter.AbstractMinTimeGoalManager;
+import ch.alpine.owlets.glc.adapter.AbstractMinTimeGoalManager;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

@@ -3,10 +3,10 @@ package ch.alpine.owl.bot.tse2;
 
 import java.util.List;
 
-import ch.alpine.owl.glc.adapter.StateTimeTrajectories;
-import ch.alpine.owl.glc.core.CostFunction;
-import ch.alpine.owl.glc.core.GlcNode;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
+import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.owlets.glc.core.GlcNode;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

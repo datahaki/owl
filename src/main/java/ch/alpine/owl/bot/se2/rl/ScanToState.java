@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rl;
 
-import ch.alpine.owl.math.order.VectorLexicographic;
+import ch.alpine.owlets.math.order.VectorLexicographic;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

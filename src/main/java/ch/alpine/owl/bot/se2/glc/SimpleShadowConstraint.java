@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.awt.geom.Area;
 
 import ch.alpine.owl.mapping.ShadowMapArea;
-import ch.alpine.owl.math.state.StateTime;
+import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
