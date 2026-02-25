@@ -29,8 +29,8 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.datahaki</groupId>
-			<artifactId>qhull3d</artifactId>
-			<version>0.0.3</version>
+			<artifactId>qhull3</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.drewnoakes</groupId>
