@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascona.hull.SurfaceMeshDemo;
-import ch.alpine.qhull3d.PlatonicSolid;
+import ch.alpine.qhull3.PlatonicSolid;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophis.srf.Volume;
 import ch.alpine.tensor.RealScalar;

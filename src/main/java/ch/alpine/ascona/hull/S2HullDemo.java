@@ -10,7 +10,7 @@ import ch.alpine.ascony.ren.LeversRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.qhull3d.ConvexHull3D;
+import ch.alpine.qhull3.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.RandomSample;

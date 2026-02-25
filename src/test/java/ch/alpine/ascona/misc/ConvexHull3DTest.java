@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.qhull3d.ConvexHull3D;
+import ch.alpine.qhull3.ConvexHull3D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.opt.nd.BoxRandomSample;

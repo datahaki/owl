@@ -18,7 +18,7 @@ import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldPreferredWidth;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.qhull3d.PlatonicSolid;
+import ch.alpine.qhull3.PlatonicSolid;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.crv.d2.PolygonArea;
 import ch.alpine.sophis.ref.d2.SurfaceMeshRefinement;

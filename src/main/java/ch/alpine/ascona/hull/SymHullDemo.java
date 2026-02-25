@@ -14,7 +14,7 @@ import ch.alpine.ascony.win.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.qhull3d.ConvexHull3D;
+import ch.alpine.qhull3.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

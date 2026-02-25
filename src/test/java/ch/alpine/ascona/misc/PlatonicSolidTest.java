@@ -12,7 +12,7 @@ import java.util.Set;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import ch.alpine.qhull3d.PlatonicSolid;
+import ch.alpine.qhull3.PlatonicSolid;
 import ch.alpine.sophis.srf.SimplexD;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

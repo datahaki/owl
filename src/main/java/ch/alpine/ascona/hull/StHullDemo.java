@@ -15,7 +15,7 @@ import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
-import ch.alpine.qhull3d.ConvexHull3D;
+import ch.alpine.qhull3.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.hs.st.StiefelManifold;
 import ch.alpine.sophus.hs.st.TStMemberQ;
