@@ -6,7 +6,7 @@ import java.util.random.RandomGenerator;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.sophus.math.sample.BallRandomSample;
+import ch.alpine.sophus.rsm.BallRandomSample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.Distribution;

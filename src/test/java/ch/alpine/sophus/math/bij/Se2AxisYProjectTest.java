@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophus.lie.se2.Se2AxisYProject;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
-import ch.alpine.sophus.math.sample.BallRandomSample;
+import ch.alpine.sophus.rsm.BallRandomSample;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

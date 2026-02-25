@@ -25,7 +25,7 @@ import ch.alpine.sophis.crv.dub.DubinsPathComparators;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.RnTransitionSpace;
-import ch.alpine.sophus.math.sample.BallRandomSample;
+import ch.alpine.sophus.rsm.BallRandomSample;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
