@@ -10,7 +10,7 @@ import java.util.Set;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
-import ch.alpine.ascony.ref.AsconaParam;
+import ch.alpine.ascony.ren.AsconaParam;
 import ch.alpine.ascony.ren.PathRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.ControlPointsDemo;
@@ -48,11 +48,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   private static final ColorDataIndexed COLOR_DATA_INDEXED_FILL = ColorDataLists._097.cyclic().deriveWithAlpha(192);
 
   @ReflectionMarker
-  public static class Param extends AsconaParam {
-    public Param() {
-      super(false);
-    }
-
+  public static class Param {
     public Boolean ctrl = true;
     public SurfaceMeshRefinements ref = SurfaceMeshRefinements.CATMULL_CLARK;
     @FieldSlider
@@ -71,7 +67,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   }
 
   public SurfaceMeshDemo(Param param) {
-    super(param);
+    super(new AsconaParam(false), param);
     this.param = param;
     // ---
     surfaceMesh = surfaceMesh(PlatonicSolid.ICOSAHEDRON);

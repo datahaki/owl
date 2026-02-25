@@ -7,7 +7,7 @@ import java.util.List;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
-import ch.alpine.ascony.ref.AsconaParam;
+import ch.alpine.ascony.ren.AsconaParam;
 import ch.alpine.ascony.ren.LeversRender;
 import ch.alpine.ascony.win.ControlPointsDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -43,11 +43,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
 
   // ---
   @ReflectionMarker
-  public static class Param extends AsconaParam {
-    public Param() {
-      super(false);
-    }
-
+  public static class Param {
     @FieldClip(min = "1", max = "20")
     public Integer value = 3;
   }
@@ -60,7 +56,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   public Se2RrtsNodeCollectionDemo(Param param) {
-    super(param);
+    super(new AsconaParam(false), param);
     this.param = param;
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
