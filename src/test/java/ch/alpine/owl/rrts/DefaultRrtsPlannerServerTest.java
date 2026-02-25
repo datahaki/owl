@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import javax.crypto.spec.HKDFParameterSpec.Expand;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.rn.rrts.RnRrtsFlow;
@@ -14,6 +12,7 @@ import ch.alpine.owl.bot.rn.rrts.RnRrtsNodeCollection;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
+import ch.alpine.owlets.data.tree.Expand;
 import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;

@@ -1,8 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
-import java.util.stream.Gatherer.Integrator;
-
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;

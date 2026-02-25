@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import java.util.stream.Gatherer.Integrator;
-
 import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -12,6 +10,7 @@ import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.model.VectorFields;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;

@@ -8,8 +8,6 @@ import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 
-import javax.crypto.spec.HKDFParameterSpec.Expand;
-
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.r2.ImageRegions;
@@ -17,6 +15,7 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owlets.data.tree.Expand;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.owlets.rrts.DefaultRrtsPlannerServer;

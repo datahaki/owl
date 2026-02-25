@@ -4,7 +4,6 @@ package ch.alpine.owl.bot.lv;
 import java.awt.Graphics2D;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Gatherer.Integrator;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.adapter.FallbackControl;
@@ -18,6 +17,7 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;

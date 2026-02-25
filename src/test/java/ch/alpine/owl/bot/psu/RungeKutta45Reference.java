@@ -1,8 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import java.util.stream.Gatherer.Integrator;
-
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;

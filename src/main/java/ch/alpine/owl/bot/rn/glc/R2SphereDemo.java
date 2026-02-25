@@ -4,8 +4,7 @@ package ch.alpine.owl.bot.rn.glc;
 import java.util.List;
 import java.util.Optional;
 
-import javax.crypto.spec.HKDFParameterSpec.Expand;
-
+import ch.alpine.owlets.data.tree.Expand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
 import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.owlets.glc.core.GlcNodes;

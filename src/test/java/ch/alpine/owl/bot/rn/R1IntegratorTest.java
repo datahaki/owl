@@ -3,10 +3,9 @@ package ch.alpine.owl.bot.rn;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.stream.Gatherer.Integrator;
-
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;

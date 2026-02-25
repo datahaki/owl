@@ -23,6 +23,7 @@ import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.owlets.rrts.RrtsFlowTrajectoryGenerator;
 import ch.alpine.owlets.rrts.adapter.DirectionalTransitionSpace;
 import ch.alpine.owlets.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;

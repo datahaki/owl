@@ -2,13 +2,13 @@
 package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
-import java.util.stream.Gatherer.Integrator;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.ren.VectorFieldRender;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.model.VectorFields;

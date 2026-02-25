@@ -2,7 +2,6 @@
 package ch.alpine.owl.bot.ap;
 
 import java.util.Collection;
-import java.util.stream.Gatherer.Integrator;
 
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -10,6 +9,7 @@ import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;

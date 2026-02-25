@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import java.util.stream.Gatherer.Integrator;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.MidpointIntegrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta4Integrator;

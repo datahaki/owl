@@ -5,12 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.stream.Gatherer.Integrator;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.owlets.math.flow.Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
