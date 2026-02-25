@@ -1,0 +1,22 @@
+// code by jph
+package ch.alpine.owl.klotzki;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Tensor;
+
+class KlotskiStateTimeRasterTest {
+  @Test
+  void testSimple() {
+    for (Huarong huarong : Huarong.values()) {
+      KlotskiProblem klotskiProblem = huarong.create();
+      Tensor board = klotskiProblem.startState();
+      Tensor key = KlotskiStateTimeRaster.INSTANCE.convertToKey(new StateTime(board, RealScalar.ONE));
+      assertEquals(board, key);
+    }
+  }
+}
