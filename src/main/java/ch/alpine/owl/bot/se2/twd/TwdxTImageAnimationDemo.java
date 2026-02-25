@@ -15,7 +15,7 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.sophus.math.bij.R2RigidFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;

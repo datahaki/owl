@@ -3,7 +3,7 @@ package ch.alpine.owl.region;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.chq.MemberQ;
 
 /** class design stolen from java.util.Collections */

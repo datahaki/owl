@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.r2;
 import java.io.Serializable;
 
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.api.Region;
-import ch.alpine.sophus.math.noise.SimplexContinuousNoise;
+import ch.alpine.sophis.noise.SimplexContinuousNoise;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

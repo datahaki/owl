@@ -16,7 +16,7 @@ import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeDependentRegion;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;

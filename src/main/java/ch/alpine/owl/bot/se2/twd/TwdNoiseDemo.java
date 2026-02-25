@@ -10,7 +10,7 @@ import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 

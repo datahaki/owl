@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.crv.d2.ex.CogPoints;
-import ch.alpine.sophis.math.api.Region;
 import ch.alpine.sophus.math.bij.BijectionFamily;
 import ch.alpine.sophus.math.bij.So2Family;
 import ch.alpine.tensor.RealScalar;

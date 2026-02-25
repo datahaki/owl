@@ -28,7 +28,7 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
-import ch.alpine.sophis.math.api.CoordinateWrap;
+import ch.alpine.sophis.api.CoordinateWrap;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

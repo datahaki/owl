@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import ch.alpine.owl.util.img.FloodFill2D;
-import ch.alpine.owl.util.img.ImageBlackWhiteQ;
+import ch.alpine.ascony.img.FloodFill2D;
+import ch.alpine.ascony.img.ImageBlackWhiteQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

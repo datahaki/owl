@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.util.img.ImageArea;
+import ch.alpine.ascony.img.ImageArea;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

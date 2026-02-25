@@ -17,7 +17,7 @@ import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;

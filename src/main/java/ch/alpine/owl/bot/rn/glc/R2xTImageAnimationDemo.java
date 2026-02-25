@@ -16,7 +16,7 @@ import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.math.api.Region;
+import ch.alpine.sophis.api.Region;
 import ch.alpine.sophus.math.bij.R2RigidFamily;
 import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;

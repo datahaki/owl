@@ -7,12 +7,12 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
+import ch.alpine.ascony.img.ImageArea;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.AffineTransforms;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.region.ImageRegion;
-import ch.alpine.owl.util.img.ImageArea;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
