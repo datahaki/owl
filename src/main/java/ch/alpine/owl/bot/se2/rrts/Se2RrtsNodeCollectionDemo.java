@@ -45,7 +45,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   @ReflectionMarker
   public static class Param extends AsconaParam {
     public Param() {
-      super(false, ManifoldDisplays.CL_ONLY);
+      super(false);
     }
 
     @FieldClip(min = "1", max = "20")

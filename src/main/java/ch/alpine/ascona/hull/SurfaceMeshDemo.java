@@ -50,7 +50,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   @ReflectionMarker
   public static class Param extends AsconaParam {
     public Param() {
-      super(false, ManifoldDisplays.SE2C_R2);
+      super(false);
     }
 
     public Boolean ctrl = true;
@@ -102,7 +102,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
           System.err.println("neg");
       }
     }
-    if (param.manifoldDisplays.equals(ManifoldDisplays.R2))
+    if (getSelectedMD().equals(ManifoldDisplays.R2))
       new SurfaceMeshRender(refine, param.cdg).render(geometricLayer, graphics);
     else {
       for (Tensor polygon : refine.polygons()) {
