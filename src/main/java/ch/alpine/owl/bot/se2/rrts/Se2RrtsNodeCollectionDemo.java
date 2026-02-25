@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
@@ -71,6 +72,11 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
       se2RrtsNodeCollection.insert(RrtsNode.createRoot(state, RealScalar.ONE));
     }
     setControlPointsSe2(Tensors.fromString("{{0, 0, 0}}"));
+  }
+
+  @Override
+  public List<ManifoldDisplays> getManifoldDisplays() {
+    return ManifoldDisplays.CL_ONLY;
   }
 
   @Override

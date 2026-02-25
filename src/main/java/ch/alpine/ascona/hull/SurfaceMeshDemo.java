@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
@@ -77,6 +78,11 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
     setControlPointsSe2(surfaceMesh.vrt);
     // ---
     timerFrame.geometricComponent.setOffset(100, 600);
+  }
+
+  @Override
+  public List<ManifoldDisplays> getManifoldDisplays() {
+    return ManifoldDisplays.SE2C_R2;
   }
 
   @Override // from RenderInterface
