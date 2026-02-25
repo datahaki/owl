@@ -50,6 +50,6 @@ import ch.alpine.tensor.qty.Degree;
   }
 
   static void main() {
-    new PursuitSimulation().start().jFrame.setVisible(true);
+    new PursuitSimulation().runStandalone();
   }
 }

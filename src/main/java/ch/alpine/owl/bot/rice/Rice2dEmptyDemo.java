@@ -29,6 +29,6 @@ public class Rice2dEmptyDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice2dEmptyDemo().start().jFrame.setVisible(true);
+    new Rice2dEmptyDemo().runStandalone();
   }
 }

@@ -55,6 +55,6 @@ public class TwdImageDemo extends AbstractTwdDemo {
   }
 
   static void main() {
-    new TwdImageDemo().start().jFrame.setVisible(true);
+    new TwdImageDemo().runStandalone();
   }
 }

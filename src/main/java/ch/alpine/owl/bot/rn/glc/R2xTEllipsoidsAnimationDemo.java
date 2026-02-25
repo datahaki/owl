@@ -75,6 +75,6 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2xTEllipsoidsAnimationDemo().start().jFrame.setVisible(true);
+    new R2xTEllipsoidsAnimationDemo().runStandalone();
   }
 }

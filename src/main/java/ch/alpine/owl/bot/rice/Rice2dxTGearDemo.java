@@ -60,6 +60,6 @@ public class Rice2dxTGearDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice2dxTGearDemo().start().jFrame.setVisible(true);
+    new Rice2dxTGearDemo().runStandalone();
   }
 }

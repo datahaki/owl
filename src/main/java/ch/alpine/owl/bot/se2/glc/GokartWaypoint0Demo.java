@@ -64,6 +64,6 @@ public class GokartWaypoint0Demo extends GokartDemo {
   }
 
   static void main() {
-    new GokartWaypoint0Demo().start().jFrame.setVisible(true);
+    new GokartWaypoint0Demo().runStandalone();
   }
 }

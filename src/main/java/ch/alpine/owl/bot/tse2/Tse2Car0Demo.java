@@ -47,6 +47,6 @@ public class Tse2Car0Demo extends Tse2CarDemo {
   }
 
   static void main() {
-    new Tse2Car0Demo().start().jFrame.setVisible(true);
+    new Tse2Car0Demo().runStandalone();
   }
 }

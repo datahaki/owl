@@ -47,6 +47,6 @@ public class BalloonAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new BalloonAnimationDemo().start().jFrame.setVisible(true);
+    new BalloonAnimationDemo().runStandalone();
   }
 }

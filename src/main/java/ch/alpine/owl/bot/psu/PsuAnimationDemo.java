@@ -49,6 +49,6 @@ public class PsuAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new PsuAnimationDemo().start().jFrame.setVisible(true);
+    new PsuAnimationDemo().runStandalone();
   }
 }

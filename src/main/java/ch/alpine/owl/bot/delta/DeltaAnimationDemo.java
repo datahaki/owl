@@ -57,6 +57,6 @@ public class DeltaAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new DeltaAnimationDemo().start().jFrame.setVisible(true);
+    new DeltaAnimationDemo().runStandalone();
   }
 }

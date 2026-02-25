@@ -58,6 +58,6 @@ import ch.alpine.tensor.chq.MemberQ;
   }
 
   static void main() {
-    new R2RrtsLetterDemo().start().jFrame.setVisible(true);
+    new R2RrtsLetterDemo().runStandalone();
   }
 }

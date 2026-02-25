@@ -38,6 +38,6 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2xTNoiseAnimationDemo().start().jFrame.setVisible(true);
+    new R2xTNoiseAnimationDemo().runStandalone();
   }
 }

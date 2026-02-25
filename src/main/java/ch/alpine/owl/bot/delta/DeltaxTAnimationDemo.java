@@ -96,6 +96,6 @@ public class DeltaxTAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new DeltaxTAnimationDemo().start().jFrame.setVisible(true);
+    new DeltaxTAnimationDemo().runStandalone();
   }
 }

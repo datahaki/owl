@@ -36,6 +36,6 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
   }
 
   static void main() {
-    new Se2PolicyNoiseDemo().start().jFrame.setVisible(true);
+    new Se2PolicyNoiseDemo().runStandalone();
   }
 }

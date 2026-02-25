@@ -60,6 +60,6 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2xTPolygonAnimationDemo().start().jFrame.setVisible(true);
+    new R2xTPolygonAnimationDemo().runStandalone();
   }
 }

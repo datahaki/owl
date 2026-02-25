@@ -46,6 +46,6 @@ public class Se2Letter2Demo extends Se2CarDemo {
   }
 
   static void main() {
-    new Se2Letter2Demo().start().jFrame.setVisible(true);
+    new Se2Letter2Demo().runStandalone();
   }
 }

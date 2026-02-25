@@ -44,6 +44,6 @@ public class R2xTMapAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2xTMapAnimationDemo().start().jFrame.setVisible(true);
+    new R2xTMapAnimationDemo().runStandalone();
   }
 }

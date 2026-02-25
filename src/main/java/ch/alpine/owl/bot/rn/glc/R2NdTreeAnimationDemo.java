@@ -47,6 +47,6 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2NdTreeAnimationDemo().start().jFrame.setVisible(true);
+    new R2NdTreeAnimationDemo().runStandalone();
   }
 }

@@ -54,6 +54,6 @@ public class LvAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new LvAnimationDemo().start().jFrame.setVisible(true);
+    new LvAnimationDemo().runStandalone();
   }
 }

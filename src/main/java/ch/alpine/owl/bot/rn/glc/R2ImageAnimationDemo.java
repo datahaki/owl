@@ -43,6 +43,6 @@ public class R2ImageAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2ImageAnimationDemo().start().jFrame.setVisible(true);
+    new R2ImageAnimationDemo().runStandalone();
   }
 }

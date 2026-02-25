@@ -65,6 +65,6 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
   }
 
   static void main() {
-    new Se2xTEllipsoidsDemo().start().jFrame.setVisible(true);
+    new Se2xTEllipsoidsDemo().runStandalone();
   }
 }

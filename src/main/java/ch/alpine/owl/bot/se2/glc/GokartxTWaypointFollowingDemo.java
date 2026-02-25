@@ -96,6 +96,6 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
   }
 
   static void main() {
-    new GokartxTWaypointFollowingDemo().start().jFrame.setVisible(true);
+    new GokartxTWaypointFollowingDemo().runStandalone();
   }
 }

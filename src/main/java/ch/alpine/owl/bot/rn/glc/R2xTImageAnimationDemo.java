@@ -50,6 +50,6 @@ public class R2xTImageAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2xTImageAnimationDemo().start().jFrame.setVisible(true);
+    new R2xTImageAnimationDemo().runStandalone();
   }
 }

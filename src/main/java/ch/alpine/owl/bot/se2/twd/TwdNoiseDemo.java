@@ -35,6 +35,6 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
   }
 
   static void main() {
-    new TwdNoiseDemo().start().jFrame.setVisible(true);
+    new TwdNoiseDemo().runStandalone();
   }
 }

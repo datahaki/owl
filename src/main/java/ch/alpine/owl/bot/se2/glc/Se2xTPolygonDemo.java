@@ -48,6 +48,6 @@ public class Se2xTPolygonDemo implements DemoInterface {
   }
 
   static void main() {
-    new Se2xTPolygonDemo().start().jFrame.setVisible(true);
+    new Se2xTPolygonDemo().runStandalone();
   }
 }

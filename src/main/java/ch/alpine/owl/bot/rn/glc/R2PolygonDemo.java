@@ -18,6 +18,6 @@ import ch.alpine.tensor.chq.MemberQ;
   }
 
   static void main() {
-    new R2PolygonDemo().start();
+    new R2PolygonDemo().runStandalone();
   }
 }

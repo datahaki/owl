@@ -80,6 +80,6 @@ import ch.alpine.tensor.sca.Clips;
   }
 
   static void main() {
-    new ClothoidRrtsLetterDemo().start().jFrame.setVisible(true);
+    new ClothoidRrtsLetterDemo().runStandalone();
   }
 }

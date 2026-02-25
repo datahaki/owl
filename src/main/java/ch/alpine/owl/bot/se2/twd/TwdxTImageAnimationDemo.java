@@ -69,6 +69,6 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
   }
 
   static void main() {
-    new TwdxTImageAnimationDemo().start().jFrame.setVisible(true);
+    new TwdxTImageAnimationDemo().runStandalone();
   }
 }

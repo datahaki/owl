@@ -106,6 +106,6 @@ public class Se2xTLetterDemo implements DemoInterface {
   }
 
   static void main() {
-    new Se2xTLetterDemo().start().jFrame.setVisible(true);
+    new Se2xTLetterDemo().runStandalone();
   }
 }

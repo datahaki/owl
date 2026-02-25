@@ -30,6 +30,6 @@ public class Rice1dEmptyDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice1dEmptyDemo().start().jFrame.setVisible(true);
+    new Rice1dEmptyDemo().runStandalone();
   }
 }

@@ -48,6 +48,6 @@ public class Rice1dNoiseDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice1dNoiseDemo().start().jFrame.setVisible(true);
+    new Rice1dNoiseDemo().runStandalone();
   }
 }

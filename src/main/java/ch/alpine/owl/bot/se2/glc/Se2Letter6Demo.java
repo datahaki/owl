@@ -10,6 +10,6 @@ public class Se2Letter6Demo extends Se2LetterADemo {
   }
 
   static void main() {
-    new Se2Letter6Demo().start().jFrame.setVisible(true);
+    new Se2Letter6Demo().runStandalone();
   }
 }

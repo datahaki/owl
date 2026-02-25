@@ -66,6 +66,6 @@ public class Rice2dxTParts1Demo implements DemoInterface {
   }
 
   static void main() {
-    new Rice2dxTParts1Demo().start().jFrame.setVisible(true);
+    new Rice2dxTParts1Demo().runStandalone();
   }
 }

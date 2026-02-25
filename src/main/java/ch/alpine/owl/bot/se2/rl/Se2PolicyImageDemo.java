@@ -41,6 +41,6 @@ public class Se2PolicyImageDemo implements DemoInterface {
   }
 
   static void main() {
-    new Se2PolicyImageDemo().start().jFrame.setVisible(true);
+    new Se2PolicyImageDemo().runStandalone();
   }
 }

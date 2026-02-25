@@ -35,6 +35,6 @@ public class Rice2dNoiseDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice2dNoiseDemo().start().jFrame.setVisible(true);
+    new Rice2dNoiseDemo().runStandalone();
   }
 }

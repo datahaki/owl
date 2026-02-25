@@ -41,6 +41,6 @@ public class R2NoiseAnimationDemo implements DemoInterface {
   }
 
   static void main() {
-    new R2NoiseAnimationDemo().start().jFrame.setVisible(true);
+    new R2NoiseAnimationDemo().runStandalone();
   }
 }

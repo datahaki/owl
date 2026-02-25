@@ -39,6 +39,6 @@ public class Rice2dImageDemo implements DemoInterface {
   }
 
   static void main() {
-    new Rice2dImageDemo().start().jFrame.setVisible(true);
+    new Rice2dImageDemo().runStandalone();
   }
 }

@@ -19,6 +19,6 @@ import ch.alpine.tensor.chq.MemberQ;
   }
 
   static void main() {
-    new R2PointsDemo().start();
+    new R2PointsDemo().runStandalone();
   }
 }
