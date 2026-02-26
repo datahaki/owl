@@ -29,7 +29,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 30));
 
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(0, 0, 1), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);

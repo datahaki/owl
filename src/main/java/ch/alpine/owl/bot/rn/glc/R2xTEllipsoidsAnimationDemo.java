@@ -40,7 +40,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
 
   @SuppressWarnings("unused")
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

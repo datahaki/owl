@@ -31,7 +31,7 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(1.5);
 
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

@@ -22,7 +22,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 public class Rice2dImageDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-0.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);

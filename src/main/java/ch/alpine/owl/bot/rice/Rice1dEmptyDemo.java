@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 
 public class Rice1dEmptyDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.ZERO;
     Collection<Tensor> controls = Rice2Controls.create1d(15);

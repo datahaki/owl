@@ -16,7 +16,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2PolicyNoiseDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     final Scalar threshold = RealScalar.of(0.6);

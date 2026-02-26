@@ -16,12 +16,12 @@ public interface DemoInterface {
   /** start demo
    * 
    * @return */
-  BaseFrame start();
+  BaseFrame getWindow();
 
   default void runStandalone() {
     ImageIO.setUseCache(false);
     LookAndFeels.autoDetect();
-    BaseFrame baseFrame = start();
+    BaseFrame baseFrame = getWindow();
     JFrame jFrame = baseFrame.jFrame;
     ResourceLocator resourceLocator = ResourceLocator.of(getClass());
     WindowBounds.persistent(jFrame, resourceLocator.properties(WindowBounds.class));

@@ -23,7 +23,7 @@ import ch.alpine.tensor.chq.MemberQ;
  * which gives an incentive to stay clear of obstacles */
 public class R2ImageAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

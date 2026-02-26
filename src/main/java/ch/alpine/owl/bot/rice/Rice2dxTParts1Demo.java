@@ -32,7 +32,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 
 public class Rice2dxTParts1Demo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);

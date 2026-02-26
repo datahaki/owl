@@ -41,7 +41,7 @@ abstract class R2BaseDemo implements DemoInterface {
   protected abstract Tensor startState();
 
   @Override // from DemoInterface
-  public final BaseFrame start() {
+  public final BaseFrame getWindow() {
     Tensor partitionScale = Tensors.vector(5, 5);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 8), 4);

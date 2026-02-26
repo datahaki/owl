@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Clips;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     Tensor image = Import.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = RealScalar.of(-.05); // direction and strength of river flow

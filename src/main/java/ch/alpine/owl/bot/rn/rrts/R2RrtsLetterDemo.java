@@ -24,7 +24,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 /* package */ class R2RrtsLetterDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame start() {
+  public OwlAnimationFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     MemberQ region = r2ImageRegionWrap.region();
