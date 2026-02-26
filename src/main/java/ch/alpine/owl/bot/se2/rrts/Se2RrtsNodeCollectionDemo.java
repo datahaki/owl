@@ -8,6 +8,8 @@ import java.util.List;
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
 import ch.alpine.ascony.ren.LeversRender;
+import ch.alpine.ascony.win.ControlPointType;
+import ch.alpine.ascony.win.ControlPointTypes;
 import ch.alpine.ascony.win.ControlPointsDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldClip;
@@ -59,7 +61,6 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     this.param = param;
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
-    controlPointsRender.setMidpointIndicated(false);
     // ---
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(ND_BOX_SE2);
     sequence = RandomSample.of(randomSampleInterface, SIZE);
@@ -75,8 +76,8 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   @Override
-  protected boolean addRemoveControlPoints() {
-    return false;
+  public ControlPointType controlPointType() {
+    return ControlPointTypes.HEAD_TAIL;
   }
 
   @Override
