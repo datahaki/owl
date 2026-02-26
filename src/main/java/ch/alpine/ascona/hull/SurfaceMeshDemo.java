@@ -10,7 +10,6 @@ import java.util.Set;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
-import ch.alpine.ascony.ren.AsconaParam;
 import ch.alpine.ascony.ren.PathRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.ControlPointsDemo;
@@ -67,7 +66,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   }
 
   public SurfaceMeshDemo(Param param) {
-    super(new AsconaParam(false), param);
+    super(param);
     this.param = param;
     // ---
     surfaceMesh = surfaceMesh(PlatonicSolid.ICOSAHEDRON);
@@ -79,6 +78,11 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
   @Override
   public List<ManifoldDisplays> permitted_manifoldDisplays() {
     return ManifoldDisplays.SE2C_R2;
+  }
+
+  @Override
+  protected boolean addRemoveControlPoints() {
+    return false;
   }
 
   @Override // from RenderInterface

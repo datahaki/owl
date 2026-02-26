@@ -7,7 +7,6 @@ import java.util.List;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
-import ch.alpine.ascony.ren.AsconaParam;
 import ch.alpine.ascony.ren.LeversRender;
 import ch.alpine.ascony.win.ControlPointsDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -56,7 +55,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   }
 
   public Se2RrtsNodeCollectionDemo(Param param) {
-    super(new AsconaParam(false), param);
+    super(param);
     this.param = param;
     // DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH);
     // ---
@@ -73,6 +72,11 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   @Override
   public List<ManifoldDisplays> permitted_manifoldDisplays() {
     return ManifoldDisplays.CL_ONLY;
+  }
+
+  @Override
+  protected boolean addRemoveControlPoints() {
+    return false;
   }
 
   @Override
