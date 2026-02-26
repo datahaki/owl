@@ -2,7 +2,6 @@
 package ch.alpine.owl;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DynamicTest;
@@ -16,8 +15,8 @@ class DemoInterfaceTest implements Consumer<DemoInterface> {
   @TestFactory
   Stream<DynamicTest> dynamicTests() {
     return InstanceDiscovery.of(getClass().getPackageName(), DemoInterface.class).stream() //
-        .map(Supplier::get) //
-        .map(instance -> DynamicTest.dynamicTest(instance.toString(), () -> accept(instance)));
+        .map(instanceRecord -> DynamicTest.dynamicTest(instanceRecord.toString(), //
+            () -> accept(instanceRecord.supplier().get())));
   }
 
   @Override
