@@ -29,6 +29,6 @@ public enum Se2Wrap implements CoordinateWrap {
 
   @Override // from TensorDifference
   public Tensor difference(Tensor p, Tensor q) {
-    return Se2CoveringGroup.INSTANCE.exponential(p).log(q);
+    return Se2CoveringGroup.INSTANCE.tangentSpace(p).log(q);
   }
 }

@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.hull;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.util.Random;
 import java.util.random.RandomGenerator;
@@ -33,7 +32,7 @@ class ConvexHullShow implements ManipulateProvider {
     Clip clip = Clips.absolute(1.5);
     Tensor points = RandomVariate.of(NormalDistribution.standard(), randomGenerator, n, 2).maps(clip);
     Tensor hull = ConvexHull2D.of(points);
-    show.add(PolygonPlot.of(hull)).setColor(new Color(128, 128, 255, 32));
+    show.add(PolygonPlot.of(hull)).setAlpha(128);
     show.add(ListPlot.of(points));
     show.add(ListPlot.of(hull));
     show.setPlotLabel("Hull point count = " + hull.length());

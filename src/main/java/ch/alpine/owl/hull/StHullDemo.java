@@ -51,7 +51,7 @@ public class StHullDemo implements ManipulateProvider, RenderInterface {
     Tensor p = RandomSample.of(stiefelManifold, randomGenerator);
     Tensor v = new TStMemberQ(p).projection( //
         RandomVariate.of(NormalDistribution.of(0.0, 0.1), randomGenerator, Dimensions.of(p)));
-    Tensor pointst = stiefelManifold.exponential(p).exp(v.multiply(split));
+    Tensor pointst = stiefelManifold.tangentSpace(p).exp(v.multiply(split));
     Tensor points = Transpose.of(pointst);
     List<int[]> faces = ConvexHull3D.of(points);
     SurfaceMesh surfaceMesh = new SurfaceMesh(points, faces);
