@@ -16,7 +16,6 @@ import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.tensor.Rational;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

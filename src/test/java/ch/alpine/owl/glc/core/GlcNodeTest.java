@@ -77,7 +77,7 @@ class GlcNodeTest {
     // ---
     Tensor eta = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5),"s"), 5);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(36);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(stateGoal, radius);
@@ -86,7 +86,7 @@ class GlcNodeTest {
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap(new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, plannerConstraint, rnGoal));
-    trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(Rational.of(0, 1),"s")));
+    trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(Rational.of(0, 1), "s")));
     List<GlcNode> nodeList = new ArrayList<>(trajectoryPlanner.getDomainMap().values());
     assertTrue(nodeList.get(0).isRoot());
     // nodeList.get(0).makeRoot(); // no error

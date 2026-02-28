@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Chop;
 class Se2CarIntegratorTest {
   @Test
   void testCarEx() {
-    Scalar dt = Quantity.of(Rational.of(1, 10),"s");
+    Scalar dt = Quantity.of(Rational.of(1, 10), "s");
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
         FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
     Scalar r = FIXEDSTATEINTEGRATOR.getTimeStepTrajectory();

@@ -40,7 +40,7 @@ import ch.alpine.tensor.qty.Quantity;
   private final StateSpaceModel stateSpaceModel;
   private final Collection<Tensor> controls;
   // ---
-  public Scalar delayHint =Quantity.of(1, "s");
+  public Scalar delayHint = Quantity.of(1, "s");
 
   /** @param state initial position of entity */
   public Rice2dEntity(Scalar mu, Tensor state, TrajectoryControl trajectoryControl, Collection<Tensor> controls) {

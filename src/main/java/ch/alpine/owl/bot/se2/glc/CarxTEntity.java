@@ -7,7 +7,6 @@ import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.StateTimeCoordinateWrap;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.qty.Quantity;
 
