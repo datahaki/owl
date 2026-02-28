@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.hull;
 
+import java.awt.Container;
 import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,9 +10,12 @@ import java.util.random.RandomGenerator;
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.R3Display;
 import ch.alpine.ascony.ren.LeversRender;
+import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
-import ch.alpine.ascony.win.AbstractDemo;
+import ch.alpine.ascony.win.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.pro.ManipulateProvider;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.qhull3.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.Tensor;
@@ -21,25 +25,20 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-// TODO ASCONA generalize NdCenters
-public class R3HullDemo extends AbstractDemo {
+@ReflectionMarker
+class R3HullDemo implements ManipulateProvider, RenderInterface {
   private final ManifoldDisplay manifoldDisplay = R3Display.INSTANCE;
-  private Tensor tensor;
-  private final HullParam hullParam;
+  private final GeometricComponent geometricComponent = new GeometricComponent();
+  public final HullParam hullParam = new HullParam();
   private List<int[]> faces;
+  private Tensor tensor;
 
   public R3HullDemo() {
-    this(new HullParam());
+    geometricComponent.addRenderInterface(this);
   }
 
-  public R3HullDemo(HullParam hullParam) {
-    super(hullParam);
-    this.hullParam = hullParam;
-    fieldsEditor(0).addUniversalListener(this::shuffle);
-    shuffle();
-  }
-
-  private void shuffle() {
+  @Override
+  public Container getContainer() {
     if (hullParam.shuffle) {
       hullParam.shuffle = false;
       int n = hullParam.count.number().intValue();
@@ -60,6 +59,7 @@ public class R3HullDemo extends AbstractDemo {
       }
     }
     faces = ConvexHull3D.of(tensor);
+    return geometricComponent.jComponent;
   }
 
   @Override

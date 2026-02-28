@@ -76,7 +76,7 @@ class GlcNodeTest {
     final Scalar radius = DoubleScalar.of(0.25);
     // ---
     Tensor eta = Tensors.vector(8, 8);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(36);

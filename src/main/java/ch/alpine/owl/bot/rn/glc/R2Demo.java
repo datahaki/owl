@@ -40,7 +40,7 @@ import ch.alpine.tensor.sca.Ramp;
 /** functionality is used in tests */
 /* package */ enum R2Demo {
   ;
-  static final StateIntegrator STATE_INTEGRATOR = FixedStateIntegrator.create( //
+  static final StateIntegrator STATE_INTEGRATOR = new FixedStateIntegrator( //
       EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
 
   static TrajectoryPlanner simpleEmpty() {

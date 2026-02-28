@@ -66,7 +66,7 @@ enum Se2WrapDemo {
 
   static TrajectoryPlanner createPlanner(CoordinateWrap coordinateWrap, So2Region so2Region) {
     Tensor eta = Tensors.vector(3, 3, 50 / Math.PI);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
     FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);

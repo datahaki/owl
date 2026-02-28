@@ -51,7 +51,7 @@ class Duncan1StateSpaceModelTest {
   void testLimit() {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         RungeKutta45Integrator.INSTANCE, stateSpaceModel, Scalars.fromString("1/5[s]"), 99 * 5); // simulate for 100[s]
     StateTime stateTime = new StateTime(Tensors.of(Quantity.of(10, "m*s^-1")), Quantity.of(1, "s"));
     Scalar push = Quantity.of(3, "m*s^-2");

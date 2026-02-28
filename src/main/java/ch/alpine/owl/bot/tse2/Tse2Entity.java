@@ -48,7 +48,7 @@ public abstract class Tse2Entity extends TrajectoryEntity implements GlcPlannerC
         stateTime), //
         trajectoryControl);
     fixedStateIntegrator = // node interval == 3/10
-        FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 3);
+        new FixedStateIntegrator(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 3);
     // TODO OWL ALG use tse2 fallback control
     add(FallbackControl.of(Array.zeros(2)));
   }

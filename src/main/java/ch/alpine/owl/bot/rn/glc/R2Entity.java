@@ -45,7 +45,7 @@ import ch.alpine.tensor.qty.Quantity;
  * the implementation chooses certain values */
 /* package */ class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
-  public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = FixedStateIntegrator.create( //
+  public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = new FixedStateIntegrator( //
       EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 12), "s"), 4);
   // ---
   private final TreeRender treeRender = new TreeRender();

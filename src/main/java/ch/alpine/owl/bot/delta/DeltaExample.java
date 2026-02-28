@@ -61,7 +61,7 @@ import ch.alpine.tensor.sca.Clips;
     Collection<Tensor> controls = new DeltaFlows(MAX_INPUT).getFlows(25);
     GoalInterface goalInterface = new DeltaMinTimeGoalManager(SPHERICAL_REGION, maxMove);
     trajectoryPlanner = new StandardTrajectoryPlanner( //
-        STATE_TIME_RASTER, FixedStateIntegrator.create( //
+        STATE_TIME_RASTER, new FixedStateIntegrator( //
             RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 4),
         controls, PLANNER_CONSTRAINT, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), RealScalar.ZERO));

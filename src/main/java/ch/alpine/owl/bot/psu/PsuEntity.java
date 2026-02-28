@@ -59,7 +59,7 @@ import ch.alpine.tensor.qty.Quantity;
   @Override
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     Tensor eta = Tensors.vector(6, 8);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         INTEGRATOR, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;

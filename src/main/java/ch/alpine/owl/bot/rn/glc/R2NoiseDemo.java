@@ -49,7 +49,7 @@ import ch.alpine.tensor.qty.Timing;
     Tensor partitionScale = Tensors.vector(8, 8);
     final Scalar threshold = RealScalar.of(0.1);
     MemberQ region = new R2NoiseRegion(threshold);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 12), "s"), 4);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(23);

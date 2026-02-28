@@ -14,6 +14,7 @@ public class HullParam extends RotParam {
   public Scalar count = RealScalar.of(200);
   public Boolean cuboid = false;
   public ColorDataGradients cdg = ColorDataGradients.ALPINE;
+  /** IMPORTANT: the value shuffle == true is used to initialized */
   @FieldFuse
   public transient Boolean shuffle = true;
 }

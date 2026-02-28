@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.exp.Log;
   static void main() {
     Tensor eta = Tensors.vector(10, 10);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
     Collection<Tensor> controls = LvControls.create(2);
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));

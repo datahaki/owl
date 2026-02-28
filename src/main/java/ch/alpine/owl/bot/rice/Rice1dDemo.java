@@ -42,7 +42,7 @@ import ch.alpine.tensor.qty.Quantity;
     Tensor eta = Tensors.vector(8, 8);
     Scalar mu = RealScalar.of(-0.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 8), "s"), 5);
     Collection<Tensor> controls = Rice2Controls.create1d(15); //
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Tensors.vector(6, -.7), Tensors.vector(0.4, 0.3)));

@@ -44,7 +44,7 @@ abstract class R2BaseDemo implements DemoInterface {
   @Override // from DemoInterface
   public final BaseFrame getBaseFrame() {
     Tensor partitionScale = Tensors.vector(5, 5);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(20);

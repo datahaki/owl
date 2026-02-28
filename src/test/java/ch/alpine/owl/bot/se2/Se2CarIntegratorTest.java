@@ -22,7 +22,7 @@ class Se2CarIntegratorTest {
   void testCarEx() {
     Scalar dt = Quantity.of(Rational.of(1, 10), "s");
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
-        FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
+        new FixedStateIntegrator(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
     Scalar r = FIXEDSTATEINTEGRATOR.getTimeStepTrajectory();
     assertEquals(r, dt.multiply(RealScalar.of(4)));
   }

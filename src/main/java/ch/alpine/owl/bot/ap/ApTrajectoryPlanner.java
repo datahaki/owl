@@ -51,7 +51,7 @@ import ch.alpine.tensor.qty.Quantity;
    * 
    * @return New StandardTrajectoryPlanner for airplane simulation */
   static StandardTrajectoryPlanner apStandardTrajectoryPlanner() {
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         INTEGRATOR, ApStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 3);
     Collection<Tensor> controls = AP_FLOWS.getFlows(FLOWRES);
     ApComboRegion apComboRegion = ApComboRegion.createApRegion(GOAL, RADIUS_VECTOR);

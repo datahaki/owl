@@ -36,7 +36,7 @@ import ch.alpine.tensor.qty.Quantity;
         Tensors.vector(0.5, 0.5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
     // ---
     Tensor eta = Tensors.vector(3, 3, 2, 2);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         RungeKutta45Integrator.INSTANCE, SatelliteStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 6);
     PlannerConstraint plannerConstraint = //
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(obstacleRegion));

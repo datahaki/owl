@@ -40,7 +40,7 @@ import ch.alpine.tensor.qty.Quantity;
   /** preserve 1[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(2, "s");
   /** the constants define the control */
-  private static final Scalar U_NORM = RealScalar.of(0.6);
+  private static final Scalar U_NORM = Quantity.of(0.6, "s^-1");
   /** resolution of radial controls */
   private static final int U_SIZE = 15;
   private static final Scalar GOAL_RADIUS = RealScalar.of(0.3);
@@ -58,7 +58,7 @@ import ch.alpine.tensor.qty.Quantity;
     add(new DeltaCoastingControl(imageGradientInterpolation, U_NORM));
     this.imageGradientInterpolation = imageGradientInterpolation;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
-    fixedStateIntegrator = FixedStateIntegrator.create( //
+    fixedStateIntegrator = new FixedStateIntegrator( //
         RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
   }
 
@@ -89,7 +89,7 @@ import ch.alpine.tensor.qty.Quantity;
     GoalInterface goalInterface = new DeltaMinTimeGoalManager(goalRegion, maxMove);
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
-        FixedStateIntegrator.create( //
+        new FixedStateIntegrator( //
             RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
         controls, plannerConstraint, goalInterface);
   }

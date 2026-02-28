@@ -43,7 +43,7 @@ enum Se2ExpandDemo {
   ;
   static void main() {
     Tensor eta = Tensors.of(RealScalar.of(6), RealScalar.of(6), Degree.of(15).reciprocal());
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
     System.out.println("scale=" + eta);
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(35));

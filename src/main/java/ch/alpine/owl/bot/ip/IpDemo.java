@@ -41,7 +41,7 @@ import ch.alpine.tensor.sca.Clips;
         RealScalar.of(0.2), // m
         RealScalar.of(0.5), // l
         RealScalar.of(1)); // g;
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 5);
     Collection<Tensor> controls = IpControls.createControls(2, 10);
     IpGoalManager ipGoalManager = new IpGoalManager( //

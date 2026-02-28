@@ -44,7 +44,7 @@ enum Se2rImageDemo {
     MemberQ region = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(8, 8), false);
     Tensor partitionScale = Tensors.vector(3, 3, 50 / Math.PI);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);

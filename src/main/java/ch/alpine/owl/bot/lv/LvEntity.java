@@ -45,7 +45,7 @@ import ch.alpine.tensor.qty.Quantity;
     super(episodeIntegrator, trajectoryControl);
     add(FallbackControl.of(Array.zeros(1)));
     fixedStateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 4);
+        new FixedStateIntegrator(INTEGRATOR, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 4);
     this.controls = controls;
   }
 

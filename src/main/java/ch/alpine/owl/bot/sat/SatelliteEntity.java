@@ -64,7 +64,7 @@ import ch.alpine.tensor.qty.Quantity;
   @Override
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     StateIntegrator stateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, STATE_SPACE_MODEL, Quantity.of(Rational.of(1, 12), "s"), 4);
+        new FixedStateIntegrator(INTEGRATOR, STATE_SPACE_MODEL, Quantity.of(Rational.of(1, 12), "s"), 4);
     Tensor center = Join.of(Extract2D.FUNCTION.apply(goal), Array.zeros(2));
     GoalInterface goalInterface = SatelliteGoalManager.create( //
         center, Tensors.vector(0.5, 0.5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));

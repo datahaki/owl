@@ -57,7 +57,7 @@ import ch.alpine.tensor.qty.Timing;
         ))));
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
-        stateTimeRaster, FixedStateIntegrator.create( //
+        stateTimeRaster, new FixedStateIntegrator( //
             MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5),
         controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(0.1, 0.1, 0, 0), RealScalar.ZERO));
@@ -81,7 +81,7 @@ import ch.alpine.tensor.qty.Timing;
       GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
-      List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
+      List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
           MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
@@ -94,7 +94,7 @@ import ch.alpine.tensor.qty.Timing;
       GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
       StateTimeTrajectories.print(trajectory);
-      List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
+      List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
           MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);

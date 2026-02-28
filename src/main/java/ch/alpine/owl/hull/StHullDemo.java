@@ -13,6 +13,7 @@ import ch.alpine.ascony.win.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldClip;
+import ch.alpine.bridge.ref.ann.FieldSelectionArray;
 import ch.alpine.bridge.ref.ann.FieldSlider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.qhull3.ConvexHull3D;
@@ -30,9 +31,10 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 
 @ReflectionMarker
-public class StHullDemo implements ManipulateProvider, RenderInterface {
+class StHullDemo implements ManipulateProvider, RenderInterface {
+  @FieldSelectionArray({ "20", "30", "40", "100" })
   public Integer n = 25;
-  @FieldClip(min = "0", max = "10")
+  @FieldClip(min = "-10", max = "10")
   @FieldSlider(showValue = true, showRange = true)
   public Scalar split = RealScalar.ZERO;
   public ColorDataGradients cdg = ColorDataGradients.SOLAR;

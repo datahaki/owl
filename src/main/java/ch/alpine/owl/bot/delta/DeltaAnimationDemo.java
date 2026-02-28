@@ -26,6 +26,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 public class DeltaAnimationDemo implements DemoInterface {
@@ -42,7 +43,7 @@ public class DeltaAnimationDemo implements DemoInterface {
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO);
+    StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), Quantity.of(0, "s"));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         new DeltaStateSpaceModel(imageGradientInterpolation), EulerIntegrator.INSTANCE, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();

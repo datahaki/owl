@@ -77,7 +77,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = balloonMinTimeGoalManager.getGoalInterface();
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
-        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 3), //
+        new FixedStateIntegrator(EulerIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 3), //
         controls, plannerConstraint, goalInterface);
   }
 

@@ -39,7 +39,7 @@ import ch.alpine.tensor.qty.Quantity;
   private static final Tensor ETA = Tensors.vector(5, 7);
 
   public static TrajectoryPlanner raw(GoalInterface goalInterface) {
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 30), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
@@ -60,7 +60,7 @@ import ch.alpine.tensor.qty.Quantity;
   }
 
   public static TrajectoryPlanner medium() {
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;

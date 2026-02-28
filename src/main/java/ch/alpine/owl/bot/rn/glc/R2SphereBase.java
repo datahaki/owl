@@ -41,7 +41,7 @@ import ch.alpine.tensor.qty.Quantity;
 
   TrajectoryPlanner create() {
     Tensor partitionScale = Tensors.vector(3.5, 4);
-    StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
+    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(20);

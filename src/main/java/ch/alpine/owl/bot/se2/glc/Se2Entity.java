@@ -39,7 +39,7 @@ public abstract class Se2Entity extends TrajectoryEntity implements GlcPlannerCa
   /** fixed state integrator is used for planning
    * the time difference between two successive nodes in the planner tree is 4/10 */
   public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = // node interval == 2/5
-      FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
+      new FixedStateIntegrator(Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
   // ---
   private final TreeRender treeRender = new TreeRender();
   public final Collection<CostFunction> extraCosts = new LinkedList<>();
