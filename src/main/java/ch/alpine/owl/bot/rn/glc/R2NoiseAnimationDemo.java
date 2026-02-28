@@ -23,7 +23,7 @@ import ch.alpine.tensor.chq.MemberQ;
 /** demo visualizes the detected obstacles */
 public class R2NoiseAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

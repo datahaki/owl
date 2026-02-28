@@ -38,7 +38,7 @@ public class Se2xTLetterDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 20));
 
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);

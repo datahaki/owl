@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.owlets.data.tree.Nodes;
 import ch.alpine.owlets.data.tree.StateCostNode;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcTrajectories;
@@ -17,10 +19,26 @@ import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTimeCollector;
 import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.owlets.rrts.core.RrtsNode;
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophis.ts.TransitionSpace;
+import ch.alpine.tensor.ext.Serialization;
 
 public enum RenderElements {
   ;
+  public static void setRrts(GeometricComponent geometricComponent, TransitionSpace transitionSpace, RrtsNode root,
+      TransitionRegionQuery transitionRegionQuery) {
+    try {
+      Collection<RrtsNode> nodes = Nodes.ofSubtree(root);
+      Collection<RrtsNode> collection = Serialization.copy(nodes);
+      geometricComponent.setRenderInterfaces( //
+          RenderElements.create(collection, Serialization.copy(transitionRegionQuery)));
+      geometricComponent.addRenderInterface(new TransitionRender(transitionSpace).setCollection(collection));
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+
   public static Collection<RenderInterface> create(TrajectoryPlanner trajectoryPlanner) {
     List<RenderInterface> list = new LinkedList<>();
     list.add(AxesRender.INSTANCE);

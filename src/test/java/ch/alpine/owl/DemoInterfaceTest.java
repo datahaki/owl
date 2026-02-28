@@ -21,7 +21,7 @@ class DemoInterfaceTest implements Consumer<DemoInterface> {
 
   @Override
   public void accept(DemoInterface demoInterface) {
-    BaseFrame baseFrame = demoInterface.getWindow();
+    BaseFrame baseFrame = demoInterface.getBaseFrame();
     baseFrame.jFrame.setTitle(demoInterface.getClass().getSimpleName());
     baseFrame.jFrame.setVisible(true);
     try {

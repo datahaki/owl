@@ -30,7 +30,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 public class LvAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     Collection<Tensor> controls = LvControls.create(2);

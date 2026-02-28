@@ -14,6 +14,7 @@ public enum OwlGui {
   public static OwlFrame glc(TrajectoryPlanner trajectoryPlanner) {
     OwlFrame owlFrame = new OwlFrame();
     owlFrame.setGlc(trajectoryPlanner);
+    owlFrame.jFrame.setBounds(100, 100, 800, 800);
     owlFrame.jFrame.setVisible(true);
     return owlFrame;
   }

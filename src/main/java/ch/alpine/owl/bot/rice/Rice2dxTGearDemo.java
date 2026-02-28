@@ -28,7 +28,7 @@ import ch.alpine.tensor.Tensors;
 
 public class Rice2dxTGearDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);

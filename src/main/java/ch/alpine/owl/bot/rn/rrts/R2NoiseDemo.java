@@ -1,8 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
-import ch.alpine.owl.util.win.OwlFrame;
-import ch.alpine.owl.util.win.OwlGui;
+import java.awt.Container;
+
+import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.pro.ManipulateProvider;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
 import ch.alpine.owlets.rrts.core.DefaultRrts;
@@ -20,9 +24,14 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum R2NoiseDemo {
-  ;
-  static void main() {
+@ReflectionMarker
+class R2NoiseDemo implements ManipulateProvider {
+  public Integer numel = 1000;
+  // ---
+  private final GeometricComponent geometricComponent = new GeometricComponent();
+
+  @Override
+  public Container getContainer() {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(-1, -3), Tensors.vector(-1 + 6, -3 + 6));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
     TransitionRegionQuery transitionRegionQuery = StaticHelper.noise1();
@@ -31,13 +40,15 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
     RandomSampleInterface randomSampleInterface = //
         BallRandomSample.of(Tensors.vector(2, 0), RealScalar.of(3));
-    for (int c = 0; c < 1000; ++c)
+    for (int c = 0; c < numel; ++c)
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.geometricComponent.setOffset(122, 226);
-    owlFrame.jFrame.setBounds(100, 100, 500, 500);
-    owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+    RenderElements.setRrts(geometricComponent, transitionSpace, root, transitionRegionQuery);
+    return geometricComponent.jComponent;
+  }
+
+  static void main() {
+    new R2NoiseDemo().runStandalone();
   }
 }

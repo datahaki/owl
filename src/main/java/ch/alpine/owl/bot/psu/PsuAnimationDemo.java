@@ -27,7 +27,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 public class PsuAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Integrator integrator = RungeKutta45Integrator.INSTANCE;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //

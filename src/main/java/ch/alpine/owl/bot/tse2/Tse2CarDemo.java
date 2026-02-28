@@ -22,7 +22,7 @@ import ch.alpine.tensor.chq.MemberQ;
   }
 
   @Override // from DemoInterface
-  public final OwlAnimationFrame getWindow() {
+  public final OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     configure(owlAnimationFrame);
     owlAnimationFrame.geometricComponent.setOffset(50, 700);

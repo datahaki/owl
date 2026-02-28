@@ -28,7 +28,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 public class Rice1dNoiseDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.ZERO;
     Collection<Tensor> controls = Rice2Controls.create1d(15);

@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.Clips;
 
 public class DeltaAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     Scalar amp = RealScalar.of(-.05);

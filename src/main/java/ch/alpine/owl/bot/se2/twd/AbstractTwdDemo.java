@@ -12,7 +12,7 @@ import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class AbstractTwdDemo implements DemoInterface {
   @Override
-  public final OwlAnimationFrame getWindow() {
+  public final OwlAnimationFrame getBaseFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     TwdEntity twdEntity = configure(owlAnimationFrame);

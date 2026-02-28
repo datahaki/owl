@@ -26,7 +26,7 @@ import ch.alpine.tensor.ext.ResourceData;
  * which gives an incentive to stay clear of obstacles */
 public class R2NdTreeAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getWindow() {
+  public OwlAnimationFrame getBaseFrame() {
     String path = "/io/track0_100.png";
     BufferedImage bufferedImage = ResourceData.bufferedImage(path);
     MemberQ imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
