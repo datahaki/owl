@@ -36,6 +36,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Ramp;
 
 class StandardTrajectoryPlannerTest {
@@ -47,7 +48,7 @@ class StandardTrajectoryPlannerTest {
     // ---
     Tensor eta = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(36);
     GoalInterface goalInterface = RnMinDistGoalManager.sperical(stateGoal, radius);
@@ -87,7 +88,8 @@ class StandardTrajectoryPlannerTest {
     // ---
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap(new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), //
-        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5), //
+        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, //
+            SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5), //
         controls, EmptyPlannerConstraint.INSTANCE, goalInterface));
     trajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);

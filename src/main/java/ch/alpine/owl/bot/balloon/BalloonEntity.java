@@ -34,6 +34,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 /* package */ class BalloonEntity extends AbstractCircularEntity {
@@ -42,7 +43,7 @@ import ch.alpine.tensor.sca.Clips;
   static final Scalar U_MAX = RealScalar.of(30);
   final static Scalar SPEED_MAX = RealScalar.of(10);
   /** preserve 1[s] of the former trajectory */
-  private static final Scalar DELAY_HINT = RealScalar.of(2);
+  private static final Scalar DELAY_HINT = Quantity.of(2, "s");
   private static final Scalar GOAL_RADIUS = RealScalar.of(3);
   // ---
   private final StateSpaceModel stateSpaceModel;
@@ -76,7 +77,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = balloonMinTimeGoalManager.getGoalInterface();
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
-        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 3), //
+        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 3), //
         controls, plannerConstraint, goalInterface);
   }
 

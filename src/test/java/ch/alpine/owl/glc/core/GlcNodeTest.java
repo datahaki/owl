@@ -34,6 +34,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 
 class GlcNodeTest {
   @Test
@@ -76,7 +77,7 @@ class GlcNodeTest {
     // ---
     Tensor eta = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5),"s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(36);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(stateGoal, radius);
@@ -85,7 +86,7 @@ class GlcNodeTest {
     StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
     TrajectoryPlanner trajectoryPlanner = CheckedTrajectoryPlanner.wrap(new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, plannerConstraint, rnGoal));
-    trajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(Rational.of(0, 1),"s")));
     List<GlcNode> nodeList = new ArrayList<>(trajectoryPlanner.getDomainMap().values());
     assertTrue(nodeList.get(0).isRoot());
     // nodeList.get(0).makeRoot(); // no error

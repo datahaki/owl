@@ -32,11 +32,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class PsuEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   private static final Integrator INTEGRATOR = RungeKutta45Integrator.INSTANCE;
   /** preserve 1[s] of the former trajectory */
-  private static final Scalar DELAY_HINT = RealScalar.ONE;
+  private static final Scalar DELAY_HINT = Quantity.of(1, "s");
   // ---
   private final TreeRender treeRender = new TreeRender();
 
@@ -59,7 +60,7 @@ import ch.alpine.tensor.alg.Array;
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     Tensor eta = Tensors.vector(6, 8);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        INTEGRATOR, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
+        INTEGRATOR, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //

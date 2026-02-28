@@ -34,6 +34,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.Timing;
 
 /* package */ enum R2ImageDemo {
@@ -43,7 +44,7 @@ import ch.alpine.tensor.qty.Timing;
     MemberQ imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 8), 4);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(23);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 10), RealScalar.of(0.2));

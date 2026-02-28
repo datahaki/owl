@@ -32,12 +32,13 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.qty.Quantity;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */
 /* package */ class DeltaEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(5, 5).unmodifiable();
   /** preserve 1[s] of the former trajectory */
-  private static final Scalar DELAY_HINT = RealScalar.of(2);
+  private static final Scalar DELAY_HINT = Quantity.of(2, "s");
   /** the constants define the control */
   private static final Scalar U_NORM = RealScalar.of(0.6);
   /** resolution of radial controls */
@@ -58,7 +59,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     this.imageGradientInterpolation = imageGradientInterpolation;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     fixedStateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 4);
+        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
   }
 
   @Override // from TensorMetric
@@ -89,7 +90,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
         FixedStateIntegrator.create( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 5), 4),
+            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
         controls, plannerConstraint, goalInterface);
   }
 

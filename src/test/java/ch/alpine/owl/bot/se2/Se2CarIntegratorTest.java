@@ -14,12 +14,13 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
 class Se2CarIntegratorTest {
   @Test
   void testCarEx() {
-    Scalar dt = Rational.of(1, 10);
+    Scalar dt = Quantity.of(Rational.of(1, 10),"s");
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
         FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
     Scalar r = FIXEDSTATEINTEGRATOR.getTimeStepTrajectory();

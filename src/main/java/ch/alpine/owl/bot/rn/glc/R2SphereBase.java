@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class R2SphereBase {
   private final MemberQ region1 = new EllipsoidRegion(Tensors.vector(3, 3), Tensors.vector(2, 2));
@@ -41,7 +42,7 @@ import ch.alpine.tensor.chq.MemberQ;
   TrajectoryPlanner create() {
     Tensor partitionScale = Tensors.vector(3.5, 4);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 8), 5);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(20);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);

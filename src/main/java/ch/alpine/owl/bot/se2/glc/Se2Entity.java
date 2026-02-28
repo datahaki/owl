@@ -31,6 +31,7 @@ import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.qty.Quantity;
 
 /** several magic constants are hard-coded in the implementation.
  * that means, the functionality does not apply to all examples universally. */
@@ -38,7 +39,7 @@ public abstract class Se2Entity extends TrajectoryEntity implements GlcPlannerCa
   /** fixed state integrator is used for planning
    * the time difference between two successive nodes in the planner tree is 4/10 */
   public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = // node interval == 2/5
-      FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Rational.of(1, 10), 4);
+      FixedStateIntegrator.create(Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
   // ---
   private final TreeRender treeRender = new TreeRender();
   public final Collection<CostFunction> extraCosts = new LinkedList<>();

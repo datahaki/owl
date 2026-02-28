@@ -34,6 +34,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 abstract class R2BaseDemo implements DemoInterface {
   protected abstract MemberQ region();
@@ -44,7 +45,7 @@ abstract class R2BaseDemo implements DemoInterface {
   public final BaseFrame getBaseFrame() {
     Tensor partitionScale = Tensors.vector(5, 5);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 8), 4);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(20);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 5), RealScalar.of(0.2));

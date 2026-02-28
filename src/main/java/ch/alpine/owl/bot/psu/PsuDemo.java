@@ -27,6 +27,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.qty.Quantity;
 
 /** Pendulum Swing-up
  * 
@@ -39,7 +40,7 @@ import ch.alpine.tensor.alg.Array;
 
   public static TrajectoryPlanner raw(GoalInterface goalInterface) {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
+        RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 30), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     StateTimeRaster stateTimeRaster = new EtaRaster(ETA, StateTimeTensorFunction.state(psuWrap::represent));
@@ -60,7 +61,7 @@ import ch.alpine.tensor.alg.Array;
 
   public static TrajectoryPlanner medium() {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Rational.of(1, 4), 5);
+        RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //

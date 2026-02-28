@@ -29,6 +29,7 @@ import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
@@ -95,7 +96,7 @@ public class Tse2CarEntity extends Tse2Entity {
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.of(1.5);
+    return Quantity.of(1.5, "s");
   }
 
   @Override // from TensorMetric

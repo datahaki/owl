@@ -25,11 +25,12 @@ import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.pdf.ConstantRandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
+import ch.alpine.tensor.qty.Quantity;
 
 // TODO OWL API the redundancy in R2****Entity shows that re-factoring is needed!
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
-  private static final Scalar DELAY_HINT = RealScalar.of(0.5);
+  private static final Scalar DELAY_HINT = Quantity.of(0.5, "s");
   private static final StateSpaceModel STATE_SPACE_MODEL = SingleIntegratorStateSpaceModel.INSTANCE;
   static final Tensor SHAPE = Tensors.fromString("{{0, 0.1}, {0.1, 0}, {0, -0.1}, {-0.1, 0}}").unmodifiable();
 

@@ -35,6 +35,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 
 /** (x, y, theta) */
 enum Se2rImageDemo {
@@ -44,7 +45,7 @@ enum Se2rImageDemo {
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(8, 8), false);
     Tensor partitionScale = Tensors.vector(3, 3, 50 / Math.PI);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Rational.of(1, 6), 5);
+        Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
     FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2ComboRegion se2ComboRegion = //

@@ -38,6 +38,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 
 /** Notice:
  * 
@@ -66,7 +67,7 @@ enum Se2WrapDemo {
   static TrajectoryPlanner createPlanner(CoordinateWrap coordinateWrap, So2Region so2Region) {
     Tensor eta = Tensors.vector(3, 3, 50 / Math.PI);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Rational.of(1, 6), 5);
+        Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
     FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(new Se2ComboRegion( //

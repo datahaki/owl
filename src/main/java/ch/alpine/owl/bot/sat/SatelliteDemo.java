@@ -24,6 +24,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ enum SatelliteDemo {
   ;
@@ -36,7 +37,7 @@ import ch.alpine.tensor.chq.MemberQ;
     // ---
     Tensor eta = Tensors.vector(3, 3, 2, 2);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, SatelliteStateSpaceModel.INSTANCE, Rational.of(1, 10), 6);
+        RungeKutta45Integrator.INSTANCE, SatelliteStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 6);
     PlannerConstraint plannerConstraint = //
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(obstacleRegion));
     EllipsoidRegion goalRegion = new EllipsoidRegion( //

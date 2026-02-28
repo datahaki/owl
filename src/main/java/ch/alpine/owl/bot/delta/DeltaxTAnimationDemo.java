@@ -39,6 +39,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
@@ -89,7 +90,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 10), 120 * 10);
+        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 120 * 10);
     return new R2xTEllipsoidStateTimeRegion(Tensors.of(radius, radius), //
         TrajectoryR2TranslationFamily.create(stateIntegrator, new StateTime(pos, RealScalar.ZERO), flow), //
         supplier);

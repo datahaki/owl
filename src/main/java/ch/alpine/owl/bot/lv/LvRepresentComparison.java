@@ -25,6 +25,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.exp.Log;
 
 /** the coordinates represent the population of predators and prey.
@@ -35,7 +36,7 @@ import ch.alpine.tensor.sca.exp.Log;
     Tensor eta = Tensors.vector(10, 10);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 30), 4);
+        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
     Collection<Tensor> controls = LvControls.create(2);
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);

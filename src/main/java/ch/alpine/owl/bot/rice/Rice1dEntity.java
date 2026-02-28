@@ -28,6 +28,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class Rice1dEntity extends RiceBaseEntity {
   private static final Integrator INTEGRATOR = RungeKutta4Integrator.INSTANCE;
@@ -47,14 +48,14 @@ import ch.alpine.tensor.alg.Array;
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.of(0.5);
+    return Quantity.of(0.5, "s");
   }
 
   @Override
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     Tensor partitionScale = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Rational.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 4);
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Extract2D.FUNCTION.apply(goal), Tensors.vector(0.2, 0.3)));
     StateTimeRaster stateTimeRaster = EtaRaster.state(partitionScale);
     return new StandardTrajectoryPlanner( //

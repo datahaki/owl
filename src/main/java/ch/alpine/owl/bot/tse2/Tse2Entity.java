@@ -28,6 +28,7 @@ import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clip;
 
 public abstract class Tse2Entity extends TrajectoryEntity implements GlcPlannerCallback {
@@ -47,7 +48,7 @@ public abstract class Tse2Entity extends TrajectoryEntity implements GlcPlannerC
         stateTime), //
         trajectoryControl);
     fixedStateIntegrator = // node interval == 3/10
-        FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, Rational.of(1, 10), 3);
+        FixedStateIntegrator.create(new Tse2Integrator(v_range), Tse2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 3);
     // TODO OWL ALG use tse2 fallback control
     add(FallbackControl.of(Array.zeros(2)));
   }

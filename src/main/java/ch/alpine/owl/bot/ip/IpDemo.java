@@ -28,6 +28,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 /** inverted pendulum */
@@ -41,7 +42,7 @@ import ch.alpine.tensor.sca.Clips;
         RealScalar.of(0.5), // l
         RealScalar.of(1)); // g;
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 12), 5);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 5);
     Collection<Tensor> controls = IpControls.createControls(2, 10);
     IpGoalManager ipGoalManager = new IpGoalManager( //
         Tensors.vector(2, 0, 0, 0), //

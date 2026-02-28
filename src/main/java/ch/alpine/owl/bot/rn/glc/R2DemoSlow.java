@@ -44,6 +44,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Ramp;
 
 /* package */ enum R2DemoSlow {
@@ -67,7 +68,7 @@ import ch.alpine.tensor.sca.Ramp;
     Scalar radius = RealScalar.of(0.8);
     Tensor eta = Tensors.vector(1.5, 1.5);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(6);
     BallRegion ballRegion = new BallRegion(stateGoal, radius);

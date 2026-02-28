@@ -43,7 +43,7 @@ class Rice2dDemoTest {
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.HALF, 5), glcNode);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2),"s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.addBackground(trajectoryRender);
@@ -68,7 +68,7 @@ class Rice2dDemoTest {
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.HALF, 5), glcNode);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2),"s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.addBackground(trajectoryRender);

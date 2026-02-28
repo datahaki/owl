@@ -38,6 +38,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.Timing;
 
 /** expands: 1491
@@ -49,7 +50,7 @@ import ch.alpine.tensor.qty.Timing;
     final Scalar threshold = RealScalar.of(0.1);
     MemberQ region = new R2NoiseRegion(threshold);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 12), 4);
+        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 12), "s"), 4);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(23);
     final Tensor center = Tensors.vector(10, 0);

@@ -21,6 +21,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class ApTrajectoryPlanner {
   /* Setting up parameters for the ApComboRegion
@@ -51,7 +52,7 @@ import ch.alpine.tensor.qty.Degree;
    * @return New StandardTrajectoryPlanner for airplane simulation */
   static StandardTrajectoryPlanner apStandardTrajectoryPlanner() {
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        INTEGRATOR, ApStateSpaceModel.INSTANCE, Rational.of(1, 5), 3);
+        INTEGRATOR, ApStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 3);
     Collection<Tensor> controls = AP_FLOWS.getFlows(FLOWRES);
     ApComboRegion apComboRegion = ApComboRegion.createApRegion(GOAL, RADIUS_VECTOR);
     ApMinTimeGoalManager apMinTimeGoalManager = new ApMinTimeGoalManager(apComboRegion, ApStateSpaceModel.Z_DOT_FLIGHT_MAX);

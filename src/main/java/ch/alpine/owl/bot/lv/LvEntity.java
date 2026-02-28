@@ -31,6 +31,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class LvEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   private static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
@@ -45,7 +46,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     super(episodeIntegrator, trajectoryControl);
     add(FallbackControl.of(Array.zeros(1)));
     fixedStateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Rational.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 4);
     this.controls = controls;
   }
 
@@ -56,7 +57,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.ONE;
+    return Quantity.of(1, "s");
   }
 
   @Override

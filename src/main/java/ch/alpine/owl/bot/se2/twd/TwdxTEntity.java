@@ -6,6 +6,7 @@ import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.qty.Quantity;
 
 /** two wheel drive entity with state space augmented with time */
 /* package */ class TwdxTEntity extends TwdEntity {
@@ -15,7 +16,7 @@ import ch.alpine.tensor.Scalar;
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.of(1.1);
+    return Quantity.of(1.1, "s");
   }
 
   @Override

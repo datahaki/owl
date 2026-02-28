@@ -20,6 +20,7 @@ import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 
 /** several magic constants are hard-coded in the implementation.
  * that means, the functionality does not apply to all examples universally. */
@@ -32,7 +33,7 @@ class GokartxTEntity extends CarEntity {
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.of(2.0);
+    return Quantity.of(2, "s");
   }
 
   @Override

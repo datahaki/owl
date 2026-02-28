@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class SatelliteEntity extends AbstractCircularEntity {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(5, 5, 6, 6).unmodifiable();
@@ -39,7 +40,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
   private static final Integrator INTEGRATOR = RungeKutta45Integrator.INSTANCE;
   // ---
   private final Collection<Tensor> controls;
-  public Scalar delayHint = RealScalar.ONE;
+  public Scalar delayHint = Quantity.of(1, "s");
 
   /** @param state initial position of entity */
   public SatelliteEntity(Tensor state, TrajectoryControl trajectoryControl, Collection<Tensor> controls) {
@@ -63,7 +64,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
   @Override
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     StateIntegrator stateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, STATE_SPACE_MODEL, Rational.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, STATE_SPACE_MODEL, Quantity.of(Rational.of(1, 12), "s"), 4);
     Tensor center = Join.of(Extract2D.FUNCTION.apply(goal), Array.zeros(2));
     GoalInterface goalInterface = SatelliteGoalManager.create( //
         center, Tensors.vector(0.5, 0.5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));

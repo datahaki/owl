@@ -34,13 +34,14 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Ramp;
 
 /** functionality is used in tests */
 /* package */ enum R2Demo {
   ;
   static final StateIntegrator STATE_INTEGRATOR = FixedStateIntegrator.create( //
-      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 5), 5);
+      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
 
   static TrajectoryPlanner simpleEmpty() {
     return simple(EmptyPlannerConstraint.INSTANCE);

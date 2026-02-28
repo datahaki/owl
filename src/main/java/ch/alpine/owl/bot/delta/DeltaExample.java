@@ -28,6 +28,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta */
@@ -61,7 +62,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = new DeltaMinTimeGoalManager(SPHERICAL_REGION, maxMove);
     trajectoryPlanner = new StandardTrajectoryPlanner( //
         STATE_TIME_RASTER, FixedStateIntegrator.create( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Rational.of(1, 10), 4),
+            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 4),
         controls, PLANNER_CONSTRAINT, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), RealScalar.ZERO));
   }

@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /** position and velocity control in 1D with friction
  * 
@@ -42,7 +43,7 @@ import ch.alpine.tensor.chq.MemberQ;
     Scalar mu = RealScalar.of(-0.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     StateIntegrator stateIntegrator = FixedStateIntegrator.create( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 8), 5);
+        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 8), "s"), 5);
     Collection<Tensor> controls = Rice2Controls.create1d(15); //
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Tensors.vector(6, -.7), Tensors.vector(0.4, 0.3)));
     MemberQ region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));

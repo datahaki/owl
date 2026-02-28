@@ -32,6 +32,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ class TwdEntity extends Se2Entity {
@@ -74,7 +75,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
   @Override
   public Scalar delayHint() {
-    return RealScalar.ONE;
+    return Quantity.of(1, "s");
   }
 
   private RegionWithDistance<Tensor> goalRegion = null;

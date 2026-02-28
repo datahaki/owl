@@ -38,6 +38,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
+import ch.alpine.tensor.qty.Quantity;
 
 /** omni-directional movement with constant speed
  * 
@@ -45,7 +46,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 /* package */ class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
   public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = FixedStateIntegrator.create( //
-      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Rational.of(1, 12), 4);
+      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 12), "s"), 4);
   // ---
   private final TreeRender treeRender = new TreeRender();
   /** extra cost functions, for instance to prevent cutting corners */
@@ -69,7 +70,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
     /** preserve 0.5[s] of the former trajectory
      * planning should not exceed that duration, otherwise
      * the entity may not be able to follow a planned trajectory */
-    return RealScalar.of(0.5);
+    return Quantity.of(0.5, "s");
   }
 
   /** @param goal

@@ -30,6 +30,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.lie.rot.AngleVector;
+import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class Rice2dEntity extends RiceBaseEntity {
   private static final Tensor SHAPE = Tensors.matrixDouble( //
@@ -39,7 +40,7 @@ import ch.alpine.tensor.lie.rot.AngleVector;
   private final StateSpaceModel stateSpaceModel;
   private final Collection<Tensor> controls;
   // ---
-  public Scalar delayHint = RealScalar.ONE;
+  public Scalar delayHint =Quantity.of(1, "s");
 
   /** @param state initial position of entity */
   public Rice2dEntity(Scalar mu, Tensor state, TrajectoryControl trajectoryControl, Collection<Tensor> controls) {
@@ -60,7 +61,7 @@ import ch.alpine.tensor.lie.rot.AngleVector;
   public final TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
     Tensor partitionScale = Tensors.vector(3, 3, 6, 6);
     StateIntegrator stateIntegrator = //
-        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Rational.of(1, 12), 4);
+        FixedStateIntegrator.create(INTEGRATOR, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 4);
     Tensor center = Join.of(Extract2D.FUNCTION.apply(goal), AngleVector.of(goal.Get(2)).multiply(RealScalar.of(0.8)));
     GoalInterface goalInterface = new Rice2GoalManager(new EllipsoidRegion(center, Tensors.vector(0.5, 0.5, 0.4, 0.4)));
     StateTimeRaster stateTimeRaster = EtaRaster.state(partitionScale);
