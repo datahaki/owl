@@ -11,8 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
 @ReflectionMarker
-public class RotParam {
-  public Boolean ccw = false;
+public final class RotParam {
   @FieldSlider
   @FieldClip(min = "-2", max = "+2")
   public Scalar t0 = RealScalar.of(0);

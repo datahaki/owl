@@ -49,7 +49,7 @@ public class SymHullDemo implements ManipulateProvider, RenderInterface {
       CirclePoints.of(n).stream().map(xy -> xy.multiply(r).append(z)).forEach(tensor::append);
     }
     faces = ConvexHull3D.of(tensor);
-    Tensor rotate = this.tensor.dot(hullParam.rotation());
+    Tensor rotate = this.tensor.dot(hullParam.rotParam.rotation());
     LeversRender leversRender = LeversRender.of(manifoldDisplay, rotate, null, geometricLayer, graphics);
     leversRender.renderSequence();
     SurfaceMesh surfaceMesh = new SurfaceMesh(rotate, faces);
