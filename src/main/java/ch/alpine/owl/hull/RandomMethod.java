@@ -2,6 +2,7 @@
 package ch.alpine.owl.hull;
 
 import ch.alpine.qhull3.ConvexHull3D;
+import ch.alpine.qhull3.PlatonicSolid;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.hs.rpn.HemisphereRandomSample;
 import ch.alpine.sophus.hs.s.Sphere;
@@ -46,6 +47,18 @@ enum RandomMethod {
     Tensor vertices(int n) {
       StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
       return Transpose.of(RandomSample.of(stiefelManifold));
+    }
+  },
+  DODECAHEDRON {
+    @Override
+    Tensor vertices(int n) {
+      return PlatonicSolid.DODECAHEDRON.vertices();
+    }
+  },
+  ICOSAHEDRON {
+    @Override
+    Tensor vertices(int n) {
+      return PlatonicSolid.ICOSAHEDRON.vertices();
     }
   };
 
