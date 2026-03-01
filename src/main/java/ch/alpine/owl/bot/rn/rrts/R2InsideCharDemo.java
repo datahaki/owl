@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;

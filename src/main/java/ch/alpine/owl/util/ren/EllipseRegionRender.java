@@ -6,10 +6,10 @@ import java.awt.geom.Path2D;
 
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.region.BallRegion;
-import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.sophis.crv.d2.ex.EllipsePoints;
+import ch.alpine.sophis.reg.BallRegion;
+import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

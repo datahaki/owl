@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.function.Supplier;
 
+import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -10,8 +11,6 @@ import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
-import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.owl.region.RegionUnion;
 import ch.alpine.owl.util.bot.TrajectoryR2TranslationFamily;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
@@ -29,6 +28,7 @@ import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
 import ch.alpine.sophis.api.Region;
+import ch.alpine.sophis.reg.RegionUnion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

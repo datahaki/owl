@@ -6,19 +6,21 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.function.Predicate;
 
+import ch.alpine.ascony.ren.BallRegionRender;
+import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.ascony.ren.ConeRegionRender;
 import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
 import ch.alpine.owl.bot.rn.RnPointcloudRegionRender;
-import ch.alpine.owl.region.BallRegion;
-import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.owl.region.ConeRegion;
-import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.ImageRegion;
 import ch.alpine.owlets.math.state.StateTimeCollector;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
+import ch.alpine.sophis.reg.BallRegion;
+import ch.alpine.sophis.reg.ConeRegion;
+import ch.alpine.sophis.reg.EllipsoidRegion;
+import ch.alpine.sophis.reg.ImageRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -63,7 +65,7 @@ public enum RegionRenders {
     if (region instanceof BallRegion ballRegion)
       return EllipseRegionRender.of(ballRegion);
     if (region instanceof PolygonRegion polygonRegion)
-      return new PolygonRegionRender(polygonRegion);
+      return PolygonRender.of(polygonRegion);
     if (region instanceof RnPointcloudRegion rnPointcloudRegion)
       return new RnPointcloudRegionRender(rnPointcloudRegion);
     throw new RuntimeException();
@@ -76,10 +78,10 @@ public enum RegionRenders {
   }
 
   public static void draw(GeometricLayer geometricLayer, Graphics2D graphics, Predicate<Tensor> region) {
-    if (region instanceof ConeRegion)
-      ConeRegionRender.draw(geometricLayer, graphics, (ConeRegion) region);
-    if (region instanceof BallRegion)
-      BallRegionRender.draw(geometricLayer, graphics, (BallRegion) region);
+    if (region instanceof ConeRegion coneRegion)
+      new ConeRegionRender(coneRegion).render(geometricLayer, graphics);
+    if (region instanceof BallRegion ballRegion)
+      new BallRegionRender(ballRegion).render(geometricLayer, graphics);
   }
 
   public static RenderInterface createImageRegionRender(ImageRegion imageRegion) {

@@ -14,12 +14,6 @@ import ch.alpine.sophis.ts.TransitionSpace;
 
 public enum OwlGui {
   ;
-  public static TimerFrame start() {
-    TimerFrame owlFrame = new TimerFrame();
-    owlFrame.jFrame.setVisible(true);
-    return owlFrame;
-  }
-
   public static TimerFrame glc(TrajectoryPlanner trajectoryPlanner) {
     TimerFrame owlFrame = new TimerFrame();
     owlFrame.geometricComponent.setRenderInterfaces( //

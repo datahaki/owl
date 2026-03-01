@@ -4,7 +4,6 @@ package ch.alpine.owl.bot.lv;
 import java.util.Collection;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
@@ -20,6 +19,7 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
+import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

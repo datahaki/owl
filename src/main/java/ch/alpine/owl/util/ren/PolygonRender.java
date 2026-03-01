@@ -8,11 +8,9 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.tensor.Tensor;
 
-public class PolygonRegionRender implements RenderInterface {
-  private final Tensor polygon;
-
-  public PolygonRegionRender(PolygonRegion polygonRegion) {
-    polygon = polygonRegion.polygon();
+public record PolygonRender(Tensor polygon) implements RenderInterface {
+  public static PolygonRender of(PolygonRegion polygonRegion) {
+    return new PolygonRender(polygonRegion.polygon());
   }
 
   @Override

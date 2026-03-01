@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.ascony.ren.GridRender;
+import ch.alpine.ascony.ren.FixGridRender;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.math.state.StateTime;
@@ -45,7 +45,7 @@ import ch.alpine.tensor.qty.Degree;
       carEntity.trajectory(trajectory);
       owlAnimationFrame.add(carEntity);
     }
-    owlAnimationFrame.addBackground(new GridRender(Subdivide.of(0, 10, 5)));
+    owlAnimationFrame.addBackground(new FixGridRender(Subdivide.of(0, 10, 5)));
     owlAnimationFrame.geometricComponent.setOffset(400, 400);
   }
 

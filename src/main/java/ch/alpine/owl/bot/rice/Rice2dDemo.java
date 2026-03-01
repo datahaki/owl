@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.HyperplaneRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlGui;
@@ -29,6 +27,8 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.sophis.reg.EllipsoidRegion;
+import ch.alpine.sophis.reg.HyperplaneRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

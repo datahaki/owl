@@ -4,10 +4,10 @@ package ch.alpine.owl.bot.r2;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.ascony.img.FloodFill2D;
-import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.owl.region.ImageRegion;
-import ch.alpine.owl.region.RegionBounds;
+import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.sophis.reg.ImageRegion;
+import ch.alpine.sophis.reg.RegionBounds;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

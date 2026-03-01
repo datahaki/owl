@@ -61,8 +61,7 @@ public class TransitionRender implements RenderInterface {
 
     @Override // from RenderInterface
     public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-      double pixel2modelWidth = geometricLayer.pixel2modelWidth(5);
-      Scalar minResolution = RealScalar.of(pixel2modelWidth); // units!
+      Scalar minResolution = geometricLayer.pixel2modelWidth(RealScalar.of(5));
       for (RrtsNode parent : collection)
         for (RrtsNode child : parent.children()) {
           int interp = clip.rescale(child.costFromRoot()).multiply(inverse).number().intValue();

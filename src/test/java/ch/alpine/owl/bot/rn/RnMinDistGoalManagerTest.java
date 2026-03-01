@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.glc.core.HeuristicQ;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;

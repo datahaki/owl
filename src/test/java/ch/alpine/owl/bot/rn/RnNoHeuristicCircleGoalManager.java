@@ -3,12 +3,12 @@ package ch.alpine.owl.bot.rn;
 
 import java.util.List;
 
-import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
+import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
+import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.GeometricComponent;
@@ -47,7 +48,7 @@ class StHullDemo implements ManipulateProvider, RenderInterface {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    geometricComponent.renderGrid(graphics);
+    new GridRender(geometricComponent.jComponent::getSize).render(geometricLayer, graphics);
     RandomGenerator randomGenerator = new Random(3);
     StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
     Tensor p = RandomSample.of(stiefelManifold, randomGenerator);

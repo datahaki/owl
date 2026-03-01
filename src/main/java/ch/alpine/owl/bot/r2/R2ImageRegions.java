@@ -6,8 +6,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import ch.alpine.owl.region.BufferedImageRegion;
-import ch.alpine.owl.region.ImageRegion;
+import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.sophis.reg.ImageRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Transpose;

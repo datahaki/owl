@@ -3,10 +3,9 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.region.BallRegion;
-import ch.alpine.owl.region.BufferedImageRegion;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
@@ -19,6 +18,7 @@ import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

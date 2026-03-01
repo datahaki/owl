@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.region;
+package ch.alpine.owl.util.ren;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,6 +17,8 @@ import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeDependentRegion;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.api.Region;
+import ch.alpine.sophis.reg.EllipsoidRegion;
+import ch.alpine.sophis.reg.ImplicitFunctionRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;

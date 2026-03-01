@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.ap;
 
 import java.util.Objects;
 
-import ch.alpine.owl.region.LinearRegion;
-import ch.alpine.owl.region.So2Region;
+import ch.alpine.sophis.reg.LinearRegion;
+import ch.alpine.sophis.reg.So2Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;

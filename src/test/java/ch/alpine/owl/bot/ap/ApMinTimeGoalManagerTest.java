@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.region.LinearRegion;
-import ch.alpine.owl.region.So2Region;
+import ch.alpine.sophis.reg.LinearRegion;
+import ch.alpine.sophis.reg.So2Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;

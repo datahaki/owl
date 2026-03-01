@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.region.EllipsoidRegion;
-import ch.alpine.owl.region.Regions;
+import ch.alpine.sophis.reg.EllipsoidRegion;
+import ch.alpine.sophis.reg.Regions;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;

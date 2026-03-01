@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn;
 
 import java.io.Serializable;
 
-import ch.alpine.owl.region.ImplicitFunctionRegion;
+import ch.alpine.sophis.reg.ImplicitFunctionRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

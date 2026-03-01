@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.region;
+package ch.alpine.owl.util.ren;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascony.img.ImageArea;
+import ch.alpine.sophis.reg.ImageRegion;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

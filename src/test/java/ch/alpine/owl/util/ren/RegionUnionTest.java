@@ -1,5 +1,5 @@
 // code by jl
-package ch.alpine.owl.region;
+package ch.alpine.owl.util.ren;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.reg.EllipsoidRegion;
+import ch.alpine.sophis.reg.HyperplaneRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
