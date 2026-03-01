@@ -5,13 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.function.Predicate;
 
-import ch.alpine.ascony.ren.BallRegionRender;
-import ch.alpine.ascony.ren.BufferedImageRegion;
-import ch.alpine.ascony.ren.ConeRegionRender;
-import ch.alpine.ascony.ren.EllipseRegionRender;
+import ch.alpine.ascony.reg.BallRegionRender;
+import ch.alpine.ascony.reg.BufferedImageRegion;
+import ch.alpine.ascony.reg.ConeRegionRender;
+import ch.alpine.ascony.reg.PolygonRegionRender;
+import ch.alpine.ascony.reg.RegionRenders;
 import ch.alpine.ascony.ren.ImageRender;
-import ch.alpine.ascony.ren.PolygonRender;
-import ch.alpine.ascony.ren.RegionRenders;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
@@ -56,11 +55,11 @@ public enum RegionRenderFactory {
     if (region instanceof BufferedImageRegion bufferedImageRegion)
       return bufferedImageRegion;
     if (region instanceof EllipsoidRegion ellipsoidRegion)
-      return EllipseRegionRender.of(ellipsoidRegion);
+      return RegionRenders.of(ellipsoidRegion);
     if (region instanceof BallRegion ballRegion)
-      return EllipseRegionRender.of(ballRegion);
+      return RegionRenders.of(ballRegion);
     if (region instanceof PolygonRegion polygonRegion)
-      return PolygonRender.of(polygonRegion);
+      return PolygonRegionRender.of(polygonRegion);
     if (region instanceof RnPointcloudRegion rnPointcloudRegion)
       return new RnPointcloudRegionRender(rnPointcloudRegion);
     throw new RuntimeException();

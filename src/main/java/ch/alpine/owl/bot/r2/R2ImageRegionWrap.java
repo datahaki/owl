@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.r2;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.ascony.img.FloodFill2D;
-import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.owlets.glc.core.CostFunction;
 import ch.alpine.sophis.reg.ImageRegion;
 import ch.alpine.sophis.reg.RegionBounds;

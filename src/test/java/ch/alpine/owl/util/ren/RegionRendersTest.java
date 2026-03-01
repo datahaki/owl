@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascony.img.ImageArea;
-import ch.alpine.ascony.ren.RegionRenders;
+import ch.alpine.ascony.reg.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 

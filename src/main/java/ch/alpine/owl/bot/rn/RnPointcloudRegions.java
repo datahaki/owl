@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

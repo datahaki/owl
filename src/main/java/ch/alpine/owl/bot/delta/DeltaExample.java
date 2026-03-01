@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.delta;
 
 import java.util.Collection;
 
-import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;

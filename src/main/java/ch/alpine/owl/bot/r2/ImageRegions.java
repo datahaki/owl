@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.r2;
 
 import java.awt.image.BufferedImage;
 
-import ch.alpine.ascony.ren.BufferedImageRegion;
+import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.TensorRank;
