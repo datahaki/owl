@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.sat;
 import java.util.Collection;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -53,8 +53,8 @@ import ch.alpine.tensor.qty.Quantity;
       Thread.sleep(1);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(obstacleRegion));
-    owlFrame.geometricComponent.addRenderInterface(RegionRenders.create(goalRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(obstacleRegion));
+    owlFrame.geometricComponent.addRenderInterface(RegionRenderFactory.create(goalRegion));
     // ---
     owlFrame.jFrame.setBounds(100, 100, 600, 600);
     System.out.println("#expand = " + glcExpand.getExpandCount());

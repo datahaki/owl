@@ -12,7 +12,7 @@ import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.bot.se2.rl.CarPolicyEntity;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
@@ -72,7 +72,7 @@ public class Se2xTLetterDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // abstractEntity.raytraceQuery = SimpleTrajectoryRegionQuery.timeInvariant(imageRegion);
     MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground((RenderInterface) region1);
     // owlyAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) cog0);

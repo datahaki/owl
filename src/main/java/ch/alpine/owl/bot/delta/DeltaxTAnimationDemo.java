@@ -12,7 +12,7 @@ import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
 import ch.alpine.owl.util.bot.TrajectoryR2TranslationFamily;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
@@ -78,7 +78,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.add(trajectoryEntity);
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);

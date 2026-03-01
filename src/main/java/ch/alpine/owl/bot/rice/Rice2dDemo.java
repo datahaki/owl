@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -100,6 +100,6 @@ import ch.alpine.tensor.qty.Timing;
       trajectoryRender.trajectory(samples);
       owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
     }
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ELLIPSOID_REGION));
   }
 }

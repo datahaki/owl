@@ -5,7 +5,7 @@ import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.util.ren.MouseShapeRender;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
@@ -24,7 +24,7 @@ public class Se2Letter1Demo extends Se2CarDemo {
     PlannerConstraint plannerConstraint = createConstraint(imageRegion);
     owlAnimationFrame.add(carEntity);
     MouseGoal.simple(owlAnimationFrame, carEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(imageRegion)), //

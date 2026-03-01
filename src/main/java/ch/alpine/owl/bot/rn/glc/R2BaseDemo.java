@@ -8,7 +8,7 @@ import java.util.Optional;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
@@ -64,8 +64,8 @@ abstract class R2BaseDemo implements DemoInterface {
       StateTimeTrajectories.print(trajectory);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
     owlFrame.geometricComponent.setOffset(250, 500);
     return owlFrame;
   }

@@ -5,7 +5,7 @@ import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
@@ -29,7 +29,7 @@ public class Se2xTPlainDemo
     MemberQ se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(se2PointsVsRegion);
     MouseGoal.simple(owlAnimationFrame, carxTEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     // ---
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);

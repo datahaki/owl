@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.twd;
 
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
@@ -24,7 +24,7 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(trajectoryRegionQuery));
     owlAnimationFrame.geometricComponent.setOffset(400, 400);
     return twdEntity;
   }

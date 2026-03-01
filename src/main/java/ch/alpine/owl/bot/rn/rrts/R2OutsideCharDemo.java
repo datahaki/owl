@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
   }

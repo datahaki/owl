@@ -10,7 +10,7 @@ import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.r2.R2NoiseCostFunction;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -74,8 +74,8 @@ import ch.alpine.tensor.qty.Timing;
       StateTimeTrajectories.print(trajectory);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(trajectoryRegionQuery));
     owlFrame.geometricComponent.setOffset(100, 300);
   }
 }

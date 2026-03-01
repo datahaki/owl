@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.delta;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.tensor.RealScalar;
@@ -31,8 +31,8 @@ import ch.alpine.tensor.RealScalar;
     }
     TimerFrame owlFrame = OwlGui.glc(deltaDemo.trajectoryPlanner);
     owlFrame.geometricComponent.setOffset(33, 416);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(DeltaExample.REGION));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(DeltaExample.SPHERICAL_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(DeltaExample.REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(DeltaExample.SPHERICAL_REGION));
     owlFrame.geometricComponent.addRenderInterfaceBackground(deltaDemo.vf(0.1));
     // ---
     owlFrame.jFrame.setBounds(100, 100, 620, 475);

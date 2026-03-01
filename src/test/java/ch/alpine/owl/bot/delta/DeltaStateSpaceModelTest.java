@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.delta;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.sophis.reg.ImageRegion;
@@ -26,7 +26,7 @@ class DeltaStateSpaceModelTest {
     CatchyTrajectoryRegionQuery.timeInvariant(imageRegion);
     // new DeltaEntity(imageGradientInterpolation, new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO));
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
-    RegionRenders.create(imageRegion);
+    RegionRenderFactory.create(imageRegion);
     StaticHelper.vectorFieldRender(stateSpaceModel, range, imageRegion, RealScalar.of(0.5));
   }
 }

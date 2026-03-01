@@ -12,7 +12,7 @@ import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -67,7 +67,7 @@ enum Se2rImageDemo {
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.setOffset(100, 550);
     owlFrame.jFrame.setBounds(100, 100, 700, 700);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());

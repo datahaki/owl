@@ -9,7 +9,7 @@ import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
@@ -33,7 +33,7 @@ public class Rice2dImageDemo implements DemoInterface {
     TrajectoryEntity trajectoryEntity = new Rice2dEntity(mu, Tensors.vector(7, 6, 0, 0), trajectoryControl, controls);
     owlAnimationFrame.add(trajectoryEntity);
     MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     return owlAnimationFrame;
   }

@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2.rl;
 
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
@@ -23,7 +23,7 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     MemberQ region = new R2NoiseRegion(threshold);
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
-    owlAnimationFrame.addBackground(RegionRenders.create(trq));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(trq));
     // ---
     Tensor start = Tensors.vector(2.000, 3.317, 0.942).unmodifiable();
     owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.QLEARNING, trq));

@@ -6,7 +6,7 @@ import java.util.List;
 import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
@@ -48,8 +48,8 @@ public class GokartWaypoint0Demo extends GokartDemo {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(union);
     // ---
     owlAnimationFrame.add(gokartEntity);
-    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(hangarMap.imageRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(polygonRegion));
     owlAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
     // ---
     owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));

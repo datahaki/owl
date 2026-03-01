@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
@@ -50,7 +50,7 @@ import ch.alpine.tensor.sca.Clips;
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 650, 550);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
   }

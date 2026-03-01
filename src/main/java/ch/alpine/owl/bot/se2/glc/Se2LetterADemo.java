@@ -10,7 +10,7 @@ import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.ren.MouseShapeRender;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
@@ -49,7 +49,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
     TrajectoryRegionQuery trajectoryRegionQuery = //
         SimpleTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.add(carEntity);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     MouseGoal.simple(owlAnimationFrame, carEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new CameraEmulator( //

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.glc.core.HeuristicAssert;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.ren.TrajectoryRender;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -47,7 +47,7 @@ class Rice2dDemoTest {
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
@@ -72,7 +72,7 @@ class Rice2dDemoTest {
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);

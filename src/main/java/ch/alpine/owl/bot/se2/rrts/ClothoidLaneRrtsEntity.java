@@ -9,7 +9,7 @@ import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.math.flow.EulerIntegrator;
 import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
@@ -87,7 +87,7 @@ import ch.alpine.tensor.qty.Quantity;
     LaneRrtsPlannerServer laneRrtsPlannerServer = (LaneRrtsPlannerServer) rrtsPlannerServer;
     Optional<Region<Tensor>> goalRegion = laneRrtsPlannerServer.goalRegion();
     if (goalRegion.isPresent())
-      RegionRenders.draw(geometricLayer, graphics, goalRegion.get());
+      RegionRenderFactory.draw(geometricLayer, graphics, goalRegion.get());
     super.render(geometricLayer, graphics);
   }
 

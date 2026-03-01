@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascony.img.ImageArea;
+import ch.alpine.ascony.ren.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -20,7 +21,7 @@ class RegionRendersTest {
   @Test
   void testSimple() {
     Tensor image = Tensors.fromString("{{1, 0, 1}}");
-    BufferedImage bufferedImage = RegionRenders.image(image);
+    BufferedImage bufferedImage = RegionRenderFactory.image(image);
     assertEquals(bufferedImage.getType(), BufferedImage.TYPE_BYTE_GRAY);
     int[] pixel = new int[1];
     bufferedImage.getRaster().getPixel(0, 0, pixel);

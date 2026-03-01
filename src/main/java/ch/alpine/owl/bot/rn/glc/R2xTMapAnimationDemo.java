@@ -5,7 +5,7 @@ import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.rn.RnPointcloudRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
@@ -38,7 +38,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
     MemberQ region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.15));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     owlAnimationFrame.geometricComponent.setOffset(100, 800);
     return owlAnimationFrame;
   }

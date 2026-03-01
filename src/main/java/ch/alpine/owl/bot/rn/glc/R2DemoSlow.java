@@ -13,7 +13,7 @@ import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -73,7 +73,7 @@ import ch.alpine.tensor.sca.Ramp;
     Collection<Tensor> controls = r2Flows.getFlows(6);
     BallRegion ballRegion = new BallRegion(stateGoal, radius);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
-    RenderInterface renderInterface = RegionRenders.create(obstacleQuery);
+    RenderInterface renderInterface = RegionRenderFactory.create(obstacleQuery);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(obstacleQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
@@ -87,7 +87,7 @@ import ch.alpine.tensor.sca.Ramp;
           break;
         glcExpand.findAny(1);
         TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-        owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
+        owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
         owlFrame.geometricComponent.addRenderInterfaceBackground(renderInterface); // reference to collection
         animationWriter.write(owlFrame.offscreen());
       }

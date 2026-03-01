@@ -8,7 +8,7 @@ import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
@@ -78,8 +78,8 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // ---
     owlAnimationFrame.add(gokartEntity);
-    owlAnimationFrame.addBackground(RegionRenders.create(hangarMap.imageRegion));
-    owlAnimationFrame.addBackground(RegionRenders.create(polygonRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(hangarMap.imageRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(polygonRegion));
     owlAnimationFrame.addBackground((RenderInterface) region1d);
     owlAnimationFrame.addBackground((RenderInterface) region2d);
     owlAnimationFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);

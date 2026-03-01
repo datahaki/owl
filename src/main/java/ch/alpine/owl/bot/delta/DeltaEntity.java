@@ -10,7 +10,7 @@ import ch.alpine.owl.ani.api.AbstractCircularEntity;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.ren.TreeRender;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.core.GoalInterface;
@@ -100,7 +100,7 @@ import ch.alpine.tensor.qty.Quantity;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    RegionRenders.draw(geometricLayer, graphics, goalRegion);
+    RegionRenderFactory.draw(geometricLayer, graphics, goalRegion);
     // ---
     super.render(geometricLayer, graphics);
     // ---

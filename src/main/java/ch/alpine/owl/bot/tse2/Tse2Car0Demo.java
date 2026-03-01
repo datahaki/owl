@@ -6,7 +6,7 @@ import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.util.ren.MouseShapeRender;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
@@ -27,7 +27,7 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     owlAnimationFrame.add(tse2CarEntity);
     // TODO OWL API add option to select goal velocity / range
     MouseGoal.simple(owlAnimationFrame, tse2CarEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(line(region)), //

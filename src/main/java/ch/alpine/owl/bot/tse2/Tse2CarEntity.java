@@ -8,7 +8,7 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.MultiCostGoalAdapter;
 import ch.alpine.owlets.glc.core.GoalInterface;
@@ -135,7 +135,7 @@ public class Tse2CarEntity extends Tse2Entity {
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    RegionRenders.draw(geometricLayer, graphics, goalRegion);
+    RegionRenderFactory.draw(geometricLayer, graphics, goalRegion);
     // ---
     super.render(geometricLayer, graphics);
     // ---

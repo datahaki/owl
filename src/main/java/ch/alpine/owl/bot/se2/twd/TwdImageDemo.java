@@ -8,7 +8,7 @@ import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
@@ -35,7 +35,7 @@ public class TwdImageDemo extends AbstractTwdDemo {
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), twdEntity::getStateTimeNow, trajectoryRegionQuery);

@@ -10,7 +10,7 @@ import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.sim.CameraEmulator;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owl.util.ren.MouseShapeRender;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.sca.Clips;
     StateTime stateTime = new StateTime(Tensors.vector(6, 5, Math.PI / 4), RealScalar.ZERO);
     ClothoidRrtsEntity clothoidRrtsEntity = //
         new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     MouseGoal.simpleRrts(owlAnimationFrame, clothoidRrtsEntity, null);
     owlAnimationFrame.add(clothoidRrtsEntity);
     {

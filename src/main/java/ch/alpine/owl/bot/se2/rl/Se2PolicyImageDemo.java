@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2.rl;
 
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
@@ -21,8 +21,8 @@ public class Se2PolicyImageDemo implements DemoInterface {
     MemberQ region = r2ImageRegionWrap.region();
     // ---
     TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
-    owlAnimationFrame.addBackground(RegionRenders.create(region));
-    owlAnimationFrame.addBackground(RegionRenders.create(trq));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(trq));
     // ---
     {
       CarPolicyEntity carPolicyEntity = //

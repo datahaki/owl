@@ -90,7 +90,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
     // ---
     int _value = param.value;
     graphics.setColor(new Color(255, 0, 0, 128));
-    Scalar minResolution = geometricLayer.pixel2modelWidth(RealScalar.of(10));
+    Scalar minResolution = geometricLayer.pixel2modelFactor(RealScalar.of(10));
     for (RrtsNodeTransition rrtsNodeTransition : se2RrtsNodeCollection.nearFrom(mouse, _value))
       graphics.draw(geometricLayer.toPath2D(rrtsNodeTransition.transition().linearized(minResolution)));
     // ---

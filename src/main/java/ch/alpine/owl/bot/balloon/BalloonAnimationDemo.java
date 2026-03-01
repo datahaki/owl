@@ -6,7 +6,7 @@ import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
@@ -40,7 +40,7 @@ public class BalloonAnimationDemo implements DemoInterface {
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ imageRegion = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/mountainChain.png"), coordinateBoundingBox, true);
-    owlAnimationFrame.addBackground(RegionRenders.create(imageRegion));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     owlAnimationFrame.add(balloonEntity);
     owlAnimationFrame.addBackground(AxesRender.INSTANCE);
     return owlAnimationFrame;

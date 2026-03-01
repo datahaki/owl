@@ -7,7 +7,7 @@ import java.util.Optional;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.data.tree.Expand;
 import ch.alpine.owlets.math.state.StateTime;
@@ -107,6 +107,6 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
     owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
   }
 }

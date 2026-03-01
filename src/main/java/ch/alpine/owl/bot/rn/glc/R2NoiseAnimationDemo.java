@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.rn.glc;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
@@ -36,7 +36,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
-    owlAnimationFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    owlAnimationFrame.addBackground(RegionRenderFactory.create(trajectoryRegionQuery));
     return owlAnimationFrame;
   }
 

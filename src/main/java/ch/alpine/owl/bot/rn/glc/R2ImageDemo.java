@@ -9,7 +9,7 @@ import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -66,7 +66,7 @@ import ch.alpine.tensor.qty.Timing;
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.setZoomable(false);
     owlFrame.geometricComponent.setOffset(200, 650);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
   }
 }

@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import ch.alpine.ascony.ren.ImageRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.util.ren.RegionRenders;
+import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.crv.d2.Extract2D;
@@ -33,7 +33,7 @@ public class R2xTImageStateTimeRegion implements Region<StateTime>, RenderInterf
     this.imageRegion = imageRegion;
     this.rigidFamily = rigidFamily;
     this.supplier = supplier;
-    renderInterface = new ImageRender(RegionRenders.image(imageRegion.image()), imageRegion.coordinateBounds());
+    renderInterface = new ImageRender(RegionRenderFactory.image(imageRegion.image()), imageRegion.coordinateBounds());
   }
 
   @Override // from Region

@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.owl.util.ren;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.function.Predicate;
@@ -9,7 +8,10 @@ import java.util.function.Predicate;
 import ch.alpine.ascony.ren.BallRegionRender;
 import ch.alpine.ascony.ren.BufferedImageRegion;
 import ch.alpine.ascony.ren.ConeRegionRender;
+import ch.alpine.ascony.ren.EllipseRegionRender;
 import ch.alpine.ascony.ren.ImageRender;
+import ch.alpine.ascony.ren.PolygonRender;
+import ch.alpine.ascony.ren.RegionRenders;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.bot.rn.RnPointcloudRegion;
@@ -29,18 +31,11 @@ import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.MatrixQ;
 
 // TODO OWL API implement this as an interface
-public enum RegionRenders {
+public enum RegionRenderFactory {
   ;
-  /** raster value 230 get's mapped to color {244, 244, 244, 255}
-   * when using getRGB because of the color model attached to the
-   * image type grayscale */
-  public static final int RGB = 230;
-  /** default color for obstacle region */
-  public static final Color COLOR = new Color(RGB, RGB, RGB);
-  public static final Color BOUNDARY = new Color(192, 192, 192);
   // ---
   private static final Scalar TFF = RealScalar.of(255);
-  private static final Scalar OBS = RealScalar.of(RGB);
+  private static final Scalar OBS = RealScalar.of(RegionRenders.RGB);
 
   static Scalar color(Scalar scalar) {
     return Scalars.isZero(scalar) ? TFF : OBS;
@@ -49,7 +44,7 @@ public enum RegionRenders {
   /** @param image with rank 2
    * @return */
   public static BufferedImage image(Tensor image) {
-    return ImageFormat.of(MatrixQ.require(image).maps(RegionRenders::color));
+    return ImageFormat.of(MatrixQ.require(image).maps(RegionRenderFactory::color));
   }
 
   /** @param region
@@ -57,7 +52,7 @@ public enum RegionRenders {
    * or null if drawing capability is not available for the region */
   public static RenderInterface create(Predicate<Tensor> region) {
     if (region instanceof ImageRegion imageRegion)
-      return RegionRenders.createImageRegionRender(imageRegion);
+      return RegionRenderFactory.createImageRegionRender(imageRegion);
     if (region instanceof BufferedImageRegion bufferedImageRegion)
       return bufferedImageRegion;
     if (region instanceof EllipsoidRegion ellipsoidRegion)
