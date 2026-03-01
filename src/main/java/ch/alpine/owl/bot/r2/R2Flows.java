@@ -35,7 +35,7 @@ public class R2Flows implements FlowsInterface, Serializable {
   }
 
   public Tensor stayPut() {
-    return Array.zeros(2);
+    return Array.zeros(2).multiply(speed);
   }
 
   protected Tensor mapU(Tensor u) {

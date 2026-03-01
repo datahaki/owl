@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import ch.alpine.ascony.io.AnimationWriter;
 import ch.alpine.ascony.io.GifAnimationWriter;
-import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
@@ -44,20 +44,15 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures.resolve(name), 250, TimeUnit.MILLISECONDS)) {
-      OwlFrame owlFrame = OwlGui.start();
-      owlFrame.geometricComponent.setOffset(42, 456);
-      owlFrame.jFrame.setBounds(100, 100, 500, 500);
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);
-      for (int frame = 0; frame < 40 && owlFrame.jFrame.isVisible(); ++frame) {
+      for (int frame = 0; frame < 40; ++frame) {
         for (int count = 0; count < 5; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
-        owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
+        TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
+        owlFrame.geometricComponent.setOffset(42, 456);
+        owlFrame.jFrame.setBounds(100, 100, 500, 500);
         animationWriter.write(owlFrame.offscreen());
       }
-      int repeatLast = 3;
-      while (0 < repeatLast--)
-        animationWriter.write(owlFrame.offscreen());
-      owlFrame.close();
     }
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);

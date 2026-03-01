@@ -4,12 +4,12 @@ package ch.alpine.owl.bot.rn.glc;
 import java.util.Collection;
 import java.util.List;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
@@ -54,10 +54,10 @@ import ch.alpine.tensor.qty.Quantity;
   }
 
   void show(TrajectoryPlanner trajectoryPlanner) {
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.addBackground(RegionRenders.create(region1));
-    owlFrame.addBackground(RegionRenders.create(region2));
-    owlFrame.addBackground(RegionRenders.create(ballRegion));
-    owlFrame.addBackground(RegionRenders.create(trajectoryRegionQuery));
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region1));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region2));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(trajectoryRegionQuery));
   }
 }

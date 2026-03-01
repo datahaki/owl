@@ -4,13 +4,13 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.Collection;
 import java.util.List;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.region.HyperplaneRegion;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -60,14 +60,12 @@ enum Se2rAnimateDemo {
   static void main() throws Exception {
     TrajectoryPlanner trajectoryPlanner = trajectoryPlanner();
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlFrame owlFrame = OwlGui.start();
+    GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
+    while (!trajectoryPlanner.getBest().isPresent()) {
+      glcExpand.findAny(1);
+    }
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.setOffset(169, 71);
     owlFrame.jFrame.setBounds(100, 100, 300, 200);
-    GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
-      glcExpand.findAny(1);
-      owlFrame.setGlc(trajectoryPlanner);
-      Thread.sleep(100);
-    }
   }
 }

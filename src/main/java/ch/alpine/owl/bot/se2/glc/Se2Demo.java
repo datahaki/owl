@@ -7,7 +7,7 @@ import ch.alpine.owl.util.win.OwlAnimationFrame;
 
 public abstract class Se2Demo implements DemoInterface {
   @Override
-  public final OwlAnimationFrame getBaseFrame() {
+  public final OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setTitle(FriendlyFormat.defaultTitle(getClass()));

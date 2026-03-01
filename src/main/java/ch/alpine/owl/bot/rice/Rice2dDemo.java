@@ -5,11 +5,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.region.HyperplaneRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -76,7 +76,7 @@ import ch.alpine.tensor.qty.Timing;
     // 555 1.149214356 with parallel integration of trajectories
     System.out.println(glcExpand.getExpandCount() + " " + timing.seconds());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     if (optional.isPresent()) {
       GlcNode glcNode = optional.orElseThrow();
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(glcNode);
@@ -85,7 +85,7 @@ import ch.alpine.tensor.qty.Timing;
           MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlFrame.addBackground(trajectoryRender);
+      owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
     }
     glcExpand.untilOptimal(1000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
@@ -98,8 +98,8 @@ import ch.alpine.tensor.qty.Timing;
           MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlFrame.addBackground(trajectoryRender);
+      owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
     }
-    owlFrame.addBackground(RegionRenders.create(ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ELLIPSOID_REGION));
   }
 }

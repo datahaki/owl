@@ -11,14 +11,14 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.bij.R2RigidFamily;
+import ch.alpine.owlets.math.bij.Se2Family;
 import ch.alpine.owlets.math.flow.EulerIntegrator;
 import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
-import ch.alpine.sophus.math.bij.R2RigidFamily;
-import ch.alpine.sophus.math.bij.Se2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -28,7 +28,7 @@ public class R2xTImageAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(1.5);
 
   @Override
-  public OwlAnimationFrame getBaseFrame() {
+  public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //

@@ -3,8 +3,8 @@ package ch.alpine.owl.region;
 
 import java.io.Serializable;
 
+import ch.alpine.owlets.math.bij.Se2Bijection;
 import ch.alpine.sophus.lie.so2.ArcTan2D;
-import ch.alpine.sophus.math.bij.Se2Bijection;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

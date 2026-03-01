@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
-import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
@@ -21,7 +21,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 /* package */ enum R2Demo {
   ;
-  static OwlFrame show() {
+  static TimerFrame show() {
     int wid = 7;
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(wid, wid));
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(coordinateBoundingBox);
@@ -34,10 +34,9 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
-    OwlFrame owlFrame = OwlGui.start();
+    TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     owlFrame.geometricComponent.setOffset(42, 456);
     owlFrame.jFrame.setBounds(100, 100, 500, 500);
-    owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
     return owlFrame;
   }
 

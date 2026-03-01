@@ -14,7 +14,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2PolicyImageDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getBaseFrame() {
+  public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._2181;

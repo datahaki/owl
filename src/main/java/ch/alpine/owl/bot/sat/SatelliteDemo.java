@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.sat;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -47,17 +47,16 @@ import ch.alpine.tensor.qty.Quantity;
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(start, RealScalar.ZERO));
     // ---
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.addBackground(RegionRenders.create(obstacleRegion));
-    owlFrame.addBackground(RegionRenders.create(goalRegion));
-    // ---
-    owlFrame.jFrame.setBounds(100, 100, 600, 600);
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!glcExpand.isOptimal() && owlFrame.jFrame.isVisible()) {
+    while (!glcExpand.isOptimal()) {
       glcExpand.findAny(50);
-      owlFrame.setGlc(trajectoryPlanner);
       Thread.sleep(1);
     }
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(obstacleRegion));
+    owlFrame.geometricComponent.addRenderInterface(RegionRenders.create(goalRegion));
+    // ---
+    owlFrame.jFrame.setBounds(100, 100, 600, 600);
     System.out.println("#expand = " + glcExpand.getExpandCount());
   }
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
@@ -12,7 +13,6 @@ import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -60,16 +60,14 @@ enum Se2rImageDemo {
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlFrame owlFrame = OwlGui.start();
+    GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
+    while (!trajectoryPlanner.getBest().isPresent()) {
+      glcExpand.findAny(1000);
+    }
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.setOffset(100, 550);
     owlFrame.jFrame.setBounds(100, 100, 700, 700);
-    owlFrame.addBackground(RegionRenders.create(region));
-    GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
-      glcExpand.findAny(1000);
-      owlFrame.setGlc(trajectoryPlanner);
-      Thread.sleep(10);
-    }
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());

@@ -13,13 +13,13 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.bij.BijectionFamily;
+import ch.alpine.owlets.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.math.bij.BijectionFamily;
-import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
@@ -29,7 +29,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 30));
 
   @Override
-  public OwlAnimationFrame getBaseFrame() {
+  public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(0, 0, 1), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);

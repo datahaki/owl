@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.exp.Log;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(5000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.addBackground(RegionRenders.create(ellipsoidRegion));
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ellipsoidRegion));
   }
 }

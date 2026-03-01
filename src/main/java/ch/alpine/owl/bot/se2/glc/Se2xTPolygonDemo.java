@@ -8,10 +8,10 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.bij.BijectionFamily;
+import ch.alpine.owlets.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
-import ch.alpine.sophus.math.bij.BijectionFamily;
-import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -28,7 +28,7 @@ public class Se2xTPolygonDemo implements DemoInterface {
   });
 
   @Override
-  public OwlAnimationFrame getBaseFrame() {
+  public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);

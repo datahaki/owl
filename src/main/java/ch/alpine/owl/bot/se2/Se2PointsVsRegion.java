@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import ch.alpine.sophus.math.bij.Se2Bijection;
+import ch.alpine.owlets.math.bij.Se2Bijection;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
 

@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import ch.alpine.ascony.io.AnimationWriter;
 import ch.alpine.ascony.io.GifAnimationWriter;
-import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
@@ -21,21 +21,17 @@ enum Se2rExpandDemo {
     TrajectoryPlanner trajectoryPlanner = Se2rAnimateDemo.trajectoryPlanner();
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.geometricComponent.setOffset(169, 71);
-    owlFrame.jFrame.setBounds(100, 100, 300, 200);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures.resolve("se2r.gif"), 250, TimeUnit.MILLISECONDS)) {
       GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-      while (!trajectoryPlanner.getBest().isPresent() && owlFrame.jFrame.isVisible()) {
+      while (!trajectoryPlanner.getBest().isPresent()) {
         glcExpand.findAny(1);
-        owlFrame.setGlc(trajectoryPlanner);
+        TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+        owlFrame.geometricComponent.setOffset(169, 71);
+        owlFrame.jFrame.setBounds(100, 100, 300, 200);
         animationWriter.write(owlFrame.offscreen());
         Thread.sleep(10);
       }
-      int repeatLast = 6;
-      while (0 < repeatLast--)
-        animationWriter.write(owlFrame.offscreen());
     }
     System.out.println("created gif");
   }

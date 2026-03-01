@@ -1,19 +1,13 @@
 // code by gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.ascony.ren.RenderInterface;
-import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.data.tree.Expand;
 import ch.alpine.owlets.math.state.StateTime;
@@ -82,33 +76,27 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
       }
     };
     // ---
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.geometricComponent.setOffset(60, 477);
-    owlFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlFrame.addBackground(RegionRenders.create(imageRegion));
     StateTime stateTime = new StateTime(Append.of(lbounds, RealScalar.ZERO), RealScalar.ZERO);
     Tensor goal = RandomSample.of(randomSampleInterface);
     Tensor trajectory = Tensors.empty();
     int frame = 0;
-    while (frame++ < 5 && owlFrame.jFrame.isVisible()) {
+    while (frame++ < 5) {
       server.setGoal(goal);
       server.insertRoot(stateTime);
       server.setState(stateTime);
       new Expand<>(server).steps(200);
-      owlFrame.setRrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
       Optional<List<TrajectorySample>> optional = server.getTrajectory();
       if (optional.isPresent()) {
         optional.get().stream().map(TrajectorySample::stateTime).map(StateTime::state).forEach(trajectory::append);
-        owlFrame.geometricComponent.addRenderInterface(new RenderInterface() {
-          @Override
-          public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-            Path2D path = geometricLayer.toPath2D(trajectory);
-            graphics.setStroke(new BasicStroke(2));
-            graphics.setColor(Color.BLACK);
-            graphics.draw(path);
-          }
-        });
-        owlFrame.geometricComponent.jComponent.repaint();
+        // owlFrame.geometricComponent.addRenderInterface(new RenderInterface() {
+        // @Override
+        // public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+        // Path2D path = geometricLayer.toPath2D(trajectory);
+        // graphics.setStroke(new BasicStroke(2));
+        // graphics.setColor(Color.BLACK);
+        // graphics.draw(path);
+        // }
+        // });
         // ---
         stateTime = optional.get().getLast().stateTime();
         goal = RandomSample.of(randomSampleInterface);
@@ -116,5 +104,9 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
       System.out.println(frame + "/" + 5);
       Thread.sleep(10);
     }
+    TimerFrame owlFrame = OwlGui.rrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
+    owlFrame.geometricComponent.setOffset(60, 477);
+    owlFrame.jFrame.setBounds(100, 100, 550, 550);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
   }
 }

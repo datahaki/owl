@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
-import ch.alpine.ascony.win.BaseFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.cgr.InstanceDiscovery;
 import ch.alpine.owl.util.win.DemoInterface;
 
@@ -21,7 +21,7 @@ class DemoInterfaceTest implements Consumer<DemoInterface> {
 
   @Override
   public void accept(DemoInterface demoInterface) {
-    BaseFrame baseFrame = demoInterface.getBaseFrame();
+    TimerFrame baseFrame = demoInterface.getTimerFrame();
     baseFrame.jFrame.setTitle(demoInterface.getClass().getSimpleName());
     baseFrame.jFrame.setVisible(true);
     try {

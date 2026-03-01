@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.ap;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.util.win.OwlFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
@@ -26,9 +26,6 @@ import ch.alpine.tensor.qty.Degree;
     // StateTimeRaster stateTimeRaster = ApTrajectoryPlanner.stateTimeRaster();
     StandardTrajectoryPlanner standardTrajectoryPlanner = ApTrajectoryPlanner.apStandardTrajectoryPlanner();
     // ---
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.geometricComponent.setOffset(300, 300);
-    owlFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
     // owlyFrame.addBackground(RegionRenders.create(region));
     // owlyFrame.addBackground(RegionRenders.create(sphericalRegion));
     // owlyFrame.addBackground(RenderElements.create(stateTimeRaster));
@@ -50,7 +47,9 @@ import ch.alpine.tensor.qty.Degree;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    owlFrame.setGlc(standardTrajectoryPlanner);
+    TimerFrame timerFrame = OwlGui.glc(standardTrajectoryPlanner);
+    timerFrame.geometricComponent.setOffset(300, 300);
+    timerFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1, 0, 10}, {0, -1, 500}, {0, 0, 1}}"));
     // OwlyFrame owlyFrame2 = OwlyGui.glc(standardTrajectoryPlanner);
   }
 }

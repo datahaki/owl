@@ -3,7 +3,7 @@ package ch.alpine.owl.util.win;
 
 import java.awt.Window;
 
-import ch.alpine.ascony.win.BaseFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.pro.WindowProvider;
 
 @FunctionalInterface
@@ -11,10 +11,10 @@ public interface DemoInterface extends WindowProvider {
   /** start demo
    * 
    * @return */
-  BaseFrame getBaseFrame();
+  TimerFrame getTimerFrame();
 
   @Override
   default Window getWindow() {
-    return getBaseFrame().jFrame;
+    return getTimerFrame().jFrame;
   }
 }

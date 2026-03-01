@@ -1,9 +1,9 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
@@ -46,20 +46,19 @@ import ch.alpine.tensor.sca.Clips;
     // ---
     Rrts rrts = new DefaultRrts(transitionSpace, rrtsNodeCollection, unionTransitionRegionQuery, LengthCostFunction.INSTANCE);
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0, 0), 5).get();
-    OwlFrame owlFrame = OwlGui.start();
-    owlFrame.geometricComponent.setOffset(60, 477);
-    owlFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlFrame.addBackground(RegionRenders.create(imageRegion));
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of( //
         Append.of(lbounds, Pi.VALUE.negate()), //
         Append.of(ubounds, Pi.VALUE)));
     int frame = 0;
-    while (frame++ < 20 && owlFrame.jFrame.isVisible()) {
+    while (frame++ < 20) {
       for (int c = 0; c < 50; ++c)
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
-      owlFrame.setRrts(transitionSpace, root, transitionRegionQuery);
       Thread.sleep(10);
     }
+    TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
+    owlFrame.geometricComponent.setOffset(60, 477);
+    owlFrame.jFrame.setBounds(100, 100, 550, 550);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
   }

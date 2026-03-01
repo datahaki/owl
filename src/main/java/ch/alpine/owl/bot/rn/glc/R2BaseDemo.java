@@ -5,13 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.ascony.win.BaseFrame;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.win.DemoInterface;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -42,7 +41,7 @@ abstract class R2BaseDemo implements DemoInterface {
   protected abstract Tensor startState();
 
   @Override // from DemoInterface
-  public final BaseFrame getBaseFrame() {
+  public final TimerFrame getTimerFrame() {
     Tensor partitionScale = Tensors.vector(5, 5);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
@@ -64,9 +63,9 @@ abstract class R2BaseDemo implements DemoInterface {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.addBackground(RegionRenders.create(region));
-    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(region));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
     owlFrame.geometricComponent.setOffset(250, 500);
     return owlFrame;
   }

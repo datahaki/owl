@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.glc.core.HeuristicAssert;
 import ch.alpine.owl.util.ren.RegionRenders;
 import ch.alpine.owl.util.ren.TrajectoryRender;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.GlcTrajectories;
@@ -39,15 +39,15 @@ class Rice2dDemoTest {
     glcExpand.findAny(1000); // 153 0.368319228
     assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlFrame.addBackground(trajectoryRender);
-    owlFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
@@ -64,15 +64,15 @@ class Rice2dDemoTest {
     glcExpand.untilOptimal(1000); // 220 0.283809941
     assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
         MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlFrame.addBackground(trajectoryRender);
-    owlFrame.addBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);

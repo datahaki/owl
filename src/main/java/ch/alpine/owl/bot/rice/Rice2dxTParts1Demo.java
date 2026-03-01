@@ -15,15 +15,15 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.bij.BijectionFamily;
+import ch.alpine.owlets.math.bij.SimpleR2TranslationFamily;
+import ch.alpine.owlets.math.bij.So2Family;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophis.noise.SimplexContinuousNoise;
-import ch.alpine.sophus.math.bij.BijectionFamily;
-import ch.alpine.sophus.math.bij.SimpleR2TranslationFamily;
-import ch.alpine.sophus.math.bij.So2Family;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 
 public class Rice2dxTParts1Demo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getBaseFrame() {
+  public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);

@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -63,10 +63,10 @@ import ch.alpine.tensor.qty.Timing;
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.setZoomable(false);
     owlFrame.geometricComponent.setOffset(200, 650);
-    owlFrame.addBackground(RegionRenders.create(imageRegion));
-    owlFrame.addBackground(RegionRenders.create(ballRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(imageRegion));
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
   }
 }

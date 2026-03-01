@@ -9,13 +9,13 @@ import java.util.concurrent.TimeUnit;
 import ch.alpine.ascony.io.AnimationWriter;
 import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.region.BallRegion;
 import ch.alpine.owl.region.EllipsoidRegion;
 import ch.alpine.owl.util.ren.RegionRenders;
-import ch.alpine.owl.util.win.OwlFrame;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -81,19 +81,16 @@ import ch.alpine.tensor.sca.Ramp;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures.resolve("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
-      OwlFrame owlFrame = OwlGui.start();
-      owlFrame.addBackground(RegionRenders.create(ballRegion));
-      owlFrame.addBackground(renderInterface); // reference to collection
       for (int i = 0; i < 20; ++i) {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent())
           break;
         glcExpand.findAny(1);
-        owlFrame.setGlc(trajectoryPlanner);
+        TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+        owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenders.create(ballRegion));
+        owlFrame.geometricComponent.addRenderInterfaceBackground(renderInterface); // reference to collection
         animationWriter.write(owlFrame.offscreen());
       }
-      for (int i = 0; i < 4; ++i)
-        animationWriter.write(owlFrame.offscreen());
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
