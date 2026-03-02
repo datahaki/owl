@@ -10,6 +10,7 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.qty.Degree;
 
 class ApDemoTest {
   final static Tensor INITIAL_TENSOR = ApDemo.INITIAL;
@@ -21,5 +22,11 @@ class ApDemoTest {
     GlcExpand glcExpand = new GlcExpand(standardTrajectoryPlanner);
     glcExpand.findAny(15000);
     assertTrue(standardTrajectoryPlanner.getBest().isPresent());
+  }
+
+  @Test
+  void testHello() {
+    double doubleValue = Degree.of(-1).number().doubleValue();
+    IO.println(doubleValue);
   }
 }

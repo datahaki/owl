@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.win.GeometricComponent;
 import ch.alpine.owlets.data.tree.Nodes;
@@ -41,13 +40,13 @@ public enum RenderElements {
 
   public static Collection<RenderInterface> create(TrajectoryPlanner trajectoryPlanner) {
     List<RenderInterface> list = new LinkedList<>();
-    list.add(AxesRender.INSTANCE);
+    // list.add(AxesRender.INSTANCE);
     // ---
     if (trajectoryPlanner instanceof CTrajectoryPlanner cTrajectoryPlanner) {
       StateTimeRaster stateTimeRaster = cTrajectoryPlanner.stateTimeRaster();
       if (stateTimeRaster instanceof EtaRaster etaRaster) {
-        list.add(new EtaRender(etaRaster.eta()));
-        list.add(DomainRender.of(trajectoryPlanner.getDomainMap().keySet(), etaRaster.eta()));
+        // list.add(new EtaRender(etaRaster.eta()));
+        // list.add(DomainRender.of(trajectoryPlanner.getDomainMap().keySet(), etaRaster.eta()));
       }
     }
     list.add(new QueueRender(trajectoryPlanner.getQueue()));
@@ -84,8 +83,8 @@ public enum RenderElements {
   }
 
   public static RenderInterface create(StateTimeRaster stateTimeRaster) {
-    if (stateTimeRaster instanceof EtaRaster etaRaster)
-      return new EtaRender(etaRaster.eta());
+    // if (stateTimeRaster instanceof EtaRaster etaRaster)
+    // return new EtaRender(etaRaster.eta());
     return null;
   }
 
@@ -101,7 +100,7 @@ public enum RenderElements {
   public static Collection<RenderInterface> create( //
       Collection<? extends StateCostNode> collection, TransitionRegionQuery transitionRegionQuery) {
     List<RenderInterface> list = new LinkedList<>();
-    list.add(AxesRender.INSTANCE);
+    // list.add(AxesRender.INSTANCE);
     if (transitionRegionQuery instanceof StateTimeCollector stateTimeCollector)
       list.add(new ObstacleRender(stateTimeCollector.getMembers()));
     list.add(new TreeRender().setCollection(collection));

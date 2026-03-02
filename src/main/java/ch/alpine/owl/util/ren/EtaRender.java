@@ -12,6 +12,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Ceiling;
 
+// FIXME this is not generic!!!
 public class EtaRender implements RenderInterface {
   private Tensor eta;
 
