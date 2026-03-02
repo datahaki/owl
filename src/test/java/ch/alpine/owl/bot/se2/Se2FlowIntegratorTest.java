@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.se2;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -23,6 +23,6 @@ class ApStateSpaceModelTest {
     Scalar h = Quantity.of(1, "s");
     Tensor df = f.multiply(h);
     INITIAL.add(df);
-    RungeKutta45Integrator.INSTANCE.step(ApStateSpaceModel.INSTANCE, INITIAL, u, h);
+    Integrators.RK45.step(ApStateSpaceModel.INSTANCE, INITIAL, u, h);
   }
 }

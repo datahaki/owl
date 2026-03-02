@@ -10,10 +10,10 @@ import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -31,7 +31,7 @@ public class BalloonAnimationDemo implements DemoInterface {
     BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithoutUnits();
     StateTime stateTime = new StateTime(Tensors.vector(0, 150, 10, 10), RealScalar.ZERO);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        balloonStateSpaceModel, EulerIntegrator.INSTANCE, stateTime);
+        balloonStateSpaceModel, Integrators.EULER, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
     MouseGoal.simple(owlAnimationFrame, balloonEntity, plannerConstraint);

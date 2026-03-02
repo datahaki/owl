@@ -17,13 +17,13 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class LvEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   private static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
-  private static final Integrator INTEGRATOR = RungeKutta45Integrator.INSTANCE;
+  private static final Integrator INTEGRATOR = Integrators.RK45;
   // ---
   private final FixedStateIntegrator fixedStateIntegrator;
   private final TreeRender treeRender = new TreeRender();

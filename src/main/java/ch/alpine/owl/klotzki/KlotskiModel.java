@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.klotzki;
 
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

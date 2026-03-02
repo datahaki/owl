@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -27,7 +27,7 @@ class Se2CarFlowsTest {
     Collection<Tensor> collection = carFlows.getFlows(8);
     Tensor flow = collection.iterator().next();
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").maps(UnitSystem.SI());
-    Tensor r = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
+    Tensor r = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
     Chop._10.requireClose(r, //
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
   }
@@ -54,7 +54,7 @@ class Se2CarFlowsTest {
     Collection<Tensor> collection = carFlows.getFlows(8);
     Tensor flow = collection.iterator().next();
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[]}").maps(UnitSystem.SI());
-    Tensor r = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
+    Tensor r = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, Quantity.of(2, "s"));
     Chop._10.requireClose(r, //
         Tensors.fromString("{1.9786265584792444[m], 3.5241205617280174[m], -1}"));
   }

@@ -9,13 +9,13 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
 import ch.alpine.sophis.crv.d2.ex.CogPoints;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.math.bij.BijectionFamily;
 import ch.alpine.sophis.math.bij.Se2Family;
 import ch.alpine.sophis.noise.SimplexContinuousNoise;
@@ -34,8 +34,8 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        SingleIntegratorStateSpaceModel.INSTANCE, //
-        EulerIntegrator.INSTANCE, //
+        StateSpaceModels.SINGLE_INTEGRATOR, //
+        Integrators.EULER, //
         new StateTime(Tensors.vector(1.2, 2.2), RealScalar.ZERO));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);

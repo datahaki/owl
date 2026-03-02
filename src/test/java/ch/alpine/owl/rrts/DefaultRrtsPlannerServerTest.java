@@ -13,7 +13,6 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owlets.data.tree.Expand;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.owlets.rrts.DefaultRrtsPlannerServer;
@@ -22,6 +21,7 @@ import ch.alpine.owlets.rrts.adapter.EmptyTransitionRegionQuery;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
 import ch.alpine.sophis.crv.dub.DubinsPathComparators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.RnTransitionSpace;
@@ -58,7 +58,7 @@ class DefaultRrtsPlannerServerTest {
         RnTransitionSpace.INSTANCE, //
         EmptyTransitionRegionQuery.INSTANCE, //
         Rational.of(1, 10), //
-        SingleIntegratorStateSpaceModel.INSTANCE, //
+        StateSpaceModels.SINGLE_INTEGRATOR, //
         LengthCostFunction.INSTANCE) {
       @Override
       protected RrtsNodeCollection rrtsNodeCollection() {

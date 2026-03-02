@@ -1,10 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -14,8 +12,8 @@ import ch.alpine.tensor.Tensor;
  * Important: u is assumed to be of the form u == {vx, 0, rate}
  * 
  * Se2CarIntegrator is approximately
- * 3x faster than {@link RungeKutta4Integrator}
- * 11x faster than {@link RungeKutta45Integrator} */
+ * 3x faster than RungeKutta4 Integrator
+ * 11x faster than RungeKutta45 Integrator */
 public enum Se2CarIntegrator implements Integrator {
   INSTANCE;
 

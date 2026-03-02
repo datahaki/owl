@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.reg.ImageRegion;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

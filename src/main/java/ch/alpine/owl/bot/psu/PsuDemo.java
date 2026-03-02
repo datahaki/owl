@@ -16,12 +16,11 @@ import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -40,7 +39,7 @@ import ch.alpine.tensor.qty.Quantity;
 
   public static TrajectoryPlanner raw(GoalInterface goalInterface) {
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        RungeKutta4Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 30), "s"), 5);
+        Integrators.RK4, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 30), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     StateTimeRaster stateTimeRaster = new EtaRaster(ETA, StateTimeTensorFunction.state(psuWrap::represent));
@@ -61,7 +60,7 @@ import ch.alpine.tensor.qty.Quantity;
 
   public static TrajectoryPlanner medium() {
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        RungeKutta45Integrator.INSTANCE, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
+        Integrators.RK45, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
     Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //

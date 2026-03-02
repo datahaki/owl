@@ -20,11 +20,11 @@ import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -41,7 +41,7 @@ import ch.alpine.tensor.sca.Ramp;
 /* package */ enum R2Demo {
   ;
   static final StateIntegrator STATE_INTEGRATOR = new FixedStateIntegrator( //
-      EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
+      Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 5), "s"), 5);
 
   static TrajectoryPlanner simpleEmpty() {
     return simple(EmptyPlannerConstraint.INSTANCE);

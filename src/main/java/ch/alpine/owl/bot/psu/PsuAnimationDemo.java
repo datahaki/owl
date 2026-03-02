@@ -6,16 +6,16 @@ import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
+import ch.alpine.owl.util.bot.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.VectorFields;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -29,7 +29,7 @@ public class PsuAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    Integrator integrator = RungeKutta45Integrator.INSTANCE;
+    Integrator integrator = Integrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //
         new StateTime(Tensors.vector(0, 0), RealScalar.ZERO));

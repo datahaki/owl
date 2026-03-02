@@ -18,12 +18,12 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.sophis.reg.RegionWithDistance;
 import ch.alpine.tensor.Rational;
@@ -59,7 +59,7 @@ import ch.alpine.tensor.qty.Quantity;
     this.imageGradientInterpolation = imageGradientInterpolation;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     fixedStateIntegrator = new FixedStateIntegrator( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
+        Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
   }
 
   @Override // from TensorMetric
@@ -90,7 +90,7 @@ import ch.alpine.tensor.qty.Quantity;
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
         new FixedStateIntegrator( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
+            Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
         controls, plannerConstraint, goalInterface);
   }
 

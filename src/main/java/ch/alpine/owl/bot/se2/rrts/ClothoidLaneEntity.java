@@ -8,14 +8,14 @@ import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.core.RrtsNode;
 import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
-            EulerIntegrator.INSTANCE, //
+            Integrators.EULER, //
             stateTime), //
         CarEntity.createPurePursuitControl(), //
         new LaneRrtsPlannerServer( //

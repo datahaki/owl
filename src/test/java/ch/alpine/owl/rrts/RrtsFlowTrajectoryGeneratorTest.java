@@ -19,7 +19,6 @@ import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.rrts.CarRrtsFlow;
 import ch.alpine.owl.bot.se2.rrts.Se2RrtsNodeCollection;
 import ch.alpine.owlets.data.tree.Nodes;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
@@ -31,6 +30,7 @@ import ch.alpine.owlets.rrts.core.DefaultRrts;
 import ch.alpine.owlets.rrts.core.Rrts;
 import ch.alpine.owlets.rrts.core.RrtsNode;
 import ch.alpine.sophis.crv.dub.DubinsPathComparators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.sophis.ts.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.RnTransitionSpace;
@@ -64,7 +64,7 @@ class RrtsFlowTrajectoryGeneratorTest {
     List<RrtsNode> sequence = Nodes.listFromRoot(n3);
     assertEquals(sequence, Arrays.asList(root, n1, n2, n3));
     RrtsFlowTrajectoryGenerator generator = new RrtsFlowTrajectoryGenerator( //
-        SingleIntegratorStateSpaceModel.INSTANCE, //
+        StateSpaceModels.SINGLE_INTEGRATOR, //
         RnRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
         generator.createTrajectory(RnTransitionSpace.INSTANCE, sequence, RealScalar.ZERO, Rational.of(1, 10));

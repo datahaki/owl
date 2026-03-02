@@ -1,7 +1,7 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

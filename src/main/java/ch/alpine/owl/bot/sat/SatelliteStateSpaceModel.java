@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.sat;
 
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.nrm.Vector2Norm;

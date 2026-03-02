@@ -2,9 +2,8 @@
 package ch.alpine.owl.bot.se2;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -36,10 +35,10 @@ enum Se2IntegratorDemo {
       Se2FlowIntegrator.INSTANCE.step(stateSpaceModel, x, flow, h);
       s4.stop();
       s2.start();
-      RungeKutta4Integrator.INSTANCE.step(stateSpaceModel, x, flow, h);
+      Integrators.RK4.step(stateSpaceModel, x, flow, h);
       s2.stop();
       s3.start();
-      RungeKutta45Integrator.INSTANCE.step(stateSpaceModel, x, flow, h);
+      Integrators.RK45.step(stateSpaceModel, x, flow, h);
       s3.stop();
     }
     System.out.println("car_int " + s1.seconds());

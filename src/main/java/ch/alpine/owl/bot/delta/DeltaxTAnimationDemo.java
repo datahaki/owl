@@ -17,9 +17,6 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
@@ -28,6 +25,8 @@ import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
 import ch.alpine.sophis.api.Region;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.reg.RegionUnion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -54,7 +53,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = TemporalTrajectoryControl.createInstance();
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), RealScalar.ZERO);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        new DeltaStateSpaceModel(imageGradientInterpolation_fast), EulerIntegrator.INSTANCE, stateTime);
+        new DeltaStateSpaceModel(imageGradientInterpolation_fast), Integrators.EULER, stateTime);
     TrajectoryEntity trajectoryEntity = //
         new DeltaxTEntity(episodeIntegrator, trajectoryControl, imageGradientInterpolation_fast);
     Supplier<Scalar> supplier = () -> trajectoryEntity.getStateTimeNow().time();
@@ -90,7 +89,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 120 * 10);
+        Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 120 * 10);
     return new R2xTEllipsoidStateTimeRegion(Tensors.of(radius, radius), //
         TrajectoryR2TranslationFamily.create(stateIntegrator, new StateTime(pos, RealScalar.ZERO), flow), //
         supplier);

@@ -17,10 +17,10 @@ import ch.alpine.owlets.glc.adapter.GlcTrajectories;
 import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.owlets.glc.core.GlcNodes;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
-import ch.alpine.owlets.math.flow.MidpointIntegrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -43,7 +43,7 @@ class Rice2dDemoTest {
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
+        Integrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
@@ -68,7 +68,7 @@ class Rice2dDemoTest {
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
-        MidpointIntegrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
+        Integrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
     owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);

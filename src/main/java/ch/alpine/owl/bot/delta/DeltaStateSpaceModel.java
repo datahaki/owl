@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.owl.bot.r2.ImageGradientInterpolation;
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Tensor;
 
 /** an upper bound of the speed of an entity in the river delta is

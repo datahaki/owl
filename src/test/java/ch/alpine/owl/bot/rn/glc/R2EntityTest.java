@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -71,8 +71,8 @@ class R2EntityTest {
   void testTail() {
     Tensor state = Tensors.vector(0.7, 0);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        SingleIntegratorStateSpaceModel.INSTANCE, //
-        EulerIntegrator.INSTANCE, //
+        StateSpaceModels.SINGLE_INTEGRATOR, //
+        Integrators.EULER, //
         new StateTime(state, RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     R2Entity abstractEntity = new R2Entity(episodeIntegrator, trajectoryControl);

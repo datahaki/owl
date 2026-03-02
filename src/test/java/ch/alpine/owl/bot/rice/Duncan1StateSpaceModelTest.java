@@ -9,18 +9,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.flow.MidpointIntegrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta4Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.AbstractEpisodeIntegrator;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -52,7 +49,7 @@ class Duncan1StateSpaceModelTest {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        RungeKutta45Integrator.INSTANCE, stateSpaceModel, Scalars.fromString("1/5[s]"), 99 * 5); // simulate for 100[s]
+        Integrators.RK45, stateSpaceModel, Scalars.fromString("1/5[s]"), 99 * 5); // simulate for 100[s]
     StateTime stateTime = new StateTime(Tensors.of(Quantity.of(10, "m*s^-1")), Quantity.of(1, "s"));
     Scalar push = Quantity.of(3, "m*s^-2");
     List<StateTime> list = stateIntegrator.trajectory(stateTime, Tensors.of(push));
@@ -66,7 +63,7 @@ class Duncan1StateSpaceModelTest {
     Tensor speed = Tensors.fromString("{10[m*s^-1]}");
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         new Duncan1StateSpaceModel(Quantity.of(0.2, "s^-1")), //
-        MidpointIntegrator.INSTANCE, //
+        Integrators.MIDPOINT, //
         new StateTime(speed, Quantity.of(0, "s")));
     Tensor accel = Tensors.of(Quantity.of(3, "m*s^-2"));
     episodeIntegrator.move(accel, Quantity.of(1, "s"));
@@ -82,10 +79,10 @@ class Duncan1StateSpaceModelTest {
     Scalar t = Scalars.fromString("3[s]");
     Scalar p = Scalars.fromString("2[s]");
     Integrator[] ints = new Integrator[] { //
-        EulerIntegrator.INSTANCE, //
-        MidpointIntegrator.INSTANCE, //
-        RungeKutta4Integrator.INSTANCE, //
-        RungeKutta45Integrator.INSTANCE //
+        Integrators.EULER, //
+        Integrators.MIDPOINT, //
+        Integrators.RK4, //
+        Integrators.RK45 //
     };
     for (Integrator integrator : ints) {
       AbstractEpisodeIntegrator aei = new SimpleEpisodeIntegrator( //

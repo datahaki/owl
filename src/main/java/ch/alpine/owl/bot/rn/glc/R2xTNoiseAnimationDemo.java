@@ -8,12 +8,12 @@ import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -27,8 +27,8 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        SingleIntegratorStateSpaceModel.INSTANCE, //
-        EulerIntegrator.INSTANCE, //
+        StateSpaceModels.SINGLE_INTEGRATOR, //
+        Integrators.EULER, //
         new StateTime(Tensors.vector(0.2, 0.2), Quantity.of(0, "s")));
     TrajectoryEntity trajectoryEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(trajectoryEntity);

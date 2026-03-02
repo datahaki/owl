@@ -4,9 +4,6 @@ package ch.alpine.owl.bot.rn.rrts;
 import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
 import ch.alpine.owl.bot.rn.glc.R2TrajectoryControl;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.rrts.DefaultRrtsPlannerServer;
@@ -14,6 +11,9 @@ import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.crv.d2.Extract2D;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.ts.RnTransitionSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.qty.Quantity;
 /* package */ class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(0.5, "s");
-  private static final StateSpaceModel STATE_SPACE_MODEL = SingleIntegratorStateSpaceModel.INSTANCE;
+  private static final StateSpaceModel STATE_SPACE_MODEL = StateSpaceModels.SINGLE_INTEGRATOR;
   static final Tensor SHAPE = Tensors.fromString("{{0, 0.1}, {0.1, 0}, {0, -0.1}, {-0.1, 0}}").unmodifiable();
 
   /** @param stateTime initial position of entity
@@ -40,7 +40,7 @@ import ch.alpine.tensor.qty.Quantity;
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
-            EulerIntegrator.INSTANCE, //
+            Integrators.EULER, //
             stateTime), //
         new R2TrajectoryControl(), //
         new DefaultRrtsPlannerServer( //

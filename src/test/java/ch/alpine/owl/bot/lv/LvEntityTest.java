@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
+import ch.alpine.owl.util.bot.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
-import ch.alpine.owlets.math.model.VectorFields;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -30,7 +30,7 @@ class LvEntityTest {
     Tensor fallback_u = Array.zeros(1);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
     Collection<Tensor> controls = LvControls.create(2);
-    Integrator integrator = RungeKutta45Integrator.INSTANCE;
+    Integrator integrator = Integrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator(stateSpaceModel, integrator, //
         new StateTime(Tensors.vector(2, 0.3), RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();

@@ -1,14 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.r2;
 
-import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.num.Rationalize;
 
 /** for single integrator state space
- * use with {@link EulerIntegrator} */
+ * use with {@link Integrators} */
 public class R2RationalFlows extends R2Flows {
   private static final ScalarUnaryOperator RATIONALIZE = Rationalize.withDenominatorLessEquals(100);
 

@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.delta;
 import java.util.function.Predicate;
 
 import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.owl.util.bot.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
-import ch.alpine.owlets.math.model.StateSpaceModel;
-import ch.alpine.owlets.math.model.VectorFields;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;

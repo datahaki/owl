@@ -14,10 +14,10 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -62,7 +62,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = new DeltaMinTimeGoalManager(SPHERICAL_REGION, maxMove);
     trajectoryPlanner = new StandardTrajectoryPlanner( //
         STATE_TIME_RASTER, new FixedStateIntegrator( //
-            RungeKutta45Integrator.INSTANCE, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 4),
+            Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 4),
         controls, PLANNER_CONSTRAINT, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), RealScalar.ZERO));
   }

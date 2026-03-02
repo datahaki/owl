@@ -22,11 +22,11 @@ import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -44,7 +44,7 @@ import ch.alpine.tensor.qty.Timing;
     MemberQ imageRegion = //
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
+        Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 8), "s"), 4);
     R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(23);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 10), RealScalar.of(0.2));

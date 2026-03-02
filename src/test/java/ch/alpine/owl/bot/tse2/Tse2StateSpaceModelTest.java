@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -33,7 +33,7 @@ class Tse2StateSpaceModelTest {
       Tensor f = Tse2StateSpaceModel.INSTANCE.f(x, u).unmodifiable();
       Scalar h = Quantity.of(1, "s");
       Tensor xp = x.add(f.multiply(h));
-      Tensor xn = EulerIntegrator.INSTANCE.step(Tse2StateSpaceModel.INSTANCE, x, u, h);
+      Tensor xn = Integrators.EULER.step(Tse2StateSpaceModel.INSTANCE, x, u, h);
       assertEquals(xp, xn);
     }
   }

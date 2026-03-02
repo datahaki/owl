@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
-import ch.alpine.owlets.math.flow.RungeKutta45Integrator;
-import ch.alpine.owlets.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
+import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -22,7 +22,7 @@ class Se2CarIntegratorTest {
   void testCarEx() {
     Scalar dt = Quantity.of(Rational.of(1, 10), "s");
     FixedStateIntegrator FIXEDSTATEINTEGRATOR = //
-        new FixedStateIntegrator(Se2CarIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, dt, 4);
+        new FixedStateIntegrator(Se2CarIntegrator.INSTANCE, StateSpaceModels.SINGLE_INTEGRATOR, dt, 4);
     Scalar r = FIXEDSTATEINTEGRATOR.getTimeStepTrajectory();
     assertEquals(r, dt.multiply(RealScalar.of(4)));
   }
@@ -34,7 +34,7 @@ class Se2CarIntegratorTest {
     Tensor flow = Se2CarFlows.singleton(RealScalar.ONE, RealScalar.ZERO);
     Se2StateSpaceModel.INSTANCE.f(x, flow);
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor impl = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor impl = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._10.requireClose(impl, expl);
   }
 
@@ -44,7 +44,7 @@ class Se2CarIntegratorTest {
     Scalar h = RealScalar.of(0.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.ONE, RealScalar.ONE);
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor impl = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor impl = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._10.requireClose(impl, expl);
   }
 
@@ -55,7 +55,7 @@ class Se2CarIntegratorTest {
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(0.5), RealScalar.of(2));
     Se2StateSpaceModel.INSTANCE.f(x, flow);
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor imp1 = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor imp1 = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._07.requireClose(imp1, expl);
   }
 
@@ -66,7 +66,7 @@ class Se2CarIntegratorTest {
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(0.7), RealScalar.of(1.2));
     Se2StateSpaceModel.INSTANCE.f(x, flow);
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor impl = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor impl = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._07.requireClose(impl, expl);
   }
 
@@ -76,7 +76,7 @@ class Se2CarIntegratorTest {
     Scalar h = RealScalar.of(0.25);
     Tensor flow = Se2CarFlows.singleton(RealScalar.of(-0.8), RealScalar.of(2));
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor impl = RungeKutta45Integrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor impl = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._07.requireClose(impl, expl);
   }
 }

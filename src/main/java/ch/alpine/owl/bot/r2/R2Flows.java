@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ch.alpine.owl.util.bot.FlowsInterface;
-import ch.alpine.owlets.math.flow.EulerIntegrator;
+import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.ConstantArray;
@@ -15,7 +15,7 @@ import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.sca.Sign;
 
 /** for single integrator state space
- * use with {@link EulerIntegrator} */
+ * use with {@link Integrators#EULER} */
 public class R2Flows implements FlowsInterface, Serializable {
   private final Scalar speed;
 

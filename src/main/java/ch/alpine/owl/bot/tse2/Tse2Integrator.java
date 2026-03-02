@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 import ch.alpine.owl.bot.rn.R1Integrator;
 import ch.alpine.owl.bot.se2.Se2CarLieIntegrator;
-import ch.alpine.owlets.math.flow.Integrator;
-import ch.alpine.owlets.math.model.StateSpaceModel;
+import ch.alpine.sophis.flow.Integrator;
+import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
