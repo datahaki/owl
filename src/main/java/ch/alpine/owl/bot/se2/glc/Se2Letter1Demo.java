@@ -11,15 +11,15 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.reg.ImageRegion;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 
 public class Se2Letter1Demo extends Se2CarDemo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
-    CarEntity carEntity = CarEntity.createDefault(new StateTime(Tensors.vector(10, 5, 1), RealScalar.ZERO));
+    CarEntity carEntity = CarEntity.createDefault(new StateTime(Tensors.vector(10, 5, 1), Quantity.of(0, "s")));
     ImageRegion imageRegion = R2ImageRegions.inside_0f5c();
     PlannerConstraint plannerConstraint = createConstraint(imageRegion);
     owlAnimationFrame.add(carEntity);

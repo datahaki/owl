@@ -27,6 +27,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.lie.rot.AngleVector;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.tri.Cos;
 import ch.alpine.tensor.sca.tri.Sin;
 
@@ -45,7 +46,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
-        new StateTime(Tensors.vector(1.2, 2), RealScalar.ZERO));
+        new StateTime(Tensors.vector(1.2, 2), Quantity.of(0, "s")));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);
     BijectionFamily shiftx = new SimpleR2TranslationFamily( //

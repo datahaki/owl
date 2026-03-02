@@ -45,7 +45,7 @@ import ch.alpine.tensor.qty.Timing;
         ImageRegions.loadFromRepository("/io/track0_100.png", Tensors.vector(10, 10), false);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(23);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 10), RealScalar.of(0.2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
@@ -53,7 +53,7 @@ import ch.alpine.tensor.qty.Timing;
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(imageRegion));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), Quantity.of(0, "s")));
     Timing timing = Timing.started();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(10_000);

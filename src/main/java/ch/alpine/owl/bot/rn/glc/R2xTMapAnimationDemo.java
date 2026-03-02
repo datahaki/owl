@@ -19,10 +19,11 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /** the obstacle region in the demo is the outside of a rotating letter 'a' */
 public class R2xTMapAnimationDemo implements DemoInterface {
-  private static final Scalar DELAY = RealScalar.of(1.5);
+  private static final Scalar DELAY = Quantity.of(1.5, "s");
 
   @Override
   public OwlAnimationFrame getTimerFrame() {
@@ -30,7 +31,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
-        new StateTime(Tensors.vector(4.5, 5), RealScalar.ZERO));
+        new StateTime(Tensors.vector(4.5, 5), Quantity.of(0, "s")));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);
     MemberQ imageRegion = ImageRegions.loadFromRepository( //

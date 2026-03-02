@@ -23,11 +23,12 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Degree;
+import ch.alpine.tensor.qty.Quantity;
 
 /** test if api is sufficient to model gokart */
 public class GokartEntity extends CarEntity {
   static final Tensor PARTITION_SCALE = Tensors.of(RealScalar.of(2), RealScalar.of(2), Degree.of(10).reciprocal()).unmodifiable();
-  static final Scalar SPEED = RealScalar.of(2.5);
+  static final Scalar SPEED = Quantity.of(2.5, "s^-1");
   static final Scalar LOOKAHEAD = RealScalar.of(3.0);
   static final Scalar MAX_TURNING_PLAN = Degree.of(15);
   static final Scalar MAX_TURNING_RATE = Degree.of(23);

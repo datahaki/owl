@@ -56,13 +56,13 @@ import ch.alpine.tensor.sca.Ramp;
     Tensor stateGoal = Tensors.vector(2, 2);
     Scalar radius = RealScalar.of(0.25);
     Tensor eta = Tensors.vector(8, 8);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(36);
     BallRegion ballRegion = new BallRegion(stateGoal, radius);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), STATE_INTEGRATOR, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(200);
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

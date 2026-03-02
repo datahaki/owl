@@ -46,7 +46,7 @@ enum Se2ExpandDemo {
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
     System.out.println("scale=" + eta);
-    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(35));
+    FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "s^-1"), Degree.of(35));
     Collection<Tensor> controls = carFlows.getFlows(10);
     Se2ComboRegion se2ComboRegion = //
         Se2ComboRegion.ball(Tensors.vector(2, 1, -Math.PI), Tensors.vector(0.1, 0.1, 10 / 180 * Math.PI));//
@@ -64,7 +64,7 @@ enum Se2ExpandDemo {
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, plannerConstraint, goalInterface);
     // ---
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(2000);
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

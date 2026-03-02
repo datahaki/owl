@@ -69,7 +69,7 @@ import ch.alpine.tensor.sca.Ramp;
     Tensor eta = Tensors.vector(1.5, 1.5);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 5), "s"), 5);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(6);
     BallRegion ballRegion = new BallRegion(stateGoal, radius);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
@@ -77,7 +77,7 @@ import ch.alpine.tensor.sca.Ramp;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(obstacleQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(eta), stateIntegrator, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(stateRoot, RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
         new GifAnimationWriter(HomeDirectory.Pictures.resolve("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {

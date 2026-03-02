@@ -51,7 +51,7 @@ import ch.alpine.tensor.qty.Timing;
     MemberQ region = new R2NoiseRegion(threshold);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 12), "s"), 4);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(23);
     final Tensor center = Tensors.vector(10, 0);
     final Scalar radius = RealScalar.of(0.2);
@@ -63,7 +63,7 @@ import ch.alpine.tensor.qty.Timing;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), Quantity.of(0, "s")));
     Timing timing = Timing.started();
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(10_000);

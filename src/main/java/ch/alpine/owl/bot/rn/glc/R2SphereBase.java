@@ -43,13 +43,13 @@ import ch.alpine.tensor.qty.Quantity;
     Tensor partitionScale = Tensors.vector(3.5, 4);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 5);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(20);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), Quantity.of(0, "s")));
     return trajectoryPlanner;
   }
 

@@ -19,6 +19,7 @@ import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /** demo visualizes the detected obstacles */
 public class R2NoiseAnimationDemo implements DemoInterface {
@@ -28,7 +29,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
-        new StateTime(Tensors.vector(0.2, 0.2), RealScalar.ZERO));
+        new StateTime(Tensors.vector(0.2, 0.2), Quantity.of(0, "s")));
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(r2Entity);

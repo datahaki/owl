@@ -17,10 +17,11 @@ import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 
 // TODO OWL ALG the visualization of the demo is poor
 public class R2xTNoiseAnimationDemo implements DemoInterface {
-  private static final Scalar DELAY = RealScalar.of(0.5);
+  private static final Scalar DELAY = Quantity.of(0.5, "s");
 
   @Override
   public OwlAnimationFrame getTimerFrame() {
@@ -28,7 +29,7 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         SingleIntegratorStateSpaceModel.INSTANCE, //
         EulerIntegrator.INSTANCE, //
-        new StateTime(Tensors.vector(0.2, 0.2), RealScalar.ZERO));
+        new StateTime(Tensors.vector(0.2, 0.2), Quantity.of(0, "s")));
     TrajectoryEntity trajectoryEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(trajectoryEntity);
     Region<StateTime> region = new R2xTNoiseStateTimeRegion(RealScalar.of(0.5));

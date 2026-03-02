@@ -36,7 +36,6 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Quantity;
 
@@ -51,13 +50,13 @@ import ch.alpine.tensor.qty.Quantity;
   private final TreeRender treeRender = new TreeRender();
   /** extra cost functions, for instance to prevent cutting corners */
   public final Collection<CostFunction> extraCosts = new LinkedList<>();
-  protected final R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+  protected final R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
   protected RegionWithDistance<Tensor> goalRegion = null;
 
   /** @param state initial position of entity */
   public R2Entity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl) {
     super(episodeIntegrator, trajectoryControl);
-    add(FallbackControl.of(Array.zeros(2)));
+    add(FallbackControl.of(r2Flows.stayPut()));
   }
 
   @Override

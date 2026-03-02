@@ -45,7 +45,7 @@ abstract class R2BaseDemo implements DemoInterface {
     Tensor partitionScale = Tensors.vector(5, 5);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         EulerIntegrator.INSTANCE, SingleIntegratorStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 8), "s"), 4);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(20);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 5), RealScalar.of(0.2));
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
@@ -54,7 +54,7 @@ abstract class R2BaseDemo implements DemoInterface {
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(region));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(startState(), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(startState(), Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(1500);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
