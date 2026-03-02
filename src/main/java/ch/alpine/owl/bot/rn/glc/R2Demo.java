@@ -1,14 +1,19 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import java.awt.Container;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.ascony.ren.GridRender;
+import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.pro.ManipulateProvider;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
-import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -38,20 +43,29 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Ramp;
 
 /** functionality is used in tests */
-/* package */ enum R2Demo {
-  ;
-  static final StateIntegrator STATE_INTEGRATOR = new FixedStateIntegrator( //
-      Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 5), "s"), 5);
+@ReflectionMarker
+enum R2Demo implements ManipulateProvider {
+  EMPTY {
+    @Override
+    PlannerConstraint plannerConstraint() {
+      return EmptyPlannerConstraint.INSTANCE;
+    }
+  },
+  BUBBLES {
+    @Override
+    PlannerConstraint plannerConstraint() {
+      return RegionConstraints.timeInvariant(R2Bubbles.INSTANCE);
+    }
+  };
 
-  static TrajectoryPlanner simpleEmpty() {
-    return simple(EmptyPlannerConstraint.INSTANCE);
-  }
+  private final StateIntegrator STATE_INTEGRATOR = new FixedStateIntegrator( //
+      Integrators.EULER, //
+      StateSpaceModels.SINGLE_INTEGRATOR, //
+      Quantity.of(Rational.of(1, 5), "s"), //
+      5);
+  private final GeometricComponent geometricComponent = new GeometricComponent();
 
-  static TrajectoryPlanner simpleR2Bubbles() {
-    return simple(RegionConstraints.timeInvariant(R2Bubbles.INSTANCE));
-  }
-
-  private static TrajectoryPlanner simple(PlannerConstraint plannerConstraint) {
+  private R2Demo() {
     Tensor stateRoot = Tensors.vector(-2, -2);
     Tensor stateGoal = Tensors.vector(2, 2);
     Scalar radius = RealScalar.of(0.25);
@@ -61,32 +75,39 @@ import ch.alpine.tensor.sca.Ramp;
     BallRegion ballRegion = new BallRegion(stateGoal, radius);
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
-        EtaRaster.state(eta), STATE_INTEGRATOR, controls, plannerConstraint, goalInterface);
+        EtaRaster.state(eta), STATE_INTEGRATOR, controls, plannerConstraint(), goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(200);
-    Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    if (optional.isPresent()) {
-      GlcNode goalNode = optional.orElseThrow(); // <- throws exception if
-      Scalar cost = goalNode.costFromRoot();
-      Scalar lowerBound = Ramp.FUNCTION.apply(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
-      if (Scalars.lessThan(cost, lowerBound))
-        throw new Throw(cost, lowerBound);
+    {
+      Optional<GlcNode> optional = trajectoryPlanner.getBest();
+      if (optional.isPresent()) {
+        GlcNode goalNode = optional.orElseThrow(); // <- throws exception if
+        Scalar cost = goalNode.costFromRoot();
+        Scalar lowerBound = Ramp.FUNCTION.apply(Vector2Norm.between(stateGoal, stateRoot).subtract(radius));
+        if (Scalars.lessThan(cost, lowerBound))
+          throw new Throw(cost, lowerBound);
+      }
     }
-    return trajectoryPlanner;
-  }
-
-  private static void demo(TrajectoryPlanner trajectoryPlanner) {
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    OwlGui.glc(trajectoryPlanner);
+    geometricComponent.setPerPixel(Rational.of(100, 1));
+    geometricComponent.addRenderInterfaceBackground(new GridRender(() -> geometricComponent.jComponent.getSize()));
+    geometricComponent.setRenderInterfaces(RenderElements.create(trajectoryPlanner));
+  }
+
+  abstract PlannerConstraint plannerConstraint();
+
+  @Override
+  public Container getContainer() {
+    return geometricComponent.jComponent;
   }
 
   static void main() {
-    demo(simpleEmpty());
-    demo(simpleR2Bubbles());
+    EMPTY.runStandalone();
+    BUBBLES.runStandalone();
   }
 }
