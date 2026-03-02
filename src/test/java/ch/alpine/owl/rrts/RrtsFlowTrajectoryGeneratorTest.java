@@ -164,7 +164,7 @@ class RrtsFlowTrajectoryGeneratorTest {
     assertEquals(71, trajectory.size());
     for (int i = 1; i < 33; i++) {
       // TrajectorySample sample = trajectory.get(i);
-      // Tolerance.CHOP.requireClose(RationalScalar.of(i, 16), sample.stateTime().time());
+      // Tolerance.CHOP.requireClose(Rational.of(i, 16), sample.stateTime().time());
       // assertEquals(Tensors.of(sample.stateTime().time(), RealScalar.ZERO, RealScalar.ZERO), sample.stateTime().state());
       // assertEquals(Tensors.vector(1, 0, 0), sample.getFlow().get());
     }
@@ -218,7 +218,7 @@ class RrtsFlowTrajectoryGeneratorTest {
     assertEquals(67, trajectory.size());
     for (int i = 1; i < 17; i++) {
       // TrajectorySample sample = trajectory.get(i);
-      // assertEquals(RationalScalar.of(i, 16), sample.stateTime().time());
+      // assertEquals(Rational.of(i, 16), sample.stateTime().time());
       // assertEquals(Tensors.of(sample.stateTime().time(), RealScalar.ZERO, RealScalar.ZERO), sample.stateTime().state());
       // assertTrue(Chop._15.close(sample.getFlow().get(), Tensors.vector(1, 0, 0)));
     }

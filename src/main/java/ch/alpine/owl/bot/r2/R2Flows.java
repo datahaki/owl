@@ -10,7 +10,7 @@ import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.math.flow.EulerIntegrator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.sca.Sign;
 
@@ -35,7 +35,7 @@ public class R2Flows implements FlowsInterface, Serializable {
   }
 
   public Tensor stayPut() {
-    return Array.zeros(2).multiply(speed);
+    return ConstantArray.of(speed.zero(), 2);
   }
 
   protected Tensor mapU(Tensor u) {

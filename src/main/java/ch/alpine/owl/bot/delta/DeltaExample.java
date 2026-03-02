@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
 /** simple animation of small boat driving upstream, or downstream in a river delta */
 /* package */ class DeltaExample {
   // private static final StateIntegrator STATE_INTEGRATOR = FixedStateIntegrator.create( //
-  // RungeKutta45Integrator.INSTANCE, RationalScalar.of(1, 10), 4);
+  // RungeKutta45Integrator.INSTANCE, Rational.of(1, 10), 4);
   private static final Tensor RANGE = Tensors.vector(9, 6.5);
   // private static final Tensor OBSTACLE_IMAGE = ; //
   private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
