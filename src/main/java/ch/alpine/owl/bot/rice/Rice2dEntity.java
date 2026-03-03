@@ -18,9 +18,9 @@ import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.qty.Quantity;
 /* package */ class Rice2dEntity extends RiceBaseEntity {
   private static final Tensor SHAPE = Tensors.matrixDouble( //
       new double[][] { { .3, 0, 1 }, { -.1, -.1, 1 }, { -.1, +.1, 1 } }).unmodifiable();
-  private static final Integrator INTEGRATOR = Integrators.MIDPOINT;
+  private static final TimeIntegrator INTEGRATOR = TimeIntegrators.MIDPOINT;
   // ---
   private final StateSpaceModel stateSpaceModel;
   private final Collection<Tensor> controls;

@@ -17,7 +17,7 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -37,7 +37,7 @@ import ch.alpine.tensor.qty.Quantity;
     // ---
     Tensor eta = Tensors.vector(3, 3, 2, 2);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.RK45, SatelliteStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 6);
+        TimeIntegrators.RK45, SatelliteStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 6);
     PlannerConstraint plannerConstraint = //
         new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(obstacleRegion));
     EllipsoidRegion goalRegion = new EllipsoidRegion( //

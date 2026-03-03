@@ -20,8 +20,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.qty.Quantity;
     Scalar mu = RealScalar.of(-0.5);
     StateSpaceModel stateSpaceModel = Rice2StateSpaceModel.of(mu);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 8), "s"), 5);
+        TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 8), "s"), 5);
     Collection<Tensor> controls = Rice2Controls.create1d(15); //
     GoalInterface goalInterface = new Rice1GoalManager(new EllipsoidRegion(Tensors.vector(6, -.7), Tensors.vector(0.4, 0.3)));
     MemberQ region1 = new EllipsoidRegion(Tensors.vector(+3, +1), Tensors.vector(1.75, 0.75));

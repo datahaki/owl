@@ -14,8 +14,8 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -72,7 +72,7 @@ class R2EntityTest {
     Tensor state = Tensors.vector(0.7, 0);
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
-        Integrators.EULER, //
+        TimeIntegrators.EULER, //
         new StateTime(state, RealScalar.ZERO));
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     R2Entity abstractEntity = new R2Entity(episodeIntegrator, trajectoryControl);

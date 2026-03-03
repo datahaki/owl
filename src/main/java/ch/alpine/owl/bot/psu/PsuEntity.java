@@ -24,8 +24,8 @@ import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class PsuEntity extends AbstractCircularEntity implements GlcPlannerCallback {
-  private static final Integrator INTEGRATOR = Integrators.RK45;
+  private static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK45;
   /** preserve 1[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(1, "s");
   // ---

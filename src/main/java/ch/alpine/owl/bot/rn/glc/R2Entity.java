@@ -27,8 +27,8 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.sophis.reg.RegionWithDistance;
 import ch.alpine.tensor.Rational;
@@ -45,7 +45,7 @@ import ch.alpine.tensor.qty.Quantity;
 /* package */ class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
   public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = new FixedStateIntegrator( //
-      Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 12), "s"), 4);
+      TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 12), "s"), 4);
   // ---
   private final TreeRender treeRender = new TreeRender();
   /** extra cost functions, for instance to prevent cutting corners */

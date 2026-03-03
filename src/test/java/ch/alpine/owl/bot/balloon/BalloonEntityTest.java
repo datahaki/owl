@@ -22,7 +22,7 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -33,7 +33,7 @@ class BalloonEntityTest {
   private static final BalloonStateSpaceModel BALLOON_STATE_SPACE_MODEL = BalloonStateSpaceModels.defaultWithoutUnits();
   private static final StateTime START = new StateTime(Tensors.vector(0, 10, 0, 0.5), RealScalar.ZERO);
   private static final EpisodeIntegrator EPISODE_INTEGRATOR = new SimpleEpisodeIntegrator( //
-      BALLOON_STATE_SPACE_MODEL, Integrators.EULER, START);
+      BALLOON_STATE_SPACE_MODEL, TimeIntegrators.EULER, START);
 
   static BalloonEntity createEntity() {
     return new BalloonEntity(EPISODE_INTEGRATOR, new EuclideanTrajectoryControl(), BALLOON_STATE_SPACE_MODEL);

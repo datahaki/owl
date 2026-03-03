@@ -14,8 +14,8 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.math.bij.R2RigidFamily;
 import ch.alpine.sophis.math.bij.Se2Family;
 import ch.alpine.sophis.reg.ImageRegion;
@@ -33,7 +33,7 @@ public class R2xTImageAnimationDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
-        Integrators.EULER, //
+        TimeIntegrators.EULER, //
         new StateTime(Tensors.vector(1.5, 2), Quantity.of(0, "s")));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);

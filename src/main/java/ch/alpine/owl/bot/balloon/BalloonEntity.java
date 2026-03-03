@@ -23,8 +23,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -77,7 +77,7 @@ import ch.alpine.tensor.sca.Clips;
     GoalInterface goalInterface = balloonMinTimeGoalManager.getGoalInterface();
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
-        new FixedStateIntegrator(Integrators.EULER, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 3), //
+        new FixedStateIntegrator(TimeIntegrators.EULER, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 3), //
         controls, plannerConstraint, goalInterface);
   }
 

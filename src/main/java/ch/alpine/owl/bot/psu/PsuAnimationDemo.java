@@ -14,8 +14,8 @@ import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -29,7 +29,7 @@ public class PsuAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //
         new StateTime(Tensors.vector(0, 0), RealScalar.ZERO));

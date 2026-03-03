@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.sophis.flow.Integrator;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -14,7 +14,7 @@ import ch.alpine.tensor.Tensor;
  * Se2CarIntegrator is approximately
  * 3x faster than RungeKutta4 Integrator
  * 11x faster than RungeKutta45 Integrator */
-public enum Se2CarIntegrator implements Integrator {
+public enum Se2CarIntegrator implements TimeIntegrator {
   INSTANCE;
 
   /** Parameter description:

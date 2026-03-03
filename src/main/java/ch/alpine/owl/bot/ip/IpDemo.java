@@ -19,8 +19,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.FreeBoundedIntervalRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -42,7 +42,7 @@ import ch.alpine.tensor.sca.Clips;
         RealScalar.of(0.5), // l
         RealScalar.of(1)); // g;
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 5);
+        TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 5);
     Collection<Tensor> controls = IpControls.createControls(2, 10);
     IpGoalManager ipGoalManager = new IpGoalManager( //
         Tensors.vector(2, 0, 0, 0), //

@@ -5,15 +5,15 @@ import java.io.Serializable;
 
 import ch.alpine.owl.bot.rn.R1Integrator;
 import ch.alpine.owl.bot.se2.Se2CarLieIntegrator;
-import ch.alpine.sophis.flow.Integrator;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.Clip;
 
 /** exact integration of state for a period h during which a constant acceleration is assumed. */
-public class Tse2Integrator implements Integrator, Serializable {
+public class Tse2Integrator implements TimeIntegrator, Serializable {
   private final Clip v_range;
 
   /** @param v_range */

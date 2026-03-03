@@ -16,8 +16,8 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -45,7 +45,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), Quantity.of(0, "s"));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
-        new DeltaStateSpaceModel(imageGradientInterpolation), Integrators.EULER, stateTime);
+        new DeltaStateSpaceModel(imageGradientInterpolation), TimeIntegrators.EULER, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     DeltaEntity deltaEntity = new DeltaEntity(episodeIntegrator, trajectoryControl, imageGradientInterpolation);
     MouseGoal.simple(owlAnimationFrame, deltaEntity, plannerConstraint);

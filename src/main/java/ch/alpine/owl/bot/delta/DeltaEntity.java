@@ -22,8 +22,8 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.sophis.reg.RegionWithDistance;
 import ch.alpine.tensor.Rational;
@@ -59,7 +59,7 @@ import ch.alpine.tensor.qty.Quantity;
     this.imageGradientInterpolation = imageGradientInterpolation;
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     fixedStateIntegrator = new FixedStateIntegrator( //
-        Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
+        TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4);
   }
 
   @Override // from TensorMetric
@@ -90,7 +90,7 @@ import ch.alpine.tensor.qty.Quantity;
     return new StandardTrajectoryPlanner( //
         stateTimeRaster(), //
         new FixedStateIntegrator( //
-            Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
+            TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 5), "s"), 4),
         controls, plannerConstraint, goalInterface);
   }
 

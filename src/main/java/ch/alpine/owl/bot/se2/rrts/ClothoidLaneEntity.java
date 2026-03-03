@@ -14,8 +14,8 @@ import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.core.RrtsNode;
 import ch.alpine.owlets.rrts.core.RrtsNodeCollection;
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.ts.ClothoidTransitionSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
@@ -35,7 +35,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //
-            Integrators.EULER, //
+            TimeIntegrators.EULER, //
             stateTime), //
         CarEntity.createPurePursuitControl(), //
         new LaneRrtsPlannerServer( //

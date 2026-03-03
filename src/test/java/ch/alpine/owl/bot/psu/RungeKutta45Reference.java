@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.owl.bot.psu;
 
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
  * 
  * class is a simple reference implementation for testing.
  * use RungeKutta45 Integrator for applications */
-public enum RungeKutta45Reference implements Integrator {
+public enum RungeKutta45Reference implements TimeIntegrator {
   INSTANCE;
 
   private static final Scalar HALF = Rational.HALF;
@@ -28,8 +28,8 @@ public enum RungeKutta45Reference implements Integrator {
   public Tensor step(StateSpaceModel stateSpaceModel, Tensor x, Tensor u, Scalar h) {
     Tensor y1 = increment(stateSpaceModel, x, u, h);
     Scalar h2 = h.multiply(Rational.HALF);
-    Tensor xm = Integrators.RK4.step(stateSpaceModel, x, u, h2);
-    Tensor y2 = Integrators.RK4.step(stateSpaceModel, xm, u, h2).subtract(x);
+    Tensor xm = TimeIntegrators.RK4.step(stateSpaceModel, x, u, h2);
+    Tensor y2 = TimeIntegrators.RK4.step(stateSpaceModel, xm, u, h2).subtract(x);
     Tensor ya = y1.multiply(W1).add(y2.multiply(W2));
     return x.add(ya);
   }

@@ -11,9 +11,9 @@ import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -30,7 +30,7 @@ class Se2StateSpaceModelTest {
     Tensor flow = Se2CarFlows.singleton(Quantity.of(2, "m*s^-1"), Quantity.of(-1, "m^-1"));
     // Se2StateSpaceModel.INSTANCE.f(x, flow.getU());
     Tensor expl = Se2CarIntegrator.INSTANCE.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
-    Tensor impl = Integrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
+    Tensor impl = TimeIntegrators.RK45.step(Se2StateSpaceModel.INSTANCE, x, flow, h);
     Chop._04.requireClose(expl, impl);
   }
 
@@ -39,7 +39,7 @@ class Se2StateSpaceModelTest {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor u = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").maps(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").maps(UnitSystem.SI());
-    Tensor r = Integrators.EULER.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.EULER.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     Chop._10.requireClose(r, Tensors.fromString("{-0.9799849932008908[m], 2.2822400161197343[m], 7}"));
   }
 
@@ -48,7 +48,7 @@ class Se2StateSpaceModelTest {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor u = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").maps(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").maps(UnitSystem.SI());
-    Tensor r = Integrators.RK45.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.RK45.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     Chop._10.requireClose(r, Tensors.fromString("{1.2568926185541083[m], 1.1315706479838576[m], 7}"));
   }
 
@@ -57,13 +57,13 @@ class Se2StateSpaceModelTest {
     StateSpaceModel stateSpaceModel = Se2StateSpaceModel.INSTANCE;
     Tensor u = Tensors.fromString("{1[m*s^-1], 0, 2[rad*s^-1]}").maps(UnitSystem.SI());
     Tensor x = Tensors.fromString("{1[m], 2[m], 3[rad]}").maps(UnitSystem.SI());
-    Tensor r = Integrators.RK4.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.RK4.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     Chop._10.requireClose(r, Tensors.fromString("{1.2995194998652546[m], 0.9874698360420342[m], 7}"));
   }
 
   @Test
   void testLarge() {
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     StateTime init = new StateTime(Tensors.vector(1, 2, 3), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         Se2StateSpaceModel.INSTANCE, integrator, //
@@ -79,7 +79,7 @@ class Se2StateSpaceModelTest {
 
   @Test
   void testFail() {
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         Se2StateSpaceModel.INSTANCE, integrator, //

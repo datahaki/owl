@@ -28,8 +28,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -59,7 +59,7 @@ enum R2Demo implements ManipulateProvider {
   };
 
   private final StateIntegrator STATE_INTEGRATOR = new FixedStateIntegrator( //
-      Integrators.EULER, //
+      TimeIntegrators.EULER, //
       StateSpaceModels.SINGLE_INTEGRATOR, //
       Quantity.of(Rational.of(1, 5), "s"), //
       5);

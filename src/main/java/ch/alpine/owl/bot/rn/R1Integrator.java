@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.owl.bot.rn;
 
-import ch.alpine.sophis.flow.Integrator;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
  * DSolve[{v'[h] == a, p'[h] == v[h], v[0] == v0, p[0] == p0}, {p[h], v[h]}, h]
  * results in
  * {p[h] -> (a h^2)/2 + p0 + h v0, v[h] -> a h + v0} */
-public enum R1Integrator implements Integrator {
+public enum R1Integrator implements TimeIntegrator {
   INSTANCE;
 
   @Override // from Integrator

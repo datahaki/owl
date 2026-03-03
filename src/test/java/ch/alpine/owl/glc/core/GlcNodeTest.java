@@ -26,8 +26,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -77,7 +77,7 @@ class GlcNodeTest {
     // ---
     Tensor eta = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 5), "s"), 5);
+        TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 5), "s"), 5);
     R2Flows r2Flows = new R2Flows(RealScalar.ONE);
     Collection<Tensor> controls = r2Flows.getFlows(36);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(stateGoal, radius);

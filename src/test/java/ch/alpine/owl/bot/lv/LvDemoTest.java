@@ -19,8 +19,8 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
@@ -35,7 +35,7 @@ class LvDemoTest {
       Tensor eta = Tensors.vector(10, 10);
       StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
       StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-          Integrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
+          TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
       Collection<Tensor> controls = LvControls.create(2);
       EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
       GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);

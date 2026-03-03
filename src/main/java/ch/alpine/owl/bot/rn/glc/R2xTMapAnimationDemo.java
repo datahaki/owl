@@ -13,8 +13,8 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -30,7 +30,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
-        Integrators.EULER, //
+        TimeIntegrators.EULER, //
         new StateTime(Tensors.vector(4.5, 5), Quantity.of(0, "s")));
     TrajectoryEntity abstractEntity = new R2xTEntity(episodeIntegrator, DELAY);
     owlAnimationFrame.add(abstractEntity);

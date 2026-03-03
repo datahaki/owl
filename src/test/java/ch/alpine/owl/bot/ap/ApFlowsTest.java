@@ -11,8 +11,8 @@ import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -31,7 +31,7 @@ class ApFlowsTest {
 
   @Test
   void testUnit() {
-    Integrator INTEGRATOR = Integrators.RK4;
+    TimeIntegrator INTEGRATOR = TimeIntegrators.RK4;
     Scalar MAX_AOA = ApStateSpaceModel.MAX_AOA;
     int THRUST_PARTIONING = 3;
     Tensor THRUSTS = Subdivide.of( //

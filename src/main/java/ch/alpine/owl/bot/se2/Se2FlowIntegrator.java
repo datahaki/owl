@@ -1,15 +1,15 @@
 // code by jph
 package ch.alpine.owl.bot.se2;
 
-import ch.alpine.sophis.flow.Integrator;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
 /** exact integration of flow using matrix exponential and logarithm.
  * states are encoded in the default coordinates of the se2 Lie-algebra. */
-public enum Se2FlowIntegrator implements Integrator {
+public enum Se2FlowIntegrator implements TimeIntegrator {
   INSTANCE;
 
   /** Parameter description:

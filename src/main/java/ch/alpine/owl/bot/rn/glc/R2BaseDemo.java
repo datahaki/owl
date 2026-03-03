@@ -25,8 +25,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -44,7 +44,7 @@ abstract class R2BaseDemo implements DemoInterface {
   public final TimerFrame getTimerFrame() {
     Tensor partitionScale = Tensors.vector(5, 5);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 8), "s"), 4);
+        TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 8), "s"), 4);
     R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(20);
     BallRegion ballRegion = new BallRegion(Tensors.vector(5, 5), RealScalar.of(0.2));

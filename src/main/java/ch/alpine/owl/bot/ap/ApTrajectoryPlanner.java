@@ -12,8 +12,8 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -38,7 +38,7 @@ import ch.alpine.tensor.qty.Quantity;
   final static int FLOWRES = 2;
   final static FlowsInterface AP_FLOWS = ApFlows.of(MAX_AOA, THRUSTS);
   /* Setting up integrator */
-  static final Integrator INTEGRATOR = Integrators.RK4;
+  static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK4;
   /* Setting up Time Raster */
   final static Tensor PARTITION_SCALE = Tensors.of(RealScalar.ONE, RealScalar.ONE, RealScalar.ONE, Degree.of(1)).unmodifiable();
 

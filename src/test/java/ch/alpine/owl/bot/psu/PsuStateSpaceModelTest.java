@@ -12,8 +12,8 @@ import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -33,8 +33,8 @@ class PsuStateSpaceModelTest {
     Tensor x = Tensors.vector(1, 2);
     Scalar h = Rational.of(1, 3);
     // Flow flow = StateSpaceModels.createFlow(, u);
-    Tensor res = Integrators.RK45.step(PsuStateSpaceModel.INSTANCE, x, u, h);
-    Tensor eul = Integrators.EULER.step(PsuStateSpaceModel.INSTANCE, x, u, h);
+    Tensor res = TimeIntegrators.RK45.step(PsuStateSpaceModel.INSTANCE, x, u, h);
+    Tensor eul = TimeIntegrators.EULER.step(PsuStateSpaceModel.INSTANCE, x, u, h);
     assertFalse(res.equals(eul));
   }
 
@@ -44,14 +44,14 @@ class PsuStateSpaceModelTest {
     Tensor x = Tensors.vector(1, 2);
     Scalar h = Rational.of(1, 3);
     // Flow flow = StateSpaceModels.createFlow(, u);
-    Tensor res = Integrators.RK45.step(PsuStateSpaceModel.INSTANCE, x, u, h);
+    Tensor res = TimeIntegrators.RK45.step(PsuStateSpaceModel.INSTANCE, x, u, h);
     Tensor ref = RungeKutta45Reference.INSTANCE.step(PsuStateSpaceModel.INSTANCE, x, u, h);
     assertEquals(res, ref);
   }
 
   @Test
   void testSmall() {
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //
@@ -67,7 +67,7 @@ class PsuStateSpaceModelTest {
 
   @Test
   void testLarge() {
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //
@@ -91,7 +91,7 @@ class PsuStateSpaceModelTest {
 
   @Test
   void testFail() {
-    Integrator integrator = Integrators.RK45;
+    TimeIntegrator integrator = TimeIntegrators.RK45;
     StateTime init = new StateTime(Tensors.vector(1, 2), RealScalar.of(3));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         PsuStateSpaceModel.INSTANCE, integrator, //

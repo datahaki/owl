@@ -28,8 +28,8 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -50,7 +50,7 @@ import ch.alpine.tensor.qty.Timing;
     final Scalar threshold = RealScalar.of(0.1);
     MemberQ region = new R2NoiseRegion(threshold);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 12), "s"), 4);
+        TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 12), "s"), 4);
     R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(23);
     final Tensor center = Tensors.vector(10, 0);

@@ -15,9 +15,9 @@ import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.sophis.flow.Integrator;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModel;
+import ch.alpine.sophis.flow.TimeIntegrator;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -49,7 +49,7 @@ class Duncan1StateSpaceModelTest {
     Scalar lambda = Quantity.of(2.0, "s^-1");
     StateSpaceModel stateSpaceModel = new Duncan1StateSpaceModel(lambda);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        Integrators.RK45, stateSpaceModel, Scalars.fromString("1/5[s]"), 99 * 5); // simulate for 100[s]
+        TimeIntegrators.RK45, stateSpaceModel, Scalars.fromString("1/5[s]"), 99 * 5); // simulate for 100[s]
     StateTime stateTime = new StateTime(Tensors.of(Quantity.of(10, "m*s^-1")), Quantity.of(1, "s"));
     Scalar push = Quantity.of(3, "m*s^-2");
     List<StateTime> list = stateIntegrator.trajectory(stateTime, Tensors.of(push));
@@ -63,7 +63,7 @@ class Duncan1StateSpaceModelTest {
     Tensor speed = Tensors.fromString("{10[m*s^-1]}");
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         new Duncan1StateSpaceModel(Quantity.of(0.2, "s^-1")), //
-        Integrators.MIDPOINT, //
+        TimeIntegrators.MIDPOINT, //
         new StateTime(speed, Quantity.of(0, "s")));
     Tensor accel = Tensors.of(Quantity.of(3, "m*s^-2"));
     episodeIntegrator.move(accel, Quantity.of(1, "s"));
@@ -78,13 +78,13 @@ class Duncan1StateSpaceModelTest {
     Tensor u = Tensors.fromString("{5[m*s^-2], -2[m*s^-2]}");
     Scalar t = Scalars.fromString("3[s]");
     Scalar p = Scalars.fromString("2[s]");
-    Integrator[] ints = new Integrator[] { //
-        Integrators.EULER, //
-        Integrators.MIDPOINT, //
-        Integrators.RK4, //
-        Integrators.RK45 //
+    TimeIntegrator[] ints = new TimeIntegrator[] { //
+        TimeIntegrators.EULER, //
+        TimeIntegrators.MIDPOINT, //
+        TimeIntegrators.RK4, //
+        TimeIntegrators.RK45 //
     };
-    for (Integrator integrator : ints) {
+    for (TimeIntegrator integrator : ints) {
       AbstractEpisodeIntegrator aei = new SimpleEpisodeIntegrator( //
           stateSpaceModel, //
           integrator, new StateTime(x, t));

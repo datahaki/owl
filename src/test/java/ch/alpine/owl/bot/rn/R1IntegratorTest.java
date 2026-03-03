@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flow.Integrator;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrator;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -22,7 +22,7 @@ class R1IntegratorTest {
 
   @Test
   void testIntegrator() {
-    Integrator integrator = R1Integrator.INSTANCE;
+    TimeIntegrator integrator = R1Integrator.INSTANCE;
     Tensor tensor = integrator.step( //
         StateSpaceModels.SINGLE_INTEGRATOR, Tensors.vector(10, 2), Tensors.vector(1), Rational.HALF);
     assertEquals(tensor, Tensors.fromString("{89/8, 5/2}"));

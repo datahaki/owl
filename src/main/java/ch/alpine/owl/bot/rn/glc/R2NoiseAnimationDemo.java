@@ -14,8 +14,8 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.flow.Integrators;
 import ch.alpine.sophis.flow.StateSpaceModels;
+import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
@@ -28,7 +28,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
-        Integrators.EULER, //
+        TimeIntegrators.EULER, //
         new StateTime(Tensors.vector(0.2, 0.2), Quantity.of(0, "s")));
     TrajectoryControl trajectoryControl = new R2TrajectoryControl();
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
