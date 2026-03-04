@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.ascony.ren.RenderInterface;
-import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.data.tree.Nodes;
 import ch.alpine.owlets.data.tree.StateCostNode;
 import ch.alpine.owlets.glc.adapter.EtaRaster;

@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.psu;
 
 import ch.alpine.ascony.ren.AxesRender;
-import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;

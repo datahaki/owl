@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.ren.GridRender;
-import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.bot.r2.R2Bubbles;

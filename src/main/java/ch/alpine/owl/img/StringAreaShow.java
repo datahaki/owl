@@ -6,7 +6,6 @@ import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.WindowConstants;
 
 import ch.alpine.bridge.pro.WindowProvider;
 
@@ -22,7 +21,6 @@ public class StringAreaShow implements WindowProvider {
     JFrame jFrame = new JFrame();
     JTextArea jTextArea = new JTextArea(string);
     JScrollPane jScrollPane = new JScrollPane(jTextArea);
-    jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     jFrame.setContentPane(jScrollPane);
     return jFrame;
   }

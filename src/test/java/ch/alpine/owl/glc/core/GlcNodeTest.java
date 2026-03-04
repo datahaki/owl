@@ -78,7 +78,7 @@ class GlcNodeTest {
     Tensor eta = Tensors.vector(8, 8);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 5), "s"), 5);
-    R2Flows r2Flows = new R2Flows(RealScalar.ONE);
+    R2Flows r2Flows = new R2Flows(Quantity.of(1, "s^-1"));
     Collection<Tensor> controls = r2Flows.getFlows(36);
     GoalInterface rnGoal = RnMinDistGoalManager.sperical(stateGoal, radius);
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;

@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.awt.Container;
 
-import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.util.ren.RenderElements;

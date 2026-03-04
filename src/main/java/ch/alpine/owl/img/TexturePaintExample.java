@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.TexturePaint;
+import java.awt.Window;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
@@ -13,17 +14,22 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class TexturePaintExample extends JFrame {
-  public TexturePaintExample() {
-    setTitle("TexturePaint Example");
-    setSize(400, 300);
-    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
-    add(new TexturePanel());
+import ch.alpine.bridge.pro.WindowProvider;
+
+public class TexturePaintExample implements WindowProvider {
+  @Override
+  public Window getWindow() {
+    JFrame jFrame = new JFrame();
+    jFrame.setTitle("TexturePaint Example");
+    jFrame.setSize(400, 300);
+    jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    jFrame.setLocationRelativeTo(null);
+    jFrame.add(new TexturePanel());
+    return jFrame;
   }
 
   static void main() {
-    new TexturePaintExample().setVisible(true);
+    new TexturePaintExample().runStandalone();
   }
 }
 

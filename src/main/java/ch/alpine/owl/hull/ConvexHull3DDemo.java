@@ -4,10 +4,10 @@ package ch.alpine.owl.hull;
 import java.awt.Container;
 import java.awt.Graphics2D;
 
-import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
-import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.sophis.srf.SurfaceMesh;

@@ -8,10 +8,10 @@ import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import ch.alpine.ascony.ren.GridRender;
-import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
-import ch.alpine.ascony.win.GeometricComponent;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldClip;
 import ch.alpine.bridge.ref.ann.FieldSelectionArray;

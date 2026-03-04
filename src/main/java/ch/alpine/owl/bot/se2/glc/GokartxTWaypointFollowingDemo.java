@@ -3,8 +3,8 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.List;
 
-import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.awt.WindowClosed;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;

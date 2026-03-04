@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.delta;
 import java.util.function.Supplier;
 
 import ch.alpine.ascony.reg.BufferedImageRegion;
-import ch.alpine.ascony.ren.RenderInterface;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;

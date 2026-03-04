@@ -60,7 +60,7 @@ class BalloonEntityTest {
   @Test
   void testDelayHint() {
     BalloonEntity balloonEntity = createEntity();
-    assertEquals(balloonEntity.delayHint(), RealScalar.of(2));
+    assertEquals(balloonEntity.delayHint(), Quantity.of(2, "s"));
   }
 
   @Test

@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.function.Supplier;
 
 import ch.alpine.ascony.ren.ImageRender;
-import ch.alpine.ascony.ren.RenderInterface;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
