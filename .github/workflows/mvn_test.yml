@@ -75,6 +75,15 @@ jobs:
         run: mvn -B --no-transfer-progress install -DskipTests
         working-directory: ./sophis
 
+      - name: checkout owlets
+        uses: actions/checkout@v4
+        with:
+          repository: datahaki/owlets
+          path: owlets
+      - name: build and install owlets
+        run: mvn -B --no-transfer-progress install -DskipTests
+        working-directory: ./owlets
+
       - name: checkout ascony
         uses: actions/checkout@v4
         with:

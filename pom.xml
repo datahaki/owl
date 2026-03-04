@@ -26,8 +26,7 @@
 			<groupId>io.github.datahaki</groupId>
 			<artifactId>owlets</artifactId>
 			<version>0.0.1</version>
-		</dependency>
-		
+		</dependency>		
 		<dependency>
 			<groupId>io.github.datahaki</groupId>
 			<artifactId>subare</artifactId>
