@@ -3,9 +3,9 @@ package ch.alpine.owl.bot.se2.glc;
 
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.ascony.io.AnimationWriter;
-import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.io.AnimationWriter;
+import ch.alpine.bridge.io.GifAnimationWriter;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;

@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import ch.alpine.ascony.io.AnimationWriter;
-import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
+import ch.alpine.bridge.io.AnimationWriter;
+import ch.alpine.bridge.io.GifAnimationWriter;
 import ch.alpine.owl.bot.r2.R2Bubbles;
 import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;

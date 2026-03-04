@@ -9,10 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.ascony.io.AnimationWriter;
-import ch.alpine.ascony.io.GifAnimationWriter;
 import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.Show;
+import ch.alpine.bridge.io.AnimationWriter;
+import ch.alpine.bridge.io.GifAnimationWriter;
 import ch.alpine.bridge.io.HtmlUtf8;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Tensor;
