@@ -45,7 +45,7 @@ class R2NoiseDemo implements ManipulateProvider {
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
     RenderElements.setRrts(geometricComponent, transitionSpace, root, transitionRegionQuery);
-    return geometricComponent.jComponent;
+    return geometricComponent;
   }
 
   static void main() {

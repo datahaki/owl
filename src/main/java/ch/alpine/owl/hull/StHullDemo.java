@@ -43,12 +43,12 @@ class StHullDemo implements ManipulateProvider, RenderInterface {
   private final GeometricComponent geometricComponent = new GeometricComponent();
 
   public StHullDemo() {
+    geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     geometricComponent.addRenderInterface(this);
   }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    new GridRender(geometricComponent.jComponent::getSize).render(geometricLayer, graphics);
     RandomGenerator randomGenerator = new Random(3);
     StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
     Tensor p = RandomSample.of(stiefelManifold, randomGenerator);
@@ -63,7 +63,7 @@ class StHullDemo implements ManipulateProvider, RenderInterface {
 
   @Override
   public Container getContainer() {
-    return geometricComponent.jComponent;
+    return geometricComponent;
   }
 
   static void main() {

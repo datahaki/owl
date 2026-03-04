@@ -95,7 +95,7 @@ enum R2Demo implements ManipulateProvider {
       StateTimeTrajectories.print(trajectory);
     }
     geometricComponent.setPerPixel(Rational.of(100, 1));
-    geometricComponent.addRenderInterfaceBackground(new GridRender(() -> geometricComponent.jComponent.getSize()));
+    geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     geometricComponent.setRenderInterfaces(RenderElements.create(trajectoryPlanner));
   }
 
@@ -103,7 +103,7 @@ enum R2Demo implements ManipulateProvider {
 
   @Override
   public Container getContainer() {
-    return geometricComponent.jComponent;
+    return geometricComponent;
   }
 
   static void main() {

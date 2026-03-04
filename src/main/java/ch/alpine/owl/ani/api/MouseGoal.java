@@ -58,6 +58,6 @@ public enum MouseGoal {
         }
       }
     };
-    geometricComponent.jComponent.addMouseListener(mouseAdapter);
+    geometricComponent.addMouseListener(mouseAdapter);
   }
 }

@@ -58,7 +58,7 @@ public class SymHullDemo implements ManipulateProvider, RenderInterface {
 
   @Override
   public Container getContainer() {
-    return geometricComponent.jComponent;
+    return geometricComponent;
   }
 
   static void main() {
