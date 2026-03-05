@@ -13,6 +13,7 @@ import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.qty.Quantity;
 
 public class TwdNoiseDemo extends AbstractTwdDemo {
   private final TrajectoryRegionQuery trajectoryRegionQuery = //
@@ -20,7 +21,7 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
 
   @Override // from AbstractTwdDemo
   TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
-    TwdEntity twdEntity = TwdEntity.createDuckie(new StateTime(Tensors.vector(0, 0, 0), RealScalar.ZERO));
+    TwdEntity twdEntity = TwdEntity.createDuckie(new StateTime(Tensors.vector(0, 0, 0), Quantity.of(0, "s")));
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);

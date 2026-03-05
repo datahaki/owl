@@ -40,6 +40,7 @@ public class KlotskiDemo extends AbstractDemo {
     this.klotskiProblem = klotskiProblem;
     klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
     timerFrame.geometricComponent.setOffset(100, 500);
+    timerFrame.geometricComponent.setPerPixel(RealScalar.of(80));
   }
 
   KlotskiSolution compute() {

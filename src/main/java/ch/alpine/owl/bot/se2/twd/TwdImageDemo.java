@@ -20,6 +20,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 public class TwdImageDemo extends AbstractTwdDemo {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 26), Subdivide.of(0, 4, 30));
@@ -30,7 +31,7 @@ public class TwdImageDemo extends AbstractTwdDemo {
 
   @Override // from AbstractTwdDemo
   TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
-    TwdEntity twdEntity = TwdEntity.createJ2B2(new StateTime(Tensors.vector(7, 5, 0), RealScalar.ZERO));
+    TwdEntity twdEntity = TwdEntity.createJ2B2(new StateTime(Tensors.vector(7, 5, 0), Quantity.of(0, "s")));
     twdEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);

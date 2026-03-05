@@ -11,16 +11,16 @@ import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 
 public class Tse2Car0Demo extends Tse2CarDemo {
   @Override
   void configure(OwlAnimationFrame owlAnimationFrame) {
-    Tse2CarEntity tse2CarEntity = Tse2CarEntity.createDefault(new StateTime(Tensors.vector(6, 5, 1, 0), RealScalar.ZERO));
+    Tse2CarEntity tse2CarEntity = Tse2CarEntity.createDefault(new StateTime(Tensors.vector(6, 5, 1, 0), Quantity.of(0, "s")));
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = createConstraint(region);

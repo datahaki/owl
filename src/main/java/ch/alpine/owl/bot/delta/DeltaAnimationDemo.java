@@ -54,6 +54,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
+    owlAnimationFrame.geometricComponent.setPerPixel(RealScalar.of(60));
     return owlAnimationFrame;
   }
 

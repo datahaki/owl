@@ -8,6 +8,7 @@ import ch.alpine.sophus.hs.rpn.HemisphereRandomSample;
 import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.sophus.hs.st.StiefelManifold;
 import ch.alpine.sophus.lie.rn.RnGroup;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
@@ -46,7 +47,7 @@ enum RandomMethod {
     @Override
     Tensor vertices(int n) {
       StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
-      return Transpose.of(RandomSample.of(stiefelManifold));
+      return Transpose.of(RandomSample.of(stiefelManifold)).multiply(RealScalar.of(10));
     }
   },
   DODECAHEDRON {

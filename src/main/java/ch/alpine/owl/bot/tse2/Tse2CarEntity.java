@@ -40,12 +40,14 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 public class Tse2CarEntity extends Tse2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //
       RealScalar.of(5), RealScalar.of(5), Degree.of(7).reciprocal(), RealScalar.of(10)).unmodifiable();
-  public static final Scalar MAX_SPEED = RealScalar.of(3.0); //
+  public static final Scalar MAX_SPEED = Quantity.of(3.0, "s^-1"); //
   public static final Clip v_range = Clips.positive(MAX_SPEED);
   static final Scalar MAX_TURNING_PLAN = Degree.of(45);
   static final Scalar LOOKAHEAD = RealScalar.of(0.5);
   static final Scalar MAX_TURNING_RATE = Degree.of(50); // slightly higher for pure pursuit
-  static final FlowsInterface CARFLOWS = Tse2CarFlows.of(MAX_TURNING_PLAN, Tensors.vector(-0.7, 0, 0.7));
+  static final FlowsInterface CARFLOWS = Tse2CarFlows.of( //
+      MAX_TURNING_PLAN, //
+      Tensors.vector(-0.7, 0, 0.7).multiply(Quantity.of(1, "s^-2")));
   private static final Scalar SQRT2 = Sqrt.FUNCTION.apply(RealScalar.TWO);
   private static final Scalar SHIFT_PENALTY = RealScalar.of(0.4);
   // ---
