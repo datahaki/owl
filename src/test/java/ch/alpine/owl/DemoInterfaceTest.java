@@ -21,15 +21,15 @@ class DemoInterfaceTest implements Consumer<DemoInterface> {
 
   @Override
   public void accept(DemoInterface demoInterface) {
-    TimerFrame baseFrame = demoInterface.getTimerFrame();
-    baseFrame.jFrame.setTitle(demoInterface.getClass().getSimpleName());
-    baseFrame.jFrame.setVisible(true);
+    TimerFrame timerFrame = demoInterface.getTimerFrame();
+    timerFrame.jFrame.setTitle(demoInterface.getClass().getSimpleName());
+    timerFrame.jFrame.setVisible(true);
     try {
       Thread.sleep(400);
     } catch (Exception exception) {
       // ---
     }
-    baseFrame.jFrame.setVisible(false);
-    baseFrame.jFrame.dispose();
+    timerFrame.jFrame.setVisible(false);
+    timerFrame.jFrame.dispose();
   }
 }
