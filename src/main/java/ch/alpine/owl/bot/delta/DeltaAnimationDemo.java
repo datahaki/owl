@@ -1,9 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.delta;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ch.alpine.ascony.reg.BufferedImageRegion;
+import ch.alpine.bridge.fig.Show;
+import ch.alpine.bridge.fig.VectorPlot;
+import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -39,9 +44,9 @@ public class DeltaAnimationDemo implements DemoInterface {
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.nearest(Import.of("/io/delta_uxy.png"), range, amp);
     BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
-    CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
+    CoordinateBoundingBox cbb = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
-    MemberQ region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, true);
+    MemberQ region = new BufferedImageRegion(bufferedImage, cbb, true);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     StateTime stateTime = new StateTime(Tensors.vector(10, 3.5), Quantity.of(0, "s"));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -52,6 +57,15 @@ public class DeltaAnimationDemo implements DemoInterface {
     owlAnimationFrame.add(deltaEntity);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
+    owlAnimationFrame.geometricComponent.addRenderInterface(new RenderInterface() {
+      @Override
+      public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
+        Show show = new Show();
+        VectorPlot vectorPlot = VectorPlot.of(imageGradientInterpolation::get, cbb);
+        show.add(vectorPlot);
+        show.render(graphics, geometricLayer.toRectangle(cbb));
+      }
+    });
     // owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
     owlAnimationFrame.geometricComponent.setPerPixel(RealScalar.of(60));
