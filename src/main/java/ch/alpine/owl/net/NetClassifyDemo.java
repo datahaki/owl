@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.net;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -10,6 +11,7 @@ import ch.alpine.ascony.win.ControlPointType;
 import ch.alpine.ascony.win.ControlPointTypes;
 import ch.alpine.ascony.win.EuclideanPlaneDemo;
 import ch.alpine.bridge.fig.DensityPlot;
+import ch.alpine.bridge.fig.ListLinePlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.ref.ann.FieldFuse;
@@ -25,6 +27,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.io.TableBuilder;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
@@ -32,6 +35,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 
+// TODO make an animation that visualizes the classification image
 class NetClassifyDemo extends EuclideanPlaneDemo {
   @ReflectionMarker
   static class Param0 {
@@ -45,6 +49,8 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   @ReflectionMarker
   static class Param1 {
+    @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10" })
+    public Integer hidden = 7;
     @FieldFuse
     public transient Boolean train = false;
   }
@@ -87,12 +93,13 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   }
 
   NetChain netChain;
+  NetTrain netTrain;
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    netChain = NetChains.argMaxMLP(2, 7, param0.labels);
-    NetTrain.of(netChain, xdata, vector, RealScalar.of(0.05), _ -> {
-    }, Quantity.of(0.3, "s"), 3000, 10);
+    netChain = NetChains.argMaxMLP(2, param1.hidden, param0.labels);
+    netTrain = new NetTrain(netChain, xdata, vector);
+    netTrain.run(RealScalar.of(0.05), Quantity.of(0.3, "s"), 3000, 10);
   }
 
   @Override // from RenderInterface
@@ -101,12 +108,34 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     Tensor xdata = getGeodesicControlPoints();
     CoordinateBoundingBox cbb = CoordinateBounds.of(xdata);
     Rectangle rectangle = geometricLayer.toRectangle(cbb);
-    Show show = new Show();
-    show.add(DensityPlot.of((x, y) -> (Scalar) netChain.forward(Tensors.of(x, y)), cbb, param2.cdg));
-    // show.setAspectRatioDontCare();
-    show.render(graphics, rectangle);
-    // ---
+    {
+      Show show = new Show();
+      show.add(DensityPlot.of((x, y) -> (Scalar) netChain.forward(Tensors.of(x, y)), cbb, param2.cdg));
+      // show.setAspectRatioDontCare();
+      show.render(graphics, rectangle);
+    } // ---
     render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), vector, param2.cdl.cyclic());
+    Dimension dimension = getSize();
+    dimension.width /= 2;
+    dimension.height /= 2;
+    {
+      Show show = new Show();
+      TableBuilder table = netTrain.tparam;
+      int n = table.getRow(0).length();
+      for (int i = 1; i < n; ++i)
+        show.add(ListLinePlot.of(table.getColumns(0, i)));
+      // show.setPlotLabel("Error: " + error.maps(Round._3));
+      show.render_autoIndent(graphics, new Rectangle(dimension.width, 0, dimension.width, dimension.height));
+    }
+    {
+      Show show = new Show();
+      TableBuilder table = netTrain.tloss;
+      int n = table.getRow(0).length();
+      for (int i = 1; i < n; ++i)
+        show.add(ListLinePlot.of(table.getColumns(0, i)));
+      // show.setPlotLabel("Error: " + error.maps(Round._3));
+      show.render_autoIndent(graphics, new Rectangle(dimension.width, dimension.height, dimension.width, dimension.height));
+    }
   }
 
   static void render(GeometricLayer geometricLayer, Graphics2D graphics, ManifoldDisplay manifoldDisplay, Tensor sequence, Tensor vector,
