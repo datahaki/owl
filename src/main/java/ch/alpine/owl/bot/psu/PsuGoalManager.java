@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from CostFunction
   public Scalar minCostToGoal(Tensor x) {
-    return RealScalar.ZERO;
+    return RealScalar.ZERO; // FIXME
   }
 
   @Override // from MemberQ

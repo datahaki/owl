@@ -13,8 +13,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.io.Import;
+import ch.alpine.tensor.mat.Tolerance;
+import ch.alpine.tensor.qty.Quantity;
 
 class ImageGradientInterpolationTest {
   @Test
@@ -33,6 +36,34 @@ class ImageGradientInterpolationTest {
     {
       ImageGradientInterpolation imageGradientInterpolation = //
           ImageGradientInterpolation.linear(image, range, RealScalar.ONE);
+      Tensor cmp = imageGradientInterpolation.get(Tensors.vector(2, 3));
+      assertEquals(cmp, res.multiply(RealScalar.of(2)));
+      assertEquals(imageGradientInterpolation.maxNormGradient(), max.multiply(RealScalar.of(2)));
+    }
+  }
+
+  @Test
+  void testLinearUnit() {
+    Tensor range = Tensors.vector(9, 6.5);
+    Tensor res;
+    Scalar max;
+    final Tensor image = Import.of("/io/delta_uxy.png");
+    assertEquals(Dimensions.of(image), Arrays.asList(128, 179));
+    {
+      Scalar amp = Quantity.of(0.5, "s^-1");
+      ImageGradientInterpolation imageGradientInterpolation = //
+          ImageGradientInterpolation.linear(image, range, amp);
+      res = imageGradientInterpolation.get(Tensors.vector(2, 3));
+      max = imageGradientInterpolation.maxNormGradient();
+      Tensor zeros = imageGradientInterpolation.get(Tensors.vector(-2, 3));
+      Tolerance.CHOP.requireClose(zeros.Get(0), amp.zero());
+      Tolerance.CHOP.requireClose(zeros.Get(1), amp.zero());
+      VectorQ.requireLength(zeros, 2);
+    }
+    {
+      Scalar amp = Quantity.of(1, "s^-1");
+      ImageGradientInterpolation imageGradientInterpolation = //
+          ImageGradientInterpolation.linear(image, range, amp);
       Tensor cmp = imageGradientInterpolation.get(Tensors.vector(2, 3));
       assertEquals(cmp, res.multiply(RealScalar.of(2)));
       assertEquals(imageGradientInterpolation.maxNormGradient(), max.multiply(RealScalar.of(2)));

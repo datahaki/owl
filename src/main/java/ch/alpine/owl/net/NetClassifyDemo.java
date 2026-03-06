@@ -1,25 +1,34 @@
 // code by jph
 package ch.alpine.owl.net;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.ren.PointsRender;
 import ch.alpine.ascony.win.ControlPointType;
 import ch.alpine.ascony.win.ControlPointTypes;
 import ch.alpine.ascony.win.EuclideanPlaneDemo;
+import ch.alpine.bridge.awt.AwtUtil;
+import ch.alpine.bridge.awt.ScalableImage;
 import ch.alpine.bridge.fig.DensityPlot;
 import ch.alpine.bridge.fig.ListLinePlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.io.ImageIconRecorder;
+import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldFuse;
 import ch.alpine.bridge.ref.ann.FieldSelectionArray;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.subare.net.NetChain;
 import ch.alpine.subare.net.NetChains;
 import ch.alpine.subare.net.NetTrain;
+import ch.alpine.subare.net.NetTrainListener;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -27,6 +36,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.img.ColorDataGradients;
 import ch.alpine.tensor.img.ColorDataIndexed;
 import ch.alpine.tensor.img.ColorDataLists;
+import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.TableBuilder;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
@@ -39,7 +49,7 @@ import ch.alpine.tensor.qty.Quantity;
 class NetClassifyDemo extends EuclideanPlaneDemo {
   @ReflectionMarker
   static class Param0 {
-    @FieldSelectionArray({ "10", "20", "50" })
+    @FieldSelectionArray({ "10", "20", "30", "40", "50" })
     public Integer size = 20;
     @FieldSelectionArray({ "2", "3", "4", "5" })
     public Integer labels = 3;
@@ -62,7 +72,6 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   }
 
   private final Param0 param0;
-  @SuppressWarnings("unused")
   private final Param1 param1;
   private final Param2 param2;
   // ---
@@ -99,7 +108,26 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     Tensor xdata = getGeodesicControlPoints();
     netChain = NetChains.argMaxMLP(2, param1.hidden, param0.labels);
     netTrain = new NetTrain(netChain, xdata, vector);
-    netTrain.run(RealScalar.of(0.05), Quantity.of(0.3, "s"), 3000, 10);
+    CoordinateBoundingBox cbb = CoordinateBounds.of(xdata);
+    ImageIconRecorder imageIconRecorder = new ImageIconRecorder(200);
+    netTrain.addListener(new NetTrainListener() {
+      @Override
+      public void epoch(int epoch) {
+        DensityPlot densityPlot = DensityPlot.of((x, y) -> (Scalar) netChain.forward(Tensors.of(x, y)), cbb, param2.cdg);
+        ScalableImage scalableImage = densityPlot.getScalableImage(100);
+        BufferedImage bufferedImage = scalableImage.getScaledInstance(ImageResize.DEGREE_3, RealScalar.ONE);
+        imageIconRecorder.write(bufferedImage);
+      }
+    });
+    netTrain.run(RealScalar.of(0.05), Quantity.of(1.3, "s"), 3000, 10);
+    ImageIcon imageIcon = imageIconRecorder.getIconImage();
+    ManipulateProvider manipulateProvider = new ManipulateProvider() {
+      @Override
+      public Container getContainer() {
+        return AwtUtil.iconAsLabel(imageIcon);
+      }
+    };
+    manipulateProvider.runStandalone();
   }
 
   @Override // from RenderInterface

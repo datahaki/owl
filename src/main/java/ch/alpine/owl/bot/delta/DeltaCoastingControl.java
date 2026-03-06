@@ -12,7 +12,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.qty.Quantity;
 
 /* package */ class DeltaCoastingControl implements EntityControl, Serializable {
   private final ImageGradientInterpolation imageGradientInterpolation;
@@ -25,7 +24,7 @@ import ch.alpine.tensor.qty.Quantity;
 
   @Override // from EntityControl
   public Optional<Tensor> control(StateTime tail, Scalar now) {
-    Tensor u = imageGradientInterpolation.get(tail.state()).maps(s -> Quantity.of(s, "s^-1"));
+    Tensor u = imageGradientInterpolation.get(tail.state());
     Scalar norm = Vector2Norm.of(u);
     if (Scalars.lessThan(u_norm, norm))
       u = u.multiply(u_norm).divide(norm);

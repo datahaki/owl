@@ -9,6 +9,7 @@ import ch.alpine.sophis.math.ImageGradient;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.alg.Reverse;
@@ -24,8 +25,6 @@ import ch.alpine.tensor.sca.N;
 
 /** rotated gradient of potential function */
 public class ImageGradientInterpolation implements Serializable {
-  private static final Tensor ZEROS = Tensors.vectorDouble(0, 0).unmodifiable();
-
   /** @param image
    * @param range
    * @param amp
@@ -69,7 +68,7 @@ public class ImageGradientInterpolation implements Serializable {
     } catch (Exception exception) {
       // index is out of bounds
     }
-    return ZEROS;
+    return ConstantArray.of(maxNormGradient.zero(), 2);
   }
 
   /** @return max(||gradient||) */

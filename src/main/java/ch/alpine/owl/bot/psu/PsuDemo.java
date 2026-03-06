@@ -52,7 +52,7 @@ import ch.alpine.tensor.qty.Quantity;
     GoalInterface goalInterface = PsuGoalManager.of( //
         PsuMetric.INSTANCE, Tensors.vector(Math.PI * 0.7, 0.5), RealScalar.of(0.3));
     TrajectoryPlanner trajectoryPlanner = raw(goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), Quantity.of(0,"s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(1000);
     return trajectoryPlanner;
@@ -68,7 +68,7 @@ import ch.alpine.tensor.qty.Quantity;
     StateTimeRaster stateTimeRaster = new EtaRaster(ETA, StateTimeTensorFunction.state(psuWrap::represent));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Array.zeros(2), Quantity.of(0,"s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(1000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());

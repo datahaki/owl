@@ -34,7 +34,7 @@ public class DeltaAnimationDemo implements DemoInterface {
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
-    Scalar amp = RealScalar.of(-.05);
+    Scalar amp = Quantity.of(-0.05, "s^-1");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.nearest(Import.of("/io/delta_uxy.png"), range, amp);
@@ -52,7 +52,7 @@ public class DeltaAnimationDemo implements DemoInterface {
     owlAnimationFrame.add(deltaEntity);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
+    // owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
     owlAnimationFrame.geometricComponent.setPerPixel(RealScalar.of(60));
     return owlAnimationFrame;
