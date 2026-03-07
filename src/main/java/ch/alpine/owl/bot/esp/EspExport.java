@@ -18,12 +18,13 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Import;
 
-/* package */ enum EspPlot {
+enum EspExport {
   ;
   static final int RES = 64;
+  static final Path SOLUTION_PATH = HomeDirectory.Ephemeral.resolve("esp.object");
 
   static void main() throws ClassNotFoundException, IOException, DataFormatException {
-    List<StateTime> list = Import.object(HomeDirectory.Ephemeral.resolve("esp.object"));
+    List<StateTime> list = Import.object(SOLUTION_PATH);
     System.out.println(list.size());
     int index = 0;
     Path folder = HomeDirectory.Pictures.resolve("ESP");

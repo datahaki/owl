@@ -22,7 +22,7 @@ class BalloonStateSpaceModelTest {
     Tensor xWithoutUnits = Tensors.vector(1, 1, 2, 4);
     Tensor uWithoutUnits = Tensors.vector(2);
     StateSpaceModel stateSpaceModel = Serialization.copy(BalloonStateSpaceModels.defaultWithUnits());
-    StateSpaceModel stateSpaceModelWithoutUnits = BalloonStateSpaceModels.defaultWithoutUnits();
+    StateSpaceModel stateSpaceModelWithoutUnits = BalloonStateSpaceModels.defaultWithUnits();
     assertEquals(stateSpaceModelWithoutUnits.f(xWithoutUnits, uWithoutUnits).length(), 4);
     Tensor fWithUnits = stateSpaceModel.f(xWithUnits, uWithUnits);
     assertEquals(fWithUnits.length(), 4);

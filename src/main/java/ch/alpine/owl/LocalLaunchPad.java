@@ -9,6 +9,6 @@ enum LocalLaunchPad {
   ;
   static void main() {
     if (!FileBlock.of(ResourceLocator.of(LocalLaunchPad.class).resolve("")))
-      RunLaunchPad.create(LocalLaunchPad.class.getPackageName() + "asd").runStandalone();
+      RunLaunchPad.create(LocalLaunchPad.class.getPackageName()).runStandalone();
   }
 }

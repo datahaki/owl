@@ -3,47 +3,48 @@ package ch.alpine.owl.bot.balloon;
 
 import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.ascony.ren.AxesRender;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
-import ch.alpine.owl.util.win.DemoInterface;
-import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.owl.util.win.OwlAnimationDemo;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.flow.TimeIntegrators;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
+import ch.alpine.tensor.io.Pretty;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
-public class BalloonAnimationDemo implements DemoInterface {
-  @Override // from DemoInterface
-  public OwlAnimationFrame getTimerFrame() {
-    OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    owlAnimationFrame.geometricComponent.setModel2Pixel(Tensors.fromString("{{1.5, 0, 100}, {0, -1.5, 600}, {0, 0, 1}}"));
+class BalloonAnimationDemo extends OwlAnimationDemo {
+  BalloonAnimationDemo() {
+    super();
+    GeometricComponent geometricComponent = timerFrame.geometricComponent;
+    geometricComponent.setModel2Pixel(Tensors.fromString("{{1.5, 0, 100}, {0, -1.5, 600}, {0, 0, 1}}"));
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(BalloonEntity.SPEED_MAX);
-    BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithoutUnits();
-    StateTime stateTime = new StateTime(Tensors.vector(0, 150, 10, 10), RealScalar.ZERO);
+    BalloonStateSpaceModel balloonStateSpaceModel = BalloonStateSpaceModels.defaultWithUnits();
+    StateTime stateTime = new StateTime(Tensors.vector(0, 150, 10, 10), Quantity.of(0, "s^-1"));
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         balloonStateSpaceModel, TimeIntegrators.EULER, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, balloonEntity, plannerConstraint);
+    MouseGoal.simple(geometricComponent, balloonEntity, plannerConstraint);
     Tensor range = Tensors.vector(500, 100).unmodifiable();
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ imageRegion = new BufferedImageRegion( //
         ResourceData.bufferedImage("/io/mountainChain.png"), coordinateBoundingBox, true);
-    owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
-    owlAnimationFrame.add(balloonEntity);
-    owlAnimationFrame.addBackground(AxesRender.INSTANCE);
-    return owlAnimationFrame;
+    geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
+    add(balloonEntity);
+    geometricComponent.addRenderInterfaceBackground(AxesRender.INSTANCE);
+    IO.println(Pretty.of(geometricComponent.getModel2Pixel()));
   }
 
   static void main() {

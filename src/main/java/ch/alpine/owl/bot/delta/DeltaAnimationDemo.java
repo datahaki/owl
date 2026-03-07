@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.VectorPlot;
+import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
@@ -33,9 +34,10 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
-public class DeltaAnimationDemo extends OwlAnimationDemo {
+class DeltaAnimationDemo extends OwlAnimationDemo {
   DeltaAnimationDemo() {
-    geometricComponent().setRotatable(false);
+    GeometricComponent geometricComponent = geometricComponent();
+    geometricComponent.setRotatable(false);
     // ---
     Scalar amp = Quantity.of(-0.05, "s^-1");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
@@ -51,11 +53,11 @@ public class DeltaAnimationDemo extends OwlAnimationDemo {
         new DeltaStateSpaceModel(imageGradientInterpolation), TimeIntegrators.EULER, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     DeltaEntity deltaEntity = new DeltaEntity(episodeIntegrator, trajectoryControl, imageGradientInterpolation);
-    MouseGoal.simple(geometricComponent(), deltaEntity, plannerConstraint);
+    MouseGoal.simple(geometricComponent, deltaEntity, plannerConstraint);
     add(deltaEntity);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
-    geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(region));
-    geometricComponent().addRenderInterface(new RenderInterface() {
+    geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
+    geometricComponent.addRenderInterface(new RenderInterface() {
       @Override
       public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
         Show show = new Show();
@@ -64,9 +66,11 @@ public class DeltaAnimationDemo extends OwlAnimationDemo {
         show.render(graphics, geometricLayer.toRectangle(cbb).orElseThrow());
       }
     });
-    // owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));
-    geometricComponent().setOffset(50, 600);
-    geometricComponent().setPerPixel(RealScalar.of(60));
+    Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
+    geometricComponent.addRenderInterfaceBackground( //
+        StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.8, "s")));
+    geometricComponent.setOffset(50, 700);
+    geometricComponent.setPerPixel(RealScalar.of(100));
   }
 
   static void main() {

@@ -25,17 +25,15 @@ import ch.alpine.tensor.sca.Floor;
   private final Scalar tau1;
   private final Scalar tau2;
   private final Scalar sigma;
-  private final boolean hasUnit;
 
   /** @param tau1 parameter with unit [s]
    * @param tau2 parameter with unit [s]
    * @param sigma parameter with unit [m*K^-1*s^-2]
    * @param hasUnit indicator is stateSpaceModel is used with units or not */
-  public BalloonStateSpaceModel(Scalar tau1, Scalar tau2, Scalar sigma, boolean hasUnit) {
+  public BalloonStateSpaceModel(Scalar tau1, Scalar tau2, Scalar sigma) {
     this.tau1 = tau1;
     this.tau2 = tau2;
     this.sigma = sigma;
-    this.hasUnit = hasUnit;
   }
 
   @Override // from StateSpaceModel
@@ -56,13 +54,12 @@ import ch.alpine.tensor.sca.Floor;
     /* unknown horizontal movement due to horizontal winds */
     Scalar x_dot = horizontalWinds(y);
     /* down force resulting from gravity and countered by air resistance, thus not 9.8 (approximate) */
-    Scalar g = RealScalar.of(1);
+    Scalar g = Quantity.of(1, "s^-2");
     /* if stateSpaceModel is instantiated with units w and x_dot are given the necessary units,
      * [x_dot]= m*s^-1, [w] = m*s^-1 and [downForce] = m*s^-2 */
-    if (hasUnit) {
+    {
       w = Quantity.of(w, "m*s^-1");
       x_dot = Quantity.of(x_dot, "m*s^-1");
-      g = Quantity.of(g, "m*s^-2");
     }
     return Tensors.of( //
         x_dot, //
@@ -81,8 +78,6 @@ import ch.alpine.tensor.sca.Floor;
   }
 
   public Scalar horizontalWinds(Scalar y) {
-    if (hasUnit)
-      y = ((Quantity) y).value();
     Scalar changeOfWindDirection = RealScalar.of(50);
     Scalar y_interval = y.divide(changeOfWindDirection);
     return Scalars.divides(RealScalar.of(2), Floor.FUNCTION.apply(y_interval)) //

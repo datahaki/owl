@@ -33,7 +33,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.ResourceData;
 import ch.alpine.tensor.io.Import;
@@ -46,7 +46,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
   public OwlAnimationFrame getTimerFrame() {
     Tensor image = Import.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
-    Scalar amp = RealScalar.of(-.05); // direction and strength of river flow
+    Scalar amp = Quantity.of(-0.05, "s^-1"); // direction and strength of river flow
     // ---
     ImageGradientInterpolation imageGradientInterpolation_fast = //
         ImageGradientInterpolation.nearest(image, range, amp);
@@ -61,7 +61,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     ImageGradientInterpolation imageGradientInterpolation_slow = //
         ImageGradientInterpolation.linear(image, range, amp);
     StateSpaceModel stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation_slow);
-    Tensor flow = Array.zeros(2);
+    Tensor flow = ConstantArray.of(Quantity.of(0, "s^-1"), 2);
     Region<StateTime> region1 = create(stateSpaceModel, RealScalar.of(0.4), Tensors.vector(2, 1.5), flow, supplier);
     Region<StateTime> region2 = create(stateSpaceModel, RealScalar.of(0.5), Tensors.vector(6, 6), flow, supplier);
     Region<StateTime> region3 = create(stateSpaceModel, RealScalar.of(0.3), Tensors.vector(2, 7), flow, supplier);
@@ -82,7 +82,8 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);
     owlAnimationFrame.addBackground((RenderInterface) region4);
-    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.5)));
+    Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
+    owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.5, "s")));
     owlAnimationFrame.geometricComponent.setOffset(50, 600);
     return owlAnimationFrame;
   }
@@ -91,7 +92,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 120 * 10);
     return new R2xTEllipsoidStateTimeRegion(Tensors.of(radius, radius), //
-        TrajectoryR2TranslationFamily.create(stateIntegrator, new StateTime(pos, RealScalar.ZERO), flow), //
+        TrajectoryR2TranslationFamily.create(stateIntegrator, new StateTime(pos, Quantity.of(0, "s")), flow), //
         supplier);
   }
 

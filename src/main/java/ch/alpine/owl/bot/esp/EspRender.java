@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 
-/* package */ class EspRender implements RenderInterface {
+class EspRender implements RenderInterface {
   private static final Tensor CIRCLE = CirclePoints.of(31).multiply(RealScalar.of(0.48));
   private static final Color LIGHT = new Color(188, 169, 80);
   private static final Color DARK = new Color(63, 54, 14);

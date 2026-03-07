@@ -35,7 +35,7 @@ import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Quantity;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */
-/* package */ class DeltaEntity extends AbstractCircularEntity implements GlcPlannerCallback {
+class DeltaEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(5, 5).unmodifiable();
   /** preserve 1[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(2, "s");

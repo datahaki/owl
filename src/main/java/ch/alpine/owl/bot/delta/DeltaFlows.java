@@ -10,14 +10,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 
-/* package */ class DeltaFlows implements FlowsInterface, Serializable {
-  // ---
-  private final Scalar amp;
-
-  public DeltaFlows(Scalar amp) {
-    this.amp = amp;
-  }
-
+record DeltaFlows(Scalar amp) implements FlowsInterface, Serializable {
   @Override // from FlowsInterface
   public Collection<Tensor> getFlows(int resolution) {
     Collection<Tensor> collection = new ArrayList<>();

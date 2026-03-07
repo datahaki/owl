@@ -40,8 +40,8 @@ import ch.alpine.tensor.sca.Clips;
 /* package */ class BalloonEntity extends AbstractCircularEntity {
   private static final Tensor PARTITION_SCALE = Tensors.vector(2, 2, 1, 1).unmodifiable();
   static final int FLOWRES = 4;
-  static final Scalar U_MAX = RealScalar.of(30);
-  final static Scalar SPEED_MAX = RealScalar.of(10);
+  static final Scalar U_MAX = Quantity.of(30, "s^-1");
+  final static Scalar SPEED_MAX = Quantity.of(10, "s^-1");
   /** preserve 1[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(2, "s");
   private static final Scalar GOAL_RADIUS = RealScalar.of(3);

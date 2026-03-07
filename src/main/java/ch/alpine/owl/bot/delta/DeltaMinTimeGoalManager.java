@@ -15,8 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
 
 /** heuristic adds max speed of available control to max norm of image gradient */
-/* package */ class DeltaMinTimeGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
-  // ---
+class DeltaMinTimeGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
   private final RegionWithDistance<Tensor> regionWithDistance;
   /** unit of maxSpeed is velocity, e.g. [m/s] */
   private final Scalar maxSpeed;

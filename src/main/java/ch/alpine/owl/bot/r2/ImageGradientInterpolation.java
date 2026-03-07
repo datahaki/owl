@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.N;
 public class ImageGradientInterpolation implements Serializable {
   /** @param image
    * @param range
-   * @param amp
+   * @param amp velocity factor
    * @return high quality continuous interpolation (slower than nearest) */
   public static ImageGradientInterpolation linear(Tensor image, Tensor range, Scalar amp) {
     return new ImageGradientInterpolation(image, range, amp, LinearInterpolation::of);
@@ -35,7 +35,7 @@ public class ImageGradientInterpolation implements Serializable {
 
   /** @param image
    * @param range
-   * @param amp
+   * @param amp velocity factor
    * @return fast discontinuous interpolation (fast) */
   public static ImageGradientInterpolation nearest(Tensor image, Tensor range, Scalar amp) {
     return new ImageGradientInterpolation(image, range, amp, NearestInterpolation::of);
@@ -44,6 +44,7 @@ public class ImageGradientInterpolation implements Serializable {
   // ---
   private final Tensor scale;
   private final Interpolation interpolation;
+  /** same unit as amp */
   private final Scalar maxNormGradient;
 
   /** @param render with rank 2. For instance, Dimensions.of(image) == [179, 128]
@@ -56,7 +57,10 @@ public class ImageGradientInterpolation implements Serializable {
     scale = Times.of(Tensors.vector(dims), range.maps(Scalar::reciprocal));
     Tensor field = ImageGradient.rotated(image).multiply(N.DOUBLE.apply(amp));
     interpolation = function.apply(field);
-    maxNormGradient = Flatten.stream(field, 1).map(Vector2Norm::of).reduce(Max::of).orElseThrow();
+    maxNormGradient = Flatten.stream(field, 1) //
+        .map(Vector2Norm::of) //
+        .reduce(Max::of) //
+        .orElseThrow();
   }
 
   /** @param vector of length 2

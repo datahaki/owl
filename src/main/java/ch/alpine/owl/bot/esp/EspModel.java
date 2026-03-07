@@ -12,7 +12,7 @@ import ch.alpine.tensor.Throw;
  * Reference:
  * Sam Loyd/Martin Gardner
  * "Mathematische Raetsel und Spiele" */
-/* package */ enum EspModel implements StateSpaceModel {
+enum EspModel implements StateSpaceModel {
   INSTANCE;
 
   @Override

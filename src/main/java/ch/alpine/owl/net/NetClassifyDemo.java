@@ -61,6 +61,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   static class Param1 {
     @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10" })
     public Integer hidden = 7;
+    public Boolean animate = false;
     @FieldFuse
     public transient Boolean train = false;
   }
@@ -121,14 +122,16 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
       }
     });
     netTrain.run(RealScalar.of(0.05), Quantity.of(1.3, "s"), 3000, 10);
-    ImageIcon imageIcon = imageIconRecorder.getIconImage();
-    ManipulateProvider manipulateProvider = new ManipulateProvider() {
-      @Override
-      public Container getContainer() {
-        return AwtUtil.iconAsLabel(imageIcon);
-      }
-    };
-    manipulateProvider.runStandalone();
+    if (param1.animate) {
+      ImageIcon imageIcon = imageIconRecorder.getIconImage();
+      ManipulateProvider manipulateProvider = new ManipulateProvider() {
+        @Override
+        public Container getContainer() {
+          return AwtUtil.iconAsLabel(imageIcon);
+        }
+      };
+      manipulateProvider.runStandalone();
+    }
   }
 
   @Override // from RenderInterface

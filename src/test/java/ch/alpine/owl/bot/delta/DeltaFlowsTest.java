@@ -5,14 +5,14 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
 class DeltaFlowsTest {
   /** the constants define the control */
-  private static final Scalar U_NORM = RealScalar.of(0.6);
+  private static final Scalar U_NORM = Quantity.of(0.6, "s^-1");
   /** resolution of radial controls */
   private static final int U_SIZE = 15;
 

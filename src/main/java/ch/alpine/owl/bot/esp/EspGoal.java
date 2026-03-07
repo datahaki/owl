@@ -8,17 +8,16 @@ import java.util.function.Predicate;
 import ch.alpine.owlets.glc.core.GlcNode;
 import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.math.state.StateTime;
-import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Join;
 
-/* package */ enum EspGoalAdapter implements GoalInterface {
+enum EspGoal implements GoalInterface {
   INSTANCE;
 
-  static final Tensor GOAL = Tensors.of( //
+  final Tensor GOAL = Tensors.of( //
       Tensors.vector(1, 1, 1, 0, 0), //
       Tensors.vector(1, 1, 1, 0, 0), //
       Tensors.vector(1, 1, 0, 2, 2), //
@@ -29,8 +28,6 @@ import ch.alpine.tensor.alg.Join;
 
   @Override
   public Scalar minCostToGoal(Tensor x) {
-    if (x instanceof Scalar)
-      return DoubleScalar.POSITIVE_INFINITY;
     Tensor hi = Join.of(x.get(0).extract(0, 3), x.get(1).extract(0, 3), x.get(2).extract(0, 2));
     Tensor lo = Join.of(x.get(2).extract(3, 5), x.get(3).extract(2, 5), x.get(4).extract(2, 5));
     long hic = hi.stream().filter(Predicate.not(RealScalar.ONE::equals)).count();

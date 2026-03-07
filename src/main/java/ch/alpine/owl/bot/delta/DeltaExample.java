@@ -32,7 +32,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta */
-/* package */ class DeltaExample {
+class DeltaExample {
   // private static final StateIntegrator STATE_INTEGRATOR = FixedStateIntegrator.create( //
   // RungeKutta45Integrator.INSTANCE, Rational.of(1, 10), 4);
   private static final Tensor RANGE = Tensors.vector(9, 6.5);
@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Clips;
       ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
   private static final PlannerConstraint PLANNER_CONSTRAINT = //
       new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(REGION));
-  private static final Scalar MAX_INPUT = RealScalar.ONE;
+  private static final Scalar MAX_INPUT = Quantity.of(1, "s^-1");
   static final BallRegion SPHERICAL_REGION = //
       new BallRegion(Tensors.vector(2.1, 0.3), RealScalar.of(0.3));
   private static final StateTimeRaster STATE_TIME_RASTER = EtaRaster.state(Tensors.vector(8, 8));
@@ -64,10 +64,11 @@ import ch.alpine.tensor.sca.Clips;
         STATE_TIME_RASTER, new FixedStateIntegrator( //
             TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 10), "s"), 4),
         controls, PLANNER_CONSTRAINT, goalInterface);
-    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(8.8, 0.5), Quantity.of(0, "s")));
   }
 
-  public RenderInterface vf(double scale) {
-    return StaticHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, RealScalar.of(scale));
+  public RenderInterface vf(Scalar scale) {
+    Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
+    return StaticHelper.vectorFieldRender(stateSpaceModel, RANGE, REGION, fallback_u, scale);
   }
 }

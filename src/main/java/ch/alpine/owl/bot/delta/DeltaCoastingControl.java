@@ -13,7 +13,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-/* package */ class DeltaCoastingControl implements EntityControl, Serializable {
+class DeltaCoastingControl implements EntityControl, Serializable {
   private final ImageGradientInterpolation imageGradientInterpolation;
   private final Scalar u_norm;
 

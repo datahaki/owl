@@ -3,13 +3,13 @@ package ch.alpine.owl.bot.esp;
 
 import java.awt.Graphics2D;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
@@ -24,10 +24,9 @@ import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 
-public class EspDemo extends AbstractDemo implements RenderInterface {
+class EspDemo extends AbstractDemo implements RenderInterface {
   static final Tensor START = Tensors.of( //
       Tensors.vector(2, 2, 2, 0, 0), //
       Tensors.vector(2, 2, 2, 0, 0), //
@@ -36,45 +35,52 @@ public class EspDemo extends AbstractDemo implements RenderInterface {
       Tensors.vector(0, 0, 1, 1, 1), //
       Tensors.vector(2, 2) //
   ).unmodifiable();
-  // ---
+
+  static class Param {
+    public Boolean compute = true;
+  }
+
+  private final Param param;
 
   public EspDemo() {
+    super(param = new Param());
     geometricComponent().addRenderInterface(this);
-    timerFrame.geometricComponent.setOffset(100, 400);
+    timerFrame.geometricComponent.setOffset(100, 600);
+    timerFrame.geometricComponent.setPerPixel(RealScalar.of(100));
+    fieldsEditor(0).addUniversalListener(() -> new Thread(this::compute).start());
   }
 
   Tensor _board = null;
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    AxesRender.INSTANCE.render(geometricLayer, graphics);
     Tensor board = _board;
     if (Objects.nonNull(board)) {
       new EspRender(board).render(geometricLayer, graphics);
     }
   }
 
-  List<StateTime> compute() {
+  void compute() {
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;
     TrajectoryPlanner trajectoryPlanner = StandardTrajectoryPlanner.create( //
         EspStateTimeRaster.INSTANCE, //
         new DiscreteIntegrator(EspModel.INSTANCE), //
         EspFlows.INSTANCE, //
         plannerConstraint, //
-        EspGoalAdapter.INSTANCE);
+        EspGoal.INSTANCE);
     trajectoryPlanner.insertRoot(new StateTime(START, RealScalar.ZERO));
     while (timerFrame.jFrame.isVisible()) {
       {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent()) {
           GlcNode glcNode = optional.orElseThrow();
-          // if (print)
-          {
-            System.out.println(glcNode.state());
-            System.out.println("BEST IN GOAL");
-            System.out.println("$=" + glcNode.costFromRoot());
+          System.out.println("$=" + glcNode.costFromRoot());
+          List<StateTime> list = GlcNodes.getPathFromRootTo(glcNode);
+          try {
+            Export.object(EspExport.SOLUTION_PATH, list);
+          } catch (IOException e) {
+            throw new UncheckedIOException(e);
           }
-          return GlcNodes.getPathFromRootTo(glcNode);
         }
       }
       Optional<GlcNode> optional = trajectoryPlanner.pollNext();
@@ -84,20 +90,15 @@ public class EspDemo extends AbstractDemo implements RenderInterface {
         GlcNode nextNode = optional.orElseThrow();
         _board = nextNode.state();
         trajectoryPlanner.expand(nextNode);
-        System.out.println(String.format("#=%3d   q=%3d   $=%3s", domainMap.size(), queue.size(), nextNode.costFromRoot()));
+        // System.out.println(String.format("#=%3d q=%3d $=%3s", domainMap.size(), queue.size(), nextNode.costFromRoot()));
       } else { // queue is empty
         System.out.println("*** Queue is empty -- No Goal was found ***");
-        return null;
+        break;
       }
     }
-    return null;
   }
 
-  static void main() throws IOException {
-    EspDemo espDemo = new EspDemo();
-    espDemo.runStandalone();
-    List<StateTime> list = espDemo.compute();
-    if (Objects.nonNull(list))
-      Export.object(HomeDirectory.Ephemeral.resolve("esp.object"), list);
+  static void main() {
+    new EspDemo().runStandalone();
   }
 }

@@ -13,14 +13,14 @@ import ch.alpine.tensor.Tensor;
 class EspGoalAdapterTest {
   @Test
   void testGoal() {
-    Tensor goal = EspGoalAdapter.GOAL;
-    assertEquals(EspGoalAdapter.INSTANCE.minCostToGoal(goal), RealScalar.ZERO);
+    Tensor goal = EspGoal.INSTANCE.GOAL;
+    assertEquals(EspGoal.INSTANCE.minCostToGoal(goal), RealScalar.ZERO);
   }
 
   @Test
   void testStart() {
     assertTrue(Scalars.lessEquals( //
         RealScalar.of(0), //
-        EspGoalAdapter.INSTANCE.minCostToGoal(EspDemo.START)));
+        EspGoal.INSTANCE.minCostToGoal(EspDemo.START)));
   }
 }
