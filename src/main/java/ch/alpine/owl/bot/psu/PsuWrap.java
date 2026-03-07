@@ -9,7 +9,7 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Mod;
 
 /** singleton instance */
-/* package */ enum PsuWrap implements CoordinateWrap {
+enum PsuWrap implements CoordinateWrap {
   INSTANCE;
 
   private static final Mod MOD = Mod.function(Pi.TWO);

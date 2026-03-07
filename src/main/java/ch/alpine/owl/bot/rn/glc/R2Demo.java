@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.ascony.api.Box2D;
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.pro.ManipulateProvider;
@@ -39,7 +40,9 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.qty.Quantity;
+import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Ramp;
 
 /** functionality is used in tests */
@@ -96,6 +99,8 @@ enum R2Demo implements ManipulateProvider {
     }
     geometricComponent.setPerPixel(Rational.of(100, 1));
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
+    CoordinateBoundingBox cbb = Box2D.xy(Clips.absolute(3));
+    geometricComponent.addRenderInterfaceBackground(new SignedDistRender(cbb, 100, R2Bubbles.INSTANCE));
     RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
   }
 

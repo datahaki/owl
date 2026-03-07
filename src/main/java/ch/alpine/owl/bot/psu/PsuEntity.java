@@ -61,7 +61,7 @@ import ch.alpine.tensor.qty.Quantity;
     Tensor eta = Tensors.vector(6, 8);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         INTEGRATOR, PsuStateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 4), "s"), 5);
-    Collection<Tensor> controls = PsuControls.createControls(0.2, 6);
+    Collection<Tensor> controls = PsuControls.createControls(Quantity.of(0.2, "s^-1"), 6);
     PsuWrap psuWrap = PsuWrap.INSTANCE;
     GoalInterface goalInterface = PsuGoalManager.of( //
         PsuMetric.INSTANCE, psuWrap.represent(Extract2D.FUNCTION.apply(goal)), RealScalar.of(0.2));

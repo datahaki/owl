@@ -11,10 +11,10 @@ import ch.alpine.owlets.glc.core.GoalInterface;
 import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophus.api.TensorMetric;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
 
 /* package */ class PsuGoalManager implements MemberQ, CostFunction {
@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.Sign;
 
   @Override // from CostFunction
   public Scalar minCostToGoal(Tensor x) {
-    return RealScalar.ZERO; // FIXME
+    return Quantity.of(0, "s");
   }
 
   @Override // from MemberQ

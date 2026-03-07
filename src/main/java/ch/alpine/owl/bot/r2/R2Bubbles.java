@@ -8,6 +8,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.Primitives;
+import ch.alpine.tensor.sca.Clips;
 
 /** numerous ~circles of varying size
  * the challenge is to find the path through narrow passages as close as possible to the diagonal
@@ -34,6 +35,7 @@ public final class R2Bubbles extends ImplicitFunctionRegion implements Serializa
     val -= Math.cos(3 * Math.PI * x);
     val -= Math.cos(3 * Math.PI * y);
     val += -0.2 * (1 + y2 + x * y + x2);
-    return RealScalar.of(-val);
+    
+    return Clips.interval(-1, 10).apply(RealScalar.of(-val));
   }
 }
