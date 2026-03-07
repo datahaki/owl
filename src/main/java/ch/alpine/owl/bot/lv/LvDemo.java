@@ -1,11 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.lv;
 
+import java.awt.Container;
 import java.util.Collection;
 
-import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.ascony.ren.GridRender;
+import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
-import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -29,14 +32,14 @@ import ch.alpine.tensor.sca.exp.Log;
 
 /** the coordinates represent the population of predators and prey.
  * the domain coordinates are computed from the log of the state coordinates */
-/* package */ enum LvDemo {
-  ;
-  static void main() {
+class LvDemo implements ManipulateProvider {
+  @Override
+  public Container getContainer() {
     Tensor eta = Tensors.vector(10, 10);
-    StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
+    StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
-    Collection<Tensor> controls = LvControls.create(2);
+    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);
     // ---
@@ -44,11 +47,21 @@ import ch.alpine.tensor.sca.exp.Log;
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface);
     // ---
-    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(2, 0.1), RealScalar.ZERO));
+    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(2, 0.5), Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(5000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
-    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
+    GeometricComponent geometricComponent = new GeometricComponent();
+    RenderElements.create(trajectoryPlanner) //
+        .forEach(geometricComponent::addRenderInterface);
+    geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
+    geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
+    geometricComponent.setPerPixel(RealScalar.of(20));
+    geometricComponent.setOffset(50, 600);
+    return geometricComponent;
+  }
+
+  static void main() {
+    new LvDemo().runStandalone();
   }
 }

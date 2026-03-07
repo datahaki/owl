@@ -23,13 +23,14 @@ import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
+import ch.alpine.tensor.qty.Quantity;
 
 class LvEntityTest {
   @Test
   void testVectorField() {
     Tensor fallback_u = Array.zeros(1);
-    StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
-    Collection<Tensor> controls = LvControls.create(2);
+    StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
+    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
     TimeIntegrator integrator = TimeIntegrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator(stateSpaceModel, integrator, //
         new StateTime(Tensors.vector(2, 0.3), RealScalar.ZERO));

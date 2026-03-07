@@ -27,13 +27,14 @@ import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
+import ch.alpine.tensor.qty.Quantity;
 
 public class LvAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
-    Collection<Tensor> controls = LvControls.create(2);
+    StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
+    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
     TimeIntegrator INTEGRATOR = TimeIntegrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator(stateSpaceModel, INTEGRATOR, //
         new StateTime(Tensors.vector(2, 0.3), RealScalar.ZERO));

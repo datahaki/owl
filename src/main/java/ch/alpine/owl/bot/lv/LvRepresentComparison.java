@@ -34,10 +34,10 @@ import ch.alpine.tensor.sca.exp.Log;
   ;
   static void launch(TensorUnaryOperator represent) {
     Tensor eta = Tensors.vector(10, 10);
-    StateSpaceModel stateSpaceModel = LvStateSpaceModel.of(1, 2);
+    StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
-    Collection<Tensor> controls = LvControls.create(2);
+    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);
     // ---

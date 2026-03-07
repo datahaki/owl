@@ -10,10 +10,10 @@ import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
 import ch.alpine.sophis.reg.EllipsoidRegion;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.qty.Quantity;
 
 /** the distance used in the ellipsoid is Euclidean.
  * perhaps more suitable for the state space model would be a logarithmic distance */
@@ -38,6 +38,6 @@ import ch.alpine.tensor.alg.VectorQ;
 
   @Override // from GoalInterface
   public Scalar minCostToGoal(Tensor x) {
-    return RealScalar.ZERO;
+    return Quantity.of(0, "s");
   }
 }
