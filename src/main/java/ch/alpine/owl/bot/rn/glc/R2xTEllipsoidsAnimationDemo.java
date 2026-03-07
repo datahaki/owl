@@ -68,7 +68,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
         Tensors.vector(0.6, 0.6), noise, () -> abstractEntity.getStateTimeNow().time());
     Region<StateTime> union = RegionUnion.wrap(region1, region2, region3);
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(union);
-    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);

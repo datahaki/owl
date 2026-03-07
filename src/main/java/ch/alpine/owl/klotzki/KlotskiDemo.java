@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.glc.adapter.DiscreteIntegrator;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
 import ch.alpine.owlets.glc.core.CTrajectoryPlanner;
@@ -27,7 +28,7 @@ import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 import ch.alpine.tensor.io.TableBuilder;
 
-public class KlotskiDemo extends AbstractDemo {
+public class KlotskiDemo extends AbstractDemo implements RenderInterface {
   public static final ThreadLocal<Boolean> debugPrint = ThreadLocal.withInitial(() -> false);
   public static final Path FOLDER_SOLUTIONS = HomeDirectory.Ephemeral.mk_dirs("klotski");
   private final KlotskiProblem klotskiProblem;
@@ -39,6 +40,7 @@ public class KlotskiDemo extends AbstractDemo {
   public KlotskiDemo(KlotskiProblem klotskiProblem) {
     this.klotskiProblem = klotskiProblem;
     klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
+    geometricComponent().addRenderInterface(this);
     timerFrame.geometricComponent.setOffset(100, 500);
     timerFrame.geometricComponent.setPerPixel(RealScalar.of(80));
   }

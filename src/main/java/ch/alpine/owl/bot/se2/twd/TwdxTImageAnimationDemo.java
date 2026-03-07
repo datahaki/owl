@@ -52,7 +52,7 @@ public class TwdxTImageAnimationDemo extends AbstractTwdDemo {
       owlAnimationFrame.addBackground(renderInterface);
     }
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlAnimationFrame, twdxTEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, twdxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region);
     {
       RenderInterface renderInterface = new LidarEmulator( //

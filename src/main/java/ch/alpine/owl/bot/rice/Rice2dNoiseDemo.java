@@ -30,7 +30,7 @@ public class Rice2dNoiseDemo implements DemoInterface {
     owlAnimationFrame.add(trajectoryEntity);
     MemberQ region = new R2NoiseRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     return owlAnimationFrame;
   }
 

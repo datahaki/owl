@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Clips;
     ClothoidRrtsEntity clothoidRrtsEntity = //
         new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame, clothoidRrtsEntity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.geometricComponent, clothoidRrtsEntity, null);
     owlAnimationFrame.add(clothoidRrtsEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //

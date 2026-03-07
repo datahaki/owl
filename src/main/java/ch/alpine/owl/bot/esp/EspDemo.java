@@ -12,6 +12,7 @@ import java.util.Optional;
 import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.glc.adapter.DiscreteIntegrator;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.core.GlcNode;
@@ -26,7 +27,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Export;
 
-public class EspDemo extends AbstractDemo {
+public class EspDemo extends AbstractDemo implements RenderInterface {
   static final Tensor START = Tensors.of( //
       Tensors.vector(2, 2, 2, 0, 0), //
       Tensors.vector(2, 2, 2, 0, 0), //
@@ -38,6 +39,7 @@ public class EspDemo extends AbstractDemo {
   // ---
 
   public EspDemo() {
+    geometricComponent().addRenderInterface(this);
     timerFrame.geometricComponent.setOffset(100, 400);
   }
 

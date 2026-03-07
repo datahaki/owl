@@ -40,7 +40,7 @@ public class LvAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new LvEntity(episodeIntegrator, trajectoryControl, stateSpaceModel, controls);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(6, 5);
     // VectorFieldRender vectorFieldRender = ;

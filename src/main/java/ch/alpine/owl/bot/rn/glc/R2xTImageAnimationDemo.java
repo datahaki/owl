@@ -43,7 +43,7 @@ public class R2xTImageAnimationDemo implements DemoInterface {
     Region<StateTime> region = new R2xTImageStateTimeRegion( //
         imageRegion, rigidFamily, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(region);
-    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region);
     // owlyAnimationFrame.addBackground(new CurveRender());
     owlAnimationFrame.geometricComponent.setOffset(200, 400);

@@ -32,7 +32,7 @@ import ch.alpine.tensor.chq.MemberQ;
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.05));
     R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame, entity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.geometricComponent, entity, null);
     owlAnimationFrame.add(entity);
     Supplier<Tensor> supplier = () -> owlAnimationFrame.geometricComponent.getMouseSe2CState();
     {

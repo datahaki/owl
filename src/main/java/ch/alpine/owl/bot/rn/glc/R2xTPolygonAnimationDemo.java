@@ -53,7 +53,7 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = //
         RegionConstraints.stateTime(RegionUnion.wrap(region1, region2));
-    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     return owlAnimationFrame;

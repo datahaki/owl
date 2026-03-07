@@ -32,7 +32,7 @@ public class Rice2dImageDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new Rice2dEntity(mu, Tensors.vector(7, 6, 0, 0), trajectoryControl, controls);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     return owlAnimationFrame;

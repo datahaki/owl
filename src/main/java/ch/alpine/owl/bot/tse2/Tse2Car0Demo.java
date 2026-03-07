@@ -26,7 +26,7 @@ public class Tse2Car0Demo extends Tse2CarDemo {
     PlannerConstraint plannerConstraint = createConstraint(region);
     owlAnimationFrame.add(tse2CarEntity);
     // TODO OWL API add option to select goal velocity / range
-    MouseGoal.simple(owlAnimationFrame, tse2CarEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, tse2CarEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     {
       RenderInterface renderInterface = new MouseShapeRender( //

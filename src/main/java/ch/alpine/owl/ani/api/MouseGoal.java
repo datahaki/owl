@@ -9,40 +9,39 @@ import java.util.Collections;
 import java.util.List;
 
 import ch.alpine.bridge.gfx.GeometricComponent;
-import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.glc.adapter.GoalConsumer;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
 
 public enum MouseGoal {
   ;
   public static void simple( //
-      OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
-    simple(owlAnimationFrame, trajectoryEntity, plannerConstraint, Collections.emptyList());
+      GeometricComponent geometricComponent, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
+    simple(geometricComponent, trajectoryEntity, plannerConstraint, Collections.emptyList());
   }
 
   public static void simple( //
-      OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
+      GeometricComponent geometricComponent, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<GlcPlannerCallback> _callbacks) {
     List<GlcPlannerCallback> callbacks = new ArrayList<>(_callbacks);
     if (trajectoryEntity instanceof GlcPlannerCallback glcPlannerCallback)
       callbacks.add(glcPlannerCallback);
     callbacks.add(EntityGlcPlannerCallback.of(trajectoryEntity));
-    supply(owlAnimationFrame.geometricComponent, //
+    supply(geometricComponent, //
         new SimpleGoalConsumer(trajectoryEntity, plannerConstraint, callbacks));
   }
 
   public static void simpleRrts( //
-      OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
-    simpleRrts(owlAnimationFrame, trajectoryEntity, plannerConstraint, Collections.emptyList());
+      GeometricComponent geometricComponent, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint) {
+    simpleRrts(geometricComponent, trajectoryEntity, plannerConstraint, Collections.emptyList());
   }
 
   public static void simpleRrts( //
-      OwlAnimationFrame owlAnimationFrame, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
+      GeometricComponent geometricComponent, TrajectoryEntity trajectoryEntity, PlannerConstraint plannerConstraint, //
       List<RrtsPlannerCallback> _callbacks) {
     List<RrtsPlannerCallback> callbacks = new ArrayList<>(_callbacks);
     if (trajectoryEntity instanceof RrtsPlannerCallback rrtsPlannerCallback)
       callbacks.add(rrtsPlannerCallback);
-    supply(owlAnimationFrame.geometricComponent, //
+    supply(geometricComponent, //
         new SimpleGoalConsumer(trajectoryEntity, plannerConstraint, callbacks));
   }
 

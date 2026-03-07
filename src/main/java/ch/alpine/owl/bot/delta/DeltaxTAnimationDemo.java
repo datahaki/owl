@@ -76,7 +76,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     // ---
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);

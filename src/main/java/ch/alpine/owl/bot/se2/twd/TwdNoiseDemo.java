@@ -24,7 +24,7 @@ public class TwdNoiseDemo extends AbstractTwdDemo {
     TwdEntity twdEntity = TwdEntity.createDuckie(new StateTime(Tensors.vector(0, 0, 0), Quantity.of(0, "s")));
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlAnimationFrame, twdEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, twdEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(trajectoryRegionQuery));
     owlAnimationFrame.geometricComponent.setOffset(400, 400);
     return twdEntity;

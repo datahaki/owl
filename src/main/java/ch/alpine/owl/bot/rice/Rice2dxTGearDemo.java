@@ -51,7 +51,7 @@ public class Rice2dxTGearDemo implements DemoInterface {
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(cog0, cog1, cog2));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlAnimationFrame, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) cog0);
     owlAnimationFrame.addBackground((RenderInterface) cog1);
     owlAnimationFrame.addBackground((RenderInterface) cog2);

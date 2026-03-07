@@ -36,7 +36,7 @@ public class PsuAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new PsuTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new PsuEntity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(Math.PI, 3);
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(range.negate(), range));

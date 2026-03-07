@@ -34,7 +34,7 @@ public class BalloonAnimationDemo implements DemoInterface {
         balloonStateSpaceModel, TimeIntegrators.EULER, stateTime);
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     BalloonEntity balloonEntity = new BalloonEntity(episodeIntegrator, trajectoryControl, balloonStateSpaceModel);
-    MouseGoal.simple(owlAnimationFrame, balloonEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, balloonEntity, plannerConstraint);
     Tensor range = Tensors.vector(500, 100).unmodifiable();
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));

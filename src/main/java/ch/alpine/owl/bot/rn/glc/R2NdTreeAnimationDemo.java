@@ -41,7 +41,7 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(r2Entity);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame, r2Entity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.geometricComponent, r2Entity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     owlAnimationFrame.geometricComponent.setOffset(50, 700);
     return owlAnimationFrame;
