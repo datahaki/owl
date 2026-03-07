@@ -38,6 +38,7 @@ public class DeltaAnimationDemo implements DemoInterface {
   @Override
   public OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
+    owlAnimationFrame.geometricComponent.setRotatable(false);
     // ---
     Scalar amp = Quantity.of(-0.05, "s^-1");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
@@ -63,7 +64,7 @@ public class DeltaAnimationDemo implements DemoInterface {
         Show show = new Show();
         VectorPlot vectorPlot = VectorPlot.of(imageGradientInterpolation::get, cbb);
         show.add(vectorPlot);
-        show.render(graphics, geometricLayer.toRectangle(cbb));
+        show.render(graphics, geometricLayer.toRectangle(cbb).orElseThrow());
       }
     });
     // owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, RealScalar.of(0.8)));

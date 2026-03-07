@@ -79,6 +79,8 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   public NetClassifyDemo() {
     super(param0 = new Param0(), param1 = new Param1(), param2 = new Param2());
+    geometricComponent().setRotatable(false);
+
     fieldsEditor(0).addUniversalListener(this::shuffle);
     fieldsEditor(1).addUniversalListener(this::train);
     shuffle();
@@ -135,7 +137,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
     Tensor xdata = getGeodesicControlPoints();
     CoordinateBoundingBox cbb = CoordinateBounds.of(xdata);
-    Rectangle rectangle = geometricLayer.toRectangle(cbb);
+    Rectangle rectangle = geometricLayer.toRectangle(cbb).orElseThrow();
     {
       Show show = new Show();
       show.add(DensityPlot.of((x, y) -> (Scalar) netChain.forward(Tensors.of(x, y)), cbb, param2.cdg));
