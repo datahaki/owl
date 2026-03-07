@@ -96,7 +96,7 @@ enum R2Demo implements ManipulateProvider {
     }
     geometricComponent.setPerPixel(Rational.of(100, 1));
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
-    geometricComponent.setRenderInterfaces(RenderElements.create(trajectoryPlanner));
+    RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
   }
 
   abstract PlannerConstraint plannerConstraint();

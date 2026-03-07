@@ -25,7 +25,6 @@ import ch.alpine.tensor.sca.Clips;
 
 class BalloonAnimationDemo extends OwlAnimationDemo {
   BalloonAnimationDemo() {
-    super();
     GeometricComponent geometricComponent = timerFrame.geometricComponent;
     geometricComponent.setModel2Pixel(Tensors.fromString("{{1.5, 0, 100}, {0, -1.5, 600}, {0, 0, 1}}"));
     PlannerConstraint plannerConstraint = new BalloonPlannerConstraint(BalloonEntity.SPEED_MAX);

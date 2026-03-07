@@ -30,8 +30,7 @@ public enum RenderElements {
     try {
       Collection<RrtsNode> nodes = Nodes.ofSubtree(root);
       Collection<RrtsNode> collection = Serialization.copy(nodes);
-      geometricComponent.setRenderInterfaces( //
-          RenderElements.create(collection, Serialization.copy(transitionRegionQuery)));
+      RenderElements.create(collection, Serialization.copy(transitionRegionQuery)).forEach(geometricComponent::addRenderInterface);
       geometricComponent.addRenderInterface(new TransitionRender(transitionSpace).setCollection(collection));
     } catch (Exception exception) {
       exception.printStackTrace();

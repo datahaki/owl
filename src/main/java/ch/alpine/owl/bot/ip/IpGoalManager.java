@@ -10,9 +10,9 @@ import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
 import ch.alpine.sophis.reg.BoxRegion;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.qty.Quantity;
 
 // x == [d v a w]
 /* package */ class IpGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
@@ -27,6 +27,6 @@ import ch.alpine.tensor.Tensor;
 
   @Override
   public Scalar minCostToGoal(Tensor x) {
-    return RealScalar.ZERO;
+    return Quantity.of(0, "s");
   }
 }

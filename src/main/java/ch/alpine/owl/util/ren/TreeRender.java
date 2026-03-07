@@ -59,7 +59,7 @@ public class TreeRender implements RenderInterface {
 
   private class Render implements RenderInterface {
     private final Collection<? extends StateCostNode> collection;
-    private final Tensor polygon;
+    private Tensor polygon;
     private final TreeColor treeColor;
     private final Clip clip;
     // private final long count;
@@ -67,7 +67,11 @@ public class TreeRender implements RenderInterface {
 
     public Render(Collection<? extends StateCostNode> collection) {
       this.collection = collection;
-      polygon = ConvexHull2D.of(collection.stream().map(StateCostNode::state).map(Extract2D.FUNCTION), Chop._10);
+      try {
+        polygon = ConvexHull2D.of(collection.stream().map(StateCostNode::state).map(Extract2D.FUNCTION), Chop._10);
+      } catch (Exception e) {
+        polygon = null;
+      }
       treeColor = TreeColor.ofDimensions(collection.iterator().next().state().length());
       clip = collection.stream() //
           .map(StateCostNode::costFromRoot) //
@@ -78,10 +82,12 @@ public class TreeRender implements RenderInterface {
 
     @Override // from RenderInterface
     public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-      graphics.setColor(CONVEX_HULL_COLOR);
-      Path2D path2D = geometricLayer.toPath2D(polygon);
-      path2D.closePath();
-      graphics.draw(path2D);
+      if (Objects.nonNull(polygon)) {
+        graphics.setColor(CONVEX_HULL_COLOR);
+        Path2D path2D = geometricLayer.toPath2D(polygon);
+        path2D.closePath();
+        graphics.draw(path2D);
+      }
       // ---
       if (collection.size() <= nodeBound) // don't draw tree beyond certain node count
         for (StateCostNode node : collection) {
