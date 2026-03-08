@@ -39,7 +39,7 @@ class DeltaAnimationDemo extends OwlAnimationDemo {
     GeometricComponent geometricComponent = geometricComponent();
     geometricComponent.setRotatable(false);
     // ---
-    Scalar amp = Quantity.of(-0.05, "s^-1");
+    Scalar amp = Quantity.of(-0.05, "|s");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //
         ImageGradientInterpolation.nearest(Import.of("/io/delta_uxy.png"), range, amp);
@@ -66,7 +66,7 @@ class DeltaAnimationDemo extends OwlAnimationDemo {
         show.render(graphics, geometricLayer.toRectangle(cbb).orElseThrow());
       }
     });
-    Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
+    Tensor fallback_u = Tensors.fromString("{0[|s], 0[|s]}");
     geometricComponent.addRenderInterfaceBackground( //
         StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.8, "s")));
     geometricComponent.setOffset(50, 700);

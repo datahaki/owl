@@ -7,6 +7,7 @@ import java.util.Collection;
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.pro.ManipulateProvider;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
@@ -32,6 +33,7 @@ import ch.alpine.tensor.sca.exp.Log;
 
 /** the coordinates represent the population of predators and prey.
  * the domain coordinates are computed from the log of the state coordinates */
+@ReflectionMarker
 class LvDemo implements ManipulateProvider {
   @Override
   public Container getContainer() {
@@ -39,7 +41,7 @@ class LvDemo implements ManipulateProvider {
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 30), "s"), 4);
-    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
+    Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "/s"), 2);
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);
     // ---

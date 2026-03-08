@@ -35,7 +35,6 @@ public final class R2Bubbles extends ImplicitFunctionRegion implements Serializa
     val -= Math.cos(3 * Math.PI * x);
     val -= Math.cos(3 * Math.PI * y);
     val += -0.2 * (1 + y2 + x * y + x2);
-    
     return Clips.interval(-1, 10).apply(RealScalar.of(-val));
   }
 }
