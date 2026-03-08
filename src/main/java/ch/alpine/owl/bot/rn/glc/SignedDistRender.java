@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.owl.bot.rn.glc;
 
 import java.awt.Graphics2D;
