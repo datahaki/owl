@@ -27,10 +27,11 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.qty.Timing;
 
-public class OwlAnimationFrame extends TimerFrame {
+public class OwlAnimationFrame {
   private static final Dimension RECORDING = new Dimension(400, 400);
   private static final int MARGIN = 100; // 170;
   // ---
+  public final TimerFrame timerFrame = new TimerFrame();
   private final List<AnimationInterface> animationInterfaces = new CopyOnWriteArrayList<>();
   private final JToggleButton jToggleButtonRecord = new JToggleButton("record");
   private final ActionListener actionListener = new ActionListener() {
@@ -56,9 +57,9 @@ public class OwlAnimationFrame extends TimerFrame {
 
           @Override
           public void run() {
-            BufferedImage offscreen = offscreen();
+            BufferedImage offscreen = timerFrame.offscreen();
             StateTime stateTime = abstractEntity.getStateTimeNow();
-            GeometricLayer geometricLayer = new GeometricLayer(geometricComponent.getModel2Pixel());
+            GeometricLayer geometricLayer = new GeometricLayer(timerFrame.geometricComponent.getModel2Pixel());
             Point2D now = geometricLayer.toPoint2D(stateTime.state());
             // Point now = geometricComponent.toPixel();
             if (Objects.isNull(point) || MARGIN < inftyNorm(point, now))
@@ -77,7 +78,7 @@ public class OwlAnimationFrame extends TimerFrame {
             }
           }
         };
-        timer_schedule(timerTask, 100, 100);
+        timerFrame.timer_schedule(timerTask, 100, 100);
       } else
         timerTask.cancel();
     }
@@ -94,23 +95,23 @@ public class OwlAnimationFrame extends TimerFrame {
           animationInterfaces.forEach(animationInterface -> animationInterface.integrate(now));
         }
       };
-      timer_schedule(timerTask, 100, 20);
+      timerFrame.timer_schedule(timerTask, 100, 20);
     }
     {
       jToggleButtonRecord.addActionListener(actionListener);
-      jToolBar.add(jToggleButtonRecord);
+      timerFrame.jToolBar.add(jToggleButtonRecord);
     }
   }
 
   /** @param renderInterface */
   public void addBackground(RenderInterface renderInterface) {
-    geometricComponent.addRenderInterfaceBackground(renderInterface);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(renderInterface);
   }
 
   public void add(AnimationInterface animationInterface) {
     animationInterfaces.add(animationInterface);
     if (animationInterface instanceof RenderInterface renderInterface)
-      geometricComponent.addRenderInterface(renderInterface);
+      timerFrame.geometricComponent.addRenderInterface(renderInterface);
   }
 
   private static double inftyNorm(Point2D p1, Point2D p2) {

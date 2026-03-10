@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.tse2;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.se2.Se2PointsVsRegions;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
@@ -22,12 +23,12 @@ import ch.alpine.tensor.chq.MemberQ;
   }
 
   @Override // from DemoInterface
-  public final OwlAnimationFrame getTimerFrame() {
+  public final TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     configure(owlAnimationFrame);
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   abstract void configure(OwlAnimationFrame owlAnimationFrame);

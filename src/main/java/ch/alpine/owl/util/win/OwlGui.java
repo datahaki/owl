@@ -18,8 +18,8 @@ public enum OwlGui {
     TimerFrame owlFrame = new TimerFrame();
     RenderElements.create(trajectoryPlanner) //
         .forEach(owlFrame.geometricComponent::addRenderInterface);
-    owlFrame.jFrame.setBounds(100, 100, 800, 800);
-    owlFrame.jFrame.setVisible(true);
+    owlFrame.setBounds(100, 100, 800, 800);
+    owlFrame.setVisible(true);
     return owlFrame;
   }
 
@@ -30,8 +30,8 @@ public enum OwlGui {
     RenderElements.create(collection, transitionRegionQuery) //
         .forEach(owlFrame.geometricComponent::addRenderInterface);
     owlFrame.geometricComponent.addRenderInterface(new TransitionRender(transitionSpace).setCollection(collection));
-    owlFrame.jFrame.setBounds(100, 100, 800, 800);
-    owlFrame.jFrame.setVisible(true);
+    owlFrame.setBounds(100, 100, 800, 800);
+    owlFrame.setVisible(true);
     return owlFrame;
   }
 }

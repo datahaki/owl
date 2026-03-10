@@ -39,19 +39,19 @@ class Rice2dDemoTest {
     glcExpand.findAny(1000); // 153 0.368319228
     assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
-    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
         TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
+    timerFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
-    owlFrame.jFrame.setVisible(false);
+    timerFrame.setVisible(false);
   }
 
   @Test
@@ -64,18 +64,18 @@ class Rice2dDemoTest {
     glcExpand.untilOptimal(1000); // 220 0.283809941
     assertTrue(Scalars.lessThan(timing.seconds(), Quantity.of(1.5, "s")));
     assertTrue(glcExpand.getExpandCount() < 500);
-    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
     GlcNode glcNode = trajectoryPlanner.getBest().get();
     GlcNodes.getPathFromRootTo(glcNode);
     List<TrajectorySample> samples = GlcTrajectories.detailedTrajectoryTo(new FixedStateIntegrator( //
         TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
+    timerFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
-    owlFrame.jFrame.setVisible(false);
+    timerFrame.setVisible(false);
   }
 }

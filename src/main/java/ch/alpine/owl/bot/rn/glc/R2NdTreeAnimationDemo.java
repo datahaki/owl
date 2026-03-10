@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rn.glc;
 
 import java.awt.image.BufferedImage;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.ImageRegions;
@@ -27,7 +28,7 @@ import ch.alpine.tensor.qty.Quantity;
  * which gives an incentive to stay clear of obstacles */
 public class R2NdTreeAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     String path = "/io/track0_100.png";
     BufferedImage bufferedImage = ResourceData.bufferedImage(path);
     MemberQ imageRegion = ImageRegions.from(bufferedImage, Tensors.vector(10, 10), false);
@@ -41,10 +42,10 @@ public class R2NdTreeAnimationDemo implements DemoInterface {
     R2Entity r2Entity = new R2Entity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(r2Entity);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, r2Entity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, r2Entity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

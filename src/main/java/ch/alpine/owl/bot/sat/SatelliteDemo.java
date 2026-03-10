@@ -52,11 +52,11 @@ import ch.alpine.tensor.qty.Quantity;
       glcExpand.findAny(50);
       Thread.sleep(1);
     }
-    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(obstacleRegion));
-    owlFrame.geometricComponent.addRenderInterface(RegionRenderFactory.create(goalRegion));
+    TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(obstacleRegion));
+    timerFrame.geometricComponent.addRenderInterface(RegionRenderFactory.create(goalRegion));
     // ---
-    owlFrame.jFrame.setBounds(100, 100, 600, 600);
+    timerFrame.setBounds(100, 100, 600, 600);
     System.out.println("#expand = " + glcExpand.getExpandCount());
   }
 }

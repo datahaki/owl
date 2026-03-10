@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -38,7 +39,7 @@ public class Se2xTLetterDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 20));
 
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(6.75, 5.4, 1 + Math.PI), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);
@@ -71,7 +72,7 @@ public class Se2xTLetterDemo implements DemoInterface {
     // );
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
     // abstractEntity.raytraceQuery = SimpleTrajectoryRegionQuery.timeInvariant(imageRegion);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, carxTEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground((RenderInterface) region1);
     // owlyAnimationFrame.addBackground((RenderInterface) region2);
@@ -101,8 +102,8 @@ public class Se2xTLetterDemo implements DemoInterface {
     }
     // ---
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

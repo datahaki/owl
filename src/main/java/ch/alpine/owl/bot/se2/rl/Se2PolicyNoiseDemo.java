@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rl;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
@@ -16,7 +17,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 public class Se2PolicyNoiseDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // ---
     final Scalar threshold = RealScalar.of(0.6);
@@ -31,8 +32,8 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.ORIGINAL, trq));
     // ---
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

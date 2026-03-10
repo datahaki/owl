@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -31,7 +32,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 public class LvAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
     Collection<Tensor> controls = LvControls.create(Quantity.of(1.0, "s^-1"), 2);
@@ -41,7 +42,7 @@ public class LvAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new LvEntity(episodeIntegrator, trajectoryControl, stateSpaceModel, controls);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(6, 5);
     // VectorFieldRender vectorFieldRender = ;
@@ -51,7 +52,7 @@ public class LvAnimationDemo implements DemoInterface {
         VectorFields.of(stateSpaceModel, points, Array.zeros(1), RealScalar.of(0.04)));
     owlAnimationFrame.addBackground(renderInterface);
     // ---
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

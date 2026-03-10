@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.psu;
 
 import ch.alpine.ascony.ren.AxesRender;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -27,7 +28,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 public class PsuAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     TimeIntegrator integrator = TimeIntegrators.RK45;
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -36,7 +37,7 @@ public class PsuAnimationDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new PsuTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new PsuEntity(episodeIntegrator, trajectoryControl);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, EmptyPlannerConstraint.INSTANCE);
     // ---
     Tensor range = Tensors.vector(Math.PI, 3);
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(range.negate(), range));
@@ -45,7 +46,7 @@ public class PsuAnimationDemo implements DemoInterface {
         .setUV_Pairs(VectorFields.of(PsuStateSpaceModel.INSTANCE, points, Array.zeros(1), RealScalar.of(0.1)));
     owlAnimationFrame.addBackground(renderInterface);
     owlAnimationFrame.addBackground(AxesRender.INSTANCE);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

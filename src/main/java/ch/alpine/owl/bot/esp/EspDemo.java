@@ -38,7 +38,7 @@ class EspDemo extends AbstractDemo implements RenderInterface {
   private final EspProvider espProvider = new EspProvider() {
     @Override
     public boolean isContinued() {
-      return timerFrame.jFrame.isVisible();
+      return timerFrame.isVisible();
     };
   };
 

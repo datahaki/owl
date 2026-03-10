@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -41,7 +42,7 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
 
   @SuppressWarnings("unused")
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
@@ -68,11 +69,11 @@ public class R2xTEllipsoidsAnimationDemo implements DemoInterface {
         Tensors.vector(0.6, 0.6), noise, () -> abstractEntity.getStateTimeNow().time());
     Region<StateTime> union = RegionUnion.wrap(region1, region2, region3);
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(union);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

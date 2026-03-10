@@ -55,10 +55,10 @@ import ch.alpine.tensor.sca.Clips;
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
       Thread.sleep(10);
     }
-    TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
+    TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     // owlFrame.geometricComponent.setOffset(60, 477);
-    owlFrame.jFrame.setBounds(100, 100, 550, 550);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
+    timerFrame.setBounds(100, 100, 550, 550);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
   }

@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
@@ -29,7 +30,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
   static final LidarRaytracer LIDAR_RAYTRACER = new LidarRaytracer(Subdivide.of(-1, 1, 32), Subdivide.of(0, 5, 30));
 
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     CarxTEntity carxTEntity = new CarxTEntity(new StateTime(Tensors.vector(0, 0, 1), RealScalar.ZERO));
     owlAnimationFrame.add(carxTEntity);
@@ -45,7 +46,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(region1, region2));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, carxTEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     {
@@ -60,8 +61,8 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
     }
     // ---
     // owlAnimationFrame.geometricComponent.setOffset(350, 350);
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -28,7 +29,7 @@ import ch.alpine.tensor.Tensors;
 
 public class Rice2dxTGearDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
@@ -51,12 +52,12 @@ public class Rice2dxTGearDemo implements DemoInterface {
     TrajectoryRegionQuery trq = new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(cog0, cog1, cog2));
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) cog0);
     owlAnimationFrame.addBackground((RenderInterface) cog1);
     owlAnimationFrame.addBackground((RenderInterface) cog2);
     // owlAnimationFrame.geometricComponent.setOffset(350, 350);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

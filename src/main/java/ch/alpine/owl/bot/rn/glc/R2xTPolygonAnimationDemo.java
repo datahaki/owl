@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -31,7 +32,7 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = RealScalar.of(1.5);
 
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
@@ -53,10 +54,10 @@ public class R2xTPolygonAnimationDemo implements DemoInterface {
         polygon, rigid2, () -> abstractEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = //
         RegionConstraints.stateTime(RegionUnion.wrap(region1, region2));
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
 import ch.alpine.owl.bot.r2.ImageRegions;
@@ -26,7 +27,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = Quantity.of(1.5, "s");
 
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
         StateSpaceModels.SINGLE_INTEGRATOR, //
@@ -38,10 +39,10 @@ public class R2xTMapAnimationDemo implements DemoInterface {
         "/dubilab/localization/20180122.png", Tensors.vector(10, 10), false);
     MemberQ region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.15));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     // owlAnimationFrame.geometricComponent.setOffset(100, 800);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -23,7 +24,7 @@ import ch.alpine.tensor.qty.Quantity;
  * which gives an incentive to stay clear of obstacles */
 public class R2ImageAnimationDemo implements DemoInterface {
   @Override // from DemoInterface
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     EpisodeIntegrator episodeIntegrator = new SimpleEpisodeIntegrator( //
@@ -36,10 +37,10 @@ public class R2ImageAnimationDemo implements DemoInterface {
     owlAnimationFrame.add(r2Entity);
     MemberQ region = r2ImageRegionWrap.region();
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, r2Entity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, r2Entity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

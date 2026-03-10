@@ -64,10 +64,10 @@ enum Se2rImageDemo {
     while (!trajectoryPlanner.getBest().isPresent()) {
       glcExpand.findAny(1000);
     }
-    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
     // owlFrame.geometricComponent.setOffset(100, 550);
-    owlFrame.jFrame.setBounds(100, 100, 700, 700);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
+    timerFrame.setBounds(100, 100, 700, 700);
+    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
     if (optional.isPresent()) {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.get());

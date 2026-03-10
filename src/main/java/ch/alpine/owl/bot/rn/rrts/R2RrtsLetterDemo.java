@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rn.rrts;
 
 import java.util.function.Supplier;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -24,7 +25,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 /* package */ class R2RrtsLetterDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     MemberQ region = r2ImageRegionWrap.region();
@@ -32,9 +33,9 @@ import ch.alpine.tensor.chq.MemberQ;
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.05));
     R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame.geometricComponent, entity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent, entity, null);
     owlAnimationFrame.add(entity);
-    Supplier<Tensor> supplier = () -> owlAnimationFrame.geometricComponent.getMouseSe2CState();
+    Supplier<Tensor> supplier = () -> owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region)), //
@@ -46,15 +47,15 @@ import ch.alpine.tensor.chq.MemberQ;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);
     }
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setTitle(getClass().getSimpleName());
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

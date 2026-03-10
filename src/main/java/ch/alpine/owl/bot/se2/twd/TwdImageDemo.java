@@ -35,7 +35,7 @@ public class TwdImageDemo extends AbstractTwdDemo {
     twdEntity.extraCosts.add(r2ImageRegionWrap.costFunction());
     owlAnimationFrame.add(twdEntity);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, twdEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, twdEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     {
       RenderInterface renderInterface = new CameraEmulator( //

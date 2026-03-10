@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.twd;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.util.ren.MouseShapeRender;
 import ch.alpine.owl.util.win.DemoInterface;
@@ -12,7 +13,7 @@ import ch.alpine.tensor.Tensor;
 
 /* package */ abstract class AbstractTwdDemo implements DemoInterface {
   @Override
-  public final OwlAnimationFrame getTimerFrame() {
+  public final TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     TwdEntity twdEntity = configure(owlAnimationFrame);
@@ -27,13 +28,13 @@ import ch.alpine.tensor.Tensor;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);
     }
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   abstract TwdEntity configure(OwlAnimationFrame owlAnimationFrame);

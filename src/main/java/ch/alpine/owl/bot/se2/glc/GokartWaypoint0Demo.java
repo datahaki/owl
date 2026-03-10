@@ -50,7 +50,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     owlAnimationFrame.add(gokartEntity);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(hangarMap.imageRegion));
     owlAnimationFrame.addBackground(RegionRenderFactory.create(polygonRegion));
-    owlAnimationFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
+    owlAnimationFrame.timerFrame.geometricComponent.setModel2Pixel(HelperHangarMap.MODEL2PIXEL);
     // ---
     owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.of(gokartEntity);
@@ -60,7 +60,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     glcWaypointFollowing.setHorizonDistance(RealScalar.of(7));
     glcWaypointFollowing.startNonBlocking();
     // ---
-    WindowClosed.runs(owlAnimationFrame.jFrame, () -> glcWaypointFollowing.flagShutdown());
+    WindowClosed.runs(owlAnimationFrame.timerFrame, () -> glcWaypointFollowing.flagShutdown());
   }
 
   static void main() {

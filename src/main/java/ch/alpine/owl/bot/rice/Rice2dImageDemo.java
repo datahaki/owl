@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.rice;
 
 import java.util.Collection;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
@@ -22,7 +23,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
 public class Rice2dImageDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     Scalar mu = RealScalar.of(-0.5);
     Collection<Tensor> controls = Rice2Controls.create2d(1).getFlows(15);
@@ -32,10 +33,10 @@ public class Rice2dImageDemo implements DemoInterface {
     TrajectoryControl trajectoryControl = new EuclideanTrajectoryControl();
     TrajectoryEntity trajectoryEntity = new Rice2dEntity(mu, Tensors.vector(7, 6, 0, 0), trajectoryControl, controls);
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

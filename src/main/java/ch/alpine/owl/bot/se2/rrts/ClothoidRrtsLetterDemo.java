@@ -1,6 +1,7 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.se2.rrts;
 
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -33,7 +34,7 @@ import ch.alpine.tensor.sca.Clips;
       new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
 
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._GTOB;
     MemberQ region = r2ImageRegionWrap.region();
@@ -45,7 +46,7 @@ import ch.alpine.tensor.sca.Clips;
     ClothoidRrtsEntity clothoidRrtsEntity = //
         new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame.geometricComponent, clothoidRrtsEntity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent, clothoidRrtsEntity, null);
     owlAnimationFrame.add(clothoidRrtsEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //
@@ -68,15 +69,15 @@ import ch.alpine.tensor.sca.Clips;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);
     }
     // owlAnimationFrame.geometricComponent.setOffset(50, 700);
-    owlAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
-    owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
-    return owlAnimationFrame;
+    owlAnimationFrame.timerFrame.setTitle(getClass().getSimpleName());
+    owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
+    return owlAnimationFrame.timerFrame;
   }
 
   static void main() {

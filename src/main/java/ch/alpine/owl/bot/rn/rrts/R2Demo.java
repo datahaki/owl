@@ -34,10 +34,10 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
       rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
-    TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
+    TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     // owlFrame.geometricComponent.setOffset(42, 456);
-    owlFrame.jFrame.setBounds(100, 100, 500, 500);
-    return owlFrame;
+    timerFrame.setBounds(100, 100, 500, 500);
+    return timerFrame;
   }
 
   static void main() {

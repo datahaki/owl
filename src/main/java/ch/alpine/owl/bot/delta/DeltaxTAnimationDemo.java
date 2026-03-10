@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.delta;
 import java.util.function.Supplier;
 
 import ch.alpine.ascony.reg.BufferedImageRegion;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -43,7 +44,7 @@ import ch.alpine.tensor.sca.Clips;
 
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
-  public OwlAnimationFrame getTimerFrame() {
+  public TimerFrame getWindow() {
     Tensor image = Import.of("/io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = Quantity.of(-0.05, "s^-1"); // direction and strength of river flow
@@ -76,7 +77,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     // ---
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     owlAnimationFrame.add(trajectoryEntity);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
@@ -85,7 +86,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
     owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.5, "s")));
     // owlAnimationFrame.geometricComponent.setOffset(50, 600);
-    return owlAnimationFrame;
+    return owlAnimationFrame.timerFrame;
   }
 
   private static Region<StateTime> create(StateSpaceModel stateSpaceModel, Scalar radius, Tensor pos, Tensor flow, Supplier<Scalar> supplier) {

@@ -23,7 +23,7 @@ public class Se2Letter1Demo extends Se2CarDemo {
     ImageRegion imageRegion = R2ImageRegions.inside_0f5c();
     PlannerConstraint plannerConstraint = createConstraint(imageRegion);
     owlAnimationFrame.add(carEntity);
-    MouseGoal.simple(owlAnimationFrame.geometricComponent, carEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     {
       RenderInterface renderInterface = new MouseShapeRender( //
@@ -36,7 +36,7 @@ public class Se2Letter1Demo extends Se2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);
