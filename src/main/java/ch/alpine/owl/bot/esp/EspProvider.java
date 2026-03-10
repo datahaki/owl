@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.Export;
 
-public class EspProvider implements VoidProvider {
+class EspProvider implements VoidProvider {
   static final Tensor START = Tensors.of( //
       Tensors.vector(2, 2, 2, 0, 0), //
       Tensors.vector(2, 2, 2, 0, 0), //

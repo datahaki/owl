@@ -64,7 +64,7 @@ class IpDemo extends AbstractDemo {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    GeometricComponent geometricComponent = timerFrame.geometricComponent;
+    GeometricComponent geometricComponent = geometricComponent();
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
     Tensor digest = PvmBuilder.rhs().setOffset(50, 680) //

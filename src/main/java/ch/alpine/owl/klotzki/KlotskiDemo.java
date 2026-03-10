@@ -42,8 +42,8 @@ public class KlotskiDemo extends AbstractDemo implements RenderInterface {
     this.klotskiProblem = klotskiProblem;
     klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
     geometricComponent().addRenderInterface(this);
-    Tensor digest = PvmBuilder.rhs().setOffset(100, 500).setPerPixel(80).digest();
-    timerFrame.geometricComponent.setModel2Pixel(digest);
+    Tensor pvm = PvmBuilder.rhs().setOffset(100, 500).setPerPixel(80).digest();
+    geometricComponent().setModel2Pixel(pvm);
   }
 
   KlotskiSolution compute() {

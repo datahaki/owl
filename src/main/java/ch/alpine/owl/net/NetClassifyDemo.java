@@ -45,7 +45,6 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 
-// TODO make an animation that visualizes the classification image
 class NetClassifyDemo extends EuclideanPlaneDemo {
   @ReflectionMarker
   static class Param0 {

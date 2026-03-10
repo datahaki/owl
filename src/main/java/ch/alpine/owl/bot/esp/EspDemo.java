@@ -30,8 +30,8 @@ class EspDemo extends AbstractDemo implements RenderInterface {
   public EspDemo() {
     super(param = new Param());
     geometricComponent().addRenderInterface(this);
-    Tensor digest = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
-    timerFrame.geometricComponent.setModel2Pixel(digest);
+    Tensor pvm = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
+    geometricComponent().setModel2Pixel(pvm);
     fieldsEditor(0).addUniversalListener(() -> new Thread(espProvider::runStandalone).start());
   }
 

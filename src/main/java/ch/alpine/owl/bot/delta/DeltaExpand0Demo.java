@@ -15,7 +15,7 @@ import ch.alpine.tensor.qty.Quantity;
  * records to animated gif */
 class DeltaExpand0Demo extends AbstractDemo {
   DeltaExpand0Demo() {
-    GeometricComponent geometricComponent = timerFrame.geometricComponent;
+    GeometricComponent geometricComponent = geometricComponent();
     // for 0.5 (in direction of river):
     // mintime w/o heuristic requires 1623 expands
     // mintime w/. heuristic requires 1334 expands

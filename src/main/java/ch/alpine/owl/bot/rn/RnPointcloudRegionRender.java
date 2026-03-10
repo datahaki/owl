@@ -2,9 +2,9 @@
 package ch.alpine.owl.bot.rn;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Path2D;
 
 import ch.alpine.ascony.reg.RegionRenders;
+import ch.alpine.ascony.ren.PointsRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
@@ -26,15 +26,17 @@ public class RnPointcloudRegionRender implements RenderInterface {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    for (Tensor point : points) {
-      geometricLayer.pushMatrix(Se2Matrix.translation(point));
-      // TODO OWL ALG make polygon dependent on resolution
-      Path2D path2D = geometricLayer.toPath2D(polygon, true);
-      graphics.setColor(RegionRenders.COLOR);
-      graphics.fill(path2D);
-      graphics.setColor(RegionRenders.BOUNDARY);
-      graphics.draw(path2D);
-      geometricLayer.popMatrix();
-    }
+    new PointsRender(RegionRenders.COLOR, RegionRenders.BOUNDARY) //
+        .show(Se2Matrix::translation, polygon, points) //
+        .render(geometricLayer, graphics);
+    // for (Tensor point : points) {
+    // geometricLayer.pushMatrix(Se2Matrix.translation(point));
+    // Path2D path2D = geometricLayer.toPath2D(polygon, true);
+    // graphics.setColor(RegionRenders.COLOR);
+    // graphics.fill(path2D);
+    // graphics.setColor(RegionRenders.BOUNDARY);
+    // graphics.draw(path2D);
+    // geometricLayer.popMatrix();
+    // }
   }
 }
