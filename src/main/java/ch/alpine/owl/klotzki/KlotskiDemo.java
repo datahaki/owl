@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.glc.adapter.DiscreteIntegrator;
 import ch.alpine.owlets.glc.adapter.RegionConstraints;
@@ -41,8 +42,8 @@ public class KlotskiDemo extends AbstractDemo implements RenderInterface {
     this.klotskiProblem = klotskiProblem;
     klotskiPlot = new KlotskiPlot(klotskiProblem, RES);
     geometricComponent().addRenderInterface(this);
-    timerFrame.geometricComponent.setOffset(100, 500);
-    timerFrame.geometricComponent.setPerPixel(RealScalar.of(80));
+    Tensor digest = PvmBuilder.rhs().setOffset(100, 500).setPerPixel(80).digest();
+    timerFrame.geometricComponent.setModel2Pixel(digest);
   }
 
   KlotskiSolution compute() {

@@ -51,7 +51,7 @@ import ch.alpine.tensor.chq.MemberQ;
       };
       owlAnimationFrame.addBackground(renderInterface);
     }
-    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setTitle(getClass().getSimpleName());
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame;

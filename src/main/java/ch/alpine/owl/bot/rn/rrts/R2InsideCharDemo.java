@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.Clips;
       Thread.sleep(10);
     }
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
-    owlFrame.geometricComponent.setOffset(60, 477);
+    // owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 650, 550);
     owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
     System.out.println(rrts.rewireCount());

@@ -31,7 +31,7 @@ public class Se2xTPlainDemo
     MouseGoal.simple(owlAnimationFrame.geometricComponent, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     // ---
-    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
     owlAnimationFrame.jFrame.setVisible(true);
   }

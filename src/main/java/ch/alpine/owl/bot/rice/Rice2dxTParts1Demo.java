@@ -61,7 +61,7 @@ public class Rice2dxTParts1Demo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);
     owlAnimationFrame.addBackground((RenderInterface) region3);
-    owlAnimationFrame.geometricComponent.setOffset(350, 350);
+    // owlAnimationFrame.geometricComponent.setOffset(350, 350);
     return owlAnimationFrame;
   }
 

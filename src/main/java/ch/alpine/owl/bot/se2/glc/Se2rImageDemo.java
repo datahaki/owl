@@ -65,7 +65,7 @@ enum Se2rImageDemo {
       glcExpand.findAny(1000);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.setOffset(100, 550);
+    // owlFrame.geometricComponent.setOffset(100, 550);
     owlFrame.jFrame.setBounds(100, 100, 700, 700);
     owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

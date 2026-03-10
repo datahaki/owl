@@ -46,7 +46,7 @@ public class R2xTImageAnimationDemo implements DemoInterface {
     MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground((RenderInterface) region);
     // owlyAnimationFrame.addBackground(new CurveRender());
-    owlAnimationFrame.geometricComponent.setOffset(200, 400);
+    // owlAnimationFrame.geometricComponent.setOffset(200, 400);
     return owlAnimationFrame;
   }
 

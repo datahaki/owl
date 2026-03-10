@@ -3,10 +3,11 @@ package ch.alpine.owl.bot.delta;
 
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
-import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.qty.Quantity;
 
 /** simple animation of small boat driving upstream, or downstream in a river delta
@@ -38,8 +39,8 @@ class DeltaExpand0Demo extends AbstractDemo {
     geometricComponent.addRenderInterfaceBackground(deltaDemo.vf(Quantity.of(0.1, "s")));
     // ---
     RenderElements.create(deltaDemo.trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
-    geometricComponent.setOffset(50, 680);
-    geometricComponent.setPerPixel(RealScalar.of(100));
+    Tensor digest = PvmBuilder.rhs().setOffset(50, 680).setPerPixel(100).digest();
+    geometricComponent.setModel2Pixel(digest);
     System.out.println("#expand = " + glcExpand.getExpandCount());
   }
 

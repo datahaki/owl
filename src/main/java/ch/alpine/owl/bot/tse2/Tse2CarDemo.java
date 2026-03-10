@@ -25,7 +25,7 @@ import ch.alpine.tensor.chq.MemberQ;
   public final OwlAnimationFrame getTimerFrame() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
     configure(owlAnimationFrame);
-    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame;
   }

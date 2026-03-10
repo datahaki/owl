@@ -105,7 +105,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
       Thread.sleep(10);
     }
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, server.getRoot().get(), transitionRegionQuery);
-    owlFrame.geometricComponent.setOffset(60, 477);
+    // owlFrame.geometricComponent.setOffset(60, 477);
     owlFrame.jFrame.setBounds(100, 100, 550, 550);
     owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
   }

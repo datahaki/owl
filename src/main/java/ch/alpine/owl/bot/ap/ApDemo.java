@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
@@ -47,8 +48,8 @@ import ch.alpine.tensor.qty.Quantity;
       StateTimeTrajectories.print(trajectory);
     }
     TimerFrame timerFrame = OwlGui.glc(standardTrajectoryPlanner);
-    timerFrame.geometricComponent.setOffset(300, 300);
-    timerFrame.geometricComponent.setPerPixel(Quantity.of(1, "m^-1"));
+    Tensor digest = PvmBuilder.rhs().setOffset(300, 300).setPerPixel(Quantity.of(1, "m^-1")).digest();
+    timerFrame.geometricComponent.setModel2Pixel(digest);
     // OwlyFrame owlyFrame2 = OwlyGui.glc(standardTrajectoryPlanner);
   }
 }

@@ -100,7 +100,7 @@ public class Se2xTLetterDemo implements DemoInterface {
       owlAnimationFrame.add(twdPolicyEntity);
     }
     // ---
-    owlAnimationFrame.geometricComponent.setOffset(50, 700);
+    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame;
   }

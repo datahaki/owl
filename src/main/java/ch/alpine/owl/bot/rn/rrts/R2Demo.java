@@ -35,7 +35,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     System.out.println("rewireCount=" + rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
     TimerFrame owlFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
-    owlFrame.geometricComponent.setOffset(42, 456);
+    // owlFrame.geometricComponent.setOffset(42, 456);
     owlFrame.jFrame.setBounds(100, 100, 500, 500);
     return owlFrame;
   }

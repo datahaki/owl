@@ -40,7 +40,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
     MouseGoal.simple(owlAnimationFrame.geometricComponent, abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
-    owlAnimationFrame.geometricComponent.setOffset(100, 800);
+    // owlAnimationFrame.geometricComponent.setOffset(100, 800);
     return owlAnimationFrame;
   }
 

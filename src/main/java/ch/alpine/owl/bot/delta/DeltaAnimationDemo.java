@@ -9,6 +9,7 @@ import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.VectorPlot;
 import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -23,7 +24,6 @@ import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.flow.TimeIntegrators;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -69,8 +69,8 @@ class DeltaAnimationDemo extends OwlAnimationDemo {
     Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
     geometricComponent.addRenderInterfaceBackground( //
         StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.8, "s")));
-    geometricComponent.setOffset(50, 700);
-    geometricComponent.setPerPixel(RealScalar.of(100));
+    Tensor digest = PvmBuilder.rhs().setOffset(50, 700).setPerPixel(100).digest();
+    geometricComponent.setModel2Pixel(digest);
   }
 
   static void main() {

@@ -97,7 +97,7 @@ enum R2Demo implements ManipulateProvider {
       List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
       StateTimeTrajectories.print(trajectory);
     }
-    geometricComponent.setPerPixel(Rational.of(100, 1));
+    // geometricComponent.setPerPixel(Rational.of(100, 1));
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     CoordinateBoundingBox cbb = Box2D.xy(Clips.absolute(3));
     geometricComponent.addRenderInterfaceBackground(new SignedDistRender(cbb, 100, R2Bubbles.INSTANCE));

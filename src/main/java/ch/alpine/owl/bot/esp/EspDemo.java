@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.gfx.RenderInterface;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -24,13 +24,14 @@ class EspDemo extends AbstractDemo implements RenderInterface {
     public Boolean compute = true;
   }
 
+  @SuppressWarnings("unused")
   private final Param param;
 
   public EspDemo() {
     super(param = new Param());
     geometricComponent().addRenderInterface(this);
-    timerFrame.geometricComponent.setOffset(100, 600);
-    timerFrame.geometricComponent.setPerPixel(RealScalar.of(100));
+    Tensor digest = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
+    timerFrame.geometricComponent.setModel2Pixel(digest);
     fieldsEditor(0).addUniversalListener(() -> new Thread(espProvider::runStandalone).start());
   }
 

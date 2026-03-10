@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
@@ -25,7 +26,6 @@ import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
@@ -58,8 +58,8 @@ class LvDemo implements ManipulateProvider {
         .forEach(geometricComponent::addRenderInterface);
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
-    geometricComponent.setPerPixel(RealScalar.of(20));
-    geometricComponent.setOffset(50, 600);
+    Tensor digest = PvmBuilder.rhs().setOffset(50, 680).setPerPixel(20).digest();
+    geometricComponent.setModel2Pixel(digest);
     return geometricComponent;
   }
 

@@ -59,7 +59,7 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
       owlAnimationFrame.addBackground(renderInterface);
     }
     // ---
-    owlAnimationFrame.geometricComponent.setOffset(350, 350);
+    // owlAnimationFrame.geometricComponent.setOffset(350, 350);
     owlAnimationFrame.jFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame;
   }

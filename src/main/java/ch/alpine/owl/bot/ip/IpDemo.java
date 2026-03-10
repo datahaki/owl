@@ -8,6 +8,7 @@ import java.util.Optional;
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.owl.util.ren.RenderElements;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -66,7 +67,9 @@ class IpDemo extends AbstractDemo {
     GeometricComponent geometricComponent = timerFrame.geometricComponent;
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
-    geometricComponent.setPerPixel(Quantity.of(100, "m^-1"), Quantity.of(100, "m^-1*s"));
+    Tensor digest = PvmBuilder.rhs().setOffset(50, 680) //
+        .setPerPixel(Quantity.of(100, "m^-1"), Quantity.of(100, "m^-1*s")).digest();
+    geometricComponent.setModel2Pixel(digest);
   }
 
   static void main() {

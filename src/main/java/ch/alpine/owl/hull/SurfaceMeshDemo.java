@@ -74,7 +74,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
     surfaceMesh = surfaceMesh(PlatonicSolid.ICOSAHEDRON);
     setControlPointsSe2(surfaceMesh.vrt);
     // ---
-    timerFrame.geometricComponent.setOffset(100, 600);
+    // timerFrame.geometricComponent.setOffset(100, 600);
   }
 
   @Override

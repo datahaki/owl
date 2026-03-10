@@ -11,7 +11,6 @@ import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.sophis.srf.SurfaceMesh;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Cache;
 
@@ -23,7 +22,7 @@ class ConvexHull3DDemo implements ManipulateProvider, RenderInterface {
 
   public ConvexHull3DDemo() {
     geometricComponent.addRenderInterface(this);
-    geometricComponent.setPerPixel(RealScalar.of(80));
+    // geometricComponent.setPerPixel(RealScalar.of(80));
   }
 
   @Override
