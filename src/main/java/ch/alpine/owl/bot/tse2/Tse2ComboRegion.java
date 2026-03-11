@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.RadiusXY;
+import ch.alpine.sophis.crv.d2.ex.RadiusXY;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.sophis.reg.LinearRegion;
 import ch.alpine.sophis.reg.RegionWithDistance;

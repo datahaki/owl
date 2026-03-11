@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.ascony.api.Box2D;
+import ch.alpine.sophis.crv.d2.ex.Box2D;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -27,7 +27,7 @@ import ch.alpine.tensor.qty.Timing;
 class SphereCurveIntersectionTest {
   @Test
   void testString() {
-    Tensor curve = Box2D.SQUARE;
+    Tensor curve = Box2D.UNIT_SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(Rational.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.string(Rotate.PULL.of(curve, index));
@@ -42,7 +42,7 @@ class SphereCurveIntersectionTest {
 
   @Test
   void testCyclic() {
-    Tensor curve = Box2D.SQUARE;
+    Tensor curve = Box2D.UNIT_SQUARE;
     CurveIntersection curveIntersection = new SphereCurveIntersection(Rational.HALF);
     for (int index = 0; index < curve.length(); ++index) {
       Optional<Tensor> optional = curveIntersection.cyclic(Rotate.PULL.of(curve, index));

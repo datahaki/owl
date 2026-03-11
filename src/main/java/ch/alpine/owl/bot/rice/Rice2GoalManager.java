@@ -10,7 +10,7 @@ import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeInvariantRegion;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.math.RadiusXY;
+import ch.alpine.sophis.crv.d2.ex.RadiusXY;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
