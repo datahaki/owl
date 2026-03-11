@@ -85,7 +85,7 @@ class RrtsFlowTrajectoryGeneratorTest {
 
   @Test
   void testDubins() {
-    TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
+    TransitionSpace transitionSpace = new DubinsTransitionSpace(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Rrts rrts = new DefaultRrts( //
         transitionSpace, //
         new Se2RrtsNodeCollection(transitionSpace, CoordinateBounds.of(Tensors.vector(-5, -5), Tensors.vector(10, 10)), 3), //
@@ -107,7 +107,7 @@ class RrtsFlowTrajectoryGeneratorTest {
         Se2StateSpaceModel.INSTANCE, //
         CarRrtsFlow::uBetween);
     List<TrajectorySample> trajectory = //
-        generator.createTrajectory(DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), sequence, RealScalar.ZERO, Rational.of(1, 10));
+        generator.createTrajectory(new DubinsTransitionSpace(RealScalar.ONE, DubinsPathComparators.LENGTH), sequence, RealScalar.ZERO, Rational.of(1, 10));
     // trajectory.stream().map(TrajectorySample::toInfoString).forEach(System.out::println);
     assertEquals(37, trajectory.size());
     for (int i = 1; i < 21; i++) {

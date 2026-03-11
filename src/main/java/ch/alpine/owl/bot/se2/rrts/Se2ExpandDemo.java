@@ -59,7 +59,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
   }
 
   static void main() throws Exception {
-    animate(DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH));
+    animate(new DubinsTransitionSpace(RealScalar.ONE, DubinsPathComparators.LENGTH));
     animate(ClothoidTransitionSpace.ANALYTIC);
   }
 }

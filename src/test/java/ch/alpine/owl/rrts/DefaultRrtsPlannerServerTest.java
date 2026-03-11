@@ -99,7 +99,7 @@ class DefaultRrtsPlannerServerTest {
     StateTime stateTime = new StateTime(state, RealScalar.ZERO);
     // ---
     RrtsPlannerServer server = new DefaultRrtsPlannerServer( //
-        DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH), //
+        new DubinsTransitionSpace(RealScalar.ONE, DubinsPathComparators.LENGTH), //
         EmptyTransitionRegionQuery.INSTANCE, //
         Rational.of(1, 10), //
         Se2StateSpaceModel.INSTANCE, //

@@ -39,7 +39,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
   // ---
   private final Se2RrtsNodeCollection se2RrtsNodeCollection = new Se2RrtsNodeCollection( //
       // ClothoidTransitionSpace.ANALYTIC, //
-      DubinsTransitionSpace.of(RealScalar.of(0.3), DubinsPathComparators.LENGTH), //
+      new DubinsTransitionSpace(RealScalar.of(0.3), DubinsPathComparators.LENGTH), //
       ND_BOX_R2, 3);
 
   // ---

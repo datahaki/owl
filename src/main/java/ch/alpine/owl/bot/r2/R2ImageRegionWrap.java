@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import ch.alpine.ascony.img.FloodFill2D;
 import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.owlets.glc.core.CostFunction;
+import ch.alpine.sophis.reg.BoundedRegion;
 import ch.alpine.sophis.reg.ImageRegion;
-import ch.alpine.sophis.reg.RegionBounds;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.Clips;
 /** utility class that generates from a given image
  * 1) {@link ImageRegion}, and
  * 2) {@link CostFunction} with given radius */
-public class R2ImageRegionWrap implements RegionBounds {
+public class R2ImageRegionWrap implements BoundedRegion {
   private final MemberQ imageRegion;
   private final CostFunction costFunction;
   private final Tensor range;

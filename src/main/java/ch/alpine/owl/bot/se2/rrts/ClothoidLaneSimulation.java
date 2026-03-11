@@ -128,8 +128,8 @@ import ch.alpine.tensor.sca.Clips;
         // .map(Scalar.class::cast) //
         // .reduce(Max::of) //
         // .get().number().doubleValue());
-        Path file = DIRECTORY.resolve(String.format("costs_%d.png", task++));
-        show.export(file, new Dimension(WIDTH, HEIGHT));
+        Path path = DIRECTORY.resolve(String.format("costs_%d.png", task++));
+        show.export(path, new Dimension(WIDTH, HEIGHT));
       }
     }
   }
