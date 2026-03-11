@@ -4,8 +4,8 @@ package ch.alpine.owl.pursuit;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -13,7 +13,7 @@ import ch.alpine.tensor.red.Nest;
 
 public enum ClothoidPursuits {
   ;
-  public static final CurveSubdivision CURVE_SUBDIVISION = //
+  public static final CurveOperator CURVE_SUBDIVISION = //
       LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder(), 1);
 
   /** @param lookAhead of the form {x, y, heading}
