@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.ren.PointsRender;
 import ch.alpine.ascony.win.ControlPointType;
-import ch.alpine.ascony.win.ControlPointTypes;
 import ch.alpine.ascony.win.EuclideanPlaneDemo;
 import ch.alpine.bridge.awt.AwtUtil;
 import ch.alpine.bridge.awt.ScalableImage;
@@ -87,7 +86,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   @Override
   protected ControlPointType controlPointType() {
-    return ControlPointTypes.DELEGATED;
+    return ControlPointType.DELEGATED;
   }
 
   private void shuffle() {
