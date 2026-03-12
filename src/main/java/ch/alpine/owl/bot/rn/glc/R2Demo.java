@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import ch.alpine.ascony.ren.GridRender;
 import ch.alpine.bridge.gfx.GeometricComponent;
+import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.owl.bot.r2.R2Bubbles;
@@ -102,6 +103,8 @@ enum R2Demo implements ManipulateProvider {
     CoordinateBoundingBox cbb = Box2D.xy(Clips.absolute(3));
     geometricComponent.addRenderInterfaceBackground(new SignedDistRender(cbb, 100, R2Bubbles.INSTANCE));
     RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
+    Tensor pvm = PvmBuilder.rhs().setOffset(300, 300).setPerPixel(100).digest();
+    geometricComponent.setModel2Pixel(pvm);
   }
 
   abstract PlannerConstraint plannerConstraint();

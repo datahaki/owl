@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Optional;
 
-import ch.alpine.ascony.api.Meshgrid;
+import ch.alpine.ascony.msh.Meshgrid;
 import ch.alpine.bridge.fig.DensityPlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.Showable;
@@ -22,7 +22,7 @@ public class SignedDistRender implements RenderInterface {
   private final Showable showable;
 
   public SignedDistRender(CoordinateBoundingBox cbb, int res, SignedDistanceFunction<Tensor> sdf) {
-    Tensor matrix = new Meshgrid(cbb).image(res, sdf::signedDistance);
+    Tensor matrix = new Meshgrid(cbb, res).image(sdf::signedDistance);
     this.cbb = cbb;
     showable = DensityPlot.of(matrix, cbb, ColorDataGradients.PARULA.deriveWithOpacity(RealScalar.of(0.4)));
   }
