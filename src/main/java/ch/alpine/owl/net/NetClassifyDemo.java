@@ -176,8 +176,8 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     ColorPairIndexed colorPairIndexed = new ColorPairIndexed(colorDataIndexedT, 128, 255);
     for (Tensor point : sequence) {
       int label = vector.Get(index).number().intValue();
-      new PointsRender(colorPairIndexed.getColorPair(label)) //
-          .show(manifoldDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
+      new PointsRender(colorPairIndexed.getColorPair(label), manifoldDisplay::matrixLift, shape, Tensors.of(point)) //
+          .render(geometricLayer, graphics);
       ++index;
     }
   }

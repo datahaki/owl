@@ -26,7 +26,7 @@ public class RnPointcloudRegionRender implements RenderInterface {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    new PointsRender(ColorPair.REG).show(Se2Matrix::translation, polygon, points) //
+    new PointsRender(ColorPair.REG, Se2Matrix::translation, polygon, points) //
         .render(geometricLayer, graphics);
   }
 }
