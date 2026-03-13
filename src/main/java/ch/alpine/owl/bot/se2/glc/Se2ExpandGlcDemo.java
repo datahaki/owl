@@ -39,7 +39,7 @@ import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 /** (x, y, theta) */
-enum Se2ExpandDemo {
+enum Se2ExpandGlcDemo {
   ;
   static void main() {
     Tensor eta = Tensors.of(RealScalar.of(6), RealScalar.of(6), Degree.of(15).reciprocal());

@@ -48,7 +48,7 @@ import ch.alpine.tensor.sca.Ramp;
 
 /** functionality is used in tests */
 @ReflectionMarker
-enum R2Demo implements ManipulateProvider {
+enum R2GlcDemo implements ManipulateProvider {
   EMPTY {
     @Override
     PlannerConstraint plannerConstraint() {
@@ -69,7 +69,7 @@ enum R2Demo implements ManipulateProvider {
       5);
   private final GeometricComponent geometricComponent = new GeometricComponent();
 
-  private R2Demo() {
+  private R2GlcDemo() {
     Tensor stateRoot = Tensors.vector(-2, -2);
     Tensor stateGoal = Tensors.vector(2, 2);
     Scalar radius = RealScalar.of(0.25);
