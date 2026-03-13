@@ -17,8 +17,8 @@ import java.util.function.Consumer;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.Se2ClothoidDisplay;
-import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.Show;
+import ch.alpine.bridge.fig.plt.ListPlot;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.SimpleLaneConsumer;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;

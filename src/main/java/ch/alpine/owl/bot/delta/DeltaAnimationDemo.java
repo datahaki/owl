@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.bridge.fig.Show;
-import ch.alpine.bridge.fig.VectorPlot;
+import ch.alpine.bridge.fig.plt.VectorPlot;
 import ch.alpine.bridge.gfx.GeometricComponent;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.PvmBuilder;

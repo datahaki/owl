@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
-import ch.alpine.bridge.fig.ListPlot;
 import ch.alpine.bridge.fig.Show;
+import ch.alpine.bridge.fig.plt.ListPlot;
 import ch.alpine.bridge.io.AnimationWriter;
 import ch.alpine.bridge.io.GifAnimationWriter;
 import ch.alpine.bridge.io.HtmlUtf8;

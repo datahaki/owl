@@ -6,9 +6,9 @@ import java.awt.Rectangle;
 import java.util.Optional;
 
 import ch.alpine.ascony.msh.Meshgrid;
-import ch.alpine.bridge.fig.DensityPlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.Showable;
+import ch.alpine.bridge.fig.plt.DensityPlot;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.sophis.api.SignedDistanceFunction;

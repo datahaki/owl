@@ -5,10 +5,10 @@ import java.awt.Container;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
-import ch.alpine.bridge.fig.ListPlot;
-import ch.alpine.bridge.fig.PolygonPlot;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.ShowGridComponent;
+import ch.alpine.bridge.fig.plt.ListPlot;
+import ch.alpine.bridge.fig.plt.PolygonPlot;
 import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.sophis.crv.d2.alg.ConvexHull2D;
