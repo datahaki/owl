@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
+import ch.alpine.ascony.ren.ColorPairIndexed;
 import ch.alpine.ascony.ren.PointsRender;
 import ch.alpine.ascony.win.ControlPointType;
 import ch.alpine.ascony.win.EuclideanPlaneDemo;
@@ -172,13 +173,11 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
       ColorDataIndexed colorDataIndexedT) {
     Tensor shape = manifoldDisplay.shape().multiply(RealScalar.of(1.0));
     int index = 0;
-    ColorDataIndexed colorDataIndexedO = colorDataIndexedT.deriveWithAlpha(128);
+    ColorPairIndexed colorPairIndexed = new ColorPairIndexed(colorDataIndexedT, 128, 255);
     for (Tensor point : sequence) {
       int label = vector.Get(index).number().intValue();
-      PointsRender pointsRender = new PointsRender( //
-          colorDataIndexedO.getColor(label), //
-          colorDataIndexedT.getColor(label));
-      pointsRender.show(manifoldDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
+      new PointsRender(colorPairIndexed.getColorPair(label)) //
+          .show(manifoldDisplay::matrixLift, shape, Tensors.of(point)).render(geometricLayer, graphics);
       ++index;
     }
   }

@@ -34,7 +34,7 @@ public enum RegionRenderFactory {
   ;
   // ---
   private static final Scalar TFF = RealScalar.of(255);
-  private static final Scalar OBS = RealScalar.of(RegionRenders.RGB);
+  private static final Scalar OBS = RealScalar.of(230);
 
   static Scalar color(Scalar scalar) {
     return Scalars.isZero(scalar) ? TFF : OBS;

@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.ascony.img.ImageArea;
-import ch.alpine.ascony.reg.RegionRenders;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -25,7 +24,7 @@ class RegionRendersTest {
     assertEquals(bufferedImage.getType(), BufferedImage.TYPE_BYTE_GRAY);
     int[] pixel = new int[1];
     bufferedImage.getRaster().getPixel(0, 0, pixel);
-    assertEquals(pixel[0], RegionRenders.RGB);
+    assertEquals(pixel[0], 230);
     Color color = new Color(bufferedImage.getRGB(0, 0));
     assertEquals(color.getRed(), 244); // 230 get's mapped to 244
     Area area = ImageArea.fromTensor(image);

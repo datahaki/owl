@@ -6,7 +6,7 @@ import java.awt.geom.Path2D;
 import java.io.Serializable;
 import java.util.function.Supplier;
 
-import ch.alpine.ascony.reg.RegionRenders;
+import ch.alpine.ascony.ren.ColorPair;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.math.state.StateTime;
@@ -56,9 +56,9 @@ public class R2xTEllipsoidStateTimeRegion implements Region<StateTime>, RenderIn
     TensorUnaryOperator fwd = bijectionFamily.forward(time);
     Path2D path2D = geometricLayer.toPath2D(Tensor.of(polygon.stream().map(fwd)));
     path2D.closePath();
-    graphics.setColor(RegionRenders.COLOR);
+    graphics.setColor(ColorPair.REG.fill());
     graphics.fill(path2D);
-    graphics.setColor(RegionRenders.BOUNDARY);
+    graphics.setColor(ColorPair.REG.draw());
     graphics.draw(path2D);
   }
 }
