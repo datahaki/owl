@@ -40,7 +40,7 @@ class DeltaExample {
   private static final CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
       Clips.positive(RANGE.Get(0)), Clips.positive(RANGE.Get(1)));
   static final MemberQ REGION = new BufferedImageRegion( //
-      ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
+      ResourceData.bufferedImage("io/delta_free.png"), coordinateBoundingBox, true);
   private static final PlannerConstraint PLANNER_CONSTRAINT = //
       new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(REGION));
   private static final Scalar MAX_INPUT = Quantity.of(1, "s^-1");
@@ -54,7 +54,7 @@ class DeltaExample {
 
   public DeltaExample(Scalar amp) {
     imageGradientInterpolation = //
-        ImageGradientInterpolation.linear(Import.of("/io/delta_uxy.png"), RANGE, amp);
+        ImageGradientInterpolation.linear(Import.of("io/delta_uxy.png"), RANGE, amp);
     stateSpaceModel = new DeltaStateSpaceModel(imageGradientInterpolation);
     Scalar maxNormGradient = imageGradientInterpolation.maxNormGradient();
     Scalar maxMove = maxNormGradient.add(MAX_INPUT);

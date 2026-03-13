@@ -42,8 +42,8 @@ class DeltaAnimationDemo extends OwlAnimationDemo {
     Scalar amp = Quantity.of(-0.05, "s^-1");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable();
     ImageGradientInterpolation imageGradientInterpolation = //
-        ImageGradientInterpolation.nearest(Import.of("/io/delta_uxy.png"), range, amp);
-    BufferedImage bufferedImage = ResourceData.bufferedImage("/io/delta_free.png");
+        ImageGradientInterpolation.nearest(Import.of("io/delta_uxy.png"), range, amp);
+    BufferedImage bufferedImage = ResourceData.bufferedImage("io/delta_free.png");
     CoordinateBoundingBox cbb = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ region = new BufferedImageRegion(bufferedImage, cbb, true);

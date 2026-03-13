@@ -45,7 +45,7 @@ import ch.alpine.tensor.sca.Clips;
 public class DeltaxTAnimationDemo implements DemoInterface {
   @Override
   public TimerFrame getWindow() {
-    Tensor image = Import.of("/io/delta_uxy.png");
+    Tensor image = Import.of("io/delta_uxy.png");
     Tensor range = Tensors.vector(12.6, 9.1).unmodifiable(); // overall size of map
     Scalar amp = Quantity.of(-0.05, "s^-1"); // direction and strength of river flow
     // ---
@@ -71,7 +71,7 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ region = new BufferedImageRegion( //
-        ResourceData.bufferedImage("/io/delta_free.png"), coordinateBoundingBox, true);
+        ResourceData.bufferedImage("io/delta_free.png"), coordinateBoundingBox, true);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(new SimpleTrajectoryRegionQuery( //
         RegionUnion.wrap(new TimeInvariantRegion(region), region1, region2, region3, region4)));
     // ---
