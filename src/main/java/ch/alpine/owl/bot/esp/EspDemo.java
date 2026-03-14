@@ -7,6 +7,8 @@ import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.PvmBuilder;
 import ch.alpine.bridge.gfx.RenderInterface;
+import ch.alpine.bridge.ref.ann.FieldFuse;
+import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -20,8 +22,10 @@ class EspDemo extends AbstractDemo implements RenderInterface {
       Tensors.vector(2, 2) //
   ).unmodifiable();
 
+  @ReflectionMarker
   static class Param {
-    public Boolean compute = true;
+    @FieldFuse
+    public transient Boolean compute = false;
   }
 
   @SuppressWarnings("unused")
