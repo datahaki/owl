@@ -55,6 +55,7 @@ class IpProvider implements VoidProvider {
     Tensor initial = Tensors.fromString("{0[m],0[m*s^-1],0,0[s^-1]}");
     trajectoryPlanner.insertRoot(new StateTime(initial, Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
+    // glcExpand.steps(50);
     glcExpand.findAny(3000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
     Optional<GlcNode> optional = trajectoryPlanner.getBest();
@@ -63,6 +64,10 @@ class IpProvider implements VoidProvider {
       StateTimeTrajectories.print(trajectory);
     }
     return null;
+  }
+
+  public boolean isContinued() {
+    return true;
   }
 
   static void main() {

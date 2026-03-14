@@ -12,9 +12,6 @@ import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.tensor.Tensor;
 
 public class LaneRender implements RenderInterface {
-  private final PathRender pathRenderL = new PathRender(new Color(255, 128, 128, 192), 1);
-  private final PathRender pathRenderR = new PathRender(new Color(128, 192, 128, 192), 1);
-
   public void setLane(LaneInterface laneInterface, boolean cyclic) {
     if (Objects.nonNull(laneInterface))
       setBoundaries(laneInterface.leftBoundary(), laneInterface.rightBoundary(), cyclic);
@@ -22,14 +19,19 @@ public class LaneRender implements RenderInterface {
       setBoundaries(null, null, cyclic);
   }
 
+  Tensor leftBoundary;
+  Tensor rightBoundary;
+  boolean cyclic;
+
   public void setBoundaries(Tensor leftBoundary, Tensor rightBoundary, boolean cyclic) {
-    pathRenderL.setCurve(leftBoundary, cyclic);
-    pathRenderR.setCurve(rightBoundary, cyclic);
+    this.leftBoundary = leftBoundary;
+    this.rightBoundary = rightBoundary;
+    this.cyclic = cyclic;
   }
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    pathRenderL.render(geometricLayer, graphics);
-    pathRenderR.render(geometricLayer, graphics);
+    new PathRender(new Color(255, 128, 128, 192), 1, leftBoundary, cyclic).render(geometricLayer, graphics);
+    new PathRender(new Color(128, 192, 128, 192), 1, rightBoundary, cyclic).render(geometricLayer, graphics);
   }
 }

@@ -137,7 +137,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
             ScalarTensorFunction scalarTensorFunction = //
                 geodesicSpace.curve(surfaceMesh.vrt.get(beg), surfaceMesh.vrt.get(end));
             Tensor points = domain.maps(scalarTensorFunction);
-            new PathRender(new Color(0, 0, 255, 128), 1.5f).setCurve(points, false).render(geometricLayer, graphics);
+            new PathRender(new Color(0, 0, 255, 128), 1.5, points, false).render(geometricLayer, graphics);
           }
         }
       }
