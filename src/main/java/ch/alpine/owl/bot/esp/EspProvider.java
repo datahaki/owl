@@ -33,13 +33,15 @@ class EspProvider implements VoidProvider {
   ).unmodifiable();
   // ---
   Tensor _board = START;
-
-  public boolean isContinued() {
-    return true;
-  }
+  boolean already = false;
 
   @Override
   public Void runStandalone() {
+    if (already) {
+      IO.println("skip");
+      return null;
+    }
+    already = true;
     PlannerConstraint plannerConstraint = EmptyPlannerConstraint.INSTANCE;
     TrajectoryPlanner trajectoryPlanner = StandardTrajectoryPlanner.create( //
         EspStateTimeRaster.INSTANCE, //
@@ -76,6 +78,10 @@ class EspProvider implements VoidProvider {
       }
     }
     return null;
+  }
+
+  public boolean isContinued() {
+    return true;
   }
 
   static void main() {

@@ -37,36 +37,9 @@ import ch.alpine.tensor.sca.Clips;
 /** inverted pendulum */
 class IpDemo extends AbstractDemo {
   IpDemo() {
-    StateSpaceModel stateSpaceModel = IpStateSpaceModel.EXAMPLE; // g;
-    StateIntegrator stateIntegrator = new FixedStateIntegrator( //
-        TimeIntegrators.RK45, stateSpaceModel, Quantity.of(Rational.of(1, 12), "s"), 5);
-    Collection<Tensor> controls = IpControls.createControls(Quantity.of(10, "N"), 20);
-    IpGoalManager ipGoalManager = new IpGoalManager( //
-        Tensors.fromString("{2[m],0[m*s^-1],0,0[s^-1]}"), //
-        Tensors.fromString("{0.1[m],0.1[m*s^-1],0.3,0.3[s^-1]}"));
-    Clip clip_pos = Clips.interval(Quantity.of(-1, "m"), Quantity.of(3, "m"));
-    MemberQ region = MemberQ.any(List.of( //
-        new FreeBoundedIntervalRegion(0, clip_pos), // ,
-        new FreeBoundedIntervalRegion(2, Clips.interval(-2, +2)) // angle
-    ));
-    PlannerConstraint plannerConstraint = RegionConstraints.timeDependent(region);
-    Tensor eta = Tensors.vector(10, 10, 100, 100);
-    StateTimeRaster stateTimeRaster = EtaRaster.state(eta);
-    TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
-        stateTimeRaster, stateIntegrator, controls, plannerConstraint, ipGoalManager);
-    Tensor initial = Tensors.fromString("{0[m],0[m*s^-1],0,0[s^-1]}");
-    trajectoryPlanner.insertRoot(new StateTime(initial, Quantity.of(0, "s")));
-    GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    glcExpand.findAny(3000);
-    System.out.println("ExpandCount=" + glcExpand.getExpandCount());
-    Optional<GlcNode> optional = trajectoryPlanner.getBest();
-    if (optional.isPresent()) {
-      List<StateTime> trajectory = GlcNodes.getPathFromRootTo(optional.orElseThrow());
-      StateTimeTrajectories.print(trajectory);
-    }
     GeometricComponent geometricComponent = geometricComponent();
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
-    RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
+//    RenderElements.create(trajectoryPlanner).forEach(geometricComponent::addRenderInterface);
     Tensor digest = PvmBuilder.rhs().setOffset(50, 680) //
         .setPerPixel(Quantity.of(100, "m^-1"), Quantity.of(100, "m^-1*s")).digest();
     geometricComponent.setModel2Pixel(digest);

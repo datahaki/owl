@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensors;
 class EspModelTest {
   @Test
   void testSimple() {
-    Tensor board = EspDemo.START;
+    Tensor board = EspProvider.START;
     for (Tensor flow : EspFlows.INSTANCE.flows(new StateTime(board, RealScalar.ZERO))) {
       Tensor u = flow;
       Tensor tensor = EspModel.INSTANCE.f(board, u);

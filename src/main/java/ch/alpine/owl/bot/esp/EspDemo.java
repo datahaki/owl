@@ -2,6 +2,8 @@
 package ch.alpine.owl.bot.esp;
 
 import java.awt.Graphics2D;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import ch.alpine.ascony.win.AbstractDemo;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -10,33 +12,12 @@ import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.bridge.ref.ann.FieldFuse;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Tensors;
 
-class EspDemo extends AbstractDemo implements RenderInterface {
-  static final Tensor START = Tensors.of( //
-      Tensors.vector(2, 2, 2, 0, 0), //
-      Tensors.vector(2, 2, 2, 0, 0), //
-      Tensors.vector(2, 2, 0, 1, 1), //
-      Tensors.vector(0, 0, 1, 1, 1), //
-      Tensors.vector(0, 0, 1, 1, 1), //
-      Tensors.vector(2, 2) //
-  ).unmodifiable();
-
+class EspDemo extends AbstractDemo implements RenderInterface, Runnable {
   @ReflectionMarker
   static class Param {
     @FieldFuse
     public transient Boolean compute = false;
-  }
-
-  @SuppressWarnings("unused")
-  private final Param param;
-
-  public EspDemo() {
-    super(param = new Param());
-    geometricComponent().addRenderInterface(this);
-    Tensor pvm = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
-    geometricComponent().setModel2Pixel(pvm);
-    fieldsEditor(0).addUniversalListener(() -> new Thread(espProvider::runStandalone).start());
   }
 
   private final EspProvider espProvider = new EspProvider() {
@@ -45,11 +26,32 @@ class EspDemo extends AbstractDemo implements RenderInterface {
       return timerFrame.isVisible();
     };
   };
+  @SuppressWarnings("unused")
+  private final Param param;
+
+  public EspDemo() {
+    super(param = new Param());
+    fieldsEditor(0).addUniversalListener(this);
+    geometricComponent().addRenderInterface(this);
+    Tensor pvm = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
+    geometricComponent().setModel2Pixel(pvm);
+    timerFrame.addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowOpened(WindowEvent windowEvent) {
+        run();
+      }
+    });
+  }
 
   @Override
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     Tensor board = espProvider._board;
     new EspRender(board).render(geometricLayer, graphics);
+  }
+
+  @Override
+  public void run() {
+    new Thread(espProvider::runStandalone).start();
   }
 
   static void main() {

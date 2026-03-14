@@ -21,6 +21,6 @@ class EspGoalAdapterTest {
   void testStart() {
     assertTrue(Scalars.lessEquals( //
         RealScalar.of(0), //
-        EspGoal.INSTANCE.minCostToGoal(EspDemo.START)));
+        EspGoal.INSTANCE.minCostToGoal(EspProvider.START)));
   }
 }
