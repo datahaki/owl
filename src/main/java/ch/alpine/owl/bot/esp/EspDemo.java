@@ -23,19 +23,18 @@ class EspDemo extends AbstractDemo implements RenderInterface, Runnable {
   private final EspProvider espProvider = new EspProvider() {
     @Override
     public boolean isContinued() {
-      return timerFrame.isVisible();
+      return getWindow().isVisible();
     };
   };
-  @SuppressWarnings("unused")
   private final Param param;
 
   public EspDemo() {
     super(param = new Param());
-    fieldsEditor(0).addUniversalListener(this);
+    fieldsEditor(param).addUniversalListener(this);
     geometricComponent().addRenderInterface(this);
     Tensor pvm = PvmBuilder.rhs().setOffset(100, 600).setPerPixel(100).digest();
     geometricComponent().setModel2Pixel(pvm);
-    timerFrame.addWindowListener(new WindowAdapter() {
+    getWindow().addWindowListener(new WindowAdapter() {
       @Override
       public void windowOpened(WindowEvent windowEvent) {
         run();

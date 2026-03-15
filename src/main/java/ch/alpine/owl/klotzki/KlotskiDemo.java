@@ -100,7 +100,7 @@ public class KlotskiDemo extends AbstractDemo implements RenderInterface {
   }
 
   public void close() {
-    timerFrame.close();
+    getWindow().close();
   }
 
   public static Path solutionFile(KlotskiProblem klotskiProblem) {

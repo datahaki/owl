@@ -16,7 +16,7 @@ public class OwlAnimationDemo extends AbstractDemo {
 
   public OwlAnimationDemo() {
     // periodic task for integration
-    timerFrame.timer_schedule(new TimerTask() {
+    getWindow().timer_schedule(new TimerTask() {
       final Timing timing = Timing.started();
 
       @Override

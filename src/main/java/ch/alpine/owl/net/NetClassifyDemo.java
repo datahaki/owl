@@ -80,8 +80,8 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   public NetClassifyDemo() {
     super(param0 = new Param0(), param1 = new Param1(), param2 = new Param2());
     geometricComponent().setRotatable(false);
-    fieldsEditor(0).addUniversalListener(this::shuffle);
-    fieldsEditor(1).addUniversalListener(this::train);
+    fieldsEditor(param0).addUniversalListener(this::shuffle);
+    fieldsEditor(param1).addUniversalListener(this::train);
     shuffle();
   }
 

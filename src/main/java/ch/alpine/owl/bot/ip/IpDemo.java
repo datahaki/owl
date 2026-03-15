@@ -32,22 +32,21 @@ class IpDemo extends AbstractDemo implements RenderInterface, Runnable {
   private final IpProvider ipProvider = new IpProvider() {
     @Override
     public boolean isContinued() {
-      return timerFrame.isVisible();
+      return getWindow().isVisible();
     };
   };
-  @SuppressWarnings("unused")
   private final Param param;
 
   IpDemo() {
     super(param = new Param());
-    fieldsEditor(0).addUniversalListener(this);
+    fieldsEditor(param).addUniversalListener(this);
     GeometricComponent geometricComponent = geometricComponent();
     geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
     Tensor digest = PvmBuilder.rhs().setOffset(50, 680) //
         .setPerPixel(Quantity.of(100, "m^-1"), Quantity.of(100, "m^-1*s")).digest();
     geometricComponent.setModel2Pixel(digest);
     geometricComponent().addRenderInterface(this);
-    timerFrame.addWindowListener(new WindowAdapter() {
+    getWindow().addWindowListener(new WindowAdapter() {
       @Override
       public void windowOpened(WindowEvent windowEvent) {
         run();
