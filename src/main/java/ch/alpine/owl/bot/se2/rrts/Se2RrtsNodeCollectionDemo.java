@@ -71,7 +71,7 @@ public class Se2RrtsNodeCollectionDemo extends ControlPointsDemo {
 
   @Override
   protected List<ManifoldDisplays> permitted_manifoldDisplays() {
-    return ManifoldDisplays.CL_ONLY;
+    return ManifoldDisplays.CLA_ONLY;
   }
 
   @Override
