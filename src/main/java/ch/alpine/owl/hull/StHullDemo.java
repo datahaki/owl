@@ -51,7 +51,7 @@ class StHullDemo implements ManipulateProvider, RenderInterface {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     RandomGenerator randomGenerator = new Random(3);
     StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
-    Tensor p = RandomSample.of(stiefelManifold, randomGenerator);
+    Tensor p = RandomSample.of(stiefelManifold.randomSampleInterface(), randomGenerator);
     Tensor v = new TStMemberQ(p).projection( //
         RandomVariate.of(NormalDistribution.of(0.0, 0.1), randomGenerator, Dimensions.of(p)));
     Tensor pointst = stiefelManifold.tangentSpace(p).exp(v.multiply(split));

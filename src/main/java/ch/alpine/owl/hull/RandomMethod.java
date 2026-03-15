@@ -20,7 +20,7 @@ enum RandomMethod {
   SPHERE {
     @Override
     Tensor vertices(int n) {
-      return RandomSample.of(new Sphere(2), n);
+      return RandomSample.of(new Sphere(2).randomSampleInterface(), n);
     }
   },
   HEMIS {
@@ -32,7 +32,7 @@ enum RandomMethod {
   REALS3 {
     @Override
     Tensor vertices(int n) {
-      return RandomSample.of(new RnGroup(3), n);
+      return RandomSample.of(new RnGroup(3).randomSampleInterface(), n);
     }
   },
   CUBE {
@@ -40,14 +40,14 @@ enum RandomMethod {
     Tensor vertices(int n) {
       Clip[] clips = { Clips.absoluteOne(), Clips.absoluteOne(), Clips.absoluteOne() };
       CoordinateBoundingBox cbb = CoordinateBoundingBox.of(clips);
-      return cbb.mapInside().slash(RandomSample.of(new RnGroup(3), n));
+      return cbb.mapInside().slash(RandomSample.of(new RnGroup(3).randomSampleInterface(), n));
     }
   },
   STIEFEL {
     @Override
     Tensor vertices(int n) {
       StiefelManifold stiefelManifold = new StiefelManifold(n, 3);
-      return Transpose.of(RandomSample.of(stiefelManifold)).multiply(RealScalar.of(10));
+      return Transpose.of(RandomSample.of(stiefelManifold.randomSampleInterface())).multiply(RealScalar.of(10));
     }
   },
   DODECAHEDRON {
