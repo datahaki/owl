@@ -1,10 +1,10 @@
 // code by gjoel, jph
 package ch.alpine.owl.util.ren;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
+import ch.alpine.ascony.ren.ColorStroke;
 import ch.alpine.ascony.ren.PathRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
@@ -31,7 +31,7 @@ public class LaneRender implements RenderInterface {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    new PathRender(new Color(255, 128, 128, 192), 1, leftBoundary, cyclic).render(geometricLayer, graphics);
-    new PathRender(new Color(128, 192, 128, 192), 1, rightBoundary, cyclic).render(geometricLayer, graphics);
+    new PathRender(ColorStroke.CURVE, leftBoundary, cyclic).render(geometricLayer, graphics);
+    new PathRender(ColorStroke.SECONDARY_CURVE, rightBoundary, cyclic).render(geometricLayer, graphics);
   }
 }

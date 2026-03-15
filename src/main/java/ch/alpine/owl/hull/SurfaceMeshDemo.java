@@ -10,6 +10,7 @@ import java.util.Set;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.ManifoldDisplays;
+import ch.alpine.ascony.ren.ColorStroke;
 import ch.alpine.ascony.ren.PathRender;
 import ch.alpine.ascony.ren.SurfaceMeshRender;
 import ch.alpine.ascony.win.ControlPointType;
@@ -137,7 +138,7 @@ public class SurfaceMeshDemo extends ControlPointsDemo {
             ScalarTensorFunction scalarTensorFunction = //
                 geodesicSpace.curve(surfaceMesh.vrt.get(beg), surfaceMesh.vrt.get(end));
             Tensor points = domain.maps(scalarTensorFunction);
-            new PathRender(new Color(0, 0, 255, 128), 1.5, points, false).render(geometricLayer, graphics);
+            new PathRender(ColorStroke.CURVE, points, false).render(geometricLayer, graphics);
           }
         }
       }
