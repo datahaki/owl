@@ -30,8 +30,6 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.QLEARNING, trq));
     owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.EXPECTED, trq));
     owlAnimationFrame.add(new CarPolicyEntity(start, SarsaType.ORIGINAL, trq));
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;
   }

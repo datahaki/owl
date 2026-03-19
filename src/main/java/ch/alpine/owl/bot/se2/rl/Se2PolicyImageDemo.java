@@ -35,8 +35,6 @@ public class Se2PolicyImageDemo implements DemoInterface {
           new CarPolicyEntity(Tensors.vector(1.3, 2.8, 1.57), SarsaType.EXPECTED, trq);
       owlAnimationFrame.add(twdPolicyEntity);
     }
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;
   }

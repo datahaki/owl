@@ -10,7 +10,6 @@ public abstract class Se2Demo implements DemoInterface {
   @Override
   public final TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setTitle(FriendlyFormat.defaultTitle(getClass()));
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     configure(owlAnimationFrame);

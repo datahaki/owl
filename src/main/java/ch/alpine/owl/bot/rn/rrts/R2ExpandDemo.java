@@ -42,7 +42,6 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
         for (int count = 0; count < 10; ++count)
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
         TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
-        // owlFrame.geometricComponent.setOffset(42, 456);
         timerFrame.setBounds(100, 100, 500, 500);
         animationWriter.write(timerFrame.offscreen());
       }

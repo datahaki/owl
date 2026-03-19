@@ -27,7 +27,6 @@ enum Se2rExpandDemo {
       while (!trajectoryPlanner.getBest().isPresent()) {
         glcExpand.findAny(1);
         TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
-        // owlFrame.geometricComponent.setOffset(169, 71);
         timerFrame.setBounds(100, 100, 300, 200);
         animationWriter.write(timerFrame.offscreen());
         Thread.sleep(10);

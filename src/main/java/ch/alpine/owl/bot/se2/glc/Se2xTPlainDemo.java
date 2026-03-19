@@ -30,8 +30,6 @@ public class Se2xTPlainDemo
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(se2PointsVsRegion);
     MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     owlAnimationFrame.timerFrame.setVisible(true);
   }

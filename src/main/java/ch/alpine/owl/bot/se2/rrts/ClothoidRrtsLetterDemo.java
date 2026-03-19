@@ -74,7 +74,6 @@ import ch.alpine.tensor.sca.Clips;
       };
       owlAnimationFrame.addBackground(renderInterface);
     }
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setTitle(getClass().getSimpleName());
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;

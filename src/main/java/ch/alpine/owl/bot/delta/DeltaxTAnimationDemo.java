@@ -85,7 +85,6 @@ public class DeltaxTAnimationDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) region4);
     Tensor fallback_u = Tensors.fromString("{0[s^-1], 0[s^-1]}");
     owlAnimationFrame.addBackground(StaticHelper.vectorFieldRender(stateSpaceModel, range, region, fallback_u, Quantity.of(0.5, "s")));
-    // owlAnimationFrame.geometricComponent.setOffset(50, 600);
     return owlAnimationFrame.timerFrame;
   }
 

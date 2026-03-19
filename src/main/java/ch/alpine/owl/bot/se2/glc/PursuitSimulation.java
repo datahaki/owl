@@ -46,7 +46,6 @@ import ch.alpine.tensor.qty.Degree;
       owlAnimationFrame.add(carEntity);
     }
     owlAnimationFrame.addBackground(new FixGridRender(Subdivide.of(0, 10, 5)));
-    // owlAnimationFrame.geometricComponent.setOffset(400, 400);
   }
 
   static void main() {

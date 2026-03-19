@@ -42,8 +42,6 @@ public class Se2xTPolygonDemo implements DemoInterface {
     MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
     // owlyAnimationFrame.addRegionRender(imageRegion);
     owlAnimationFrame.addBackground((RenderInterface) region);
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;
   }

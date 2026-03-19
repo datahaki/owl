@@ -76,6 +76,5 @@ import ch.alpine.tensor.qty.Timing;
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
     owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
     owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(trajectoryRegionQuery));
-    // owlFrame.geometricComponent.setOffset(100, 300);
   }
 }

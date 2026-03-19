@@ -59,8 +59,6 @@ public class Se2xTEllipsoidsDemo implements DemoInterface {
           LIDAR_RAYTRACER, carxTEntity::getStateTimeNow, trq);
       owlAnimationFrame.addBackground(renderInterface);
     }
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(350, 350);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;
   }

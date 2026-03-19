@@ -100,8 +100,6 @@ public class Se2xTLetterDemo implements DemoInterface {
           Tensors.vector(5.600, 8.667, -1.571), SarsaType.QLEARNING, ray);
       owlAnimationFrame.add(twdPolicyEntity);
     }
-    // ---
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     return owlAnimationFrame.timerFrame;
   }

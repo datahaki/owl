@@ -35,7 +35,6 @@ public class Rice2dImageDemo implements DemoInterface {
     owlAnimationFrame.add(trajectoryEntity);
     MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     return owlAnimationFrame.timerFrame;
   }
 

@@ -15,7 +15,6 @@ import ch.alpine.tensor.Tensor;
   @Override
   public final TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();
-    // owlAnimationFrame.geometricComponent.setOffset(50, 700);
     TwdEntity twdEntity = configure(owlAnimationFrame);
     {
       RenderInterface renderInterface = new MouseShapeRender( //

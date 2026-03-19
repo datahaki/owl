@@ -65,7 +65,6 @@ enum Se2rAnimateDemo {
       glcExpand.findAny(1);
     }
     TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
-    // owlFrame.geometricComponent.setOffset(169, 71);
     timerFrame.setBounds(100, 100, 300, 200);
   }
 }

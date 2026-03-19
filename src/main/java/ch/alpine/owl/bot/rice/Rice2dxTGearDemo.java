@@ -56,7 +56,6 @@ public class Rice2dxTGearDemo implements DemoInterface {
     owlAnimationFrame.addBackground((RenderInterface) cog0);
     owlAnimationFrame.addBackground((RenderInterface) cog1);
     owlAnimationFrame.addBackground((RenderInterface) cog2);
-    // owlAnimationFrame.geometricComponent.setOffset(350, 350);
     return owlAnimationFrame.timerFrame;
   }
 
