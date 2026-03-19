@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.util.Optional;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
 import ch.alpine.owl.util.ren.RegionRenderFactory;

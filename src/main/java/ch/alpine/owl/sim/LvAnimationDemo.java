@@ -1,11 +1,11 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owl.sim;
 
 import java.util.Collection;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
-import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;
@@ -13,6 +13,9 @@ import ch.alpine.owl.util.bot.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
+import ch.alpine.owladd.lv.LvControls;
+import ch.alpine.owladd.lv.LvEntity;
+import ch.alpine.owladd.lv.LvStateSpaceModel;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;

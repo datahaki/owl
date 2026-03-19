@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
+import ch.alpine.owl.ani.api.TemporalTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.StateTimeCoordinateWrap;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owladd.lv;
 
 import java.io.Serializable;
 
@@ -20,7 +20,7 @@ import ch.alpine.tensor.red.Entrywise;
  * @param b prey decimation via predators
  * @param c predator natural death rate
  * @param d predator hunting success */
-record LvStateSpaceModel(Scalar a, Scalar b, Scalar c, Scalar d) implements StateSpaceModel, Serializable {
+public record LvStateSpaceModel(Scalar a, Scalar b, Scalar c, Scalar d) implements StateSpaceModel, Serializable {
   public static final StateSpaceModel EXAMPLE = new LvStateSpaceModel( //
       Quantity.of(1.0, "s^-1"), //
       Quantity.of(0.2, "s^-1"), //

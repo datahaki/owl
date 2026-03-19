@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owladd.lv;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 /** the distance used in the ellipsoid is Euclidean.
  * perhaps more suitable for the state space model would be a logarithmic distance */
-/* package */ class LvGoalInterface extends SimpleTrajectoryRegionQuery implements GoalInterface {
+public class LvGoalInterface extends SimpleTrajectoryRegionQuery implements GoalInterface {
   /** @param center
    * @param radius
    * @return */

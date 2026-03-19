@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
+import ch.alpine.owl.ani.api.TemporalTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.util.ren.EdgeRender;
 import ch.alpine.owlets.glc.adapter.EtaRaster;

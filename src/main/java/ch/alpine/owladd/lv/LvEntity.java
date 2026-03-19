@@ -1,13 +1,13 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owladd.lv;
 
 import java.awt.Graphics2D;
 import java.util.Collection;
 import java.util.List;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractCircularEntity;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.ren.TreeRender;
@@ -32,7 +32,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class LvEntity extends AbstractCircularEntity implements GlcPlannerCallback {
+public class LvEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   private static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
   private static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK45;
   // ---

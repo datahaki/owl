@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.ani.adapter;
+package ch.alpine.owl.ani.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.ani.api.EntityControl;
+import ch.alpine.owl.ani.api.FallbackControl;
+import ch.alpine.owl.ani.api.TemporalTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;

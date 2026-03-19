@@ -1,16 +1,14 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owl.sim;
 
-import java.awt.Container;
 import java.util.Collection;
 
-import ch.alpine.ascony.ren.GridRender;
-import ch.alpine.bridge.gfx.GeometricComponent;
-import ch.alpine.bridge.gfx.PvmBuilder;
-import ch.alpine.bridge.pro.ManipulateProvider;
-import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
-import ch.alpine.owl.util.ren.RenderElements;
+import ch.alpine.owl.util.win.OwlGui;
+import ch.alpine.owladd.lv.LvControls;
+import ch.alpine.owladd.lv.LvGoalInterface;
+import ch.alpine.owladd.lv.LvStateSpaceModel;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
@@ -26,17 +24,18 @@ import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.reg.EllipsoidRegion;
 import ch.alpine.tensor.Rational;
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.exp.Log;
 
 /** the coordinates represent the population of predators and prey.
  * the domain coordinates are computed from the log of the state coordinates */
-@ReflectionMarker
-class LvDemo implements ManipulateProvider {
-  @Override
-  public Container getContainer() {
+/* package */ enum LvRepresentComparison {
+  ;
+  static void launch(TensorUnaryOperator represent) {
     Tensor eta = Tensors.vector(10, 10);
     StateSpaceModel stateSpaceModel = LvStateSpaceModel.EXAMPLE;
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
@@ -45,25 +44,21 @@ class LvDemo implements ManipulateProvider {
     EllipsoidRegion ellipsoidRegion = new EllipsoidRegion(Tensors.vector(2, 1), Tensors.vector(0.1, 0.1));
     GoalInterface goalInterface = new LvGoalInterface(ellipsoidRegion);
     // ---
-    StateTimeRaster stateTimeRaster = new EtaRaster(eta, StateTimeTensorFunction.state(tensor -> tensor.maps(Log.FUNCTION)));
+    StateTimeRaster stateTimeRaster = new EtaRaster(eta, StateTimeTensorFunction.state(represent));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         stateTimeRaster, stateIntegrator, controls, EmptyPlannerConstraint.INSTANCE, goalInterface);
     // ---
-    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(2, 0.5), Quantity.of(0, "s")));
+    trajectoryPlanner.insertRoot(new StateTime(Tensors.vector(2, .5), RealScalar.ZERO));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
-    glcExpand.findAny(5000);
-    System.out.println("ExpandCount=" + glcExpand.getExpandCount());
-    GeometricComponent geometricComponent = new GeometricComponent();
-    RenderElements.create(trajectoryPlanner) //
-        .forEach(geometricComponent::addRenderInterface);
-    geometricComponent.addRenderInterfaceBackground(new GridRender(geometricComponent::getSize));
-    geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
-    Tensor digest = PvmBuilder.rhs().setOffset(50, 680).setPerPixel(20).digest();
-    geometricComponent.setModel2Pixel(digest);
-    return geometricComponent;
+    glcExpand.findAny(4000);
+    TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
+    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
+    // owlFrame.geometricComponent.setOffset(100, 300);
+    owlFrame.setBounds(100, 100, 500, 500);
   }
 
   static void main() {
-    new LvDemo().runStandalone();
+    launch(tensor -> tensor.maps(Log.FUNCTION));
+    launch(t -> t);
   }
 }

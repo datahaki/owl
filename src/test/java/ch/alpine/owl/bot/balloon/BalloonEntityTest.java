@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.EuclideanTrajectoryControl;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;

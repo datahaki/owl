@@ -4,8 +4,8 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.bot.se2.Se2StateSpaceModel;
 import ch.alpine.owl.bot.se2.glc.CarEntity;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
+import ch.alpine.owl.ani.api.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.owl.pursuit.ArgMinVariable;
 import ch.alpine.owl.pursuit.ClothoidPursuit;

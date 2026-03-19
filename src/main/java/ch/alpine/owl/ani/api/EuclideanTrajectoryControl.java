@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.ani.adapter;
+package ch.alpine.owl.ani.api;
 
 import java.util.List;
 import java.util.Optional;

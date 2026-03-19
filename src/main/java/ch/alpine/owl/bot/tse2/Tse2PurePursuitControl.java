@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.tse2;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
+import ch.alpine.owl.ani.api.StateTrajectoryControl;
 import ch.alpine.owl.pursuit.PurePursuit;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owladd.lv;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum LvControls {
+public enum LvControls {
   ;
   public static Collection<Tensor> create(Scalar u_max, int num) {
     List<Tensor> list = new ArrayList<>();

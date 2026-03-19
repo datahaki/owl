@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import ch.alpine.owl.ani.adapter.StateTrajectoryControl;
+import ch.alpine.owl.ani.api.StateTrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2Wrap;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

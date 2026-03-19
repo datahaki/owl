@@ -1,8 +1,8 @@
 // code by jph, gjoel
 package ch.alpine.owl.bot.rn.rrts;
 
-import ch.alpine.owl.ani.adapter.FallbackControl;
 import ch.alpine.owl.ani.api.AbstractRrtsEntity;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.bot.rn.glc.R2TrajectoryControl;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;

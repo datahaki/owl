@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.FallbackControl;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;

@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.rice;
 import java.util.Collection;
 
 import ch.alpine.ascony.win.TimerFrame;
-import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryEntity;

@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.ani.adapter;
+package ch.alpine.owl.ani.api;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +7,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ch.alpine.owl.ani.api.ProviderRank;
-import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owlets.glc.adapter.Trajectories;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectorySample;

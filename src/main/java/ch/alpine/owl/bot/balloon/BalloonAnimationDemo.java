@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.balloon;
 import ch.alpine.ascony.reg.BufferedImageRegion;
 import ch.alpine.ascony.ren.AxesRender;
 import ch.alpine.bridge.gfx.GeometricComponent;
-import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.ren.RegionRenderFactory;

@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.owl.ani.adapter.FallbackControl;
+import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.core.GoalInterface;

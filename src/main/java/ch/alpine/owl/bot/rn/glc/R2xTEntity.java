@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn.glc;
 
 import java.util.Collection;
 
-import ch.alpine.owl.ani.adapter.TemporalTrajectoryControl;
+import ch.alpine.owl.ani.api.TemporalTrajectoryControl;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.core.StateTimeRaster;
 import ch.alpine.owlets.math.state.EpisodeIntegrator;

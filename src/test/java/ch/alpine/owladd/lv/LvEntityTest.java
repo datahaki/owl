@@ -1,11 +1,11 @@
 // code by jph
-package ch.alpine.owl.bot.lv;
+package ch.alpine.owladd.lv;
 
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.ani.adapter.EuclideanTrajectoryControl;
+import ch.alpine.owl.ani.api.EuclideanTrajectoryControl;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.bot.VectorFields;
 import ch.alpine.owl.util.ren.VectorFieldRender;
