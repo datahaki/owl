@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owladd.lv;
+package ch.alpine.owl.bot.lv;
 
 import java.awt.Graphics2D;
 import java.util.Collection;

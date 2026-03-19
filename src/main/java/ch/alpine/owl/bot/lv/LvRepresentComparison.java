@@ -1,14 +1,11 @@
 // code by jph
-package ch.alpine.owl.sim;
+package ch.alpine.owl.bot.lv;
 
 import java.util.Collection;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.owladd.lv.LvControls;
-import ch.alpine.owladd.lv.LvGoalInterface;
-import ch.alpine.owladd.lv.LvStateSpaceModel;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;

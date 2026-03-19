@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owladd.lv;
+package ch.alpine.owl.bot.lv;
 
 import java.awt.Container;
 import java.util.Collection;
@@ -36,6 +36,7 @@ import ch.alpine.tensor.sca.exp.Log;
 @ReflectionMarker
 class LvDemo implements ManipulateProvider {
   public TimeIntegrators integrator = TimeIntegrators.RK4;
+
   @Override
   public Container getContainer() {
     Tensor eta = Tensors.vector(10, 10);

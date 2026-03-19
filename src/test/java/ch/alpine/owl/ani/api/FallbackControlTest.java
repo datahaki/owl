@@ -8,8 +8,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owl.ani.api.EntityControl;
-import ch.alpine.owl.ani.api.FallbackControl;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;

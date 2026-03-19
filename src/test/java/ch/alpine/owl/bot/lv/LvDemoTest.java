@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owladd.lv;
+package ch.alpine.owl.bot.lv;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -8,9 +8,6 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.glc.core.HeuristicAssert;
-import ch.alpine.owladd.lv.LvControls;
-import ch.alpine.owladd.lv.LvGoalInterface;
-import ch.alpine.owladd.lv.LvStateSpaceModel;
 import ch.alpine.owlets.glc.adapter.EmptyPlannerConstraint;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
