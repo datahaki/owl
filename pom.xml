@@ -32,11 +32,6 @@
 			<artifactId>subare</artifactId>
 			<version>0.4.4</version>
 		</dependency>
-		<dependency>
-			<groupId>io.github.datahaki</groupId>
-			<artifactId>qhull3</artifactId>
-			<version>0.0.1</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
