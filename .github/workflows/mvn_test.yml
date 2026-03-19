@@ -30,15 +30,6 @@ jobs:
         run: mvn -B --no-transfer-progress install -DskipTests
         working-directory: ./tensor
 
-      - name: checkout qhull3
-        uses: actions/checkout@v4
-        with:
-          repository: datahaki/qhull3
-          path: qhull3
-      - name: build and install qhull3
-        run: mvn -B --no-transfer-progress install -DskipTests
-        working-directory: ./qhull3
-
       - name: checkout subare
         uses: actions/checkout@v4
         with:
