@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.time.Duration;
 
 import javax.swing.ImageIcon;
 
@@ -110,7 +111,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     netChain = NetChains.argMaxMLP(2, param1.hidden, param0.labels);
     netTrain = new NetTrain(netChain, xdata, vector);
     CoordinateBoundingBox cbb = CoordinateBounds.of(xdata);
-    ImageIconRecorder imageIconRecorder = new ImageIconRecorder(200);
+    ImageIconRecorder imageIconRecorder = ImageIconRecorder.loop(Duration.ofMillis(200));
     netTrain.addListener(new NetTrainListener() {
       @Override
       public void epoch(int epoch) {

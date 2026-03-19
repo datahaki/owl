@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
@@ -80,7 +80,7 @@ import ch.alpine.tensor.sca.Ramp;
     trajectoryPlanner.insertRoot(new StateTime(stateRoot, Quantity.of(0, "s")));
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures.resolve("R2_Slow.gif"), 400, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("R2_Slow.gif"), Duration.ofMillis(400))) {
       for (int i = 0; i < 20; ++i) {
         Optional<GlcNode> optional = trajectoryPlanner.getBest();
         if (optional.isPresent())

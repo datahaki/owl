@@ -2,7 +2,7 @@
 package ch.alpine.owl.bot.se2.rrts;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.io.AnimationWriter;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(min, max));
     String name = "se2rrts_" + transitionSpace.getClass().getSimpleName() + ".gif";
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures.resolve(name), 250, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve(name), Duration.ofMillis(250))) {
       // owlyFrame.geometricComponent.addRenderInterface(renderInterface);
       for (int frame = 0; frame < 40; ++frame) {
         for (int count = 0; count < 5; ++count)

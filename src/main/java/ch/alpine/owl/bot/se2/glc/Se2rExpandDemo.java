@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.se2.glc;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.io.AnimationWriter;
@@ -22,7 +22,7 @@ enum Se2rExpandDemo {
     // ---
     trajectoryPlanner.insertRoot(new StateTime(Array.zeros(3), RealScalar.ZERO));
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures.resolve("se2r.gif"), 250, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("se2r.gif"), Duration.ofMillis(250))) {
       GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
       while (!trajectoryPlanner.getBest().isPresent()) {
         glcExpand.findAny(1);

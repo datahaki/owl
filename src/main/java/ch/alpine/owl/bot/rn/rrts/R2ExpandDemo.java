@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.rrts;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.io.AnimationWriter;
@@ -36,7 +36,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     RrtsNode root = rrts.insertAsNode(Tensors.vector(0, 0), 5).orElseThrow();
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(coordinateBoundingBox);
     try (AnimationWriter animationWriter = //
-        new GifAnimationWriter(HomeDirectory.Pictures.resolve("r2rrts.gif"), 250, TimeUnit.MILLISECONDS)) {
+        new GifAnimationWriter(HomeDirectory.Pictures.resolve("r2rrts.gif"), Duration.ofMillis(250))) {
       int frame = 0;
       while (frame++ < 40) {
         for (int count = 0; count < 10; ++count)
