@@ -4,9 +4,9 @@ package ch.alpine.owl.bot.se2.rrts;
 import java.io.Serializable;
 
 import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
-import ch.alpine.sophis.crv.clt.LagrangeQuadraticD;
 import ch.alpine.sophis.ts.ClothoidTransition;
 import ch.alpine.sophis.ts.Transition;
+import ch.alpine.sophus.clt.LagrangeQuadraticD;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Sign;
 

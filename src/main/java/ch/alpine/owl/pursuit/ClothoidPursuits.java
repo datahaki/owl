@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import ch.alpine.sophis.api.CurveOperator;
-import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
+import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.red.Nest;

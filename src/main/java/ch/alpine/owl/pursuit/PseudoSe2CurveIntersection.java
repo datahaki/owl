@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.owl.pursuit;
 
-import ch.alpine.sophis.crv.clt.ClothoidDistance;
+import ch.alpine.sophis.crv.ClothoidDistance;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
