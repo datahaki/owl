@@ -16,7 +16,7 @@ import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owlets.data.tree.StateCostNode;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.crv.d2.alg.ConvexHull2D;
+import ch.alpine.sophis.hull.d2.ConvexHull2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Chop;
 
