@@ -147,7 +147,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
       show.render(graphics, rectangle);
     } // ---
     render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), vector, param2.cdl.cyclic());
-    Dimension dimension = getSize();
+    Dimension dimension = geometricComponent().getSize();
     dimension.width /= 2;
     dimension.height /= 2;
     {
