@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 
 import ch.alpine.ascony.dis.ManifoldDisplay;
 import ch.alpine.ascony.dis.Se2ClothoidDisplay;
+import ch.alpine.bridge.fig.Rasterize;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.plt.ListPlot;
 import ch.alpine.bridge.gfx.GeometricLayer;
@@ -129,7 +130,7 @@ import ch.alpine.tensor.sca.Clips;
         // .reduce(Max::of) //
         // .get().number().doubleValue());
         Path path = DIRECTORY.resolve(String.format("costs_%d.png", task++));
-        show.export(path, new Dimension(WIDTH, HEIGHT));
+        new Rasterize(show, new Dimension(WIDTH, HEIGHT)).export(path);
       }
     }
   }
