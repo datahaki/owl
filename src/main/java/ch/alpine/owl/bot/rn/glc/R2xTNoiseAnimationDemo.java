@@ -35,7 +35,7 @@ public class R2xTNoiseAnimationDemo implements DemoInterface {
     owlAnimationFrame.add(trajectoryEntity);
     Region<StateTime> region = new R2xTNoiseStateTimeRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(region);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), trajectoryEntity, plannerConstraint);
     return owlAnimationFrame.timerFrame;
   }
 

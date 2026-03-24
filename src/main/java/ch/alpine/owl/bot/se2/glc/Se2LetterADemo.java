@@ -50,7 +50,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
         SimpleTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.add(carEntity);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), carEntity, plannerConstraint);
     {
       RenderInterface renderInterface = new CameraEmulator( //
           48, RealScalar.of(10), carEntity::getStateTimeNow, trajectoryRegionQuery);
@@ -72,7 +72,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent().getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);

@@ -28,7 +28,7 @@ public class Se2xTPlainDemo
     MemberQ region = r2ImageRegionWrap.region();
     MemberQ se2PointsVsRegion = Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region);
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(se2PointsVsRegion);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), carxTEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);
     owlAnimationFrame.timerFrame.setVisible(true);

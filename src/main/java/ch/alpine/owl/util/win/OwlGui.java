@@ -17,7 +17,7 @@ public enum OwlGui {
   public static TimerFrame glc(TrajectoryPlanner trajectoryPlanner) {
     TimerFrame owlFrame = new TimerFrame();
     RenderElements.create(trajectoryPlanner) //
-        .forEach(owlFrame.geometricComponent::addRenderInterface);
+        .forEach(owlFrame.geometricComponent()::addRenderInterface);
     owlFrame.setBounds(100, 100, 800, 800);
     owlFrame.setVisible(true);
     return owlFrame;
@@ -28,8 +28,8 @@ public enum OwlGui {
     Collection<RrtsNode> nodes = Nodes.ofSubtree(root);
     Collection<RrtsNode> collection = nodes;
     RenderElements.create(collection, transitionRegionQuery) //
-        .forEach(owlFrame.geometricComponent::addRenderInterface);
-    owlFrame.geometricComponent.addRenderInterface(new TransitionRender(transitionSpace).setCollection(collection));
+        .forEach(owlFrame.geometricComponent()::addRenderInterface);
+    owlFrame.geometricComponent().addRenderInterface(new TransitionRender(transitionSpace).setCollection(collection));
     owlFrame.setBounds(100, 100, 800, 800);
     owlFrame.setVisible(true);
     return owlFrame;

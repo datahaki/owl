@@ -49,7 +49,7 @@ import ch.alpine.tensor.qty.Quantity;
     }
     TimerFrame timerFrame = OwlGui.glc(standardTrajectoryPlanner);
     Tensor digest = PvmBuilder.rhs().setOffset(300, 300).setPerPixel(Quantity.of(1, "m^-1")).digest();
-    timerFrame.geometricComponent.setModel2Pixel(digest);
+    timerFrame.geometricComponent().setModel2Pixel(digest);
     // OwlyFrame owlyFrame2 = OwlyGui.glc(standardTrajectoryPlanner);
   }
 }

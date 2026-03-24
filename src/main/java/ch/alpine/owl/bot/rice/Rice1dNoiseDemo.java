@@ -38,7 +38,7 @@ public class Rice1dNoiseDemo implements DemoInterface {
     owlAnimationFrame.add(trajectoryEntity);
     MemberQ region = new R2NoiseRegion(RealScalar.of(0.5));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, trajectoryEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), trajectoryEntity, plannerConstraint);
     Tensor range = Tensors.vector(6, 1);
     RandomSampleInterface randomSampleInterface = new BoxRandomSample(CoordinateBounds.of(range.negate(), range));
     Tensor points = RandomSample.of(randomSampleInterface, 1000);

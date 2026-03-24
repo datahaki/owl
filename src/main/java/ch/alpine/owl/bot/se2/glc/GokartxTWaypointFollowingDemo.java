@@ -82,7 +82,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     owlAnimationFrame.addBackground(RegionRenderFactory.create(polygonRegion));
     owlAnimationFrame.addBackground((RenderInterface) region1d);
     owlAnimationFrame.addBackground((RenderInterface) region2d);
-    owlAnimationFrame.timerFrame.geometricComponent.setModel2Pixel(MODEL2PIXEL);
+    owlAnimationFrame.timerFrame.geometricComponent().setModel2Pixel(MODEL2PIXEL);
     // ---
     owlAnimationFrame.addBackground(new WaypointRender(ARROWHEAD, COLOR_WAYPOINT).setWaypoints(waypoints));
     GlcPlannerCallback glcPlannerCallback = EntityGlcPlannerCallback.verbose(gokartEntity);

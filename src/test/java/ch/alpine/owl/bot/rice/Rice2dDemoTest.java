@@ -46,8 +46,8 @@ class Rice2dDemoTest {
         TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
+    timerFrame.geometricComponent().addRenderInterfaceBackground(trajectoryRender);
+    timerFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);
@@ -71,8 +71,8 @@ class Rice2dDemoTest {
         TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
     TrajectoryRender trajectoryRender = new TrajectoryRender();
     trajectoryRender.trajectory(samples);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
+    timerFrame.geometricComponent().addRenderInterfaceBackground(trajectoryRender);
+    timerFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(Rice2dDemo.ELLIPSOID_REGION));
     HeuristicAssert.check(trajectoryPlanner);
     // TrajectoryPlannerConsistency.check(trajectoryPlanner);
     Thread.sleep(120);

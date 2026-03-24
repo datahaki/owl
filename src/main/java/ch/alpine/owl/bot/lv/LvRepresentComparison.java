@@ -49,7 +49,7 @@ import ch.alpine.tensor.sca.exp.Log;
     GlcExpand glcExpand = new GlcExpand(trajectoryPlanner);
     glcExpand.findAny(4000);
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ellipsoidRegion));
     owlFrame.setBounds(100, 100, 500, 500);
   }
 

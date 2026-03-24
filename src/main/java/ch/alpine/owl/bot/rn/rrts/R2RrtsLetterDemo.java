@@ -33,9 +33,9 @@ import ch.alpine.tensor.chq.MemberQ;
     TransitionRegionQuery transitionRegionQuery = new SampledTransitionRegionQuery(region, RealScalar.of(0.05));
     R2RrtsEntity entity = new R2RrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent, entity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent(), entity, null);
     owlAnimationFrame.add(entity);
-    Supplier<Tensor> supplier = () -> owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
+    Supplier<Tensor> supplier = () -> owlAnimationFrame.timerFrame.geometricComponent().getMouseSe2CState();
     {
       RenderInterface renderInterface = new MouseShapeRender( //
           SimpleTrajectoryRegionQuery.timeInvariant(Se2PointsVsRegions.line(Tensors.vector(0.2, 0.1, 0, -0.1), region)), //
@@ -47,7 +47,7 @@ import ch.alpine.tensor.chq.MemberQ;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent().getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);

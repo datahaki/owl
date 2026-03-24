@@ -43,7 +43,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
     }
     TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     timerFrame.setBounds(100, 100, 550, 550);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
+    timerFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
     System.out.println(rrts.rewireCount());
     RrtsNodes.costConsistency(root, transitionSpace, LengthCostFunction.INSTANCE);
   }

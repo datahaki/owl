@@ -39,7 +39,7 @@ public class R2xTMapAnimationDemo implements DemoInterface {
         "/dubilab/localization/20180122.png", Tensors.vector(10, 10), false);
     MemberQ region = RnPointcloudRegions.from(imageRegion, RealScalar.of(0.15));
     PlannerConstraint plannerConstraint = RegionConstraints.timeInvariant(region);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), abstractEntity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(imageRegion));
     return owlAnimationFrame.timerFrame;
   }

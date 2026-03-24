@@ -39,7 +39,7 @@ public class Se2xTPolygonDemo implements DemoInterface {
     Region<StateTime> region = new R2xTPolygonStateTimeRegion( //
         CORNER_TOP_LEFT, shift, () -> carxTEntity.getStateTimeNow().time());
     PlannerConstraint plannerConstraint = RegionConstraints.stateTime(region);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, carxTEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), carxTEntity, plannerConstraint);
     // owlyAnimationFrame.addRegionRender(imageRegion);
     owlAnimationFrame.addBackground((RenderInterface) region);
     owlAnimationFrame.timerFrame.setBounds(100, 50, 1200, 800);

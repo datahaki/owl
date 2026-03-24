@@ -46,7 +46,7 @@ import ch.alpine.tensor.sca.Clips;
     ClothoidRrtsEntity clothoidRrtsEntity = //
         new ClothoidRrtsEntity(stateTime, transitionRegionQuery, r2ImageRegionWrap.coordinateBounds());
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
-    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent, clothoidRrtsEntity, null);
+    MouseGoal.simpleRrts(owlAnimationFrame.timerFrame.geometricComponent(), clothoidRrtsEntity, null);
     owlAnimationFrame.add(clothoidRrtsEntity);
     {
       RenderInterface renderInterface = new CameraEmulator( //
@@ -69,7 +69,7 @@ import ch.alpine.tensor.sca.Clips;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent().getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);

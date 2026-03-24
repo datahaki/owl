@@ -64,8 +64,8 @@ import ch.alpine.tensor.qty.Timing;
       StateTimeTrajectories.print(trajectory);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.setZoomable(false);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
+    owlFrame.geometricComponent().setZoomable(false);
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(imageRegion));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
   }
 }

@@ -64,8 +64,8 @@ abstract class R2BaseDemo implements DemoInterface {
       StateTimeTrajectories.print(trajectory);
     }
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(region));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
     return owlFrame;
   }
 }

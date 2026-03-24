@@ -53,8 +53,8 @@ import ch.alpine.tensor.qty.Quantity;
       Thread.sleep(1);
     }
     TimerFrame timerFrame = OwlGui.glc(trajectoryPlanner);
-    timerFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(obstacleRegion));
-    timerFrame.geometricComponent.addRenderInterface(RegionRenderFactory.create(goalRegion));
+    timerFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(obstacleRegion));
+    timerFrame.geometricComponent().addRenderInterface(RegionRenderFactory.create(goalRegion));
     // ---
     timerFrame.setBounds(100, 100, 600, 600);
     System.out.println("#expand = " + glcExpand.getExpandCount());

@@ -85,7 +85,7 @@ import ch.alpine.tensor.qty.Timing;
           TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+      owlFrame.geometricComponent().addRenderInterfaceBackground(trajectoryRender);
     }
     glcExpand.untilOptimal(1000);
     System.out.println("ExpandCount=" + glcExpand.getExpandCount());
@@ -98,8 +98,8 @@ import ch.alpine.tensor.qty.Timing;
           TimeIntegrators.MIDPOINT, stateSpaceModel, Quantity.of(Rational.of(1, 2), "s"), 5), glcNode);
       TrajectoryRender trajectoryRender = new TrajectoryRender();
       trajectoryRender.trajectory(samples);
-      owlFrame.geometricComponent.addRenderInterfaceBackground(trajectoryRender);
+      owlFrame.geometricComponent().addRenderInterfaceBackground(trajectoryRender);
     }
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ELLIPSOID_REGION));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ELLIPSOID_REGION));
   }
 }

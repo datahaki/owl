@@ -37,7 +37,7 @@ public class R2NoiseAnimationDemo implements DemoInterface {
     MemberQ region = new R2NoiseRegion(RealScalar.of(0.2));
     TrajectoryRegionQuery trajectoryRegionQuery = CatchyTrajectoryRegionQuery.timeInvariant(region);
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trajectoryRegionQuery);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, r2Entity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), r2Entity, plannerConstraint);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(trajectoryRegionQuery));
     return owlAnimationFrame.timerFrame;
   }

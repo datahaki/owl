@@ -27,7 +27,7 @@ import ch.alpine.tensor.Tensor;
 
         @Override
         public Tensor getSe2() {
-          return owlAnimationFrame.timerFrame.geometricComponent.getMouseSe2CState();
+          return owlAnimationFrame.timerFrame.geometricComponent().getMouseSe2CState();
         }
       };
       owlAnimationFrame.addBackground(renderInterface);

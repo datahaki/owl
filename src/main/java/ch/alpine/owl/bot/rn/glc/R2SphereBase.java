@@ -55,9 +55,9 @@ import ch.alpine.tensor.qty.Quantity;
 
   void show(TrajectoryPlanner trajectoryPlanner) {
     TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region1));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(region2));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
-    owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(trajectoryRegionQuery));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(region1));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(region2));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
+    owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(trajectoryRegionQuery));
   }
 }

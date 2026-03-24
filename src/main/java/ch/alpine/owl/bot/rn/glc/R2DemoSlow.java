@@ -87,8 +87,8 @@ import ch.alpine.tensor.sca.Ramp;
           break;
         glcExpand.findAny(1);
         TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
-        owlFrame.geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
-        owlFrame.geometricComponent.addRenderInterfaceBackground(renderInterface); // reference to collection
+        owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
+        owlFrame.geometricComponent().addRenderInterfaceBackground(renderInterface); // reference to collection
         animationWriter.write(owlFrame.offscreen());
       }
     }

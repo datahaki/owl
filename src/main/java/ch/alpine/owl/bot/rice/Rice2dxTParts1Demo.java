@@ -57,7 +57,7 @@ public class Rice2dxTParts1Demo implements DemoInterface {
         RegionUnion.wrap(region1, region2, region3));
     // abstractEntity.obstacleQuery = trq;
     PlannerConstraint plannerConstraint = new TrajectoryObstacleConstraint(trq);
-    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent, abstractEntity, plannerConstraint);
+    MouseGoal.simple(owlAnimationFrame.timerFrame.geometricComponent(), abstractEntity, plannerConstraint);
     // owlyAnimationFrame.addRegionRender(imageRegion);
     owlAnimationFrame.addBackground((RenderInterface) region1);
     owlAnimationFrame.addBackground((RenderInterface) region2);

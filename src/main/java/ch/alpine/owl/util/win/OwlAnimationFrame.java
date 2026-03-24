@@ -59,7 +59,7 @@ public class OwlAnimationFrame {
           public void run() {
             BufferedImage offscreen = timerFrame.offscreen();
             StateTime stateTime = abstractEntity.getStateTimeNow();
-            GeometricLayer geometricLayer = new GeometricLayer(timerFrame.geometricComponent.getModel2Pixel());
+            GeometricLayer geometricLayer = new GeometricLayer(timerFrame.geometricComponent().getModel2Pixel());
             Point2D now = geometricLayer.toPoint2D(stateTime.state());
             // Point now = geometricComponent.toPixel();
             if (Objects.isNull(point) || MARGIN < inftyNorm(point, now))
@@ -99,19 +99,19 @@ public class OwlAnimationFrame {
     }
     {
       jToggleButtonRecord.addActionListener(actionListener);
-      timerFrame.jToolBar.add(jToggleButtonRecord);
+      timerFrame.jToolBar().add(jToggleButtonRecord);
     }
   }
 
   /** @param renderInterface */
   public void addBackground(RenderInterface renderInterface) {
-    timerFrame.geometricComponent.addRenderInterfaceBackground(renderInterface);
+    timerFrame.geometricComponent().addRenderInterfaceBackground(renderInterface);
   }
 
   public void add(AnimationInterface animationInterface) {
     animationInterfaces.add(animationInterface);
     if (animationInterface instanceof RenderInterface renderInterface)
-      timerFrame.geometricComponent.addRenderInterface(renderInterface);
+      timerFrame.geometricComponent().addRenderInterface(renderInterface);
   }
 
   private static double inftyNorm(Point2D p1, Point2D p2) {
