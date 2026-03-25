@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.rn;
 
 import java.awt.Graphics2D;
 
-import ch.alpine.ascony.ren.ColorPair;
+import ch.alpine.ascony.ren.ColorPairs;
 import ch.alpine.ascony.ren.PointsRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
@@ -26,7 +26,7 @@ public class RnPointcloudRegionRender implements RenderInterface {
 
   @Override // from RenderInterface
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
-    new PointsRender(ColorPair.REGION, Se2Matrix::translation, polygon, points) //
+    new PointsRender(ColorPairs.REGION, Se2Matrix::translation, polygon, points) //
         .render(geometricLayer, graphics);
   }
 }
