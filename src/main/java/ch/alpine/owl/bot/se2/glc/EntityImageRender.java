@@ -17,7 +17,7 @@ import ch.alpine.tensor.jet.AppendOne;
 import ch.alpine.tensor.red.Times;
 
 /** Renders an arbitrary image at the supplier state */
-/* package */ class EntityImageRender implements RenderInterface {
+class EntityImageRender implements RenderInterface {
   private final Tensor matrix;
   private final Supplier<StateTime> supplier;
   private final BufferedImage bufferedImage;

@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.balloon;
 
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ enum BalloonStateSpaceModels {
+enum BalloonStateSpaceModels {
   ;
   static BalloonStateSpaceModel defaultWithUnits() {
     return new BalloonStateSpaceModel( //

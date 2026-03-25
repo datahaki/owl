@@ -3,7 +3,7 @@ package ch.alpine.owl.ani.api;
 
 import java.util.Comparator;
 
-/* package */ enum EntityControlComparator implements Comparator<EntityControl> {
+enum EntityControlComparator implements Comparator<EntityControl> {
   INSTANCE;
 
   @Override // from Comparator

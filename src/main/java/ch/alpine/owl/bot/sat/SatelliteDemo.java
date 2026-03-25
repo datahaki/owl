@@ -26,7 +26,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ enum SatelliteDemo {
+enum SatelliteDemo {
   ;
   static void main() throws Exception {
     Collection<Tensor> controls = new SatelliteControls(RealScalar.of(0.9)).getFlows(6);

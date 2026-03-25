@@ -19,7 +19,7 @@ import ch.alpine.tensor.sca.Ramp;
 
 /** Careful: implementation assumes max speed == 1
  * Cost function attains values as minimal distance (not minimal time)! */
-/* package */ class Rice2GoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
+class Rice2GoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
   // ---
   private final Tensor center;
   private final Scalar radius;

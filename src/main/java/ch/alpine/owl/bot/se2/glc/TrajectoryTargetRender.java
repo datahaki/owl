@@ -7,6 +7,6 @@ import java.util.Optional;
 import ch.alpine.bridge.gfx.GeometricLayer;
 
 @FunctionalInterface
-/* package */ interface TrajectoryTargetRender {
+interface TrajectoryTargetRender {
   Optional<Shape> toTarget(GeometricLayer geometricLayer);
 }

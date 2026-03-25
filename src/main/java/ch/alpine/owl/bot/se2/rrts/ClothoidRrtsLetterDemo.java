@@ -29,7 +29,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ class ClothoidRrtsLetterDemo implements DemoInterface {
+class ClothoidRrtsLetterDemo implements DemoInterface {
   private static final LidarRaytracer LIDAR_RAYTRACER = //
       new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
 

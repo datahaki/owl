@@ -6,7 +6,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Abs;
 
-/* package */ class ApMinTimeGoalManager extends AbstractMinTimeGoalManager {
+class ApMinTimeGoalManager extends AbstractMinTimeGoalManager {
   // ---
   private final ApComboRegion apComboRegion;
   private final Scalar maxVerticalSpeed;

@@ -32,7 +32,7 @@ import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class Rice2dEntity extends RiceBaseEntity {
+class Rice2dEntity extends RiceBaseEntity {
   private static final Tensor SHAPE = Tensors.matrixDouble( //
       new double[][] { { .3, 0, 1 }, { -.1, -.1, 1 }, { -.1, +.1, 1 } }).unmodifiable();
   private static final TimeIntegrator INTEGRATOR = TimeIntegrators.MIDPOINT;

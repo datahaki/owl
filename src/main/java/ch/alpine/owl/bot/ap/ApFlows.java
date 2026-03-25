@@ -13,7 +13,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.sca.N;
 
-/* package */ class ApFlows implements FlowsInterface, Serializable {
+class ApFlows implements FlowsInterface, Serializable {
   /** @param aoa_max unitless
    * @param thrusts vector with unit [N]
    * @return new ApFlows instance */

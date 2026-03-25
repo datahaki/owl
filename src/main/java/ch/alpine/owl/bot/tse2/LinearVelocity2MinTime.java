@@ -10,7 +10,7 @@ import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.ply.Roots;
 
 /** use in combination with {@link Tse2Integrator} */
-/* package */ class LinearVelocity2MinTime {
+class LinearVelocity2MinTime {
   private final Scalar v_max;
   private final Scalar a_max;
 

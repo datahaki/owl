@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 
-/* package */ class BalloonPlannerConstraint implements PlannerConstraint, Serializable {
+class BalloonPlannerConstraint implements PlannerConstraint, Serializable {
   /** constants of the hot air balloon */
   private final Clip vertSpeed_clip;
 

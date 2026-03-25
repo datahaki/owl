@@ -32,7 +32,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class R2SphereBase {
+class R2SphereBase {
   private final MemberQ region1 = new EllipsoidRegion(Tensors.vector(3, 3), Tensors.vector(2, 2));
   private final MemberQ region2 = new EllipsoidRegion(Tensors.vector(2.5, 0), Tensors.vector(2, 1.5));
   private final BallRegion ballRegion = new BallRegion(Tensors.vector(5, 0), RealScalar.of(0.5));

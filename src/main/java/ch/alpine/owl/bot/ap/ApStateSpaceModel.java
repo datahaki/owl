@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.tri.Sin;
  * 
  * @param x = {horizontal distance (x), altitude (z), velocity, flight path angle (gamma)}
  * @param u = {thrust, angle of attack (aoa)} */
-/* package */ enum ApStateSpaceModel implements StateSpaceModel {
+enum ApStateSpaceModel implements StateSpaceModel {
   INSTANCE;
 
   /** acceleration of gravity [m*s^-2] */

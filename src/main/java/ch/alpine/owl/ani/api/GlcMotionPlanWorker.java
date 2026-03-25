@@ -6,7 +6,7 @@ import java.util.Collection;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 
-/* package */ class GlcMotionPlanWorker extends MotionPlanWorker<TrajectoryPlanner, GlcPlannerCallback> {
+class GlcMotionPlanWorker extends MotionPlanWorker<TrajectoryPlanner, GlcPlannerCallback> {
   public GlcMotionPlanWorker(int maxSteps, Collection<GlcPlannerCallback> glcPlannerCallbacks) {
     super(maxSteps, glcPlannerCallbacks);
   }

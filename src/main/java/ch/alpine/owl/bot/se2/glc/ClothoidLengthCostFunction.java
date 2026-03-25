@@ -15,7 +15,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 
 /** only applied in {@link ClothoidPursuitControl} resp. {@link Se2Letter5Demo} */
-/* package */ class ClothoidLengthCostFunction implements TensorScalarFunction {
+class ClothoidLengthCostFunction implements TensorScalarFunction {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
   // ---
   private final Predicate<Scalar> isCompliant;

@@ -11,7 +11,7 @@ import ch.alpine.sophis.api.Region;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-/* package */ abstract class AbstractTwdDemo implements DemoInterface {
+abstract class AbstractTwdDemo implements DemoInterface {
   @Override
   public final TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();

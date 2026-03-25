@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
 
-/* package */ class R2PolygonDemo extends R2BaseDemo {
+class R2PolygonDemo extends R2BaseDemo {
   @Override // from R2BaseDemo
   protected MemberQ region() {
     return new PolygonRegion(R2ExamplePolygons.BULKY_TOP_LEFT);

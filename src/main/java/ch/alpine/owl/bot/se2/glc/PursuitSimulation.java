@@ -18,7 +18,7 @@ import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.qty.Degree;
 
-/* package */ class PursuitSimulation extends Se2Demo {
+class PursuitSimulation extends Se2Demo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     List<TrajectorySample> trajectory = new ArrayList<>();

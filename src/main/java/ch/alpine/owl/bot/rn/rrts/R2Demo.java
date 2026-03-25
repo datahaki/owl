@@ -19,7 +19,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum R2Demo {
+enum R2Demo {
   ;
   static TimerFrame show() {
     int wid = 7;

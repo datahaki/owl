@@ -9,7 +9,7 @@ import ch.alpine.tensor.alg.Ordering;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.sca.Chop;
 
-/* package */ enum ScanToState {
+enum ScanToState {
   ;
   // TODO OWL ALG possibly switch to empty {} instead of {0}
   public static final Tensor COLLISION = Tensors.vector(0).unmodifiable();

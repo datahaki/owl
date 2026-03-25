@@ -13,7 +13,7 @@ import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum IpControls {
+enum IpControls {
   ;
   /** @param max_force
    * @param num

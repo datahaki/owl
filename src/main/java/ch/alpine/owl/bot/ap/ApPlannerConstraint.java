@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.tri.Sin;
  * the descent rate should be z_dot <= V * sin(gamma) in final landing phase
  * 
  * The values always are to be found in {@link ApStateSpaceModel} */
-/* package */ enum ApPlannerConstraint implements PlannerConstraint {
+enum ApPlannerConstraint implements PlannerConstraint {
   INSTANCE;
 
   private static final Clip CLIP_GAMMA = //

@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.exp.Log;
 
 /** the coordinates represent the population of predators and prey.
  * the domain coordinates are computed from the log of the state coordinates */
-/* package */ enum LvRepresentComparison {
+enum LvRepresentComparison {
   ;
   static void launch(TensorUnaryOperator represent) {
     Tensor eta = Tensors.vector(10, 10);

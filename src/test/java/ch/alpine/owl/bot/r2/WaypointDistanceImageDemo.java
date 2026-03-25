@@ -16,7 +16,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.Import;
 
-/* package */ enum WaypointDistanceImageDemo {
+enum WaypointDistanceImageDemo {
   ;
   public static void show(Tensor waypoints) {
     waypoints = new BSpline1CurveSubdivision(Se2Group.INSTANCE).cyclic(waypoints);

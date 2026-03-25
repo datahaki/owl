@@ -10,7 +10,7 @@ import ch.alpine.owlets.rrts.core.TransitionPlanner;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.red.Min;
 
-/* package */ class RrtsMotionPlanWorker extends MotionPlanWorker<TransitionPlanner, RrtsPlannerCallback> {
+class RrtsMotionPlanWorker extends MotionPlanWorker<TransitionPlanner, RrtsPlannerCallback> {
   private final Scalar delayHint;
 
   public RrtsMotionPlanWorker(int maxSteps, Collection<RrtsPlannerCallback> rrtsPlannerCallbacks) {

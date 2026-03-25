@@ -10,7 +10,7 @@ import ch.alpine.owlets.math.order.OrderComparator;
 /** in the Java language the type hierarchy may not contain cycles
  * 
  * https://en.wikipedia.org/wiki/Subtyping */
-/* package */ enum TypeStrictPartialOrder {
+enum TypeStrictPartialOrder {
   ;
   public static final OrderComparator<Class<?>> INSTANCE = new Order<>( //
       (BinaryRelation<Class<?>> & Serializable) //

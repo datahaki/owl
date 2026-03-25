@@ -10,7 +10,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ enum BalloonFallbackControl implements EntityControl {
+enum BalloonFallbackControl implements EntityControl {
   INSTANCE;
 
   @Override

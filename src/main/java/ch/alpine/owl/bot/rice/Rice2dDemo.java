@@ -39,7 +39,7 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.Timing;
 
 /** position and velocity control in 2D with friction */
-/* package */ enum Rice2dDemo {
+enum Rice2dDemo {
   ;
   static final EllipsoidRegion ELLIPSOID_REGION = //
       new EllipsoidRegion(Tensors.vector(3, 3, -1, 0), Tensors.vector(0.5, 0.5, 0.4, 0.4));

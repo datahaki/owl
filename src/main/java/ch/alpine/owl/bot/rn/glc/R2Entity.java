@@ -42,7 +42,7 @@ import ch.alpine.tensor.qty.Quantity;
 /** omni-directional movement with constant speed
  * 
  * the implementation chooses certain values */
-/* package */ class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
+class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(8, 8).unmodifiable();
   public static final FixedStateIntegrator FIXED_STATE_INTEGRATOR = new FixedStateIntegrator( //
       TimeIntegrators.EULER, StateSpaceModels.SINGLE_INTEGRATOR, Quantity.of(Rational.of(1, 12), "s"), 4);

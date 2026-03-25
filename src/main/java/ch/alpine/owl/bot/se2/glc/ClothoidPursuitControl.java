@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 
-/* package */ class ClothoidPursuitControl extends StateTrajectoryControl implements TrajectoryTargetRender {
+class ClothoidPursuitControl extends StateTrajectoryControl implements TrajectoryTargetRender {
   private final static int MAX_LEVEL = 20;
   private final static int REFINEMENT = 2;
   // ---

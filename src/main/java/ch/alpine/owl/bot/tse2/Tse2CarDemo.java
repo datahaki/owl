@@ -11,7 +11,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 
-/* package */ abstract class Tse2CarDemo implements DemoInterface {
+abstract class Tse2CarDemo implements DemoInterface {
   private static final Tensor PROBE_X = Tensors.vector(0.2, 0.1, 0, -0.1);
 
   static MemberQ line(MemberQ region) {

@@ -33,7 +33,7 @@ import ch.alpine.tensor.qty.Quantity;
  * bapaden phd thesis: 5.5.2 Torque-Limited Pendulum Swing-Up
  * 
  * "A Generalized Label Correcting Method for Optimal Kinodynamic Motion Planning" [Paden/Frazzoli] */
-/* package */ enum PsuDemo {
+enum PsuDemo {
   ;
   private static final Tensor ETA = Tensors.vector(5, 7);
 

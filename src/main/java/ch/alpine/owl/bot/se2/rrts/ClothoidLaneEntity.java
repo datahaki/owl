@@ -25,13 +25,13 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** variant of {@link ClothoidLaneRrtsEntity} intended for simulation
  * TODO OWL API perhaps create intermediate class with common code to derive from */
-/* package */ class ClothoidLaneEntity extends AbstractRrtsEntity {
+class ClothoidLaneEntity extends AbstractRrtsEntity {
   private static final StateSpaceModel STATE_SPACE_MODEL = Se2StateSpaceModel.INSTANCE;
   private final Scalar delayHint;
 
   /** @param stateTime initial position of entity */
-  /* package */ ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box, boolean greedy,
-      Scalar delayHint, Consumer<Map<Scalar, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
+  ClothoidLaneEntity(StateTime stateTime, TransitionRegionQuery transitionRegionQuery, CoordinateBoundingBox box, boolean greedy, Scalar delayHint,
+      Consumer<Map<Scalar, Scalar>> process, Consumer<RrtsNode> processFirst, Consumer<RrtsNode> processLast) {
     super( //
         new SimpleEpisodeIntegrator( //
             STATE_SPACE_MODEL, //

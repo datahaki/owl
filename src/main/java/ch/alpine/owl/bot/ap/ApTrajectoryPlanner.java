@@ -23,7 +23,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class ApTrajectoryPlanner {
+class ApTrajectoryPlanner {
   /* Setting up parameters for the ApComboRegion
    * Note: GOAL and RADIUS_VECTOR are 3D, since x is omitted in ApComboRegion */
   final static Tensor GOAL = Tensors.fromString("{5[m], 60[m*s^-1], 0}"); // goal = {zCenter, vCenter, gammaCenter}

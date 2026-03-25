@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
 /** Pendulum Swing-up controls */
-/* package */ enum PsuControls {
+enum PsuControls {
   ;
   /** @param amplitude maximum absolute radial acceleration of pendulum
    * @param num

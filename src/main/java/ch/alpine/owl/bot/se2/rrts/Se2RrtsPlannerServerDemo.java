@@ -34,7 +34,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum Se2RrtsPlannerServerDemo {
+enum Se2RrtsPlannerServerDemo {
   ;
   static void main() throws Exception {
     Tensor range = Tensors.vector(7, 7).unmodifiable();

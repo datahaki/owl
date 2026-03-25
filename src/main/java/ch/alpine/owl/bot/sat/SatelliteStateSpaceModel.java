@@ -7,7 +7,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-/* package */ enum SatelliteStateSpaceModel implements StateSpaceModel {
+enum SatelliteStateSpaceModel implements StateSpaceModel {
   INSTANCE;
 
   /** @param x of the form {px, py, vx, vy}

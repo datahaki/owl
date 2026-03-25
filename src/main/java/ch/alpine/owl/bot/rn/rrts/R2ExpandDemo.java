@@ -24,7 +24,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum R2ExpandDemo {
+enum R2ExpandDemo {
   ;
   static void main() throws Exception {
     int wid = 7;

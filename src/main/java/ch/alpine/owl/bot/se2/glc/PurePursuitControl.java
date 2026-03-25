@@ -14,7 +14,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.Sign;
 
 /** pure pursuit control */
-/* package */ class PurePursuitControl extends LookAheadControl {
+class PurePursuitControl extends LookAheadControl {
   /** @param lookAhead distance
    * @param maxTurningRate */
   public PurePursuitControl(Scalar lookAhead, Scalar maxTurningRate) {

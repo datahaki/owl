@@ -6,7 +6,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-/* package */ enum PsuMetric implements TensorMetric {
+enum PsuMetric implements TensorMetric {
   INSTANCE;
 
   @Override // from TensorMetric

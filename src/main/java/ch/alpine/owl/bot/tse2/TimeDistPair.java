@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.tse2;
 
 import ch.alpine.tensor.Scalar;
 
-/* package */ class TimeDistPair {
+class TimeDistPair {
   public final Scalar time;
   public final Scalar dist;
 

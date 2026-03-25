@@ -10,7 +10,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ abstract class LookAheadControl extends Se2TrajectoryControl {
+abstract class LookAheadControl extends Se2TrajectoryControl {
   // ---
   final Scalar lookAhead;
   /** for drawing only */

@@ -6,7 +6,7 @@ import ch.alpine.tensor.img.ColorDataIndexed;
 
 /** helper class to adapt the node and edge colors of a tree
  * to the dimension of the state space */
-/* package */ enum TreeColor {
+enum TreeColor {
   LO(128, 76), //
   HI(51, 19);
 

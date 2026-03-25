@@ -23,7 +23,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 
-/* package */ class R2RrtsLetterDemo implements DemoInterface {
+class R2RrtsLetterDemo implements DemoInterface {
   @Override
   public TimerFrame getWindow() {
     OwlAnimationFrame owlAnimationFrame = new OwlAnimationFrame();

@@ -47,7 +47,7 @@ import ch.alpine.tensor.red.ScalarSummaryStatistics;
 import ch.alpine.tensor.red.StandardDeviation;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum ClothoidLaneSimulation {
+enum ClothoidLaneSimulation {
   ;
   private static final Tensor[] CONTROLS = { //
       Tensors.fromString("{{6.017, 4.983, 0.785},{8.100, 5.100, -1.571},{1.667, 1.950, -3.142}}"), //

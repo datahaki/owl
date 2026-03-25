@@ -15,7 +15,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   private static final int LIMIT = 800;
 

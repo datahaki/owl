@@ -18,7 +18,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 
 class TrajectoryEntryFinderTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
-  /* package */ static final Tensor WAYPOINTS = Tensors.of( //
+  static final Tensor WAYPOINTS = Tensors.of( //
       Tensors.vector(0, 0, 0), //
       Tensors.vector(1, 0.5, Math.PI / 4), //
       Tensors.vector(2, 1, 0), //

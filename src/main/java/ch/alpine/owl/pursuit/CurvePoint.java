@@ -9,7 +9,7 @@ public class CurvePoint implements Serializable {
   private final int index;
   private final Tensor tensor;
 
-  /* package */ CurvePoint(int index, Tensor tensor) {
+  CurvePoint(int index, Tensor tensor) {
     this.index = index;
     this.tensor = tensor;
   }

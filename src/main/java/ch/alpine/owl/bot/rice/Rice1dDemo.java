@@ -36,7 +36,7 @@ import ch.alpine.tensor.qty.Quantity;
  * 
  * References:
  * "Mobility and Autonomous Reconfiguration of Marsokhod" */
-/* package */ enum Rice1dDemo {
+enum Rice1dDemo {
   ;
   public static TrajectoryPlanner simple() {
     Tensor eta = Tensors.vector(8, 8);

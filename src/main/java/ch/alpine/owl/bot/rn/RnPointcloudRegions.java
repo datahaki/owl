@@ -35,7 +35,7 @@ public enum RnPointcloudRegions {
     return RnPointcloudRegion.of(points((BufferedImageRegion) bufferedImageRegion), radius);
   }
 
-  /* package */ static Tensor points(BufferedImageRegion bufferedImageRegion) {
+  static Tensor points(BufferedImageRegion bufferedImageRegion) {
     Tensor points = Tensors.empty();
     BufferedImage bufferedImage = bufferedImageRegion.bufferedImage();
     Tensor pixel2model = bufferedImageRegion.pixel2model();

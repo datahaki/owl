@@ -18,7 +18,7 @@ import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.io.Import;
 
-/* package */ enum WaypointDistanceCostDemo {
+enum WaypointDistanceCostDemo {
   ;
   private static final CurveOperator CURVE_SUBDIVISION = new BSpline1CurveSubdivision(Se2Group.INSTANCE);
 

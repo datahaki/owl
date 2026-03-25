@@ -18,7 +18,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
 /** simple animation of a landing airplane */
-/* package */ enum ApDemo {
+enum ApDemo {
   ;
   final static Tensor INITIAL = Tensors.fromString("{0[m], 80[m], 60[m*s^-1], -0.017}");
 

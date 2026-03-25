@@ -6,7 +6,7 @@ import java.io.Serializable;
 /** Creates a card of the game jassen with the attributes color and card type
  * 
  * https://en.wikipedia.org/wiki/Jass */
-/* package */ record JassCard(JassFarbe farbe, JassType type, boolean isTrumpf) implements Serializable {
+record JassCard(JassFarbe farbe, JassType type, boolean isTrumpf) implements Serializable {
   /** checks whether the two cards are exactly the same or if two different colors were assigned Trumpf
    * 
    * @param jassCard to check for eligibility

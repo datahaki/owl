@@ -16,7 +16,7 @@ import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 
 /** controls for position and velocity */
-/* package */ class Rice2Controls implements FlowsInterface, Serializable {
+class Rice2Controls implements FlowsInterface, Serializable {
   /** @param mu coefficient, any real number
    * @param num amplitude resolution
    * @return */

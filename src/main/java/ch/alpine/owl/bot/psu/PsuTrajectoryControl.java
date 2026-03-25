@@ -10,7 +10,7 @@ import ch.alpine.owlets.math.state.TrajectorySample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-/* package */ final class PsuTrajectoryControl extends StateTrajectoryControl {
+final class PsuTrajectoryControl extends StateTrajectoryControl {
   @Override // from StateTrajectoryControl
   protected Scalar pseudoDistance(Tensor x, Tensor y) {
     return PsuMetric.INSTANCE.distance(x, y);

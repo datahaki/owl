@@ -27,7 +27,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class ClothoidLaneRrtsEntity extends AbstractRrtsEntity {
+class ClothoidLaneRrtsEntity extends AbstractRrtsEntity {
   private static final Scalar DELAY_HINT = Quantity.of(3, "s");
   private static final StateSpaceModel STATE_SPACE_MODEL = Se2StateSpaceModel.INSTANCE;
   static final Tensor SHAPE = Tensors.matrixDouble( //

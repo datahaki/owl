@@ -8,7 +8,7 @@ import java.awt.Stroke;
 import java.awt.geom.Area;
 import java.util.function.BiConsumer;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   static void makeStroke(Area area, float radius, BiConsumer<Area, Area> function) {
     Stroke stroke = new BasicStroke(radius * 2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);

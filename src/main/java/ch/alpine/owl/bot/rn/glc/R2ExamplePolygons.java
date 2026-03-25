@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.rn.glc;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ enum R2ExamplePolygons {
+enum R2ExamplePolygons {
   ;
   public static final Tensor CORNER_POINTY = Tensors.matrix(new Number[][] { //
       { 3, 0 }, //

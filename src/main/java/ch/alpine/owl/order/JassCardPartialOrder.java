@@ -8,7 +8,7 @@ import ch.alpine.owlets.math.order.Order;
 import ch.alpine.owlets.math.order.OrderComparator;
 
 /** Creates a STRICT partial order for cards of deck according to the rules of "Jassen" */
-/* package */ enum JassCardPartialOrder {
+enum JassCardPartialOrder {
   ;
   /** Compares cards according to their value in the traditional Swiss card game of Jassen
    * 

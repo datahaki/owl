@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.qty.Quantity;
 
 // x == [d v a w]
-/* package */ class IpGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
+class IpGoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
   public IpGoalManager(Tensor center, Tensor radius) {
     super(new TimeInvariantRegion(BoxRegion.fromCenterAndRadius(center, radius)));
   }

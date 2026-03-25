@@ -17,7 +17,7 @@ import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.nrm.VectorAngle;
 
 /** class is not used */
-/* package */ class ImageGradientCostFunction implements CostFunction, Serializable {
+class ImageGradientCostFunction implements CostFunction, Serializable {
   private final ImageGradientInterpolation imageGradientInterpolation;
 
   public ImageGradientCostFunction(ImageGradientInterpolation imageGradientInterpolation) {

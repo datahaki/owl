@@ -17,7 +17,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Sign;
 
-/* package */ class PsuGoalManager implements MemberQ, CostFunction {
+class PsuGoalManager implements MemberQ, CostFunction {
   /** @param coordinateWrap
    * @param center
    * @param radius

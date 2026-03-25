@@ -11,7 +11,7 @@ import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-/* package */ class R2xTEntity extends R2Entity {
+class R2xTEntity extends R2Entity {
   private final Scalar delay;
 
   public R2xTEntity(EpisodeIntegrator episodeIntegrator, Scalar delay) {

@@ -32,7 +32,7 @@ import ch.alpine.tensor.alg.Join;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class SatelliteEntity extends AbstractCircularEntity {
+class SatelliteEntity extends AbstractCircularEntity {
   protected static final Tensor PARTITION_SCALE = Tensors.vector(5, 5, 6, 6).unmodifiable();
   private static final Tensor SHAPE = Tensors.matrixDouble( //
       new double[][] { { .3, 0, 1 }, { -.1, -.1, 1 }, { -.1, +.1, 1 } }).unmodifiable();

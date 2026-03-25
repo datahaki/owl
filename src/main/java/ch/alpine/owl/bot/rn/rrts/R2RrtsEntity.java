@@ -27,7 +27,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.qty.Quantity;
 
 // TODO OWL API the redundancy in R2****Entity shows that re-factoring is needed!
-/* package */ class R2RrtsEntity extends AbstractRrtsEntity {
+class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(0.5, "s");
   private static final StateSpaceModel STATE_SPACE_MODEL = StateSpaceModels.SINGLE_INTEGRATOR;

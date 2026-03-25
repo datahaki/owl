@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
 // TODO_YN ideally there should be a demo or tests that still uses this implementation
-/* package */ class SimpleShadowConstraint extends AbstractShadowConstraint {
+class SimpleShadowConstraint extends AbstractShadowConstraint {
   // ---
   private final ShadowMapArea shadowMap;
   private final Area initArea;

@@ -15,7 +15,7 @@ import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.sca.Round;
 
 /** class controls delta using {@link StandardTrajectoryPlanner} */
-/* package */ class DeltaxTEntity extends DeltaEntity {
+class DeltaxTEntity extends DeltaEntity {
   public DeltaxTEntity(EpisodeIntegrator episodeIntegrator, TrajectoryControl trajectoryControl, ImageGradientInterpolation imageGradientInterpolation) {
     super(episodeIntegrator, trajectoryControl, imageGradientInterpolation);
   }

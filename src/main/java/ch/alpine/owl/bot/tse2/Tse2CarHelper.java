@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.N;
 
-/* package */ enum Tse2CarHelper {
+enum Tse2CarHelper {
   ;
   /** the turning radius of the flow is the reciprocal of the given rate
    * 

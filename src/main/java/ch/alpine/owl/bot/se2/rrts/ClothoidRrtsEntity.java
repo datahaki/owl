@@ -28,7 +28,7 @@ import ch.alpine.tensor.pdf.ConstantRandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class ClothoidRrtsEntity extends AbstractRrtsEntity {
+class ClothoidRrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(3, "s");
   private static final StateSpaceModel STATE_SPACE_MODEL = Se2StateSpaceModel.INSTANCE;

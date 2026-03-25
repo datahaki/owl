@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Ramp;
 
-/* package */ class Rice1GoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
+class Rice1GoalManager extends SimpleTrajectoryRegionQuery implements GoalInterface {
   // ---
   private final Tensor center;
   private final Tensor radius;

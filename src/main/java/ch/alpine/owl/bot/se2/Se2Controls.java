@@ -8,7 +8,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.sca.Abs;
 
-/* package */ enum Se2Controls {
+enum Se2Controls {
   ;
   /** @param flows
    * @return max speed with unit "m*s^-1" */

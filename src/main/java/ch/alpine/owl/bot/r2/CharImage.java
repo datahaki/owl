@@ -9,7 +9,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /** creates an image with unicode characters drawn inside */
-/* package */ class CharImage {
+class CharImage {
   public static CharImage fillBlack(Dimension dimension) {
     return new CharImage(dimension, Color.BLACK, Color.WHITE);
   }

@@ -13,7 +13,7 @@ import ch.alpine.tensor.red.Max;
  * {@link StateSpaceModels}
  * 
  * class is intentionally public */
-/* package */ enum RnControls {
+enum RnControls {
   ;
   /** @param controls
    * @return max of norm 2 of given controls in R^n */

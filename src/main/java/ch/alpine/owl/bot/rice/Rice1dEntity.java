@@ -30,7 +30,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class Rice1dEntity extends RiceBaseEntity {
+class Rice1dEntity extends RiceBaseEntity {
   private static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK4;
   // ---
   private final StateSpaceModel stateSpaceModel;

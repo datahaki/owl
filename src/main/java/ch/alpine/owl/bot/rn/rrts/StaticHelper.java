@@ -9,7 +9,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.sca.N;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   public static TransitionRegionQuery polygon1() {
     return new SampledTransitionRegionQuery( //

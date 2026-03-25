@@ -34,7 +34,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.qty.Quantity;
 
-/* package */ class PsuEntity extends AbstractCircularEntity implements GlcPlannerCallback {
+class PsuEntity extends AbstractCircularEntity implements GlcPlannerCallback {
   private static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK45;
   /** preserve 1[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(1, "s");

@@ -43,7 +43,7 @@ import ch.alpine.tensor.qty.Timing;
 
 /** expands: 1491
  * computation time: 0.876993604 */
-/* package */ enum R2NoiseGlcDemo {
+enum R2NoiseGlcDemo {
   ;
   static void main() {
     Tensor partitionScale = Tensors.vector(8, 8);

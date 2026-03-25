@@ -8,7 +8,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
 import ch.alpine.tensor.sca.Clip;
 
-/* package */ abstract class Se2TrajectoryControl extends StateTrajectoryControl implements TrajectoryTargetRender {
+abstract class Se2TrajectoryControl extends StateTrajectoryControl implements TrajectoryTargetRender {
   // ---
   protected final Clip clip;
 

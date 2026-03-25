@@ -29,7 +29,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum Se2ExpandDemo {
+enum Se2ExpandDemo {
   ;
   private static void animate(TransitionSpace transitionSpace) throws IOException, Exception {
     Tensor min = Tensors.vector(0, 0, -Math.PI);

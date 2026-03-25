@@ -29,7 +29,7 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum R2InsideCharDemo {
+enum R2InsideCharDemo {
   ;
   private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //

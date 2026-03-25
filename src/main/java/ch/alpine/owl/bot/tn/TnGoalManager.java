@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Ramp;
 /** goal region is spherical
  * 
  * objective is minimum path length */
-/* package */ class TnGoalManager implements MemberQ, CostFunction {
+class TnGoalManager implements MemberQ, CostFunction {
   private final TensorMetric tensorMetric;
   private final Tensor center;
   private final Scalar radius;

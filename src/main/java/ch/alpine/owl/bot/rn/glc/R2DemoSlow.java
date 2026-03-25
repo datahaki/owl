@@ -47,7 +47,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Ramp;
 
-/* package */ enum R2DemoSlow {
+enum R2DemoSlow {
   ;
   static TrajectoryPlanner simpleEmpty() throws Exception {
     return simple(EmptyTrajectoryRegionQuery.INSTANCE);

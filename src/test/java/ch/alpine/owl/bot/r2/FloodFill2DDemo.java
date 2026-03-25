@@ -18,7 +18,7 @@ import ch.alpine.tensor.qty.Timing;
 import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum FloodFill2DDemo {
+enum FloodFill2DDemo {
   ;
   public static final ScalarUnaryOperator GRAYSCALE = new ScalarUnaryOperator() {
     final Scalar scale = RealScalar.of(63.0);

@@ -37,7 +37,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ class BalloonEntity extends AbstractCircularEntity {
+class BalloonEntity extends AbstractCircularEntity {
   private static final Tensor PARTITION_SCALE = Tensors.vector(2, 2, 1, 1).unmodifiable();
   static final int FLOWRES = 4;
   static final Scalar U_MAX = Quantity.of(30, "s^-1");

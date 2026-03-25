@@ -37,7 +37,7 @@ import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.Timing;
 
-/* package */ enum R2ImageDemo {
+enum R2ImageDemo {
   ;
   static void main() {
     Tensor partitionScale = Tensors.vector(6, 6);

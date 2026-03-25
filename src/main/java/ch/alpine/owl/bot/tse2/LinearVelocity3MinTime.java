@@ -6,7 +6,7 @@ import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 
-/* package */ class LinearVelocity3MinTime {
+class LinearVelocity3MinTime {
   private final Scalar v_max;
   private final Scalar a_max;
   @SuppressWarnings("unused")

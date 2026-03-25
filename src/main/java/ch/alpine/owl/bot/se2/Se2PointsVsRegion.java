@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
 
 /** used in se2 animation demo to check if footprint of vehicle intersects with obstacle region */
-/* package */ class Se2PointsVsRegion implements MemberQ {
+class Se2PointsVsRegion implements MemberQ {
   private final Tensor points;
   private final Predicate<Tensor> region;
 

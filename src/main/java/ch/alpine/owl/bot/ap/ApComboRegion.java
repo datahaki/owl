@@ -10,7 +10,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.PackageTestAccess;
 
-/* package */ class ApComboRegion implements MemberQ {
+class ApComboRegion implements MemberQ {
   /** @param goal = {zCenter, velocityCenter, gammaCenter} defining center of goal region
    * @param radiusVector = {zRadius, velocityCenter, gammaCenter} defining radii of goal region
    * @return new ApComboRegion */

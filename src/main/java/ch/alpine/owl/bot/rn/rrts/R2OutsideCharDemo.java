@@ -24,7 +24,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 
-/* package */ enum R2OutsideCharDemo {
+enum R2OutsideCharDemo {
   ;
   static void main() throws Exception {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(7, 7));

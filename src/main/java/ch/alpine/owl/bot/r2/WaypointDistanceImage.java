@@ -15,7 +15,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.io.ImageFormat;
 
-/* package */ class WaypointDistanceImage {
+class WaypointDistanceImage {
   public static final int OFF_PATH_COST = 1;
   // ---
   private final BufferedImage bufferedImage;

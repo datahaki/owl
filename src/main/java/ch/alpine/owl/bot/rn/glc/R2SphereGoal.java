@@ -11,7 +11,7 @@ import ch.alpine.owlets.glc.core.GlcNodes;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTime;
 
-/* package */ enum R2SphereGoal {
+enum R2SphereGoal {
   ;
   static void main() {
     R2SphereBase r2SphereBase = new R2SphereBase();

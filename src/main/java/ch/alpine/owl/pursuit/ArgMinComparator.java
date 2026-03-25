@@ -7,7 +7,7 @@ import java.util.Objects;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 
-/* package */ enum ArgMinComparator implements Comparator<Tensor> {
+enum ArgMinComparator implements Comparator<Tensor> {
   INSTANCE;
 
   @Override // from Comparator

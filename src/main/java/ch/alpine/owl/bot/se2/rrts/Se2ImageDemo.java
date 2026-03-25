@@ -29,7 +29,7 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.sca.Clips;
 
-/* package */ enum Se2ImageDemo {
+enum Se2ImageDemo {
   ;
   static void main() throws Exception {
     Tensor range = Tensors.vector(7, 7).unmodifiable();

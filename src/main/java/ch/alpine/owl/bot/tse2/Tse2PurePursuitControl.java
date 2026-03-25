@@ -18,7 +18,7 @@ import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Sign;
 
 /** pure pursuit control */
-/* package */ class Tse2PurePursuitControl extends StateTrajectoryControl {
+class Tse2PurePursuitControl extends StateTrajectoryControl {
   private final Scalar lookAhead;
   private final Clip clip;
 

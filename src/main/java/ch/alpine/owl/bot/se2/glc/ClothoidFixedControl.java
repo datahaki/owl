@@ -18,7 +18,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.sca.Sign;
 
 /** clothoid pursuit control with fixed look ahead */
-/* package */ class ClothoidFixedControl extends LookAheadControl {
+class ClothoidFixedControl extends LookAheadControl {
   // ---
   private final CurveIntersection curveIntersection;
 

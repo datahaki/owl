@@ -35,7 +35,7 @@ import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
-/* package */ class TwdEntity extends Se2Entity {
+class TwdEntity extends Se2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //
       RealScalar.of(6), RealScalar.of(6), Degree.of(10).reciprocal()).unmodifiable();
   private static final Scalar SQRT2 = Sqrt.FUNCTION.apply(RealScalar.TWO);
