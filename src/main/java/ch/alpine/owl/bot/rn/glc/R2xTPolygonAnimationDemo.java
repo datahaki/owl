@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import ch.alpine.ascony.crv.CogPoints;
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.MouseGoal;
@@ -14,7 +15,6 @@ import ch.alpine.owlets.math.state.EpisodeIntegrator;
 import ch.alpine.owlets.math.state.SimpleEpisodeIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
-import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophis.flow.StateSpaceModels;
 import ch.alpine.sophis.flow.TimeIntegrators;
 import ch.alpine.sophis.math.bij.BijectionFamily;

@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.se2.twd;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
+import ch.alpine.ascony.crv.Arrowhead;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
@@ -22,7 +23,6 @@ import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.StateTimeTensorFunction;
 import ch.alpine.sophis.crv.d2.Extract2D;
-import ch.alpine.sophis.crv.d2.ex.Arrowhead;
 import ch.alpine.sophis.reg.BallRegion;
 import ch.alpine.sophis.reg.RegionWithDistance;
 import ch.alpine.sophis.reg.So2Region;

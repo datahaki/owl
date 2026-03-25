@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.ascony.crv.CogPoints;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.api.Region;
-import ch.alpine.sophis.crv.d2.ex.CogPoints;
 import ch.alpine.sophis.math.bij.BijectionFamily;
 import ch.alpine.sophis.math.bij.So2Family;
 import ch.alpine.tensor.RealScalar;
