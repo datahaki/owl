@@ -1,12 +1,14 @@
 // code by jph
 package ch.alpine.owl.bot.rn.glc;
 
+import java.awt.image.BufferedImage;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.awt.OffscreenRender;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.bridge.io.AnimationWriter;
 import ch.alpine.bridge.io.GifAnimationWriter;
@@ -89,7 +91,8 @@ enum R2DemoSlow {
         TimerFrame owlFrame = OwlGui.glc(trajectoryPlanner);
         owlFrame.geometricComponent().addRenderInterfaceBackground(RegionRenderFactory.create(ballRegion));
         owlFrame.geometricComponent().addRenderInterfaceBackground(renderInterface); // reference to collection
-        animationWriter.write(owlFrame.offscreen());
+        BufferedImage bufferedImage = OffscreenRender.of(owlFrame.geometricComponent());
+        animationWriter.write(bufferedImage);
       }
     }
     Optional<GlcNode> optional = trajectoryPlanner.getBest();

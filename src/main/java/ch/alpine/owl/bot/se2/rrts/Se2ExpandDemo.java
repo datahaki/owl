@@ -1,10 +1,12 @@
 // code by jph
 package ch.alpine.owl.bot.se2.rrts;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.Duration;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.awt.OffscreenRender;
 import ch.alpine.bridge.io.AnimationWriter;
 import ch.alpine.bridge.io.GifAnimationWriter;
 import ch.alpine.owl.util.win.OwlGui;
@@ -50,7 +52,8 @@ enum Se2ExpandDemo {
           rrts.insertAsNode(RandomSample.of(randomSampleInterface), 20);
         TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
         timerFrame.setBounds(100, 100, 500, 500);
-        animationWriter.write(timerFrame.offscreen());
+        BufferedImage bufferedImage = OffscreenRender.of(timerFrame.geometricComponent());
+        animationWriter.write(bufferedImage);
       }
     }
     System.out.println(rrts.rewireCount());

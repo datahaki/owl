@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JToggleButton;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.awt.OffscreenRender;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.owl.ani.api.AnimationInterface;
@@ -57,7 +58,7 @@ public class OwlAnimationFrame {
 
           @Override
           public void run() {
-            BufferedImage offscreen = timerFrame.offscreen();
+            BufferedImage offscreen = OffscreenRender.of(timerFrame.geometricComponent());
             StateTime stateTime = abstractEntity.getStateTimeNow();
             GeometricLayer geometricLayer = new GeometricLayer(timerFrame.geometricComponent().getModel2Pixel());
             Point2D now = geometricLayer.toPoint2D(stateTime.state());
