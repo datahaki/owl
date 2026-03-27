@@ -7,15 +7,15 @@ import ch.alpine.owlets.rrts.core.TransitionRegionQuery;
 import ch.alpine.sophis.ts.ClothoidTransition;
 import ch.alpine.sophis.ts.Transition;
 import ch.alpine.sophus.clt.LagrangeQuadraticD;
+import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.sca.Clip;
-import ch.alpine.tensor.sca.Sign;
 
 public class ClothoidCurvatureQuery implements TransitionRegionQuery, Serializable {
   private final Clip clip;
 
   /** @param clip with positive width */
   public ClothoidCurvatureQuery(Clip clip) {
-    Sign.requirePositive(clip.width());
+    Throw.unless(clip.isNonDegenerate());
     this.clip = clip;
   }
 

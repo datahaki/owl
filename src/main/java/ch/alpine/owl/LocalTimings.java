@@ -5,7 +5,7 @@ import ch.alpine.bridge.pro.RunProviderTimings;
 
 enum LocalTimings {
   ;
-  static void main() {
+  static void main() throws Exception {
     RunProviderTimings.of(LocalTimings.class.getPackageName());
   }
 }

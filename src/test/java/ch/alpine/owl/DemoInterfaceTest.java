@@ -13,7 +13,7 @@ import ch.alpine.owl.util.win.DemoInterface;
 
 class DemoInterfaceTest implements Consumer<DemoInterface> {
   @TestFactory
-  Stream<DynamicTest> dynamicTests() {
+  Stream<DynamicTest> dynamicTests() throws Exception {
     return InstanceDiscovery.of(getClass().getPackageName(), DemoInterface.class).stream() //
         .map(instanceRecord -> DynamicTest.dynamicTest(instanceRecord.toString(), //
             () -> accept(instanceRecord.supplier().get())));
