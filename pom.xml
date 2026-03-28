@@ -73,7 +73,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.15.0</version>
 				<configuration>
-					<release>25</release>
+					<release>26</release>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -12,7 +12,7 @@ import ch.alpine.tensor.sca.tri.Cos;
 import ch.alpine.tensor.sca.tri.Sin;
 
 /** kinematic car model */
-// TODO this seems to be a special case -> obsolete!
+// TODO OWL this seems to be a special case -> obsolete!
 public enum Se2CarLieIntegrator implements LieIntegrator {
   INSTANCE;
 
