@@ -6,8 +6,8 @@ import java.time.Duration;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.awt.OffscreenRender;
-import ch.alpine.bridge.io.AnimationWriter;
-import ch.alpine.bridge.io.GifAnimationWriter;
+import ch.alpine.bridge.io.ani.AnimationWriter;
+import ch.alpine.bridge.io.ani.GifAnimationWriter;
 import ch.alpine.owl.util.win.OwlGui;
 import ch.alpine.owlets.rrts.adapter.LengthCostFunction;
 import ch.alpine.owlets.rrts.adapter.RrtsNodes;
