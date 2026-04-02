@@ -16,7 +16,7 @@ import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.chq.FiniteScalarQ;
-import ch.alpine.tensor.img.ColorDataIndexed;
+import ch.alpine.tensor.col.ColorDataIndexed;
 import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
 

@@ -14,7 +14,7 @@ import ch.alpine.bridge.gfx.RenderInterface;
 import ch.alpine.sophis.api.SignedDistanceFunction;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.img.ColorDataGradients;
+import ch.alpine.tensor.col.ColorDataGradients;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 public class SignedDistRender implements RenderInterface {

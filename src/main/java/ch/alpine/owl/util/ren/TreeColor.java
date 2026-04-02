@@ -2,7 +2,7 @@
 package ch.alpine.owl.util.ren;
 
 import ch.alpine.bridge.col.ColorLookup;
-import ch.alpine.tensor.img.ColorDataIndexed;
+import ch.alpine.tensor.col.ColorDataIndexed;
 
 /** helper class to adapt the node and edge colors of a tree
  * to the dimension of the state space */
