@@ -26,7 +26,7 @@ import ch.alpine.tensor.pdf.ConstantRandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.qty.Quantity;
 
-// TODO OWL API the redundancy in R2****Entity shows that re-factoring is needed!
+// TODO API the redundancy in R2****Entity shows that re-factoring is needed!
 class R2RrtsEntity extends AbstractRrtsEntity {
   /** preserve 0.5[s] of the former trajectory */
   private static final Scalar DELAY_HINT = Quantity.of(0.5, "s");

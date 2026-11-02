@@ -82,7 +82,7 @@ class R2Entity extends AbstractCircularEntity implements GlcPlannerCallback {
 
   @Override
   public TrajectoryPlanner createTreePlanner(PlannerConstraint plannerConstraint, Tensor goal) {
-    Collection<Tensor> controls = createControls(); // TODO OWL API design no good
+    Collection<Tensor> controls = createControls(); // TODO API design no good
     goalRegion = getGoalRegionWithDistance(goal);
     GoalInterface goalInterface = MultiCostGoalAdapter.of( //
         RnMinTimeGoalManager.create(goalRegion, controls), //

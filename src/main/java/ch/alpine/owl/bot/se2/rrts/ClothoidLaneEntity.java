@@ -24,7 +24,7 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 
 /** variant of {@link ClothoidLaneRrtsEntity} intended for simulation
- * TODO OWL API perhaps create intermediate class with common code to derive from */
+ * TODO API perhaps create intermediate class with common code to derive from */
 class ClothoidLaneEntity extends AbstractRrtsEntity {
   private static final StateSpaceModel STATE_SPACE_MODEL = Se2StateSpaceModel.INSTANCE;
   private final Scalar delayHint;

@@ -74,7 +74,7 @@ class Rice2dEntity extends RiceBaseEntity {
     super.render(geometricLayer, graphics);
     treeRender.render(geometricLayer, graphics);
     {
-      // FIXME OWL API this is the wrong place to draw the mouse
+      // FIXME API this is the wrong place to draw the mouse
       // Tensor xya = geometricLayer.getMouseSe2State();
       // geometricLayer.pushMatrix(Se2Matrix.of(xya));
       // graphics.setColor(new Color(0, 128, 255, 192));

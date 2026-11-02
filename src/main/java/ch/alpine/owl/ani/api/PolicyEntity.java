@@ -12,7 +12,7 @@ import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Tensor;
 
-// TODO OWL API JPH first API draft, unify with se2entity and abstract entity
+// TODO API JPH first API draft, unify with se2entity and abstract entity
 public abstract class PolicyEntity implements AnimationInterface, RenderInterface {
   protected EpisodeIntegrator episodeIntegrator;
   public TrajectoryRegionQuery obstacleQuery = null;
@@ -40,7 +40,7 @@ public abstract class PolicyEntity implements AnimationInterface, RenderInterfac
       geometricLayer.popMatrix();
     }
     { // draw mouse
-      // FIXME OWL API this is the wrong place to draw the mouse!
+      // FIXME API this is the wrong place to draw the mouse!
       // Color color = new Color(0, 128, 255, 192);
       // Tensor xya = geometricLayer.getMouseSe2State();
       // StateTime stateTime = new StateTime(xya, getStateTimeNow().time());

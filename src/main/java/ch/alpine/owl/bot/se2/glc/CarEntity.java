@@ -79,7 +79,7 @@ public class CarEntity extends Se2Entity {
   public final Tensor goalRadius;
   final Tensor partitionScale;
   private final Tensor shape;
-  protected final TrajectoryControl trajectoryControl; // TODO OWL API design is despicable
+  protected final TrajectoryControl trajectoryControl; // TODO API design is despicable
 
   /** extra cost functions, for instance
    * 1) to penalize switching gears

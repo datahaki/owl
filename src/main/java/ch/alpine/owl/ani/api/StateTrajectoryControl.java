@@ -74,7 +74,7 @@ public abstract class StateTrajectoryControl implements TrajectoryControl, Seria
   /** @param trajectory
    * @return */
   private static List<TrajectorySample> resetAction(List<TrajectorySample> trajectory) {
-    // TODO OWL API api not clear
+    // TODO API api not clear
     // System.err.println("out of trajectory");
     return null;
   }

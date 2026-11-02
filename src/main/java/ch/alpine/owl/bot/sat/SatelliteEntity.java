@@ -77,7 +77,7 @@ class SatelliteEntity extends AbstractCircularEntity {
   public void render(GeometricLayer geometricLayer, Graphics2D graphics) {
     super.render(geometricLayer, graphics);
     {
-      // FIXME OWL API this is the wrong place to draw the mouse!
+      // FIXME API this is the wrong place to draw the mouse!
       // Tensor xya = geometricLayer.getMouseSe2State();
       // geometricLayer.pushMatrix(Se2Matrix.of(xya));
       // graphics.setColor(new Color(0, 128, 255, 192));

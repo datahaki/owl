@@ -20,7 +20,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
 
-// TODO OWL ALG the visualization of the demo is poor
+// TODO ALG the visualization of the demo is poor
 public class R2xTNoiseAnimationDemo implements DemoInterface {
   private static final Scalar DELAY = Quantity.of(0.5, "s");
 

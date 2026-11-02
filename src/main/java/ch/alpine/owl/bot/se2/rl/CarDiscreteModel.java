@@ -22,7 +22,7 @@ import ch.alpine.tensor.num.Rationalize;
 import ch.alpine.tensor.sca.gam.Factorial;
 
 class CarDiscreteModel implements DiscreteModel, TerminalInterface {
-  // TODO OWL ALG should depend on time!
+  // TODO ALG should depend on time!
   private static final Scalar DISCOUNT_FACTOR = RealScalar.of(0.98);
   // ---
   private final Tensor states;
