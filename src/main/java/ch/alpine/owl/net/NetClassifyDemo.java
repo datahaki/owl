@@ -117,7 +117,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     Rectangle rectangle = geometricLayer.toRectangle(cbb).orElseThrow();
     {
       Show show = new Show();
-      show.add(DensityPlot.of((x, y) -> (Scalar) netClassify.netChain.forward(Tensors.of(x, y)), cbb, param2.cdg));
+      show.add(DensityPlot.of((x, y) -> (Scalar) netClassify.netLayer.forward(Tensors.of(x, y)), cbb, param2.cdg));
       // show.setAspectRatioDontCare();
       show.render(graphics, rectangle);
     } // ---

@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.owl.net;
 
 import java.awt.image.BufferedImage;
@@ -8,8 +9,8 @@ import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.plt.DensityPlot;
 import ch.alpine.bridge.fig.plt.ListLinePlot;
 import ch.alpine.bridge.io.ani.ImageIconRecorder;
-import ch.alpine.subare.net.NetChain;
 import ch.alpine.subare.net.NetChains;
+import ch.alpine.subare.net.NetLayer;
 import ch.alpine.subare.net.NetTrain;
 import ch.alpine.subare.net.NetTrainListener;
 import ch.alpine.tensor.RealScalar;
@@ -25,7 +26,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.qty.Quantity;
 
 public class NetClassify {
-  final NetChain netChain;
+  final NetLayer netLayer;
   final NetTrain netTrain;
   CoordinateBoundingBox cbb;
   ColorDataGradients cdg = ColorDataGradients.COPPER;
@@ -33,13 +34,13 @@ public class NetClassify {
 
   public NetClassify(Tensor xdata, Tensor vector, int hidden, int labels) {
     int d_in = Unprotect.dimension1(xdata);
-    netChain = NetChains.argMaxMLP(d_in, hidden, labels);
-    netTrain = new NetTrain(netChain, xdata, vector);
+    netLayer = NetChains.argMaxMLP(d_in, hidden, labels);
+    netTrain = new NetTrain(netLayer, xdata, vector);
     cbb = CoordinateBounds.of(xdata);
     netTrain.addListener(new NetTrainListener() {
       @Override
       public void epoch(int epoch) {
-        DensityPlot densityPlot = DensityPlot.of((x, y) -> (Scalar) netChain.forward(Tensors.of(x, y)), cbb, cdg);
+        DensityPlot densityPlot = DensityPlot.of((x, y) -> (Scalar) netLayer.forward(Tensors.of(x, y)), cbb, cdg);
         ScalableImage scalableImage = densityPlot.getScalableImage(100);
         BufferedImage bufferedImage = scalableImage.getScaledInstance(ImageResize.DEGREE_3, RealScalar.ONE);
         imageIconRecorder.write(bufferedImage);
