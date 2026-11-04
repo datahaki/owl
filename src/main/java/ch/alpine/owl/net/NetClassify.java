@@ -3,6 +3,7 @@ package ch.alpine.owl.net;
 
 import java.awt.image.BufferedImage;
 import java.time.Duration;
+import java.util.concurrent.ThreadLocalRandom;
 
 import ch.alpine.bridge.awt.ScalableImage;
 import ch.alpine.bridge.fig.Show;
@@ -35,6 +36,7 @@ public class NetClassify {
   public NetClassify(Tensor xdata, Tensor vector, int hidden, int labels) {
     int d_in = Unprotect.dimension1(xdata);
     netLayer = NetChains.argMaxMLP(d_in, hidden, labels);
+    netLayer.initialize(ThreadLocalRandom.current());
     netTrain = new NetTrain(netLayer, xdata, vector);
     cbb = CoordinateBounds.of(xdata);
     netTrain.addListener(new NetTrainListener() {
