@@ -51,7 +51,7 @@ public class NetClassify {
   }
 
   public void run() {
-    netTrain.run(RealScalar.of(0.05), Quantity.of(1.3, "s"), 3000, 10);
+    netTrain.runAsBatches(RealScalar.of(0.3), 3, 3000, Quantity.of(1.3, "s"));
   }
 
   public Show showTParam() {

@@ -8,9 +8,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.pdf.TensorShuffle;
 
 class TensorShuffleTest {
   @Test

@@ -17,13 +17,13 @@ import ch.alpine.owlets.math.order.OrderComparator;
 import ch.alpine.owlets.math.order.OrderComparison;
 import ch.alpine.owlets.math.order.RepresentativeTransitiveMinTracker;
 import ch.alpine.owlets.math.order.TransitiveMinTracker;
-import ch.alpine.sophus.math.TensorShuffle;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.TensorShuffle;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
 
 class DigitSumDivisibilityPreorderTest {
