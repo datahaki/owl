@@ -50,8 +50,9 @@ public class NetClassify {
     });
   }
 
-  public void run() {
-    netTrain.runAsBatches(RealScalar.of(0.3), 3, 3000, Quantity.of(1.3, "s"));
+  public void run(Scalar learningRate, Integer batch_size) {
+    netTrain.runAsBatches(learningRate, batch_size, 3000, Quantity.of(5, "s"));
+    // netTrain.run(RealScalar.of(0.3), 3, 3000, Quantity.of(1.3, "s"));
   }
 
   public Show showTParam() {

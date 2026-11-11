@@ -6,7 +6,7 @@ import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.RealScalar;
@@ -23,7 +23,7 @@ public class Se2PolicyNoiseDemo implements DemoInterface {
     final Scalar threshold = RealScalar.of(0.6);
     MemberQ region = new R2NoiseRegion(threshold);
     // ---
-    TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
+    TrajectoryRegionQuery trq = SimpleTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(trq));
     // ---
     Tensor start = Tensors.vector(2.000, 3.317, 0.942).unmodifiable();

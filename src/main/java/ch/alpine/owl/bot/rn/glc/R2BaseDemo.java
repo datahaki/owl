@@ -11,7 +11,6 @@ import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
@@ -23,6 +22,7 @@ import ch.alpine.owlets.glc.core.PlannerConstraint;
 import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.sophis.flow.StateSpaceModels;
@@ -51,7 +51,7 @@ abstract class R2BaseDemo implements DemoInterface {
     GoalInterface goalInterface = new RnMinDistGoalManager(ballRegion);
     MemberQ region = region(); //
     PlannerConstraint plannerConstraint = //
-        new TrajectoryObstacleConstraint(CatchyTrajectoryRegionQuery.timeInvariant(region));
+        new TrajectoryObstacleConstraint(SimpleTrajectoryRegionQuery.timeInvariant(region));
     TrajectoryPlanner trajectoryPlanner = new StandardTrajectoryPlanner( //
         EtaRaster.state(partitionScale), stateIntegrator, controls, plannerConstraint, goalInterface);
     trajectoryPlanner.insertRoot(new StateTime(startState(), Quantity.of(0, "s")));

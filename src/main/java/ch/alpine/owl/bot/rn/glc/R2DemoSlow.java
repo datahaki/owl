@@ -17,7 +17,6 @@ import ch.alpine.owl.bot.r2.R2Flows;
 import ch.alpine.owl.bot.rn.RnMinDistGoalManager;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlGui;
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.adapter.StateTimeTrajectories;
@@ -30,6 +29,7 @@ import ch.alpine.owlets.glc.core.TrajectoryPlanner;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.EmptyTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateIntegrator;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
@@ -56,11 +56,11 @@ enum R2DemoSlow {
   }
 
   static TrajectoryPlanner simpleR2Bubbles() throws Exception {
-    return simple(CatchyTrajectoryRegionQuery.timeInvariant(R2Bubbles.INSTANCE));
+    return simple(SimpleTrajectoryRegionQuery.timeInvariant(R2Bubbles.INSTANCE));
   }
 
   static TrajectoryPlanner simpleR2Circle() throws Exception {
-    return simple(CatchyTrajectoryRegionQuery.timeInvariant( //
+    return simple(SimpleTrajectoryRegionQuery.timeInvariant( //
         new EllipsoidRegion(Tensors.vector(-1, 0), Tensors.vector(2, 2))));
   }
 

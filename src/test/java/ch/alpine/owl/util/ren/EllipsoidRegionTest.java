@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TimeDependentRegion;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
@@ -28,7 +28,7 @@ class EllipsoidRegionTest {
   @Test
   void testDisjoint() {
     TrajectoryRegionQuery goalQuery = //
-        CatchyTrajectoryRegionQuery.timeInvariant( //
+        SimpleTrajectoryRegionQuery.timeInvariant( //
             new EllipsoidRegion(Tensors.vector(10, 5), Tensors.vector(1, 1)));
     List<StateTime> trajectory = new ArrayList<>();
     trajectory.add(new StateTime(Tensors.vector(0, 5), RealScalar.ZERO));

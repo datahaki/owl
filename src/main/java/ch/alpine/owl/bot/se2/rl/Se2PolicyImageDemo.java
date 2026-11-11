@@ -7,7 +7,7 @@ import ch.alpine.owl.bot.r2.R2ImageRegions;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.DemoInterface;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.subare.td.SarsaType;
 import ch.alpine.tensor.Tensors;
@@ -21,7 +21,7 @@ public class Se2PolicyImageDemo implements DemoInterface {
     R2ImageRegionWrap r2ImageRegionWrap = R2ImageRegions._2181;
     MemberQ region = r2ImageRegionWrap.region();
     // ---
-    TrajectoryRegionQuery trq = CatchyTrajectoryRegionQuery.timeInvariant(region);
+    TrajectoryRegionQuery trq = SimpleTrajectoryRegionQuery.timeInvariant(region);
     owlAnimationFrame.addBackground(RegionRenderFactory.create(region));
     owlAnimationFrame.addBackground(RegionRenderFactory.create(trq));
     // ---

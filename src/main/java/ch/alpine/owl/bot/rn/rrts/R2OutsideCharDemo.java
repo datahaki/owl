@@ -26,7 +26,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 enum R2OutsideCharDemo {
   ;
-  static void main() throws Exception {
+  static void main() {
     CoordinateBoundingBox box = CoordinateBounds.of(Tensors.vector(0, 0), Tensors.vector(7, 7));
     MemberQ imageRegion = R2ImageRegions.outside_0b36(box.max());
     RrtsNodeCollection rrtsNodeCollection = new RnRrtsNodeCollection(box);
@@ -39,7 +39,11 @@ enum R2OutsideCharDemo {
     while (frame++ < 20) {
       for (int count = 0; count < 50; ++count)
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
-      Thread.sleep(10);
+      try {
+        Thread.sleep(10);
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
     }
     TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     timerFrame.setBounds(100, 100, 550, 550);

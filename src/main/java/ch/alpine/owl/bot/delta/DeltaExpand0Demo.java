@@ -31,7 +31,7 @@ class DeltaExpand0Demo extends AbstractDemo {
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        Thread.currentThread().interrupt();
       }
     }
     geometricComponent.addRenderInterfaceBackground(RegionRenderFactory.create(DeltaExample.REGION));

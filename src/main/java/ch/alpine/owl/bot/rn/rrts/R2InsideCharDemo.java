@@ -31,7 +31,7 @@ import ch.alpine.tensor.sca.Clips;
 
 enum R2InsideCharDemo {
   ;
-  private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) throws Exception {
+  private static void explore(BufferedImage bufferedImage, Tensor range, Tensor start) {
     CoordinateBoundingBox coordinateBoundingBox = CoordinateBoundingBox.of( //
         Clips.positive(range.Get(0)), Clips.positive(range.Get(1)));
     MemberQ region = new BufferedImageRegion(bufferedImage, coordinateBoundingBox, false);
@@ -45,7 +45,11 @@ enum R2InsideCharDemo {
     while (frame++ < 20) {
       for (int count = 0; count < 50; ++count)
         rrts.insertAsNode(RandomSample.of(randomSampleInterface), 15);
-      Thread.sleep(10);
+      try {
+        Thread.sleep(10);
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
     }
     TimerFrame timerFrame = OwlGui.rrts(transitionSpace, root, transitionRegionQuery);
     timerFrame.setBounds(100, 100, 650, 550);

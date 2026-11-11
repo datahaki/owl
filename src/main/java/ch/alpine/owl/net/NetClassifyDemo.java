@@ -47,8 +47,10 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   @ReflectionMarker
   static class Param1 {
-    @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10" })
+    @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10", "15" })
     public Integer hidden = 7;
+    public Scalar learningRate = RealScalar.of(0.2);
+    public Integer batch_size = 2;
     public Boolean animate = false;
     @FieldFuse
     public transient Boolean train = false;
@@ -96,7 +98,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     Tensor xdata = getGeodesicControlPoints();
     netClassify = new NetClassify(xdata, vector, param1.hidden, param0.labels);
     netClassify.cdg = param2.cdg;
-    netClassify.run();
+    netClassify.run(param1.learningRate, param1.batch_size);
     if (param1.animate) {
       ImageIcon imageIcon = netClassify.imageIconRecorder.getIconImage();
       ManipulateProvider manipulateProvider = new ManipulateProvider() {
@@ -118,7 +120,6 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     {
       Show show = new Show();
       show.add(DensityPlot.of((x, y) -> (Scalar) netClassify.netLayer.forward(Tensors.of(x, y)), cbb, param2.cdg));
-      // show.setAspectRatioDontCare();
       show.render(graphics, rectangle);
     } // ---
     render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), vector, param2.cdl.cyclic());
@@ -127,7 +128,6 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     dimension.height /= 2;
     {
       Show show = netClassify.showTParam();
-      // show.setPlotLabel("Error: " + error.maps(Round._3));
       show.render_autoIndent(graphics, new Rectangle(dimension.width, 0, dimension.width, dimension.height));
     }
     {

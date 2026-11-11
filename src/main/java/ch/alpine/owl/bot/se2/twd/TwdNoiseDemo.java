@@ -5,9 +5,9 @@ import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2NoiseRegion;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
-import ch.alpine.owlets.glc.adapter.CatchyTrajectoryRegionQuery;
 import ch.alpine.owlets.glc.adapter.TrajectoryObstacleConstraint;
 import ch.alpine.owlets.glc.core.PlannerConstraint;
+import ch.alpine.owlets.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
 import ch.alpine.sophis.api.Region;
@@ -17,7 +17,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 public class TwdNoiseDemo extends AbstractTwdDemo {
   private final TrajectoryRegionQuery trajectoryRegionQuery = //
-      CatchyTrajectoryRegionQuery.timeInvariant(new R2NoiseRegion(RealScalar.of(0.1)));
+      SimpleTrajectoryRegionQuery.timeInvariant(new R2NoiseRegion(RealScalar.of(0.1)));
 
   @Override // from AbstractTwdDemo
   TwdEntity configure(OwlAnimationFrame owlAnimationFrame) {
