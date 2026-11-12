@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.net;
+package ch.alpine.owl.net.sig;
 
 import java.awt.image.BufferedImage;
 import java.time.Duration;
@@ -10,10 +10,13 @@ import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.plt.DensityPlot;
 import ch.alpine.bridge.fig.plt.ListLinePlot;
 import ch.alpine.bridge.io.ani.ImageIconRecorder;
+import ch.alpine.subare.net.ElementwiseLayer;
 import ch.alpine.subare.net.NetChains;
 import ch.alpine.subare.net.NetLayer;
+import ch.alpine.subare.net.NetParamTracker;
 import ch.alpine.subare.net.NetTrain;
 import ch.alpine.subare.net.NetTrainListener;
+import ch.alpine.subare.net.TrainingData;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -26,26 +29,30 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.qty.Quantity;
 
-public class NetClassify {
+class NetClassify {
   final NetLayer netLayer;
   final NetTrain netTrain;
+  final NetParamTracker netParamTracker = new NetParamTracker();
   CoordinateBoundingBox cbb;
   ColorDataGradients cdg = ColorDataGradients.COPPER;
   final ImageIconRecorder imageIconRecorder = ImageIconRecorder.loop(Duration.ofMillis(200));
 
-  public NetClassify(Tensor xdata, Tensor vector, int hidden, int labels) {
+  public NetClassify(Tensor xdata, Tensor vector, int hidden) {
     int d_in = Unprotect.dimension1(xdata);
-    netLayer = NetChains.argMaxMLP(d_in, hidden, labels);
+    netLayer = NetChains.binary(NetChains.linear(() -> ElementwiseLayer.gelu(), d_in, hidden, 1));
     netLayer.initialize(ThreadLocalRandom.current());
-    netTrain = new NetTrain(netLayer, xdata, vector);
+    TrainingData trainingData = new TrainingData(xdata, vector);
+    netTrain = new NetTrain(netLayer, trainingData);
+    netTrain.addListener(netParamTracker);
     cbb = CoordinateBounds.of(xdata);
     netTrain.addListener(new NetTrainListener() {
       @Override
-      public void epoch(int epoch) {
-        DensityPlot densityPlot = DensityPlot.of((x, y) -> (Scalar) netLayer.forward(Tensors.of(x, y)), cbb, cdg);
+      public boolean epoch(NetTrain netTrain, int epoch) {
+        DensityPlot densityPlot = DensityPlot.of((x, y) -> netLayer.forward(Tensors.of(x, y)).Get(0), cbb, cdg);
         ScalableImage scalableImage = densityPlot.getScalableImage(100);
         BufferedImage bufferedImage = scalableImage.getScaledInstance(ImageResize.DEGREE_3, RealScalar.ONE);
         imageIconRecorder.write(bufferedImage);
+        return true;
       }
     });
   }
@@ -58,7 +65,7 @@ public class NetClassify {
   public Show showTParam() {
     Show show = new Show();
     show.setShowLabel("net param");
-    TableBuilder table = netTrain.tparam;
+    TableBuilder table = netParamTracker.tparam;
     int n = table.getRow(0).length();
     for (int i = 1; i < n; ++i)
       show.add(ListLinePlot.of(table.getColumns(0, i)));

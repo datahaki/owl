@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.net;
+package ch.alpine.owl.net.sig;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,6 +25,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.col.ColorDataGradients;
 import ch.alpine.tensor.col.ColorDataIndexed;
 import ch.alpine.tensor.col.ColorDataLists;
@@ -39,8 +40,6 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   static class Param0 {
     @FieldSelectionArray({ "10", "20", "30", "40", "50" })
     public Integer size = 20;
-    @FieldSelectionArray({ "2", "3", "4", "5" })
-    public Integer labels = 3;
     @FieldFuse
     public transient Boolean shuffle = false;
   }
@@ -66,7 +65,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   private final Param1 param1;
   private final Param2 param2;
   // ---
-  protected Tensor vector;
+  protected Tensor target;
   private NetClassify netClassify;
 
   public NetClassifyDemo() {
@@ -89,14 +88,14 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
         .map(manifoldDisplay::point2xya));
     setControlPointsSe2(tensor);
     // assignment of random labels to points
-    int k = param0.labels;
-    vector = RandomVariate.of(DiscreteUniformDistribution.forArray(k), n);
+    int k = 2;
+    target = RandomVariate.of(DiscreteUniformDistribution.forArray(k), n, 1);
     train();
   }
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    netClassify = new NetClassify(xdata, vector, param1.hidden, param0.labels);
+    netClassify = new NetClassify(xdata, target, param1.hidden);
     netClassify.cdg = param2.cdg;
     netClassify.run(param1.learningRate, param1.batch_size);
     if (param1.animate) {
@@ -119,10 +118,10 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
     Rectangle rectangle = geometricLayer.toRectangle(cbb).orElseThrow();
     {
       Show show = new Show();
-      show.add(DensityPlot.of((x, y) -> (Scalar) netClassify.netLayer.forward(Tensors.of(x, y)), cbb, param2.cdg));
+      show.add(DensityPlot.of((x, y) -> netClassify.netLayer.forward(Tensors.of(x, y)).Get(0), cbb, param2.cdg));
       show.render(graphics, rectangle);
     } // ---
-    render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), vector, param2.cdl.cyclic());
+    render(geometricLayer, graphics, manifoldDisplay, getGeodesicControlPoints(), Flatten.of(target), param2.cdl.cyclic());
     Dimension dimension = geometricComponent().getSize();
     dimension.width /= 2;
     dimension.height /= 2;
