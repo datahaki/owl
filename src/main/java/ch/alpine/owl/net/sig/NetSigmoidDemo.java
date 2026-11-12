@@ -21,6 +21,8 @@ import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldFuse;
 import ch.alpine.bridge.ref.ann.FieldSelectionArray;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.sophis.noise.SimplexContinuousNoise;
+import ch.alpine.subare.net.TrainingData;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -29,16 +31,17 @@ import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.col.ColorDataGradients;
 import ch.alpine.tensor.col.ColorDataIndexed;
 import ch.alpine.tensor.col.ColorDataLists;
+import ch.alpine.tensor.opt.nd.BoxRandomSample;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 import ch.alpine.tensor.pdf.RandomSample;
-import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
+import ch.alpine.tensor.sca.Clips;
+import ch.alpine.tensor.sca.UnitStep;
 
-class NetClassifyDemo extends EuclideanPlaneDemo {
+class NetSigmoidDemo extends EuclideanPlaneDemo {
   @ReflectionMarker
   static class Param0 {
-    @FieldSelectionArray({ "10", "20", "30", "40", "50" })
+    @FieldSelectionArray({ "10", "20", "30", "40", "50", "100", "200" })
     public Integer size = 20;
     @FieldFuse
     public transient Boolean shuffle = false;
@@ -48,6 +51,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   static class Param1 {
     @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10", "15" })
     public Integer hidden = 7;
+    public Scalar beta = RealScalar.of(0.9);
     public Scalar learningRate = RealScalar.of(0.2);
     public Integer batch_size = 2;
     public Boolean animate = false;
@@ -66,9 +70,9 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   private final Param2 param2;
   // ---
   protected Tensor target;
-  private NetClassify netClassify;
+  private NetSigmoid netClassify;
 
-  public NetClassifyDemo() {
+  public NetSigmoidDemo() {
     super(param0 = new Param0(), param1 = new Param1(), param2 = new Param2());
     geometricComponent().setRotatable(false);
     fieldsEditor(param0).addUniversalListener(this::shuffle);
@@ -84,20 +88,24 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   private void shuffle() {
     int n = param0.size;
     ManifoldDisplay manifoldDisplay = manifoldDisplay();
-    Tensor tensor = Tensor.of(RandomSample.of(manifoldDisplay.randomSampleInterface(), n).stream() //
-        .map(manifoldDisplay::point2xya));
+    CoordinateBoundingBox cbb = CoordinateBoundingBox.of(Clips.absolute(2), Clips.absolute(2));
+    Tensor xy = RandomSample.of(new BoxRandomSample(cbb), n);
+    Tensor tensor = Tensor.of(xy.stream().map(manifoldDisplay::point2xya));
     setControlPointsSe2(tensor);
     // assignment of random labels to points
-    int k = 2;
-    target = RandomVariate.of(DiscreteUniformDistribution.forArray(k), n, 1);
+    target = Tensor.of(xy.stream() //
+        .map(SimplexContinuousNoise.FUNCTION) //
+        .map(UnitStep.FUNCTION) //
+        .map(Tensors::of));
     train();
   }
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    netClassify = new NetClassify(xdata, target, param1.hidden);
+    TrainingData trainingData = new TrainingData(  xdata, target);
+
+    netClassify = new NetSigmoid(trainingData, param1.hidden, param1.beta, param1.learningRate, param1.batch_size);
     netClassify.cdg = param2.cdg;
-    netClassify.run(param1.learningRate, param1.batch_size);
     if (param1.animate) {
       ImageIcon imageIcon = netClassify.imageIconRecorder.getIconImage();
       ManipulateProvider manipulateProvider = new ManipulateProvider() {
@@ -150,6 +158,6 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   }
 
   static void main() {
-    new NetClassifyDemo().runStandalone();
+    new NetSigmoidDemo().runStandalone();
   }
 }

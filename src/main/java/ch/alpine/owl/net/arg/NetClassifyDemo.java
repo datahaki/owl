@@ -21,6 +21,7 @@ import ch.alpine.bridge.pro.ManipulateProvider;
 import ch.alpine.bridge.ref.ann.FieldFuse;
 import ch.alpine.bridge.ref.ann.FieldSelectionArray;
 import ch.alpine.bridge.ref.ann.ReflectionMarker;
+import ch.alpine.subare.net.TrainingData;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -50,7 +51,8 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
   static class Param1 {
     @FieldSelectionArray({ "4", "5", "6", "7", "8", "9", "10", "15" })
     public Integer hidden = 7;
-    public Scalar learningRate = RealScalar.of(0.2);
+    public Scalar beta = RealScalar.of(0.9);
+    public Scalar eta = RealScalar.of(0.01);
     public Integer batch_size = 2;
     public Boolean animate = false;
     @FieldFuse
@@ -97,9 +99,9 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    netClassify = new NetClassify(xdata, target, param1.hidden, param0.labels);
+    TrainingData trainingData = new TrainingData(  xdata, target);
+    netClassify = new NetClassify(trainingData, param1.hidden, param0.labels, param1.beta, param1.eta, param1.batch_size);
     netClassify.cdg = param2.cdg;
-    netClassify.run(param1.learningRate, param1.batch_size);
     if (param1.animate) {
       ImageIcon imageIcon = netClassify.imageIconRecorder.getIconImage();
       ManipulateProvider manipulateProvider = new ManipulateProvider() {

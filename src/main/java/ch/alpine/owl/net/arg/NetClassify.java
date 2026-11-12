@@ -3,23 +3,24 @@ package ch.alpine.owl.net.arg;
 
 import java.awt.image.BufferedImage;
 import java.time.Duration;
-import java.util.concurrent.ThreadLocalRandom;
 
 import ch.alpine.bridge.awt.ScalableImage;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.plt.DensityPlot;
 import ch.alpine.bridge.fig.plt.ListLinePlot;
 import ch.alpine.bridge.io.ani.ImageIconRecorder;
-import ch.alpine.subare.net.ElementwiseLayer;
-import ch.alpine.subare.net.NetChains;
-import ch.alpine.subare.net.NetLayer;
 import ch.alpine.subare.net.NetParamTracker;
-import ch.alpine.subare.net.NetTrain;
-import ch.alpine.subare.net.NetTrainListener;
 import ch.alpine.subare.net.TrainingData;
+import ch.alpine.subare.net.lay.ElementwiseLayer;
+import ch.alpine.subare.net.lay.NetChains;
+import ch.alpine.subare.net.lay.NetLayer;
+import ch.alpine.subare.net.opt.NetMomentumGradientDescent;
+import ch.alpine.subare.net.opt.NetOptimizer;
+import ch.alpine.subare.net.run.NetInitialize;
+import ch.alpine.subare.net.run.NetTrain;
+import ch.alpine.subare.net.run.NetTrainListener;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.col.ColorDataGradients;
@@ -31,20 +32,22 @@ import ch.alpine.tensor.qty.Quantity;
 
 class NetClassify {
   final NetLayer netLayer;
+  final TrainingData trainingData;
   final NetTrain netTrain;
   final NetParamTracker netParamTracker = new NetParamTracker();
   CoordinateBoundingBox cbb;
   ColorDataGradients cdg = ColorDataGradients.COPPER;
   final ImageIconRecorder imageIconRecorder = ImageIconRecorder.loop(Duration.ofMillis(200));
 
-  public NetClassify(Tensor xdata, Tensor vector, int hidden, int labels) {
-    int d_in = Unprotect.dimension1(xdata);
+  public NetClassify(TrainingData trainingData, int hidden, int labels, Scalar beta, Scalar eta, Integer batch_size) {
+    this.trainingData = trainingData;
+    int d_in = Unprotect.dimension1(trainingData.xdata());
     netLayer = NetChains.argMax(NetChains.linear(() -> ElementwiseLayer.gelu(), d_in, hidden, labels));
-    netLayer.initialize(ThreadLocalRandom.current());
-    TrainingData trainingData = new TrainingData(xdata, vector);
-    netTrain = new NetTrain(netLayer, trainingData);
+    NetInitialize.of(netLayer);
+    NetOptimizer netOptimizer = new NetMomentumGradientDescent(netLayer, beta, eta);
+    netTrain = new NetTrain(netLayer, netOptimizer);
     netTrain.addListener(netParamTracker);
-    cbb = CoordinateBounds.of(xdata);
+    cbb = CoordinateBounds.of(trainingData.xdata());
     netTrain.addListener(new NetTrainListener() {
       @Override
       public boolean epoch(NetTrain netTrain, int epoch) {
@@ -55,11 +58,7 @@ class NetClassify {
         return true;
       }
     });
-  }
-
-  public void run(Scalar learningRate, Integer batch_size) {
-    netTrain.runAsBatches(learningRate, batch_size, 3000, Quantity.of(5, "s"));
-    // netTrain.run(RealScalar.of(0.3), 3, 3000, Quantity.of(1.3, "s"));
+    netTrain.runAsBatches(trainingData, batch_size, 3000, Quantity.of(5, "s"));
   }
 
   public Show showTParam() {
