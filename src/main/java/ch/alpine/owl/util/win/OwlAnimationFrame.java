@@ -42,7 +42,7 @@ public class OwlAnimationFrame {
     public void actionPerformed(ActionEvent event) {
       boolean selected = jToggleButtonRecord.isSelected();
       if (selected) {
-        // TODO OWL ALG implementation not generic
+        // TODO ALG implementation not generic
         TrajectoryEntity abstractEntity = (TrajectoryEntity) animationInterfaces.get(0);
         Path directory = HomeDirectory.Pictures.resolve(abstractEntity.getClass().getSimpleName() + "_" + System.currentTimeMillis());
         try {

@@ -17,7 +17,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Max;
 import ch.alpine.tensor.red.Times;
 
-// TODO OWL ALG implementation can be made more efficient
+// TODO ALG implementation can be made more efficient
 public class LidarRaytracer implements Serializable {
   private final Tensor directions;
   private final Scalar max_range;

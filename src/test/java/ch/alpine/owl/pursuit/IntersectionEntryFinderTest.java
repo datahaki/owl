@@ -37,7 +37,7 @@ class IntersectionEntryFinderTest {
 
   @Test
   void testSweep1() {
-    // TODO OWL TEST
+    // TODO TEST
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_SE2;
     // Tensor points = Tensor.of(finder.sweep(TrajectoryEntryFinderTest.WAYPOINTS).map(TrajectoryEntry::point).map(Optional::get));
     // Tensor distances = Tensor.of(TrajectoryEntryFinderTest.WAYPOINTS.stream().map(Extract2D.FUNCTION).map(Vector2Norm::of));
@@ -49,7 +49,7 @@ class IntersectionEntryFinderTest {
 
   @Test
   void testSweep2() {
-    // TODO OWL TEST
+    // TODO TEST
     // Tensor waypoints = Tensors.fromString("{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}}");
     // TrajectoryEntryFinder finder = IntersectionEntryFinder.SPHERE_RN;
     // Tensor swept = Tensor.of(finder.sweep(waypoints).map(TrajectoryEntry::point).map(Optional::get));

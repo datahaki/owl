@@ -64,7 +64,7 @@ class StandardTrajectoryPlannerTest {
     if (optional.isPresent()) {
       GlcNode goalNode = optional.get(); // <- throws exception if
       Scalar cost = goalNode.costFromRoot();
-      // FIXME OWL TEST abs!?
+      // FIXME TEST abs!?
       Scalar lowerBound = Ramp.FUNCTION.apply(Vector2Norm.of(stateGoal.subtract(stateRoot)).subtract(radius));
       if (Scalars.lessThan(cost, lowerBound))
         throw new Throw(cost, lowerBound);

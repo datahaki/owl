@@ -108,7 +108,7 @@ enum ClothoidLaneSimulation {
         ttfs.stream().map(Scalar.class::cast).forEach(statistics);
         String summary = String.format("scenario %d:" //
             + "\n\ttime to first solution = %s +/- %s (min=%s, max=%s)" + "\n\tsuccess rate: %.2f%%", //
-            task, statistics.getAverage(), StandardDeviation.ofVector(ttfs), statistics.getMin(), statistics.getMax(), 100. * ttfs.length() / REPS);
+            task, statistics.getMean(), StandardDeviation.ofVector(ttfs), statistics.getMin(), statistics.getMax(), 100. * ttfs.length() / REPS);
         writer.println(summary.replace("\n", System.lineSeparator()));
         System.out.println("\n" + summary + "\n");
         // Showable jFreeChart = ListPlot.of(show);

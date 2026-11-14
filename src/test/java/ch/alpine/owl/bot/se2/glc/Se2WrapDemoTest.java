@@ -44,7 +44,7 @@ class Se2WrapDemoTest {
     glcExpand.findAny(10_000);
     assertTrue(glcExpand.getExpandCount() < 2000);
     assertTrue(trajectoryPlanner.getBest().isPresent());
-    assumeTrue(false); // TODO OWL API change
+    assumeTrue(false); // TODO API change
     HeuristicAssert.check(trajectoryPlanner);
   }
 }

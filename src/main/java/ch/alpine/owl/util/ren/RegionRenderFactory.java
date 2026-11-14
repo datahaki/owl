@@ -29,7 +29,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.mat.MatrixQ;
 
-// TODO OWL API implement this as an interface
+// TODO API implement this as an interface
 public enum RegionRenderFactory {
   ;
   // ---
