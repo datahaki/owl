@@ -102,8 +102,7 @@ class NetSigmoidDemo extends EuclideanPlaneDemo {
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    TrainingData trainingData = new TrainingData(  xdata, target);
-
+    TrainingData trainingData = new TrainingData(xdata, target);
     netClassify = new NetSigmoid(trainingData, param1.hidden, param1.beta, param1.learningRate, param1.batch_size);
     netClassify.cdg = param2.cdg;
     if (param1.animate) {

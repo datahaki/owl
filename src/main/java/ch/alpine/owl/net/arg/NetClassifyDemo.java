@@ -99,7 +99,7 @@ class NetClassifyDemo extends EuclideanPlaneDemo {
 
   private void train() {
     Tensor xdata = getGeodesicControlPoints();
-    TrainingData trainingData = new TrainingData(  xdata, target);
+    TrainingData trainingData = new TrainingData(xdata, target);
     netClassify = new NetClassify(trainingData, param1.hidden, param0.labels, param1.beta, param1.eta, param1.batch_size);
     netClassify.cdg = param2.cdg;
     if (param1.animate) {

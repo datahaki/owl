@@ -22,7 +22,6 @@ import ch.alpine.subare.net.run.NetTrain;
 import ch.alpine.subare.net.run.NetTrainListener;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.col.ColorDataGradients;
@@ -44,7 +43,7 @@ class NetSigmoid {
     int d_in = Unprotect.dimension1(trainingData.xdata());
     netLayer = NetChains.binary(NetChains.linear(() -> ElementwiseLayer.gelu(), d_in, hidden, hidden, 1));
     NetInitialize.of(netLayer);
-    NetOptimizer netOptimizer = new NetSimpleGradientDescent(netLayer,learningRate);
+    NetOptimizer netOptimizer = new NetSimpleGradientDescent(netLayer, learningRate);
     netOptimizer = new NetMomentumGradientDescent(netLayer, beta, learningRate);
     netTrain = new NetTrain(netLayer, netOptimizer);
     netTrain.addListener(netParamTracker);
