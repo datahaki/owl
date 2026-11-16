@@ -3,8 +3,6 @@ package ch.alpine.owl.lane;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
@@ -22,7 +20,7 @@ class StableLaneTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}"), //
         LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, 1)::cyclic, 3, Quantity.of(1, "m")));
@@ -34,7 +32,7 @@ class StableLaneTest {
   }
 
   @Test
-  void testStraight() throws ClassNotFoundException, IOException {
+  void testStraight() {
     LaneInterface laneInterface = Serialization.copy(StableLanes.of( //
         Tensors.fromString("{{0[m], 0[m], 0}, {2[m], 0[m], 0}}"), //
         LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, 1)::string, 3, Quantity.of(0.5, "m")));

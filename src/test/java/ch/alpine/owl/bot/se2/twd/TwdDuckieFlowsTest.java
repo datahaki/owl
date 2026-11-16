@@ -4,7 +4,6 @@ package ch.alpine.owl.bot.se2.twd;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,7 +50,7 @@ class TwdDuckieFlowsTest {
   }
 
   @Test
-  void testSize() throws ClassNotFoundException, IOException {
+  void testSize() {
     FlowsInterface flowsInterface = Serialization.copy(new TwdDuckieFlows(RealScalar.of(3), RealScalar.of(0.567)));
     assertEquals(flowsInterface.getFlows(5).size(), 20);
     assertEquals(flowsInterface.getFlows(7).size(), 28);

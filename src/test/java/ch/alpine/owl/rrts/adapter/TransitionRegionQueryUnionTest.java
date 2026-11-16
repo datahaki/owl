@@ -4,8 +4,6 @@ package ch.alpine.owl.rrts.adapter;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.rrts.adapter.SampledTransitionRegionQuery;
@@ -20,7 +18,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class TransitionRegionQueryUnionTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     TransitionRegionQuery trq1 = //
         new SampledTransitionRegionQuery(new BallRegion(Tensors.vector(0, 0), RealScalar.ONE), RealScalar.of(0.1));
     TransitionRegionQuery trq2 = //

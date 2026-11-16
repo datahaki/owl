@@ -4,8 +4,6 @@ package ch.alpine.owl.glc.adapter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.glc.adapter.EtaRaster;
@@ -27,7 +25,7 @@ class EtaRasterTest {
   }
 
   @Test
-  void testJoined() throws ClassNotFoundException, IOException {
+  void testJoined() {
     StateTimeRaster stateTimeRaster = EtaRaster.joined(Tensors.vector(2., 3., 4.));
     Tensor tensor = stateTimeRaster.convertToKey(new StateTime(Tensors.vector(100, 100), RealScalar.of(97)));
     assertEquals(tensor, Tensors.vector(200, 300, 97 * 4));

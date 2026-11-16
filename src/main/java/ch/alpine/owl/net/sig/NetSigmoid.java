@@ -20,6 +20,7 @@ import ch.alpine.subare.net.opt.NetSimpleGradientDescent;
 import ch.alpine.subare.net.run.NetInitialize;
 import ch.alpine.subare.net.run.NetTrain;
 import ch.alpine.subare.net.run.NetTrainListener;
+import ch.alpine.subare.net.run.TimeoutListener;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
@@ -50,7 +51,8 @@ class NetSigmoid {
     cbb = CoordinateBounds.of(trainingData.xdata());
     netTrain.addListener(new NetTrainListener() {
       @Override
-      public boolean epoch(NetTrain netTrain, int epoch) {
+      public boolean epoch(NetTrain netTrain) {
+        int epoch = netTrain.getTotalEpochs();
         DensityPlot densityPlot = DensityPlot.of((x, y) -> netLayer.forward(Tensors.of(x, y)).Get(0), cbb, cdg);
         ScalableImage scalableImage = densityPlot.getScalableImage(100);
         BufferedImage bufferedImage = scalableImage.getScaledInstance(ImageResize.DEGREE_3, RealScalar.ONE);
@@ -58,7 +60,8 @@ class NetSigmoid {
         return true;
       }
     });
-    netTrain.runAsBatches(trainingData, batch_size, 3000, Quantity.of(5, "s"));
+    netTrain.addListener(new TimeoutListener(Quantity.of(2, "s")));
+    netTrain.runAsBatches(trainingData, batch_size);
     // netTrain.run(RealScalar.of(0.3), 3, 3000, Quantity.of(1.3, "s"));
   }
 

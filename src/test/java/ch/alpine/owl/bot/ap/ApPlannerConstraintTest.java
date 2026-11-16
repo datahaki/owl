@@ -4,8 +4,6 @@ package ch.alpine.owl.bot.ap;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.glc.core.GlcNode;
@@ -41,7 +39,7 @@ class ApPlannerConstraintTest {
   }
 
   @Test
-  void testVConstraints() throws ClassNotFoundException, IOException {
+  void testVConstraints() {
     GlcNode pseudoNodeVStall = GlcNode.of(flow, new StateTime(vUnvalidStall, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     GlcNode pseudoNodeVMax = GlcNode.of(flow, new StateTime(vUnvalidMax, RealScalar.of(2)), RealScalar.ONE, RealScalar.ONE);
     ApPlannerConstraint cp = Serialization.copy(ap);

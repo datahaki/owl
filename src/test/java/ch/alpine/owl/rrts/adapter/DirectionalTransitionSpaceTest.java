@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.rrts.adapter.DirectionalTransitionSpace;
@@ -26,14 +24,14 @@ import ch.alpine.tensor.sca.Chop;
 
 class DirectionalTransitionSpaceTest {
   @Test
-  void testLength() throws ClassNotFoundException, IOException {
+  void testLength() {
     Tensor a = Tensors.fromString("{1[m], 1[m], 0}");
     Tensor b = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF);
     _checkLength(a, b);
     _checkLength(b, a);
   }
 
-  private static void _checkLength(Tensor start, Tensor end) throws ClassNotFoundException, IOException {
+  private static void _checkLength(Tensor start, Tensor end) {
     Transition transition = Serialization.copy(DirectionalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC)) //
         .connect(start, end);
     Chop._03.requireClose(transition.length(), Quantity.of(Pi.HALF, "m"));

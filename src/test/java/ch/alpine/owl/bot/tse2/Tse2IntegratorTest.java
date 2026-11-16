@@ -3,7 +3,6 @@ package ch.alpine.owl.bot.tse2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class Tse2IntegratorTest {
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     FlowsInterface flowsInterface = //
         Tse2CarFlows.of(Quantity.of(1, "m^-1"), Tensors.of(Quantity.of(-2, "m*s^-2"), Quantity.of(0, "m*s^-2"), Quantity.of(2, "m*s^-2")));
     Collection<Tensor> collection = flowsInterface.getFlows(3);

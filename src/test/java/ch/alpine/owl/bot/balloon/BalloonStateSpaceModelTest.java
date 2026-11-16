@@ -3,8 +3,6 @@ package ch.alpine.owl.bot.balloon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.flow.StateSpaceModel;
@@ -16,7 +14,7 @@ import ch.alpine.tensor.qty.Unit;
 
 class BalloonStateSpaceModelTest {
   @Test
-  void testValidity() throws ClassNotFoundException, IOException {
+  void testValidity() {
     Tensor xWithUnits = Tensors.fromString("{2[m], 2[m], 2[m*s^-1], 4[K]}");
     Tensor uWithUnits = Tensors.fromString("{3[K*s^-1]}");
     Tensor xWithoutUnits = Tensors.vector(1, 1, 2, 4);

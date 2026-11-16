@@ -3,8 +3,6 @@ package ch.alpine.owl.pursuit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
@@ -24,7 +22,7 @@ class ArgMinVariableTest {
   private static final int DEPTH = 5;
 
   @Test
-  void testInterpolation() throws ClassNotFoundException, IOException {
+  void testInterpolation() {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}");
     TrajectoryEntryFinder entryFinder = Serialization.copy(InterpolationEntryFinder.INSTANCE);
     // ---
@@ -33,7 +31,7 @@ class ArgMinVariableTest {
   }
 
   @Test
-  void testIntersection() throws ClassNotFoundException, IOException {
+  void testIntersection() {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(IntersectionEntryFinder.SPHERE_SE2);
     // ---
@@ -43,7 +41,7 @@ class ArgMinVariableTest {
   }
 
   @Test
-  void testGeodesic() throws ClassNotFoundException, IOException {
+  void testGeodesic() {
     Tensor tensor = Tensors.fromString("{{-4, -2, 0}, {-3, -2, 0}, {-3, -1, 0}, {-2, 0, 0}, {1, 0, 0}, {2, 1, 0}, {3, 1, 0}}").unmodifiable();
     TrajectoryEntryFinder entryFinder = Serialization.copy(new GeodesicInterpolationEntryFinder(CLOTHOID_BUILDER));
     // ---

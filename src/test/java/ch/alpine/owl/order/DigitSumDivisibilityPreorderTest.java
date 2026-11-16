@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Supplier;
 
@@ -60,7 +59,7 @@ class DigitSumDivisibilityPreorderTest {
   }
 
   @Test
-  void testDuplicateEntriesList2() throws ClassNotFoundException, IOException {
+  void testDuplicateEntriesList2() {
     OrderComparator<Integer> orderComparator = DigitSumDivisibilityPreorder.INTEGER;
     MinTracker<Integer> digitSumDivisibility = //
         Serialization.copy(TransitiveMinTracker.of(orderComparator));

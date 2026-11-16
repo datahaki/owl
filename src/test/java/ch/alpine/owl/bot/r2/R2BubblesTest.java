@@ -3,8 +3,6 @@ package ch.alpine.owl.bot.r2;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.reg.ImplicitFunctionRegion;
@@ -13,7 +11,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class R2BubblesTest {
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     ImplicitFunctionRegion copy = Serialization.copy(R2Bubbles.INSTANCE);
     assertFalse(copy.test(Tensors.vector(1, 2)));
   }

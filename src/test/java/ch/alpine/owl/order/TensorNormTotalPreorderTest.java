@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
@@ -48,7 +47,7 @@ class TensorNormTotalPreorderTest {
   }
 
   @Test
-  void testMatrix() throws ClassNotFoundException, IOException {
+  void testMatrix() {
     TensorNormTotalPreorder tensorNormWeakOrder = //
         Serialization.copy(new TensorNormTotalPreorder(MatrixInfinityNorm::of));
     Tensor m1 = Tensors.fromString("{{1, 2}, {2, 3}}");
@@ -124,7 +123,7 @@ class TensorNormTotalPreorderTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = Serialization.copy(RepresentativeNegTransitiveMinTracker.withList(weakOrderComparator));
@@ -200,7 +199,7 @@ class TensorNormTotalPreorderTest {
   }
 
   @Test
-  void testSerializable2() throws ClassNotFoundException, IOException {
+  void testSerializable2() {
     TensorNormTotalPreorder tensorNormWeakOrder = new TensorNormTotalPreorder(VectorInfinityNorm::of);
     OrderComparator<Tensor> weakOrderComparator = tensorNormWeakOrder.comparator();
     MinTracker<Tensor> minTracker = Serialization.copy(NegTransitiveMinTracker.of(weakOrderComparator));

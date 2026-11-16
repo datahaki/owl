@@ -28,7 +28,6 @@ import ch.alpine.tensor.img.ImageResize;
 import ch.alpine.tensor.io.TableBuilder;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
-import ch.alpine.tensor.qty.Quantity;
 
 class NetClassify {
   final NetLayer netLayer;
@@ -50,7 +49,8 @@ class NetClassify {
     cbb = CoordinateBounds.of(trainingData.xdata());
     netTrain.addListener(new NetTrainListener() {
       @Override
-      public boolean epoch(NetTrain netTrain, int epoch) {
+      public boolean epoch(NetTrain netTrain) {
+        int epoch = netTrain.getTotalEpochs();
         DensityPlot densityPlot = DensityPlot.of((x, y) -> netLayer.forward(Tensors.of(x, y)).Get(0), cbb, cdg);
         ScalableImage scalableImage = densityPlot.getScalableImage(100);
         BufferedImage bufferedImage = scalableImage.getScaledInstance(ImageResize.DEGREE_3, RealScalar.ONE);
@@ -58,7 +58,8 @@ class NetClassify {
         return true;
       }
     });
-    netTrain.runAsBatches(trainingData, batch_size, 3000, Quantity.of(5, "s"));
+    netTrain.setMaxEpochs(1000);
+    netTrain.runAsBatches(trainingData, batch_size);
   }
 
   public Show showTParam() {

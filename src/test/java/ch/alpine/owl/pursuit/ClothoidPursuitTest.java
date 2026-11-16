@@ -1,7 +1,6 @@
 // code by gjoel
 package ch.alpine.owl.pursuit;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class ClothoidPursuitTest {
   @Test
-  void testPointRadius1() throws ClassNotFoundException, IOException {
+  void testPointRadius1() {
     PursuitInterface pursuitInterface = //
         Serialization.copy(ClothoidPursuit.of(Tensors.vector(1, 1, Math.PI / 2)));
     Optional<Scalar> optional = pursuitInterface.firstRatio();

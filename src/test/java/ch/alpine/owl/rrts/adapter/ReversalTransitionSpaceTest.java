@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owlets.rrts.adapter.ReversalTransitionSpace;
@@ -27,7 +25,7 @@ import ch.alpine.tensor.sca.Sign;
 
 class ReversalTransitionSpaceTest {
   @Test
-  void testLength() throws ClassNotFoundException, IOException {
+  void testLength() {
     Tensor start = Tensors.fromString("{1[m], 1[m]}").append(Pi.VALUE);
     Tensor end = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF.negate());
     Transition transition = Serialization.copy(ReversalTransitionSpace.of(ClothoidTransitionSpace.ANALYTIC)).connect(start, end);

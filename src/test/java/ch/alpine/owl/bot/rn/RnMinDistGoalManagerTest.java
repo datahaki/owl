@@ -4,7 +4,6 @@ package ch.alpine.owl.bot.rn;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class RnMinDistGoalManagerTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     GoalInterface goalInterface = Serialization.copy(RnMinDistGoalManager.sperical(Tensors.vector(10, 10, 10), RealScalar.of(2)));
     Scalar scalar = goalInterface.minCostToGoal(Tensors.vector(10, 0, 10));
     assertEquals(scalar, RealScalar.of(8));

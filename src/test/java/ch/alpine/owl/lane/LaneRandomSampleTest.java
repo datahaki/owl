@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.owl.lane;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.Extract2D;
@@ -21,7 +19,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class LaneRandomSampleTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor se2s = Tensors.fromString("{{0[m], 1[m], 2}, {2[m], 0[m], 4}, {-1[m],-3[m], -2}}");
     LaneInterface laneInterface = StableLanes.of( //
         se2s, //
@@ -34,7 +32,7 @@ class LaneRandomSampleTest {
   }
 
   @Test
-  void testNonUnit() throws ClassNotFoundException, IOException {
+  void testNonUnit() {
     Tensor se2s = Tensors.fromString("{{0[], 1[], 2}, {2[], 0[], 4}, {-1[],-3[], -2}}");
     LaneInterface laneInterface = StableLanes.of( //
         se2s, //

@@ -3,8 +3,6 @@ package ch.alpine.owl.lane;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
@@ -20,7 +18,7 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 
 class Se2SphereRandomSampleTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor apex = Tensors.vector(10, 20, 3);
     Scalar radius = Rational.HALF;
     Scalar heading = RealScalar.ONE;
