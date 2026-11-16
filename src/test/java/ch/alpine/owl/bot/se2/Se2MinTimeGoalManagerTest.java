@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
 import ch.alpine.owl.util.bot.FlowsInterface;
@@ -28,7 +29,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.ext.Serialization;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.Chop;
 
@@ -120,7 +120,7 @@ class Se2MinTimeGoalManagerTest {
 
   @Test
   void testWrapSuccessor() {
-    FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Degree.of(10));
+    FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Unitless.DEGREES.of(10));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2ComboRegion se2ComboRegion = new Se2ComboRegion( //
         new BallRegion(Tensors.vector(-0.5, 0), RealScalar.of(0.3)), //

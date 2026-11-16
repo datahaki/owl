@@ -3,6 +3,7 @@ package ch.alpine.owl.bot.se2.rrts;
 
 import ch.alpine.ascony.win.TimerFrame;
 import ch.alpine.bridge.gfx.RenderInterface;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
 import ch.alpine.owl.bot.r2.R2ImageRegions;
@@ -26,12 +27,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.chq.MemberQ;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.sca.Clips;
 
 class ClothoidRrtsLetterDemo implements DemoInterface {
   private static final LidarRaytracer LIDAR_RAYTRACER = //
-      new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
+      new LidarRaytracer(Subdivide.of(Unitless.DEGREES.of(-90), Unitless.DEGREES.of(90), 32), Subdivide.of(0, 5, 30));
 
   @Override
   public TimerFrame getWindow() {

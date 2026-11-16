@@ -2,6 +2,7 @@
 package ch.alpine.owl.bot.se2.glc;
 
 import ch.alpine.bridge.gfx.RenderInterface;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.MouseGoal;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.r2.R2ImageRegionWrap;
@@ -24,11 +25,10 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.chq.MemberQ;
-import ch.alpine.tensor.qty.Degree;
 
 public abstract class Se2LetterADemo extends Se2CarDemo {
   private static final LidarRaytracer LIDAR_RAYTRACER = //
-      new LidarRaytracer(Subdivide.of(Degree.of(-90), Degree.of(90), 32), Subdivide.of(0, 5, 30));
+      new LidarRaytracer(Subdivide.of(Unitless.DEGREES.of(-90), Unitless.DEGREES.of(90), 32), Subdivide.of(0, 5, 30));
 
   @Override // from Se2CarDemo
   protected final void configure(OwlAnimationFrame owlAnimationFrame) {
@@ -40,7 +40,7 @@ public abstract class Se2LetterADemo extends Se2CarDemo {
         CarEntity.PARTITION_SCALE, CarEntity.CARFLOWS, CarEntity.SHAPE) {
       @Override
       public RegionWithDistance<Tensor> getGoalRegionWithDistance(Tensor goal) {
-        return new ConeRegion(goal, Degree.of(30));
+        return new ConeRegion(goal, Unitless.DEGREES.of(30));
       }
     };
     carEntity.extraCosts.add(r2ImageRegionWrap.costFunction());

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -29,7 +30,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 enum Se2rAnimateDemo {
@@ -38,7 +38,7 @@ enum Se2rAnimateDemo {
     Tensor eta = Tensors.vector(6, 6, 50 / Math.PI);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
-    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
+    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Unitless.DEGREES.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     // place holder for parameter class
     Se2ComboRegion se2ComboRegion = //

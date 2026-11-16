@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.math.state.FixedStateIntegrator;
 import ch.alpine.owlets.math.state.StateIntegrator;
@@ -18,13 +19,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 class ApFlowsTest {
   @Test
   void testSimple() {
-    FlowsInterface flowsInterface = ApFlows.of(Degree.of(10), Tensors.vector(0, 1, 2));
+    FlowsInterface flowsInterface = ApFlows.of(Unitless.DEGREES.of(10), Tensors.vector(0, 1, 2));
     Collection<Tensor> collection = flowsInterface.getFlows(10);
     assertEquals(collection.size(), 33);
   }

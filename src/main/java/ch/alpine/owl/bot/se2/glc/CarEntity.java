@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -33,7 +34,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
@@ -43,13 +43,13 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * that means, the functionality does not apply to all examples universally. */
 public class CarEntity extends Se2Entity {
   public static final Tensor PARTITION_SCALE = Tensors.of( //
-      RealScalar.of(5), RealScalar.of(5), Degree.of(10).reciprocal()).unmodifiable();
+      RealScalar.of(5), RealScalar.of(5), Unitless.DEGREES.of(10).reciprocal()).unmodifiable();
   static final Scalar SPEED = RealScalar.of(1.0);
-  static final Scalar MAX_TURNING_PLAN = Degree.of(45);
+  static final Scalar MAX_TURNING_PLAN = Unitless.DEGREES.of(45);
   static final Scalar LOOKAHEAD = RealScalar.of(0.5);
   /** the pure pursuit controller is permitted a slightly higher turning rate "m^-1"
    * than the planner, to overcome small imprecisions when following the trajectory */
-  public static final Scalar MAX_TURNING_RATE = Degree.of(50);
+  public static final Scalar MAX_TURNING_RATE = Unitless.DEGREES.of(50);
   public static final FlowsInterface CARFLOWS = Se2CarFlows.standard(SPEED, MAX_TURNING_PLAN);
   private static final Scalar SQRT2 = Sqrt.FUNCTION.apply(RealScalar.of(2));
   private static final Scalar SHIFT_PENALTY = RealScalar.of(0.4);

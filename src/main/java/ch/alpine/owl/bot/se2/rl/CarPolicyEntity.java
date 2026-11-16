@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.PolicyEntity;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
@@ -41,7 +42,6 @@ import ch.alpine.tensor.col.ColorDataGradients;
 import ch.alpine.tensor.img.Raster;
 import ch.alpine.tensor.io.ImageFormat;
 import ch.alpine.tensor.lie.rot.CirclePoints;
-import ch.alpine.tensor.qty.Degree;
 
 public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
   private static final Color[] COLORS = new Color[] { //
@@ -79,7 +79,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
     this.raytraceQuery = raytraceQuery;
     // ---
     LidarRaytracer = new LidarRaytracer( //
-        Subdivide.of(Degree.of(+50), Degree.of(-50), carDiscreteModel.resolution - 1), //
+        Subdivide.of(Unitless.DEGREES.of(+50), Unitless.DEGREES.of(-50), carDiscreteModel.resolution - 1), //
         Subdivide.of(0.0, 5.0, 23));
     lidarEmulator = new LidarEmulator(LidarRaytracer, this::getStateTimeNow, raytraceQuery);
     reset(RealScalar.ZERO);

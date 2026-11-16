@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
 import ch.alpine.owl.util.bot.FlowsInterface;
@@ -18,7 +19,6 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.qty.Unit;
@@ -28,13 +28,13 @@ import ch.alpine.tensor.sca.Chop;
 class Se2ControlsTest {
   @Test
   void testSimple() {
-    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
+    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Unitless.DEGREES.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Scalar maxSpeed = Se2Controls.maxSpeed(controls);
     Chop._13.requireClose(maxSpeed, RealScalar.ONE);
     Scalar maxTurn = Se2Controls.maxTurning(controls);
     Chop._13.requireClose(maxTurn, RealScalar.of(45 * Math.PI / 180));
-    Chop._13.requireClose(maxTurn, Degree.of(45));
+    Chop._13.requireClose(maxTurn, Unitless.DEGREES.of(45));
   }
 
   @Test

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2MinTimeGoalManager;
@@ -35,18 +36,17 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 /** (x, y, theta) */
 enum Se2ExpandGlcDemo {
   ;
   static void main() {
-    Tensor eta = Tensors.of(RealScalar.of(6), RealScalar.of(6), Degree.of(15).reciprocal());
+    Tensor eta = Tensors.of(RealScalar.of(6), RealScalar.of(6), Unitless.DEGREES.of(15).reciprocal());
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 10), "s"), 4);
     System.out.println("scale=" + eta);
-    FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "s^-1"), Degree.of(35));
+    FlowsInterface carFlows = Se2CarFlows.standard(Quantity.of(1, "s^-1"), Unitless.DEGREES.of(35));
     Collection<Tensor> controls = carFlows.getFlows(10);
     Se2ComboRegion se2ComboRegion = //
         Se2ComboRegion.ball(Tensors.vector(2, 1, -Math.PI), Tensors.vector(0.1, 0.1, 10 / 180 * Math.PI));//

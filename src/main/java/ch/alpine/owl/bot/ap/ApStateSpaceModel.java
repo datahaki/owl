@@ -1,12 +1,12 @@
 // code by astoll
 package ch.alpine.owl.bot.ap;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.sophis.flow.StateSpaceModel;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.PackageTestAccess;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 import ch.alpine.tensor.red.Times;
@@ -30,13 +30,13 @@ enum ApStateSpaceModel implements StateSpaceModel {
   /** max thrust in N */
   public static final Scalar MAX_THRUST = UnitSystem.SI().apply(Quantity.of(160_000, "N"));
   /** max AOA in radian */
-  public static final Scalar MAX_AOA = Degree.of(10);
+  public static final Scalar MAX_AOA = Unitless.DEGREES.of(10);
   /** max speed [m*s^-1] */
   static final Scalar MAX_SPEED = Quantity.of(83, "m*s^-1");
   /** stall speed [m*s^-1] */
   static final Scalar STALL_SPEED = Quantity.of(58, "m*s^-1");
   /** steepest descent flight path angle */
-  static final Scalar MAX_DESCENT_GAMMA = Degree.of(-15);
+  static final Scalar MAX_DESCENT_GAMMA = Unitless.DEGREES.of(-15);
   /** maximal vertical speed in z direction during flight in [m/s] */
   static final Scalar Z_DOT_FLIGHT_MAX = MAX_SPEED.multiply(Sin.FUNCTION.apply(MAX_DESCENT_GAMMA));
   /** maximal vertical touchdown speed in z direction in [m/s] */

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.EntityControl;
 import ch.alpine.owl.ani.api.ProviderRank;
 import ch.alpine.owl.util.bot.FlowsInterface;
@@ -22,16 +23,15 @@ import ch.alpine.tensor.io.Import;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 /** test if api is sufficient to model gokart */
 public class GokartEntity extends CarEntity {
-  static final Tensor PARTITION_SCALE = Tensors.of(RealScalar.of(2), RealScalar.of(2), Degree.of(10).reciprocal()).unmodifiable();
+  static final Tensor PARTITION_SCALE = Tensors.of(RealScalar.of(2), RealScalar.of(2), Unitless.DEGREES.of(10).reciprocal()).unmodifiable();
   static final Scalar SPEED = Quantity.of(2.5, "s^-1");
   static final Scalar LOOKAHEAD = RealScalar.of(3.0);
-  static final Scalar MAX_TURNING_PLAN = Degree.of(15);
-  static final Scalar MAX_TURNING_RATE = Degree.of(23);
+  static final Scalar MAX_TURNING_PLAN = Unitless.DEGREES.of(15);
+  static final Scalar MAX_TURNING_RATE = Unitless.DEGREES.of(23);
   static final FlowsInterface CARFLOWS = Se2CarFlows.forward(SPEED, MAX_TURNING_PLAN);
   public static final Tensor SHAPE = Import.of("/gokart/footprint/20171201.csv");
   // ---

@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import ch.alpine.ascony.crv.Arrowhead;
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2LateralAcceleration;
@@ -31,13 +32,12 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 class TwdEntity extends Se2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //
-      RealScalar.of(6), RealScalar.of(6), Degree.of(10).reciprocal()).unmodifiable();
+      RealScalar.of(6), RealScalar.of(6), Unitless.DEGREES.of(10).reciprocal()).unmodifiable();
   private static final Scalar SQRT2 = Sqrt.FUNCTION.apply(RealScalar.TWO);
   static final Tensor SHAPE = Arrowhead.of(0.3);
 

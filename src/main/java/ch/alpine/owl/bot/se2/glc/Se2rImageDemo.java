@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.alpine.ascony.win.TimerFrame;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.bot.r2.ImageRegions;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
@@ -34,7 +35,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.chq.MemberQ;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 
 /** (x, y, theta) */
@@ -46,7 +46,7 @@ enum Se2rImageDemo {
     Tensor partitionScale = Tensors.vector(3, 3, 50 / Math.PI);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
-    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Degree.of(45));
+    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Unitless.DEGREES.of(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2ComboRegion se2ComboRegion = //
         Se2ComboRegion.ball(Tensors.vector(4.0, 5.6, 0), Tensors.vector(0.1, 0.1, 0.17));

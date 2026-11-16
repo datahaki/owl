@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.util.bot.FlowsInterface;
@@ -28,7 +29,6 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Append;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
-import ch.alpine.tensor.qty.Degree;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.MinMax;
 import ch.alpine.tensor.sca.Clip;
@@ -39,12 +39,12 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * that means, the functionality does not apply to all examples universally. */
 public class Tse2CarEntity extends Tse2Entity {
   static final Tensor PARTITION_SCALE = Tensors.of( //
-      RealScalar.of(5), RealScalar.of(5), Degree.of(7).reciprocal(), RealScalar.of(10)).unmodifiable();
+      RealScalar.of(5), RealScalar.of(5), Unitless.DEGREES.of(7).reciprocal(), RealScalar.of(10)).unmodifiable();
   public static final Scalar MAX_SPEED = Quantity.of(3.0, "s^-1"); //
   public static final Clip v_range = Clips.positive(MAX_SPEED);
-  static final Scalar MAX_TURNING_PLAN = Degree.of(45);
+  static final Scalar MAX_TURNING_PLAN = Unitless.DEGREES.of(45);
   static final Scalar LOOKAHEAD = RealScalar.of(0.5);
-  static final Scalar MAX_TURNING_RATE = Degree.of(50); // slightly higher for pure pursuit
+  static final Scalar MAX_TURNING_RATE = Unitless.DEGREES.of(50); // slightly higher for pure pursuit
   static final FlowsInterface CARFLOWS = Tse2CarFlows.of( //
       MAX_TURNING_PLAN, //
       Tensors.vector(-0.7, 0, 0.7).multiply(Quantity.of(1, "s^-2")));

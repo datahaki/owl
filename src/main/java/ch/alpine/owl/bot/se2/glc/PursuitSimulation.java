@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.ascony.ren.FixGridRender;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.util.win.OwlAnimationFrame;
 import ch.alpine.owlets.math.state.StateTime;
@@ -16,14 +17,13 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.lie.rot.AngleVector;
 import ch.alpine.tensor.num.Pi;
-import ch.alpine.tensor.qty.Degree;
 
 class PursuitSimulation extends Se2Demo {
   @Override
   protected void configure(OwlAnimationFrame owlAnimationFrame) {
     List<TrajectorySample> trajectory = new ArrayList<>();
     int t = 0;
-    for (Tensor angle : Subdivide.of(Degree.of(0), Degree.of(360), 100)) {
+    for (Tensor angle : Subdivide.of(Unitless.DEGREES.of(0), Unitless.DEGREES.of(360), 100)) {
       Tensor x = AngleVector.of((Scalar) angle).multiply(RealScalar.of(2)).append(angle.add(Pi.HALF));
       StateTime stateTime = new StateTime(x, RealScalar.of(++t));
       Tensor flow = Tensors.vector(1, 0, 0);

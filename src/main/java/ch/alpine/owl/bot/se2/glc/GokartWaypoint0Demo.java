@@ -4,6 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
@@ -21,7 +22,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.io.Import;
-import ch.alpine.tensor.qty.Degree;
 
 /** demo to simulate dubendorf hangar
  * 
@@ -35,7 +35,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     GokartEntity gokartEntity = new GokartEntity(initial) {
       @Override
       public RegionWithDistance<Tensor> getGoalRegionWithDistance(Tensor goal) {
-        return new ConeRegion(goal, Degree.of(18));
+        return new ConeRegion(goal, Unitless.DEGREES.of(18));
       }
     };
     // ---

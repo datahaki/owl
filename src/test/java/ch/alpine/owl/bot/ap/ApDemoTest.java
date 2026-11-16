@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.bridge.lang.Unitless;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.qty.Degree;
 
 class ApDemoTest {
   final static Tensor INITIAL_TENSOR = ApDemo.INITIAL;
@@ -26,7 +26,7 @@ class ApDemoTest {
 
   @Test
   void testHello() {
-    double doubleValue = Degree.of(-1).number().doubleValue();
+    double doubleValue = Unitless.DEGREES.of(-1).number().doubleValue();
     IO.println(doubleValue);
   }
 }
