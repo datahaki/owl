@@ -5,7 +5,7 @@ import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.bridge.gfx.RenderInterface;
-import ch.alpine.bridge.lang.Unitless;
+import ch.alpine.bridge.math.Unitless;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;

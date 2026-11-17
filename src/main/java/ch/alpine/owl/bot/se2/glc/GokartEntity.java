@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.lang.Unitless;
+import ch.alpine.bridge.math.Unitless;
 import ch.alpine.owl.ani.api.EntityControl;
 import ch.alpine.owl.ani.api.ProviderRank;
 import ch.alpine.owl.util.bot.FlowsInterface;

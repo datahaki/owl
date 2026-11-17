@@ -5,12 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Optional;
 
-import ch.alpine.bridge.fig.Meshgrid;
 import ch.alpine.bridge.fig.Show;
 import ch.alpine.bridge.fig.Showable;
 import ch.alpine.bridge.fig.plt.DensityPlot;
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
+import ch.alpine.bridge.math.Meshgrid;
 import ch.alpine.sophis.api.SignedDistanceFunction;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

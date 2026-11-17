@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.lang.Unitless;
+import ch.alpine.bridge.math.Unitless;
 import ch.alpine.owl.ani.api.TrajectoryControl;
 import ch.alpine.owl.bot.se2.Se2ShiftCostFunction;
 import ch.alpine.owl.util.bot.FlowsInterface;

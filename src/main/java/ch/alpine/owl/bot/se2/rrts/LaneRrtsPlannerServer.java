@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ch.alpine.bridge.lang.Unitless;
+import ch.alpine.bridge.math.Unitless;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.LaneRandomSample;

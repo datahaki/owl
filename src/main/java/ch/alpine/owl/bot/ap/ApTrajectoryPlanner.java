@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.ap;
 
 import java.util.Collection;
 
-import ch.alpine.bridge.lang.Unitless;
+import ch.alpine.bridge.math.Unitless;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.core.GoalInterface;
