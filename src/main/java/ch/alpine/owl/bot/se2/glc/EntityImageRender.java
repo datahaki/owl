@@ -13,7 +13,7 @@ import ch.alpine.sophus.lie.se2.Se2Matrix;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.jet.AppendOne;
+import ch.alpine.tensor.jet.AffineAppend;
 import ch.alpine.tensor.red.Times;
 
 /** Renders an arbitrary image at the supplier state */
@@ -25,7 +25,7 @@ class EntityImageRender implements RenderInterface {
   public EntityImageRender(Supplier<StateTime> supplier, BufferedImage bufferedImage, Tensor range) {
     this.supplier = supplier;
     this.bufferedImage = bufferedImage;
-    Tensor invsc = AppendOne.FUNCTION.apply(Times.of(range, //
+    Tensor invsc = AffineAppend.M1.apply(Times.of(range, //
         Tensors.vector(bufferedImage.getWidth(), -bufferedImage.getHeight()).maps(Scalar::reciprocal)));
     // not generic since factor / 3 is used
     Tensor translate = Se2Matrix.translation( //
