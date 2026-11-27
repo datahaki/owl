@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
 import ch.alpine.owl.bot.se2.Se2ComboRegion;
 import ch.alpine.owl.bot.se2.Se2CoveringWrap;
@@ -68,7 +68,7 @@ enum Se2WrapDemo {
     Tensor eta = Tensors.vector(3, 3, 50 / Math.PI);
     StateIntegrator stateIntegrator = new FixedStateIntegrator( //
         Se2CarIntegrator.INSTANCE, Se2StateSpaceModel.INSTANCE, Quantity.of(Rational.of(1, 6), "s"), 5);
-    FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, Unitless.DEGREES.of(45));
+    FlowsInterface carFlows = Se2CarFlows.forward(RealScalar.ONE, SI.DEGREES.equipWithUnitNormalize(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Se2MinTimeGoalManager se2MinTimeGoalManager = new Se2MinTimeGoalManager(new Se2ComboRegion( //
         new BallRegion(Tensors.vector(-0.5, 0), RealScalar.of(0.5)), so2Region), //

@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.bot.se2.glc.Se2CarFlows;
 import ch.alpine.owl.bot.se2.twd.TwdDuckieFlows;
 import ch.alpine.owl.util.bot.FlowsInterface;
@@ -28,13 +28,13 @@ import ch.alpine.tensor.sca.Chop;
 class Se2ControlsTest {
   @Test
   void testSimple() {
-    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, Unitless.DEGREES.of(45));
+    FlowsInterface carFlows = Se2CarFlows.standard(RealScalar.ONE, SI.DEGREES.equipWithUnitNormalize(45));
     Collection<Tensor> controls = carFlows.getFlows(6);
     Scalar maxSpeed = Se2Controls.maxSpeed(controls);
     Chop._13.requireClose(maxSpeed, RealScalar.ONE);
     Scalar maxTurn = Se2Controls.maxTurning(controls);
     Chop._13.requireClose(maxTurn, RealScalar.of(45 * Math.PI / 180));
-    Chop._13.requireClose(maxTurn, Unitless.DEGREES.of(45));
+    Chop._13.requireClose(maxTurn, SI.DEGREES.equipWithUnitNormalize(45));
   }
 
   @Test

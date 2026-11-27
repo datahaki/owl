@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.lane.LaneConsumer;
 import ch.alpine.owl.lane.LaneInterface;
 import ch.alpine.owl.lane.LaneRandomSample;
@@ -31,7 +31,7 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 
 // TODO API don't use magic constants at all. implement via interface, make interface final
 public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer implements LaneConsumer {
-  private static final Distribution DEFAULT_ROT_DIST = NormalDistribution.of(RealScalar.ZERO, Unitless.DEGREES.of(5));
+  private static final Distribution DEFAULT_ROT_DIST = NormalDistribution.of(RealScalar.ZERO, SI.DEGREES.equipWithUnitNormalize(5));
   // ---
   private final boolean greedy;
   private RandomSampleInterface laneSampler;
@@ -40,8 +40,8 @@ public abstract class LaneRrtsPlannerServer extends DefaultRrtsPlannerServer imp
   // ---
   private boolean conical = false;
   private Scalar mu_r = RealScalar.of(3);
-  private Scalar semi = Unitless.DEGREES.of(17);
-  private Scalar heading = Unitless.DEGREES.of(5);
+  private Scalar semi = SI.DEGREES.equipWithUnitNormalize(17);
+  private Scalar heading = SI.DEGREES.equipWithUnitNormalize(5);
   private Distribution rotDist = DEFAULT_ROT_DIST;
 
   protected LaneRrtsPlannerServer( //

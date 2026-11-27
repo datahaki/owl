@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
 import ch.alpine.bridge.gfx.RenderInterface;
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.sim.LidarRaytracer;
 import ch.alpine.owlets.math.state.StateTime;
 import ch.alpine.owlets.math.state.TrajectoryRegionQuery;
@@ -21,8 +21,8 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Subdivide;
 
 public class LidarEmulator implements RenderInterface {
-  public static final Tensor DEFAULT = Subdivide.of(Unitless.DEGREES.of(+90), Unitless.DEGREES.of(-90), 32);
-  public static final Tensor RAYDEMO = Subdivide.of(Unitless.DEGREES.of(+90), Unitless.DEGREES.of(-90), 5);
+  public static final Tensor DEFAULT = Subdivide.of(SI.DEGREES.equipWithUnitNormalize(+90), SI.DEGREES.equipWithUnitNormalize(-90), 32);
+  public static final Tensor RAYDEMO = Subdivide.of(SI.DEGREES.equipWithUnitNormalize(+90), SI.DEGREES.equipWithUnitNormalize(-90), 5);
   // ---
   public static final Scalar RANGE_MAX = RealScalar.of(5.0);
   /** if the number of lasers are bounded by MAX_RAYS each rays is visualized as a line,

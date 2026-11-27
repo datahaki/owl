@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owlets.glc.adapter.GlcExpand;
 import ch.alpine.owlets.glc.std.StandardTrajectoryPlanner;
 import ch.alpine.owlets.math.state.StateTime;
@@ -26,7 +26,7 @@ class ApDemoTest {
 
   @Test
   void testHello() {
-    double doubleValue = Unitless.DEGREES.of(-1).number().doubleValue();
+    double doubleValue = SI.DEGREES.equipWithUnitNormalize(-1).number().doubleValue();
     IO.println(doubleValue);
   }
 }

@@ -3,7 +3,7 @@ package ch.alpine.owl.bot.ap;
 
 import java.util.Collection;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.owlets.glc.adapter.EtaRaster;
 import ch.alpine.owlets.glc.core.GoalInterface;
@@ -40,7 +40,7 @@ class ApTrajectoryPlanner {
   /* Setting up integrator */
   static final TimeIntegrator INTEGRATOR = TimeIntegrators.RK4;
   /* Setting up Time Raster */
-  final static Tensor PARTITION_SCALE = Tensors.of(RealScalar.ONE, RealScalar.ONE, RealScalar.ONE, Unitless.DEGREES.of(1)).unmodifiable();
+  final static Tensor PARTITION_SCALE = Tensors.of(RealScalar.ONE, RealScalar.ONE, RealScalar.ONE, SI.DEGREES.equipWithUnitNormalize(1)).unmodifiable();
 
   static protected StateTimeRaster stateTimeRaster() {
     return new EtaRaster(PARTITION_SCALE, StateTimeTensorFunction.state(ApWrap.INSTANCE::represent));

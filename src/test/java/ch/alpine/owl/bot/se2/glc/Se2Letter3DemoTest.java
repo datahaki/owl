@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.tensor.RealScalar;
 
 class Se2Letter3DemoTest {
   @Test
   void testDegree() {
-    assertEquals(RealScalar.of(Math.PI / 6), Unitless.DEGREES.of(180 / 6));
-    assertEquals(RealScalar.of(Math.PI / 6), Unitless.DEGREES.of(30));
+    assertEquals(RealScalar.of(Math.PI / 6), SI.DEGREES.equipWithUnitNormalize(180 / 6));
+    assertEquals(RealScalar.of(Math.PI / 6), SI.DEGREES.equipWithUnitNormalize(30));
   }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
 import ch.alpine.bridge.gfx.RenderInterface;
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.bot.r2.R2xTEllipsoidStateTimeRegion;
@@ -42,7 +42,7 @@ public class GokartxTWaypointFollowingDemo extends GokartDemo {
     GokartxTEntity gokartEntity = new GokartxTEntity(initial) {
       @Override
       public RegionWithDistance<Tensor> getGoalRegionWithDistance(Tensor goal) {
-        return new ConeRegion(goal, Unitless.DEGREES.of(18));
+        return new ConeRegion(goal, SI.DEGREES.equipWithUnitNormalize(18));
       }
     };
     // ---

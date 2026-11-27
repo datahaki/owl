@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.util.bot.FlowsInterface;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -17,7 +17,7 @@ class Tse2MinTimeGoalManagerTest {
   @Test
   void testSimple() {
     Tse2ComboRegion tse2ComboRegion = Tse2ComboRegion.spherical(Tensors.vector(1, 2, 3, 1), Tensors.vector(1, 1, 0.1, 1));
-    Scalar rate_max = Unitless.DEGREES.of(30); // 45
+    Scalar rate_max = SI.DEGREES.equipWithUnitNormalize(30); // 45
     FlowsInterface flowsInterface = Tse2CarFlows.of(rate_max, Tensors.vector(-2, 0, 2));
     Tse2MinTimeGoalManager tse2MinTimeGoalManager = //
         new Tse2MinTimeGoalManager(tse2ComboRegion, flowsInterface.getFlows(3), RealScalar.of(2));

@@ -4,7 +4,7 @@ package ch.alpine.owl.bot.se2.glc;
 import java.util.List;
 
 import ch.alpine.bridge.awt.WindowClosed;
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.ani.api.EntityGlcPlannerCallback;
 import ch.alpine.owl.ani.api.GlcPlannerCallback;
 import ch.alpine.owl.util.ren.RegionRenderFactory;
@@ -35,7 +35,7 @@ public class GokartWaypoint0Demo extends GokartDemo {
     GokartEntity gokartEntity = new GokartEntity(initial) {
       @Override
       public RegionWithDistance<Tensor> getGoalRegionWithDistance(Tensor goal) {
-        return new ConeRegion(goal, Unitless.DEGREES.of(18));
+        return new ConeRegion(goal, SI.DEGREES.equipWithUnitNormalize(18));
       }
     };
     // ---

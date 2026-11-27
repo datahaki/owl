@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.bridge.gfx.GeometricLayer;
-import ch.alpine.bridge.math.Unitless;
+import ch.alpine.bridge.math.SI;
 import ch.alpine.owl.ani.api.PolicyEntity;
 import ch.alpine.owl.bot.se2.LidarEmulator;
 import ch.alpine.owl.bot.se2.Se2CarIntegrator;
@@ -79,7 +79,7 @@ public class CarPolicyEntity extends PolicyEntity implements RewardInterface {
     this.raytraceQuery = raytraceQuery;
     // ---
     LidarRaytracer = new LidarRaytracer( //
-        Subdivide.of(Unitless.DEGREES.of(+50), Unitless.DEGREES.of(-50), carDiscreteModel.resolution - 1), //
+        Subdivide.of(SI.DEGREES.equipWithUnitNormalize(+50), SI.DEGREES.equipWithUnitNormalize(-50), carDiscreteModel.resolution - 1), //
         Subdivide.of(0.0, 5.0, 23));
     lidarEmulator = new LidarEmulator(LidarRaytracer, this::getStateTimeNow, raytraceQuery);
     reset(RealScalar.ZERO);
